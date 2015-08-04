@@ -2,50 +2,23 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.yuzhouwan</groupId>
-    <artifactId>site</artifactId>
-    <packaging>war</packaging>
-    <version>1.0-SNAPSHOT</version>
-    <name>yuzhouwan</name>
-    <url>http://www.yuzhouwan.com</url>
+    <artifactId>www</artifactId>
+    <packaging>pom</packaging>
+    <version>0.1</version>
 
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-
-    <build>
-        <finalName>yuzhouwan</finalName>
-        <defaultGoal>install</defaultGoal>
-        <sourceDirectory>src/main/java</sourceDirectory>
-        <testSourceDirectory>src/test/java</testSourceDirectory>
-
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
-                <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.4.1</version>
-            </plugin>
-        </plugins>
-    </build>
-
-    <scm>
-        <connection>scm:git@github.com:asdf2014/yuzhouwan.git</connection>
-        <url>scm:git@github.com:asdf2014/yuzhouwan.git</url>
-        <developerConnection>scm:git@github.com:asdf2014/yuzhouwan.git</developerConnection>
-    </scm>
+    <profiles>
+        <profile>
+            <id>asdf</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>parent</module>
+                <module>custom</module>
+                <module>site</module>
+                <module>field</module>
+            </modules>
+        </profile>
+    </profiles>
 
 </project>
