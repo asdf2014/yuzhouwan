@@ -1,0 +1,314 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page 2 | Archives: 2015 | Asdf&#39;s Blog</title>
+  <meta name="author" content="asdf">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Asdf&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="/atom.xml" title="Asdf&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Asdf&#39;s Blog</a></h1>
+  <h2><a href="/">using hexo</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+    <li> <a href="/atom.xml">RSS</a> </li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title">2015</h2>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-02-02T03:09:26.000Z"><a href="/2015/02/02/Antlr4/">Feb 2 2015</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/02/02/Antlr4/">Antlr</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="什么是_Antlr?"><strong><font color="blue"><em>什么是 Antlr?</em></font></strong></h2>
+<p>&nbsp;&nbsp; <font size="3">ANTLR—Another Tool for Language Recognition, 其前身是 PCCTS, 它为包括 Java, C++, C# 在内的语言提供了一个通过语法描述来自动构造自定义语言的识别器 (recognizer) , 编译器 (parser) 和解释器 (translator) 的框架。 - - <a href="http://baike.baidu.com/link?url=0M76AbufdfB3BPoqptG8FqFZ_U-U6IloEsnc_9sCA9iPNhmFXjLCvf5MULP9YXIITmnafLH4r8GMuZ4_R_D3hq" target="_blank" rel="external">百度百科</a></font></p>
+<p>&nbsp; <font size="3"><em>ANTLR (ANother Tool for Language Recognition) is a powerful parser generator for reading, processing, executing, or translating structured text or binary files. It’s widely used to build languages, tools, and frameworks. From a grammar, ANTLR generates a parser that can build and walk parse trees.</em> - - <a href="http://www.antlr.org/" target="_blank" rel="external">Antlr Official Site</a></font></p>
+<p>&nbsp; <font size="3"><em>In computer-based language recognition, ANTLR (pronounced Antler), or ANother Tool for Language Recognition, is a parser generator that uses LL(*) parsing.</em> - - <a href="http://en.wikipedia.org/wiki/ANTLR" target="_blank" rel="external">WIKIPEDIA</a></font></p>
+<h2 id="为什么要有_Antlr?"><strong><font color="blue"><em>为什么要有 Antlr?</em></font></strong></h2>
+<h3 id="简易性">简易性</h3>
+<pre><code>-<span class="ruby"> 可以通过断言 (<span class="constant">Predicate</span>) 解决识别冲突
+</span>-<span class="ruby"> 支持动作 (<span class="constant">Action</span>) 和返回值 (<span class="constant">Return</span> <span class="constant">Value</span>)
+</span>-<span class="ruby"> 它可以根据输入自动生成语法树并可视化的显示出来</span>
+</code></pre><h3 id="模块化">模块化</h3>
+<pre><code>-<span class="ruby"> 复杂情况下，需要基于语法树遍历 (walking the tree) 生成目标代码
+</span>-<span class="ruby"> <span class="constant">Embeded</span> action将处理代码跟语法描述混合起来，语法复杂时使语法文件臃肿
+</span>-<span class="ruby"> 语法可能经常需要修改
+</span>-<span class="ruby"> 语法的主要表达式却不会变动，将语法识别与转换、生成 (目标代码) 等处理分离</span>
+</code></pre><h2 id="Antlr_工作机制"><strong><font color="blue"><em>Antlr 工作机制</em></font></strong></h2>
+<h3 id="词法分析器_(Lexer)">词法分析器 (Lexer)</h3>
+<pre><code>分析量化字符流，翻译成离散的字符组 (也就是一堆 Token), 包括关键字，标识符，符号 (symbols) 和操作符，以供语法分析器使用
+</code></pre><h3 id="语法分析器_(Parser)">语法分析器 (Parser)</h3>
+<pre><code>将 Tokens 组织起来，并转换成为目标语言语法 (默认是 java) 定义所允许的序列
+</code></pre><h3 id="树分析器_(Tree_Parser)">树分析器 (Tree Parser)</h3>
+<pre><code>用于对语法分析生成的抽象语法树进行遍历，并在先序经过每个树节点的时候，进行一些定制操作
+</code></pre><h2 id="Antlr_运作流程"><strong><font color="blue"><em>Antlr 运作流程</em></font></strong></h2>
+<h3 id="编写_-g/-g4_文件_(asdf-g4)">编写 .g/.g4 文件 (asdf.g4)</h3>
+<figure class="highlight antlr"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">grammar asdf;</div><div class="line">say</div><div class="line">	: 'asdf say: ' Name</div><div class="line">	;</div><div class="line">Name</div><div class="line">	: [a-z]+</div><div class="line">	;</div><div class="line">WS</div><div class="line">	:[ \t\r\n]+ -&gt; skip</div><div class="line">	;</div></pre></td></tr></table></figure>
+
+<h3 id="使用_antlr_词法/语法_分析">使用 antlr 词法/语法 分析</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">java org.antlr.v4.Tool asdf.g4</div><div class="line">-------&gt;</div><div class="line">asdf.tokens</div><div class="line">asdfLexer.tokens</div><div class="line">asdfLexer.java</div><div class="line">asdfListener.java</div><div class="line">asdfBaseListener.java</div><div class="line">asdfParser.java</div></pre></td></tr></table></figure>
+
+<h3 id="编译，可视化">编译，可视化</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">javac asdf*.java</div><div class="line">java org.antlr.v4.runtime.misc.TestRig asdf say -gui -tree</div><div class="line"></div><div class="line">input a sentence ending with ^Z:</div><div class="line">	say hello</div></pre></td></tr></table></figure>
+
+<p><img src="/../2015-2-2/say-hello.png" alt="say-hello"></p>
+<h2 id="那些年一起踩过的坑_!"><strong><font color="blue"><em>那些年一起踩过的坑 !</em></font></strong></h2>
+<h3 id="给每次_antlr_的结果文件添加_package">给每次 antlr 的结果文件添加 package</h3>
+<pre><code>在 .g4 中使用 @header{ <span class="keyword">...</span> } 添加 
+</code></pre><figure class="highlight antlr"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="at_rule">@<span class="keyword">header{</span></span></div><div class="line">	package com.yuzhouwan.antlr;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h3 id="使用_if-else_在_exit/enter()_中判别，节点与子节点之间的关系，确定是否是_operator">使用 if-else 在 exit/enter() 中判别，节点与子节点之间的关系，确定是否是 operator</h3>
+<figure class="highlight antlr"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">say</div><div class="line">	: <span class="string">'say'</span> <span class="keyword">Colon</span> Name	#<span class="keyword">Colon</span></div><div class="line">	;</div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">asdfListener 将会得到一个定位粒度为 Colon 的访问节点</div><div class="line"></div><div class="line"><span class="javadoc">/**</span></div><div class="line"> * Enter a parse tree produced by the {@code Colon}</div><div class="line"> * labeled alternative in {@link asdfParser#say}.</div><div class="line"> *<span class="javadoctag"> @param</span> ctx the parse tree</div><div class="line"> */</div><div class="line"><span class="keyword">void</span> enterColon(asdfParser.ColonContext ctx);</div><div class="line"><span class="javadoc">/**</span></div><div class="line"> * Exit a parse tree produced by the {@code Colon}</div><div class="line"> * labeled alternative in {@link asdfParser#say}.</div><div class="line"> *<span class="javadoctag"> @param</span> ctx the parse tree</div><div class="line"> */</div><div class="line"><span class="keyword">void</span> exitColon(asdfParser.ColonContext ctx);</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  
+
+  <nav id="pagination">
+  
+    <a href="/archives/2015/" class="alignleft prev">Prev</a>
+  
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yuzhouwan.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Antlr/">Antlr</a><small>1</small></li>
+  
+    <li><a href="/categories/HashMap/ConcurrentHashMap/">ConcurrentHashMap</a><small>1</small></li>
+  
+    <li><a href="/categories/Hadoop/">Hadoop</a><small>1</small></li>
+  
+    <li><a href="/categories/HashMap/">HashMap</a><small>1</small></li>
+  
+    <li><a href="/categories/Hexo/">Hexo</a><small>1</small></li>
+  
+    <li><a href="/categories/JavaScript/">JavaScript</a><small>1</small></li>
+  
+    <li><a href="/categories/Kafka/">Kafka</a><small>1</small></li>
+  
+    <li><a href="/categories/Storm/Kafka/">Kafka</a><small>1</small></li>
+  
+    <li><a href="/categories/Node-js/Module/">Module</a><small>1</small></li>
+  
+    <li><a href="/categories/Node-js/">Node.js</a><small>3</small></li>
+  
+    <li><a href="/categories/Python/">Python</a><small>1</small></li>
+  
+    <li><a href="/categories/Qcon/">Qcon</a><small>1</small></li>
+  
+    <li><a href="/categories/Hadoop/RPC/">RPC</a><small>1</small></li>
+  
+    <li><a href="/categories/SSO/">SSO</a><small>1</small></li>
+  
+    <li><a href="/categories/Session/">Session</a><small>1</small></li>
+  
+    <li><a href="/categories/Storm/">Storm</a><small>2</small></li>
+  
+    <li><a href="/categories/Year-2038-problem/">Year_2038_problem</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Antlr/">Antlr</a><small>1</small></li>
+  
+    <li><a href="/tags/Clojure/">Clojure</a><small>1</small></li>
+  
+    <li><a href="/tags/ClojureScript/">ClojureScript</a><small>1</small></li>
+  
+    <li><a href="/tags/ConcurrentHashMap/">ConcurrentHashMap</a><small>1</small></li>
+  
+    <li><a href="/tags/Cookie/">Cookie</a><small>1</small></li>
+  
+    <li><a href="/tags/ECMAScirpt/">ECMAScirpt</a><small>1</small></li>
+  
+    <li><a href="/tags/HTTP/">HTTP</a><small>1</small></li>
+  
+    <li><a href="/tags/Hadoop/">Hadoop</a><small>1</small></li>
+  
+    <li><a href="/tags/Hash/">Hash</a><small>1</small></li>
+  
+    <li><a href="/tags/HashMap/">HashMap</a><small>1</small></li>
+  
+    <li><a href="/tags/Hexo/">Hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/Hibernate/">Hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/JSON/">JSON</a><small>1</small></li>
+  
+    <li><a href="/tags/JSP/">JSP</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>1</small></li>
+  
+    <li><a href="/tags/Kafka/">Kafka</a><small>3</small></li>
+  
+    <li><a href="/tags/Module/">Module</a><small>1</small></li>
+  
+    <li><a href="/tags/NOSQL/">NOSQL</a><small>1</small></li>
+  
+    <li><a href="/tags/Node-js/">Node.js</a><small>4</small></li>
+  
+    <li><a href="/tags/PHP/">PHP</a><small>1</small></li>
+  
+    <li><a href="/tags/Python/">Python</a><small>1</small></li>
+  
+    <li><a href="/tags/Qcon/">Qcon</a><small>1</small></li>
+  
+    <li><a href="/tags/RPC/">RPC</a><small>1</small></li>
+  
+    <li><a href="/tags/SSO/">SSO</a><small>2</small></li>
+  
+    <li><a href="/tags/Session/">Session</a><small>2</small></li>
+  
+    <li><a href="/tags/Storm/">Storm</a><small>3</small></li>
+  
+    <li><a href="/tags/V8/">V8</a><small>1</small></li>
+  
+    <li><a href="/tags/WebLogic/">WebLogic</a><small>1</small></li>
+  
+    <li><a href="/tags/Year-2038-problem/">Year_2038_problem</a><small>1</small></li>
+  
+    <li><a href="/tags/猿题库/">猿题库</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tag Cloud</h3>
+  <div class="entry">
+    <a href="/tags/Antlr/" style="font-size: 10.00px;">Antlr</a><a href="/tags/Clojure/" style="font-size: 10.00px;">Clojure</a><a href="/tags/ClojureScript/" style="font-size: 10.00px;">ClojureScript</a><a href="/tags/ConcurrentHashMap/" style="font-size: 10.00px;">ConcurrentHashMap</a><a href="/tags/Cookie/" style="font-size: 10.00px;">Cookie</a><a href="/tags/ECMAScirpt/" style="font-size: 10.00px;">ECMAScirpt</a><a href="/tags/HTTP/" style="font-size: 10.00px;">HTTP</a><a href="/tags/Hadoop/" style="font-size: 10.00px;">Hadoop</a><a href="/tags/Hash/" style="font-size: 10.00px;">Hash</a><a href="/tags/HashMap/" style="font-size: 10.00px;">HashMap</a><a href="/tags/Hexo/" style="font-size: 10.00px;">Hexo</a><a href="/tags/Hibernate/" style="font-size: 10.00px;">Hibernate</a><a href="/tags/JSON/" style="font-size: 10.00px;">JSON</a><a href="/tags/JSP/" style="font-size: 10.00px;">JSP</a><a href="/tags/Java/" style="font-size: 10.00px;">Java</a><a href="/tags/JavaScript/" style="font-size: 10.00px;">JavaScript</a><a href="/tags/Kafka/" style="font-size: 16.67px;">Kafka</a><a href="/tags/Module/" style="font-size: 10.00px;">Module</a><a href="/tags/NOSQL/" style="font-size: 10.00px;">NOSQL</a><a href="/tags/Node-js/" style="font-size: 20.00px;">Node.js</a><a href="/tags/PHP/" style="font-size: 10.00px;">PHP</a><a href="/tags/Python/" style="font-size: 10.00px;">Python</a><a href="/tags/Qcon/" style="font-size: 10.00px;">Qcon</a><a href="/tags/RPC/" style="font-size: 10.00px;">RPC</a><a href="/tags/SSO/" style="font-size: 13.33px;">SSO</a><a href="/tags/Session/" style="font-size: 13.33px;">Session</a><a href="/tags/Storm/" style="font-size: 16.67px;">Storm</a><a href="/tags/V8/" style="font-size: 10.00px;">V8</a><a href="/tags/WebLogic/" style="font-size: 10.00px;">WebLogic</a><a href="/tags/Year-2038-problem/" style="font-size: 10.00px;">Year_2038_problem</a><a href="/tags/猿题库/" style="font-size: 10.00px;">猿题库</a>
+  </div>
+</div>
+
+
+  
+<div class="widget tag">
+	<h3 class="title">友情链接</h3>
+	<ul class="entry">
+		<li><a href="http://blog.csdn.net/oasiduofu" title="JCloud" target="_blank">JCloud</a>
+		</li>
+	</ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 asdf
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'yuzhouwan';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

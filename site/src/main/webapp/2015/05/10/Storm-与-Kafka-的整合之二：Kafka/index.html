@@ -1,0 +1,362 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Storm 与 Kafka 的整合之二：Kafka | Asdf&#39;s Blog</title>
+  <meta name="author" content="asdf">
+  
+  <meta name="description" content="什么是 Kafka?
+&amp;nbsp;&amp;nbsp;  Kafka is a distributed, partitioned, replicated commit log service. It provides the functionality of a messaging system, but ">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Storm 与 Kafka 的整合之二：Kafka"/>
+  <meta property="og:site_name" content="Asdf&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="/atom.xml" title="Asdf&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Asdf&#39;s Blog</a></h1>
+  <h2><a href="/">using hexo</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+    <li> <a href="/atom.xml">RSS</a> </li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-05-10T04:43:42.000Z"><a href="/2015/05/10/Storm-与-Kafka-的整合之二：Kafka/">May 10 2015</a></time>
+      
+      
+  
+    <h1 class="title">Storm 与 Kafka 的整合之二：Kafka</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="什么是_Kafka?"><strong><font color="blue"><em>什么是 Kafka?</em></font></strong></h2>
+<p>&nbsp;&nbsp; <font size="3"> Kafka is a distributed, partitioned, replicated commit log service. It provides the functionality of a messaging system, but with a unique design. - - <a href="https://kafka.apache.org/" target="_blank" rel="external">Official website</a></font></p>
+<h2 id="为什么要有_Kafka?"><strong><font color="blue"><em>为什么要有 Kafka?</em></font></strong></h2>
+<h3 id="分布式">分布式</h3>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">具备经济、快速、可靠、易扩充、数据共享、设备共享、通讯方便、灵活等分布式所具备的特性</div></pre></td></tr></table></figure>
+
+<h3 id="高吞吐量">高吞吐量</h3>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">同时为发布者和订阅者提高吞吐量</div></pre></td></tr></table></figure>
+
+<h3 id="高可靠性">高可靠性</h3>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">支持多个订阅者，当订阅失败的时候，能够自动均衡订阅者</div></pre></td></tr></table></figure>
+
+<h3 id="离线_&amp;_实时性">离线 &amp; 实时性</h3>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">能将消息持久化，进行批量处理</div></pre></td></tr></table></figure>
+
+<h2 id="Kafka_工作机制"><strong><font color="blue"><em>Kafka 工作机制</em></font></strong></h2>
+<h3 id="一些主要概念">一些主要概念</h3>
+<ul>
+<li>Topic（主题）</li>
+</ul>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">A topic is a category or feed name to which messages are published.</div></pre></td></tr></table></figure>
+
+<ul>
+<li>Producers（发布者）</li>
+</ul>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Producers publish data to the topics of their choice. The producer is responsible <span class="keyword">for</span> choosing which message to assign to which partition within the topic.</div></pre></td></tr></table></figure>
+
+<ul>
+<li>Consumers（订阅者）</li>
+</ul>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Messaging traditionally has two models: queuing and publish-subscribe. </div><div class="line">In a queue, a pool of consumers may read from a server and each message goes to one of them; </div><div class="line">in publish-subscribe the message is broadcast to all consumers.</div></pre></td></tr></table></figure>
+
+<h3 id="示意图">示意图</h3>
+<p><img src="/../2015-5-10/kafka.png" alt="producers-cluster-consumers"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/Kafka/">Kafka</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/Storm/">Storm</a>, <a href="/tags/Kafka/">Kafka</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+	
+<nav id="pagination" >
+    
+    <a href="/2015/05/10/Storm-与-Kafka-的整合之三：Combination/" class="alignleft prev" >Prev</a>
+    
+    
+    <a href="/2015/04/25/Qcon-2015-见闻之一：猿题库/" class="alignright next" >Next</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+
+<script type="text/javascript" src="/js/tab.js"></script>
+<script type="text/javascript">
+    window.onload=function(){
+         var tabtype={trigger:'mouseover',tabCurrentClass:'newclass',auto:false,timer:4000,delay:300 };
+         tabInit(tabtype,['duoshuo_bt','ds-thread'])
+    }
+</script>
+<style type="text/css">
+#duoshuo_bt { padding: 5px 10px 5px 7px; line-height: 17px; display: block; float: left; margin: 0 7px 0 0; background-color: #f5f5f5; border: 1px solid #dedede; border-top: 1px solid #eee; border-left: 1px solid #eee; }
+#duoshuo_bt{color: #d12f19}
+#duoshuo_bt.newclass{background-color:#DFF4FF}
+</style>
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+    <div class="ds-thread"></div>
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yuzhouwan"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+</section>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yuzhouwan.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Antlr/">Antlr</a><small>1</small></li>
+  
+    <li><a href="/categories/HashMap/ConcurrentHashMap/">ConcurrentHashMap</a><small>1</small></li>
+  
+    <li><a href="/categories/Hadoop/">Hadoop</a><small>1</small></li>
+  
+    <li><a href="/categories/HashMap/">HashMap</a><small>1</small></li>
+  
+    <li><a href="/categories/Hexo/">Hexo</a><small>1</small></li>
+  
+    <li><a href="/categories/JavaScript/">JavaScript</a><small>1</small></li>
+  
+    <li><a href="/categories/Kafka/">Kafka</a><small>1</small></li>
+  
+    <li><a href="/categories/Storm/Kafka/">Kafka</a><small>1</small></li>
+  
+    <li><a href="/categories/Node-js/Module/">Module</a><small>1</small></li>
+  
+    <li><a href="/categories/Node-js/">Node.js</a><small>3</small></li>
+  
+    <li><a href="/categories/Python/">Python</a><small>1</small></li>
+  
+    <li><a href="/categories/Qcon/">Qcon</a><small>1</small></li>
+  
+    <li><a href="/categories/Hadoop/RPC/">RPC</a><small>1</small></li>
+  
+    <li><a href="/categories/SSO/">SSO</a><small>1</small></li>
+  
+    <li><a href="/categories/Session/">Session</a><small>1</small></li>
+  
+    <li><a href="/categories/Storm/">Storm</a><small>2</small></li>
+  
+    <li><a href="/categories/Year-2038-problem/">Year_2038_problem</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Antlr/">Antlr</a><small>1</small></li>
+  
+    <li><a href="/tags/Clojure/">Clojure</a><small>1</small></li>
+  
+    <li><a href="/tags/ClojureScript/">ClojureScript</a><small>1</small></li>
+  
+    <li><a href="/tags/ConcurrentHashMap/">ConcurrentHashMap</a><small>1</small></li>
+  
+    <li><a href="/tags/Cookie/">Cookie</a><small>1</small></li>
+  
+    <li><a href="/tags/ECMAScirpt/">ECMAScirpt</a><small>1</small></li>
+  
+    <li><a href="/tags/HTTP/">HTTP</a><small>1</small></li>
+  
+    <li><a href="/tags/Hadoop/">Hadoop</a><small>1</small></li>
+  
+    <li><a href="/tags/Hash/">Hash</a><small>1</small></li>
+  
+    <li><a href="/tags/HashMap/">HashMap</a><small>1</small></li>
+  
+    <li><a href="/tags/Hexo/">Hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/Hibernate/">Hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/JSON/">JSON</a><small>1</small></li>
+  
+    <li><a href="/tags/JSP/">JSP</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>1</small></li>
+  
+    <li><a href="/tags/Kafka/">Kafka</a><small>3</small></li>
+  
+    <li><a href="/tags/Module/">Module</a><small>1</small></li>
+  
+    <li><a href="/tags/NOSQL/">NOSQL</a><small>1</small></li>
+  
+    <li><a href="/tags/Node-js/">Node.js</a><small>4</small></li>
+  
+    <li><a href="/tags/PHP/">PHP</a><small>1</small></li>
+  
+    <li><a href="/tags/Python/">Python</a><small>1</small></li>
+  
+    <li><a href="/tags/Qcon/">Qcon</a><small>1</small></li>
+  
+    <li><a href="/tags/RPC/">RPC</a><small>1</small></li>
+  
+    <li><a href="/tags/SSO/">SSO</a><small>2</small></li>
+  
+    <li><a href="/tags/Session/">Session</a><small>2</small></li>
+  
+    <li><a href="/tags/Storm/">Storm</a><small>3</small></li>
+  
+    <li><a href="/tags/V8/">V8</a><small>1</small></li>
+  
+    <li><a href="/tags/WebLogic/">WebLogic</a><small>1</small></li>
+  
+    <li><a href="/tags/Year-2038-problem/">Year_2038_problem</a><small>1</small></li>
+  
+    <li><a href="/tags/猿题库/">猿题库</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tag Cloud</h3>
+  <div class="entry">
+    <a href="/tags/Antlr/" style="font-size: 10.00px;">Antlr</a><a href="/tags/Clojure/" style="font-size: 10.00px;">Clojure</a><a href="/tags/ClojureScript/" style="font-size: 10.00px;">ClojureScript</a><a href="/tags/ConcurrentHashMap/" style="font-size: 10.00px;">ConcurrentHashMap</a><a href="/tags/Cookie/" style="font-size: 10.00px;">Cookie</a><a href="/tags/ECMAScirpt/" style="font-size: 10.00px;">ECMAScirpt</a><a href="/tags/HTTP/" style="font-size: 10.00px;">HTTP</a><a href="/tags/Hadoop/" style="font-size: 10.00px;">Hadoop</a><a href="/tags/Hash/" style="font-size: 10.00px;">Hash</a><a href="/tags/HashMap/" style="font-size: 10.00px;">HashMap</a><a href="/tags/Hexo/" style="font-size: 10.00px;">Hexo</a><a href="/tags/Hibernate/" style="font-size: 10.00px;">Hibernate</a><a href="/tags/JSON/" style="font-size: 10.00px;">JSON</a><a href="/tags/JSP/" style="font-size: 10.00px;">JSP</a><a href="/tags/Java/" style="font-size: 10.00px;">Java</a><a href="/tags/JavaScript/" style="font-size: 10.00px;">JavaScript</a><a href="/tags/Kafka/" style="font-size: 16.67px;">Kafka</a><a href="/tags/Module/" style="font-size: 10.00px;">Module</a><a href="/tags/NOSQL/" style="font-size: 10.00px;">NOSQL</a><a href="/tags/Node-js/" style="font-size: 20.00px;">Node.js</a><a href="/tags/PHP/" style="font-size: 10.00px;">PHP</a><a href="/tags/Python/" style="font-size: 10.00px;">Python</a><a href="/tags/Qcon/" style="font-size: 10.00px;">Qcon</a><a href="/tags/RPC/" style="font-size: 10.00px;">RPC</a><a href="/tags/SSO/" style="font-size: 13.33px;">SSO</a><a href="/tags/Session/" style="font-size: 13.33px;">Session</a><a href="/tags/Storm/" style="font-size: 16.67px;">Storm</a><a href="/tags/V8/" style="font-size: 10.00px;">V8</a><a href="/tags/WebLogic/" style="font-size: 10.00px;">WebLogic</a><a href="/tags/Year-2038-problem/" style="font-size: 10.00px;">Year_2038_problem</a><a href="/tags/猿题库/" style="font-size: 10.00px;">猿题库</a>
+  </div>
+</div>
+
+
+  
+<div class="widget tag">
+	<h3 class="title">友情链接</h3>
+	<ul class="entry">
+		<li><a href="http://blog.csdn.net/oasiduofu" title="JCloud" target="_blank">JCloud</a>
+		</li>
+	</ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 asdf
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'yuzhouwan';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,525 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page 3 | Asdf&#39;s Blog</title>
+  <meta name="author" content="asdf">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Asdf&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="/atom.xml" title="Asdf&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Asdf&#39;s Blog</a></h1>
+  <h2><a href="/">using hexo</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+    <li> <a href="/atom.xml">RSS</a> </li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-11-15T07:55:36.000Z"><a href="/2014/11/15/Session/">Nov 15 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/11/15/Session/">Session</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Session_是什么_?"><strong>Session 是什么 ?</strong></h2>
+<p><font size="3">&nbsp;&nbsp;指一个终端用户与交互系统进行通信的时间间隔，通常指从注册进入系统到注销退出系统之间所经历的时间 - - <a href="http://baike.baidu.com/view/25258.htm?fr=aladdin" target="_blank" rel="external">百度百科</a><br></font></p>
+<p><font size="3">&nbsp;&nbsp;代表服务器与浏览器之间的一次会话过程，这个过程是连续的，也可以是时断时续的 - - <a href="http://lavasoft.blog.51cto.com/62575/275589" target="_blank" rel="external">熔岩的博客</a><br></font></p>
+<p><font size="3">&nbsp;&nbsp;在 web 开发语境下，含义是指一类用来在客户端与服务器之间保持状态的解决方案 - - <a href="http://www.2cto.com/kf/201206/135471.html" target="_blank" rel="external">我来说两句</a><br></font></p>
+<ul>
+<li><em>Java</em></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- javax.servlet.http.HttpSession</div></pre></td></tr></table></figure>
+
+<ul>
+<li><em>PHP</em></li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- <span class="variable">$_session</span></div></pre></td></tr></table></figure>
+
+<ul>
+<li><em>JSP</em></li>
+</ul>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- HttpSession</div></pre></td></tr></table></figure>
+
+<ul>
+<li><em>Hibernate</em></li>
+</ul>
+<figure class="highlight hibernate"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- org.hibernate <span class="class"><span class="keyword">interface</span> <span class="title">Session</span></span></div></pre></td></tr></table></figure>
+
+<ul>
+<li><em>WebLogic</em></li>
+</ul>
+<figure class="highlight weblogic"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="deletion">- Weblogic Server session</span></div></pre></td></tr></table></figure>
+
+<h2 id="为什么要有_Session_?"><strong>为什么要有 Session ?</strong></h2>
+<p><font size="3">&nbsp;&nbsp;HTTP 本身是无状态的，这与 HTTP 协议本身的目的是相符的。<br></font></p>
+<p><font size="3">&nbsp;&nbsp;当客户每次访问 web 页面，服务器重新打开新的会话时，为了维护其上下文信息（记住同一个用户）。<br></font></p>
+<p><font size="3">&nbsp;&nbsp;由于此类种种场景，需要让 HTTP 协议成为有状态的。<br></font></p>
+<h2 id="Session_工作原理_-"><strong>Session 工作原理 .</strong></h2>
+<p><font size="3">&nbsp;&nbsp;session 机制是一种服务器端的机制，服务器使用一种类似于散列表的结构来保存信息。</font></p>
+<p><img src="/../2014-11-15/session.png" alt="session"></p>
+<h2 id="那些年一起踩过的坑_!"><strong>那些年一起踩过的坑 !</strong></h2>
+<h3 id="session_的创建"><em>session 的创建</em></h3>
+<p><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;session 不是在客户端访问 server 的时候就创建，而是在服务器的某个构建 session 的语句被调用时</font></p>
+<ul>
+<li><em>PHP</em></li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- session_start()</div></pre></td></tr></table></figure>
+
+<ul>
+<li><em>JSP</em></li>
+</ul>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- 内置对象 session</div></pre></td></tr></table></figure>
+
+<ul>
+<li><em>Java</em></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-  HttpServletRequest.getSession(<span class="keyword">true</span>)</div></pre></td></tr></table></figure>
+
+<ul>
+<li><em>Hibernate</em></li>
+</ul>
+<figure class="highlight hibernate"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- <span class="keyword">new</span> <span class="keyword">Configuration</span>.configure(<span class="string">"hibernate.cfg.xml"</span>).buildSessionFactory().openSesssion()</div></pre></td></tr></table></figure>
+
+<h3 id="SSO_(Single_sign_on)"><em><a href="http://www.yuzhouwan.com/2014/11/16/SSO/" target="_blank" rel="external">SSO</a> (Single sign on)</em></h3>
+<p><font size="3">  按照 Servlet 规范，session 的作用域应该仅仅限于当前应用程序下，不同的应用程序之间是不能够相互访问对方的 session 的。</font></p>
+<p><font size="3">  各个应用服务器从实际效果上都遵守了这一规范，但是实现的细节却可能各有不同，因此解决跨应用程序 session 共享的方法也不尽相同。</font></p>
+<p><font size="3">  可以借助于第三方的力量，比如使用文件、数据库、JMS 或者客户端 cookie，URL 参数或者隐藏字段等手段。</font></p>
+<p><font size="3">  还有一种较为方便的做法，就是把一个应用程序的 session 放到 ServletContext 中取得前一个应用程序的引用。</font></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-11-05T01:01:15.000Z"><a href="/2014/11/05/Node-模块/">Nov 5 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/11/05/Node-模块/">Node 模块</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="为什么要有_Node_模块_?"><strong>为什么要有 Node 模块 ?</strong></h2>
+<p><font size="3">模块，是 Node 让代码易于重用的一种组织和包装方式</font></p>
+<h2 id="创建模块"><strong>创建模块</strong></h2>
+<figure class="highlight node"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="string">'a'</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span><span class="params">()</span> </span>{</div><div class="line">    <span class="built_in">console</span>.log(a);</div><div class="line">}</div><div class="line">exports.printA = A;</div></pre></td></tr></table></figure>
+
+<h2 id="引入模块"><strong>引入模块</strong></h2>
+<figure class="highlight node"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">'./module_'</span>);</div><div class="line">a.printA();</div></pre></td></tr></table></figure>
+
+<h2 id="模块暴露构造函数"><strong>模块暴露构造函数</strong></h2>
+<figure class="highlight node"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//定义</span></div><div class="line"><span class="keyword">var</span> B = <span class="function"><span class="keyword">function</span> <span class="params">(input)</span> </span>{</div><div class="line">    <span class="keyword">this</span>.input = input;</div><div class="line">}</div><div class="line">B.prototype.printB = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.input);</div><div class="line">}</div><div class="line"><span class="built_in">module</span>.exports = exports = B;</div><div class="line"></div><div class="line"><span class="comment">//调用</span></div><div class="line"><span class="keyword">var</span> B = <span class="built_in">require</span>(<span class="string">'./module_'</span>);</div><div class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> B(<span class="string">'asdf'</span>);</div><div class="line">b.printB();</div></pre></td></tr></table></figure>
+
+<ul>
+<li><font size="4"> <strong><em>exports</em></strong><br><font size="3">&nbsp;&nbsp;只是对 module.exports 的一个全局引用，最初被定义为一个可以添加属性的空对象</font></font></li>
+<li><font size="4"> <strong><em>exports.printA</em></strong><br><font size="3">&nbsp;&nbsp;是 module.exports.printA 的简写</font></font></li>
+<li><font size="4"> <strong><em>exports = B</em></strong><br><font size="3">&nbsp;&nbsp;将会打破 module.exports 和 exports 之间的引用关系</font></font></li>
+<li><font size="4"> <strong><em>module.exports = exports</em></strong><br><font size="3">&nbsp;&nbsp;可以修复链接</font></font></li>
+</ul>
+<h2 id="Module_加载流程"><strong>Module 加载流程</strong></h2>
+<p><img src="/../2014-11-5/steps-to-finding-a-module.png" alt="module"></p>
+<h2 id="目录模块"><strong>目录模块</strong></h2>
+<p><img src="/../2014-11-5/steps-to-finding-a-main-file.png" alt="package.json"></p>
+<h2 id="Monkey_Patching"><strong>Monkey Patching</strong></h2>
+<p><font size="3">&nbsp;&nbsp;Node 将模块作为对象缓存起来</font></p>
+<p><font size="3">&nbsp;&nbsp;第一个文件会将模块返回的数据存到程序的内存中，第二个文件就不用再去访问和计算模块的源文件了</font></p>
+<p><font size="3">&nbsp;&nbsp;并且第二次引入有机会修改缓存的数据</font></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-11-04T02:40:12.000Z"><a href="/2014/11/04/为什么-JavaScript-对服务端开发很重要/">Nov 4 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/11/04/为什么-JavaScript-对服务端开发很重要/">为什么 JavaScript 对服务端开发很重要?</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="_开发人员用一种语言就能编写整个_Web_应用_"><em><strong> 开发人员用一种语言就能编写整个 Web 应用 </strong></em></h3>
+<ul>
+<li>可以减少开发客户端和服务端时所需的语言切换(Clojure, <a href="https://github.com/clojure/clojurescript/" target="_blank" rel="external">ClojureScript</a> 一样的道理)</li>
+<li>代码可以再客户端和服务端中共享(表单校验或游戏逻辑中使用同样的代码)</li>
+</ul>
+<h3 id="_JSON_是目前非常流行的数据交换格式_"><em><strong> JSON 是目前非常流行的数据交换格式 </strong></em></h3>
+<ul>
+<li>json 还是 JavaScript 原生的</li>
+</ul>
+<h3 id="_有些_NOSQL_数据库中用的就是_JavaScript_语言_"><em><strong> 有些 NOSQL 数据库中用的就是 JavaScript 语言 </strong></em></h3>
+<ul>
+<li>MongoDB 的管理和查询语言都是 JavaScript</li>
+<li>CouchDB 的 Map/reduce 也是 JavaScript</li>
+</ul>
+<h3 id="_JavaScript_是一门编译目标语言_"><em><strong> JavaScript 是一门编译目标语言 </strong></em></h3>
+<ul>
+<li><a href="https://github.com/jashkenas/coffeescript/wiki/List-of-languages-that-compile-to-JS/" target="_blank" rel="external">List of languages that compile to JS</a></li>
+</ul>
+<h3 id="_Node_用的虚拟机(V8)会紧跟_ECMAScirpt_标准_"><em><strong> Node 用的虚拟机(V8)会紧跟 <a href="http://en.wikipedia.org/wiki/ECMAScript/" target="_blank" rel="external">ECMAScirpt</a> 标准 </strong></em></h3>
+<ul>
+<li>在 Node 中如果想用新的 JavaScript 语言特性，不用等到所有浏览器都支持</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-11-03T06:15:02.000Z"><a href="/2014/11/03/DIRT/">Nov 3 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/11/03/DIRT/">DIRT</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="DIRT:数据密集型实时(data-intensive_real-time)">DIRT:数据密集型实时(data-intensive real-time)</h3>
+<p><strong>为什么适用于 Node 开发 ? </strong></p>
+<p><font size="4">&nbsp;&nbsp;因为 Node 自身在 I/O 上非常轻量，它善于将数据从一个管道混排 或 代理到另一个管道上，这能在处理大量请求时持有很多开放的连接，并且只占用一小部分内存。(如同浏览器一样，保证了响应能力)</font></p>
+<p><strong>Web 发展形势</strong></p>
+<p><font size="4">&nbsp;&nbsp;不管是用实时组件增强已有程序，还是打造全新的程序，Web 都在朝着响应性和协作型环境逐渐进发。</font></p>
+<p><font size="4">&nbsp;&nbsp;而这种新型的 Web 应用程序需要一个能够实时相应大量并发请求的平台来支撑它们。(除此之外，还有 I/O 负载较重的程序也可以用到)</font></p>
+<p><strong>Node 作为 JavaScript 程序的平台</strong></p>
+<ul>
+<li>Timer API (for example, setTimeout)</li>
+<li>Console API (for example, console.log)</li>
+<li>Network and File I/O modules (HTTP, TLS, HTTPS, filesystem (POSIX), Datagram (UDP), and NET (TCP))</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-11-02T14:08:38.000Z"><a href="/2014/11/02/What-is-the-Node-js/">Nov 2 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/11/02/What-is-the-Node-js/">What is the Node.js?</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>&nbsp;&nbsp;<em>Node.js® is a platform built on Chrome’s JavaScript runtime for easily building fast, scalable network applications. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.</em></p>
+<p><strong>Current Version: v0.10.33</strong></p>
+<p>from <a href="http://www.nodejs.org" target="_blank" rel="external">Node.js</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/page/2/" class="alignleft prev">Prev</a>
+  
+  
+    <a href="/page/4/" class="alignright next">Next</a>
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yuzhouwan.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Antlr/">Antlr</a><small>1</small></li>
+  
+    <li><a href="/categories/HashMap/ConcurrentHashMap/">ConcurrentHashMap</a><small>1</small></li>
+  
+    <li><a href="/categories/Hadoop/">Hadoop</a><small>1</small></li>
+  
+    <li><a href="/categories/HashMap/">HashMap</a><small>1</small></li>
+  
+    <li><a href="/categories/Hexo/">Hexo</a><small>1</small></li>
+  
+    <li><a href="/categories/JavaScript/">JavaScript</a><small>1</small></li>
+  
+    <li><a href="/categories/Kafka/">Kafka</a><small>1</small></li>
+  
+    <li><a href="/categories/Storm/Kafka/">Kafka</a><small>1</small></li>
+  
+    <li><a href="/categories/Node-js/Module/">Module</a><small>1</small></li>
+  
+    <li><a href="/categories/Node-js/">Node.js</a><small>3</small></li>
+  
+    <li><a href="/categories/Python/">Python</a><small>1</small></li>
+  
+    <li><a href="/categories/Qcon/">Qcon</a><small>1</small></li>
+  
+    <li><a href="/categories/Hadoop/RPC/">RPC</a><small>1</small></li>
+  
+    <li><a href="/categories/SSO/">SSO</a><small>1</small></li>
+  
+    <li><a href="/categories/Session/">Session</a><small>1</small></li>
+  
+    <li><a href="/categories/Storm/">Storm</a><small>2</small></li>
+  
+    <li><a href="/categories/Year-2038-problem/">Year_2038_problem</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Antlr/">Antlr</a><small>1</small></li>
+  
+    <li><a href="/tags/Clojure/">Clojure</a><small>1</small></li>
+  
+    <li><a href="/tags/ClojureScript/">ClojureScript</a><small>1</small></li>
+  
+    <li><a href="/tags/ConcurrentHashMap/">ConcurrentHashMap</a><small>1</small></li>
+  
+    <li><a href="/tags/Cookie/">Cookie</a><small>1</small></li>
+  
+    <li><a href="/tags/ECMAScirpt/">ECMAScirpt</a><small>1</small></li>
+  
+    <li><a href="/tags/HTTP/">HTTP</a><small>1</small></li>
+  
+    <li><a href="/tags/Hadoop/">Hadoop</a><small>1</small></li>
+  
+    <li><a href="/tags/Hash/">Hash</a><small>1</small></li>
+  
+    <li><a href="/tags/HashMap/">HashMap</a><small>1</small></li>
+  
+    <li><a href="/tags/Hexo/">Hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/Hibernate/">Hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/JSON/">JSON</a><small>1</small></li>
+  
+    <li><a href="/tags/JSP/">JSP</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>1</small></li>
+  
+    <li><a href="/tags/Kafka/">Kafka</a><small>3</small></li>
+  
+    <li><a href="/tags/Module/">Module</a><small>1</small></li>
+  
+    <li><a href="/tags/NOSQL/">NOSQL</a><small>1</small></li>
+  
+    <li><a href="/tags/Node-js/">Node.js</a><small>4</small></li>
+  
+    <li><a href="/tags/PHP/">PHP</a><small>1</small></li>
+  
+    <li><a href="/tags/Python/">Python</a><small>1</small></li>
+  
+    <li><a href="/tags/Qcon/">Qcon</a><small>1</small></li>
+  
+    <li><a href="/tags/RPC/">RPC</a><small>1</small></li>
+  
+    <li><a href="/tags/SSO/">SSO</a><small>2</small></li>
+  
+    <li><a href="/tags/Session/">Session</a><small>2</small></li>
+  
+    <li><a href="/tags/Storm/">Storm</a><small>3</small></li>
+  
+    <li><a href="/tags/V8/">V8</a><small>1</small></li>
+  
+    <li><a href="/tags/WebLogic/">WebLogic</a><small>1</small></li>
+  
+    <li><a href="/tags/Year-2038-problem/">Year_2038_problem</a><small>1</small></li>
+  
+    <li><a href="/tags/猿题库/">猿题库</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tag Cloud</h3>
+  <div class="entry">
+    <a href="/tags/Antlr/" style="font-size: 10.00px;">Antlr</a><a href="/tags/Clojure/" style="font-size: 10.00px;">Clojure</a><a href="/tags/ClojureScript/" style="font-size: 10.00px;">ClojureScript</a><a href="/tags/ConcurrentHashMap/" style="font-size: 10.00px;">ConcurrentHashMap</a><a href="/tags/Cookie/" style="font-size: 10.00px;">Cookie</a><a href="/tags/ECMAScirpt/" style="font-size: 10.00px;">ECMAScirpt</a><a href="/tags/HTTP/" style="font-size: 10.00px;">HTTP</a><a href="/tags/Hadoop/" style="font-size: 10.00px;">Hadoop</a><a href="/tags/Hash/" style="font-size: 10.00px;">Hash</a><a href="/tags/HashMap/" style="font-size: 10.00px;">HashMap</a><a href="/tags/Hexo/" style="font-size: 10.00px;">Hexo</a><a href="/tags/Hibernate/" style="font-size: 10.00px;">Hibernate</a><a href="/tags/JSON/" style="font-size: 10.00px;">JSON</a><a href="/tags/JSP/" style="font-size: 10.00px;">JSP</a><a href="/tags/Java/" style="font-size: 10.00px;">Java</a><a href="/tags/JavaScript/" style="font-size: 10.00px;">JavaScript</a><a href="/tags/Kafka/" style="font-size: 16.67px;">Kafka</a><a href="/tags/Module/" style="font-size: 10.00px;">Module</a><a href="/tags/NOSQL/" style="font-size: 10.00px;">NOSQL</a><a href="/tags/Node-js/" style="font-size: 20.00px;">Node.js</a><a href="/tags/PHP/" style="font-size: 10.00px;">PHP</a><a href="/tags/Python/" style="font-size: 10.00px;">Python</a><a href="/tags/Qcon/" style="font-size: 10.00px;">Qcon</a><a href="/tags/RPC/" style="font-size: 10.00px;">RPC</a><a href="/tags/SSO/" style="font-size: 13.33px;">SSO</a><a href="/tags/Session/" style="font-size: 13.33px;">Session</a><a href="/tags/Storm/" style="font-size: 16.67px;">Storm</a><a href="/tags/V8/" style="font-size: 10.00px;">V8</a><a href="/tags/WebLogic/" style="font-size: 10.00px;">WebLogic</a><a href="/tags/Year-2038-problem/" style="font-size: 10.00px;">Year_2038_problem</a><a href="/tags/猿题库/" style="font-size: 10.00px;">猿题库</a>
+  </div>
+</div>
+
+
+  
+<div class="widget tag">
+	<h3 class="title">友情链接</h3>
+	<ul class="entry">
+		<li><a href="http://blog.csdn.net/oasiduofu" title="JCloud" target="_blank">JCloud</a>
+		</li>
+	</ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 asdf
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'yuzhouwan';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
