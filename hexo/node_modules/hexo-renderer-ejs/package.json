@@ -1,0 +1,52 @@
+{
+  "name": "hexo-renderer-ejs",
+  "version": "0.1.0",
+  "description": "EJS renderer plugin for Hexo",
+  "main": "index",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hexojs/hexo-renderer-ejs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hexojs/hexo-renderer-ejs/issues"
+  },
+  "keywords": [
+    "hexo",
+    "ejs",
+    "renderer"
+  ],
+  "author": {
+    "name": "Tommy Chen",
+    "email": "tommy351@gmail.com",
+    "url": "http://zespia.tw"
+  },
+  "license": {
+    "type": "MIT",
+    "url": "https://raw.github.com/tommy351/hexo/master/LICENSE"
+  },
+  "dependencies": {
+    "ejs": "^1.0.0",
+    "lodash": "^2.4.1"
+  },
+  "homepage": "https://github.com/hexojs/hexo-renderer-ejs",
+  "_id": "hexo-renderer-ejs@0.1.0",
+  "dist": {
+    "shasum": "4d59b4232f3910e9cab052d8dd7c854876889bd2",
+    "tarball": "http://registry.npmjs.org/hexo-renderer-ejs/-/hexo-renderer-ejs-0.1.0.tgz"
+  },
+  "_from": "hexo-renderer-ejs@*",
+  "_npmVersion": "1.4.3",
+  "_npmUser": {
+    "name": "tommy351",
+    "email": "tommy351@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "tommy351",
+      "email": "tommy351@gmail.com"
+    }
+  ],
+  "directories": {},
+  "_shasum": "4d59b4232f3910e9cab052d8dd7c854876889bd2",
+  "_resolved": "https://registry.npmjs.org/hexo-renderer-ejs/-/hexo-renderer-ejs-0.1.0.tgz"
+}

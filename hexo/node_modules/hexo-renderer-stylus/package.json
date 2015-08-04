@@ -1,0 +1,56 @@
+{
+  "name": "hexo-renderer-stylus",
+  "version": "0.1.0",
+  "description": "Stylus renderer plugin for Hexo",
+  "main": "index",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hexojs/hexo-renderer-stylus.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hexojs/hexo-renderer-stylus/issues"
+  },
+  "keywords": [
+    "hexo",
+    "stylus",
+    "css",
+    "style",
+    "stylesheet",
+    "styl",
+    "renderer"
+  ],
+  "author": {
+    "name": "Tommy Chen",
+    "email": "tommy351@gmail.com",
+    "url": "http://zespia.tw"
+  },
+  "license": {
+    "type": "MIT",
+    "url": "https://raw.github.com/tommy351/hexo/master/LICENSE"
+  },
+  "dependencies": {
+    "stylus": "^0.44.0",
+    "nib": "^1.0.2"
+  },
+  "homepage": "https://github.com/hexojs/hexo-renderer-stylus",
+  "_id": "hexo-renderer-stylus@0.1.0",
+  "dist": {
+    "shasum": "79b48c775949788cf886f7a1f6fdd009d5dafb1b",
+    "tarball": "http://registry.npmjs.org/hexo-renderer-stylus/-/hexo-renderer-stylus-0.1.0.tgz"
+  },
+  "_from": "hexo-renderer-stylus@*",
+  "_npmVersion": "1.4.3",
+  "_npmUser": {
+    "name": "tommy351",
+    "email": "tommy351@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "tommy351",
+      "email": "tommy351@gmail.com"
+    }
+  ],
+  "directories": {},
+  "_shasum": "79b48c775949788cf886f7a1f6fdd009d5dafb1b",
+  "_resolved": "https://registry.npmjs.org/hexo-renderer-stylus/-/hexo-renderer-stylus-0.1.0.tgz"
+}
