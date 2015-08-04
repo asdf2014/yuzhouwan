@@ -2,9 +2,9 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title><![CDATA[Asdf's Blog]]></title>
   <subtitle><![CDATA[using hexo]]></subtitle>
-  <link href="/atom.xml" rel="self"/>
+  <link href="./atom.xml" rel="self"/>
   <link href="http://yuzhouwan.com/"/>
-  <updated>2015-08-04T03:56:26.234Z</updated>
+  <updated>2015-08-04T10:40:30.840Z</updated>
   <id>http://yuzhouwan.com/</id>
   
   <author>
