@@ -6,12 +6,12 @@
 
     <groupId>com.yuzhouwan</groupId>
     <artifactId>custom</artifactId>
-    <version>${project.version}</version>
+    <version>0.1</version>
 
     <parent>
         <groupId>com.yuzhouwan</groupId>
         <artifactId>parent</artifactId>
-        <version>${project.version}</version>
+        <version>0.1</version>
         <relativePath>../parent/pom.xml</relativePath>
     </parent>
 
