@@ -7,7 +7,7 @@
     <groupId>com.yuzhouwan</groupId>
     <artifactId>parent</artifactId>
     <packaging>pom</packaging>
-    <version>${project.version}</version>
+    <version>0.1</version>
 
     <name>yuzhouwan</name>
     <url>http://www.yuzhouwan.com</url>

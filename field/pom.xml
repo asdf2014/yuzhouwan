@@ -6,12 +6,12 @@
 
     <groupId>com.yuzhouwan</groupId>
     <artifactId>field</artifactId>
-    <version>${project.version}</version>
+    <version>0.1</version>
 
     <parent>
         <groupId>com.yuzhouwan</groupId>
         <artifactId>parent</artifactId>
-        <version>${project.version}</version>
+        <version>0.1</version>
         <relativePath>../parent/pom.xml</relativePath>
     </parent>
 
@@ -27,8 +27,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>1.7</source>
+                    <target>1.7</target>
                 </configuration>
             </plugin>
 
