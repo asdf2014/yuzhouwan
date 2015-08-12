@@ -4,7 +4,7 @@
   <subtitle><![CDATA[using hexo]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yuzhouwan.com/"/>
-  <updated>2015-08-04T12:53:23.527Z</updated>
+  <updated>2015-08-12T05:41:35.084Z</updated>
   <id>http://yuzhouwan.com/</id>
   
   <author>
@@ -19,9 +19,12 @@
     <link href="http://yuzhouwan.com/2038/01/19/%E6%B5%B7%E7%BA%B3%E7%99%BE%E5%B7%9D/"/>
     <id>http://yuzhouwan.com/2038/01/19/海纳百川/</id>
     <published>2038-01-18T19:14:08.000Z</published>
-    <updated>2015-08-04T03:54:30.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="video"><strong><em>video</em></strong></h1>
-<p><img src="/../logos/it_cast.png" alt="it_cast"><br><a href="http://www.itcast.cn/channel/video.shtml" target="_blank" rel="external">http://www.itcast.cn/channel/video.shtml</a></p>
+    <updated>2015-08-12T05:40:19.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="google"><strong><em>google</em></strong></h1>
+<p><img src="/../logos/google.png" alt="safari"><br><a href="https://g.wen.lu/" target="_blank" rel="external">https://g.wen.lu/</a> &nbsp;&nbsp;&nbsp;&nbsp;<font color="green"><em>(do not click, please copy)</em></font></p>
+<p><br></p>
+<h1 id="anything"><strong><em>anything</em></strong></h1>
+<p><img src="/../logos/hejizhan.png" alt="hejizhan"><br><a href="http://www.hejizhan.com/" target="_blank" rel="external">http://www.hejizhan.com/</a></p>
 <p><br></p>
 <h1 id="book"><strong><em>book</em></strong></h1>
 <p><img src="/../logos/safari.png" alt="safari"><br><a href="https://www.safaribooksonline.com/" target="_blank" rel="external">https://www.safaribooksonline.com/</a></p>
@@ -29,17 +32,15 @@
 <p><img src="/../logos/salttiger.png" alt="salttiger"><br><a href="http://www.salttiger.com/" target="_blank" rel="external">http://www.salttiger.com/</a></p>
 <p><img src="/../logos/packtpub.png" alt="packtpub"><br><a href="https://www.packtpub.com/packt/offers/free-learning" target="_blank" rel="external">https://www.packtpub.com/packt/offers/free-learning</a></p>
 <p><br></p>
-<h1 id="anything"><strong><em>anything</em></strong></h1>
-<p><img src="/../logos/hejizhan.png" alt="hejizhan"><br><a href="http://www.hejizhan.com/" target="_blank" rel="external">http://www.hejizhan.com/</a></p>
-<h1 id="google"><strong><em>google</em></strong></h1>
-<p><img src="/../logos/google.png" alt="safari"><br><a href="https://g.wen.lu/" target="_blank" rel="external">https://g.wen.lu/</a> &nbsp;&nbsp;&nbsp;&nbsp;<font color="green"><em>(do not click, please copy)</em></font></p>
+<h1 id="video"><strong><em>video</em></strong></h1>
+<p><img src="/../logos/it_cast.png" alt="it_cast"><br><a href="http://www.itcast.cn/channel/video.shtml" target="_blank" rel="external">http://www.itcast.cn/channel/video.shtml</a></p>
 <p><br></p>
 <h3 id="JUDGMENT_DAY"><font color="red"><strong>JUDGMENT DAY</strong></font></h3>
 <p><img src="/../logos/Year_2038_problem.gif" alt="Year_2038_problem"><br><a href="https://en.wikipedia.org/wiki/Year_2038_problem" target="_blank" rel="external">Animation showing how the date would reset, represented as a signed 32-bit integer (at 03:14:08 UTC on 19 January 2038).</a></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h1 id="video"><strong><em>video</em></strong></h1>
-<p><img src="/../logos/it_cast.png" alt="it_cast"><br><a href="http://www.itcast.cn/chan]]>
+    <![CDATA[<h1 id="google"><strong><em>google</em></strong></h1>
+<p><img src="/../logos/google.png" alt="safari"><br><a href="https://g.wen.lu/" target]]>
     </summary>
     
       <category term="Year_2038_problem" scheme="http://yuzhouwan.com/tags/Year-2038-problem/"/>
