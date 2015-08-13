@@ -49,7 +49,7 @@ categories:
 ```
 
 ### 示意图
-![producers-cluster-consumers][2]
+![][2]
 
 [1]:https://kafka.apache.org/
 [2]:/../2015-5-10/kafka.png
