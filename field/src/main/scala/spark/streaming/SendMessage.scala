@@ -25,6 +25,8 @@ object SendMessage {
     def generateNoisyData(n: Int) = {
       (1 to n).map { i =>
         val x = new DenseVector(generateRandomArray(NumFeatures))
+
+        // inner product
         val y: Double = w.dot(x)
         val noisy = y + intercept
         (noisy, x)

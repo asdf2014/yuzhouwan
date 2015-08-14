@@ -39,17 +39,17 @@ object MLAnalysis {
 
     model.trainOn(labeledStream)
 
-    val predsAndTrue = labeledStream.transform { rdd =>
+    val predictAndTrue = labeledStream.transform { rdd =>
       val latest = model.latestModel()
       rdd.map { point =>
-        val pred1 = latest.predict(point.features)
-        (pred1 - point.label)
+        val predict = latest.predict(point.features)
+        (predict - point.label)
       }
     }
 
 
-    predsAndTrue.foreachRDD { (rdd, time) =>
-      val mse = rdd.map { case (err) => err * err }.mean()
+    predictAndTrue.foreachRDD { (rdd, time) =>
+      val mse = rdd.map { case (err) => math.pow(err, 2.0) }.mean()
       val rmse = math.sqrt(mse)
       println( s"""
                   |-------------------------------------------
