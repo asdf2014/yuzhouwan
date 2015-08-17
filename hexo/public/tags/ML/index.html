@@ -88,7 +88,7 @@
 <h3 id="Spark_SQL">Spark SQL</h3>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">同时支持 HiveQL/UDFs/SerDes 等多样性的数据源，并采用 JDBC/ODBC 等标准化连接驱动，保证其通用性</div></pre></td></tr></table></figure>
 
-<h3 id="Spark_GrapX">Spark GrapX</h3>
+<h3 id="Spark_GraphX">Spark GraphX</h3>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">支持在 graph 或 collection 中查看数据，并提供丰富的 图形处理 API</div></pre></td></tr></table></figure>
 
 <h3 id="Spark_Streaming">Spark Streaming</h3>
@@ -160,7 +160,7 @@
 <h3 id="调整模型">调整模型</h3>
 <p>&nbsp;&nbsp; <font size="2"> 首先需要在众多的模型 和 对应的算法 中找到最为适用的选择<br>&nbsp;&nbsp; <font size="2"> 模型的类别主要有，推荐引擎、分类模型、回归模型、聚类模型 等<br>&nbsp;&nbsp; <font size="2"> 相应的实现算法，又有（线性/逻辑/多元）回归、（随机森林）决策树、（朴素/高斯/多项式/伯努利/信念网络）贝叶斯 等<br>&nbsp;&nbsp; <font size="2"> 在选择的时候，更多会考虑 特征值是否多维（可以尝试降维），目标类别是 multiclass，binary，还是 probability（连续值）</font></font></font></font></p>
 <p>&nbsp;&nbsp; <font size="2"> 根据 数据集的 稀疏程度 对正则化 (Regularizer) 进行调整:</font></p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">zero: 没有任何正规化操作</div><div class="line">L1:   SGD（Stochastic gradient descent，随机梯度下降）</div><div class="line">L2:   LBFGS（Limited-memory BFGS，受限的 BFGS）</div><div class="line"></div><div class="line">L2 相比 L1 更为平滑（同样，L1 可以让 稀疏的数据集 得到更 直观的模型）</div><div class="line"></div><div class="line">还有求最优解的方法，如 求全局最优解的 BGD（Batch gradient descent，批量梯度下降）</div><div class="line">但是，由于每次迭代都需要依据训练集中所有的数据，所以速度很慢；</div><div class="line">以及 CG（Conjugate gradient，共轭梯度法），其还没有被 Spark MLlib 支持，可以在 Breeze 中找到</div></pre></td></tr></table></figure>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">zero: 没有任何正规化操作</div><div class="line">L1:   SGD（Stochastic gradient descent，随机梯度下降）</div><div class="line">L2:   LBFGS（Limited-memory BFGS，受限的 BFGS）</div><div class="line"></div><div class="line">L2 相比 L1 更为平滑（同样，L1 可以让 稀疏的数据集 得到更 直观的模型）</div><div class="line"></div><div class="line">还有其它 求最优解 的方法，如 求全局最优解的 BGD（Batch gradient descent，批量梯度下降）</div><div class="line">但是，由于每次迭代都需要依据训练集中所有的数据，所以速度很慢；</div><div class="line">以及 CG（Conjugate gradient，共轭梯度法），但还没有被 Spark MLlib 所支持，可以在 Breeze 中找到它</div></pre></td></tr></table></figure>
 
 <p>&nbsp;&nbsp; <font size="2"> 可以通过 setUpdater 将模型的 规则化算法 设置为 L1（默认为 L2）</font></p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> org.apache.spark.mllib.optimization.L1Updater</div><div class="line"></div><div class="line"><span class="keyword">val</span> svmAlg = <span class="keyword">new</span> SVMWithSGD()</div><div class="line">svmAlg.optimizer.</div><div class="line">  setNumIterations(<span class="number">200</span>).</div><div class="line">  setRegParam(<span class="number">0.1</span>).</div><div class="line">  setUpdater(<span class="keyword">new</span> L1Updater)</div><div class="line"><span class="keyword">val</span> modelL1 = svmAlg.run(training)</div></pre></td></tr></table></figure>
@@ -168,7 +168,7 @@
 <p>&nbsp;&nbsp; <font size="2"> 当然，还有举不胜举的优化方式 sorry for the limit of article’s lenght :-)</font></p>
 <p><br></p>
 <h3 id="性能评估指标">性能评估指标</h3>
-<p>&nbsp;&nbsp; <font size="2"> I. 针对不同业务对性能评测的手段，也需要相应取舍，毕竟有些 霸道的防护系统，宁可错杀一千，就需要对 recall 有较高的要求，而 precision 则相对宽松些<br>&nbsp;&nbsp; <font size="2"> 这是便可采用 ROC（receiver operating characteristic）curve 评测引擎:</font></font></p>
+<p>&nbsp;&nbsp; <font size="2"> I. 针对不同的业务，对性能评测的手段，也需要相应取舍，毕竟有些 “宁可错杀一千” 的变态 防护系统，就需要对 recall 有较高的要求，而 precision 则相对宽松些<br>&nbsp;&nbsp; <font size="2"> 这是便可采用 ROC（receiver operating characteristic）curve 评测引擎:</font></font></p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// binary classification</span></div><div class="line"><span class="keyword">val</span> metrics = Seq(lrModel, svmModel).map { model =&gt;</div><div class="line">  <span class="keyword">val</span> scoreAndLabels = data.map { point =&gt;</div><div class="line">    (model.predict(point.features), point.label)</div><div class="line">  }</div><div class="line">  <span class="keyword">val</span> metrics = <span class="keyword">new</span> BinaryClassificationMetrics(scoreAndLabels)</div><div class="line">  (model.getClass.getSimpleName, metrics.areaUnderPR, metrics.areaUnderROC)</div><div class="line">}</div></pre></td></tr></table></figure>
 
 <p>&nbsp;&nbsp; <font size="2"> 如果是 贝叶斯/决策树 的数据模型，则可以用 0.5 对其进行划分，转换为 binary</font></p>
@@ -178,7 +178,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">MAP 同时还解决了 precision，recall，F-measure 的单点值局限性</div></pre></td></tr></table></figure>
 
 <p><br></p>
-<p><strong><font size="2"> <em>至此，相信你已经对 Spark 这个生态圈有了大致轮廓了，下面就是一步一步地在 实践 和 深入学习中，体验大数据的乐趣啦</em></font></strong></p>
+<p><strong><font size="2"> <em>至此，相信你已经对 Spark 这个生态圈有了大致轮廓了，下面就是一步一步地 在 实践 和 深入学习中，体验大数据的乐趣啦 O(∩_∩)O~~</em></font></strong></p>
 <p><br></p>
 <p><img src="/../2015-8-13/storm.jpg" alt=""><br><img src="/../2015-8-13/Spark.png" alt=""></p>
 <h4 id="更多资源：QQ_group:_(Hadoop_253793003)">更多资源：QQ group: (<font color="blue">Hadoop 253793003</font>)</h4>
@@ -350,6 +350,16 @@
 		<li><a href="http://blog.csdn.net/oasiduofu" title="Asdf's CSDN" target="_blank">JCloud</a>
 		</li>
 		<li><a href="https://github.com/asdf2014" title="Asdf's Github" target="_blank">asdf2014</a>
+		</li>
+		<li><a href="https://github.com/MasteringJava" title="Asdf's Java" target="_blank">Mastering Java</a>
+		</li>
+		<li><a href="https://github.com/MasteringStorm" title="Asdf's Storm" target="_blank">Mastering Storm</a>
+		</li>
+		<li><a href="https://github.com/MasteringElasticSearch" title="Asdf's ElasticSearch" target="_blank">Mastering ElasticSearch</a>
+		</li>
+		<li><a href="https://github.com/MasteringSpark" title="Asdf's Spark" target="_blank">Mastering Spark</a>
+		</li>
+		<li><a href="http://www.yuzhouwan.com" title="asdf blog yuzhouwan" target="_blank"></a>
 		</li>
 	</ul>
 </div>

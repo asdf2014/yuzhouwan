@@ -124,4 +124,13 @@
 ##8 month
 
  - Apache Kafka.pdf
+ - The Elements of Statistical Learning - Data Mining，Inference，and Prediction.pdf
+ - 阿里-Java并发程序设计教程.pdf
+ 
+----------------
+
+ - ElasticSearch Cookbook, 2nd Edition.pdf
+ - Elasticsearch Server, 2nd Edition.pdf
+ - Elasticsearch_ The Definitive Guide.pdf
+ - Mastering ElasticSearch.pdf
 

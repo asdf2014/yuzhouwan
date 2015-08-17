@@ -54,7 +54,7 @@ categories:
 	同时支持 HiveQL/UDFs/SerDes 等多样性的数据源，并采用 JDBC/ODBC 等标准化连接驱动，保证其通用性
 ```
 
-###Spark GrapX
+###Spark GraphX
 ```scala
 	支持在 graph 或 collection 中查看数据，并提供丰富的 图形处理 API
 ```
@@ -318,9 +318,9 @@ categories:
 	
 	L2 相比 L1 更为平滑（同样，L1 可以让 稀疏的数据集 得到更 直观的模型）
 	
-	还有求最优解的方法，如 求全局最优解的 BGD（Batch gradient descent，批量梯度下降）
+	还有其它 求最优解 的方法，如 求全局最优解的 BGD（Batch gradient descent，批量梯度下降）
 	但是，由于每次迭代都需要依据训练集中所有的数据，所以速度很慢；
-	以及 CG（Conjugate gradient，共轭梯度法），其还没有被 Spark MLlib 支持，可以在 Breeze 中找到
+	以及 CG（Conjugate gradient，共轭梯度法），但还没有被 Spark MLlib 所支持，可以在 Breeze 中找到它
 ```
 
 &nbsp;&nbsp; <font size=2> 可以通过 setUpdater 将模型的 规则化算法 设置为 L1（默认为 L2）
@@ -342,7 +342,7 @@ categories:
 
 ###性能评估指标
 
-&nbsp;&nbsp; <font size=2> I. 针对不同业务对性能评测的手段，也需要相应取舍，毕竟有些 霸道的防护系统，宁可错杀一千，就需要对 recall 有较高的要求，而 precision 则相对宽松些
+&nbsp;&nbsp; <font size=2> I. 针对不同的业务，对性能评测的手段，也需要相应取舍，毕竟有些 "宁可错杀一千" 的变态 防护系统，就需要对 recall 有较高的要求，而 precision 则相对宽松些
 &nbsp;&nbsp; <font size=2> 这是便可采用 ROC（receiver operating characteristic）curve 评测引擎:
 ```scala
 	// binary classification
@@ -390,7 +390,7 @@ categories:
 
 <br/>
 
-__<font size=2> *至此，相信你已经对 Spark 这个生态圈有了大致轮廓了，下面就是一步一步地在 实践 和 深入学习中，体验大数据的乐趣啦*__
+__<font size=2> *至此，相信你已经对 Spark 这个生态圈有了大致轮廓了，下面就是一步一步地 在 实践 和 深入学习中，体验大数据的乐趣啦 O(∩_∩)O~~*__
 
 <br/>
 
