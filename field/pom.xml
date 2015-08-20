@@ -59,6 +59,14 @@
             <version>${breeze.version}</version>
         </dependency>
 
+        <!-- joda time -->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>${joda.time.version}</version>
+        </dependency>
+
+
         <!-- elasticsearch -->
         <dependency>
             <groupId>org.elasticsearch</groupId>
