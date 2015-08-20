@@ -24,6 +24,7 @@
         <scala.version>2.10.4</scala.version>
         <spark.version>1.2.2</spark.version>
         <breeze.version>0.10</breeze.version>
+        <elasticsearch.version>1.5.2</elasticsearch.version>
 
         <junit.version>4.12</junit.version>
     </properties>

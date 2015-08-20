@@ -59,6 +59,13 @@
             <version>${breeze.version}</version>
         </dependency>
 
+        <!-- elasticsearch -->
+        <dependency>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch</artifactId>
+            <version>${elasticsearch.version}</version>
+        </dependency>
+
 
     </dependencies>
 
