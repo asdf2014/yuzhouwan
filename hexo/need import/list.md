@@ -126,11 +126,39 @@
  - Apache Kafka.pdf
  - The Elements of Statistical Learning - Data Mining，Inference，and Prediction.pdf
  - 阿里-Java并发程序设计教程.pdf
+ - ElasticSearch Cookbook, 2nd Edition.pdf
  
 ----------------
 
- - ElasticSearch Cookbook, 2nd Edition.pdf
  - Elasticsearch Server, 2nd Edition.pdf
  - Elasticsearch_ The Definitive Guide.pdf
  - Mastering ElasticSearch.pdf
+ 
+----------------
+
+ - ZooKeeper.pdf
+ - Real-time Analytics with Storm and Cassandra.pdf
+ - Cassandra High Availability.pdf
+ - Beginning Apache Cassandra Development.pdf
+ - Cassandra Design Patterns.pdf
+ - Practical Cassandra.pdf
+ - Cassandra Data Modeling and Analysis.pdf
+ - Getting Started with Storm.pdf
+ 
+----------------
+
+ - Go Programming by Example.pdf
+ - Network programming with Go.pdf
+ - An Introduction to Programming in Go.pdf
+ - Mastering Go Web Services.pdf
+ - TouchDevelop: Programming on the Go.pdf
+ - Go Programming Blueprints.pdf
+ - Mastering Concurrency in Go - Nathan Kozyra.pdf
+ - The Go Programming Language Phrasebook.pdf
+ - The Way to Go.pdf
+ - Programming in Go.pdf
+ - MapReduce设计模式.pdf
+ - 高效人士的116个IT秘笈（第2版）.pdf
+
+
 
