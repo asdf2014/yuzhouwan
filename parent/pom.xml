@@ -30,6 +30,8 @@
         <elasticsearch.version>1.5.2</elasticsearch.version>
 
         <junit.version>4.12</junit.version>
+
+        <redis.version>2.7.0</redis.version>
     </properties>
 
     <scm>

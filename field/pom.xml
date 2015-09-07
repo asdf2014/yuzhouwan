@@ -88,6 +88,13 @@
             <version>${junit.version}</version>
         </dependency>
 
+        <!-- redis -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${redis.version}</version>
+        </dependency>
+
 
     </dependencies>
 

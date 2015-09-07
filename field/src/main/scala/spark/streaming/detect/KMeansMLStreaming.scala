@@ -35,6 +35,11 @@ object KMeansMLStreaming {
 
       println(s"Event: $event")
 
+      val vectorAndLabel = event.split("\t")
+      val vector = vectorAndLabel(0)
+      val label = vectorAndLabel(1)
+      Vectors.dense(vector.split(",").map(_.toDouble))
+
       val buffer = event.split(',').toBuffer
       buffer.remove(1, 3)
       val labels = buffer.remove(buffer.length - 1)
