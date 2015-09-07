@@ -159,6 +159,16 @@
  - Programming in Go.pdf
  - MapReduce设计模式.pdf
  - 高效人士的116个IT秘笈（第2版）.pdf
+ 
+----------------
 
+ - 《golang 在京东列表页的实战》.pdf
+ - OpenStack Cloud Computing Cookbook, 2nd Edition.pdf
+ - Deploying OpenStack.pdf
+ - OpenStack Cloud Computing Cookbook.pdf
+ - Learning OpenStack Networking (Neutron).pdf
+ - OpenStack Operations Guide.pdf
+ - 云计算 与 OpenStack 虚拟机 Nova 篇.pdf
+ - 高可用架构文章.txt
 
 

@@ -52,6 +52,13 @@
             <version>${scala.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.scalatest</groupId>
+            <artifactId>scalatest_2.10</artifactId>
+            <version>${scala.unittest.version}</version>
+        </dependency>
+
+
         <!-- breeze -->
         <dependency>
             <groupId>org.scalanlp</groupId>
@@ -74,6 +81,13 @@
             <version>${elasticsearch.version}</version>
         </dependency>
 
+        <!-- junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+        </dependency>
+
 
     </dependencies>
 
@@ -81,7 +95,7 @@
         <finalName>yuzhouwan</finalName>
         <defaultGoal>install</defaultGoal>
         <sourceDirectory>src/main/java</sourceDirectory>
-        <testSourceDirectory>src/test/java</testSourceDirectory>
+        <testSourceDirectory>src/test</testSourceDirectory>
 
         <plugins>
             <plugin>

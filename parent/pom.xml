@@ -22,6 +22,7 @@
         <project.version>0.1</project.version>
 
         <scala.version>2.10.4</scala.version>
+        <scala.unittest.version>2.2.1</scala.unittest.version>
         <spark.version>1.2.2</spark.version>
         <breeze.version>0.10</breeze.version>
         <joda.time.version>2.7</joda.time.version>
