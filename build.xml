@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<project name="yuzhouwan" default="destroy">
+
+    <target name="init">
+        <mkdir dir="ant"></mkdir>
+    </target>
+
+    <target name="destroy" depends="init">
+        <delete dir="ant"></delete>
+    </target>
+
+</project>
