@@ -22,12 +22,14 @@ object SendNetflow {
 
     val listener = new ServerSocket(args(0).toInt)
 
+    val fileLines = getFileLines()
+
     /**
-     * DataSource:
-     * http://www.sigkdd.org/kdd-cup-1999-computer-network-intrusion-detection
+     * DataSource: /src/main/resources/detect/kddcup.data.zip
      */
     while (true) {
 
+      println("Ready for sending...")
       val socket = listener.accept()
 
       new Thread() {
@@ -37,38 +39,63 @@ object SendNetflow {
           println("Got client connected from: " + socket.getInetAddress)
 
           val out = new PrintWriter(socket.getOutputStream(), true)
-          send(out, args(1))
+          send(out, args(1), fileLines)
           socket.close()
         }
       }.start()
     }
   }
 
-  def send(out: PrintWriter, arg1: String): Unit = {
+  def getFileLines(): List[String] = {
 
     val filePath = "F:\\kddcup.data.txt"
     val file = Source.fromFile(filePath)
     val lines = file.getLines()
 
+    var linked = List[String]()
+
+    var counter = 0
+
     while (lines.hasNext) {
-      Thread.sleep(arg1.toLong)
 
       val nextLine = lines.next()
 
-      val cleaned = clean(nextLine)
-
-      println(cleaned)
-
-      out.write(cleaned)
-      out.write("\n")
+      if (nextLine.length > 0 && counter % 10 == 0) {
+        val cleaned = clean(nextLine)
+        linked = linked :+ cleaned
+      }
+      counter += 1
     }
-    file.close()
 
-    send(out, arg1)
+    file.close()
+    println("SUCCESS: load kddcup data file successfully.")
+
+    return linked
+  }
+
+  def send(out: PrintWriter, arg1: String, fileLines: List[String]): Unit = {
+
+    val len = fileLines.length
+    var counter = 0
+
+    while (true) {
+      Thread.sleep(arg1.toLong)
+
+      val line = fileLines(counter)
+
+      println(line)
+
+      out.write(line)
+      out.write("\n")
+
+      counter = (counter + 1) % len
+    }
+
   }
 
   def clean(s: String): String = {
 
+    // try unittest in scala with scala.SendNetflowTest
     if (s == "")
       throw new RuntimeException("Error: Empty input string")
 
@@ -82,7 +109,6 @@ object SendNetflow {
 
         strBuffer.append(columns(i))
         strBuffer.append("\t")
-
 
       } else if (i == length - 1) {
 

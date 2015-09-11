@@ -33,24 +33,18 @@ object KMeansMLStreaming {
 
     val labeledStream = stream.map { event =>
 
-      println(s"Event: $event")
+      println(event)
 
       val vectorAndLabel = event.split("\t")
       val vector = vectorAndLabel(0)
       val label = vectorAndLabel(1)
-      Vectors.dense(vector.split(",").map(_.toDouble))
 
-      val buffer = event.split(',').toBuffer
-      buffer.remove(1, 3)
-      val labels = buffer.remove(buffer.length - 1)
-
-      var labelsD = 0d
-      if (labels != "normal.") {
-        labelsD = 1d
+      val finalVector = Vectors.dense(vector.split(",").map(_.toDouble))
+      var finalLabel = 0d
+      if (label != "normal.") {
+        finalLabel = 1d
       }
-
-      val vectors = Vectors.dense(buffer.map(_.toDouble).toArray)
-      (labelsD, vectors)
+      (finalLabel, finalVector)
     }
 
     // cannot count the length of dStream
@@ -70,7 +64,7 @@ object KMeansMLStreaming {
 
         val line2 = line._2
 
-        val predict = latest.predict(line._2)
+        val predict = latest.predict(line2)
         val predictResult = (predict - line._1)
         println(s"Predict: $predict\tActually: $line2")
         predictResult
@@ -82,22 +76,25 @@ object KMeansMLStreaming {
 
     predictResult.foreachRDD { (rdd, time) =>
 
-      val total = rdd.map { case (err) =>
-        math.pow(err, 2.0)
-      }
-      val sum = total.sum()
-      val length = total.count()
-      val mse = sum / length
-      val rmse = math.sqrt(mse)
+      if (rdd.count() > 0) {
 
-      println( s"""
-                  |-------------------------------------------
-                  |Time: $time
-          |-------------------------------------------
+        val total = rdd.map { case (err) =>
+          math.pow(err, 2.0)
+        }
+        val sum = total.sum()
+        val length = total.count()
+        val mse = sum / length
+        val rmse = math.sqrt(mse)
+
+        println( s"""
+                    |-------------------------------------------
+                    |Time: $time
+            |-------------------------------------------
                       """.stripMargin)
-      println(s"MSE current batch: Model : $mse")
-      println(s"RMSE current batch: Model : $rmse")
-      println("...\n")
+        println(s"MSE current batch: Model : $mse")
+        println(s"RMSE current batch: Model : $rmse")
+        println("...\n")
+      }
     }
 
     ssc.start()

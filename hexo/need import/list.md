@@ -169,6 +169,13 @@
  - Learning OpenStack Networking (Neutron).pdf
  - OpenStack Operations Guide.pdf
  - 云计算 与 OpenStack 虚拟机 Nova 篇.pdf
+
+##9 month
+
  - 高可用架构文章.txt
+ - Apache Mesos Essentials.pdf
+ - LeetCode 算法详解
+ - Introduction to Algorithms, Third Edition.pdf
+ - Machine.Learning.With.Spark.pdf
 
 
