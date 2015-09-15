@@ -177,5 +177,21 @@
  - LeetCode 算法详解
  - Introduction to Algorithms, Third Edition.pdf
  - Machine.Learning.With.Spark.pdf
-
+ - Programming in Scala.pdf
+ - Scala编程.pdf
+ - Drupal 7 Mobile Web Development Beginner's Guide.pdf
+ - Web Penetration Testing with Kali Linux.pdf
+ - Beginning Ubuntu Linux, 6th Edition.pdf
+ - Linux Shell Scripting Cookbook 2th.pdf
+ - Instant Mock Testing with PowerMock.pdf
+ - Pragmatic Unit Testing in Java 8 with JUnit.pdf
+ - The Art of Software Testing, 3rd Edition.pdf
+ - The Cucumber Book.pdf
+ - The Cucumber for Java Book.pdf
+ - Instant Cucumber BDD How-to.pdf
+ - Cucumber Recipes.pdf
+ - Elemental Design Patterns Recognition In Java.pdf
+ - Notes on the Synthesis of Form.pdf
+ - Elemental Design Patterns.pdf
+ - ChinaPyCon2015.zip
 

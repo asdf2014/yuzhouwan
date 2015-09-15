@@ -1,4 +1,4 @@
-package java.jedis;
+package javaProhibited.jedis;
 
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import redis.clients.jedis.JedisShardInfo;

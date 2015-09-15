@@ -1,4 +1,4 @@
-package java.serializable;
+package javaProhibited.serializable;
 
 import java.io.*;
 
