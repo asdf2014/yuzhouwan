@@ -180,7 +180,6 @@
  - Programming in Scala.pdf
  - Scala编程.pdf
  - Drupal 7 Mobile Web Development Beginner's Guide.pdf
- - Web Penetration Testing with Kali Linux.pdf
  - Beginning Ubuntu Linux, 6th Edition.pdf
  - Linux Shell Scripting Cookbook 2th.pdf
  - Instant Mock Testing with PowerMock.pdf
