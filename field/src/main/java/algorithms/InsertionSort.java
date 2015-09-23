@@ -10,9 +10,7 @@ public class InsertionSort {
         for (int j = 1; j < unsort.length; j++) {
 
             int key = unsort[j];
-
             int i = j - 1;
-
             while (i >= 0 && unsort[i] > key) {
 
                 unsort[i + 1] = unsort[i];
