@@ -9,9 +9,9 @@ import static org.junit.Assert.assertEquals;
 /**
  * MergeSort Tester.
  *
- * @author <Authors name>
+ * @author <asdf2014>
  * @version 1.0
- * @since <pre>¾ÅÔÂ 23, 2015</pre>
+ * @since <pre>9, 23, 2015</pre>
  */
 public class MergeSortTest {
 
@@ -70,48 +70,65 @@ public class MergeSortTest {
 
     @Test
     public void pressureTest() throws Exception {
-        {
-            int[] transferred = new int[10000];
-            int len = 10000;
 
-            for (int i = 0; i < len; i++)
-                transferred[i] = i + 1;
+        int[] transferred = new int[10000];
+        int len = 10000;
 
-            System.out.println("data: [1 ~ " + transferred[9999] + "]");
+        for (int i = 0; i < len; i++)
+            transferred[i] = i + 1;
 
-            long begin = System.currentTimeMillis();
-            int max = mergeSort.findMaximum(transferred, 0, 9999);
-            long end = System.currentTimeMillis();
+        System.out.println("data: [1 ~ " + transferred[9999] + "]");
 
-            System.out.print("Result: " + max + ", and finished in " + (end - begin) + " millisecond\r\n");
-            assertEquals(50005000, max);
-        }
-        {
-            int[] transferred = new int[10000];
-            int len = 10000;
+        long begin = System.currentTimeMillis();
+        int max = mergeSort.findMaximum(transferred, 0, 9999);
+        long end = System.currentTimeMillis();
 
-            for (int i = 0; i < len; i++)
-                transferred[i] = i + 1;
+        System.out.print("Result: " + max + ", and finished in " + (end - begin) + " millisecond\r\n");
+        assertEquals(50005000, max);
+    }
 
-            System.out.println("data: [1 ~ " + transferred[9999] + "]");
+    @Test
+    public void originTest() {
+        int[] transferred = new int[1000];
+        int len = 1000;
 
-            long begin = System.currentTimeMillis();
-            int max = 0;
-            for(int i = 0; i < 10000; i++){
-                for (int j = i; j < 10000; j ++){
-                    int sum = 0;
-                    for(int n = i; n <= j; n++){
-                        sum += transferred[n];
-                    }
-                    if(max < sum){
-                        max = sum;
-                    }
+        for (int i = 0; i < len; i++)
+            transferred[i] = i + 1;
+
+        System.out.println("data: [1 ~ " + transferred[999] + "]");
+
+        long begin = System.currentTimeMillis();
+        int max = 0;
+        for (int i = 0; i < 1000; i++) {
+            for (int j = i; j < 1000; j++) {
+                int sum = 0;
+                for (int n = i; n <= j; n++) {
+                    sum += transferred[n];
+                }
+                if (max < sum) {
+                    max = sum;
                 }
             }
-            long end = System.currentTimeMillis();
+        }
+        long end = System.currentTimeMillis();
 
-            System.out.print("Result: " + max + ", and finished in " + (end - begin) + " millisecond");
-            assertEquals(50005000, max);
+        System.out.print("Result: " + max + ", and finished in " + (end - begin) + " millisecond");
+        assertEquals(500500, max);
+    }
+
+    @Test
+    public void simple() {
+        {
+            int[] unsort = {0};
+            mergeSort.findMaximum(unsort, 0, 0);
+        }
+        {
+            int[] unsort = {0, 1};
+            mergeSort.findMaximum(unsort, 0, 1);
+        }
+        {
+            int[] unsort = {0, 1, 2};
+            mergeSort.findMaximum(unsort, 0, 2);
         }
     }
 

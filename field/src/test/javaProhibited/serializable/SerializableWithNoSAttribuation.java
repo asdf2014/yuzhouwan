@@ -120,7 +120,6 @@ class MainThread {
 
         SerializationDemonstrator.serialize(s, "asdf");
         SerializableWithNoSAttribuation sDe = SerializationDemonstrator.deserialize("asdf", SerializableWithNoSAttribuation.class);
-
     }
 
 }

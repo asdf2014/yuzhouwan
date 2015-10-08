@@ -7,7 +7,7 @@ import org.junit.Test;
 /**
  * InsertionSort Tester.
  *
- * @author <asdf>
+ * @author <asdf2014>
  * @version 1.0
  * @since <pre>¾ÅÔÂ 21, 2015</pre>
  */
@@ -51,8 +51,28 @@ public class InsertionSortTest {
                 System.out.print(i);
             System.out.print("\r\n");
         }
-
     }
 
+    @Test
+    public void pressureTest() {
+        final int ARRAY_SIZE = 10000;
 
-} 
+        int[] sorted = new int[ARRAY_SIZE];
+        int[] reversed = new int[ARRAY_SIZE];
+        for (int i = 0; i < ARRAY_SIZE; i++)
+            reversed[ARRAY_SIZE - i - 1] = sorted[i] = i;
+        {
+            long begin = System.currentTimeMillis();
+            insertionSort.insertionSort(sorted);
+            long end = System.currentTimeMillis();
+            System.out.print("Max: " + sorted[ARRAY_SIZE - 1] + ", and finished in " + (end - begin) + " millisecond\r\n");
+        }
+        {
+            long begin = System.currentTimeMillis();
+            insertionSort.insertionSort(reversed);
+            long end = System.currentTimeMillis();
+            System.out.print("Max: " + sorted[ARRAY_SIZE - 1] + ", and finished in " + (end - begin) + " millisecond\r\n");
+        }
+    }
+
+}
