@@ -89,18 +89,18 @@ public class MergeSortTest {
 
     @Test
     public void originTest() {
-        int[] transferred = new int[1000];
-        int len = 1000;
+        int[] transferred = new int[10000];
+        int len = 10000;
 
         for (int i = 0; i < len; i++)
             transferred[i] = i + 1;
 
-        System.out.println("data: [1 ~ " + transferred[999] + "]");
+        System.out.println("data: [1 ~ " + transferred[9999] + "]");
 
         long begin = System.currentTimeMillis();
         int max = 0;
-        for (int i = 0; i < 1000; i++) {
-            for (int j = i; j < 1000; j++) {
+        for (int i = 0; i < 10000; i++) {
+            for (int j = i; j < 10000; j++) {
                 int sum = 0;
                 for (int n = i; n <= j; n++) {
                     sum += transferred[n];
@@ -113,7 +113,7 @@ public class MergeSortTest {
         long end = System.currentTimeMillis();
 
         System.out.print("Result: " + max + ", and finished in " + (end - begin) + " millisecond");
-        assertEquals(500500, max);
+        assertEquals(50005000, max);
     }
 
     @Test

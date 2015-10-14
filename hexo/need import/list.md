@@ -188,9 +188,25 @@
  - The Cucumber Book.pdf
  - The Cucumber for Java Book.pdf
  - Instant Cucumber BDD How-to.pdf
- - Cucumber Recipes.pdf
+ - Cucumber Recipes.pdf 
+
+----------------
+
  - Elemental Design Patterns Recognition In Java.pdf
  - Notes on the Synthesis of Form.pdf
  - Elemental Design Patterns.pdf
  - ChinaPyCon2015.zip
+ - Hadoop : The Definitive Guide, 4th Edition.pdf
+ - Apache Flume Distributed Log Collection for Hadoop, Second Edition.pdf
+ - 谷歌背后的数学.pdf
+ - 算法导论（原书第3版）.pdf
+ - HeteroSpark : A Heterogeneous CPU/GPU Spark Platform for Machine Learning Algorithms.pdf
+ - Getting Started with Google Guava.pdf
+ - Linux Device Drivers, Third Edition.pdf
+ - Operating System Design (2nd Edition).pdf
+ - Linux内核设计与实现.pdf
+
+##10 month
+
+ - Mastering Regular Expressions（3rd Edition）.pdf
 

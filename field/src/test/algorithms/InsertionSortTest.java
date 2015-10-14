@@ -9,7 +9,7 @@ import org.junit.Test;
  *
  * @author <asdf2014>
  * @version 1.0
- * @since <pre>¾ÅÔÂ 21, 2015</pre>
+ * @since <pre>ä¹æœˆ 21, 2015</pre>
  */
 public class InsertionSortTest {
 
