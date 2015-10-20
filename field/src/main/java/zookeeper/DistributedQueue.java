@@ -1,7 +1,5 @@
 package zookeeper;
 
-import com.twitter.zk.ZNode;
-import com.twitter.zk.ZkClient;
 import org.apache.zookeeper.*;
 
 import java.io.IOException;
@@ -19,6 +17,18 @@ public class DistributedQueue {
 
     public static void main(String... args) throws Exception {
 
+        /**
+         Queue is exist in '/distributedQueue'!
+         Adding	1	into queue [/distributedQueue] ...
+         Adding	2	into queue [/distributedQueue] ...
+         --------------------------------
+         Adding	3	into queue [/distributedQueue] ...
+         --------------------------------
+         Get the data:	3	from /distributedQueue/30000000062
+         Get the data:	1	from /distributedQueue/10000000060
+         Get the data:	2	from /distributedQueue/20000000061
+         No node to consume.
+         */
         process();
     }
 
