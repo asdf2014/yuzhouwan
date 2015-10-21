@@ -12,8 +12,9 @@
 hs_err_pid*
 
 # Project Files
-*.iml
-*/*.iml
+**/*.iml
 .idea/*
 .idea/.name
+
+# Maven
 */target/*

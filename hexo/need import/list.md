@@ -209,4 +209,21 @@
 ##10 month
 
  - Mastering Regular Expressions（3rd Edition）.pdf
+ - Raft Refloated: Do We Have Consensus?.pdf
+ - In Search of an Understandable Consensus Algorithm.pdf
+ - ZooKeeper Programmer's Guide.pdf
+ - Apache ZooKeeper Essentials.pdf
+ - Time, Clocks, and the Ordering of Events in a Distribute System.pdf
+ - Apache Tomcat 9 (preview).pdf
+ - BASE: An Acid Alternative.pdf
+ - The Byzantine Generals Problem.pdf
+ - A New Solution of Dijkstra's Concurrent Programming Problem.pdf
+ - Distributed Commit.pdf
+ - Analysis and Verification of Two-Phase Commit & Three-Phase Commit Protocols.pdf
+ - Revisiting the Paxos algorithm.pdf
+ - Errata to Specifying System.pdf
+ - The Part-Time Parliament.pdf
+ - Paxos Made Simple.pdf
+ - Git Version Control Cookbook.pdf
+
 

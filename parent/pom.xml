@@ -21,6 +21,12 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.version>0.1</project.version>
 
+        <maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
+        <maven.compiler.jdk.version>1.7</maven.compiler.jdk.version>
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+        <maven.release.plugin.version>2.4.1</maven.release.plugin.version>
+        <maven.eclipse.plugin.version>2.9</maven.eclipse.plugin.version>
+
         <scala.version>2.10.4</scala.version>
         <scala.unittest.version>2.2.1</scala.unittest.version>
         <spark.version>1.2.2</spark.version>
@@ -42,5 +48,4 @@
         <url>scm:git@github.com:asdf2014/yuzhouwan.git</url>
         <developerConnection>scm:git@github.com:asdf2014/yuzhouwan.git</developerConnection>
     </scm>
-
 </project>
