@@ -223,5 +223,5 @@ You will see the information that be show in console sucessfully :-)
 [1]:http://storm.apache.org/documentation/Home.html
 [2]:http://kafka.apache.org/documentation.html
 [3]:http://mvnrepository.com/artifact/org.apache.storm
-[4]:https://github.com/MasteringStorm/shopping-web-site
-[5]:https://github.com/MasteringStorm/customer-haviour-analyse
+[4]:https://github.com/MasteringStorm/customer-haviour-analyse
+[5]:https://github.com/MasteringStorm/shopping-web-site

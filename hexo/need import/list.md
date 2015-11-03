@@ -225,5 +225,17 @@
  - The Part-Time Parliament.pdf
  - Paxos Made Simple.pdf
  - Git Version Control Cookbook.pdf
+ - Virtual Time.pdf
+ - The Chubby lock service for loosely-coupled distributed systems.pdf
+ - Data Structures and Algorithms in Java, 6th Edition.pdf
+ - Mastering Algorithms with C.pdf
+ - The Instructor's Manual for 《Introduction to Algorithmes》.pdf
+ - How Google Works.pdf
+ - Concrete Mathematics：A Foundation for Computer Science, 2nd Edition.pdf
+
+##11 month
+
+ - Shannon - A Mathematical Theory of Communication.pdf
+ - Twitter Heron-Stream Processing at Scale.pdf
 
 

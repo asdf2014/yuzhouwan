@@ -4,7 +4,7 @@
   <subtitle><![CDATA[using hexo]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yuzhouwan.com/"/>
-  <updated>2015-10-14T02:13:27.751Z</updated>
+  <updated>2015-11-03T11:01:24.370Z</updated>
   <id>http://yuzhouwan.com/</id>
   
   <author>
@@ -195,7 +195,7 @@
     <link href="http://yuzhouwan.com/2015/05/10/Storm-%E4%B8%8E-Kafka-%E7%9A%84%E6%95%B4%E5%90%88%E4%B9%8B%E4%B8%89%EF%BC%9ACombination/"/>
     <id>http://yuzhouwan.com/2015/05/10/Storm-与-Kafka-的整合之三：Combination/</id>
     <published>2015-05-10T06:28:08.000Z</published>
-    <updated>2015-05-10T08:06:14.000Z</updated>
+    <updated>2015-10-27T05:54:46.000Z</updated>
     <content type="html"><![CDATA[<h2 id="搭建_Storm_和_Kafka_的基础环境"><strong><font color="blue"><em>搭建 Storm 和 Kafka 的基础环境</em></font></strong></h2>
 <h3 id="搭建_Storm_集群_(本地模式)"><strong>搭建 <a href="http://storm.apache.org/documentation/Home.html" target="_blank" rel="external">Storm</a> 集群 (本地模式)</strong></h3>
 <h3 id="搭建_Kafka_环境"><strong>搭建 <a href="http://kafka.apache.org/documentation.html" target="_blank" rel="external">Kafka</a> 环境</strong></h3>
@@ -259,14 +259,14 @@
 
 <p>You will see the information that be show in console sucessfully :-)</p>
 <h2 id="Storm_和_Kafka_双向整合已经完成"><strong><font color="blue"><em>Storm 和 Kafka 双向整合已经完成</em></font></strong></h2>
-<p>完全的整合，及其运用，见 <a href="https://github.com/MasteringStorm/shopping-web-site" target="_blank" rel="external">here</a></p>
+<p>完全的整合，及其运用，见 <a href="https://github.com/MasteringStorm/customer-haviour-analyse" target="_blank" rel="external">here</a></p>
 <h2 id="小技巧"><strong><font color="blue"><em>小技巧</em></font></strong></h2>
 <h3 id="get_the_value_of_metadata-broker-list"><strong>get the value of metadata.broker.list</strong></h3>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">vim</span> config/producer.properties</div></pre></td></tr></table></figure>
 
 <h3 id="查看_storm_与其他框架的支持与否">查看 storm 与其他框架的支持与否</h3>
 <p><a href="http://mvnrepository.com/artifact/org.apache.storm" target="_blank" rel="external">http://mvnrepository.com/artifact/org.apache.storm</a></p>
-<p><font size="2"><strong><em><a href="https://github.com/MasteringStorm/customer-haviour-analyse" target="_blank" rel="external">[Source]</a></em></strong></font></p>
+<p><font size="2"><strong><em><a href="https://github.com/MasteringStorm/shopping-web-site" target="_blank" rel="external">[Source]</a></em></strong></font></p>
 ]]></content>
     <summary type="html">
     <![CDATA[<h2 id="搭建_Storm_和_Kafka_的基础环境"><strong><font color="blue"><em>搭建 Storm 和 Kafka 的基础环境</em></font></strong></h2>

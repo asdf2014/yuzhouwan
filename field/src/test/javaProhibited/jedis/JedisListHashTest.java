@@ -33,11 +33,11 @@ public class JedisListHashTest {
         pool = new ShardedJedisPool(new GenericObjectPoolConfig(), shards);
     }
 
-    public void addList(String key, List<? super String> list) {
+    public void addList(String key, String[] list) {
 
         ShardedJedis jedis = pool.getResource();
 
-        jedis.lpush(key, (String[]) list.toArray());
+        jedis.lpush(key, list);
 
         pool.returnResourceObject(jedis);
     }
@@ -46,11 +46,7 @@ public class JedisListHashTest {
 
         JedisListHashTest jedisListHashTest = new JedisListHashTest();
 
-        List<String> list = new ArrayList<String>();
-        list.add("a");
-        list.add("s");
-        list.add("d");
-        list.add("f");
+        String[] list = {"a", "s", "d", "f"};
 
         jedisListHashTest.addList("asdf", list);
 
