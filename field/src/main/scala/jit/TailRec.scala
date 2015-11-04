@@ -6,7 +6,7 @@ import scala.annotation.tailrec
  * Copyright @ 2015 yuzhouwan.com
  * All right reserved.
  * 功能描述：jit
- * @author jinjy
+ * @author asdf2014
  * @since 2015/11/3
  */
 class TailRec {
