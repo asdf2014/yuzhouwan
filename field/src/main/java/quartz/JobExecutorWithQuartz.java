@@ -24,7 +24,7 @@ import static org.quartz.TriggerBuilder.newTrigger;
 public class JobExecutorWithQuartz implements Job {
 
     private final static Logger _log = LoggerFactory.getLogger(JobExecutorWithQuartz.class);
-    private final static SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy-MM-dd/HH:mm:ss");
+    private final static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd/HH:mm:ss");
     private static Scheduler scheduler;
 
 
@@ -47,7 +47,7 @@ public class JobExecutorWithQuartz implements Job {
         /**
          * asdf2014 in time:	2015-11-04/13:09:54
          */
-        System.out.println("asdf2014 in time:\t" + dateFormater.format(new Date()));
+        System.out.println("asdf2014 in time:\t" + dateFormat.format(new Date()));
     }
 
     public static void main(String... args) throws SchedulerException, InterruptedException, ParseException {
@@ -60,7 +60,7 @@ public class JobExecutorWithQuartz implements Job {
                 .build();
 
         // compute a time that is on the next round minute
-        Date runTime = evenMinuteDate(dateFormater.parse("2015-11-04/13:04:59"));
+        Date runTime = evenMinuteDate(dateFormat.parse("2015-11-04/13:04:59"));
 
         // Trigger the job to run on the next round minute
         Trigger trigger = newTrigger()
