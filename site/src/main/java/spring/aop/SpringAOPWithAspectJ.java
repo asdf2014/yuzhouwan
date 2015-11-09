@@ -52,6 +52,10 @@ public class SpringAOPWithAspectJ {
             throwing = "error")
     public void afterThrowingTarget(JoinPoint joinPoint, Throwable error) throws Throwable {
 
+        Object[] args = joinPoint.getArgs();
+        Throwable t = (Throwable) args[0];
+        System.out.println("Get param value: " + t.getMessage() + " from JoinPoint...");
+
         showClassMethod(joinPoint);
         if (error != null)
             System.out.println("error: " + error.getMessage());
