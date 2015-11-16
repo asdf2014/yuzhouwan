@@ -52,7 +52,7 @@ public class DistributedQueue {
         consume(zk6);
     }
 
-    public static ZooKeeper connection(String host) throws IOException {
+    private static ZooKeeper connection(String host) throws IOException {
 
         return new ZooKeeper(host, 60000, new Watcher() {
 
@@ -62,7 +62,7 @@ public class DistributedQueue {
         });
     }
 
-    public static void initQueue(ZooKeeper zk) throws KeeperException, InterruptedException {
+    private static void initQueue(ZooKeeper zk) throws KeeperException, InterruptedException {
 
         if (zk.exists("/distributedQueue", false) == null) {
             System.out.println("Create queue that path is '/distributedQueue'.");
@@ -72,13 +72,13 @@ public class DistributedQueue {
         }
     }
 
-    public static void produce(ZooKeeper zk, int zNode) throws KeeperException, InterruptedException {
+    private static void produce(ZooKeeper zk, int zNode) throws KeeperException, InterruptedException {
 
         System.out.println("Adding\t" + zNode + "\tinto queue [/distributedQueue] ...");
         zk.create("/distributedQueue/" + zNode, (zNode + "").getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
     }
 
-    public static void consume(ZooKeeper zk) throws KeeperException, InterruptedException {
+    private static void consume(ZooKeeper zk) throws KeeperException, InterruptedException {
 
         List<String> list = zk.getChildren("/distributedQueue", true);
         if (list.size() > 0) {
@@ -92,6 +92,5 @@ public class DistributedQueue {
             System.out.println("No node to consume.");
         }
     }
-
 
 }

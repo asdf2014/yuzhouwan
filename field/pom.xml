@@ -58,7 +58,6 @@
             <version>${scala.unittest.version}</version>
         </dependency>
 
-
         <!-- breeze -->
         <dependency>
             <groupId>org.scalanlp</groupId>
@@ -72,7 +71,6 @@
             <artifactId>joda-time</artifactId>
             <version>${joda.time.version}</version>
         </dependency>
-
 
         <!-- elasticsearch -->
         <dependency>
@@ -112,6 +110,19 @@
             <groupId>org.quartz-scheduler</groupId>
             <artifactId>quartz</artifactId>
             <version>${quartz.version}</version>
+        </dependency>
+
+        <!-- snmp4j -->
+        <dependency>
+            <groupId>org.snmp4j</groupId>
+            <artifactId>snmp4j</artifactId>
+            <version>${snmp4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.snmp4j</groupId>
+            <artifactId>snmp4j-agent</artifactId>
+            <version>${snmp4j.agent.version}</version>
         </dependency>
     </dependencies>
 

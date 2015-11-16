@@ -63,3 +63,5 @@ import scala.math._
 
 val fun = ceil _
 println(fun(1))
+
+println(raw"C:/asdf2015")
