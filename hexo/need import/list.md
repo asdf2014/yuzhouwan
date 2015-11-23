@@ -48,12 +48,6 @@
 
 ----------------
 
-- Erlang程序设计（第2版）.pdf
-- TCP Sockets编程.pdf
-- 领域专用语言实战.pdf
-
-----------------
-
 - The Linux Programming Interface.pdf
 - Java SE 8 for the Really Impatient.pdf
 
@@ -237,5 +231,12 @@
 
  - Shannon - A Mathematical Theory of Communication.pdf
  - Twitter Heron-Stream Processing at Scale.pdf
-
+ - Introduction to Probability, 2nd Edition.pdf
+ - Programming Scala: Tackle Multi-Core Complexity on the Java Virtual Machine.pdf
+ - Mastering Apache Maven 3.pdf
+ - Introduction Maven.pdf
+ - Steve Jobs: The Man in the Machine(2015 limited 1080p blu-ray).torrent
+ - GFS.pdf
+ - MapReduce.pdf
+ - BigTable.pdf
 
