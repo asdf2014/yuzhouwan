@@ -9,7 +9,7 @@ import org.junit.Test;
  * All right reserved.
  * Function：ReflectionPrivate Tester.
  *
- * @author jinjy
+ * @author asdf2014
  * @since 2015/11/16
  */
 public class ReflectionPrivateTest {

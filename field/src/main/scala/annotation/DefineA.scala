@@ -8,20 +8,16 @@ package annotation
   * @author asdf2014
   * @since 2015/11/20 0020
   */
-class DefineA {
+class DefineA
+
+object DefineA {
+
+  def main(args: Array[String]) {
+    bigMistake()
+  }
 
   @DefineAnnotation
   def bigMistake(): Unit = {
     println("bigMistake...")
   }
 }
-
-object DefineA {
-
-  def main(args: Array[String]) {
-    val defineA = new DefineA
-    defineA.bigMistake()
-  }
-}
-
-

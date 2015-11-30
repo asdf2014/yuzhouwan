@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
  * All right reserved.
  * Function：SnmpSimpleGet
  *
- * @author jinjy
+ * @author asdf2014
  * @since 2015/11/12
  */
 public class SnmpSimpleGet {

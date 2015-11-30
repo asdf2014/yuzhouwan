@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
  * All right reserved.
  * Function：ZookeeperWatcher
  *
- * @author jinjy
+ * @author asdf2014
  * @since 2015/11/9
  */
 public class ZookeeperWatcher {

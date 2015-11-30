@@ -5,7 +5,7 @@ package reflection;
  * All right reserved.
  * Function：reflection
  *
- * @author jinjy
+ * @author asdf2014
  * @since 2015/11/16
  */
 public class SimpleBean {

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
  * All right reserved.
  * Function£ºspring.aop
  *
- * @author jinjy
+ * @author asdf2014
  * @since 2015/11/9
  */
 @Component

@@ -8,7 +8,7 @@ import java.io.IOException;
  * All right reserved.
  * Function£ºspring.aop
  *
- * @author jinjy
+ * @author asdf2014
  * @since 2015/11/9
  */
 public class ErrorFilter implements Filter {

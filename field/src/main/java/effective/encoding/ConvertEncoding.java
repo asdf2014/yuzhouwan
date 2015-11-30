@@ -7,7 +7,7 @@ import java.nio.charset.Charset;
  * All right reserved.
  * Function£ºeffective.encoding
  *
- * @author jinjy
+ * @author asdf2014
  * @since 2015/11/19
  */
 public class ConvertEncoding {

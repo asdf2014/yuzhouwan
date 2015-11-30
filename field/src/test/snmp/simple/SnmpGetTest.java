@@ -10,7 +10,7 @@ import java.util.List;
  * All right reserved.
  * Function：SnmpSimpleGet Tester.
  *
- * @author jinjy
+ * @author asdf2014
  * @since 2015/11/12
  */
 public class SnmpGetTest {
