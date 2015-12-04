@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Copyright @ 2015 yuzhouwan.com
  * All right reserved.
- * Function£ºCollectionStuff Tester
+ * Functionï¼šCollectionStuff Tester
  *
  * @author asdf2014
  * @since 2015/11/30 0030

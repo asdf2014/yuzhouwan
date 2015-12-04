@@ -33,6 +33,7 @@
         <spark.version>1.2.2</spark.version>
         <breeze.version>0.10</breeze.version>
         <joda.time.version>2.7</joda.time.version>
+        <jackson.version>2.6.3</jackson.version>
 
         <elasticsearch.version>1.5.2</elasticsearch.version>
 

@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Copyright @ 2015 zhong-ying Co.Ltd
  * All right reserved.
- * Function£ºSnmpSimpleSet Tester.
+ * Functionï¿½ï¿½SnmpSimpleSet Tester.
  *
  * @author jinjy
  * @since 2015/11/24 0024

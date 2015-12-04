@@ -11,7 +11,7 @@ import org.snmp4j.transport.DefaultUdpTransportMapping;
 /**
  * Copyright @ 2015 zhong-ying Co.Ltd
  * All right reserved.
- * Function£ºsnmp.simple
+ * Functionï¼šsnmp.simple
  *
  * @author jinjy
  * @since 2015/11/24 0024
