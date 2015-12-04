@@ -24,7 +24,6 @@
 - Pro Microsoft HDInsight.pdf
 - Real-Time Big Data Analytics.pdf
 - Clojure in Action.pdf
-- Hadoop_ Beginner's Guide.pdf
 - Spring Data.pdf
 - Professional Hadoop Solutions.pdf
 - R in a Nutshell, 2nd Edition.pdf
@@ -235,8 +234,25 @@
  - Programming Scala: Tackle Multi-Core Complexity on the Java Virtual Machine.pdf
  - Mastering Apache Maven 3.pdf
  - Introduction Maven.pdf
+
+----------------
+
  - Steve Jobs: The Man in the Machine(2015 limited 1080p blu-ray).torrent
+
+----------------
+
  - GFS.pdf
  - MapReduce.pdf
  - BigTable.pdf
+ - Performance and Scalability of Broadcast in Spark.pdf
+ - GenASM.pdf
+ - Learning Continuous Integration with TeamCity.pdf
+ - Jenkins Essentials.pdf
+ - Redis Cookbook.pdf
+
+##12 month
+
+ - Java特种兵.pdf
+ - Hadoop Beginner's Guide.pdf
+
 
