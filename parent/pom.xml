@@ -17,10 +17,12 @@
     </description>
 
     <properties>
+        <!-- project -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.version>0.1</project.version>
 
+        <!-- maven -->
         <maven.test.resource.version>2.6</maven.test.resource.version>
         <maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
         <maven.compiler.jdk.version>1.7</maven.compiler.jdk.version>
@@ -28,6 +30,7 @@
         <maven.release.plugin.version>2.4.1</maven.release.plugin.version>
         <maven.eclipse.plugin.version>2.9</maven.eclipse.plugin.version>
 
+        <!-- scala -->
         <scala.version>2.10.4</scala.version>
         <scala.unittest.version>2.2.1</scala.unittest.version>
         <spark.version>1.2.2</spark.version>
@@ -35,23 +38,36 @@
         <joda.time.version>2.7</joda.time.version>
         <jackson.version>2.6.3</jackson.version>
 
+        <!-- elastic search -->
         <elasticsearch.version>1.5.2</elasticsearch.version>
 
+        <!-- test -->
         <junit.version>4.12</junit.version>
         <mockito.version>1.9.5</mockito.version>
+        <hamcrest.version>1.3</hamcrest.version>
 
+        <spring.test.version>4.2.2.RELEASE</spring.test.version>
+        <json.path.version>0.8.1</json.path.version>
+        <json.path.assert.version>0.8.1</json.path.assert.version>
+
+
+        <!-- redis -->
         <redis.version>2.7.0</redis.version>
 
+        <!-- zookeeper -->
         <apache.zookeeper.version>3.4.6</apache.zookeeper.version>
 
+        <!-- quartz -->
         <quartz.version>2.2.1</quartz.version>
 
+        <!-- spring -->
         <spring.version>4.2.2.RELEASE</spring.version>
         <aspectj.jrt.version>1.8.7</aspectj.jrt.version>
         <aspectj.jweaver.version>1.8.7</aspectj.jweaver.version>
 
         <javax.servlet.api.version>3.1.0</javax.servlet.api.version>
 
+        <!-- snmp4j -->
         <snmp4j.version>1.10.1</snmp4j.version>
         <snmp4j.agent.version>1.3.1</snmp4j.agent.version>
     </properties>
