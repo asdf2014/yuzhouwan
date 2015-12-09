@@ -5,8 +5,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -25,7 +27,7 @@ public class ZooKeeperConnPool {
 
     private static CountDownLatch connectZKClientLatch;
     private static CountDownLatch closeZKClientLatch;
-    private static volatile HashSet<ZooKeeper> pool;
+    private static volatile Set<ZooKeeper> pool;
 
     private static final int MIN_CONN_IN_POOL = 3;
     private static final int MAX_CONN_IN_POOL = 5;
@@ -63,7 +65,7 @@ public class ZooKeeperConnPool {
     private void init() {
         connectZKClientLatch = new CountDownLatch(1);
         closeZKClientLatch = new CountDownLatch(1);
-        pool = new HashSet<>();
+        pool = Collections.synchronizedSet(new HashSet<>());
     }
 
     /**
@@ -92,6 +94,9 @@ public class ZooKeeperConnPool {
             newZookeeper = new ZooKeeper(HOST.concat(":").concat(CLIENT_PORT + ""),
                     TIME_OUT_MILLISECOND,
                     new ZKEventWatch(getInstance()));
+            /**
+             * TODO{asdf2014}: timeout
+             */
             connectZKClientLatch.await();
             pool.add(newZookeeper);
 
@@ -182,6 +187,9 @@ public class ZooKeeperConnPool {
             ZooKeeper needCloseZK = iterator.next();
             pool.remove(needCloseZK);
             try {
+                /**
+                 * TODO{asdf2014}: timeout
+                 */
                 needCloseZK.close();
                 closeZKClientLatch.await();
 

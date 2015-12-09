@@ -1,22 +1,21 @@
 package javaProhibited.mock;
 
-import sun.jdbc.odbc.JdbcOdbcBatchUpdateException;
-import java.sql.BatchUpdateException;
+import com.sun.rowset.JdbcRowSetResourceBundle;
 
 public class ComplexClass {
 
-    private BatchUpdateException batchE;
+    private JdbcRowSetResourceBundle jrsrb;
 
-    public ComplexClass(JdbcOdbcBatchUpdateException odbcE) {
+    public ComplexClass(JdbcRowSetResourceBundle jrsrb) {
 
-        this.batchE = odbcE;
+        this.jrsrb = jrsrb;
     }
 
     private void sayE(String e) {
 
-        if(batchE == null)
+        if(jrsrb == null)
             return;
 
-        System.out.println(e + ":\t" + batchE.getMessage());
+        System.out.println(e + ":\t" + jrsrb.toString());
     }
 }
