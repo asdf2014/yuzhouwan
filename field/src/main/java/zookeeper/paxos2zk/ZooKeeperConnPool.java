@@ -37,6 +37,15 @@ public class ZooKeeperConnPool {
 
     private static int used = 0;
 
+    private ZooKeeperConnPool() {
+        init();
+    }
+
+    /**
+     * Single instance.
+     *
+     * @return
+     */
     public static ZooKeeperConnPool getInstance() {
         if (instance == null)
             synchronized (ZooKeeperConnPool.class) {
@@ -48,13 +57,19 @@ public class ZooKeeperConnPool {
         return instance;
     }
 
+    /**
+     * Make a initialization.
+     */
     private void init() {
         connectZKClientLatch = new CountDownLatch(1);
         closeZKClientLatch = new CountDownLatch(1);
         pool = new HashSet<>();
     }
 
-    public static void initStorage() {
+    /**
+     * Create some new connections into pool, when the size of pool less than MIN_CONN_IN_POOL.
+     */
+    private static void initStorage() {
         if (pool.size() >= MAX_CONN_IN_POOL)
             return;
         int count = 0;
@@ -68,6 +83,9 @@ public class ZooKeeperConnPool {
         }
     }
 
+    /**
+     * Create a new connection.
+     */
     private static void createNewConnIntoPool() {
         ZooKeeper newZookeeper;
         try {
@@ -86,10 +104,11 @@ public class ZooKeeperConnPool {
         }
     }
 
-    private ZooKeeperConnPool() {
-        init();
-    }
-
+    /**
+     * Get a alive connection from pool.
+     *
+     * @return
+     */
     public ZooKeeper getConn() {
         _log.info("################ Get ZKClient Connection from pool...");
         if (used >= MAX_CONN_IN_POOL) {
@@ -112,6 +131,11 @@ public class ZooKeeperConnPool {
         }
     }
 
+    /**
+     * Free a alive connection into pool.
+     *
+     * @param freeZK
+     */
     public void freeConn(ZooKeeper freeZK) {
         _log.info("################ Free ZKClient Connection into pool...");
         if (freeZK == null)
@@ -129,6 +153,43 @@ public class ZooKeeperConnPool {
         }
         used--;
         balance();
+    }
+
+    /**
+     * Close some overfull connection from pool.
+     */
+    private void closeOverFullZKFromPool() {
+        _log.info("################ Remove some ZKClient Connections from pool...");
+        if (pool.size() <= MIN_CONN_IN_POOL)
+            return;
+        int count = 0;
+        while (pool.size() > MIN_CONN_IN_POOL) {
+            closeConn();
+            count++;
+            if (count > (MAX_CONN_IN_POOL - MIN_CONN_IN_POOL) && pool.size() > MIN_CONN_IN_POOL)
+                throw new RuntimeException("Cannot init conn-pool[" +
+                        pool.size() + "/" + MAX_CONN_IN_POOL + "] not [" +
+                        MIN_CONN_IN_POOL + "/" + MAX_CONN_IN_POOL + "]");
+        }
+    }
+
+    /**
+     * Close a connection from pool.
+     */
+    private void closeConn() {
+        Iterator<ZooKeeper> iterator = pool.iterator();
+        if (iterator.hasNext()) {
+            ZooKeeper needCloseZK = iterator.next();
+            pool.remove(needCloseZK);
+            try {
+                needCloseZK.close();
+                closeZKClientLatch.await();
+
+                _log.info("Storage: [" + pool.size() + "/" + MAX_CONN_IN_POOL + "]");
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     /**
@@ -155,37 +216,6 @@ public class ZooKeeperConnPool {
                 }
             };
             removeSomeConnThread.start();
-        }
-    }
-
-    private void closeOverFullZKFromPool() {
-        _log.info("################ Remove some ZKClient Connections from pool...");
-        if (pool.size() <= MIN_CONN_IN_POOL)
-            return;
-        int count = 0;
-        while (pool.size() > MIN_CONN_IN_POOL) {
-            closeConn();
-            count++;
-            if (count > (MAX_CONN_IN_POOL - MIN_CONN_IN_POOL) && pool.size() > MIN_CONN_IN_POOL)
-                throw new RuntimeException("Cannot init conn-pool[" +
-                        pool.size() + "/" + MAX_CONN_IN_POOL + "] not [" +
-                        MIN_CONN_IN_POOL + "/" + MAX_CONN_IN_POOL + "]");
-        }
-    }
-
-    private void closeConn() {
-        Iterator<ZooKeeper> iterator = pool.iterator();
-        if (iterator.hasNext()) {
-            ZooKeeper needCloseZK = iterator.next();
-            pool.remove(needCloseZK);
-            try {
-                needCloseZK.close();
-                closeZKClientLatch.await();
-
-                _log.info("Storage: [" + pool.size() + "/" + MAX_CONN_IN_POOL + "]");
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
         }
     }
 
