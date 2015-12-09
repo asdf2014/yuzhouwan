@@ -10,7 +10,7 @@ import org.apache.spark.{SparkConf, SparkContext}
   * All right reserved.
   * Function：Convert txt into json.
   *
-  * @author jinjy
+  * @author asdf2014
   * @since 2015/12/4 0004
   */
 object JsonUtils {

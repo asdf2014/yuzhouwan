@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
  * All right reserved.
  * Function: Why zk limits myid range in [1, 255]
  *
- * @author jinjy
+ * @author asdf2014
  * @since 2015/12/1 0001
  */
 public class MyidRangeTest {

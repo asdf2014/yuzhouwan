@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Copyright @ yuzhouwan.com
  * All right reserved.
- * Function£ºMultiIPAddresses Tester
+ * Functionï¼šMultiIPAddresses Tester
  *
  * @author asdf2014
  * @since 2015/12/7 0007

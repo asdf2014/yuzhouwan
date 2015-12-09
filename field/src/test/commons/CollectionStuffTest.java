@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -43,8 +44,8 @@ public class CollectionStuffTest {
     @Test
     public void testListDeduplication() throws Exception {
         CollectionStuff<List<ComplexClass>, ComplexClass> collectionStuff = new CollectionStuff<>();
-        List<ComplexClass> list = collectionStuff.listDeduplication(cs, 1, true);
-        for (ComplexClass complexClass : list) {
+        Collection<ComplexClass> collection = collectionStuff.listDeduplication(cs, 1, true);
+        for (ComplexClass complexClass : collection) {
             System.out.println(complexClass);
         }
     }

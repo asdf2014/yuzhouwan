@@ -39,7 +39,7 @@ public class CollectionStuff<C extends Collection<E>, E> {
 
         Map<Object, E> map = new HashMap<>(c.size());
         for (E e : c) {
-            Object key = null;
+            Object key;
             try {
                 key = f.get(e);
                 map.put(key, e);

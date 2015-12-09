@@ -10,11 +10,11 @@ import java.util.Iterator;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * Copyright @ 2015 zhong-ying Co.Ltd
+ * Copyright @ 2015 yuzhouwan.com
  * All right reserved.
  * Function：Zookeeper Alive Connection Pool
  *
- * @author jinjy
+ * @author asdf2014
  * @since 2015/12/8 0008
  */
 public class ZooKeeperConnPool {
@@ -137,7 +137,7 @@ public class ZooKeeperConnPool {
     private void balance() {
         _log.info("################ Balance the storage of pool...");
         /**
-         * TODO{jinjy}: need to set bigger value into MIN_CONN_IN_POOL
+         * TODO{asdf2014}: need to set bigger value into MIN_CONN_IN_POOL
          */
         if (used < MAX_CONN_IN_POOL && pool.size() < MIN_CONN_IN_POOL) {
             Thread addSomeConnThread = new Thread() {

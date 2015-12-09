@@ -6,11 +6,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Copyright @ 2015 zhong-ying Co.Ltd
+ * Copyright @ 2015 yuzhouwan.com
  * All right reserved.
  * Function: ZooKeeper Event Watcher
  *
- * @author jinjy
+ * @author asdf2014
  * @since 2015/12/8 0008
  */
 public class ZKEventWatch implements Watcher {

@@ -9,11 +9,11 @@ import org.snmp4j.smi.*;
 import org.snmp4j.transport.DefaultUdpTransportMapping;
 
 /**
- * Copyright @ 2015 zhong-ying Co.Ltd
+ * Copyright @ 2015 yuzhouwan.com
  * All right reserved.
  * Function：snmp.simple
  *
- * @author jinjy
+ * @author asdf2014
  * @since 2015/11/24 0024
  */
 public class SnmpSimpleSet {

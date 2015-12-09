@@ -52,7 +52,7 @@ public class SnmpSimpleGetTest {
     public void testSnmpSyncGetList() throws Exception {
 
         /**
-         * TODO{jinjy}: make sure snmp.acl is invisible for user
+         * TODO{asdf2014}: make sure snmp.acl is invisible for user
          */
         /**
          * JVM Options:com.

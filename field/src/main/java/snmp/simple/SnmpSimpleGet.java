@@ -155,7 +155,7 @@ public class SnmpSimpleGet {
             snmp.send(pdu, target, null, listener);
             System.out.println("asyn send pdu wait for response...");
 
-            boolean wait = latch.await(30, TimeUnit.SECONDS);
+            boolean wait = latch.await(5, TimeUnit.SECONDS);
             System.out.println("latch.await =:" + wait);
 
             snmp.close();

@@ -7,11 +7,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Copyright @ 2015 zhong-ying Co.Ltd
+ * Copyright @ 2015 yuzhouwan.com
  * All right reserved.
  * Function��SnmpSimpleSet Tester.
  *
- * @author jinjy
+ * @author asdf2014
  * @since 2015/11/24 0024
  */
 public class SnmpSimpleSetTest {
