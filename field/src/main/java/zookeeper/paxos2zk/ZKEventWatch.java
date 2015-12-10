@@ -17,10 +17,7 @@ public class ZKEventWatch implements Watcher {
 
     private static final Logger _log = LoggerFactory.getLogger(ZKEventWatch.class);
 
-    private ZooKeeperConnPool pool;
-
-    public ZKEventWatch(ZooKeeperConnPool pool) {
-        this.pool = pool;
+    public ZKEventWatch() {
     }
 
     @Override
@@ -30,9 +27,9 @@ public class ZKEventWatch implements Watcher {
         _log.info("$$$$$$$$$$$$$$$$$$ WatchedEvent's state: " + state);
 
         if (Watcher.Event.KeeperState.SyncConnected == state) {
-            pool.getCountDownLatch().countDown();
+            ZooKeeperConnPool.getCountDownLatch().countDown();
         } else if (Watcher.Event.KeeperState.Disconnected == state) {
-            pool.getCloseZKClientLatch().countDown();
+            ZooKeeperConnPool.getCloseZKClientLatch().countDown();
         }
     }
 }

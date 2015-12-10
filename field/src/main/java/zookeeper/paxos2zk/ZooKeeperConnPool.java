@@ -23,7 +23,7 @@ public class ZooKeeperConnPool {
 
     private static final Logger _log = LoggerFactory.getLogger(ZooKeeperConnPool.class);
 
-    private static ZooKeeperConnPool instance;
+    private static volatile ZooKeeperConnPool instance;
 
     private static CountDownLatch connectZKClientLatch;
     private static CountDownLatch closeZKClientLatch;
@@ -46,7 +46,7 @@ public class ZooKeeperConnPool {
     /**
      * Single instance.
      *
-     * @return
+     * @return a single instance of this class
      */
     public static ZooKeeperConnPool getInstance() {
         if (instance == null)
@@ -93,7 +93,7 @@ public class ZooKeeperConnPool {
         try {
             newZookeeper = new ZooKeeper(HOST.concat(":").concat(CLIENT_PORT + ""),
                     TIME_OUT_MILLISECOND,
-                    new ZKEventWatch(getInstance()));
+                    new ZKEventWatch());
             /**
              * TODO{asdf2014}: timeout
              */
@@ -102,9 +102,7 @@ public class ZooKeeperConnPool {
 
             _log.info("################ Add a new ZKClient Connection into pool...");
             _log.info("Storage: [" + pool.size() + "/" + MAX_CONN_IN_POOL + "]");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
+        } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
@@ -112,7 +110,7 @@ public class ZooKeeperConnPool {
     /**
      * Get a alive connection from pool.
      *
-     * @return
+     * @return a alive zookeeper connection which state is Watcher.Event.KeeperState.SyncConnected
      */
     public ZooKeeper getConn() {
         _log.info("################ Get ZKClient Connection from pool...");
@@ -139,7 +137,7 @@ public class ZooKeeperConnPool {
     /**
      * Free a alive connection into pool.
      *
-     * @param freeZK
+     * @param freeZK a zookeeper connection will be closed or add into connection pool
      */
     public void freeConn(ZooKeeper freeZK) {
         _log.info("################ Free ZKClient Connection into pool...");
