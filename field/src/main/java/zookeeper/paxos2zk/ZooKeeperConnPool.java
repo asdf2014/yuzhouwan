@@ -29,6 +29,7 @@ public class ZooKeeperConnPool {
     private static CountDownLatch closeZKClientLatch;
     private static volatile Set<ZooKeeper> pool;
 
+    // There need to be set bigger value into [MIN_CONN_IN_POOL], how about the one-third of [MAX_CONN_IN_POOL]
     private static final int MIN_CONN_IN_POOL = 3;
     private static final int MAX_CONN_IN_POOL = 5;
 
@@ -154,6 +155,7 @@ public class ZooKeeperConnPool {
         } else {
             pool.add(freeZK);
         }
+        // [used] field means the capacity of supporting the max sum of connections with zookeeper actually
         used--;
         balance();
     }
@@ -203,9 +205,7 @@ public class ZooKeeperConnPool {
      */
     private void balance() {
         _log.info("################ Balance the storage of pool...");
-        /**
-         * TODO{asdf2014}: need to set bigger value into MIN_CONN_IN_POOL
-         */
+
         if (used < MAX_CONN_IN_POOL && pool.size() < MIN_CONN_IN_POOL) {
             Thread addSomeConnThread = new Thread() {
                 @Override
