@@ -117,6 +117,12 @@
             </exclusions>
         </dependency>
 
+        <dependency>
+            <groupId>com.github.sgroschupf</groupId>
+            <artifactId>zkclient</artifactId>
+            <version>${zookeeper.zkclient.version}</version>
+        </dependency>
+
         <!-- quartz -->
         <dependency>
             <groupId>org.quartz-scheduler</groupId>

@@ -2,7 +2,7 @@
 <configuration>
 
     <!-- %p:Level %m:Message %c.%M:Package+Method %F:%L:File+Line -->
-    <property name="pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} | %p | %m | %c.%M | %F:%L %n"/>
+    <annotation.property name="pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} | %p | %m | %c.%M | %F:%L %n"/>
 
     <!-- Print in Console -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">

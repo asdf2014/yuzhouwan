@@ -14,9 +14,9 @@
 ############################################################
 #
 # Default location of this file is $JRE/lib/management/snmp.acl.
-# You can specify an alternate location by specifying a property in 
+# You can specify an alternate location by specifying a annotation.property in
 # the management config file $JRE/lib/management/management.properties
-# or by specifying a system property (See that file for details).
+# or by specifying a system annotation.property (See that file for details).
 #
 
 

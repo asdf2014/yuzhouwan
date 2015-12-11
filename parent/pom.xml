@@ -56,6 +56,7 @@
 
         <!-- zookeeper -->
         <apache.zookeeper.version>3.4.6</apache.zookeeper.version>
+        <zookeeper.zkclient.version>0.1</zookeeper.zkclient.version>
 
         <!-- quartz -->
         <quartz.version>2.2.1</quartz.version>

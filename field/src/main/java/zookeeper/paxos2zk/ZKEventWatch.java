@@ -27,7 +27,7 @@ public class ZKEventWatch implements Watcher {
         _log.info("$$$$$$$$$$$$$$$$$$ WatchedEvent's state: " + state);
 
         if (Watcher.Event.KeeperState.SyncConnected == state) {
-            ZooKeeperConnPool.getCountDownLatch().countDown();
+            ZooKeeperConnPool.getConnectZKClientLatch().countDown();
         } else if (Watcher.Event.KeeperState.Disconnected == state) {
             ZooKeeperConnPool.getCloseZKClientLatch().countDown();
         }

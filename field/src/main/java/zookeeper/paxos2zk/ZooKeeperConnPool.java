@@ -225,7 +225,7 @@ public class ZooKeeperConnPool {
         }
     }
 
-    public static CountDownLatch getCountDownLatch() {
+    public static CountDownLatch getConnectZKClientLatch() {
         return connectZKClientLatch;
     }
 
