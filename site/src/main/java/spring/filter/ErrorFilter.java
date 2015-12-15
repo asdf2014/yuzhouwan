@@ -25,12 +25,11 @@ public class ErrorFilter implements Filter {
             chain.doFilter(request, response);
         } catch (Exception e) {
             request.setAttribute("error", e.getMessage());
-            request.getRequestDispatcher("/WEB-INF/views/error.html").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/views/error.html").forward(request, response);
         }
     }
 
     @Override
     public void destroy() {
-
     }
 }

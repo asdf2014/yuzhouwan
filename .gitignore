@@ -21,3 +21,12 @@ hs_err_pid*
 
 # JIT log files
 *.log
+
+# sorry for copyright
+/site/src/main/java/wechat
+/site/src/main/resources/wechat
+
+/site/src/main/webapp/index.jsp
+/site/src/main/webapp/wechat
+/site/src/main/webapp/WEB-INF/struts-config.xml
+/site/src/main/webapp/WEB-INF/web.xml

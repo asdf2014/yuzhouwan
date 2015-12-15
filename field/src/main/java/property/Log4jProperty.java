@@ -22,6 +22,17 @@ public class Log4jProperty {
 
     public static void main(String[] args) throws MalformedURLException {
 
+        /**
+         * Run jar with crontab:
+         * log4j:ERROR Ignoring configuration file [/root//log4j.properties]
+         *
+         * Solve:
+         * path=/home/hadoop/label/labelToEs
+         * source /etc/profile
+         * source /root/.bash_profile
+         * cd $path
+         * java -jar $path/initToEs.jar
+         */
         URL url = Log4jProperty.class.getResource("/");
         _log.info(url);
 
