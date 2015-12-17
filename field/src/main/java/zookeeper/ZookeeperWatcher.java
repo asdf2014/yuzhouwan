@@ -33,7 +33,18 @@ public class ZookeeperWatcher {
 
         RetryPolicy retrypolicy = new ExponentialBackoffRetry(3000, 60);
         CuratorFramework curatorClient;
-        curatorClient = CuratorFrameworkFactory.newClient(yuzhouwan4, 5000, 3000, retrypolicy);
+//        curatorClient = CuratorFrameworkFactory.newClient(yuzhouwan4, 5000, 3000, retrypolicy);
+
+        /**
+         * using fluent api
+         */
+        curatorClient = CuratorFrameworkFactory.builder()
+                .connectString(yuzhouwan4)
+                .sessionTimeoutMs(5000)
+                .connectionTimeoutMs(3000)
+                .retryPolicy(retrypolicy)
+                .namespace("watcher")       // root path: /watcher
+                .build();
         curatorClient.start();
 
         final PathChildrenCache cached = new PathChildrenCache(curatorClient, zNode, true);

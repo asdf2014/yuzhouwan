@@ -8,11 +8,11 @@ import org.apache.zookeeper.CreateMode;
 import java.util.List;
 
 /**
- * Copyright @ 2015 zhong-ying Co.Ltd
+ * Copyright @ 2015 yuzhouwan.com
  * All right reserved.
  * Function：ZkClient CRUD
  *
- * @author jinjy
+ * @author asdf2014
  * @since 2015/12/10 0010
  */
 public class ZkClientCRUD {

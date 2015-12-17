@@ -10,11 +10,11 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Copyright @ 2015 zhong-ying Co.Ltd
+ * Copyright @ 2015 yuzhouwan.com
  * All right reserved.
  * Function：ZkClientCRUD Tester
  *
- * @author jinjy
+ * @author asdf2014
  * @since 2015/12/10 0010
  */
 public class ZkClientCRUDTest {
