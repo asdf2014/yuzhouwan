@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Copyright @ yuzhouwan.com
  * All right reserved.
- * Function£ºInput multi ip addresses as param into RESTful API in spring
+ * Function: Input multi ip addresses as param into RESTful API in spring
  *
  * @author asdf2014
  * @since 2015/12/7 0007
