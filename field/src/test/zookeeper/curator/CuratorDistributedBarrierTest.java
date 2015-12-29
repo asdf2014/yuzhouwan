@@ -35,4 +35,13 @@ public class CuratorDistributedBarrierTest {
         Thread.sleep(2000);
     }
 
+    /**
+     * Method: enterLeaveBarrier()
+     */
+    @Test
+    public void testEnterLeaveBarrier() throws Exception {
+        curatorDistributedBarrier.enterLeaveBarrier(3);
+        Thread.sleep(1000 * 5);
+    }
+
 }
