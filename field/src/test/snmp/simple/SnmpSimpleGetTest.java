@@ -17,7 +17,8 @@ import java.util.List;
  */
 public class SnmpSimpleGetTest {
 
-    private static final String ip = "192.168.1.201";
+    //    private static final String ip = "192.168.1.201";
+    private static final String ip = "192.168.6.201";
 
     private static final String percentage_of_user_CPU_time = ".1.3.6.1.4.1.2021.11.50.0";
     private static final String raw_user_cpu_time = ".1.3.6.1.4.1.2021.11.50.0";
@@ -28,6 +29,8 @@ public class SnmpSimpleGetTest {
     private static final String sysORDescr1 = "1.3.6.1.2.1.1.9.1.3.1";
 
     private static final String errorCount = "1.3.6.1.2.1.25.3.2.1.6.262145";
+
+    private static final String deviceType = "1.3.6.1.2.1.1.5.0";       // H3C
 
     private List<String> oids;
 
@@ -42,7 +45,9 @@ public class SnmpSimpleGetTest {
 //        oids.add(port);
 //        oids.add(sysORDescr1);
 
-        oids.add(errorCount);
+//        oids.add(errorCount);
+
+        oids.add(deviceType);
     }
 
     /**
@@ -60,7 +65,6 @@ public class SnmpSimpleGetTest {
          * -Dcom.sun.management.snmp.acl=true
          * -Dcom.sun.management.snmp.acl.file=resources/snmp.acl
          */
-
         SnmpSimpleGet.snmpSyncGetList(ip, "public", oids);
         try {
             snmpV2sysORDescr1();

@@ -254,5 +254,36 @@
 
  - Java特种兵.pdf
  - Hadoop Beginner's Guide.pdf
+ - A simple totally ordered broadcast protocol.pdf
+ - Zab: High-performance broadcast for primary-backup systems.pdf
+ - Zookeeper: Wait-free coordination for Internet-scale systems.pdf
+ - Programming in Scala, 2nd Edition.pdf
+ - The life and times of a ZooKeeper.pdf
+ - 利玛窦的记忆宫殿.pdf
+ - Apache Camel Developer's Cookbook.pdf
+ - Code Reading: The Open Source Perspective.pdf
+ - 代码阅读方法与实践.pdf
+
+----------------
+
+ - Learning Reactive Programming with Java 8.pdf
+ - Java 8 Recipes, 2nd Edition.pdf
+ - Java 8 Lambdas.pdf
+ - The Java® Language Specification, Java SE 8 Edition.pdf
+ - 程序员的十层楼（十种境界）.pdf
+
+----------------
+
+ - Java 编程思想, 4th Edition.pdf
+ - 淘宝技术这十年.pdf
+ - Monitoring with Ganglia.pdf
+ - Monitoring: Ambari and Chukw.pdf
+ - Machine Learning in Action.pdf
+ - Machine Learning for Hackers.pdf
+
+
+
+
+
 
 
