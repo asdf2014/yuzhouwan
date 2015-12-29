@@ -9,7 +9,7 @@ import org.apache.zookeeper.CreateMode;
 /**
  * Copyright @ 2015 yuzhouwan.com
  * All right reserved.
- * Function£ºzookeeper.curator
+ * Function: zookeeper.curator
  *
  * @author asdf2014
  * @since 2015/12/16 0016
