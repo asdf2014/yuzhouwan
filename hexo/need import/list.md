@@ -93,15 +93,7 @@
 
  - Doing Data Science.pdf
  - Java 8 in Action.pdf
-
-----------------
-
  - Java 7 Concurrency Cookbook.pdf
- - Seven Web Frameworks in Seven Weeks .pdf
- - Seven Languages in Seven Weeks.pdf
- - Seven Databases in Seven Weeks - A Guide to Modern Databases and the NoSQL Movement.pdf
- - seven concurrency models in seven weeks .pdf
- 
 ----------------
 
  - 程序员面试宝典 + 剑指Offer + 算法100题系列 + 15个经典算法打包下载.rar

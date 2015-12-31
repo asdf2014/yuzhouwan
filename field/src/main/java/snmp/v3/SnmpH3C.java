@@ -6,13 +6,14 @@ import org.snmp4j.*;
 import org.snmp4j.event.ResponseEvent;
 import org.snmp4j.event.ResponseListener;
 import org.snmp4j.mp.MPv3;
-import org.snmp4j.mp.SnmpConstants;
 import org.snmp4j.security.*;
-import org.snmp4j.smi.*;
+import org.snmp4j.smi.GenericAddress;
+import org.snmp4j.smi.OID;
+import org.snmp4j.smi.OctetString;
+import org.snmp4j.smi.VariableBinding;
 import org.snmp4j.transport.DefaultUdpTransportMapping;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
@@ -37,9 +38,52 @@ public class SnmpH3C {
     private UserTarget userTarget;
     private ScopedPDU pdu;
 
-    public void createSNMP() {
+    private H3CInfos h3CInfos;
 
-        _log.debug("Creating SNMP...");
+    public SnmpH3C(H3CInfos h3CInfos) {
+        this.h3CInfos = h3CInfos;
+    }
+
+    /**
+     * Send Request to H3C
+     *
+     * @param oidList
+     */
+    public void sendRequest(List<String> oidList) {
+
+        prepare();
+
+        _log.info("Adding oids into PDU...");
+        addOIDs2PDU(oidList);
+        try {
+            _log.info("Sending userTarget...");
+            sendGetPDU(snmp, userTarget, pdu);
+        } catch (Exception e) {
+            _log.error("Sending userTarget is failed");
+        }
+        try {
+            snmp.close();
+        } catch (IOException e) {
+            _log.error("Cannot close snmp");
+        }
+    }
+
+    /**
+     * Do some prepared works
+     */
+    private void prepare() {
+        createSNMP();
+        createUserByH3CInfos();
+        addUserIntoSNMP(h3CInfos.getUserName4USM());
+        createUserTargetByH3CInfos();
+    }
+
+    /**
+     * Create SNMP
+     */
+    private void createSNMP() {
+
+        _log.info("Creating SNMP...");
         try {
             transport = new DefaultUdpTransportMapping();
             transport.listen();
@@ -58,6 +102,22 @@ public class SnmpH3C {
     }
 
     /**
+     * Create user by those informations from H3CInfos.H3CSnmpV3User
+     */
+    private void createUserByH3CInfos() {
+        _log.info("Creating snmp v3 USM user...");
+        H3CSnmpV3User h3CSnmpV3User = h3CInfos.getH3CSnmpV3User();
+
+        String securityName = h3CSnmpV3User.getSecurityName();
+        AuthGeneric authenticationProtocol = h3CSnmpV3User.getAuthenticationProtocol();
+        String authenticationPassphrase = h3CSnmpV3User.getAuthenticationPassphrase();
+        PrivacyProtocol privacyProtocol = h3CSnmpV3User.getPrivacyProtocol();
+        String privacyPassphrase = h3CSnmpV3User.getPrivacyPassphrase();
+
+        createUser(securityName, authenticationProtocol, authenticationPassphrase, privacyProtocol, privacyPassphrase);
+    }
+
+    /**
      * @param securityName
      * @param authenticationProtocol   AuthMD5 | AuthSHA
      * @param authenticationPassphrase
@@ -65,9 +125,9 @@ public class SnmpH3C {
      * @param privacyPassphrase
      * @return
      */
-    public void createUser(String securityName,
-                           AuthGeneric authenticationProtocol, String authenticationPassphrase,
-                           PrivacyProtocol privacyProtocol, String privacyPassphrase) {
+    private void createUser(String securityName,
+                            AuthGeneric authenticationProtocol, String authenticationPassphrase,
+                            PrivacyProtocol privacyProtocol, String privacyPassphrase) {
 
         this.usmUser = new UsmUser(new OctetString(securityName),
                 authenticationProtocol.getID(), new OctetString(authenticationPassphrase),
@@ -75,9 +135,11 @@ public class SnmpH3C {
     }
 
     /**
+     * Add user into SNMP's USM
+     *
      * @param userName
      */
-    public void addUserIntoSNMP(String userName) {
+    private void addUserIntoSNMP(String userName) {
 
         if (usmUser != null) {
             if (snmp != null) {
@@ -91,93 +153,61 @@ public class SnmpH3C {
     }
 
     /**
+     * Create userTarget by those informations from H3CInfos.H3CUserTarget
+     */
+    private void createUserTargetByH3CInfos() {
+        _log.info("Creating userTarget...");
+        H3CUserTarget userTarget = h3CInfos.getH3CUserTarget();
+
+        String address = userTarget.getAddress();
+        String securityName2 = userTarget.getSecurityName2();
+        int securityLevel = userTarget.getSecurityLevel();
+        int securityModel = userTarget.getSecurityModel();
+        int retries = userTarget.getRetries();
+        long timeout = userTarget.getTimeout();
+        int version = userTarget.getVersion();
+
+        createUserTarget(address, securityName2, securityLevel, securityModel, /*int maxSizeRequestPDU,*/ retries, timeout, version);
+    }
+
+    /**
      * @param address
      * @param securityName      == userName[addUserIntoSNMP] == securityName[createUser]
      * @param securityLevel     [NOAUTH_NOPRIV = 1  |  AUTH_NOPRIV = 2  |  AUTH_PRIV = 3] in SecurityLevel
-     * @param securityModel     3 (The UserTarget target can only be used with the User Based Security Model (USM))
+     * @param securityModel     3 (The H3CUserTarget target can only be used with the User Based Security Model (USM))
      * @param maxSizeRequestPDU The minimum PDU length is: 484; default: '\uffff'
      * @param version           default: 3
      */
-    public void createUserTarget(String address, String securityName, int securityLevel, int securityModel, /*int maxSizeRequestPDU,*/ int retries, long timeout, int version) {
+    private void createUserTarget(String address, String securityName, int securityLevel, int securityModel, /*int maxSizeRequestPDU,*/ int retries, long timeout, int version) {
         userTarget = new UserTarget();
         userTarget.setAddress(GenericAddress.parse("udp:" + address + "/161"));
         userTarget.setSecurityName(new OctetString(securityName));
         userTarget.setSecurityLevel(securityLevel);
         userTarget.setSecurityModel(securityModel);
-//        userTarget.setMaxSizeRequestPDU(maxSizeRequestPDU);
         userTarget.setRetries(retries);
         userTarget.setTimeout(timeout);
         userTarget.setVersion(version);
     }
 
-    public void addOIDs2PDU(List<String> oidList) {
+    private void addOIDs2PDU(List<String> oidList) {
         pdu = new ScopedPDU();
-//        pdu.setNonRepeaters(1);
         pdu.setType(PDU.GET);
-//        pdu.setType(PDU.GETBULK);
-//        pdu.setType(PDU.GETNEXT);
         for (String oid : oidList) {
             pdu.add(new VariableBinding(new OID(oid)));
         }
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException {
-        SnmpH3C snmpH3C = new SnmpH3C();
-        snmpH3C.createSNMP();
-        Snmp snmp = snmpH3C.getSnmp();
+    /**
+     * Send PDU to H3C, then waiting reponse event will be catched by listener
+     *
+     * @param snmp
+     * @param userTarget
+     * @param pdu
+     * @throws IOException
+     * @throws InterruptedException
+     */
+    private void sendGetPDU(Snmp snmp, UserTarget userTarget, ScopedPDU pdu) throws IOException, InterruptedException {
 
-        /**
-         * snmp-agent target-host trap address udp-domain 192.168.112.155 udp-port 5000 params securityname zyuc
-         *
-         * snmp-agent usm-user v3 jinjy managev3group simple authentication-mode md5 hellozyuc privacy-mode 3des hellozyuc acl 2222
-         */
-        String securityName = "jinjy2"; //"managev3group"; //"zyuc"; //"jinjy";
-        AuthGeneric authenticationProtocol = new AuthMD5();
-        String authenticationPassphrase = "hellozyuc";
-        PrivacyProtocol privacyProtocol = new PrivAES128();      //new Priv3DES();
-        String privacyPassphrase = "hellozyuc";
-        snmpH3C.createUser(securityName, authenticationProtocol, authenticationPassphrase, privacyProtocol, privacyPassphrase);
-
-        String userName = "jinjy2";   //same as securityName ?
-        snmpH3C.addUserIntoSNMP(userName);
-
-        String address = "192.168.6.201";
-        String securityName2 = "jinjy2"; //"managev3group"; //"zyuc"; //"jinjy";
-        int securityLevel = SecurityLevel.AUTH_PRIV;
-        int securityModel = 3;
-        /*int maxSizeRequestPDU = '\uffff';*/
-        int retries = 3;
-        long timeout = 1000 * 10;
-        int version = SnmpConstants.version3;
-        snmpH3C.createUserTarget(address, securityName2, securityLevel, securityModel, /*int maxSizeRequestPDU,*/ retries, timeout, version);
-
-        UserTarget userTarget = snmpH3C.getUserTarget();
-
-        List<String> oidList = new ArrayList<>();
-        oidList.add("1.3.6.1.2.1.1.5.0");       //device type: h3c
-//        oidList.add("1.3.6");       // example in "http://www.snmp4j.org/doc/org/snmp4j/Snmp.html"
-        snmpH3C.addOIDs2PDU(oidList);
-
-        ScopedPDU pdu = snmpH3C.getPdu();
-
-//        sendBlukPDU(snmp, userTarget, pdu);
-
-        sendGetPDU(snmp, userTarget, pdu);
-
-        snmp.close();
-    }
-
-    private static void sendBlukPDU(Snmp snmp, UserTarget userTarget, ScopedPDU pdu) throws IOException {
-        ResponseEvent response = snmp.send(pdu, userTarget);
-
-        // extract the response PDU (could be null if timed out)
-        PDU responsePDU = response.getResponse();
-        // extract the address used by the agent to send the response:
-        Address peerAddress = response.getPeerAddress();
-        _log.info("Response peerAddress: {}", peerAddress.toString());
-    }
-
-    private static void sendGetPDU(Snmp snmp, UserTarget userTarget, ScopedPDU pdu) throws IOException, InterruptedException {
         final CountDownLatch latch = new CountDownLatch(1);
         ResponseListener listener = new ResponseListener() {
 
@@ -208,9 +238,6 @@ public class SnmpH3C {
                 }
             }
         };
-
-//        snmp.getBulk(pdu, userTarget, null, listener);
-
         snmp.send(pdu, userTarget, null, listener);
         _log.debug("asyn send pdu wait for response...");
 
@@ -218,15 +245,4 @@ public class SnmpH3C {
         _log.debug("latch.await =:" + wait);
     }
 
-    public Snmp getSnmp() {
-        return snmp;
-    }
-
-    public UserTarget getUserTarget() {
-        return userTarget;
-    }
-
-    public ScopedPDU getPdu() {
-        return pdu;
-    }
 }
