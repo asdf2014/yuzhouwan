@@ -30,7 +30,7 @@ public class MultiThreadsLoopWithNotify2 {
 
 class Reporter implements Runnable {
 
-    private volatile LockHolder lockHolder;
+    private LockHolder lockHolder;
     private int number;
     private int threadSize;
 
