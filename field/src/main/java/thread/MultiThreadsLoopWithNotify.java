@@ -41,8 +41,6 @@ public class MultiThreadsLoopWithNotify {
                 try {
                     Thread.sleep(3000);
                     synchronized (lockHolder) {
-
-//                    lockHolder.setHolder("Leader's order");
                         lockHolder.notify();
                         System.out.println("Thread: [".concat(threadName).concat("] sent the message is ").concat(lockHolder.getHolder()).concat("."));
                     }

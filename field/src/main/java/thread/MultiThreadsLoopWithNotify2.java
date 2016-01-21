@@ -12,10 +12,11 @@ public class MultiThreadsLoopWithNotify2 {
 
     public static void main(String[] args) {
 
-        LockHolder lockHolder = new LockHolder(1);
-        Reporter1 reporter1 = new Reporter1(lockHolder);
-        Reporter2 reporter2 = new Reporter2(lockHolder);
-        Reporter3 reporter3 = new Reporter3(lockHolder);
+        LockHolder lockHolder = new LockHolder(0);
+        int threadSize = 3;
+        Reporter reporter1 = new Reporter(lockHolder, 0, threadSize);
+        Reporter reporter2 = new Reporter(lockHolder, 1, threadSize);
+        Reporter reporter3 = new Reporter(lockHolder, 2, threadSize);
         Thread t1 = new Thread(reporter1);
         Thread t2 = new Thread(reporter2);
         Thread t3 = new Thread(reporter3);
@@ -27,12 +28,16 @@ public class MultiThreadsLoopWithNotify2 {
 
 }
 
-class Reporter1 implements Runnable {
+class Reporter implements Runnable {
 
     private volatile LockHolder lockHolder;
+    private int number;
+    private int threadSize;
 
-    public Reporter1(LockHolder lockHolder) {
+    public Reporter(LockHolder lockHolder, int number, int threadSize) {
         this.lockHolder = lockHolder;
+        this.number = number;
+        this.threadSize = threadSize;
     }
 
     @Override
@@ -42,67 +47,9 @@ class Reporter1 implements Runnable {
             while (true) {
                 Thread.sleep(1000);
                 synchronized (lockHolder) {
-                    if (lockHolder.getHolder() == 1) {
+                    if (lockHolder.getHolder() == number) {
                         System.out.println("Thread: [".concat(threadName).concat("]..."));
-                        lockHolder.setHolder(2);
-                    } else {
-                        lockHolder.wait(100);
-                    }
-                }
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-}
-
-class Reporter2 implements Runnable {
-
-    private volatile LockHolder lockHolder;
-
-    public Reporter2(LockHolder lockHolder) {
-        this.lockHolder = lockHolder;
-    }
-
-    @Override
-    public void run() {
-        String threadName = Thread.currentThread().getName();
-        try {
-            while (true) {
-                Thread.sleep(1000);
-                synchronized (lockHolder) {
-                    if (lockHolder.getHolder() == 2) {
-                        System.out.println("Thread: [".concat(threadName).concat("]..."));
-                        lockHolder.setHolder(3);
-                    } else {
-                        lockHolder.wait(100);
-                    }
-                }
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-}
-
-class Reporter3 implements Runnable {
-
-    private volatile LockHolder lockHolder;
-
-    public Reporter3(LockHolder lockHolder) {
-        this.lockHolder = lockHolder;
-    }
-
-    @Override
-    public void run() {
-        String threadName = Thread.currentThread().getName();
-        try {
-            while (true) {
-                Thread.sleep(1000);
-                synchronized (lockHolder) {
-                    if (lockHolder.getHolder() == 3) {
-                        System.out.println("Thread: [".concat(threadName).concat("]..."));
-                        lockHolder.setHolder(1);
+                        lockHolder.setHolder((number + 1) % threadSize);
                     } else {
                         lockHolder.wait(100);
                     }
