@@ -89,6 +89,15 @@
         <!-- json -->
         <fastjson.version>1.2.7</fastjson.version>
 
+        <!-- apache tika -->
+        <apache.tika.version>1.11</apache.tika.version>
+
+        <!-- apache pdfbox -->
+        <apache.pdfbox.version>1.8.11</apache.pdfbox.version>
+
+        <!-- freemarker -->
+        <freemarker.version>2.3.23</freemarker.version>
+
     </properties>
 
     <scm>
