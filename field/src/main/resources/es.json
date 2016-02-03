@@ -1,0 +1,33 @@
+{
+  "_source": [
+    false
+  ],
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "term": {
+            "time": "1453445796952"
+          }
+        },
+        {
+          "nested": {
+            "path": "oids",
+            "query": {
+              "bool": {
+                "must": [
+                  {
+                    "match": {
+                      "oids.oid": "1.3.6.1.2.1.2.2.1.16.49"
+                    }
+                  }
+                ]
+              }
+            },
+            "inner_hits": {}
+          }
+        }
+      ]
+    }
+  }
+}

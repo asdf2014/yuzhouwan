@@ -5,10 +5,7 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,9 +30,16 @@ public class WelcomePage {
     }
 
     public void codeGen() throws Exception {
-        Configuration cfg = config();
+
+        String baseDir = "F:\\yuzhouwan\\field\\src\\main\\resources\\freemarker\\";
+        String ftlDir = baseDir.concat("ftl");
+        Configuration cfg = config(ftlDir);
+
         Map<String, Object> root = dataModel();
-        showUp(cfg, root);
+
+        String ftlPath = "html.ftl";
+        String outPath = baseDir.concat("\\out\\ftl.html");
+        showUp(cfg, root, ftlPath, outPath);
     }
 
     /**
@@ -46,10 +50,13 @@ public class WelcomePage {
      * @throws IOException
      * @throws TemplateException
      */
-    private void showUp(Configuration cfg, Map<String, Object> root) throws IOException, TemplateException {
-        Template temp = cfg.getTemplate("html.ftl");
+    private void showUp(Configuration cfg, Map<String, Object> root, String ftlPath, String outPath) throws IOException, TemplateException {
+        Template temp = cfg.getTemplate(ftlPath);
         Writer out = new OutputStreamWriter(System.out);
         temp.process(root, out);
+
+        FileWriter fileWriter = new FileWriter(new File(outPath));
+        temp.process(root, fileWriter);
     }
 
     /**
@@ -58,9 +65,9 @@ public class WelcomePage {
      * @return
      * @throws IOException
      */
-    private Configuration config() throws IOException {
+    private Configuration config(String ftlDir) throws IOException {
         Configuration cfg = new Configuration(Configuration.VERSION_2_3_22);
-        cfg.setDirectoryForTemplateLoading(new File("F:\\yuzhouwan\\field\\src\\main\\resources\\freemarker\\ftl"));
+        cfg.setDirectoryForTemplateLoading(new File(ftlDir));
         cfg.setDefaultEncoding("UTF-8");
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
         return cfg;
@@ -76,13 +83,15 @@ public class WelcomePage {
         Map<String, Object> root = new HashMap<>();
         // Put string ``user'' into the root
         root.put("user", "asdf");
+
         // Create the hash for ``latestProduct''
-        Map<String, Object> latest = new HashMap<>();
+        Map<String, Object> blog = new HashMap<>();
         // and put it into the root
-        root.put("latestProduct", latest);
+        root.put("blog", blog);
+
         // put ``url'' and ``name'' into latest
-        latest.put("url", "http://www.yuzhouwan.com");
-        latest.put("name", "asdf2014");
+        blog.put("url", "http://www.yuzhouwan.com");
+        blog.put("name", "Asdf's Blog");
         return root;
     }
 

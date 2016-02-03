@@ -1,0 +1,47 @@
+{
+  "took": 14,
+  "timed_out": false,
+  "_shards": {
+    "total": 3,
+    "successful": 3,
+    "failed": 0
+  },
+  "hits": {
+    "total": 1,
+    "max_score": 14.296166,
+    "hits": [
+      {
+        "_index": "cgpboss_day_20160122",
+        "_type": "monitor_oid",
+        "_id": "_create",
+        "_score": 14.296166,
+        "_source": {},
+        "inner_hits": {
+          "oids": {
+            "hits": {
+              "total": 1,
+              "max_score": 10.108916,
+              "hits": [
+                {
+                  "_index": "cgpboss_day_20160122",
+                  "_type": "monitor_oid",
+                  "_id": "_create",
+                  "_nested": {
+                    "field": "oids",
+                    "offset": 0
+                  },
+                  "_score": 10.108916,
+                  "_source": {
+                    "desc": "snmp.oid.interface.49.out.flow",
+                    "oid": "1.3.6.1.2.1.2.2.1.16.49",
+                    "value": "5264.96"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    ]
+  }
+}
