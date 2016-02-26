@@ -13,10 +13,11 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <modules>
-                <module>parent</module>
-                <module>custom</module>
-                <module>site</module>
-                <module>field</module>
+                <module>yuzhouwan-site</module>
+                <module>yuzhouwan-hacker</module>
+                <module>yuzhouwan-log</module>
+                <module>yuzhouwan-parent</module>
+                <module>yuzhouwan-common</module>
             </modules>
         </profile>
     </profiles>
