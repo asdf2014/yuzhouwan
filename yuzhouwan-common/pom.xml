@@ -10,7 +10,7 @@
 
     <parent>
         <groupId>com.yuzhouwan</groupId>
-        <artifactId>parent</artifactId>
+        <artifactId>yuzhouwan-parent</artifactId>
         <version>0.1</version>
         <relativePath>../yuzhouwan-parent/pom.xml</relativePath>
     </parent>
