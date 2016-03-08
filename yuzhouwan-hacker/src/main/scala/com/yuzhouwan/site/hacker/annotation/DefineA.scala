@@ -1,7 +1,5 @@
 package com.yuzhouwan.site.hacker.annotation
 
-import DefineAnnotation
-
 /**
   * Copyright @ 2015 yuzhouwan
   * All right reserved.
