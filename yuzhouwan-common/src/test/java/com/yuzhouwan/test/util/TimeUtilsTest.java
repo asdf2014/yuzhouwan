@@ -1,5 +1,6 @@
-package com.yuzhouwan.util;
+package com.yuzhouwan.test.util;
 
+import com.yuzhouwan.util.TimeUtils;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
