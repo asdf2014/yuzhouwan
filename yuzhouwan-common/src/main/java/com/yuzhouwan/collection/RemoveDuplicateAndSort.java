@@ -18,6 +18,7 @@ public class RemoveDuplicateAndSort {
     private static final Logger _log = LoggerFactory.getLogger(RemoveDuplicateAndSort.class);
     private static Random r0 = new Random(17);
     private static Random r1 = new Random(34);
+    private static Random r2 = new Random(91);
 
     private static Comparator comparator = new Comparator<Company>() {
 
@@ -35,6 +36,19 @@ public class RemoveDuplicateAndSort {
         }
     };
 
+    private static Comparator comparator4Equal = new Comparator<Company>() {
+
+        @Override
+        public int compare(Company c1, Company c2) {
+            String city1 = c1.getCity();
+            String city2 = c2.getCity();
+
+            int result = city1.compareTo(city2);
+//                _log.debug("{}-{}:{}", city1, city2, result);
+            return result;
+        }
+    };
+
     public void example() {
 
         List<Company> companies = new ArrayList<Company>();
@@ -47,7 +61,7 @@ public class RemoveDuplicateAndSort {
             _log.debug(company.toString());
         }
         System.out.println("------------------------------------");
-        List<Company> result = removeDuplicteUsers(companies);
+        List<Company> result = removeDuplicteUsers(companies, 1);
         System.out.println("------------------------------------");
         for (Company company : result) {
             _log.debug(company.toString());
@@ -55,41 +69,45 @@ public class RemoveDuplicateAndSort {
     }
 
     /**
-     * time:1521
+     * 100 0002, time:567
      */
     public void performance() {
 
         List<Company> companies = new ArrayList<Company>();
-        int count = 1000000;
-        while (count > 0) {
+        int count = 333334;
+        while (count >= 0) {
             companies.add(new Company("Washington", r0.nextInt()));
             companies.add(new Company("China", r1.nextInt()));
+            companies.add(new Company("UK", r2.nextInt()));
             count--;
         }
         long start = System.currentTimeMillis();
         Collections.sort(companies, comparator);
-        List<Company> result = removeDuplicteUsers(companies);
+        List<Company> result = removeDuplicteUsers(companies, 2);
         long end = System.currentTimeMillis();
         for (Company company : result) {
             _log.debug(company.toString());
         }
-        _log.debug("time:{}", end - start);
+        _log.debug("time:{} ms", end - start);
     }
 
-    private List<Company> removeDuplicteUsers(List<Company> companyIpResults) {
-        Set<Company> s = new TreeSet<Company>(new Comparator<Company>() {
-
-            @Override
-            public int compare(Company c1, Company c2) {
-                String city1 = c1.getCity();
-                String city2 = c2.getCity();
-
-                int result = city1.compareTo(city2);
-//                _log.debug("{}-{}:{}", city1, city2, result);
-                return result;
+    /**
+     * @param companyIpResults
+     * @param num              : limition for topN
+     * @return
+     */
+    private List<Company> removeDuplicteUsers(List<Company> companyIpResults, int num) {
+        Set<Company> s = new TreeSet<Company>(comparator4Equal);
+        for (Company companyIpResult : companyIpResults) {
+            s.add(companyIpResult);
+            /**
+             * 16:17:49.563 [main] DEBUG c.y.c.RemoveDuplicateAndSort - Company{city='UK', foundition=2.147477467E9}
+             * 16:17:49.565 [main] DEBUG c.y.c.RemoveDuplicateAndSort - Company{city='Washington', foundition=2.147477037E9}
+             */
+            if (s.size() == num) {
+                break;
             }
-        });
-        s.addAll(companyIpResults);
+        }
         return new ArrayList<Company>(s);
     }
 
