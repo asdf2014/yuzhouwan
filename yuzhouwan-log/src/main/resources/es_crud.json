@@ -1,9 +1,9 @@
 /* Create:  http://192.168.112.172:9200/cgpboss_month_201603/attack_alarm/ _create PUT */
 {
-  "attackId": "199",
-  "instanceId": "2",
+  "attackId": "74e64206095340f99c55de87d53b05d1",
+  "instanceId": "790",
   "customerId": "15",
-  "dstIp": "24.1.2.3",
+  "dstIp": "116.1.237.24",
   "attackStatus": "worse",
   "attackType": "cc",
   "message": "bad",
@@ -11,8 +11,8 @@
   "packetRate": 20,
   "alarmLevel": 5,
   "alarmType": 6,
-  "startTime": "2016-03-01 16:04:05",
-  "endTime": "2016-03-08 16:04:05",
+  "startTime": "2016-03-02 22:34:05",
+  "endTime": "2016-03-03 22:34:05",
   "duration": 1000,
   "timestamp": "2016-03-09T09:54:16Z",
   "maxTrafficRate": 1000,
@@ -37,7 +37,7 @@
   }
 }
 
-/* Delete Index all: http://192.168.112.172:9200/cgpboss/ DELETE */
+/* Delete Index all: http://192.168.112.172:9200/cgpboss_month_201603/ DELETE */
 {}
 
 /* Update:  覆盖 */

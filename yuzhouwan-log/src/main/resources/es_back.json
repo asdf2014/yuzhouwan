@@ -1,240 +1,935 @@
 {
-  "cgpboss": {
-    "aliases": {},
-    "mappings": {
-      "attack_alarm": {
-        "_all": {
-          "enabled": false
+  "body": {
+    "trace": {
+      "city": [
+        {
+          "city": "北京",
+          "sum": 30
         },
-        "properties": {
-          "alarmLevel": {
-            "type": "integer"
-          },
-          "alarmType": {
-            "type": "integer"
-          },
-          "attackId": {
-            "type": "string",
-            "index": "not_analyzed"
-          },
-          "attackStatus": {
-            "type": "string",
-            "index": "not_analyzed"
-          },
-          "attackType": {
-            "type": "string",
-            "index": "not_analyzed"
-          },
-          "customerId": {
-            "type": "string",
-            "index": "not_analyzed"
-          },
-          "dstIp": {
-            "type": "string",
-            "index": "not_analyzed"
-          },
-          "duration": {
-            "type": "long"
-          },
-          "endTime": {
-            "type": "date",
-            "format": "yyyy-MM-dd HH:mm:ss||strict_date_optional_time||epoch_millis"
-          },
-          "instanceId": {
-            "type": "string",
-            "index": "not_analyzed"
-          },
-          "maxPacketRate": {
-            "type": "double"
-          },
-          "maxTrafficRate": {
-            "type": "double"
-          },
-          "message": {
-            "type": "string",
-            "index": "not_analyzed"
-          },
-          "packetRate": {
-            "type": "double"
-          },
-          "startTime": {
-            "type": "date",
-            "format": "yyyy-MM-dd HH:mm:ss||strict_date_optional_time||epoch_millis"
-          },
-          "timestamp": {
-            "type": "date",
-            "format": "strict_date_optional_time||epoch_millis"
-          },
-          "trafficRate": {
-            "type": "double"
-          }
-        }
-      },
-      "stat_flow_summary": {
-        "_all": {
-          "enabled": false
+        {
+          "city": "天津",
+          "sum": 26
         },
-        "properties": {
-          "atk": {
-            "type": "nested",
-            "properties": {
-              "bps": {
-                "type": "long"
-              },
-              "bytes": {
-                "type": "long"
-              },
-              "category": {
-                "type": "string",
-                "index": "not_analyzed"
-              },
-              "fbps": {
-                "type": "long"
-              },
-              "forwardBytes": {
-                "type": "long"
-              },
-              "forwardPackets": {
-                "type": "long"
-              },
-              "fpps": {
-                "type": "long"
-              },
-              "packets": {
-                "type": "long"
-              },
-              "pps": {
-                "type": "long"
-              }
-            }
-          },
-          "cid": {
-            "type": "string",
-            "index": "not_analyzed"
-          },
-          "dip": {
-            "type": "ip"
-          },
-          "instanceId": {
-            "type": "string",
-            "index": "not_analyzed"
-          },
-          "ispId": {
-            "type": "string",
-            "index": "not_analyzed"
-          },
-          "time": {
-            "type": "date",
-            "format": "strict_date_optional_time||epoch_millis"
-          }
-        }
-      },
-      "attack_flow": {
-        "_all": {
-          "enabled": false
+        {
+          "city": "苏州",
+          "sum": 6
         },
-        "properties": {
-          "atk": {
-            "type": "nested",
-            "properties": {
-              "category": {
-                "type": "string",
-                "index": "not_analyzed"
-              },
-              "packets": {
-                "type": "long"
-              }
-            }
-          },
-          "cid": {
-            "type": "string",
-            "index": "not_analyzed"
-          },
-          "dip": {
-            "type": "ip"
-          },
-          "dport": {
-            "type": "integer"
-          },
-          "instanceId": {
-            "type": "string",
-            "index": "not_analyzed"
-          },
-          "ispId": {
-            "type": "string",
-            "index": "not_analyzed"
-          },
-          "sip": {
-            "type": "ip"
-          },
-          "sport": {
-            "type": "integer"
-          },
-          "time": {
-            "type": "date",
-            "format": "strict_date_optional_time||epoch_millis"
-          }
-        }
-      },
-      "stat_flow": {
-        "_all": {
-          "enabled": false
+        {
+          "city": "宁波",
+          "sum": 5
         },
-        "properties": {
-          "atk": {
-            "type": "nested",
-            "properties": {
-              "bytes": {
-                "type": "long"
-              },
-              "category": {
-                "type": "string",
-                "index": "not_analyzed"
-              },
-              "forwardBytes": {
-                "type": "long"
-              },
-              "forwardPackets": {
-                "type": "long"
-              },
-              "packets": {
-                "type": "long"
-              }
-            }
-          },
-          "cid": {
-            "type": "string",
-            "index": "not_analyzed"
-          },
-          "dip": {
-            "type": "ip"
-          },
-          "instanceId": {
-            "type": "string",
-            "index": "not_analyzed"
-          },
-          "ispId": {
-            "type": "string",
-            "index": "not_analyzed"
-          },
-          "time": {
-            "type": "date",
-            "format": "strict_date_optional_time||epoch_millis"
-          }
+        {
+          "city": "上海",
+          "sum": 3
+        },
+        {
+          "city": "南通",
+          "sum": 3
+        },
+        {
+          "city": "长春",
+          "sum": 3
+        },
+        {
+          "city": "太原",
+          "sum": 2
+        },
+        {
+          "city": "德阳",
+          "sum": 2
+        },
+        {
+          "city": "深圳",
+          "sum": 2
+        },
+        {
+          "city": "温州",
+          "sum": 2
+        },
+        {
+          "city": "郑州",
+          "sum": 2
+        },
+        {
+          "city": "中山",
+          "sum": 1
+        },
+        {
+          "city": "佛山",
+          "sum": 1
+        },
+        {
+          "city": "保定",
+          "sum": 1
+        },
+        {
+          "city": "兰州",
+          "sum": 1
+        },
+        {
+          "city": "南京",
+          "sum": 1
+        },
+        {
+          "city": "南充",
+          "sum": 1
+        },
+        {
+          "city": "合肥",
+          "sum": 1
+        },
+        {
+          "city": "吉安",
+          "sum": 1
+        },
+        {
+          "city": "吕梁",
+          "sum": 1
+        },
+        {
+          "city": "哈尔滨",
+          "sum": 1
+        },
+        {
+          "city": "嘉兴",
+          "sum": 1
+        },
+        {
+          "city": "大连",
+          "sum": 1
+        },
+        {
+          "city": "宿迁",
+          "sum": 1
+        },
+        {
+          "city": "广元",
+          "sum": 1
+        },
+        {
+          "city": "广州",
+          "sum": 1
+        },
+        {
+          "city": "徐州",
+          "sum": 1
+        },
+        {
+          "city": "惠州",
+          "sum": 1
+        },
+        {
+          "city": "成都",
+          "sum": 1
+        },
+        {
+          "city": "扬州",
+          "sum": 1
+        },
+        {
+          "city": "抚顺",
+          "sum": 1
+        },
+        {
+          "city": "无锡",
+          "sum": 1
+        },
+        {
+          "city": "昆明",
+          "sum": 1
+        },
+        {
+          "city": "本溪",
+          "sum": 1
+        },
+        {
+          "city": "杭州",
+          "sum": 1
+        },
+        {
+          "city": "武汉",
+          "sum": 1
+        },
+        {
+          "city": "汉中",
+          "sum": 1
+        },
+        {
+          "city": "沧州",
+          "sum": 1
+        },
+        {
+          "city": "海口",
+          "sum": 1
+        },
+        {
+          "city": "淄博",
+          "sum": 1
+        },
+        {
+          "city": "湖州",
+          "sum": 1
+        },
+        {
+          "city": "湘西",
+          "sum": 1
+        },
+        {
+          "city": "漯河",
+          "sum": 1
+        },
+        {
+          "city": "潍坊",
+          "sum": 1
+        },
+        {
+          "city": "珠海",
+          "sum": 1
+        },
+        {
+          "city": "福州",
+          "sum": 1
+        },
+        {
+          "city": "绍兴",
+          "sum": 1
+        },
+        {
+          "city": "莆田",
+          "sum": 1
+        },
+        {
+          "city": "西安",
+          "sum": 1
+        },
+        {
+          "city": "赣州",
+          "sum": 1
+        },
+        {
+          "city": "遂宁",
+          "sum": 1
+        },
+        {
+          "city": "邢台",
+          "sum": 1
+        },
+        {
+          "city": "镇江",
+          "sum": 1
+        },
+        {
+          "city": "长沙",
+          "sum": 1
+        },
+        {
+          "city": "青岛",
+          "sum": 1
+        },
+        {
+          "city": "黑河",
+          "sum": 1
         }
-      }
-    },
-    "settings": {
-      "index": {
-        "creation_date": "1451402880506",
-        "uuid": "PO-rNvF_RMKl_q1IRJlDpQ",
-        "number_of_replicas": "1",
-        "number_of_shards": "3",
-        "version": {
-          "created": "2010099"
+      ],
+      "country": [
+        {
+          "country": "中国",
+          "sum": 134
+        },
+        {
+          "country": "美国",
+          "sum": 8
+        },
+        {
+          "country": "俄罗斯",
+          "sum": 3
+        },
+        {
+          "country": "印度",
+          "sum": 2
+        },
+        {
+          "country": "英国",
+          "sum": 2
+        },
+        {
+          "country": "荷兰",
+          "sum": 2
+        },
+        {
+          "country": "乔治亚",
+          "sum": 1
+        },
+        {
+          "country": "德国",
+          "sum": 1
+        },
+        {
+          "country": "捷克共和国",
+          "sum": 1
+        },
+        {
+          "country": "日本",
+          "sum": 1
+        },
+        {
+          "country": "法国",
+          "sum": 1
+        },
+        {
+          "country": "波兰",
+          "sum": 1
+        },
+        {
+          "country": "越南",
+          "sum": 1
+        },
+        {
+          "country": "韩国",
+          "sum": 1
         }
-      }
-    },
-    "warmers": {}
-  }
+      ],
+      "ip": [
+        {
+          "max_byte": 4522.9053,
+          "src_ip": "180.100.1.109"
+        },
+        {
+          "max_byte": 990.4595,
+          "src_ip": "46.236.16.250"
+        },
+        {
+          "max_byte": 748.18256,
+          "src_ip": "38.129.64.61"
+        },
+        {
+          "max_byte": 708.90796,
+          "src_ip": "93.159.144.162"
+        },
+        {
+          "max_byte": 484.47266,
+          "src_ip": "52.71.91.52"
+        },
+        {
+          "max_byte": 83.25577,
+          "src_ip": "210.44.176.27"
+        },
+        {
+          "max_byte": 82.52792,
+          "src_ip": "131.193.40.195"
+        },
+        {
+          "max_byte": 80.99111,
+          "src_ip": "5.255.82.116"
+        },
+        {
+          "max_byte": 78.717804,
+          "src_ip": "180.179.213.21"
+        },
+        {
+          "max_byte": 75.009026,
+          "src_ip": "89.108.123.219"
+        },
+        {
+          "max_byte": 74.68542,
+          "src_ip": "37.200.64.42"
+        },
+        {
+          "max_byte": 64.41599,
+          "src_ip": "121.162.24.88"
+        },
+        {
+          "max_byte": 58.79059,
+          "src_ip": "122.227.254.118"
+        },
+        {
+          "max_byte": 56.11267,
+          "src_ip": "61.163.229.226"
+        },
+        {
+          "max_byte": 54.62621,
+          "src_ip": "58.132.30.10"
+        },
+        {
+          "max_byte": 26.456451,
+          "src_ip": "180.169.62.158"
+        },
+        {
+          "max_byte": 25.19811,
+          "src_ip": "203.162.123.8"
+        },
+        {
+          "max_byte": 15.450795,
+          "src_ip": "65.181.123.43"
+        },
+        {
+          "max_byte": 10.945129,
+          "src_ip": "122.152.162.227"
+        },
+        {
+          "max_byte": 10.246022,
+          "src_ip": "149.210.212.27"
+        },
+        {
+          "max_byte": 10.038757,
+          "src_ip": "209.236.121.87"
+        },
+        {
+          "max_byte": 7.0470176,
+          "src_ip": "92.51.77.126"
+        },
+        {
+          "max_byte": 6.9218955,
+          "src_ip": "121.15.254.151"
+        },
+        {
+          "max_byte": 6.6080728,
+          "src_ip": "114.113.33.205"
+        },
+        {
+          "max_byte": 6.5119424,
+          "src_ip": "123.183.161.68"
+        },
+        {
+          "max_byte": 6.172943,
+          "src_ip": "111.205.27.133"
+        },
+        {
+          "max_byte": 4.5876822,
+          "src_ip": "58.211.23.191"
+        },
+        {
+          "max_byte": 3.4568787,
+          "src_ip": "173.214.173.110"
+        },
+        {
+          "max_byte": 2.9538472,
+          "src_ip": "62.231.28.110"
+        },
+        {
+          "max_byte": 2.6278179,
+          "src_ip": "103.44.204.69"
+        },
+        {
+          "max_byte": 2.6245117,
+          "src_ip": "103.44.204.71"
+        },
+        {
+          "max_byte": 2.550761,
+          "src_ip": "103.44.204.79"
+        },
+        {
+          "max_byte": 2.5204976,
+          "src_ip": "103.44.204.72"
+        },
+        {
+          "max_byte": 2.5103252,
+          "src_ip": "103.44.204.64"
+        },
+        {
+          "max_byte": 2.5060017,
+          "src_ip": "103.44.204.78"
+        },
+        {
+          "max_byte": 2.4971008,
+          "src_ip": "103.44.204.76"
+        },
+        {
+          "max_byte": 2.488963,
+          "src_ip": "103.44.204.77"
+        },
+        {
+          "max_byte": 2.475993,
+          "src_ip": "103.44.204.74"
+        },
+        {
+          "max_byte": 2.465566,
+          "src_ip": "103.44.204.75"
+        },
+        {
+          "max_byte": 2.440389,
+          "src_ip": "103.44.204.70"
+        },
+        {
+          "max_byte": 2.4225872,
+          "src_ip": "103.44.204.67"
+        },
+        {
+          "max_byte": 2.3836772,
+          "src_ip": "103.44.204.68"
+        },
+        {
+          "max_byte": 2.3585002,
+          "src_ip": "103.44.204.65"
+        },
+        {
+          "max_byte": 2.3254395,
+          "src_ip": "103.44.204.73"
+        },
+        {
+          "max_byte": 2.323405,
+          "src_ip": "103.44.204.66"
+        },
+        {
+          "max_byte": 2.1940868,
+          "src_ip": "222.220.55.176"
+        },
+        {
+          "max_byte": 2.115504,
+          "src_ip": "120.132.93.215"
+        },
+        {
+          "max_byte": 2.0418804,
+          "src_ip": "115.112.237.21"
+        },
+        {
+          "max_byte": 1.5457153,
+          "src_ip": "115.28.45.76"
+        },
+        {
+          "max_byte": 1.5359243,
+          "src_ip": "121.41.22.252"
+        },
+        {
+          "max_byte": 1.1208853,
+          "src_ip": "121.196.226.215"
+        },
+        {
+          "max_byte": 1.0058085,
+          "src_ip": "45.33.16.193"
+        },
+        {
+          "max_byte": 0.999705,
+          "src_ip": "120.24.164.43"
+        },
+        {
+          "max_byte": 0.9710948,
+          "src_ip": "90.178.122.18"
+        },
+        {
+          "max_byte": 0.8277893,
+          "src_ip": "58.195.100.140"
+        },
+        {
+          "max_byte": 0.8120219,
+          "src_ip": "183.207.177.115"
+        },
+        {
+          "max_byte": 0.74488324,
+          "src_ip": "211.141.82.116"
+        },
+        {
+          "max_byte": 0.6149292,
+          "src_ip": "123.150.202.76"
+        },
+        {
+          "max_byte": 0.52871704,
+          "src_ip": "112.64.161.5"
+        },
+        {
+          "max_byte": 0.49718222,
+          "src_ip": "1.81.128.148"
+        },
+        {
+          "max_byte": 0.48319498,
+          "src_ip": "117.91.4.9"
+        },
+        {
+          "max_byte": 0.4670461,
+          "src_ip": "114.221.212.221"
+        },
+        {
+          "max_byte": 0.46450296,
+          "src_ip": "122.114.37.153"
+        },
+        {
+          "max_byte": 0.37727356,
+          "src_ip": "125.208.13.124"
+        },
+        {
+          "max_byte": 0.34866333,
+          "src_ip": "182.128.46.2"
+        },
+        {
+          "max_byte": 0.34179688,
+          "src_ip": "49.84.213.52"
+        },
+        {
+          "max_byte": 0.33226013,
+          "src_ip": "49.75.153.73"
+        },
+        {
+          "max_byte": 0.32208762,
+          "src_ip": "42.81.72.11"
+        },
+        {
+          "max_byte": 0.31929016,
+          "src_ip": "125.37.211.47"
+        },
+        {
+          "max_byte": 0.31178793,
+          "src_ip": "182.129.217.224"
+        },
+        {
+          "max_byte": 0.28101602,
+          "src_ip": "115.48.102.194"
+        },
+        {
+          "max_byte": 0.24820964,
+          "src_ip": "118.113.46.13"
+        },
+        {
+          "max_byte": 0.24820964,
+          "src_ip": "123.150.159.48"
+        },
+        {
+          "max_byte": 0.24820964,
+          "src_ip": "221.205.239.89"
+        },
+        {
+          "max_byte": 0.23790996,
+          "src_ip": "36.22.34.34"
+        },
+        {
+          "max_byte": 0.23523967,
+          "src_ip": "220.231.204.12"
+        },
+        {
+          "max_byte": 0.2298991,
+          "src_ip": "220.167.100.195"
+        },
+        {
+          "max_byte": 0.22557576,
+          "src_ip": "122.228.227.230"
+        },
+        {
+          "max_byte": 0.22379558,
+          "src_ip": "111.197.185.219"
+        },
+        {
+          "max_byte": 0.2213796,
+          "src_ip": "183.134.47.158"
+        },
+        {
+          "max_byte": 0.21235149,
+          "src_ip": "119.142.165.229"
+        },
+        {
+          "max_byte": 0.18552144,
+          "src_ip": "220.167.100.89"
+        },
+        {
+          "max_byte": 0.18539429,
+          "src_ip": "59.63.187.37"
+        },
+        {
+          "max_byte": 0.17674764,
+          "src_ip": "59.55.170.195"
+        },
+        {
+          "max_byte": 0.16009013,
+          "src_ip": "221.205.226.10"
+        },
+        {
+          "max_byte": 0.15118916,
+          "src_ip": "42.92.169.254"
+        },
+        {
+          "max_byte": 0.1499176,
+          "src_ip": "210.75.241.86"
+        },
+        {
+          "max_byte": 0.1478831,
+          "src_ip": "117.64.108.238"
+        },
+        {
+          "max_byte": 0.14762878,
+          "src_ip": "139.211.205.14"
+        },
+        {
+          "max_byte": 0.14177959,
+          "src_ip": "180.111.33.30"
+        },
+        {
+          "max_byte": 0.1393636,
+          "src_ip": "124.200.253.18"
+        },
+        {
+          "max_byte": 0.13885498,
+          "src_ip": "113.234.208.107"
+        },
+        {
+          "max_byte": 0.13605754,
+          "src_ip": "115.214.211.72"
+        },
+        {
+          "max_byte": 0.13097127,
+          "src_ip": "125.124.73.3"
+        },
+        {
+          "max_byte": 0.12410482,
+          "src_ip": "120.33.197.183"
+        },
+        {
+          "max_byte": 0.12410482,
+          "src_ip": "122.228.208.179"
+        },
+        {
+          "max_byte": 0.12410482,
+          "src_ip": "123.138.244.30"
+        },
+        {
+          "max_byte": 0.12410482,
+          "src_ip": "125.211.221.25"
+        },
+        {
+          "max_byte": 0.12410482,
+          "src_ip": "180.117.193.182"
+        },
+        {
+          "max_byte": 0.12410482,
+          "src_ip": "58.221.132.102"
+        },
+        {
+          "max_byte": 0.12410482,
+          "src_ip": "59.47.9.16"
+        },
+        {
+          "max_byte": 0.119272865,
+          "src_ip": "119.5.13.120"
+        },
+        {
+          "max_byte": 0.11736552,
+          "src_ip": "175.20.227.44"
+        },
+        {
+          "max_byte": 0.11736552,
+          "src_ip": "27.187.63.162"
+        },
+        {
+          "max_byte": 0.10795593,
+          "src_ip": "42.81.70.106"
+        },
+        {
+          "max_byte": 0.10643005,
+          "src_ip": "49.80.123.5"
+        },
+        {
+          "max_byte": 0.09981791,
+          "src_ip": "125.107.121.154"
+        },
+        {
+          "max_byte": 0.09918213,
+          "src_ip": "221.193.10.19"
+        },
+        {
+          "max_byte": 0.08646647,
+          "src_ip": "139.211.204.40"
+        },
+        {
+          "max_byte": 0.08430481,
+          "src_ip": "49.80.240.93"
+        },
+        {
+          "max_byte": 0.07502238,
+          "src_ip": "117.10.7.20"
+        },
+        {
+          "max_byte": 0.06688436,
+          "src_ip": "116.216.0.61"
+        },
+        {
+          "max_byte": 0.063959755,
+          "src_ip": "218.81.219.131"
+        },
+        {
+          "max_byte": 0.063196816,
+          "src_ip": "119.177.110.4"
+        },
+        {
+          "max_byte": 0.063196816,
+          "src_ip": "122.194.12.12"
+        },
+        {
+          "max_byte": 0.059127808,
+          "src_ip": "180.106.209.119"
+        },
+        {
+          "max_byte": 0.058110554,
+          "src_ip": "27.212.55.175"
+        },
+        {
+          "max_byte": 0.054677326,
+          "src_ip": "128.199.138.206"
+        },
+        {
+          "max_byte": 0.0541687,
+          "src_ip": "139.129.117.150"
+        },
+        {
+          "max_byte": 0.052388508,
+          "src_ip": "113.238.81.229"
+        },
+        {
+          "max_byte": 0.052261353,
+          "src_ip": "123.59.68.95"
+        },
+        {
+          "max_byte": 0.046157837,
+          "src_ip": "114.229.95.56"
+        },
+        {
+          "max_byte": 0.046157837,
+          "src_ip": "222.130.21.62"
+        },
+        {
+          "max_byte": 0.045903523,
+          "src_ip": "158.69.205.188"
+        },
+        {
+          "max_byte": 0.043360393,
+          "src_ip": "115.214.237.134"
+        },
+        {
+          "max_byte": 0.031534832,
+          "src_ip": "60.29.59.149"
+        },
+        {
+          "max_byte": 0.031534832,
+          "src_ip": "60.29.59.164"
+        },
+        {
+          "max_byte": 0.031534832,
+          "src_ip": "60.29.59.195"
+        },
+        {
+          "max_byte": 0.030517578,
+          "src_ip": "111.192.19.154"
+        },
+        {
+          "max_byte": 0.027720133,
+          "src_ip": "113.241.254.186"
+        },
+        {
+          "max_byte": 0.023651123,
+          "src_ip": "60.29.59.146"
+        },
+        {
+          "max_byte": 0.023651123,
+          "src_ip": "60.29.59.155"
+        },
+        {
+          "max_byte": 0.023651123,
+          "src_ip": "60.29.59.158"
+        },
+        {
+          "max_byte": 0.023651123,
+          "src_ip": "60.29.59.169"
+        },
+        {
+          "max_byte": 0.023651123,
+          "src_ip": "60.29.59.178"
+        },
+        {
+          "max_byte": 0.023651123,
+          "src_ip": "60.29.59.180"
+        },
+        {
+          "max_byte": 0.023651123,
+          "src_ip": "60.29.59.183"
+        },
+        {
+          "max_byte": 0.023651123,
+          "src_ip": "60.29.59.192"
+        },
+        {
+          "max_byte": 0.023651123,
+          "src_ip": "60.29.59.197"
+        },
+        {
+          "max_byte": 0.023651123,
+          "src_ip": "60.29.59.204"
+        },
+        {
+          "max_byte": 0.020599365,
+          "src_ip": "222.247.238.207"
+        },
+        {
+          "max_byte": 0.018819174,
+          "src_ip": "122.156.187.69"
+        },
+        {
+          "max_byte": 0.016148886,
+          "src_ip": "121.236.219.243"
+        },
+        {
+          "max_byte": 0.015767416,
+          "src_ip": "219.140.176.154"
+        },
+        {
+          "max_byte": 0.015767416,
+          "src_ip": "60.29.59.151"
+        },
+        {
+          "max_byte": 0.015767416,
+          "src_ip": "60.29.59.152"
+        },
+        {
+          "max_byte": 0.015767416,
+          "src_ip": "60.29.59.172"
+        },
+        {
+          "max_byte": 0.015767416,
+          "src_ip": "60.29.59.177"
+        },
+        {
+          "max_byte": 0.015767416,
+          "src_ip": "60.29.59.179"
+        },
+        {
+          "max_byte": 0.015767416,
+          "src_ip": "60.29.59.185"
+        },
+        {
+          "max_byte": 0.015767416,
+          "src_ip": "60.29.59.199"
+        },
+        {
+          "max_byte": 0.014368693,
+          "src_ip": "115.214.143.96"
+        },
+        {
+          "max_byte": 0.013605754,
+          "src_ip": "123.121.113.158"
+        },
+        {
+          "max_byte": 0.010808309,
+          "src_ip": "112.66.3.245"
+        },
+        {
+          "max_byte": 0.010808309,
+          "src_ip": "119.132.127.61"
+        },
+        {
+          "max_byte": 0.009536743,
+          "src_ip": "14.215.234.70"
+        },
+        {
+          "max_byte": 0.009409587,
+          "src_ip": "115.208.204.104"
+        },
+        {
+          "max_byte": 0.009409587,
+          "src_ip": "5.9.87.163"
+        },
+        {
+          "max_byte": 0.009409587,
+          "src_ip": "92.148.25.180"
+        }
+      ]
+    }
+  },
+  "code": "000000",
+  "message": "操作成功",
+  "success": true
 }
