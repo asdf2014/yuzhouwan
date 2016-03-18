@@ -40,6 +40,13 @@
             <version>${mockito.version}</version>
         </dependency>
 
+        <!-- json-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.8</version>
+        </dependency>
+
         <!-- log -->
         <dependency>
             <groupId>ch.qos.logback</groupId>

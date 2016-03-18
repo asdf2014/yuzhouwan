@@ -38,10 +38,10 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <!-- TODO{asdf2014}: securityFilter -->
+    <!-- TODO{Benedict Jin}: securityFilter -->
     <filter>
         <filter-name>errorFilter</filter-name>
-        <filter-class>com.yuzhouwan.site.hacker.filter.ErrorFilter</filter-class>
+        <filter-class>com.yuzhouwan.site.filter.ErrorFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>errorFilter</filter-name>

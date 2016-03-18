@@ -1,6 +1,6 @@
 package scala
 
-import com.yuzhouwan.site.hacker.spark.streaming.detect.SendNetflow
+import com.yuzhouwan.spark.streaming.detect.SendNetflow
 
 /**
  * Created by Benedict Jin on 2015/9/7.
