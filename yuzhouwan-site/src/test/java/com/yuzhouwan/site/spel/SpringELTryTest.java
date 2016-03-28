@@ -31,4 +31,9 @@ public class SpringELTryTest {
     public void testRegular() throws Exception {
         assertEquals(true, springELTry.matchExpression());
     }
+
+    @Test
+    public void testRegular2() throws Exception {
+        assertEquals(true, springELTry.matchExpression2());
+    }
 }

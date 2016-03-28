@@ -1,4 +1,4 @@
-package com.yuzhouwan.hacker.reflection;
+package com.yuzhouwan.hacker.algorithms.reflection;
 
 import java.lang.reflect.Field;
 

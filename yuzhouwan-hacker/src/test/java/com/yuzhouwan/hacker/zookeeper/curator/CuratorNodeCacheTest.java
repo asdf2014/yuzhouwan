@@ -1,6 +1,5 @@
 package com.yuzhouwan.hacker.zookeeper.curator;
 
-import com.yuzhouwan.hacker.zookeeper.curator.CuratorNodeCache;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

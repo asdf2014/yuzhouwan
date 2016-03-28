@@ -23,30 +23,40 @@ public class CuratorDistributedCounter {
     private DistributedAtomicInteger distributedAtomicInteger;
 
     private void init() {
-        _log.debug("init...");
-        RetryNTimes retryPolicy = new RetryNTimes(3, 2000);
-        curatorFramework = CuratorFrameworkFactory
-                .builder()
-                .connectString("localhost:2181")
-                .connectionTimeoutMs(3000)
-                .sessionTimeoutMs(5000)
-                .retryPolicy(retryPolicy)
-                .namespace("distCounter")
-                .build();
-        curatorFramework.start();
-        distributedAtomicInteger = new DistributedAtomicInteger(curatorFramework, "/atomic", retryPolicy);
+        try {
+            _log.debug("init...");
+            RetryNTimes retryPolicy = new RetryNTimes(3, 2000);
+            curatorFramework = CuratorFrameworkFactory
+                    .builder()
+                    .connectString("localhost:2181")
+                    .connectionTimeoutMs(3000)
+                    .sessionTimeoutMs(5000)
+                    .retryPolicy(retryPolicy)
+                    .namespace("distCounter")
+                    .build();
+            curatorFramework.start();
+            distributedAtomicInteger = new DistributedAtomicInteger(curatorFramework, "/atomic", retryPolicy);
+        } catch (Exception e) {
+        }
     }
 
     public CuratorDistributedCounter() throws Exception {
-        init();
-        _log.debug("Set atomic integer as zero.");
-        distributedAtomicInteger.trySet(0);
+        try {
+            init();
+            _log.debug("Set atomic integer as zero.");
+            distributedAtomicInteger.trySet(0);
+        } catch (Exception e) {
+        }
     }
 
     public int addAtomicInteger(int addNum) throws Exception {
-        _log.info("add {} ...", addNum);
-        AtomicValue<Integer> atomicValue = distributedAtomicInteger.add(addNum);
-        return atomicValue.postValue();
+        try {
+            _log.info("add {} ...", addNum);
+            AtomicValue<Integer> atomicValue = distributedAtomicInteger.add(addNum);
+            return atomicValue.postValue();
+        } catch (Exception e) {
+        }
+        return 0;
     }
 
 }

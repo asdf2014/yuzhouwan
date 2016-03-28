@@ -1,6 +1,5 @@
 package com.yuzhouwan.hacker.zookeeper.curator;
 
-import com.yuzhouwan.hacker.zookeeper.curator.CuratorLeaderSelector;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

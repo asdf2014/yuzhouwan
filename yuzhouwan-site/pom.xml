@@ -17,6 +17,14 @@
     </parent>
 
     <dependencies>
+        <!-- common -->
+        <dependency>
+            <groupId>com.yuzhouwan</groupId>
+            <artifactId>yuzhouwan-common</artifactId>
+            <version>0.1</version>
+        </dependency>
+
+        <!-- junit -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -120,6 +128,23 @@
             <artifactId>jetty-webapp</artifactId>
             <version>${eclipse.jetty.webapp.version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <!-- spring cacheable-->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>${spring.cache.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${redis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version></version>
         </dependency>
 
         <!-- wechat -->

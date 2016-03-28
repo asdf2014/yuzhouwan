@@ -1,5 +1,7 @@
 package com.yuzhouwan.site.spel;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.expression.EvaluationContext;
 import org.springframework.expression.Expression;
 import org.springframework.expression.ExpressionParser;
@@ -15,6 +17,8 @@ import org.springframework.expression.spel.support.StandardEvaluationContext;
  * @since 2016/3/15
  */
 public class SpringELTry {
+
+    private static final Logger _log = LoggerFactory.getLogger(SpringELTry.class);
 
     public String hello() {
         ExpressionParser parser = new SpelExpressionParser();
@@ -36,4 +40,15 @@ public class SpringELTry {
         return expression.getValue(Boolean.class);
     }
 
+    public boolean matchExpression2() {
+        ExpressionParser parser = new SpelExpressionParser();
+        /**
+         * java.lang.IllegalStateException: Cannot handle (59) ';'
+         */
+        String s = "-DevIP=116.1.239.33; Line protocol on the interface GigabitEthernet1/0/3 is DOWN.";
+        String regular = ".*is DOWN.";
+        System.out.println("aim:\t\t" + s + " \r\nregular:\t" + regular);
+        Expression expression = parser.parseExpression(String.format("'%s' matches '%s'", s, regular));
+        return expression.getValue(Boolean.class);
+    }
 }

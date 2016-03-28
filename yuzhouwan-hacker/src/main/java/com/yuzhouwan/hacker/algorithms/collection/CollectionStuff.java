@@ -1,4 +1,4 @@
-package com.yuzhouwan.hacker.commons;
+package com.yuzhouwan.hacker.algorithms.collection;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

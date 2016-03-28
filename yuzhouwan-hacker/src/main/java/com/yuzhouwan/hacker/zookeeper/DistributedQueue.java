@@ -7,13 +7,18 @@ import java.nio.charset.Charset;
 import java.util.List;
 
 /**
- * Created by Benedict Jin on 2015/10/14.
+ * Copyright @ 2015 yuzhouwan.com
+ * All right reserved.
+ * Function: Distributed Queue with Zookeeper
+ *
+ * @author Benedict Jin
+ * @since 2015/10/14 0008
  */
 public class DistributedQueue {
 
-    private static final String yuzhouwan4 = "yuzhouwan04:2181";
-    private static final String yuzhouwan5 = "yuzhouwan05:2181";
-    private static final String yuzhouwan6 = "yuzhouwan06:2181";
+    private static final String yuzhouwan4 = "192.168.1.101:2181";
+    private static final String yuzhouwan5 = "192.168.1.102:2181";
+    private static final String yuzhouwan6 = "192.168.1.103:2181";
 
     public static void main(String... args) throws Exception {
 

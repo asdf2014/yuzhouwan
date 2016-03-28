@@ -1,7 +1,5 @@
-package com.yuzhouwan.hacker.reflection;
+package com.yuzhouwan.hacker.algorithms.reflection;
 
-import com.yuzhouwan.hacker.reflection.ReflectionPrivate;
-import com.yuzhouwan.hacker.reflection.SimpleBean;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

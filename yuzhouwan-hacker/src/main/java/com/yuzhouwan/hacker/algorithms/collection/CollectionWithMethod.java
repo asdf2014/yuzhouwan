@@ -1,4 +1,4 @@
-package com.yuzhouwan.hacker.commons;
+package com.yuzhouwan.hacker.algorithms.collection;
 
 import java.util.ArrayList;
 import java.util.List;

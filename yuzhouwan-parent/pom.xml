@@ -53,7 +53,7 @@
 
 
         <!-- redis -->
-        <redis.version>2.7.0</redis.version>
+        <redis.version>2.7.3</redis.version>
 
         <!-- zookeeper -->
         <apache.zookeeper.version>3.4.6</apache.zookeeper.version>
@@ -66,6 +66,10 @@
         <spring.version>4.2.2.RELEASE</spring.version>
         <aspectj.jrt.version>1.8.7</aspectj.jrt.version>
         <aspectj.jweaver.version>1.8.7</aspectj.jweaver.version>
+        <spring.cache.version>1.6.0.RELEASE</spring.cache.version>
+
+        <!-- cglib -->
+        <cglib.version>2.2.2</cglib.version>
 
         <javax.servlet.api.version>3.1.0</javax.servlet.api.version>
 
@@ -97,6 +101,13 @@
 
         <!-- freemarker -->
         <freemarker.version>2.3.23</freemarker.version>
+
+        <!-- http -->
+        <apache.http.version>4.5.1</apache.http.version>
+        <apache.httpcomponents.version>4.5.1</apache.httpcomponents.version>
+
+        <!-- collection -->
+        <apache.collections.version>3.2.1</apache.collections.version>
 
     </properties>
 
