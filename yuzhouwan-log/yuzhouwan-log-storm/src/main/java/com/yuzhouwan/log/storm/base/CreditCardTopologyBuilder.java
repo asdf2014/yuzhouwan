@@ -21,6 +21,7 @@ public class CreditCardTopologyBuilder {
         conf.put("es.nodes", "192.168.1.101");
         conf.put("es.port", 9200);
         conf.put("es.input.json", "true");
+        conf.put("es.batch.size.entries", "100");
 
         TopologyBuilder builder = new TopologyBuilder();
         builder.setSpout("json-spout", new StringSpout(json1, json2));

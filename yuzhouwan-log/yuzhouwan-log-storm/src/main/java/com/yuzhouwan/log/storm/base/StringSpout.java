@@ -31,7 +31,7 @@ public class StringSpout extends BaseRichSpout {
             collector.emit(new Values(word));
         }
         try {
-            Thread.sleep(100);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());
         }
