@@ -38,9 +38,6 @@
         <joda.time.version>2.7</joda.time.version>
         <jackson.version>2.6.3</jackson.version>
 
-        <!-- elastic search -->
-        <elasticsearch.version>1.5.2</elasticsearch.version>
-
         <!-- test -->
         <junit.version>4.12</junit.version>
         <mockito.version>1.9.5</mockito.version>
@@ -108,6 +105,24 @@
 
         <!-- collection -->
         <apache.collections.version>3.2.1</apache.collections.version>
+
+        <!-- apache storm -->
+        <apache.storm.version>0.10.0</apache.storm.version>
+
+        <!-- apache kafka-->
+        <apache.kafka.artifactId>kafka_2.10</apache.kafka.artifactId>
+        <apache.kafka.version>0.9.0.1</apache.kafka.version>
+
+        <!-- elasticsearch -->
+        <elasticsearch.version>2.2.0</elasticsearch.version>
+
+
+        <!-- ## integration ## -->
+        <!-- storm + kafka -->
+        <storm.kafka.version>${apache.storm.version}</storm.kafka.version>
+
+        <!-- storm + elasticsearch-->
+        <storm.elasticsearch.version>${elasticsearch.version}</storm.elasticsearch.version>
 
     </properties>
 

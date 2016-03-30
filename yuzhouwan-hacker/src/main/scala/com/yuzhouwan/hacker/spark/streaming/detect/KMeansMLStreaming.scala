@@ -1,5 +1,7 @@
 package com.yuzhouwan.spark.streaming.detect
 
+import java.util.stream.DoubleStream
+
 import org.apache.spark.SparkContext.doubleRDDToDoubleRDDFunctions
 import org.apache.spark.mllib.clustering.StreamingKMeans
 import org.apache.spark.mllib.linalg.Vectors
