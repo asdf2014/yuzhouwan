@@ -14,7 +14,12 @@ public class CreditCardTopologyBuilder {
         String json1 = "{\"reason\" : \"business\",\"airport\" : \"SFO\"}";
         String json2 = "{\"participants\" : 5,\"airport\" : \"OTP\"}";
 
-        Map conf = new HashMap();
+        Map conf = new HashMap<String, String>();
+        /**
+         * Configuration: https://www.elastic.co/guide/en/elasticsearch/hadoop/current/configuration.html
+         */
+        conf.put("es.nodes", "192.168.1.101");
+        conf.put("es.port", 9200);
         conf.put("es.input.json", "true");
 
         TopologyBuilder builder = new TopologyBuilder();

@@ -44,6 +44,26 @@
             <artifactId>elasticsearch-storm</artifactId>
             <version>${storm.elasticsearch.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>${apache.commons.logging.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>${commons-httpclient.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>${org.codehaus.jackson.jackson-mapper-asl.version}</version>
+        </dependency>
+
+
     </dependencies>
 
     <repositories>

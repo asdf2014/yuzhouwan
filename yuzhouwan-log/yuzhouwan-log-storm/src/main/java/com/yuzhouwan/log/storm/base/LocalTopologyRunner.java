@@ -3,6 +3,7 @@ package com.yuzhouwan.log.storm.base;
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
 import backtype.storm.generated.StormTopology;
+import backtype.storm.utils.Utils;
 
 public class LocalTopologyRunner {
 
@@ -11,8 +12,9 @@ public class LocalTopologyRunner {
         Config config = new Config();
         config.setDebug(true);
         LocalCluster cluster = new LocalCluster();
-        cluster.submitTopology("local-credit-card-topology",
-                config,
-                topology);
+        cluster.submitTopology("local-topology", config, topology);
+        Utils.sleep(30000);
+        cluster.killTopology("local-topology");
+        cluster.shutdown();
     }
 }
