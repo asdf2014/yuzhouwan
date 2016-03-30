@@ -95,7 +95,7 @@ object SendNetflow {
 
   def clean(s: String): String = {
 
-    // try unittest in scala with scala.SendNetflowTest
+    // try unittest in scala with style.SendNetflowTest
     if (s == "")
       throw new RuntimeException("Error: Empty input string")
 

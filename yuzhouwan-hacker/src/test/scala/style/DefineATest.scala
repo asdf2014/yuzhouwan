@@ -1,6 +1,6 @@
-package scala
+package style
 
-//import annotation.DefineA
+import com.yuzhouwan.annotation.DefineA
 
 /**
   * Copyright @ 2015 yuzhouwan.com
@@ -14,6 +14,6 @@ class DefineATest extends UnitTestStyle {
 
   "DefineA's bigMistake method" should "output a information" in {
 
-//    new DefineA
+    new DefineA
   }
 }

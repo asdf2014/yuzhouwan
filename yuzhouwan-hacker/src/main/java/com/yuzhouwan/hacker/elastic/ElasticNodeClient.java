@@ -1,11 +1,5 @@
 package com.yuzhouwan.hacker.elastic;
 
-import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
-
-import java.io.IOException;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-
 import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.action.bulk.BulkProcessor;
 import org.elasticsearch.action.bulk.BulkRequest;
@@ -25,6 +19,14 @@ import org.elasticsearch.common.unit.TimeValue;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
+import java.net.InetAddress;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+
+import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
+
+
 public class ElasticNodeClient {
 
     private volatile Client client;
@@ -40,9 +42,10 @@ public class ElasticNodeClient {
                         /**
                          * transport.tcp.port in elasticsearch.yml
                          */
-                        client = new TransportClient()
-                                .addTransportAddress(new InetSocketTransportAddress(
-                                        "192.168.112.55", 9300));
+                        client = TransportClient.builder().build()
+                                .addTransportAddress(
+                                        new InetSocketTransportAddress(
+                                                InetAddress.getByAddress("192.168.112.55".getBytes()), 9300));
                     } catch (ElasticsearchException e) {
                         e.printStackTrace();
                         client = null;
@@ -99,8 +102,7 @@ public class ElasticNodeClient {
         if (client == null)
             return;
 
-        DeleteResponse response = client.prepareDelete("asdf2014", "asdf", "1")
-                .setOperationThreaded(false).execute().actionGet();
+        DeleteResponse response = client.prepareDelete("asdf2014", "asdf", "1").execute().actionGet();
         if (response != null)
             System.out.println("Id: " + response.getId());
     }

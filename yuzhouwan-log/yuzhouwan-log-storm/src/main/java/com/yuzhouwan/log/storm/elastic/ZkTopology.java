@@ -1,4 +1,4 @@
-package com.yuzhouwan.log.storm;
+package com.yuzhouwan.log.storm.elastic;
 
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
@@ -21,11 +21,6 @@ import java.util.List;
 public class ZkTopology {
 
     public static void main(String[] args) {
-//        供参考的一个路径格式
-//        [zk: localhost:2181(CONNECTED) 0] ls /kafka08
-//                [bk, admin, consumers, config, controller, brokers, controller_epoch]
-//        [zk: localhost:2181(CONNECTED) 1] ls /kafka08/brokers
-//                [consumers, test0804, topics, ids]
 
         //这个地方其实就是kafka配置文件里边的zookeeper.connect这个参数，可以去那里拿过来。
         String brokerZkStr = "10.100.90.201:2181/kafka_online_sample";

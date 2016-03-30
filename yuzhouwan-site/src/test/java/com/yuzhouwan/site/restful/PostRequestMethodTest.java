@@ -42,7 +42,8 @@ public class PostRequestMethodTest {
             String post = HttpClientHelper.getInstance().postPlain(this.url, entity, null);
             return JSON.parseArray(post, A.class);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            _log.error(e.getMessage());
+            return null;
         }
     }
 }

@@ -23,7 +23,7 @@ public class CuratorDistributedBarrier {
     private DistributedBarrier distributedBarrier;
     private DistributedDoubleBarrier distributedDoubleBarrier;
 
-    private void init() {
+    private void init() throws Exception {
         curatorFramework = CuratorFrameworkFactory
                 .builder()
                 .connectString("localhost:2181")
@@ -47,7 +47,7 @@ public class CuratorDistributedBarrier {
         distributedDoubleBarrier = new DistributedDoubleBarrier(curatorFramework, "/double", 3);
     }
 
-    public CuratorDistributedBarrier() {
+    public CuratorDistributedBarrier() throws Exception {
         init();
     }
 

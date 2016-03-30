@@ -26,7 +26,7 @@ public class ZkClientCRUD {
 
     private ZkSerializer zkSerializer;
 
-    private void init() {
+    private void init() throws Exception {
         zkClient = new ZkClient(HOST.concat(":" + CLIENT_PORT), TIME_OUT_MILLISECOND);
 
         zkSerializer = new ZkSerializer() {
@@ -46,7 +46,7 @@ public class ZkClientCRUD {
 //        zkClient.setZkSerializer(zkSerializer);
     }
 
-    public ZkClientCRUD() {
+    public ZkClientCRUD() throws Exception {
         init();
     }
 

@@ -1,4 +1,4 @@
-package scala
+package style
 
 import org.scalatest._
 

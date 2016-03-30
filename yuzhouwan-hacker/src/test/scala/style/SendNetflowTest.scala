@@ -1,4 +1,4 @@
-package scala
+package style
 
 import com.yuzhouwan.spark.streaming.detect.SendNetflow
 
