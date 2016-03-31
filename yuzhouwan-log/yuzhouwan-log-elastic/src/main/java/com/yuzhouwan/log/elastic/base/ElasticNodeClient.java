@@ -1,4 +1,4 @@
-package com.yuzhouwan.hacker.elastic;
+package com.yuzhouwan.log.elastic.base;
 
 import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.action.bulk.BulkProcessor;
@@ -37,7 +37,6 @@ public class ElasticNodeClient {
         if (client == null) {
             synchronized (ElasticNodeClient.class) {
                 if (client == null) {
-
                     try {
                         /**
                          * transport.tcp.port in elasticsearch.yml
@@ -45,7 +44,7 @@ public class ElasticNodeClient {
                         client = TransportClient.builder().build()
                                 .addTransportAddress(
                                         new InetSocketTransportAddress(
-                                                InetAddress.getByAddress("192.168.112.55".getBytes()), 9300));
+                                                InetAddress.getByAddress("192.168.1.101".getBytes()), 9300));
                     } catch (ElasticsearchException e) {
                         e.printStackTrace();
                         client = null;
@@ -54,7 +53,6 @@ public class ElasticNodeClient {
                 }
             }
         }
-
     }
 
     @Test
