@@ -23,6 +23,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <modules>
+                <module>yuzhouwan-log-hadoop</module>
                 <module>yuzhouwan-log-storm</module>
                 <module>yuzhouwan-log-elastic</module>
             </modules>
