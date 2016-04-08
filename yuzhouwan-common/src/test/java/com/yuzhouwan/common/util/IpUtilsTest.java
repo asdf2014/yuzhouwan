@@ -20,4 +20,10 @@ public class IpUtilsTest {
         assertEquals(true, IpUtils.checkValid("113.12.83.4"));
         assertEquals(false, IpUtils.checkValid("313.12.83.4"));
     }
+
+    @Test
+    public void removeTail32Test() throws Exception {
+        assertEquals("1.1.1.1", IpUtils.removeTail32("1.1.1.1/32"));
+        assertEquals("113.12.83.4", IpUtils.removeTail32("113.12.83.4/32"));
+    }
 }

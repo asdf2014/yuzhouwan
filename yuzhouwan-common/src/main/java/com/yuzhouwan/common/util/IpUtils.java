@@ -19,4 +19,8 @@ public class IpUtils {
         return PATTERN.matcher(ip).matches();
     }
 
+    public static String removeTail32(String ip) {
+        return !StrUtils.isEmpty(ip) && ip.endsWith("/32") ? ip.substring(0, ip.length() - 3) : ip;
+    }
+
 }

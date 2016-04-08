@@ -1,0 +1,14 @@
+{
+  "query": {
+    "match_all": {}
+  },
+  "size": 1,
+  "sort": [
+    {
+      "startTime": {
+        "order": "desc"
+      }
+    },
+    "_score"
+  ]
+}

@@ -1,0 +1,59 @@
+/* Create:  http://192.168.112.172:9200/cgpboss_month_201604/attack_alarm/ _create PUT */
+{
+  "attackId": "111",
+  "instanceId": "429",
+  "customerId": "5",
+  "dstIp": "113.17.141.242",
+  "attackStatus": "2",
+  "attackType": "http,tcp",
+  "message": "message",
+  "trafficRate": 251.32,
+  "packetRate": 20.13,
+  "alarmLevel": 1,
+  "alarmType": 2,
+  "startTime": "2016-04-08 15:20:31",
+  "endTime": "2016-04-08 15:58:31",
+  "duration": 18,
+  "timestamp": 1459130105805,
+  "maxTrafficRate": 6666.66,
+  "maxPacketRate": 233.33
+}
+{
+  "attackId": "121",
+  "instanceId": "261",
+  "customerId": "15",
+  "dstIp": "113.12.83.4",
+  "attackStatus": "11",
+  "attackType": "cc,tcp",
+  "message": "warning",
+  "trafficRate": 551.32,
+  "packetRate": 210.13,
+  "alarmLevel": 5,
+  "alarmType": 3,
+  "startTime": "2016-04-08 14:00:31",
+  "endTime": "2016-04-08 15:58:31",
+  "duration": 36,
+  "timestamp": 1459130105889,
+  "maxTrafficRate": 16666.16,
+  "maxPacketRate": 2333.33
+}
+{
+  "attackId": "111",
+  "instanceId": "380",
+  "customerId": "15",
+  "dstIp": "113.12.83.5",
+  "attackStatus": "11",
+  "attackType": "http,tcp",
+  "message": "message",
+  "trafficRate": 251.32,
+  "packetRate": 20.13,
+  "alarmLevel": 1,
+  "alarmType": 2,
+  "startTime": "2016-04-08 16:20:31",
+  "endTime": "2016-04-08 16:58:31",
+  "duration": 144000,
+  "timestamp": 1459130222805,
+  "maxTrafficRate": 101010.66,
+  "maxPacketRate": 2321.33
+}
+

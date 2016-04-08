@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- %p:Level %m:Message %c.%M:Package+Method %F:%L:File+Line -->
+    <property name="pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} | %p | %m | %c.%M | %F:%L %n"/>
+
+    <!-- Print in Console -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="UTF-8">
+            <pattern>${pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <root level="ALL">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>
