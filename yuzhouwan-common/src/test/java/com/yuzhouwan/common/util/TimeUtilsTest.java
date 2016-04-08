@@ -21,6 +21,7 @@ import static org.junit.Assert.assertEquals;
 public class TimeUtilsTest {
 
     private Logger _log = LoggerFactory.getLogger(TimeUtilsTest.class);
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS Z");
 
     @Test
     public void test() {
@@ -34,7 +35,7 @@ public class TimeUtilsTest {
     }
 
     @Test
-    public void test2(){
+    public void test2() {
 
         LinkedList<Integer> l = new LinkedList<Integer>();
         l.add(1);
@@ -43,5 +44,17 @@ public class TimeUtilsTest {
         for (Integer integer : l) {
             counter++;
         }
+    }
+
+    @Test
+    public void testYesterdayBegin() {
+
+        assertEquals("2016-04-04 00:00:00:000 +0800", sdf.format(TimeUtils.yesterdayBegin()));
+    }
+
+    @Test
+    public void testYesterdayEnd() {
+
+        assertEquals("2016-04-04 23:59:59:999 +0800", sdf.format(TimeUtils.yesterdayEnd()));
     }
 }
