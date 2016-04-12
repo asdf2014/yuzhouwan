@@ -1,0 +1,3018 @@
+{
+  "vendor": [
+    {
+      "bytes": 3.2164048E7,
+      "vendor": "中国电信",
+      "packets": 1.35872832E8
+    },
+    {
+      "bytes": 36687.562,
+      "vendor": "其他",
+      "packets": 513696
+    },
+    {
+      "bytes": 16538.406,
+      "vendor": "中国联通",
+      "packets": 148056
+    },
+    {
+      "bytes": 15255.684,
+      "vendor": "中国移动",
+      "packets": 59808
+    },
+    {
+      "bytes": 13841.309,
+      "vendor": "国际运营商",
+      "packets": 179112
+    },
+    {
+      "bytes": 1593.9789,
+      "vendor": "中国铁通",
+      "packets": 10680
+    },
+    {
+      "bytes": 1254.9819,
+      "vendor": "阿里巴巴",
+      "packets": 19296
+    },
+    {
+      "bytes": 645.90454,
+      "vendor": "腾讯",
+      "packets": 10032
+    },
+    {
+      "bytes": 160.74371,
+      "vendor": "未知",
+      "packets": 2160
+    },
+    {
+      "bytes": 109.10797,
+      "vendor": "教育网",
+      "packets": 1296
+    },
+    {
+      "bytes": 59.165955,
+      "vendor": "电信通",
+      "packets": 792
+    },
+    {
+      "bytes": 39.733887,
+      "vendor": "上海世纪互联",
+      "packets": 504
+    },
+    {
+      "bytes": 15.357971,
+      "vendor": "网易",
+      "packets": 192
+    },
+    {
+      "bytes": 9.109497,
+      "vendor": "华北石油通信",
+      "packets": 96
+    },
+    {
+      "bytes": 7.736206,
+      "vendor": "深圳天威视讯",
+      "packets": 96
+    },
+    {
+      "bytes": 6.9122314,
+      "vendor": "大庆中基石油",
+      "packets": 72
+    },
+    {
+      "bytes": 4.989624,
+      "vendor": "东方有线",
+      "packets": 72
+    },
+    {
+      "bytes": 2.380371,
+      "vendor": "中国科技网",
+      "packets": 24
+    },
+    {
+      "bytes": 2.3345947,
+      "vendor": "四川广电",
+      "packets": 24
+    },
+    {
+      "bytes": 2.243042,
+      "vendor": "北大方正",
+      "packets": 24
+    },
+    {
+      "bytes": 1.5106201,
+      "vendor": "华数数字电视有限公司",
+      "packets": 24
+    },
+    {
+      "bytes": 1.2359619,
+      "vendor": "北京歌华有线",
+      "packets": 24
+    }
+  ],
+  "ip": [
+    {
+      "vendor": "其他",
+      "avg_byte": 64.69718,
+      "max_pack": 2072.5334,
+      "country": "中国",
+      "city": "哈尔滨",
+      "province": "黑龙江",
+      "src_ip": "110.110.100.100",
+      "max_byte": 146.26262,
+      "avg_pack": 916.75555
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 2.0594032,
+      "max_pack": 7.6,
+      "country": "中国",
+      "city": "玉林",
+      "province": "广西",
+      "src_ip": "180.142.216.189",
+      "max_byte": 8.194224,
+      "avg_pack": 1.9577236
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.3866259,
+      "max_pack": 6,
+      "country": "中国",
+      "city": "北海",
+      "province": "广西",
+      "src_ip": "116.10.167.215",
+      "max_byte": 7.9348245,
+      "avg_pack": 1.0202899
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 3.12285,
+      "max_pack": 7.733333,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "171.108.79.93",
+      "max_byte": 7.8414917,
+      "avg_pack": 3.0424242
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 4.1700363,
+      "max_pack": 7.4666667,
+      "country": "中国",
+      "city": "来宾",
+      "province": "广西",
+      "src_ip": "113.14.22.195",
+      "max_byte": 7.7819824,
+      "avg_pack": 3.8666666
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 5.044047,
+      "max_pack": 7.0666666,
+      "country": "中国",
+      "city": "南宁",
+      "province": "广西",
+      "src_ip": "171.105.76.200",
+      "max_byte": 7.534536,
+      "avg_pack": 4.888889
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 3.346543,
+      "max_pack": 6.4,
+      "country": "中国",
+      "city": "北海",
+      "province": "广西",
+      "src_ip": "219.159.199.201",
+      "max_byte": 7.4666343,
+      "avg_pack": 3.0857143
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 2.592051,
+      "max_pack": 6.6666665,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "116.1.101.153",
+      "max_byte": 7.1802773,
+      "avg_pack": 2.4683762
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 4.7894797,
+      "max_pack": 96.53333,
+      "country": "中国",
+      "city": "百色",
+      "province": "广西",
+      "src_ip": "124.227.183.76",
+      "max_byte": 6.8125405,
+      "avg_pack": 67.86667
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 4.492716,
+      "max_pack": 7.3333335,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "116.253.200.178",
+      "max_byte": 6.7456565,
+      "avg_pack": 4.2358975
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 2.6898384,
+      "max_pack": 6.266667,
+      "country": "中国",
+      "city": "南宁",
+      "province": "广西",
+      "src_ip": "180.136.228.186",
+      "max_byte": 6.605784,
+      "avg_pack": 2.5833333
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 3.3380635,
+      "max_pack": 6.266667,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "116.1.103.227",
+      "max_byte": 6.3814797,
+      "avg_pack": 3.28
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 4.826042,
+      "max_pack": 5.4666667,
+      "country": "中国",
+      "city": "南宁",
+      "province": "广西",
+      "src_ip": "113.12.53.144",
+      "max_byte": 6.1177573,
+      "avg_pack": 4.4923077
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 2.28126,
+      "max_pack": 5.0666666,
+      "country": "中国",
+      "city": "钦州",
+      "province": "广西",
+      "src_ip": "180.138.18.111",
+      "max_byte": 5.7296753,
+      "avg_pack": 2.1705427
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.2525558,
+      "max_pack": 4,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "116.1.21.186",
+      "max_byte": 5.4250083,
+      "avg_pack": 0.96666664
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.7447568,
+      "max_pack": 4.9333334,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "220.173.133.28",
+      "max_byte": 4.913076,
+      "avg_pack": 1.7085271
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.4191786,
+      "max_pack": 3.4666667,
+      "country": "中国",
+      "city": "南宁",
+      "province": "广西",
+      "src_ip": "180.136.145.252",
+      "max_byte": 4.816691,
+      "avg_pack": 1.0111111
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.7052332,
+      "max_pack": 5.3333335,
+      "country": "中国",
+      "city": "河池",
+      "province": "广西",
+      "src_ip": "180.142.64.171",
+      "max_byte": 4.786682,
+      "avg_pack": 1.6866666
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 2.6850383,
+      "max_pack": 4.266667,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "171.107.208.115",
+      "max_byte": 4.6040854,
+      "avg_pack": 2.4
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.96766,
+      "max_pack": 4.4,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "222.217.135.40",
+      "max_byte": 4.5448303,
+      "avg_pack": 1.8700855
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 3.691864,
+      "max_pack": 4.4,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "116.1.40.58",
+      "max_byte": 4.474131,
+      "avg_pack": 3.511111
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 2.8710048,
+      "max_pack": 4,
+      "country": "中国",
+      "city": "玉林",
+      "province": "广西",
+      "src_ip": "171.110.91.12",
+      "max_byte": 4.22109,
+      "avg_pack": 2.7
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.591407,
+      "max_pack": 2.8,
+      "country": "中国",
+      "city": "南宁",
+      "province": "广西",
+      "src_ip": "116.252.80.130",
+      "max_byte": 4.0415444,
+      "avg_pack": 1.1555556
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 2.1414537,
+      "max_pack": 4.133333,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "113.13.143.119",
+      "max_byte": 3.9901733,
+      "avg_pack": 2.0564103
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.324776,
+      "max_pack": 2.8,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "220.173.124.95",
+      "max_byte": 3.9894104,
+      "avg_pack": 1.0091228
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.9453896,
+      "max_pack": 2.9333334,
+      "country": "中国",
+      "city": "钦州",
+      "province": "广西",
+      "src_ip": "180.138.26.52",
+      "max_byte": 3.8740795,
+      "avg_pack": 1.4222223
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 2.7508206,
+      "max_pack": 2.9333334,
+      "country": "中国",
+      "city": "贵港",
+      "province": "广西",
+      "src_ip": "222.218.205.232",
+      "max_byte": 3.8382213,
+      "avg_pack": 2.1333334
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 2.0630555,
+      "max_pack": 2.8,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "116.1.92.104",
+      "max_byte": 3.7071228,
+      "avg_pack": 1.5960784
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.8129561,
+      "max_pack": 3.4666667,
+      "country": "中国",
+      "city": "梧州",
+      "province": "广西",
+      "src_ip": "222.217.230.221",
+      "max_byte": 3.6727905,
+      "avg_pack": 1.8888888
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 2.5010328,
+      "max_pack": 4.133333,
+      "country": "中国",
+      "city": "玉林",
+      "province": "广西",
+      "src_ip": "171.109.89.159",
+      "max_byte": 3.6697388,
+      "avg_pack": 2.5435898
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.261673,
+      "max_pack": 3.7333333,
+      "country": "中国",
+      "city": "南宁",
+      "province": "广西",
+      "src_ip": "222.84.19.198",
+      "max_byte": 3.6468506,
+      "avg_pack": 1.1866666
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.4092622,
+      "max_pack": 3.3333333,
+      "country": "中国",
+      "city": "南宁",
+      "province": "广西",
+      "src_ip": "180.139.161.187",
+      "max_byte": 3.6425273,
+      "avg_pack": 1.3185185
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.0088713,
+      "max_pack": 2.5333333,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "116.1.96.198",
+      "max_byte": 3.635915,
+      "avg_pack": 0.70724636
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.8953233,
+      "max_pack": 3.8666666,
+      "country": "中国",
+      "city": "来宾",
+      "province": "广西",
+      "src_ip": "113.14.21.214",
+      "max_byte": 3.604889,
+      "avg_pack": 1.7333333
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.7505998,
+      "max_pack": 2.5333333,
+      "country": "中国",
+      "city": "南宁",
+      "province": "广西",
+      "src_ip": "180.142.199.24",
+      "max_byte": 3.5525005,
+      "avg_pack": 0.5528969
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.79926383,
+      "max_pack": 3.6,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "116.1.36.133",
+      "max_byte": 3.5364788,
+      "avg_pack": 0.82222223
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 2.130254,
+      "max_pack": 2.5333333,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "116.1.57.179",
+      "max_byte": 3.494517,
+      "avg_pack": 1.5333333
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.4961139,
+      "max_pack": 2.6666667,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "220.173.121.64",
+      "max_byte": 3.3678691,
+      "avg_pack": 1.1762964
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.93621147,
+      "max_pack": 2.2666667,
+      "country": "中国",
+      "city": "南宁",
+      "province": "广西",
+      "src_ip": "180.136.195.127",
+      "max_byte": 3.2554626,
+      "avg_pack": 0.65185183
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.3286008,
+      "max_pack": 2.4,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "220.173.126.202",
+      "max_byte": 3.2389324,
+      "avg_pack": 1.0055555
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 3.2295227,
+      "max_pack": 2.2666667,
+      "country": "中国",
+      "city": "崇左",
+      "province": "广西",
+      "src_ip": "113.14.219.124",
+      "max_byte": 3.2295227,
+      "avg_pack": 2.2666667
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.6090393,
+      "max_pack": 9.333333,
+      "country": "中国",
+      "city": "玉林",
+      "province": "广西",
+      "src_ip": "218.21.92.207",
+      "max_byte": 3.15094,
+      "avg_pack": 4.733333
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.7072047,
+      "max_pack": 2.9333334,
+      "country": "中国",
+      "city": "南宁",
+      "province": "广西",
+      "src_ip": "180.139.163.75",
+      "max_byte": 3.107961,
+      "avg_pack": 0.6245614
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.3611857,
+      "max_pack": 2.5333333,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "116.1.49.224",
+      "max_byte": 3.0715942,
+      "avg_pack": 1.2711111
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.9839025,
+      "max_pack": 2.1333334,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "116.1.97.177",
+      "max_byte": 3.0639648,
+      "avg_pack": 0.68505746
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.4360574,
+      "max_pack": 2.2666667,
+      "country": "中国",
+      "city": "玉林",
+      "province": "广西",
+      "src_ip": "116.11.96.65",
+      "max_byte": 3.0489604,
+      "avg_pack": 1.0666667
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.8997192,
+      "max_pack": 2.1333334,
+      "country": "中国",
+      "city": "崇左",
+      "province": "广西",
+      "src_ip": "113.14.218.94",
+      "max_byte": 3.0395508,
+      "avg_pack": 1.3333334
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.9947052,
+      "max_pack": 2.1333334,
+      "country": "中国",
+      "city": "崇左",
+      "province": "广西",
+      "src_ip": "113.14.219.86",
+      "max_byte": 3.0395508,
+      "avg_pack": 1.4
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.9287985,
+      "max_pack": 2.1333334,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "116.253.143.170",
+      "max_byte": 3.0395508,
+      "avg_pack": 0.7017544
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.5130858,
+      "max_pack": 2.2666667,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "113.13.96.146",
+      "max_byte": 3.0016582,
+      "avg_pack": 0.37079704
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.4930362,
+      "max_pack": 2.1333334,
+      "country": "中国",
+      "city": "南宁",
+      "province": "广西",
+      "src_ip": "180.136.196.18",
+      "max_byte": 2.9866536,
+      "avg_pack": 1.0476191
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.5471942,
+      "max_pack": 2.5333333,
+      "country": "中国",
+      "city": "南宁",
+      "province": "广西",
+      "src_ip": "222.216.112.67",
+      "max_byte": 2.960968,
+      "avg_pack": 0.43218392
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.6644743,
+      "max_pack": 2.1333334,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "113.13.104.70",
+      "max_byte": 2.924347,
+      "avg_pack": 0.48189762
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 2.4406998,
+      "max_pack": 41.866665,
+      "country": "中国",
+      "city": "钦州",
+      "province": "广西",
+      "src_ip": "171.105.238.232",
+      "max_byte": 2.8994243,
+      "avg_pack": 35.333332
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.3408842,
+      "max_pack": 2.5333333,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "219.159.108.2",
+      "max_byte": 2.8816223,
+      "avg_pack": 1.3238095
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 2.1447754,
+      "max_pack": 2,
+      "country": "中国",
+      "city": "玉林",
+      "province": "广西",
+      "src_ip": "171.111.45.234",
+      "max_byte": 2.872467,
+      "avg_pack": 1.4933333
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.0000341,
+      "max_pack": 2.6666667,
+      "country": "中国",
+      "city": "南宁",
+      "province": "广西",
+      "src_ip": "113.16.107.138",
+      "max_byte": 2.84729,
+      "avg_pack": 1.0509804
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.67703176,
+      "max_pack": 2,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "113.13.102.74",
+      "max_byte": 2.7900696,
+      "avg_pack": 0.492517
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 2.282397,
+      "max_pack": 2.6666667,
+      "country": "中国",
+      "city": "None",
+      "province": "广西",
+      "src_ip": "116.8.33.51",
+      "max_byte": 2.7414958,
+      "avg_pack": 2.2333333
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.9421896,
+      "max_pack": 2,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "218.65.213.50",
+      "max_byte": 2.7292888,
+      "avg_pack": 1.4
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.924769,
+      "max_pack": 2,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "116.1.116.42",
+      "max_byte": 2.7005513,
+      "avg_pack": 1.4
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.2676058,
+      "max_pack": 2.5333333,
+      "country": "中国",
+      "city": "来宾",
+      "province": "广西",
+      "src_ip": "113.15.117.150",
+      "max_byte": 2.6550293,
+      "avg_pack": 1.247619
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 2.6326497,
+      "max_pack": 2.6666667,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "116.1.104.25",
+      "max_byte": 2.6326497,
+      "avg_pack": 2.6666667
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.6474406,
+      "max_pack": 2.4,
+      "country": "中国",
+      "city": "梧州",
+      "province": "广西",
+      "src_ip": "116.9.134.132",
+      "max_byte": 2.594757,
+      "avg_pack": 1.5809524
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.0856998,
+      "max_pack": 2.5333333,
+      "country": "中国",
+      "city": "乌鲁木齐",
+      "province": "新疆",
+      "src_ip": "106.127.146.187",
+      "max_byte": 2.5754292,
+      "avg_pack": 1.069091
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.5708511,
+      "max_pack": 1.8666667,
+      "country": "中国",
+      "city": "来宾",
+      "province": "广西",
+      "src_ip": "124.226.38.136",
+      "max_byte": 2.5487263,
+      "avg_pack": 0.42222223
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.6560873,
+      "max_pack": 1.8666667,
+      "country": "中国",
+      "city": "来宾",
+      "province": "广西",
+      "src_ip": "124.226.39.160",
+      "max_byte": 2.4765015,
+      "avg_pack": 1.2444445
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.0893971,
+      "max_pack": 1.7333333,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "116.253.81.152",
+      "max_byte": 2.469635,
+      "avg_pack": 0.7659864
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.1778588,
+      "max_pack": 1.7333333,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "116.1.73.214",
+      "max_byte": 2.469635,
+      "avg_pack": 0.8745098
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.4801864,
+      "max_pack": 1.7333333,
+      "country": "中国",
+      "city": "梧州",
+      "province": "广西",
+      "src_ip": "222.216.157.108",
+      "max_byte": 2.469635,
+      "avg_pack": 0.3371069
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.89994156,
+      "max_pack": 1.8666667,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "116.1.68.127",
+      "max_byte": 2.4691265,
+      "avg_pack": 0.6761905
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.0725657,
+      "max_pack": 2,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "116.253.134.199",
+      "max_byte": 2.4519603,
+      "avg_pack": 0.8888889
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.7767571,
+      "max_pack": 2,
+      "country": "中国",
+      "city": "南宁",
+      "province": "广西",
+      "src_ip": "171.104.60.129",
+      "max_byte": 2.437083,
+      "avg_pack": 0.75555557
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.5476736,
+      "max_pack": 1.7333333,
+      "country": "中国",
+      "city": "来宾",
+      "province": "广西",
+      "src_ip": "180.142.21.189",
+      "max_byte": 2.42335,
+      "avg_pack": 1.1466666
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 2.388509,
+      "max_pack": 1.7333333,
+      "country": "中国",
+      "city": "崇左",
+      "province": "广西",
+      "src_ip": "113.14.217.49",
+      "max_byte": 2.388509,
+      "avg_pack": 1.7333333
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.0669284,
+      "max_pack": 1.8666667,
+      "country": "中国",
+      "city": "南宁",
+      "province": "广西",
+      "src_ip": "113.16.139.149",
+      "max_byte": 2.3544312,
+      "avg_pack": 1.0222223
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.0233098,
+      "max_pack": 1.7333333,
+      "country": "中国",
+      "city": "贵港",
+      "province": "广西",
+      "src_ip": "113.13.51.254",
+      "max_byte": 2.3379009,
+      "avg_pack": 0.73939395
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 2.3231506,
+      "max_pack": 58,
+      "country": "中国",
+      "city": "南宁",
+      "province": "广西",
+      "src_ip": "222.84.19.158",
+      "max_byte": 2.3231506,
+      "avg_pack": 58
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 2.2979736,
+      "max_pack": 1.6,
+      "country": "中国",
+      "city": "南宁",
+      "province": "广西",
+      "src_ip": "222.216.55.85",
+      "max_byte": 2.2979736,
+      "avg_pack": 1.6
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.7389282,
+      "max_pack": 1.6,
+      "country": "中国",
+      "city": "贵港",
+      "province": "广西",
+      "src_ip": "171.106.198.138",
+      "max_byte": 2.2979736,
+      "avg_pack": 0.5204301
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.5197754,
+      "max_pack": 1.6,
+      "country": "中国",
+      "city": "崇左",
+      "province": "广西",
+      "src_ip": "113.14.217.114",
+      "max_byte": 2.279663,
+      "avg_pack": 1.0666667
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.46170554,
+      "max_pack": 2.2666667,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "124.226.194.224",
+      "max_byte": 2.2436779,
+      "avg_pack": 0.48333332
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 2.204895,
+      "max_pack": 13.6,
+      "country": "中国",
+      "city": "玉林",
+      "province": "广西",
+      "src_ip": "171.110.215.204",
+      "max_byte": 2.204895,
+      "avg_pack": 13.6
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.877836,
+      "max_pack": 1.6,
+      "country": "中国",
+      "city": "钦州",
+      "province": "广西",
+      "src_ip": "180.138.28.165",
+      "max_byte": 2.193578,
+      "avg_pack": 0.65555555
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.90719485,
+      "max_pack": 1.7333333,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "113.13.166.66",
+      "max_byte": 2.1331787,
+      "avg_pack": 0.76862746
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.5661674,
+      "max_pack": 1.4666667,
+      "country": "中国",
+      "city": "河池",
+      "province": "广西",
+      "src_ip": "180.142.56.168",
+      "max_byte": 2.1064758,
+      "avg_pack": 0.3942029
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.51400334,
+      "max_pack": 1.4666667,
+      "country": "中国",
+      "city": "玉林",
+      "province": "广西",
+      "src_ip": "116.11.144.165",
+      "max_byte": 2.1064758,
+      "avg_pack": 0.3589189
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.91588336,
+      "max_pack": 1.4666667,
+      "country": "中国",
+      "city": "南宁",
+      "province": "广西",
+      "src_ip": "180.136.194.152",
+      "max_byte": 2.1013896,
+      "avg_pack": 0.64
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.54002845,
+      "max_pack": 1.4666667,
+      "country": "中国",
+      "city": "南宁",
+      "province": "广西",
+      "src_ip": "171.105.190.21",
+      "max_byte": 2.1013896,
+      "avg_pack": 0.3768116
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.2953613,
+      "max_pack": 1.4666667,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "116.253.140.160",
+      "max_byte": 2.0896912,
+      "avg_pack": 0.2140351
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 2.073161,
+      "max_pack": 1.6,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "219.159.107.231",
+      "max_byte": 2.073161,
+      "avg_pack": 1.6
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.96468246,
+      "max_pack": 1.6,
+      "country": "中国",
+      "city": "来宾",
+      "province": "广西",
+      "src_ip": "222.217.8.155",
+      "max_byte": 2.0431519,
+      "avg_pack": 0.81904763
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.7940114,
+      "max_pack": 1.4666667,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "116.1.52.173",
+      "max_byte": 2.0337422,
+      "avg_pack": 0.58133334
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.4362243,
+      "max_pack": 1.4666667,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "116.1.101.243",
+      "max_byte": 2.032725,
+      "avg_pack": 0.32236287
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.45564368,
+      "max_pack": 1.4666667,
+      "country": "中国",
+      "city": "南宁",
+      "province": "广西",
+      "src_ip": "124.227.106.27",
+      "max_byte": 2.0314534,
+      "avg_pack": 0.32995984
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.54217035,
+      "max_pack": 1.4666667,
+      "country": "中国",
+      "city": "来宾",
+      "province": "广西",
+      "src_ip": "113.15.104.129",
+      "max_byte": 2.0072937,
+      "avg_pack": 0.3933635
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.8691491,
+      "max_pack": 1.4666667,
+      "country": "中国",
+      "city": "百色",
+      "province": "广西",
+      "src_ip": "222.218.68.153",
+      "max_byte": 2.0016987,
+      "avg_pack": 0.6577778
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.8261856,
+      "max_pack": 1.7333333,
+      "country": "中国",
+      "city": "来宾",
+      "province": "广西",
+      "src_ip": "171.108.237.93",
+      "max_byte": 1.9714355,
+      "avg_pack": 0.79727894
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.8042908,
+      "max_pack": 1.3333334,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "116.1.96.1",
+      "max_byte": 1.914978,
+      "avg_pack": 0.56
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.5894555,
+      "max_pack": 1.3333334,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "116.253.118.56",
+      "max_byte": 1.914978,
+      "avg_pack": 0.4148148
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.5764551,
+      "max_pack": 1.3333334,
+      "country": "中国",
+      "city": "玉林",
+      "province": "广西",
+      "src_ip": "171.109.89.110",
+      "max_byte": 1.914978,
+      "avg_pack": 0.40401608
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.78380495,
+      "max_pack": 1.3333334,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "116.253.4.165",
+      "max_byte": 1.914978,
+      "avg_pack": 0.54573643
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.2390137,
+      "max_pack": 1.4666667,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "113.13.103.70",
+      "max_byte": 1.9081116,
+      "avg_pack": 0.93333334
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.63563615,
+      "max_pack": 1.3333334,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "116.253.141.155",
+      "max_byte": 1.8997192,
+      "avg_pack": 0.47179487
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.6298065,
+      "max_pack": 1.3333334,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "116.253.140.88",
+      "max_byte": 1.8997192,
+      "avg_pack": 0.45
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.7662337,
+      "max_pack": 1.3333334,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "116.253.53.171",
+      "max_byte": 1.8997192,
+      "avg_pack": 0.54933333
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.5170302,
+      "max_pack": 1.3333334,
+      "country": "中国",
+      "city": "河池",
+      "province": "广西",
+      "src_ip": "220.173.9.64",
+      "max_byte": 1.8908182,
+      "avg_pack": 0.36969697
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.48017147,
+      "max_pack": 1.3333334,
+      "country": "中国",
+      "city": "贵港",
+      "province": "广西",
+      "src_ip": "124.226.127.117",
+      "max_byte": 1.8412272,
+      "avg_pack": 0.35555556
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.5773987,
+      "max_pack": 1.3333334,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "116.253.49.41",
+      "max_byte": 1.8404642,
+      "avg_pack": 0.42262334
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.47677913,
+      "max_pack": 1.3333334,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "116.253.51.206",
+      "max_byte": 1.8114725,
+      "avg_pack": 0.34833333
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.59939086,
+      "max_pack": 1.3333334,
+      "country": "中国",
+      "city": "来宾",
+      "province": "广西",
+      "src_ip": "124.226.37.167",
+      "max_byte": 1.8081665,
+      "avg_pack": 0.47713497
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.6886601,
+      "max_pack": 1.3333334,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "171.108.76.130",
+      "max_byte": 1.797994,
+      "avg_pack": 0.5647059
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.7431895,
+      "max_pack": 1.3333334,
+      "country": "中国",
+      "city": "玉林",
+      "province": "广西",
+      "src_ip": "171.111.41.129",
+      "max_byte": 1.7431895,
+      "avg_pack": 1.3333334
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.5390184,
+      "max_pack": 1.8666667,
+      "country": "中国",
+      "city": "玉林",
+      "province": "广西",
+      "src_ip": "171.110.171.174",
+      "max_byte": 1.7405192,
+      "avg_pack": 1.7777778
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.7275492,
+      "max_pack": 1.7333333,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "116.1.49.33",
+      "max_byte": 1.7275492,
+      "avg_pack": 1.7333333
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.6075737,
+      "max_pack": 1.2,
+      "country": "中国",
+      "city": "玉林",
+      "province": "广西",
+      "src_ip": "171.111.46.72",
+      "max_byte": 1.7234802,
+      "avg_pack": 0.44102564
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.47575867,
+      "max_pack": 1.2,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "116.1.40.151",
+      "max_byte": 1.7234802,
+      "avg_pack": 0.33827162
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.0851542,
+      "max_pack": 1.2,
+      "country": "中国",
+      "city": "来宾",
+      "province": "广西",
+      "src_ip": "180.142.31.227",
+      "max_byte": 1.7234802,
+      "avg_pack": 0.75555557
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.47493902,
+      "max_pack": 1.2,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "116.9.23.90",
+      "max_byte": 1.7234802,
+      "avg_pack": 0.3362319
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.45512518,
+      "max_pack": 1.2,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "116.1.120.55",
+      "max_byte": 1.7234802,
+      "avg_pack": 0.32136753
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.82321167,
+      "max_pack": 1.2,
+      "country": "中国",
+      "city": "崇左",
+      "province": "广西",
+      "src_ip": "113.14.219.130",
+      "max_byte": 1.7097473,
+      "avg_pack": 0.5777778
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.3963753,
+      "max_pack": 1.2,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "116.1.44.137",
+      "max_byte": 1.7097473,
+      "avg_pack": 0.2857143
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.530681,
+      "max_pack": 1.2,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "113.13.98.83",
+      "max_byte": 1.7097473,
+      "avg_pack": 0.3888172
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.4609461,
+      "max_pack": 1.2,
+      "country": "中国",
+      "city": "钦州",
+      "province": "广西",
+      "src_ip": "180.138.19.26",
+      "max_byte": 1.7097473,
+      "avg_pack": 0.32407406
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.5258627,
+      "max_pack": 1.2,
+      "country": "中国",
+      "city": "贵港",
+      "province": "广西",
+      "src_ip": "116.8.76.231",
+      "max_byte": 1.7097473,
+      "avg_pack": 0.37894738
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.4343325,
+      "max_pack": 1.2,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "116.253.48.88",
+      "max_byte": 1.7097473,
+      "avg_pack": 0.31351352
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.7097473,
+      "max_pack": 1.2,
+      "country": "中国",
+      "city": "崇左",
+      "province": "广西",
+      "src_ip": "113.14.217.179",
+      "max_byte": 1.7097473,
+      "avg_pack": 1.2
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.4445394,
+      "max_pack": 1.2,
+      "country": "中国",
+      "city": "南宁",
+      "province": "广西",
+      "src_ip": "171.107.43.228",
+      "max_byte": 1.7097473,
+      "avg_pack": 0.32
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.37104213,
+      "max_pack": 1.2,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "113.13.102.136",
+      "max_byte": 1.7097473,
+      "avg_pack": 0.26333332
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.7084757,
+      "max_pack": 1.2,
+      "country": "中国",
+      "city": "来宾",
+      "province": "广西",
+      "src_ip": "113.17.97.181",
+      "max_byte": 1.7084757,
+      "avg_pack": 1.2
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.26795188,
+      "max_pack": 1.2,
+      "country": "中国",
+      "city": "南宁",
+      "province": "广西",
+      "src_ip": "113.12.36.203",
+      "max_byte": 1.7072042,
+      "avg_pack": 0.19061728
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.98514223,
+      "max_pack": 1.2,
+      "country": "中国",
+      "city": "来宾",
+      "province": "广西",
+      "src_ip": "180.142.9.63",
+      "max_byte": 1.7059326,
+      "avg_pack": 0.7649123
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.6667684,
+      "max_pack": 1.3333334,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "222.84.193.173",
+      "max_byte": 1.6667684,
+      "avg_pack": 1.3333334
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.7950615,
+      "max_pack": 1.2,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "116.253.142.35",
+      "max_byte": 1.6666412,
+      "avg_pack": 0.5648485
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.5293586,
+      "max_pack": 1.2,
+      "country": "中国",
+      "city": "南宁",
+      "province": "广西",
+      "src_ip": "222.84.0.103",
+      "max_byte": 1.663971,
+      "avg_pack": 0.38181818
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.55024886,
+      "max_pack": 1.2,
+      "country": "中国",
+      "city": "贵港",
+      "province": "广西",
+      "src_ip": "124.226.125.113",
+      "max_byte": 1.6375223,
+      "avg_pack": 0.4
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.7123311,
+      "max_pack": 1.3333334,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "113.13.165.167",
+      "max_byte": 1.6265869,
+      "avg_pack": 0.5777778
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.514857,
+      "max_pack": 1.3333334,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "180.141.148.201",
+      "max_byte": 1.5945435,
+      "avg_pack": 0.46666667
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.58844,
+      "max_pack": 1.3333334,
+      "country": "中国",
+      "city": "玉林",
+      "province": "广西",
+      "src_ip": "171.109.208.129",
+      "max_byte": 1.58844,
+      "avg_pack": 1.3333334
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.118215,
+      "max_pack": 1.3333334,
+      "country": "中国",
+      "city": "玉林",
+      "province": "广西",
+      "src_ip": "171.111.45.54",
+      "max_byte": 1.5823364,
+      "avg_pack": 0.93333334
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.4448697,
+      "max_pack": 1.4666667,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "124.226.49.167",
+      "max_byte": 1.5790304,
+      "avg_pack": 0.42911878
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.7638889,
+      "max_pack": 1.2,
+      "country": "中国",
+      "city": "南宁",
+      "province": "广西",
+      "src_ip": "180.142.129.185",
+      "max_byte": 1.5724182,
+      "avg_pack": 0.5511111
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.66822195,
+      "max_pack": 1.3333334,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "180.141.151.46",
+      "max_byte": 1.5538534,
+      "avg_pack": 0.62222224
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.48925805,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "南宁",
+      "province": "广西",
+      "src_ip": "222.216.97.216",
+      "max_byte": 1.5401205,
+      "avg_pack": 0.33939394
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.61475396,
+      "max_pack": 1.2,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "116.9.33.225",
+      "max_byte": 1.5398661,
+      "avg_pack": 0.432493
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.71135205,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "171.106.230.229",
+      "max_byte": 1.5319824,
+      "avg_pack": 0.50133336
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.6255162,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "玉林",
+      "province": "广西",
+      "src_ip": "171.109.16.206",
+      "max_byte": 1.5319824,
+      "avg_pack": 0.43950617
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.41035244,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "116.9.25.75",
+      "max_byte": 1.5319824,
+      "avg_pack": 0.2857143
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.45191446,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "钦州",
+      "province": "广西",
+      "src_ip": "171.104.129.36",
+      "max_byte": 1.5319824,
+      "avg_pack": 0.31569892
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.6573677,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "玉林",
+      "province": "广西",
+      "src_ip": "171.107.121.188",
+      "max_byte": 1.5319824,
+      "avg_pack": 0.4595238
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.5307108,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "玉林",
+      "province": "广西",
+      "src_ip": "125.73.166.171",
+      "max_byte": 1.5307108,
+      "avg_pack": 1.0666667
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.5914052,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "南宁",
+      "province": "广西",
+      "src_ip": "180.142.138.49",
+      "max_byte": 1.5294393,
+      "avg_pack": 0.42051283
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.53563297,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "玉林",
+      "province": "广西",
+      "src_ip": "171.109.26.144",
+      "max_byte": 1.5281677,
+      "avg_pack": 0.37407407
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.3842614,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "116.253.119.57",
+      "max_byte": 1.5197754,
+      "avg_pack": 0.26969698
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.46569955,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "116.1.162.78",
+      "max_byte": 1.5197754,
+      "avg_pack": 0.34358975
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.5662395,
+      "max_pack": 1.2,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "116.253.142.183",
+      "max_byte": 1.5197754,
+      "avg_pack": 0.40784314
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.56604123,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "116.253.137.220",
+      "max_byte": 1.5197754,
+      "avg_pack": 0.39738563
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.7310004,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "116.253.141.247",
+      "max_byte": 1.5197754,
+      "avg_pack": 0.5190476
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.2849579,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "钦州",
+      "province": "广西",
+      "src_ip": "180.137.237.26",
+      "max_byte": 1.5197754,
+      "avg_pack": 0.2
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.36579698,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "南宁",
+      "province": "广西",
+      "src_ip": "116.252.47.161",
+      "max_byte": 1.5197754,
+      "avg_pack": 0.2600343
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.33070973,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "116.1.41.0",
+      "max_byte": 1.5197754,
+      "avg_pack": 0.23333333
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.6796318,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "116.253.142.140",
+      "max_byte": 1.5146891,
+      "avg_pack": 0.47719297
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.49091807,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "百色",
+      "province": "广西",
+      "src_ip": "180.137.152.119",
+      "max_byte": 1.4912924,
+      "avg_pack": 0.35789475
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.77873,
+      "max_pack": 1.3333334,
+      "country": "中国",
+      "city": "乌鲁木齐",
+      "province": "新疆",
+      "src_ip": "106.127.147.188",
+      "max_byte": 1.4803568,
+      "avg_pack": 0.76363635
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.522594,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "梧州",
+      "province": "广西",
+      "src_ip": "222.217.228.239",
+      "max_byte": 1.4790853,
+      "avg_pack": 0.3897436
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.51868045,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "来宾",
+      "province": "广西",
+      "src_ip": "113.15.107.35",
+      "max_byte": 1.4790853,
+      "avg_pack": 0.37471265
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.39831796,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "贵港",
+      "province": "广西",
+      "src_ip": "124.226.122.148",
+      "max_byte": 1.465861,
+      "avg_pack": 0.29166666
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.648775,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "116.9.31.24",
+      "max_byte": 1.465861,
+      "avg_pack": 0.47536233
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.5302022,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "222.216.114.121",
+      "max_byte": 1.4628092,
+      "avg_pack": 0.37866667
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.5253156,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "171.106.229.127",
+      "max_byte": 1.4628092,
+      "avg_pack": 0.39166668
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.4369201,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "222.216.116.209",
+      "max_byte": 1.4628092,
+      "avg_pack": 0.31666666
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.38771197,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "南宁",
+      "province": "广西",
+      "src_ip": "113.12.183.44",
+      "max_byte": 1.4607748,
+      "avg_pack": 0.28484848
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.6690979,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "钦州",
+      "province": "广西",
+      "src_ip": "180.138.76.238",
+      "max_byte": 1.4526367,
+      "avg_pack": 0.4888889
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.7191976,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "124.227.59.143",
+      "max_byte": 1.4383951,
+      "avg_pack": 0.53333336
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.43557394,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "南宁",
+      "province": "广西",
+      "src_ip": "171.107.25.19",
+      "max_byte": 1.4383951,
+      "avg_pack": 0.32984957
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.7191976,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "116.253.7.160",
+      "max_byte": 1.4383951,
+      "avg_pack": 0.53333336
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.1409506,
+      "max_pack": 1.6,
+      "country": "中国",
+      "city": "河池",
+      "province": "广西",
+      "src_ip": "113.16.185.167",
+      "max_byte": 1.4272054,
+      "avg_pack": 1.1733333
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.42952457,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "124.226.46.103",
+      "max_byte": 1.3997396,
+      "avg_pack": 0.31327912
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.6496684,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "124.226.41.217",
+      "max_byte": 1.3977051,
+      "avg_pack": 0.4977778
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.4910787,
+      "max_pack": 0.93333334,
+      "country": "中国",
+      "city": "广州",
+      "province": "广东",
+      "src_ip": "183.62.34.201",
+      "max_byte": 1.3476053,
+      "avg_pack": 0.36666667
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.77006024,
+      "max_pack": 0.93333334,
+      "country": "中国",
+      "city": "中山",
+      "province": "广东",
+      "src_ip": "59.33.46.51",
+      "max_byte": 1.3476053,
+      "avg_pack": 0.53333336
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.3305009,
+      "max_pack": 0.93333334,
+      "country": "中国",
+      "city": "玉林",
+      "province": "广西",
+      "src_ip": "180.137.4.194",
+      "max_byte": 1.3404846,
+      "avg_pack": 0.24029304
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.8529098,
+      "max_pack": 0.93333334,
+      "country": "中国",
+      "city": "玉林",
+      "province": "广西",
+      "src_ip": "125.73.174.198",
+      "max_byte": 1.3404846,
+      "avg_pack": 0.62222224
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.4762883,
+      "max_pack": 0.93333334,
+      "country": "中国",
+      "city": "钦州",
+      "province": "广西",
+      "src_ip": "171.104.130.235",
+      "max_byte": 1.3404846,
+      "avg_pack": 0.33164558
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.5219029,
+      "max_pack": 0.93333334,
+      "country": "中国",
+      "city": "贵港",
+      "province": "广西",
+      "src_ip": "124.226.124.232",
+      "max_byte": 1.3404846,
+      "avg_pack": 0.4
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.8489482,
+      "max_pack": 0.93333334,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "116.1.100.230",
+      "max_byte": 1.3404846,
+      "avg_pack": 0.61333334
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.60931116,
+      "max_pack": 0.93333334,
+      "country": "中国",
+      "city": "玉林",
+      "province": "广西",
+      "src_ip": "125.73.161.218",
+      "max_byte": 1.3404846,
+      "avg_pack": 0.42424244
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.37013245,
+      "max_pack": 0.93333334,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "116.253.112.183",
+      "max_byte": 1.3404846,
+      "avg_pack": 0.25866666
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.43049955,
+      "max_pack": 1.0666667,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西",
+      "src_ip": "116.1.46.0",
+      "max_byte": 1.3404846,
+      "avg_pack": 0.31724137
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.50268173,
+      "max_pack": 0.93333334,
+      "country": "中国",
+      "city": "玉林",
+      "province": "广西",
+      "src_ip": "116.11.145.126",
+      "max_byte": 1.3404846,
+      "avg_pack": 0.35
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.44668692,
+      "max_pack": 0.93333334,
+      "country": "中国",
+      "city": "贵港",
+      "province": "广西",
+      "src_ip": "125.73.70.251",
+      "max_byte": 1.3404846,
+      "avg_pack": 0.31111112
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.42868888,
+      "max_pack": 0.93333334,
+      "country": "中国",
+      "city": "来宾",
+      "province": "广西",
+      "src_ip": "124.226.35.41",
+      "max_byte": 1.3404846,
+      "avg_pack": 0.31447542
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.5064196,
+      "max_pack": 0.93333334,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "116.9.16.254",
+      "max_byte": 1.339213,
+      "avg_pack": 0.3638889
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.90897876,
+      "max_pack": 0.93333334,
+      "country": "中国",
+      "city": "贵港",
+      "province": "广西",
+      "src_ip": "125.73.71.54",
+      "max_byte": 1.3379415,
+      "avg_pack": 0.6333333
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.45919707,
+      "max_pack": 0.93333334,
+      "country": "中国",
+      "city": "崇左",
+      "province": "广西",
+      "src_ip": "180.141.252.64",
+      "max_byte": 1.3366699,
+      "avg_pack": 0.3212121
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.46329635,
+      "max_pack": 0.93333334,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西",
+      "src_ip": "116.9.26.97",
+      "max_byte": 1.3353983,
+      "avg_pack": 0.32753623
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.44441223,
+      "max_pack": 0.93333334,
+      "country": "中国",
+      "city": "玉林",
+      "province": "广西",
+      "src_ip": "171.110.194.50",
+      "max_byte": 1.3298035,
+      "avg_pack": 0.31827956
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.47919393,
+      "max_pack": 0.93333334,
+      "country": "中国",
+      "city": "玉林",
+      "province": "广西",
+      "src_ip": "180.142.219.144",
+      "max_byte": 1.3298035,
+      "avg_pack": 0.345977
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 0.3694254,
+      "max_pack": 0.93333334,
+      "country": "中国",
+      "city": "百色",
+      "province": "广西",
+      "src_ip": "180.137.149.48",
+      "max_byte": 1.3298035,
+      "avg_pack": 0.26078433
+    },
+    {
+      "vendor": "中国电信",
+      "avg_byte": 1.1453629,
+      "max_pack": 0.93333334,
+      "country": "中国",
+      "city": "崇左",
+      "province": "广西",
+      "src_ip": "113.14.219.170",
+      "max_byte": 1.3298035,
+      "avg_pack": 0.8666667
+    }
+  ],
+  "city": [
+    {
+      "bytes": 43237.84,
+      "packets": 158420.53,
+      "country": "中国",
+      "city": "柳州",
+      "province": "广西"
+    },
+    {
+      "bytes": 27252.334,
+      "packets": 112198.266,
+      "country": "中国",
+      "city": "玉林",
+      "province": "广西"
+    },
+    {
+      "bytes": 27040.475,
+      "packets": 121561.336,
+      "country": "中国",
+      "city": "南宁",
+      "province": "广西"
+    },
+    {
+      "bytes": 25515.523,
+      "packets": 120374.93,
+      "country": "中国",
+      "city": "桂林",
+      "province": "广西"
+    },
+    {
+      "bytes": 12545.814,
+      "packets": 48088,
+      "country": "中国",
+      "city": "贵港",
+      "province": "广西"
+    },
+    {
+      "bytes": 10087.014,
+      "packets": 40641.734,
+      "country": "中国",
+      "city": "来宾",
+      "province": "广西"
+    },
+    {
+      "bytes": 9108.39,
+      "packets": 36658.535,
+      "country": "中国",
+      "city": "梧州",
+      "province": "广西"
+    },
+    {
+      "bytes": 6392.0684,
+      "packets": 34052,
+      "country": "中国",
+      "city": "河池",
+      "province": "广西"
+    },
+    {
+      "bytes": 6239.1733,
+      "packets": 31517.6,
+      "country": "中国",
+      "city": "钦州",
+      "province": "广西"
+    },
+    {
+      "bytes": 3082.3008,
+      "packets": 12055.2,
+      "country": "中国",
+      "city": "贺州",
+      "province": "广西"
+    },
+    {
+      "bytes": 2597.2378,
+      "packets": 11826.134,
+      "country": "中国",
+      "city": "北海",
+      "province": "广西"
+    },
+    {
+      "bytes": 1915.2494,
+      "packets": 9268.934,
+      "country": "中国",
+      "city": "崇左",
+      "province": "广西"
+    },
+    {
+      "bytes": 1856.1696,
+      "packets": 10560.533,
+      "country": "中国",
+      "city": "百色",
+      "province": "广西"
+    },
+    {
+      "bytes": 1074.7659,
+      "packets": 3562.8,
+      "country": "中国",
+      "city": "防城港",
+      "province": "广西"
+    },
+    {
+      "bytes": 651.50757,
+      "packets": 2979.7334,
+      "country": "中国",
+      "city": "乌鲁木齐",
+      "province": "新疆"
+    },
+    {
+      "bytes": 194.25023,
+      "packets": 2752.1333,
+      "country": "中国",
+      "city": "哈尔滨",
+      "province": "黑龙江"
+    },
+    {
+      "bytes": 59.90944,
+      "packets": 459.33334,
+      "country": "中国",
+      "city": "济南",
+      "province": "山东"
+    },
+    {
+      "bytes": 53.413647,
+      "packets": 686.13336,
+      "country": "美国",
+      "city": "None",
+      "province": "None"
+    },
+    {
+      "bytes": 43.89661,
+      "packets": 204.93333,
+      "country": "中国",
+      "city": "深圳",
+      "province": "广东"
+    },
+    {
+      "bytes": 38.2782,
+      "packets": 145.73334,
+      "country": "中国",
+      "city": "成都",
+      "province": "四川"
+    },
+    {
+      "bytes": 34.63885,
+      "packets": 369.33334,
+      "country": "中国",
+      "city": "中山",
+      "province": "广东"
+    },
+    {
+      "bytes": 32.65584,
+      "packets": 267.2,
+      "country": "中国",
+      "city": "广州",
+      "province": "广东"
+    },
+    {
+      "bytes": 18.17042,
+      "packets": 232.13333,
+      "country": "中国",
+      "city": "北京",
+      "province": "北京"
+    },
+    {
+      "bytes": 8.700562,
+      "packets": 75.2,
+      "country": "中国",
+      "city": "上海",
+      "province": "上海"
+    },
+    {
+      "bytes": 6.3236237,
+      "packets": 100.53333,
+      "country": "中国",
+      "city": "雅安",
+      "province": "四川"
+    },
+    {
+      "bytes": 5.344645,
+      "packets": 65.2,
+      "country": "中国",
+      "city": "南京",
+      "province": "江苏"
+    },
+    {
+      "bytes": 4.896927,
+      "packets": 87.2,
+      "country": "中国",
+      "city": "长春",
+      "province": "吉林"
+    },
+    {
+      "bytes": 4.2316437,
+      "packets": 58.666668,
+      "country": "中国",
+      "city": "绵阳",
+      "province": "四川"
+    },
+    {
+      "bytes": 3.6815643,
+      "packets": 53.466667,
+      "country": "荷兰",
+      "city": "None",
+      "province": "None"
+    },
+    {
+      "bytes": 3.6015828,
+      "packets": 46.133335,
+      "country": "芬兰",
+      "city": "None",
+      "province": "None"
+    },
+    {
+      "bytes": 3.4980774,
+      "packets": 35.466667,
+      "country": "中国",
+      "city": "佛山",
+      "province": "广东"
+    },
+    {
+      "bytes": 3.4276326,
+      "packets": 47.733334,
+      "country": "None",
+      "city": "None",
+      "province": "None"
+    },
+    {
+      "bytes": 2.6474,
+      "packets": 38.666668,
+      "country": "中国",
+      "city": "河源",
+      "province": "广东"
+    },
+    {
+      "bytes": 2.123006,
+      "packets": 34,
+      "country": "加拿大",
+      "city": "None",
+      "province": "None"
+    },
+    {
+      "bytes": 2.0617168,
+      "packets": 20.666666,
+      "country": "中国",
+      "city": "东莞",
+      "province": "广东"
+    },
+    {
+      "bytes": 1.9735972,
+      "packets": 20.666666,
+      "country": "日本",
+      "city": "None",
+      "province": "None"
+    },
+    {
+      "bytes": 1.9234976,
+      "packets": 16.4,
+      "country": "中国",
+      "city": "益阳",
+      "province": "湖南"
+    },
+    {
+      "bytes": 1.797994,
+      "packets": 19.333334,
+      "country": "韩国",
+      "city": "None",
+      "province": "None"
+    },
+    {
+      "bytes": 1.5986124,
+      "packets": 18.133333,
+      "country": "中国台湾",
+      "city": "None",
+      "province": "台湾"
+    },
+    {
+      "bytes": 1.5969595,
+      "packets": 16.4,
+      "country": "中国",
+      "city": "武汉",
+      "province": "湖北"
+    },
+    {
+      "bytes": 1.5911102,
+      "packets": 16.933332,
+      "country": "中国",
+      "city": "杭州",
+      "province": "浙江"
+    },
+    {
+      "bytes": 1.3376871,
+      "packets": 17.466667,
+      "country": "中国香港",
+      "city": "香港",
+      "province": "香港"
+    },
+    {
+      "bytes": 1.3085684,
+      "packets": 18.666666,
+      "country": "中国",
+      "city": "南昌",
+      "province": "江西"
+    },
+    {
+      "bytes": 1.1116028,
+      "packets": 20.133333,
+      "country": "中国",
+      "city": "宁德",
+      "province": "福建"
+    },
+    {
+      "bytes": 1.1013031,
+      "packets": 12.8,
+      "country": "中国",
+      "city": "长沙",
+      "province": "湖南"
+    },
+    {
+      "bytes": 1.0523478,
+      "packets": 16.666666,
+      "country": "中国",
+      "city": "青岛",
+      "province": "山东"
+    },
+    {
+      "bytes": 0.9124756,
+      "packets": 11.733334,
+      "country": "中国",
+      "city": "福州",
+      "province": "福建"
+    },
+    {
+      "bytes": 0.8879344,
+      "packets": 12.8,
+      "country": "中国澳门",
+      "city": "澳门",
+      "province": "澳门"
+    },
+    {
+      "bytes": 0.87827045,
+      "packets": 12,
+      "country": "中国",
+      "city": "温州",
+      "province": "浙江"
+    },
+    {
+      "bytes": 0.79892474,
+      "packets": 12.666667,
+      "country": "印度",
+      "city": "None",
+      "province": "None"
+    },
+    {
+      "bytes": 0.68868,
+      "packets": 8,
+      "country": "中国",
+      "city": "重庆",
+      "province": "重庆"
+    },
+    {
+      "bytes": 0.68626404,
+      "packets": 5.4666667,
+      "country": "中国",
+      "city": "宁波",
+      "province": "浙江"
+    },
+    {
+      "bytes": 0.6810506,
+      "packets": 9.733334,
+      "country": "中国",
+      "city": "本溪",
+      "province": "辽宁"
+    },
+    {
+      "bytes": 0.6707509,
+      "packets": 7.3333335,
+      "country": "新加坡",
+      "city": "None",
+      "province": "None"
+    },
+    {
+      "bytes": 0.65511066,
+      "packets": 7.2,
+      "country": "中国",
+      "city": "苏州",
+      "province": "江苏"
+    },
+    {
+      "bytes": 0.64786273,
+      "packets": 6.9333334,
+      "country": "中国",
+      "city": "西安",
+      "province": "陕西"
+    },
+    {
+      "bytes": 0.6450653,
+      "packets": 8.133333,
+      "country": "中国",
+      "city": "天津",
+      "province": "天津"
+    },
+    {
+      "bytes": 0.63527423,
+      "packets": 7.2,
+      "country": "中国",
+      "city": "珠海",
+      "province": "广东"
+    },
+    {
+      "bytes": 0.63107806,
+      "packets": 7.0666666,
+      "country": "中国",
+      "city": "扬州",
+      "province": "江苏"
+    },
+    {
+      "bytes": 0.6243388,
+      "packets": 10.266666,
+      "country": "中国",
+      "city": "十堰",
+      "province": "湖北"
+    },
+    {
+      "bytes": 0.472641,
+      "packets": 6.5333333,
+      "country": "中国",
+      "city": "资阳",
+      "province": "四川"
+    },
+    {
+      "bytes": 0.39723715,
+      "packets": 2.2666667,
+      "country": "中国",
+      "city": "菏泽",
+      "province": "山东"
+    },
+    {
+      "bytes": 0.3794352,
+      "packets": 5.3333335,
+      "country": "中国",
+      "city": "沧州",
+      "province": "河北"
+    },
+    {
+      "bytes": 0.37460327,
+      "packets": 4.5333333,
+      "country": "中国",
+      "city": "绍兴",
+      "province": "浙江"
+    },
+    {
+      "bytes": 0.36061606,
+      "packets": 6.133333,
+      "country": "中国",
+      "city": "许昌",
+      "province": "河南"
+    },
+    {
+      "bytes": 0.33772787,
+      "packets": 3.0666666,
+      "country": "中国",
+      "city": "泉州",
+      "province": "福建"
+    },
+    {
+      "bytes": 0.33340454,
+      "packets": 3.6,
+      "country": "中国",
+      "city": "江门",
+      "province": "广东"
+    },
+    {
+      "bytes": 0.32958984,
+      "packets": 3.2,
+      "country": "中国",
+      "city": "惠州",
+      "province": "广东"
+    },
+    {
+      "bytes": 0.3238678,
+      "packets": 3.8666666,
+      "country": "中国",
+      "city": "合肥",
+      "province": "安徽"
+    },
+    {
+      "bytes": 0.32043457,
+      "packets": 1.2,
+      "country": "中国",
+      "city": "烟台",
+      "province": "山东"
+    },
+    {
+      "bytes": 0.3153483,
+      "packets": 3.6,
+      "country": "中国",
+      "city": "厦门",
+      "province": "福建"
+    },
+    {
+      "bytes": 0.30899048,
+      "packets": 4.9333334,
+      "country": "中国",
+      "city": "衡阳",
+      "province": "湖南"
+    },
+    {
+      "bytes": 0.30695596,
+      "packets": 3.6,
+      "country": "中国",
+      "city": "赣州",
+      "province": "江西"
+    },
+    {
+      "bytes": 0.29474893,
+      "packets": 3.6,
+      "country": "中国",
+      "city": "无锡",
+      "province": "江苏"
+    },
+    {
+      "bytes": 0.28533936,
+      "packets": 3.4666667,
+      "country": "中国",
+      "city": "金华",
+      "province": "浙江"
+    },
+    {
+      "bytes": 0.2836863,
+      "packets": 3.6,
+      "country": "中国",
+      "city": "孝感",
+      "province": "湖北"
+    },
+    {
+      "bytes": 0.25990805,
+      "packets": 2.8,
+      "country": "中国",
+      "city": "汕头",
+      "province": "广东"
+    },
+    {
+      "bytes": 0.2568563,
+      "packets": 2.9333334,
+      "country": "中国",
+      "city": "伊犁",
+      "province": "新疆"
+    },
+    {
+      "bytes": 0.25583902,
+      "packets": 2.9333334,
+      "country": "中国",
+      "city": "黄冈",
+      "province": "湖北"
+    },
+    {
+      "bytes": 0.25227866,
+      "packets": 3.4666667,
+      "country": "中国",
+      "city": "常州",
+      "province": "江苏"
+    },
+    {
+      "bytes": 0.24108887,
+      "packets": 3.8666666,
+      "country": "中国",
+      "city": "襄阳",
+      "province": "湖北"
+    },
+    {
+      "bytes": 0.23943584,
+      "packets": 3.2,
+      "country": "德国",
+      "city": "None",
+      "province": "None"
+    },
+    {
+      "bytes": 0.23930867,
+      "packets": 2.5333333,
+      "country": "中国",
+      "city": "南通",
+      "province": "江苏"
+    },
+    {
+      "bytes": 0.23829143,
+      "packets": 3.7333333,
+      "country": "中国",
+      "city": "衡水",
+      "province": "河北"
+    },
+    {
+      "bytes": 0.2263387,
+      "packets": 3.6,
+      "country": "中国",
+      "city": "眉山",
+      "province": "四川"
+    },
+    {
+      "bytes": 0.21985371,
+      "packets": 3.4666667,
+      "country": "瑞士",
+      "city": "None",
+      "province": "None"
+    },
+    {
+      "bytes": 0.21959941,
+      "packets": 2.4,
+      "country": "中国",
+      "city": "大连",
+      "province": "辽宁"
+    },
+    {
+      "bytes": 0.21654765,
+      "packets": 2.5333333,
+      "country": "中国",
+      "city": "郑州",
+      "province": "河南"
+    },
+    {
+      "bytes": 0.21222432,
+      "packets": 3.2,
+      "country": "中国",
+      "city": "淮北",
+      "province": "安徽"
+    },
+    {
+      "bytes": 0.20929973,
+      "packets": 2.1333334,
+      "country": "中国",
+      "city": "遵义",
+      "province": "贵州"
+    },
+    {
+      "bytes": 0.20726521,
+      "packets": 1.4666667,
+      "country": "英国",
+      "city": "None",
+      "province": "None"
+    },
+    {
+      "bytes": 0.2023061,
+      "packets": 2.2666667,
+      "country": "中国",
+      "city": "昆明",
+      "province": "云南"
+    },
+    {
+      "bytes": 0.2009074,
+      "packets": 3.3333333,
+      "country": "意大利",
+      "city": "None",
+      "province": "None"
+    },
+    {
+      "bytes": 0.19683838,
+      "packets": 2.9333334,
+      "country": "中国",
+      "city": "吉安",
+      "province": "江西"
+    },
+    {
+      "bytes": 0.19658406,
+      "packets": 2.1333334,
+      "country": "中国",
+      "city": "湛江",
+      "province": "广东"
+    },
+    {
+      "bytes": 0.19620259,
+      "packets": 1.2,
+      "country": "俄罗斯",
+      "city": "None",
+      "province": "None"
+    },
+    {
+      "bytes": 0.19175212,
+      "packets": 2.1333334,
+      "country": "中国",
+      "city": "茂名",
+      "province": "广东"
+    },
+    {
+      "bytes": 0.19073486,
+      "packets": 2.2666667,
+      "country": "中国",
+      "city": "石家庄",
+      "province": "河北"
+    },
+    {
+      "bytes": 0.18870036,
+      "packets": 3.0666666,
+      "country": "瑞典",
+      "city": "None",
+      "province": "None"
+    },
+    {
+      "bytes": 0.18844604,
+      "packets": 2.4,
+      "country": "丹麦",
+      "city": "None",
+      "province": "None"
+    }
+  ]
+}

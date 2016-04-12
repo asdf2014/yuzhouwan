@@ -33,9 +33,6 @@ hs_err_pid*
 *.log
 
 # sorry for copyright
-/site/src/main/java/wechat
-/site/src/main/resources/wechat
-
-/site/src/main/webapp/index.jsp
-/site/src/main/webapp/wechat
-/site/src/main/webapp/WEB-INF/struts-config.xml
+/yuzhouwan-log/yuzhouwan-log-elastic/src/main/resources/es/web/
+/yuzhouwan-log/yuzhouwan-log-elastic/src/main/resources/es/web/*
+/yuzhouwan-log/yuzhouwan-log-elastic/src/main/resources/api/suppress.json

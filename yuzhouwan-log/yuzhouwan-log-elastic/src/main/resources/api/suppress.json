@@ -1,0 +1,40 @@
+{
+  "template": [
+    {
+      "id": "183.78.183.6-cc",  //攻击策略ID
+      "attack_type": "cc",      //攻击类型
+      "cc_attack": {
+        "ip": "183.78.183.6",  //攻击IP
+        //(或 "url":"http://master.cloudguarder.com/"), //攻击URL
+        "dst_port": "80",       //攻击目的端口
+        "attack_time": "60",    //单位是秒
+        "theads": "6000"       //并发数
+      }
+    }
+    ,
+    {
+      "id": "183.78.183.6-syn",   //攻击配置ID
+      "attack_type": "syn",       //攻击类型
+      "syn_attack": {
+        "ip": "183.78.183.6",    //攻击IP
+        //(或 "url":"http://master.cloudguarder.com/"), //攻击URL
+        "dst_port": "3456",       //攻击目的端口
+        "attack_time": "60",      //攻击时长，单位是秒
+        "attack_pps": "10000",    //攻击pps
+        "threads": "6000"         //并发数
+      }
+    }
+    ,
+    {
+      "id": "183.78.183.6-udp",   //攻击配置ID
+      "attack_type": "udp",       //攻击类型
+      "udp_attack": {
+        "ip":"183.78.183.6",     //攻击IP
+        // (或 "url":"http://master.cloudguarder.com/"), //攻击URL
+        "dst_port":"53",          //攻击目的端口
+        "attack_time":"60",       //攻击时长，单位是秒
+        "attack_bandwidth":"10000"//攻击带宽，单位是Mbps
+      }
+    }
+  ]
+}

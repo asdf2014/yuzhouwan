@@ -3,7 +3,7 @@ package com.yuzhouwan.common.collection;
 /**
  * Copyright @ 2015 yuzhouwan.com
  * All right reserved.
- * Function: Time Util
+ * Function: Company
  *
  * @author Benedict Jin
  * @since 2016/3/8 0030
