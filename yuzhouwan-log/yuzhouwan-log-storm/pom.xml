@@ -62,23 +62,5 @@
             <artifactId>jackson-mapper-asl</artifactId>
             <version>${org.codehaus.jackson.jackson-mapper-asl.version}</version>
         </dependency>
-
-
     </dependencies>
-
-    <repositories>
-        <!-- Fix Clojar -->
-        <repository>
-            <id>clojars.org</id>
-            <url>http://clojars.org/repo</url>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </repository>
-    </repositories>
 </project>

@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
@@ -65,4 +66,24 @@ public class TimeUtilsTest {
         System.out.println(TimeUtils.howLongBeginThisMonth());
     }
 
+    @Test
+    public void testBigDecimal() {
+        {
+            BigDecimal b = new BigDecimal(200).multiply(new BigDecimal(0.5));
+            assertEquals("100.0", b.toPlainString());
+        }
+        {
+            BigDecimal b = new BigDecimal(200).divide(new BigDecimal(2));
+            assertEquals("100", b.toPlainString());
+        }
+
+        {
+            BigDecimal b = new BigDecimal(333).multiply(new BigDecimal(0.5));
+            assertEquals("166.5", b.toPlainString());
+        }
+        {
+            BigDecimal b = new BigDecimal(333).divide(new BigDecimal(2));
+            assertEquals("166.5", b.toPlainString());
+        }
+    }
 }

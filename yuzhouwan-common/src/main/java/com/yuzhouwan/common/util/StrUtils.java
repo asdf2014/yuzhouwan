@@ -44,4 +44,30 @@ public class StrUtils {
         return s == null || s.length() == 0;
     }
 
+    /**
+     * Cut Start String
+     *
+     * @param origin
+     * @param start
+     * @return
+     */
+    public static String cutStartStr(String origin, String start) {
+        return origin.substring(start.length(), origin.length());
+    }
+
+    /**
+     * Cut Middle String, and Save the tail.
+     *
+     * @param origin
+     * @param middle
+     * @return
+     */
+    public static String cutMiddleStr(String origin, String middle) {
+        String[] strs = origin.split(middle);
+        return strs[strs.length - 1];
+    }
+
+    public static String cutTailStr(String origin, String tail) {
+        return origin.substring(0, origin.length() - tail.length());
+    }
 }

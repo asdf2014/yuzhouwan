@@ -16,10 +16,7 @@ public class PropUtilsTest {
 
     @Test
     public void getPropTester() throws Exception {
-
-        String confPath = System.getProperty("user.dir").concat("\\src\\main\\resources\\conf.txt");
-        PropUtils p = new PropUtils(confPath);
-        assertEquals("asdf's blog", p.getProperty("blog.name"));
-        assertEquals("yuzhouwan.com", p.getProperty("site.domain"));
+        assertEquals("asdf's blog", PropUtils.getInstance().getProperty("blog.name"));
+        assertEquals("yuzhouwan.com", PropUtils.getInstance().getProperty("site.domain"));
     }
 }

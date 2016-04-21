@@ -20,9 +20,12 @@ import java.util.Properties;
 public class PropUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(PropUtils.class);
-    private Properties properties;
+    private static Properties properties;
 
-    public PropUtils(String confPath) {
+    private static volatile PropUtils instance;
+    private static final String confPath = System.getProperty("user.dir").concat("\\src\\main\\resources\\prop\\site.properties");
+
+    private PropUtils(String confPath) {
         File confFile = new File(confPath);
         if (!confFile.exists())
             return;
@@ -42,6 +45,15 @@ public class PropUtils {
             return;
         }
         this.properties = p;
+    }
+
+    public static PropUtils getInstance() {
+        if (instance == null)
+            synchronized (PropUtils.class) {
+                if (instance == null)
+                    instance = new PropUtils(confPath);
+            }
+        return instance;
     }
 
     public String getProperty(String key) {
