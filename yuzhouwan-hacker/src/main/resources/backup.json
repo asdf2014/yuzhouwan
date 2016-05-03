@@ -1,0 +1,155 @@
+[
+  {
+    "aggregations": {
+      "group_by_attackId": {
+        "terms": {
+          "field": "attackId"
+        },
+        "aggregations": {
+          "tops": {
+            "top_hits": {
+              "size": 100
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "aggregations": {
+      "group_by_attackId": {
+        "terms": {
+          "field": "attackId"
+        },
+        "aggregations": {
+          "tops": {
+            "top_hits": {
+              "size": 100
+            }
+          }
+        }
+      },
+      "rx_MBps_sum": {
+        "sum": {
+          "field": "rxMBps"
+        }
+      },
+      "tx_MBps_sum": {
+        "sum": {
+          "field": "txMBps"
+        }
+      }
+    }
+  },
+  {
+    "size": 0,
+    "query": {
+      "bool": {
+        "must": {
+          "terms": {
+            "attackId": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              125
+            ]
+          }
+        }
+      }
+    },
+    "_source": {
+      "includes": [
+        "rxPps",
+        "txPps",
+        "rxMBps",
+        "txMBps",
+        "currTime",
+        "attackId"
+      ],
+      "excludes": []
+    },
+    "sort": [
+      {
+        "currTime": {
+          "order": "asc"
+        }
+      }
+    ],
+    "aggregations": {
+      "group_by_attackId": {
+        "terms": {
+          "field": "attackId"
+        }
+      },
+      "rx_MBps_sum": {
+        "sum": {
+          "field": "rxMBps"
+        }
+      },
+      "tx_MBps_sum": {
+        "sum": {
+          "field": "txMBps"
+        }
+      }
+    }
+  },
+  {
+    "aggregations": {
+      "group_by_attackId": {
+        "terms": {
+          "field": "attackId"
+        },
+        "aggregations": {
+          "attackId_limit": {
+            "filter": {
+              "bool": {
+                "must": {
+                  "terms": {
+                    "attackId": [
+                      1,
+                      2,
+                      3,
+                      4,
+                      5,
+                      6,
+                      7,
+                      8,
+                      9,
+                      10,
+                      11,
+                      12,
+                      13,
+                      14,
+                      125
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "rx_MBps_sum": {
+        "sum": {
+          "field": "rxMBps"
+        }
+      },
+      "tx_MBps_sum": {
+        "sum": {
+          "field": "txMBps"
+        }
+      }
+    }
+  }
+]

@@ -86,4 +86,9 @@ public class TimeUtilsTest {
             assertEquals("166.5", b.toPlainString());
         }
     }
+
+    @Test
+    public void testNow() {
+        System.out.println(new Date().getTime());
+    }
 }

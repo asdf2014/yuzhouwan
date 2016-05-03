@@ -17,16 +17,12 @@ hs_err_pid*
 .idea/.name
 
 # Maven
-/target
-/target/*
-*/target/
-*/target/*
+**/target/
+**/target/**
 
 # Build
-/out
-/out/*
-*/out/
-*/out/*
+**/out/
+**/out/**
 
 
 # JIT log files

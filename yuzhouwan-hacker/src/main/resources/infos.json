@@ -1,0 +1,167 @@
+{
+  "body": [
+    {
+      "all": [
+        {
+          "createTime": 1461740578000,
+          "rxMbps": 0,
+          "rxPps": 0,
+          "txMbps": 1,
+          "txPps": 2500
+        },
+        {
+          "createTime": 1461740578000,
+          "rxMbps": 0,
+          "rxPps": 0,
+          "txMbps": 1,
+          "txPps": 2500
+        }
+      ],
+      "info": [
+        {
+          "concurrentAmount": 10000,
+          "createTime": 1461811300000,
+          "creator": "15",
+          "customerId": 15,
+          "primary": 1,
+          "selfCreate": 1,
+          "status": 11,
+          "suppressDuration": 1,
+          "suppressId": 1,
+          "suppressIp": "172.16.17.1",
+          "suppressPort": 9003,
+          "suppressType": 1,
+          "totalRMbs": 0,
+          "totalRpackets": 0,
+          "totalTMbs": 194,
+          "totalTpackets": 270000
+        }
+      ]
+    },
+    {
+      "all": [
+        {
+          "createTime": 1461740578000,
+          "rxMbps": 0,
+          "rxPps": 0,
+          "txMbps": 1,
+          "txPps": 2500
+        },
+        {
+          "createTime": 1461740578000,
+          "rxMbps": 0,
+          "rxPps": 0,
+          "txMbps": 1,
+          "txPps": 2500
+        },
+        {
+          "createTime": 1461740578000,
+          "rxMbps": 0,
+          "rxPps": 0,
+          "txMbps": 1,
+          "txPps": 2500
+        },
+        {
+          "createTime": 1461740578000,
+          "rxMbps": 0,
+          "rxPps": 0,
+          "txMbps": 1,
+          "txPps": 2500
+        },
+        {
+          "createTime": 1461740578000,
+          "rxMbps": 0,
+          "rxPps": 0,
+          "txMbps": 1,
+          "txPps": 2500
+        },
+        {
+          "createTime": 1461740578000,
+          "rxMbps": 0,
+          "rxPps": 0,
+          "txMbps": 1,
+          "txPps": 2500
+        },
+        {
+          "createTime": 1461740578000,
+          "rxMbps": 0,
+          "rxPps": 0,
+          "txMbps": 1,
+          "txPps": 2500
+        },
+        {
+          "createTime": 1461740578000,
+          "rxMbps": 0,
+          "rxPps": 0,
+          "txMbps": 1,
+          "txPps": 2500
+        },
+        {
+          "createTime": 1461740578000,
+          "rxMbps": 0,
+          "rxPps": 0,
+          "txMbps": 1,
+          "txPps": 2500
+        },
+        {
+          "createTime": 1461740578000,
+          "rxMbps": 0,
+          "rxPps": 0,
+          "txMbps": 1,
+          "txPps": 2500
+        },
+        {
+          "createTime": 1461740578000,
+          "rxMbps": 0,
+          "rxPps": 0,
+          "txMbps": 1,
+          "txPps": 2500
+        },
+        {
+          "createTime": 1461740578000,
+          "rxMbps": 0,
+          "rxPps": 0,
+          "txMbps": 1,
+          "txPps": 2500
+        },
+        {
+          "createTime": 1461740578000,
+          "rxMbps": 0,
+          "rxPps": 0,
+          "txMbps": 1,
+          "txPps": 2500
+        },
+        {
+          "createTime": 1461740578000,
+          "rxMbps": 0,
+          "rxPps": 0,
+          "txMbps": 1,
+          "txPps": 2500
+        }
+      ],
+      "info": [
+        {
+          "concurrentAmount": 10,
+          "createTime": 1461834181000,
+          "creator": "15",
+          "customerId": 15,
+          "primary": 125,
+          "selfCreate": 1,
+          "status": 11,
+          "suppressDuration": 10,
+          "suppressId": 125,
+          "suppressIp": "1.1.1.1",
+          "suppressPort": 1,
+          "suppressType": 3,
+          "totalRMbs": 0,
+          "totalRpackets": 0,
+          "totalTMbs": 1358,
+          "totalTpackets": 1890000
+        }
+      ]
+    }
+  ],
+  "code": "000000",
+  "message": "操作成功",
+  "success": true
+}

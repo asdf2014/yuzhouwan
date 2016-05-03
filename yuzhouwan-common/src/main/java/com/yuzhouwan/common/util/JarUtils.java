@@ -3,8 +3,10 @@ package com.yuzhouwan.common.util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.List;
 import java.util.Properties;
 import java.util.zip.ZipEntry;
@@ -13,7 +15,7 @@ import java.util.zip.ZipInputStream;
 /**
  * Copyright @ 2015 yuzhouwan.com
  * All right reserved.
- * Function: Ip Util
+ * Function: Jar Util
  *
  * @author Benedict Jin
  * @since 2016/4/20 0030
@@ -70,5 +72,21 @@ public class JarUtils {
         if (properties == null)
             return null;
         return properties.getProperty(key);
+    }
+
+    /**
+     * 判断某个 Class是否是 Project内的，还是外部依赖的 jar里的
+     *
+     * @param klass
+     * @return
+     */
+    public static boolean isProjectJar(Class<?> klass) {
+        final URL location = klass.getProtectionDomain().getCodeSource().getLocation();
+        try {
+            return !new File(location.toURI()).getName().endsWith(".jar");
+        } catch (Exception ignored) {
+            _log.error("{}", ignored);
+            return true;
+        }
     }
 }

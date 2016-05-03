@@ -8,7 +8,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by Benedict Jin on 2016/4/7.
+ * Copyright @ 2015 yuzhouwan.com
+ * All right reserved.
+ * Function: Directory Util
+ *
+ * @author Benedict Jin
+ * @since 2016/4/7 0030
  */
 public class DirUtils {
 

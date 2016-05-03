@@ -8,7 +8,12 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * Created by Benedict Jin on 2016/4/21.
+ * Copyright @ 2015 yuzhouwan.com
+ * All right reserved.
+ * Function: File Util
+ *
+ * @author Benedict Jin
+ * @since 2016/4/21 0030
  */
 public class FileUtils {
 

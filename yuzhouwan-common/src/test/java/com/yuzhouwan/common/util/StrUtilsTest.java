@@ -22,6 +22,13 @@ public class StrUtilsTest {
     }
 
     @Test
+    public void mainValueTest() throws Exception {
+        if (1 == Integer.parseInt(StrUtils.getMainValue("ATK000001", "ATK".length(), "0"))) {
+            System.out.println("true");
+        }
+    }
+
+    @Test
     public void cutStart() throws Exception {
         assertEquals("yuzhouwan.com", StrUtils.cutStartStr("www.yuzhouwan.com", "www."));
     }

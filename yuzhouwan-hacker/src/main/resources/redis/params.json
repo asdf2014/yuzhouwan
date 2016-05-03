@@ -1,0 +1,30 @@
+[
+  {
+    "id": "10-172.16.17.1-cc",
+    "policy": {
+      "cc_attack": {
+        "attack_ip": "172.16.17.1",
+        "threads": 10000,
+        "attack_time": 60,
+        "dst_port": 9003,
+        "attack_url": ""
+      },
+      "id": "10-172.16.17.1-cc",
+      "attack_type": "cc"
+    }
+  },
+  {
+    "id": "27-www.baidu.com-cc",
+    "policy": {
+      "cc_attack": {
+        "attack_ip": "",
+        "threads": 10000,
+        "attack_time": 60,
+        "dst_port": 9003,
+        "attack_url": "http://www.baidu.com/"
+      },
+      "id": "27-www.baidu.com-cc",
+      "attack_type": "cc"
+    }
+  }
+]

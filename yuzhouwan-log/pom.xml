@@ -26,6 +26,7 @@
                 <module>yuzhouwan-log-hadoop</module>
                 <module>yuzhouwan-log-storm</module>
                 <module>yuzhouwan-log-elastic</module>
+                <module>yuzhouwan-log-flume</module>
             </modules>
         </profile>
     </profiles>

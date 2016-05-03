@@ -30,10 +30,22 @@ public class IpUtilsTest {
     @Test
     public void extractDomainTest() throws Exception {
         assertEquals("yuzhouwan.com", IpUtils.extractDomain("http://yuzhouwan.com"));
+        assertEquals("yuzhouwan.com", IpUtils.extractDomain("http://yuzhouwan.com/"));
         assertEquals("yuzhouwan.com", IpUtils.extractDomain("http://yuzhouwan.com/subpath/welcome.html"));
         assertEquals(null, IpUtils.extractDomain("http:/yuzhouwan.com"));
 
         assertEquals(null, IpUtils.extractDomain(""));
         assertEquals(null, IpUtils.extractDomain(null));
+    }
+
+    @Test
+    public void testLongAndIp() throws Exception {
+        String ipAddressStr = "192.168.5.11";
+        Long ipAddressLong = 3232236811L;
+        assertEquals(ipAddressStr, IpUtils.long2ip(IpUtils.ip2long(ipAddressStr)));
+        if (ipAddressLong == IpUtils.ip2long(IpUtils.long2ip(ipAddressLong))) {
+            System.out.println(IpUtils.long2ip(ipAddressLong));
+            System.out.println(true);
+        }
     }
 }

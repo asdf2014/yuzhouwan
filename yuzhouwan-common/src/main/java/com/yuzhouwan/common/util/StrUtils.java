@@ -35,6 +35,20 @@ public class StrUtils {
     }
 
     /**
+     * 得到最主干的数值，处理类似：HEAD000001
+     *
+     * @param suppressCode
+     * @param headIndex
+     * @return 1
+     */
+    public static String getMainValue(String suppressCode, int headIndex, String needRemoved) {
+        if (!StrUtils.isEmpty(suppressCode)) {
+            return suppressCode.substring(headIndex, suppressCode.length()).replace(needRemoved, "");
+        }
+        return null;
+    }
+
+    /**
      * Parsing String is Empty.
      *
      * @param s
@@ -67,6 +81,13 @@ public class StrUtils {
         return strs[strs.length - 1];
     }
 
+    /**
+     * Cut the tail of string.
+     *
+     * @param origin
+     * @param tail
+     * @return
+     */
     public static String cutTailStr(String origin, String tail) {
         return origin.substring(0, origin.length() - tail.length());
     }

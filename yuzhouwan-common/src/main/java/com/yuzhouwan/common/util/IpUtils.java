@@ -23,6 +23,7 @@ public class IpUtils {
 
     private static final Pattern EXTRACT_DOMAIN_WITH_SUB_PATH = Pattern.compile("(?<=//).*?(?=/)");
     private static final Pattern EXTRACT_DOMAIN_SIMPLE = Pattern.compile("(?<=//).*");
+    private static final Pattern EXTRACT_DOMAIN_SIMPLE_END_WITH_TAIL = Pattern.compile("(?<=//).*(?=/)");
 
     /**
      * 检查 IP地址是否是 合法的
@@ -45,7 +46,7 @@ public class IpUtils {
     }
 
     /**
-     * 抽取域名
+     * 抽取域名主干部分
      *
      * @param url
      * @return
@@ -65,12 +66,50 @@ public class IpUtils {
                 return m.group(0);
             }
         } else {
-            m = EXTRACT_DOMAIN_SIMPLE.matcher(url);
+            if (!url.endsWith("/")) {
+                m = EXTRACT_DOMAIN_SIMPLE.matcher(url);
+            } else {
+                m = EXTRACT_DOMAIN_SIMPLE_END_WITH_TAIL.matcher(url);
+            }
             if (m.find()) {
                 return m.group(0);
             }
         }
         return null;
+    }
+
+    /**
+     * Convert IP Address into Long
+     *
+     * @param ipAddress
+     * @return
+     */
+    public static long ip2long(String ipAddress) {
+        long[] ip = new long[4];
+        int i = 0;
+        for (String ipStr : ipAddress.split("\\.")) {
+            ip[i] = Long.parseLong(ipStr);
+            i++;
+        }
+        return (ip[0] << 24) + (ip[1] << 16) + (ip[2] << 8) + ip[3];
+    }
+
+    /**
+     * Convert Long into IP Address
+     *
+     * @param ipAddress
+     * @return
+     */
+    public static String long2ip(Long ipAddress) {
+        StringBuffer sb = new StringBuffer("");
+        sb.append(String.valueOf((ipAddress >>> 24)));
+        sb.append(".");
+        sb.append(String.valueOf((ipAddress & 0x00FFFFFF) >>> 16));
+        sb.append(".");
+        sb.append(String.valueOf((ipAddress & 0x0000FFFF) >>> 8));
+        sb.append(".");
+        sb.append(String.valueOf((ipAddress & 0x000000FF)));
+        return sb.toString();
     }
 
 }
