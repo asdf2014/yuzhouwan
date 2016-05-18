@@ -9,7 +9,7 @@ import org.junit.Test;
 /**
  * StrassenMatrix Tester.
  *
- * @author <asdf2014>
+ * @author Benedict Jin
  * @version 1.0
  * @since <pre>十月 8, 2015</pre>
  */

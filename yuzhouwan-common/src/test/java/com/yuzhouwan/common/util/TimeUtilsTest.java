@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 
@@ -60,6 +61,11 @@ public class TimeUtilsTest {
     }
 
     @Test
+    public void testPatWeekStart(){
+        System.out.println(sdf.format(TimeUtils.pastWeekStart()));
+    }
+
+    @Test
     public void testMoreThanTwoHour() {
         long twoHour = 1000 * 60 * 60 * 2;
         System.out.println(twoHour);
@@ -90,5 +96,30 @@ public class TimeUtilsTest {
     @Test
     public void testNow() {
         System.out.println(new Date().getTime());
+    }
+
+    @Test
+    public void testTime() {
+        {
+            Calendar c = Calendar.getInstance();
+            c.set(2016, 5, 16, 12, 0, 0);
+            System.out.println(c.getTime());
+            System.out.println(c.getTime().getTime());
+        }        {
+            Calendar c = Calendar.getInstance();
+            c.set(2016, 5, 16, 12, 0, 29);
+            System.out.println(c.getTime());
+            System.out.println(c.getTime().getTime());
+        }        {
+            Calendar c = Calendar.getInstance();
+            c.set(2016, 5, 16, 12, 0, 35);
+            System.out.println(c.getTime());
+            System.out.println(c.getTime().getTime());
+        }        {
+            Calendar c = Calendar.getInstance();
+            c.set(2016, 5, 16, 12, 1, 35);
+            System.out.println(c.getTime());
+            System.out.println(c.getTime().getTime());
+        }
     }
 }

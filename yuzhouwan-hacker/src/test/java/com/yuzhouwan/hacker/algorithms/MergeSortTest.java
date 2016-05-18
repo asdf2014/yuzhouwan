@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * MergeSort Tester.
  *
- * @author <asdf2014>
+ * @author Benedict Jin
  * @version 1.0
  * @since <pre>9, 23, 2015</pre>
  */

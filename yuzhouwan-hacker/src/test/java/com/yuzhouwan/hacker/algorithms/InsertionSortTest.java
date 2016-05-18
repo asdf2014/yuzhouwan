@@ -1,6 +1,5 @@
 package com.yuzhouwan.hacker.algorithms;
 
-import com.yuzhouwan.hacker.algorithms.InsertionSort;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,7 +7,7 @@ import org.junit.Test;
 /**
  * InsertionSort Tester.
  *
- * @author <asdf2014>
+ * @author Benedict Jin
  * @version 1.0
  * @since <pre>九月 21, 2015</pre>
  */

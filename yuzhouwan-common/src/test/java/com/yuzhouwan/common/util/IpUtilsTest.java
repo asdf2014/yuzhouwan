@@ -2,6 +2,8 @@ package com.yuzhouwan.common.util;
 
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -48,4 +50,74 @@ public class IpUtilsTest {
             System.out.println(true);
         }
     }
+
+    @Test
+    public void checkIP2IntTest() throws Exception {
+        int ip = IpUtils.ip2int("10.1.1.0");
+        assertEquals(167837952, ip);
+        assertEquals(0x0A010100, ip);
+    }
+
+    @Test
+    public void checkIPRangeTest() throws Exception {
+        assertEquals(null, IpUtils.checkIPRange("", ""));
+        assertEquals(null, IpUtils.checkIPRange("", "10.1.1.0/24"));
+        assertEquals(null, IpUtils.checkIPRange("10.1.1.1", "10.1.1.0/"));
+        assertEquals(null, IpUtils.checkIPRange("10.1.1.1", "/24"));
+
+        assertEquals(null, IpUtils.checkIPRange("9999.1.1.1", "10.1.1.0/24"));
+
+        assertEquals(true, IpUtils.checkIPRange("10.1.1.1", "10.1.1.0/24"));
+        assertEquals(false, IpUtils.checkIPRange("10.1.2.1", "10.1.1.0/24"));
+
+        assertEquals(false, IpUtils.checkIPRange("113.12.83.3", "113.12.83.4/32"));
+        assertEquals(true, IpUtils.checkIPRange("113.12.83.4", "113.12.83.4/32"));
+
+        String aim = "113.12.83.4";
+        String ranges = "113.12.83.4/32,113.12.83.5/32,116.1.239.35/32";
+        boolean result = false;
+        if (ranges.contains(",")) {
+            for (String range : ranges.split(",")) {
+                Boolean isInRange = IpUtils.checkIPRange(aim, range);
+                if (isInRange != null && isInRange) {
+                    result = true;
+                    break;
+                }
+            }
+        }
+        assertEquals(true, result);
+    }
+
+    @Test
+    public void getIPFromURLTest() throws Exception {
+
+        assertEquals(null, IpUtils.getIPFromURL("baidu.com"));
+        assertEquals(null, IpUtils.getIPFromURL("www.baidu.com"));
+        System.out.println(IpUtils.getIPFromURL("http://www.baidu.com/"));
+        System.out.println(IpUtils.getIPFromURL("https://www.aliyun.com/"));
+    }
+
+    @Test
+    public void isReachableTest() throws Exception {
+
+        assertEquals(true, IpUtils.isReachable("127.0.0.1"));
+        System.out.println(IpUtils.isReachable("192.168.1.101"));
+        System.out.println(IpUtils.isReachable(IpUtils.getIPFromURL("http://www.baidu.com")));
+    }
+
+    @Test
+    public void pingTest() throws Exception {
+        System.out.println(IpUtils.ping("127.0.0.1"));
+    }
+
+    @Test
+    public void getCurrentEnvironmentNetworkIpTest() throws Exception {
+        List<String> ips = IpUtils.getCurrentEnvironmentNetworkIp();
+        for (String ip : ips) {
+            System.out.println(ip);
+            System.out.println(IpUtils.isReachable(ip));
+            System.out.println(IpUtils.ping(ip));
+        }
+    }
+
 }

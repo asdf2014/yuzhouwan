@@ -24,7 +24,10 @@ public class StrUtilsTest {
     @Test
     public void mainValueTest() throws Exception {
         if (1 == Integer.parseInt(StrUtils.getMainValue("ATK000001", "ATK".length(), "0"))) {
-            System.out.println("true");
+            System.out.println("1");
+        }
+        if (40 == Integer.parseInt(StrUtils.getMainValue("ATK000040", "ATK".length(), "0"))) {
+            System.out.println("40");
         }
     }
 

@@ -3,6 +3,12 @@ package com.yuzhouwan.common.util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+import java.net.*;
+import java.util.Enumeration;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,6 +30,8 @@ public class IpUtils {
     private static final Pattern EXTRACT_DOMAIN_WITH_SUB_PATH = Pattern.compile("(?<=//).*?(?=/)");
     private static final Pattern EXTRACT_DOMAIN_SIMPLE = Pattern.compile("(?<=//).*");
     private static final Pattern EXTRACT_DOMAIN_SIMPLE_END_WITH_TAIL = Pattern.compile("(?<=//).*(?=/)");
+
+    private static final String PING_PERFIX = "ping -c 1 ";
 
     /**
      * 检查 IP地址是否是 合法的
@@ -110,6 +118,172 @@ public class IpUtils {
         sb.append(".");
         sb.append(String.valueOf((ipAddress & 0x000000FF)));
         return sb.toString();
+    }
+
+    /**
+     * Convert IP Address into Int
+     *
+     * @param ipAddress
+     * @return
+     */
+    public static Integer ip2int(String ipAddress) {
+
+        Inet4Address a;
+        try {
+            a = (Inet4Address) InetAddress.getByName(ipAddress);
+        } catch (UnknownHostException e) {
+            _log.error("{}", e.getMessage());
+            return null;
+        }
+        byte[] b = a.getAddress();
+        return ((b[0] & 0xFF) << 24) |
+                ((b[1] & 0xFF) << 16) |
+                ((b[2] & 0xFF) << 8) |
+                (b[3] & 0xFF);
+    }
+
+    /**
+     * 检查 ipAddress 是否在 range 范围内
+     *
+     * @param ipAddress
+     * @param range
+     * @return
+     */
+    public static Boolean checkIPRange(String ipAddress, String range) {
+
+        if (StrUtils.isEmpty(range) || StrUtils.isEmpty(ipAddress)) {
+            return null;
+        }
+        if (!range.contains("/")) {
+            return null;
+        }
+        String[] rangeArray = range.split("/");
+        if (rangeArray.length != 2) {
+            return null;
+        }
+        if (StrUtils.isEmpty(rangeArray[0]) || StrUtils.isEmpty(rangeArray[1])) {
+            return null;
+        }
+        String rangeIp = rangeArray[0];
+        if (!checkValid(rangeIp) || !checkValid(ipAddress)) {
+            return null;
+        }
+
+        int subnet = ip2int(rangeIp);   // 10.1.1.0/24
+        int bits = Integer.parseInt(rangeArray[1]);
+        int ip = ip2int(ipAddress);   // 10.1.1.99
+
+        // Create bitmask to clear out irrelevant bits. For 10.1.1.0/24 this is
+        // 0xFFFFFF00 -- the first 24 bits are 1's, the last 8 are 0's.
+        //
+        //     -1        == 0xFFFFFFFF
+        //     32 - bits == 8
+        //     -1 << 8   == 0xFFFFFF00
+        int mask = -1 << (32 - bits);
+
+        if ((subnet & mask) == (ip & mask)) {
+            // IP address is in the subnet.
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Get ip from url.
+     *
+     * @param url
+     * @return
+     */
+    public static String getIPFromURL(String url) {
+        try {
+            return Inet4Address.getByName(new URL(url).getHost()).getHostAddress();
+        } catch (Exception e) {
+            _log.error("{}", e.getMessage());
+            return null;
+        }
+    }
+
+    /**
+     * check ip is reachable
+     *
+     * @param ipAddress
+     * @return
+     */
+    public static Boolean isReachable(String ipAddress) {
+        try {
+            return InetAddress.getByName(ipAddress).isReachable(10000);
+        } catch (IOException e) {
+            _log.error("{}", e.getMessage());
+            return null;
+        }
+    }
+
+    public static boolean ping(String ipAddress) {
+        try {
+            return Runtime.getRuntime().exec(PING_PERFIX.concat(ipAddress))
+                    .waitFor(100000, TimeUnit.MICROSECONDS);
+        } catch (Exception e) {
+            _log.error("{}", e.getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * The current host IP address is the IP address from the device.
+     */
+    private static List<String> currentHostIpAddress;
+
+    /**
+     * @return the current environment's IP address, taking into account the Internet connection to any of the available
+     * machine's Network interfaces. Examples of the outputs can be in octats or in IPV6 format.
+     * <pre>
+     *         ==> wlan0
+     *
+     *         fec0:0:0:9:213:e8ff:fef1:b717%4
+     *         siteLocal: true
+     *         isLoopback: false isIPV6: true
+     *         130.212.150.216 <<<<<<<<<<<------------- This is the one we want to grab so that we can.
+     *         siteLocal: false                          address the DSP on the network.
+     *         isLoopback: false
+     *         isIPV6: false
+     *
+     *         ==> lo
+     *         0:0:0:0:0:0:0:1%1
+     *         siteLocal: false
+     *         isLoopback: true
+     *         isIPV6: true
+     *         127.0.0.1
+     *         siteLocal: false
+     *         isLoopback: true
+     *         isIPV6: false
+     *  </pre>
+     */
+    public static List<String> getCurrentEnvironmentNetworkIp() {
+        if (currentHostIpAddress == null || currentHostIpAddress.isEmpty()) {
+            currentHostIpAddress = new LinkedList<>();
+            Enumeration<NetworkInterface> netInterfaces;
+            try {
+                netInterfaces = NetworkInterface.getNetworkInterfaces();
+                while (netInterfaces.hasMoreElements()) {
+                    NetworkInterface ni = netInterfaces.nextElement();
+                    byte[] hardware = ni.getHardwareAddress();
+                    if (!ni.isUp() || ni.isVirtual() || hardware == null || hardware.length == 0) {
+                        continue;
+                    }
+                    Enumeration<InetAddress> address = ni.getInetAddresses();
+                    while (address.hasMoreElements()) {
+                        InetAddress inetAddress = address.nextElement();
+                        if (!inetAddress.isLoopbackAddress() && inetAddress.isSiteLocalAddress()
+                                && !(inetAddress.getHostAddress().indexOf(":") > -1)) {
+                            currentHostIpAddress.add(inetAddress.getHostAddress());
+                        }
+                    }
+                }
+            } catch (SocketException e) {
+                _log.error("{}", e);
+            }
+        }
+        return currentHostIpAddress;
     }
 
 }
