@@ -23,17 +23,44 @@ import java.util.zip.ZipInputStream;
 public class JarUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(JarUtils.class);
-    private static final String JAR_NAME = PropUtils.getInstance().getProperty("jar.name");
+    //    private static final String JAR_NAME = PropUtils.getInstance().getProperty("jar.name");
     private static String JAR_PATH;
     private static final String PROP_PATH = PropUtils.getInstance().getProperty("prop.path");
     private static Properties properties = new Properties();
 
+    private static final String LIB_PATH = DirUtils.getLibPathInWebApp();
+    private static final String CLASSES_PATH = DirUtils.getClassesPath();
+
     static {
         try {
-            List<String> jarPaths = DirUtils.findPath(DirUtils.getClassesPath(), JAR_NAME, false, "classes");
+            /**
+             * /classes/lib/*.jar
+             */
+            List<String> jarPaths = DirUtils.findPath(CLASSES_PATH, ".jar", false, "lib");
             if (jarPaths != null && jarPaths.size() > 0) {
-                JAR_PATH = DirUtils.findPath(DirUtils.getClassesPath(), JAR_NAME, false, "classes").get(0);
-                scanDirWithinJar();
+                for (String jarFile : jarPaths) {
+                    jarFile = jarFile.substring(1);
+                    jarPaths = DirUtils.findPath(CLASSES_PATH, jarFile, false, "classes");
+                    if (jarPaths != null && jarPaths.size() > 0) {
+                        JAR_PATH = jarPaths.get(0);
+                        scanDirWithinJar();
+                    }
+                }
+            }
+            /**
+             * /lib/*.jar
+             */
+            jarPaths = DirUtils.findPath(LIB_PATH, ".jar", false, "lib");
+            if (jarPaths != null && jarPaths.size() > 0) {
+                for (String jarFile : jarPaths) {
+                    jarFile = jarFile.substring(1);
+                    //如果是 webApp，这里需要改为 WEB-INF; 否则是 target
+                    jarPaths = DirUtils.findPath(LIB_PATH, jarFile, false, "target");
+                    if (jarPaths != null && jarPaths.size() > 0) {
+                        JAR_PATH = jarPaths.get(0);
+                        scanDirWithinJar();
+                    }
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -49,22 +76,33 @@ public class JarUtils {
      * @throws URISyntaxException
      */
     private static void scanDirWithinJar() throws IOException, URISyntaxException {
-        ZipInputStream zip = new ZipInputStream(
-                JarUtils.class.getClassLoader().getResource(JAR_PATH)
-                        .toURI().toURL().openStream());
-        if (zip == null)
-            throw new RuntimeException(JAR_PATH.concat(" is not exist!!"));
-        while (true) {
-            ZipEntry e = zip.getNextEntry();
-            if (e == null)
-                break;
-            String name = e.getName();
-            if (name.startsWith(PROP_PATH)) {
-                if (StrUtils.isEmpty(StrUtils.cutStartStr(name, PROP_PATH)))
-                    continue;
-                _log.debug(name);
-                properties.load(JarUtils.class.getResourceAsStream("/".concat(name)));
+        //如果是 webApp，这里需要是改为 ".." + JAR_PATH；否则，直接用 JAR_PATH
+        URL sourceUrl = JarUtils.class.getClassLoader().getResource(JAR_PATH);
+        if (sourceUrl == null)
+            return;
+        ZipInputStream zip = new ZipInputStream(sourceUrl.toURI().toURL().openStream());
+        if (zip == null || zip.available() == 0)
+            throw new RuntimeException(JAR_PATH.concat(" is not exist or cannot be available!!"));
+        try {
+            while (true) {
+                ZipEntry e = zip.getNextEntry();
+                if (e == null)
+                    break;
+                String name = e.getName();
+                if (name.startsWith(PROP_PATH)) {
+                    if (StrUtils.isEmpty(StrUtils.cutStartStr(name, PROP_PATH)))
+                        continue;
+                    _log.debug(name);
+                    properties.load(JarUtils.class.getResourceAsStream("/".concat(name)));
+                }
             }
+        } finally {
+            if (zip != null)
+                try {
+                    zip.close();
+                } catch (IOException e) {
+                    _log.error(e.getMessage());
+                }
         }
     }
 

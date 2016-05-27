@@ -27,7 +27,17 @@ public class DirUtils {
         if (!outDir.exists()) {
             outDir.mkdir();
         }
-        System.out.println(currentDir);
+        _log.debug(currentDir);
+    }
+
+    /**
+     * 获得 WEB-INF 中 lib 目录的绝对路径
+     *
+     * @return
+     */
+    public static String getLibPathInWebApp() {
+        String classesPath = getClassesPath();
+        return classesPath.substring(0, classesPath.lastIndexOf("/")).concat("/lib");
     }
 
     /**
@@ -62,7 +72,7 @@ public class DirUtils {
      * @return
      */
     public static List<String> findPath(String path, String fileName, boolean isAbsolute, String basePath) {
-        List<String> foundPath = findPath(path, fileName);
+        List<String> foundPath = findAbsolutePath(path, fileName);
         if (foundPath == null || isAbsolute) {
             return foundPath;
         }
@@ -80,7 +90,7 @@ public class DirUtils {
      * @param fileName
      * @return
      */
-    public static List<String> findPath(String path, String fileName) {
+    public static List<String> findAbsolutePath(String path, String fileName) {
         if (StrUtils.isEmpty(path) || StrUtils.isEmpty(fileName))
             return null;
         List<String> filePathList = scanDir(path);

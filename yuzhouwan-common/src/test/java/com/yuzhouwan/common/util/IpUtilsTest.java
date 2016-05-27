@@ -95,6 +95,10 @@ public class IpUtilsTest {
         assertEquals(null, IpUtils.getIPFromURL("www.baidu.com"));
         System.out.println(IpUtils.getIPFromURL("http://www.baidu.com/"));
         System.out.println(IpUtils.getIPFromURL("https://www.aliyun.com/"));
+
+        System.out.println(IpUtils.getIPFromURL("http://180.97.33.107"));
+        System.out.println(IpUtils.getIPFromURL("ftp://11.22.33.44"));
+        System.out.println(IpUtils.getIPFromURL("http://www.baidu.com"));
     }
 
     @Test
