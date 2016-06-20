@@ -61,7 +61,7 @@ public class TimeUtilsTest {
     }
 
     @Test
-    public void testPatWeekStart(){
+    public void testPatWeekStart() {
         System.out.println(sdf.format(TimeUtils.pastWeekStart()));
     }
 
@@ -105,21 +105,30 @@ public class TimeUtilsTest {
             c.set(2016, 5, 16, 12, 0, 0);
             System.out.println(c.getTime());
             System.out.println(c.getTime().getTime());
-        }        {
+        }
+        {
             Calendar c = Calendar.getInstance();
             c.set(2016, 5, 16, 12, 0, 29);
             System.out.println(c.getTime());
             System.out.println(c.getTime().getTime());
-        }        {
+        }
+        {
             Calendar c = Calendar.getInstance();
             c.set(2016, 5, 16, 12, 0, 35);
             System.out.println(c.getTime());
             System.out.println(c.getTime().getTime());
-        }        {
+        }
+        {
             Calendar c = Calendar.getInstance();
             c.set(2016, 5, 16, 12, 1, 35);
             System.out.println(c.getTime());
             System.out.println(c.getTime().getTime());
         }
+    }
+
+    @Test
+    public void lastMonthTodayInBeginTest() {
+        System.out.println(sdf.format(TimeUtils.lastMonthTodayInBegin()));
+        System.out.println(sdf.format(TimeUtils.lastFewDaysInBegin(30)));
     }
 }

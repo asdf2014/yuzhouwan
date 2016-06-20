@@ -54,17 +54,16 @@ public class JarUtils {
             if (jarPaths != null && jarPaths.size() > 0) {
                 for (String jarFile : jarPaths) {
                     jarFile = jarFile.substring(1);
-                    //如果是 webApp，这里需要改为 WEB-INF; 否则是 target
-                    jarPaths = DirUtils.findPath(LIB_PATH, jarFile, false, "target");
+                    //如果是 webApp，这里需要改为 WEB-INF; 否则是 target (supported by profile in maven)
+                    jarPaths = DirUtils.findPath(LIB_PATH, jarFile, false,
+                            PropUtils.getInstance().getProperty("lib.path"));
                     if (jarPaths != null && jarPaths.size() > 0) {
                         JAR_PATH = jarPaths.get(0);
                         scanDirWithinJar();
                     }
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (URISyntaxException e) {
+        } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
     }
@@ -76,14 +75,17 @@ public class JarUtils {
      * @throws URISyntaxException
      */
     private static void scanDirWithinJar() throws IOException, URISyntaxException {
-        //如果是 webApp，这里需要是改为 ".." + JAR_PATH；否则，直接用 JAR_PATH
-        URL sourceUrl = JarUtils.class.getClassLoader().getResource(JAR_PATH);
+        //如果是 webApp，这里需要是改为 ".." + JAR_PATH；否则，直接用 JAR_PATH (supported by profile in maven)
+        String prefix = PropUtils.getInstance().getProperty("prefix.path.for.scan.dir.with.jar");
+        URL sourceUrl = JarUtils.class.getClassLoader().getResource(
+                (StrUtils.isEmpty(prefix) ? "" : prefix).concat(JAR_PATH));
         if (sourceUrl == null)
             return;
-        ZipInputStream zip = new ZipInputStream(sourceUrl.toURI().toURL().openStream());
-        if (zip == null || zip.available() == 0)
-            throw new RuntimeException(JAR_PATH.concat(" is not exist or cannot be available!!"));
-        try {
+
+        try (ZipInputStream zip = new ZipInputStream(sourceUrl.toURI().toURL().openStream())) {
+            if (zip == null || zip.available() == 0)
+                throw new RuntimeException(JAR_PATH.concat(" is not exist or cannot be available!!"));
+
             while (true) {
                 ZipEntry e = zip.getNextEntry();
                 if (e == null)
@@ -96,13 +98,6 @@ public class JarUtils {
                     properties.load(JarUtils.class.getResourceAsStream("/".concat(name)));
                 }
             }
-        } finally {
-            if (zip != null)
-                try {
-                    zip.close();
-                } catch (IOException e) {
-                    _log.error(e.getMessage());
-                }
         }
     }
 

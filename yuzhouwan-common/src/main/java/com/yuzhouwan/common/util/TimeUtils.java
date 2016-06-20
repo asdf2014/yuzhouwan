@@ -1,5 +1,7 @@
 package com.yuzhouwan.common.util;
 
+import org.joda.time.DateTime;
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -62,4 +64,25 @@ public class TimeUtils {
         return calendar.getTime();
     }
 
+    /**
+     * 上个月的同一天，凌晨 0点
+     *
+     * @return
+     */
+    public static Date lastMonthTodayInBegin() {
+        return DateTime.now().minusMonths(1)
+                .withHourOfDay(0).withMinuteOfHour(0).withSecondOfMinute(0).withMillisOfSecond(0)
+                .toDate();
+    }
+
+    /**
+     * 几天前，凌晨 00:00:00 000
+     *
+     * @return
+     */
+    public static Date lastFewDaysInBegin(Integer days) {
+        return DateTime.now().minusDays(days)
+                .withHourOfDay(0).withMinuteOfHour(0).withSecondOfMinute(0).withMillisOfSecond(0)
+                .toDate();
+    }
 }

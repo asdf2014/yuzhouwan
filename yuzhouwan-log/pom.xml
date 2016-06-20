@@ -16,18 +16,10 @@
         <relativePath>../yuzhouwan-parent/pom.xml</relativePath>
     </parent>
 
-    <profiles>
-        <profile>
-            <id>log</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <modules>
-                <module>yuzhouwan-log-hadoop</module>
-                <module>yuzhouwan-log-storm</module>
-                <module>yuzhouwan-log-elastic</module>
-                <module>yuzhouwan-log-flume</module>
-            </modules>
-        </profile>
-    </profiles>
+    <modules>
+        <module>yuzhouwan-log-hadoop</module>
+        <module>yuzhouwan-log-storm</module>
+        <module>yuzhouwan-log-elastic</module>
+        <module>yuzhouwan-log-flume</module>
+    </modules>
 </project>

@@ -1,17 +1,12 @@
 package com.yuzhouwan.hacker.snmp.simple;
 
-import com.yuzhouwan.hacker.snmp.simple.SnmpSimpleGet;
-import com.yuzhouwan.hacker.snmp.simple.SnmpSimpleSet;
-import org.junit.Before;
-import org.junit.Test;
-
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  * Copyright @ 2015 yuzhouwan.com
  * All right reserved.
- * Function��SnmpSimpleSet Tester.
+ * Function: SnmpSimpleSet Tester.
  *
  * @author Benedict Jin
  * @since 2015/11/24 0024
@@ -32,7 +27,7 @@ public class SnmpSimpleSetTest {
 
     private List<String> oids;
 
-    @Before
+//    @Before
     public void init() {
 
         oids = new LinkedList<>();
@@ -49,7 +44,7 @@ public class SnmpSimpleSetTest {
     /**
      * Method: snmpSyncSetList(String ip, String community, List<String> oidList)
      */
-    @Test
+//    @Test
     public void testSnmpSyncSetList() throws Exception {
 
         SnmpSimpleSet.snmpSyncSetList(ip, "public", errorCount);

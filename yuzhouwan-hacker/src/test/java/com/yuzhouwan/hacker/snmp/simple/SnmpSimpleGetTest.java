@@ -1,9 +1,6 @@
 package com.yuzhouwan.hacker.snmp.simple;
 
-import com.yuzhouwan.hacker.snmp.simple.SnmpSimpleGet;
 import com.yuzhouwan.hacker.snmp.acl.SnmpSet;
-import org.junit.Before;
-import org.junit.Test;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -35,7 +32,7 @@ public class SnmpSimpleGetTest {
 
     private List<String> oids;
 
-    @Before
+//    @Before
     public void init() {
 
         oids = new LinkedList<>();
@@ -54,7 +51,7 @@ public class SnmpSimpleGetTest {
     /**
      * Method: snmpSyncSetList(String ip, String community, List<String> oidList)
      */
-    @Test
+//    @Test
     public void testSnmpSyncGetList() throws Exception {
 
         /**

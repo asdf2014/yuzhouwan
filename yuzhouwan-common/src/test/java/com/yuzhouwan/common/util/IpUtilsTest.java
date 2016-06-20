@@ -105,8 +105,9 @@ public class IpUtilsTest {
     public void isReachableTest() throws Exception {
 
         assertEquals(true, IpUtils.isReachable("127.0.0.1"));
-        System.out.println(IpUtils.isReachable("192.168.1.101"));
-        System.out.println(IpUtils.isReachable(IpUtils.getIPFromURL("http://www.baidu.com")));
+        //stop following test for performance
+//        System.out.println(IpUtils.isReachable("192.168.1.101"));
+//        System.out.println(IpUtils.isReachable(IpUtils.getIPFromURL("http://www.baidu.com")));
     }
 
     @Test

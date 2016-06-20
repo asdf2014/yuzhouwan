@@ -28,6 +28,7 @@
         <maven.compiler.jdk.version>1.8</maven.compiler.jdk.version>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
         <maven.release.plugin.version>2.4.1</maven.release.plugin.version>
+        <maven.install.plugin.version>2.5.2</maven.install.plugin.version>
         <maven.eclipse.plugin.version>2.9</maven.eclipse.plugin.version>
 
         <!-- scala -->
@@ -35,7 +36,7 @@
         <scala.unittest.version>2.2.1</scala.unittest.version>
         <spark.version>1.2.2</spark.version>
         <breeze.version>0.10</breeze.version>
-        <joda.time.version>2.7</joda.time.version>
+        <joda.time.version>2.8.2</joda.time.version>
         <jackson.version>2.6.3</jackson.version>
 
         <!-- test -->
@@ -87,6 +88,11 @@
 
         <!-- struts -->
         <struts.version>1.3.8</struts.version>
+
+        <!-- jFreeChart-->
+        <jfreechart.version>1.0.19</jfreechart.version>
+        <!-- iTextPDF-->
+        <itextpdf.version>5.5.9</itextpdf.version>
 
         <!-- json -->
         <fastjson.version>1.2.7</fastjson.version>

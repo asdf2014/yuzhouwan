@@ -8,15 +8,47 @@
     <artifactId>yuzhouwan-common</artifactId>
     <version>0.1</version>
     <packaging>jar</packaging>
+
+    <profiles>
+        <profile>
+            <id>normal-app</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <jar.util.lib.path>web</jar.util.lib.path>
+            </properties>
+        </profile>
+        <profile>
+            <id>web-app</id>
+            <properties>
+                <jar.util.lib.path>normal</jar.util.lib.path>
+            </properties>
+        </profile>
+    </profiles>
+
     <build>
         <finalName>yuzhouwan-common</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <excludes>
+                    <exclude>prop/${jar.util.lib.path}.jar.util.properties</exclude>
+                </excludes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>${maven.compiler.jdk.version}</source>
+                    <target>${maven.compiler.jdk.version}</target>
                 </configuration>
             </plugin>
         </plugins>
@@ -35,6 +67,7 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
@@ -47,6 +80,13 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.8</version>
+        </dependency>
+
+        <!-- joda time -->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>${joda.time.version}</version>
         </dependency>
 
         <!-- log -->

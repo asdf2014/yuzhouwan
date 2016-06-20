@@ -16,8 +16,6 @@ import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.common.unit.ByteSizeUnit;
 import org.elasticsearch.common.unit.ByteSizeValue;
 import org.elasticsearch.common.unit.TimeValue;
-import org.junit.Before;
-import org.junit.Test;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -31,7 +29,7 @@ public class ElasticNodeClient {
 
     private volatile Client client;
 
-    @Before
+    //    @Before
     public void init() throws Exception {
 
         if (client == null) {
@@ -55,13 +53,13 @@ public class ElasticNodeClient {
         }
     }
 
-    @Test
+    //    @Test
     public void testIndex() throws Exception {
 
         if (client == null)
             return;
 
-        IndexResponse response = null;
+        IndexResponse response;
         try {
             response = client
                     .prepareIndex("asdf2014", "asdf", "1")
@@ -81,7 +79,7 @@ public class ElasticNodeClient {
         System.out.println("IsCreated: " + response.isCreated());
     }
 
-    @Test
+    //    @Test
     public void testGet() throws Exception {
 
         if (client == null)
@@ -94,7 +92,7 @@ public class ElasticNodeClient {
 
     }
 
-    @Test
+    //    @Test
     public void testDelete() throws Exception {
 
         if (client == null)
@@ -105,7 +103,7 @@ public class ElasticNodeClient {
             System.out.println("Id: " + response.getId());
     }
 
-    @Test
+    //    @Test
     public void testUpdate() throws Exception {
 
         if (client == null)
@@ -121,7 +119,7 @@ public class ElasticNodeClient {
         }
     }
 
-    @Test
+    //    @Test
     public void testBulkProcess() throws Exception {
 
         if (client == null)
@@ -129,7 +127,7 @@ public class ElasticNodeClient {
 
         BulkProcessor bulkProcessor = BulkProcessor
                 .builder(client, new BulkProcessor.Listener() {
-                    @Override
+                    //    @Override
                     public void beforeBulk(long executionId, BulkRequest request) {
                         /**
                          * Why did those methods not be run?<br>
@@ -142,14 +140,14 @@ public class ElasticNodeClient {
                         System.out.println("BulkProcessor's beforeBulk.");
                     }
 
-                    @Override
+                    //    @Override
                     public void afterBulk(long executionId,
                                           BulkRequest request, BulkResponse response) {
                         // TODO:
                         System.out.println("BulkProcessor's afterBulk.");
                     }
 
-                    @Override
+                    //    @Override
                     public void afterBulk(long executionId,
                                           BulkRequest request, Throwable failure) {
                         // TODO:

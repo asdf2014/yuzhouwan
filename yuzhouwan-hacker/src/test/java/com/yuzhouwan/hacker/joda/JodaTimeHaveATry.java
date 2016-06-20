@@ -18,18 +18,15 @@ public class JodaTimeHaveATry {
     private static Date date;
 
     @Before
-    public void before(){
+    public void before() {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-hh:mm:ss");
-
         try {
             date = sdf.parse("2015-08-12-11:20:38");
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
     }
-
 
     @Test
     public void test() {
@@ -43,5 +40,17 @@ public class JodaTimeHaveATry {
 
     }
 
+    /**
+     * 当前时间减少 月 or 天 ...
+     */
+    @Test
+    public void minusTest() {
+
+        for (int i = 0; i < 5; i++) {
+            System.out.println(DateTime.now().minusMonths(i).toString("yyyyMMdd HH:mm:ss"));
+            System.out.println(DateTime.now().minusDays(i).toString("yyyyMMdd HH:mm:ss"));
+            System.out.println("-----------------------------");
+        }
+    }
 
 }

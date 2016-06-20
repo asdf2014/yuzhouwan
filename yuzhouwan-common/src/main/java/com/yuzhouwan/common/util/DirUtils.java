@@ -18,6 +18,7 @@ import java.util.List;
 public class DirUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(DirUtils.class);
+    public static final String TEST_RESOURCES_PATH = System.getProperty("user.dir").concat("/src/test/resources/");
 
     public static void createOutDir() {
 

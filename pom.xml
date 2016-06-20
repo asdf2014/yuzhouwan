@@ -6,19 +6,11 @@
     <packaging>pom</packaging>
     <version>0.1</version>
 
-    <profiles>
-        <profile>
-            <id>asdf</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <modules>
-                <module>yuzhouwan-site</module>
-                <module>yuzhouwan-hacker</module>
-                <module>yuzhouwan-log</module>
-                <module>yuzhouwan-parent</module>
-                <module>yuzhouwan-common</module>
-            </modules>
-        </profile>
-    </profiles>
+    <modules>
+        <module>yuzhouwan-site</module>
+        <module>yuzhouwan-hacker</module>
+        <module>yuzhouwan-log</module>
+        <module>yuzhouwan-parent</module>
+        <module>yuzhouwan-common</module>
+    </modules>
 </project>

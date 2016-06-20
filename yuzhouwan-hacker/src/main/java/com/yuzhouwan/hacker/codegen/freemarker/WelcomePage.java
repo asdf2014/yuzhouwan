@@ -9,7 +9,23 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Copyright @ 2016 yuzhouwan.com
+ * All right reserved.
+ * Function：动态地将数据，填充到 freemarker模板中
+ *
+ * @author Benedict Jin
+ * @since 2016/1/26 0026
+ */
 public class WelcomePage {
+
+    private static final String BASE_DIR = System.getProperty("user.dir")
+            .concat("\\yuzhouwan-hacker\\src\\main\\resources\\freemarker\\");
+
+    private static final String FTL_DIR = BASE_DIR.concat("ftl");
+    private static final String OUT_PATH = BASE_DIR.concat("\\outdir\\ftl.html");
+
+    private static final String FTL_PATH = "html.ftl";
 
     public static void main(String[] args) throws Exception {
 
@@ -31,15 +47,9 @@ public class WelcomePage {
 
     public void codeGen() throws Exception {
 
-        String baseDir = "F:\\yuzhouwan\\field\\src\\main\\resources\\freemarker\\";
-        String ftlDir = baseDir.concat("ftl");
-        Configuration cfg = config(ftlDir);
-
+        Configuration cfg = config(FTL_DIR);
         Map<String, Object> root = dataModel();
-
-        String ftlPath = "html.ftl";
-        String outPath = baseDir.concat("\\out\\ftl.html");
-        showUp(cfg, root, ftlPath, outPath);
+        showUp(cfg, root, FTL_PATH, OUT_PATH);
     }
 
     /**
@@ -86,12 +96,14 @@ public class WelcomePage {
 
         // Create the hash for ``latestProduct''
         Map<String, Object> blog = new HashMap<>();
-        // and put it into the root
-        root.put("blog", blog);
 
         // put ``url'' and ``name'' into latest
         blog.put("url", "http://www.yuzhouwan.com");
         blog.put("name", "Asdf's Blog");
+
+        // and put it into the root
+        root.put("blog", blog);
+
         return root;
     }
 
