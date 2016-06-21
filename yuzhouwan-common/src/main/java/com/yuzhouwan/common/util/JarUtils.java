@@ -29,7 +29,7 @@ public class JarUtils {
     private static Properties properties = new Properties();
 
     private static final String LIB_PATH = DirUtils.getLibPathInWebApp();
-    private static final String CLASSES_PATH = DirUtils.getClassesPath();
+    private static final String CLASSES_PATH = DirUtils.getTestClassesPath();
 
     static {
         try {

@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -20,46 +21,45 @@ import java.util.Properties;
 public class PropUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(PropUtils.class);
-    private static Properties properties;
+    private static Properties properties = new Properties();
 
     private static volatile PropUtils instance;
-    private static final String confPath = System.getProperty("user.dir").concat("\\src\\main\\resources\\prop\\site.properties");
 
-    private PropUtils(String confPath) {
-        File confFile = new File(confPath);
-        if (!confFile.exists())
-            return;
-        FileInputStream fis;
-        try {
-            fis = new FileInputStream(confFile);
-        } catch (FileNotFoundException e) {
-            _log.error(e.getMessage());
-            return;
+    private PropUtils(List<String> confPathList) {
+
+        for (String confPath : confPathList) {
+            File confFile = new File(confPath);
+            if (!confFile.exists())
+                continue;
+            FileInputStream fis;
+            try {
+                fis = new FileInputStream(confFile);
+            } catch (FileNotFoundException e) {
+                _log.error(e.getMessage());
+                continue;
+            }
+            try {
+                properties.load(fis);
+            } catch (IOException e) {
+                _log.error(e.getMessage());
+                continue;
+            }
         }
-        Properties p;
-        try {
-            p = new Properties();
-            p.load(fis);
-        } catch (IOException e) {
-            _log.error(e.getMessage());
-            return;
-        }
-        this.properties = p;
     }
 
     public static PropUtils getInstance() {
         if (instance == null)
             synchronized (PropUtils.class) {
                 if (instance == null)
-                    instance = new PropUtils(confPath);
+                    instance = new PropUtils(DirUtils.findPath(DirUtils.getClassesPath(), ".properties", true, "prop"));
             }
         return instance;
     }
 
     public String getProperty(String key) {
-        if (this.properties == null)
+        if (properties == null)
             throw new RuntimeException("Properties is not valid!!");
-        return this.properties.getProperty(key);
+        return properties.getProperty(key);
     }
 
 }

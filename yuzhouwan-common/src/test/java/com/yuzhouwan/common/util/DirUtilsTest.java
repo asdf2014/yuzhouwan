@@ -17,15 +17,23 @@ public class DirUtilsTest {
     }
 
     @Test
-    public void testClassPath(){
+    public void testClassPath() {
+        /**
+         * /F:/如何成为 Java 高手/笔记/Soft Engineering/Git/[code]/yuzhouwan/yuzhouwan-common/target
+         */
+        System.out.println(DirUtils.getBasicPath());
+        /**
+         * /F:/如何成为 Java 高手/笔记/Soft Engineering/Git/[code]/yuzhouwan/yuzhouwan-common/target/classes
+         */
+        System.out.println(DirUtils.getClassesPath());
         /**
          * /F:/如何成为 Java 高手/笔记/Soft Engineering/Git/[code]/yuzhouwan/yuzhouwan-common/target/test-classes
          */
-        System.out.println(DirUtils.getClassesPath());
+        System.out.println(DirUtils.getTestClassesPath());
     }
 
     @Test
-    public void testLibPath(){
+    public void testLibPath() {
         /**
          * /F:/如何成为 Java 高手/笔记/Soft Engineering/Git/[code]/yuzhouwan/yuzhouwan-common/target/lib
          */
@@ -34,21 +42,27 @@ public class DirUtilsTest {
 
     @Test
     public void testDirScan() throws Exception {
-        assertEquals(true, DirUtils.findAbsolutePath(DirUtils.getClassesPath(), "DirUtilsTest.class").get(0).endsWith(
+        assertEquals(true, DirUtils.findAbsolutePath(DirUtils.getTestClassesPath(), "DirUtilsTest.class").get(0).endsWith(
                 "test-classes\\com\\yuzhouwan\\common\\util\\DirUtilsTest.class"));
     }
 
     @Test
     public void testDirScanAbsolute() throws Exception {
         assertEquals("\\com\\yuzhouwan\\common\\util\\DirUtilsTest.class", DirUtils.findPath(
-                DirUtils.getClassesPath(), "DirUtilsTest.class", false, "test-classes")
+                DirUtils.getTestClassesPath(), "DirUtilsTest.class", false, "test-classes")
                 .get(0));
     }
 
     @Test
     public void testJarPath() throws Exception {
         assertEquals(new LinkedList<>(Arrays.asList("\\yuzhouwan-common.jar")),
-                DirUtils.findPath(DirUtils.getClassesPath(), ".jar", false, "lib"));
+                DirUtils.findPath(DirUtils.getTestClassesPath(), ".jar", false, "lib"));
+    }
+
+    @Test
+    public void testPropertiesPath() throws Exception {
+        DirUtils.findPath(DirUtils.getClassesPath(), ".properties", true, "prop").forEach(propFile ->
+                System.out.println(propFile));
     }
 
 }

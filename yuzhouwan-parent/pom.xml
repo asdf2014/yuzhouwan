@@ -103,6 +103,9 @@
         <!-- apache pdfbox -->
         <apache.pdfbox.version>1.8.11</apache.pdfbox.version>
 
+        <!-- phantom js -->
+        <phantom.js.version>1.3.0</phantom.js.version>
+
         <!-- freemarker -->
         <freemarker.version>2.3.23</freemarker.version>
 

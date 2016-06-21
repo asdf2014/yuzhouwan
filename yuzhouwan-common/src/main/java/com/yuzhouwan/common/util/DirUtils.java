@@ -18,6 +18,7 @@ import java.util.List;
 public class DirUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(DirUtils.class);
+    public static final String RESOURCES_PATH = System.getProperty("user.dir").concat("/src/main/resources/");
     public static final String TEST_RESOURCES_PATH = System.getProperty("user.dir").concat("/src/test/resources/");
 
     public static void createOutDir() {
@@ -37,16 +38,35 @@ public class DirUtils {
      * @return
      */
     public static String getLibPathInWebApp() {
-        String classesPath = getClassesPath();
+        String classesPath = getTestClassesPath();
         return classesPath.substring(0, classesPath.lastIndexOf("/")).concat("/lib");
     }
 
     /**
-     * 获得 target 目录的绝对路径
+     * 获得 target 目录的 test-classes绝对路径
      *
      * @return
      */
     public static String getClassesPath() {
+        return getBasicPath().concat("/classes");
+    }
+
+
+    /**
+     * 获得 target 目录的 test-classes绝对路径
+     *
+     * @return
+     */
+    public static String getTestClassesPath() {
+        return getBasicPath().concat("/test-classes");
+    }
+
+    /**
+     * 获得 target 目录的基本 绝对路径
+     *
+     * @return
+     */
+    public static String getBasicPath() {
         String path = "";
         try {
             path = Thread.currentThread().getContextClassLoader().getResource("").toURI().getPath();
@@ -61,7 +81,7 @@ public class DirUtils {
         if (path.endsWith("/") || path.endsWith("\\")) {
             path = path.substring(0, path.length() - 1);
         }
-        return path;
+        return path.substring(0, path.lastIndexOf("/"));
     }
 
     /**
