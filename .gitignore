@@ -27,3 +27,5 @@ hs_err_pid*
 # sorry for copyright
 /yuzhouwan-log/yuzhouwan-log-elastic/src/main/resources/es/web/
 /yuzhouwan-log/yuzhouwan-log-elastic/src/main/resources/api/suppress.json
+/yuzhouwan-common/src/main/resources/html/month_report.png
+/yuzhouwan-common/src/main/resources/html/month_report.pdf

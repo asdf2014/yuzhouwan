@@ -49,4 +49,9 @@ public class StrUtilsTest {
                 StrUtils.cutTailStr("F:\\如何成为 Java 高手\\笔记\\Soft Engineering\\Git\\[code]\\yuzhouwan\\yuzhouwan-common\\target\\test-classes\\",
                         "test-classes\\"));
     }
+
+    @Test
+    public void holderTest() throws Exception {
+        assertEquals("a1b2c3", String.format("%s1b%Sc%d", "a", "2", 3));
+    }
 }
