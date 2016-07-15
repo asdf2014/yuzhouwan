@@ -1,7 +1,12 @@
 package com.yuzhouwan.common.util;
 
 /**
- * Created by Benedict Jin on 2016/4/7.
+ * Copyright @ 2015 yuzhouwan.com
+ * All right reserved.
+ * Function: HttpClientHelper Tester
+ *
+ * @author Benedict Jin
+ * @since 2016/3/21 0030
  */
 public class HttpClientHelperTest {
 

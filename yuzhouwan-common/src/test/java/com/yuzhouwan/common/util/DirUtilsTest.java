@@ -26,15 +26,15 @@ public class DirUtilsTest {
 
     @Test
     public void testClassPath() {
-        /**
+        /*
          * /F:/如何成为 Java 高手/笔记/Soft Engineering/Git/[code]/yuzhouwan/yuzhouwan-common/target
          */
         System.out.println(DirUtils.getBasicPath());
-        /**
+        /*
          * /F:/如何成为 Java 高手/笔记/Soft Engineering/Git/[code]/yuzhouwan/yuzhouwan-common/target/classes
          */
         System.out.println(DirUtils.getClassesPath());
-        /**
+        /*
          * /F:/如何成为 Java 高手/笔记/Soft Engineering/Git/[code]/yuzhouwan/yuzhouwan-common/target/test-classes
          */
         System.out.println(DirUtils.getTestClassesPath());
@@ -42,7 +42,7 @@ public class DirUtilsTest {
 
     @Test
     public void testLibPath() {
-        /**
+        /*
          * /F:/如何成为 Java 高手/笔记/Soft Engineering/Git/[code]/yuzhouwan/yuzhouwan-common/target/lib
          */
         System.out.println(DirUtils.getLibPathInWebApp());

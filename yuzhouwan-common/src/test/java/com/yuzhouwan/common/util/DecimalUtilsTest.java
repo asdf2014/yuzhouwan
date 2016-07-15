@@ -7,7 +7,12 @@ import java.math.BigInteger;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by Benedict Jin on 2016/5/9.
+ * Copyright @ 2015 yuzhouwan.com
+ * All right reserved.
+ * Function: Decimal Utils Tester
+ *
+ * @author Benedict Jin
+ * @since 2016/5/9 0030
  */
 public class DecimalUtilsTest {
 

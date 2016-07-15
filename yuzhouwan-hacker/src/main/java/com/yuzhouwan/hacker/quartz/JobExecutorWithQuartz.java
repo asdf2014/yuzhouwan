@@ -5,7 +5,6 @@ import org.quartz.impl.StdSchedulerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -44,13 +43,13 @@ public class JobExecutorWithQuartz implements Job {
         // Say Hello to the World and display the date/time
         _log.info("Hello World! - " + new Date());
 
-        /**
+        /*
          * asdf2014 in time:	2015-11-04/13:09:54
          */
         System.out.println("asdf2014 in time:\t" + dateFormat.format(new Date()));
     }
 
-    public static void main(String... args) throws SchedulerException, InterruptedException, ParseException {
+    public static void main(String... args) throws Exception {
 
         init();
 
@@ -73,7 +72,7 @@ public class JobExecutorWithQuartz implements Job {
 
         scheduler.start();
 
-        Thread.sleep(1L * 1000L);
+        Thread.sleep(1000);
 
         scheduler.shutdown(true);
     }

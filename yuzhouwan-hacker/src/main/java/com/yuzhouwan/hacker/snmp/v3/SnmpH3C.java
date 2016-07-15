@@ -172,11 +172,11 @@ public class SnmpH3C {
 
     /**
      * @param address
-     * @param securityName      == userName[addUserIntoSNMP] == securityName[createUser]
-     * @param securityLevel     [NOAUTH_NOPRIV = 1  |  AUTH_NOPRIV = 2  |  AUTH_PRIV = 3] in SecurityLevel
-     * @param securityModel     3 (The H3CUserTarget target can only be used with the User Based Security Model (USM))
-     * @param maxSizeRequestPDU The minimum PDU length is: 484; default: '\uffff'
-     * @param version           default: 3
+     * @param securityName  == userName[addUserIntoSNMP] == securityName[createUser]
+     * @param securityLevel [NOAUTH_NOPRIV = 1  |  AUTH_NOPRIV = 2  |  AUTH_PRIV = 3] in SecurityLevel
+     * @param securityModel 3 (The H3CUserTarget target can only be used with the User Based Security Model (USM))
+     *                      //     * @param maxSizeRequestPDU The minimum PDU length is: 484; default: '\uffff'
+     * @param version       default: 3
      */
     private void createUserTarget(String address, String securityName, int securityLevel, int securityModel, /*int maxSizeRequestPDU,*/ int retries, long timeout, int version) {
         userTarget = new UserTarget();

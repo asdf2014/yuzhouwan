@@ -5,7 +5,6 @@ import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.framework.recipes.cache.PathChildrenCache;
 import org.apache.curator.framework.recipes.cache.PathChildrenCacheEvent;
-import org.apache.curator.framework.recipes.cache.PathChildrenCacheListener;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +22,7 @@ public class ZookeeperWatcher {
     private static final Logger logger = LoggerFactory.getLogger(ZookeeperWatcher.class);
 
     private static final String yuzhouwan4 = "yuzhouwan04:2181";
-    private static String zNode = "/yuzhouwan";
+    private static final String zNode = "/yuzhouwan";
 
     {
         init();
@@ -48,24 +47,20 @@ public class ZookeeperWatcher {
         curatorClient.start();
 
         final PathChildrenCache cached = new PathChildrenCache(curatorClient, zNode, true);
-        cached.getListenable().addListener(new PathChildrenCacheListener() {
-            @Override
-            public void childEvent(CuratorFramework client, PathChildrenCacheEvent event) throws Exception {
-
-                PathChildrenCacheEvent.Type childrenEventType = event.getType();
-                if (childrenEventType != null) {
-                    switch (childrenEventType) {
-                        case CONNECTION_RECONNECTED:
-                            cached.rebuild();
-                            break;
-                        case CONNECTION_SUSPENDED:
-                        case CONNECTION_LOST:
-                            logger.error("Connection error, waiting...");
-                            break;
-                        default:
-                            logger.info("PathChildrenCache changed : {path:" + event.getData().getPath() + " data:" +
-                                    new String(event.getData().getData()) + "}");
-                    }
+        cached.getListenable().addListener((client, event) -> {
+            PathChildrenCacheEvent.Type childrenEventType = event.getType();
+            if (childrenEventType != null) {
+                switch (childrenEventType) {
+                    case CONNECTION_RECONNECTED:
+                        cached.rebuild();
+                        break;
+                    case CONNECTION_SUSPENDED:
+                    case CONNECTION_LOST:
+                        logger.error("Connection error, waiting...");
+                        break;
+                    default:
+                        logger.info("PathChildrenCache changed : {path:" + event.getData().getPath() + " data:" +
+                                new String(event.getData().getData()) + "}");
                 }
             }
         });
@@ -73,6 +68,7 @@ public class ZookeeperWatcher {
             cached.start();
         } catch (Exception e) {
             logger.error("Can not start PathChildrenCache!!");
+            throw new RuntimeException(e);
         }
     }
 }
