@@ -64,7 +64,8 @@ public class JarUtils {
                 }
             }
         } catch (IOException | URISyntaxException e) {
-            e.printStackTrace();
+            _log.error("{}", e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 

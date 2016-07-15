@@ -1,9 +1,13 @@
 package com.yuzhouwan.common.util;
 
+import com.yuzhouwan.common.api.IDirUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.file.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,7 +19,7 @@ import java.util.List;
  * @author Benedict Jin
  * @since 2016/4/7 0030
  */
-public class DirUtils {
+public class DirUtils implements IDirUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(DirUtils.class);
     public static final String RESOURCES_PATH = System.getProperty("user.dir").concat("/src/main/resources/");
@@ -48,7 +52,11 @@ public class DirUtils {
      * @return
      */
     public static String getClassesPath() {
-        return getBasicPath().concat("/classes");
+        String basicPath;
+        if ((basicPath = getBasicPath()) == null) {
+            return null;
+        }
+        return basicPath.concat("/classes");
     }
 
 
@@ -58,7 +66,11 @@ public class DirUtils {
      * @return
      */
     public static String getTestClassesPath() {
-        return getBasicPath().concat("/test-classes");
+        String basicPath;
+        if ((basicPath = getBasicPath()) == null) {
+            return null;
+        }
+        return basicPath.concat("/test-classes");
     }
 
     /**
@@ -69,9 +81,14 @@ public class DirUtils {
     public static String getBasicPath() {
         String path = "";
         try {
-            path = Thread.currentThread().getContextClassLoader().getResource("").toURI().getPath();
+            URL location = Thread.currentThread().getContextClassLoader().getResource("");
+            if (location == null) {
+                return null;
+            }
+            path = location.toURI().getPath();
         } catch (Exception e) {
-            e.printStackTrace();
+            _log.error("{}", e.getMessage());
+            throw new RuntimeException(e);
         }
         if (path.startsWith("file")) {
             path = path.substring(6);
@@ -98,9 +115,7 @@ public class DirUtils {
             return foundPath;
         }
         List<String> absolutePath = new LinkedList<>();
-        for (String s : foundPath) {
-            absolutePath.add(StrUtils.cutMiddleStr(s, basePath));
-        }
+        foundPath.forEach(s -> absolutePath.add(StrUtils.cutMiddleStr(s, basePath)));
         return absolutePath;
     }
 
@@ -119,10 +134,10 @@ public class DirUtils {
             return null;
         }
         List<String> filePathListFiltered = new LinkedList<>();
-        for (String filePath : filePathList) {
+        filePathList.forEach(filePath -> {
             if (filePath.endsWith(fileName))
                 filePathListFiltered.add(filePath);
-        }
+        });
         return filePathListFiltered;
     }
 
@@ -172,4 +187,145 @@ public class DirUtils {
             _log.debug(file2.getAbsolutePath());
         }
     }
+
+    /**
+     * 返回一个目录变更的默认监控器 (不间断，持续监控，只打印信息)
+     *
+     * @param watchedPath be watched path
+     * @return
+     * @throws Exception
+     */
+    public static WatchRunnable buildWatchService(String watchedPath) throws Exception {
+        return buildWatchService(watchedPath, null, null);
+    }
+
+    /**
+     * 返回一个目录变更的监控器 (不间断，持续监控，变更处理器自行指定)
+     *
+     * @param watchedPath   be watched path
+     * @param dealProcessor deal processor
+     * @return
+     * @throws Exception
+     */
+    public static WatchRunnable buildWatchService(String watchedPath, IDirUtils dealProcessor) throws Exception {
+        return buildWatchService(watchedPath, dealProcessor, null);
+    }
+
+    /**
+     * 返回一个目录变更的监控器
+     *
+     * @param watchedPath be watched path
+     * @param waitTime    监控时间间隙 (millis)
+     * @return
+     * @throws Exception
+     */
+    public static WatchRunnable buildWatchService(String watchedPath, IDirUtils dealProcessor, final Long waitTime) throws Exception {
+        if (StrUtils.isEmpty(watchedPath) || !makeSureExist(watchedPath, false)) {
+            _log.error("Path '{}' is a invalid path!", watchedPath);
+            return null;
+        }
+        _log.debug("Starting build watch service...");
+        final WatchService watchService = FileSystems.getDefault().newWatchService();
+        Paths.get(watchedPath).register(watchService,
+                StandardWatchEventKinds.ENTRY_CREATE,
+                StandardWatchEventKinds.ENTRY_DELETE,
+                StandardWatchEventKinds.ENTRY_MODIFY,
+                StandardWatchEventKinds.OVERFLOW);
+
+        _log.debug("Finished build watch service, and ready for watching...");
+        return new WatchRunnable(watchService, dealProcessor, waitTime);
+    }
+
+    /**
+     * 处理 监控文件夹 的事件
+     *
+     * @param event
+     */
+    @Override
+    public void dealWithEvent(WatchEvent<?> event) {
+        // could expand more processes here
+        _log.info(event.context() + ":\t " + event.kind() + " event.");
+    }
+
+    /**
+     * Make sure file or directory exist
+     *
+     * @param path   be checked path
+     * @param isFile true:  File
+     *               false: Directory
+     * @return
+     */
+    public static boolean makeSureExist(String path, boolean isFile) {
+        _log.debug("Path: {}, isFile: {}", path, isFile);
+
+        if (StrUtils.isEmpty(path)) {
+            return false;
+        }
+        File file = new File(path);
+        if (!file.exists()) {
+            if (isFile) {
+                try {
+                    return file.createNewFile();
+                } catch (IOException e) {
+                    _log.error("Cannot create new file, because {}", e.getMessage());
+                    return false;
+                }
+            } else {
+                return file.mkdir();
+            }
+        }
+        return true;
+    }
+
+    /**
+     * 监控线程 (主要为了多线程，能安全地 stop)
+     */
+    public static class WatchRunnable implements Runnable {
+
+        private IDirUtils dealProcessor;
+        private Long waitTime;
+        private WatchService watchService;
+
+        private boolean isRunning = true;
+
+        public WatchRunnable(WatchService watchService, IDirUtils dealProcessor, Long waitTime) {
+            this.dealProcessor = dealProcessor;
+            this.waitTime = waitTime;
+            this.watchService = watchService;
+        }
+
+        public void setRunning(boolean running) {
+            isRunning = running;
+        }
+
+        @Override
+        public void run() {
+            WatchKey key = null;
+            try {
+                key = watchService.take();
+            } catch (InterruptedException e) {
+                _log.error("WatchService is error, because {}", e.getMessage());
+            }
+            if (key == null) {
+                return;
+            }
+            IDirUtils dirUtil = dealProcessor == null ? new DirUtils() : dealProcessor;
+            while (true) {
+                if (!isRunning) {
+                    return;
+                }
+                if (waitTime != null && waitTime > 0)
+                    try {
+                        Thread.sleep(waitTime);
+                    } catch (InterruptedException e) {
+                        _log.error("Thread sleep error, because {}", e.getMessage());
+                    }
+                if (!key.reset()) {
+                    break;
+                }
+                key.pollEvents().forEach(dirUtil::dealWithEvent);
+            }
+        }
+    }
+
 }

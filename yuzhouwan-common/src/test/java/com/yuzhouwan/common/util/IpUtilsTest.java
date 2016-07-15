@@ -41,6 +41,11 @@ public class IpUtilsTest {
     }
 
     @Test
+    public void getTailFromURLTest() throws Exception {
+        assertEquals("group1/M00/00/00/oYYBAFd06DSAQ5gwAAIIUQRZ1_c574.pdf", IpUtils.getTailFromURL("http://192.168.112.171:9090/group1/M00/00/00/oYYBAFd06DSAQ5gwAAIIUQRZ1_c574.pdf"));
+    }
+
+    @Test
     public void testLongAndIp() throws Exception {
         String ipAddressStr = "192.168.5.11";
         Long ipAddressLong = 3232236811L;

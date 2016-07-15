@@ -2,13 +2,21 @@ package com.yuzhouwan.common.util;
 
 import org.junit.Test;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 /**
- * Created by Benedict Jin on 2016/4/7.
+ * Copyright @ 2015 yuzhouwan.com
+ * All right reserved.
+ * Function: Directory Util Tester
+ *
+ * @author Benedict Jin
+ * @since 2016/4/7 0030
  */
 public class DirUtilsTest {
 
@@ -42,8 +50,9 @@ public class DirUtilsTest {
 
     @Test
     public void testDirScan() throws Exception {
-        assertEquals(true, DirUtils.findAbsolutePath(DirUtils.getTestClassesPath(), "DirUtilsTest.class").get(0).endsWith(
-                "test-classes\\com\\yuzhouwan\\common\\util\\DirUtilsTest.class"));
+        List<String> absolutePath;
+        assertNotEquals(null, absolutePath = DirUtils.findAbsolutePath(DirUtils.getTestClassesPath(), "DirUtilsTest.class"));
+        assertEquals(true, absolutePath.get(0).endsWith("test-classes\\com\\yuzhouwan\\common\\util\\DirUtilsTest.class"));
     }
 
     @Test
@@ -61,8 +70,31 @@ public class DirUtilsTest {
 
     @Test
     public void testPropertiesPath() throws Exception {
-        DirUtils.findPath(DirUtils.getClassesPath(), ".properties", true, "prop").forEach(propFile ->
-                System.out.println(propFile));
+        DirUtils.findPath(DirUtils.getClassesPath(), ".properties", true, "prop").forEach(System.out::println);
+    }
+
+    @Test
+    public void testBuildWatchService() throws Exception {
+        DirUtils.WatchRunnable thread = DirUtils.buildWatchService("Z:/watch");
+        assertEquals(null, thread);
+
+        // 2 ms is lowest limitation for me ;)
+        thread = DirUtils.buildWatchService("E:/watch", null, 2L);
+        assertNotEquals(null, thread);
+        Thread t = new Thread(thread);
+        t.start();
+        DirUtils.makeSureExist("E:/watch/a", false);
+        DirUtils.makeSureExist("E:/watch/b/", false);
+        DirUtils.makeSureExist("E:/watch/c.txt", true);
+
+        new File("E:/watch/a").delete();
+        new File("E:/watch/b/").delete();
+        new File("E:/watch/c.txt").delete();
+
+        new File("E:/watch").deleteOnExit();
+
+        thread.setRunning(false);
+        t.join();
     }
 
 }

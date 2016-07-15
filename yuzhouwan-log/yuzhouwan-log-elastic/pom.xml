@@ -10,7 +10,6 @@
         <version>0.1</version>
     </parent>
 
-    <groupId>com.yuzhouwan</groupId>
     <artifactId>yuzhouwan-elastic</artifactId>
     <version>0.1</version>
 

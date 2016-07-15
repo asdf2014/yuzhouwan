@@ -1,5 +1,6 @@
 package com.yuzhouwan.common.util;
 
+import org.joda.time.DateTime;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,13 +40,15 @@ public class TimeUtilsTest {
     @Test
     public void test2() {
 
-        LinkedList<Integer> l = new LinkedList<Integer>();
+        LinkedList<Integer> l = new LinkedList<>();
         l.add(1);
         l.add(2);
         int counter = 0;
         for (Integer integer : l) {
+            _log.debug("{}", integer);
             counter++;
         }
+        assertEquals(2, counter);
     }
 
     @Test
@@ -130,5 +133,20 @@ public class TimeUtilsTest {
     public void lastMonthTodayInBeginTest() {
         System.out.println(sdf.format(TimeUtils.lastMonthTodayInBegin()));
         System.out.println(sdf.format(TimeUtils.lastFewDaysInBegin(30)));
+    }
+
+    @Test
+    public void beginMonthTester() {
+        assertEquals("2016-07-01 00:00:00:000 +0800", sdf.format(TimeUtils.beginMonth(2016, 7)));
+    }
+
+    @Test
+    public void endMonthTester() {
+        assertEquals("2016-07-31 23:59:59:999 +0800", sdf.format(TimeUtils.endMonth(2016, 7)));
+    }
+
+    @Test
+    public void nowTester() {
+        System.out.println(DateTime.now().toString("yyyyMM"));
     }
 }

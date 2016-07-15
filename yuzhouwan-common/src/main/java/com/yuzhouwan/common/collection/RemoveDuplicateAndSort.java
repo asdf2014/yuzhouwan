@@ -51,7 +51,7 @@ public class RemoveDuplicateAndSort {
 
     public void example() {
 
-        List<Company> companies = new ArrayList<Company>();
+        List<Company> companies = new ArrayList<>();
         companies.add(new Company("Washington", 2));
         companies.add(new Company("Washington", 1));
         companies.add(new Company("Washington", 4));
@@ -69,11 +69,11 @@ public class RemoveDuplicateAndSort {
     }
 
     /**
-     * 100 0002, time:567
+     * 100 0002, time:567 ms
      */
     public void performance() {
 
-        List<Company> companies = new ArrayList<Company>();
+        List<Company> companies = new ArrayList<>();
         int count = 333334;
         while (count >= 0) {
             companies.add(new Company("Washington", r0.nextInt()));
@@ -97,7 +97,7 @@ public class RemoveDuplicateAndSort {
      * @return
      */
     private List<Company> removeDuplicteUsers(List<Company> companyIpResults, int num) {
-        Set<Company> s = new TreeSet<Company>(comparator4Equal);
+        Set<Company> s = new TreeSet<>(comparator4Equal);
         for (Company companyIpResult : companyIpResults) {
             s.add(companyIpResult);
             /**

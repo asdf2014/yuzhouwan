@@ -16,8 +16,8 @@ public class HtmlExporter2BYTES implements IHtmlExporter {
     /**
      * 将带有 chart、map等动态图表的 html转换为 图片
      *
-     * @param url
-     * @return
+     * @param url 目标URL
+     * @return 图片 byte数组
      */
     @Override
     public byte[] convert2Image(String url, Integer width, Integer height) {
@@ -27,9 +27,9 @@ public class HtmlExporter2BYTES implements IHtmlExporter {
     /**
      * 将带有 chart、map等动态图表的 html转换为 图片 (可以额外配置 cookie的权限控制)
      *
-     * @param url
-     * @param addedCookie
-     * @return
+     * @param url 目标URL
+     * @param addedCookie 添加 cookie
+     * @return 图片 byte数组
      */
     @SuppressWarnings(value = {"unchecked"})
     @Override

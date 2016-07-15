@@ -25,8 +25,8 @@ public class HtmlExporterUtils {
     /**
      * 将 字符数组 转化为文件
      *
-     * @param bytes
-     * @param file
+     * @param bytes 文件的 byte[]
+     * @param file 文件
      */
     public static void byte2File(byte[] bytes, File file) {
         try (OutputStream out = new FileOutputStream(file)) {
@@ -40,8 +40,8 @@ public class HtmlExporterUtils {
     /**
      * 将图片转换为 A4格式的 PDF
      *
-     * @param image
-     * @return
+     * @param image 图片的 byte[]
+     * @return A4格式的 图片的 byte[]
      */
     public static byte[] image2pdfA4(byte[] image) {
         return image2pdf(image, null, null, null, null, null);
@@ -56,7 +56,7 @@ public class HtmlExporterUtils {
      * @param marginRight  0f
      * @param marginTop    0f
      * @param marginBottom 0f
-     * @return
+     * @return PDF格式的 byte[]
      */
     public static byte[] image2pdf(byte[] image, Rectangle pageSize, Float marginLeft, Float marginRight,
                                    Float marginTop, Float marginBottom) {
@@ -84,9 +84,9 @@ public class HtmlExporterUtils {
     /**
      * 初始化配置 PhantomJS Driver
      *
-     * @param url
-     * @param addedCookie
-     * @return
+     * @param url 目标URL
+     * @param addedCookie 添加 cookie
+     * @return 初始化过的 PhantomJS Driver
      */
     public static PhantomJSDriver prepare(String url, Cookie addedCookie, Integer width, Integer height) {
         // chrome driver maybe not necessary
@@ -130,12 +130,12 @@ public class HtmlExporterUtils {
     /**
      * 获取 [文件]形式 的图片大小
      *
-     * @param file
-     * @return
+     * @param image 图片文件
+     * @return 图片大小
      */
-    public static Rectangle getSizeFromImage(File file) {
+    public static Rectangle getSizeFromImage(File image) {
         try {
-            BufferedImage bufferedImage = ImageIO.read(file);
+            BufferedImage bufferedImage = ImageIO.read(image);
             return new Rectangle(bufferedImage.getWidth(), bufferedImage.getHeight());
         } catch (IOException e) {
             e.printStackTrace();
@@ -146,8 +146,8 @@ public class HtmlExporterUtils {
     /**
      * 获取 [InputStream]形式 的图片大小
      *
-     * @param inputStream
-     * @return
+     * @param inputStream 图片输入流
+     * @return 图片大小
      */
     public static Rectangle getSizeFromImage(InputStream inputStream) {
         try {
@@ -162,8 +162,8 @@ public class HtmlExporterUtils {
     /**
      * 获取 [字符数组]形式 的图片大小
      *
-     * @param bytes
-     * @return
+     * @param bytes 图片的 byte[]
+     * @return 图片大小
      */
     public static Rectangle getSizeFromImage(byte[] bytes) {
         try {
@@ -178,8 +178,8 @@ public class HtmlExporterUtils {
     /**
      * 获取 [Base64]形式 的图片大小
      *
-     * @param base64
-     * @return
+     * @param base64 base64 格式的图片
+     * @return 图片大小
      */
     public static Rectangle getSizeFromImage(String base64) {
         return getSizeFromImage(base64.getBytes());

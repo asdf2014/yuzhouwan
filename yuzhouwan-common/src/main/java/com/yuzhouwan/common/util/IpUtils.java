@@ -87,6 +87,21 @@ public class IpUtils {
     }
 
     /**
+     * 获得 url的子路径
+     *
+     * @param url
+     * @return
+     */
+    public static String getTailFromURL(String url) {
+
+        String domain = extractDomain(url);
+        if (StrUtils.isEmpty(domain)) {
+            return null;
+        }
+        return StrUtils.cutMiddleStr(url, domain).substring(1);
+    }
+
+    /**
      * Convert IP Address into Long
      *
      * @param ipAddress

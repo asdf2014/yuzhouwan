@@ -14,6 +14,11 @@ import java.util.List;
  */
 public class JsonUtils {
 
+    /**
+     * example for JSON
+     *
+     * @return A 数组
+     */
     public List<A> simpleParse() {
         String s = "[{\"rule\":\"is down\", \"groupId\":\"1\",\"mode\":\"WECHAT\", \"level\":\"1\"}]";
         return JSON.parseArray(s, A.class);

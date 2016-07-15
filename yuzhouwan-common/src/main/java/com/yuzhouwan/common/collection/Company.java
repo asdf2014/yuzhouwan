@@ -22,16 +22,8 @@ public class Company implements Comparable<Company> {
         return city;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
     public double getFoundition() {
         return foundition;
-    }
-
-    public void setFoundition(double foundition) {
-        this.foundition = foundition;
     }
 
     public int compareTo(Company o) {
