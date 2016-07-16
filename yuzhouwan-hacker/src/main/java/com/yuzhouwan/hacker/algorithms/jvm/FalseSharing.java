@@ -5,8 +5,6 @@ public final class FalseSharing
         implements Runnable {
     public final static int NUM_THREADS = 4; // change
     public final static long ITERATIONS = 500L * 1000L * 1000L;
-    private final int arrayIndex;
-
     private static VolatileLong[] longs = new VolatileLong[NUM_THREADS];
 
     static {
@@ -14,6 +12,8 @@ public final class FalseSharing
             longs[i] = new VolatileLong();
         }
     }
+
+    private final int arrayIndex;
 
     public FalseSharing(final int arrayIndex) {
         this.arrayIndex = arrayIndex;

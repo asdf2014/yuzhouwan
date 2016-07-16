@@ -8,8 +8,8 @@ import org.apache.spark.storage.StorageLevel
 import org.apache.spark.streaming._
 
 /**
- * Created by Benedict Jin on 2015/8/13.
- */
+  * Created by Benedict Jin on 2015/8/13.
+  */
 object MLAnalysis {
 
   def main(args: Array[String]) {
@@ -51,10 +51,11 @@ object MLAnalysis {
     predictAndTrue.foreachRDD { (rdd, time) =>
       val mse = rdd.map { case (err) => math.pow(err, 2.0) }.mean()
       val rmse = math.sqrt(mse)
-      println( s"""
-                  |-------------------------------------------
-                  |Time: $time
-          |-------------------------------------------
+      println(
+        s"""
+           |-------------------------------------------
+           |Time: $time
+           |-------------------------------------------
                       """.stripMargin)
       println(s"MSE current batch: Model : $mse")
       println(s"RMSE current batch: Model : $rmse")

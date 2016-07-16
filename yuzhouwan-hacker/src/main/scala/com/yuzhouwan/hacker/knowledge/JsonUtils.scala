@@ -15,8 +15,6 @@ import org.apache.spark.{SparkConf, SparkContext}
   */
 object JsonUtils {
 
-  case class Person(name: String, age: Int)
-
   def main(args: Array[String]) {
 
     //    System.setProperty("hadoop.home.dir", "field/src/main/resources/hadoop_binaries_spark_needed/")     //not ok
@@ -61,4 +59,6 @@ object JsonUtils {
     mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
     mapper.writeValueAsString(value)
   }
+
+  case class Person(name: String, age: Int)
 }

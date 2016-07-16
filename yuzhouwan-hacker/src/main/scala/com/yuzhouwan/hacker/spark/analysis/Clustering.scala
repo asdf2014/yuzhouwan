@@ -3,8 +3,8 @@ package com.yuzhouwan.spark.analysis
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
- * Created by Benedict Jin on 2015/9/18.
- */
+  * Created by Benedict Jin on 2015/9/18.
+  */
 object Clustering {
 
   def main(args: Array[String]): Unit = {

@@ -10,7 +10,7 @@ package com.yuzhouwan.hacker.algorithms.array;
  */
 public class EmptyArray {
 
-    public static void emptyArray(){
+    public static void emptyArray() {
         Object[] os = new Object[0];
     }
 

@@ -4,8 +4,8 @@ import breeze.linalg.{*, DenseMatrix, DenseVector}
 import breeze.stats.mean
 
 /**
- * Created by Benedict Jin on 2015/8/20.
- */
+  * Created by Benedict Jin on 2015/8/20.
+  */
 object BreezeQuickStart {
 
   def singleRow: Unit = {
@@ -13,8 +13,8 @@ object BreezeQuickStart {
     val x = DenseVector.zeros[Double](5)
 
     /**
-     * DenseVector(0.0, 0.0, 0.0, 0.0, 0.0)
-     */
+      * DenseVector(0.0, 0.0, 0.0, 0.0, 0.0)
+      */
     printf(s"$x\r\n")
 
     val firstE = x(0)
@@ -24,8 +24,8 @@ object BreezeQuickStart {
     printf(s"$x\r\n")
 
     /**
-     * slicing
-     */
+      * slicing
+      */
     x(3 to 4) := .5
     printf(s"$x\r\n\r\n")
   }
@@ -49,6 +49,13 @@ object BreezeQuickStart {
 
   }
 
+  def main(args: Array[String]): Unit = {
+
+    //    singleRow
+    //    multiRowMatrix
+    broadCasting
+
+  }
 
   def broadCasting(): Unit = {
 
@@ -56,9 +63,9 @@ object BreezeQuickStart {
     val res = dm(::, *) + DenseVector(3.0, 4.0)
 
     /**
-     * 4.0  5.0  6.0
-     * 8.0  9.0  10.0
-     */
+      * 4.0  5.0  6.0
+      * 8.0  9.0  10.0
+      */
     printf(s"$res\r\n\r\n")
 
     res(::, *) := DenseVector(9.0, 8.0)
@@ -69,14 +76,6 @@ object BreezeQuickStart {
 
     println(mean(dm(*, ::)))
     println(mean(dm(::, *)))
-  }
-
-  def main(args: Array[String]): Unit = {
-
-    //    singleRow
-    //    multiRowMatrix
-    broadCasting
-
   }
 
 

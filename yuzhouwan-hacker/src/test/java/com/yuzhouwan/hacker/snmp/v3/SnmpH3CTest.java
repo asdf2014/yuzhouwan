@@ -1,9 +1,5 @@
 package com.yuzhouwan.hacker.snmp.v3;
 
-import com.yuzhouwan.hacker.snmp.v3.H3CInfos;
-import com.yuzhouwan.hacker.snmp.v3.H3CSnmpV3User;
-import com.yuzhouwan.hacker.snmp.v3.H3CUserTarget;
-import com.yuzhouwan.hacker.snmp.v3.SnmpH3C;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

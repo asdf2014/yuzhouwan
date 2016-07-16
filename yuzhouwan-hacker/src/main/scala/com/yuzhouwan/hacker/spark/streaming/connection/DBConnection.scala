@@ -29,21 +29,21 @@ class PooledSocketStreamPublisher[T](host: String, port: Int)
     */
   def publish(stream: DStream[T], callback: (T) => String) =
 
-    stream foreachRDD (rdd =>
+  stream foreachRDD (rdd =>
 
-      rdd foreachPartition { partition =>
+    rdd foreachPartition { partition =>
 
-        val pool = PrintStreamPool(host, port)
+      val pool = PrintStreamPool(host, port)
 
-        partition foreach { event =>
-          val s = pool.printStream
-          s println callback(event)
-        }
-
-        pool.release()
-
+      partition foreach { event =>
+        val s = pool.printStream
+        s println callback(event)
       }
-      )
+
+      pool.release()
+
+    }
+    )
 }
 
 class ManagedPrintStream(private val pool: ObjectPool[PrintStream], val printStream: PrintStream) {

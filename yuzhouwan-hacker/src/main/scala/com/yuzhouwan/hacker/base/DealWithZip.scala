@@ -1,7 +1,5 @@
 package com.yuzhouwan.hacker.base
 
-import org.apache.spark.streaming.{Seconds, StreamingContext}
-
 /**
   * Copyright @ 2015 yuzhouwan.com
   * All right reserved.

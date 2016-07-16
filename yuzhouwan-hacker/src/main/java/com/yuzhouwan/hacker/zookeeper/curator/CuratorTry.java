@@ -19,6 +19,10 @@ public class CuratorTry {
     private static final String zkHost = "127.0.0.1:2181";
     private CuratorFramework curatorClient;
 
+    public CuratorTry() {
+        init();
+    }
+
     private void init() {
 
         RetryPolicy retrypolicy = new ExponentialBackoffRetry(3000, 60);
@@ -34,10 +38,6 @@ public class CuratorTry {
                 .namespace("watcher")       // root path: /watcher
                 .build();
         curatorClient.start();
-    }
-
-    public CuratorTry() {
-        init();
     }
 
     /**

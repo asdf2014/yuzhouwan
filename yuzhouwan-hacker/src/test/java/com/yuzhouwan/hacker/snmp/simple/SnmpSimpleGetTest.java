@@ -32,7 +32,7 @@ public class SnmpSimpleGetTest {
 
     private List<String> oids;
 
-//    @Before
+    //    @Before
     public void init() {
 
         oids = new LinkedList<>();

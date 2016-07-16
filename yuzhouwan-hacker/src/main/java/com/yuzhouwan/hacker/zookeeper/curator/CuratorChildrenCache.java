@@ -23,6 +23,10 @@ public class CuratorChildrenCache {
     private final static Logger _log = LoggerFactory.getLogger(CuratorChildrenCache.class);
     private CuratorFramework curatorFramework;
 
+    public CuratorChildrenCache() throws Exception {
+        init();
+    }
+
     private void init() throws Exception {
         curatorFramework = CuratorFrameworkFactory
                 .builder()
@@ -33,10 +37,6 @@ public class CuratorChildrenCache {
                 .namespace("children")
                 .build();
         curatorFramework.start();
-    }
-
-    public CuratorChildrenCache() throws Exception {
-        init();
     }
 
     public void addChildrenListener(String path) throws Exception {

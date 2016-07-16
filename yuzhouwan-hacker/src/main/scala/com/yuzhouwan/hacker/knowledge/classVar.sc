@@ -1,12 +1,12 @@
-class A(val x: Int, val y: Int) {
-  var v1 = x
-  var v2 = y
-}
+val a = new A(1, 0)
 
 //class B(override val x: Int, override val y: Int) extends A(x, y) {
 //}
 
-val a = new A(1, 0)
+class A(val x: Int, val y: Int) {
+  var v1 = x
+  var v2 = y
+}
 print(a.x)
 print(a.y)
 

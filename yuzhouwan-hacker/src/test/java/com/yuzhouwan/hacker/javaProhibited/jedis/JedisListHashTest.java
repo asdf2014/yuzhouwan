@@ -19,6 +19,16 @@ public class JedisListHashTest {
         init();
     }
 
+    public static void main(String[] args) {
+
+        JedisListHashTest jedisListHashTest = new JedisListHashTest();
+
+        String[] list = {"a", "s", "d", "f"};
+
+        jedisListHashTest.addList("asdf", list);
+
+    }
+
     private void init() {
         List<JedisShardInfo> shards = new ArrayList<JedisShardInfo>();
 
@@ -40,16 +50,6 @@ public class JedisListHashTest {
         jedis.lpush(key, list);
 
         pool.returnResourceObject(jedis);
-    }
-
-    public static void main(String[] args) {
-
-        JedisListHashTest jedisListHashTest = new JedisListHashTest();
-
-        String[] list = {"a", "s", "d", "f"};
-
-        jedisListHashTest.addList("asdf", list);
-
     }
 
 }

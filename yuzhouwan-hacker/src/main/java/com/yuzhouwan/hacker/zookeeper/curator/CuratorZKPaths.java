@@ -21,6 +21,10 @@ public class CuratorZKPaths {
     private CuratorFramework curatorFramework;
 
 
+    public CuratorZKPaths() {
+        init();
+    }
+
     private void init() {
         curatorFramework = CuratorFrameworkFactory
                 .builder()
@@ -31,10 +35,6 @@ public class CuratorZKPaths {
                 .namespace("zkPaths")
                 .build();
         curatorFramework.start();
-    }
-
-    public CuratorZKPaths() {
-        init();
     }
 
     public void zkPaths() {

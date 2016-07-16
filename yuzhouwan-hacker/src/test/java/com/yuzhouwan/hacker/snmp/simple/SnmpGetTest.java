@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class SnmpGetTest {
 
-//    @Test
+    //    @Test
     public void testSnmpGet() {
 
         String ip = "192.168.1.201";
@@ -33,7 +33,7 @@ public class SnmpGetTest {
         SnmpSimpleGet.snmpGet(ip, community, oids);
     }
 
-//    @Test
+    //    @Test
     public void testSnmpSyncGet() {
 
         String ip = "192.168.1.201";

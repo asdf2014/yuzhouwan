@@ -22,22 +22,16 @@ import java.util.concurrent.CountDownLatch;
 public class ZooKeeperConnPool {
 
     private static final Logger _log = LoggerFactory.getLogger(ZooKeeperConnPool.class);
-
-    private static volatile ZooKeeperConnPool instance;
-
-    private static CountDownLatch connectZKClientLatch;
-    private static CountDownLatch closeZKClientLatch;
-    private static volatile Set<ZooKeeper> pool;
-
     // There need to be set bigger value into [MIN_CONN_IN_POOL], how about the one-third of [MAX_CONN_IN_POOL]
     private static final int MIN_CONN_IN_POOL = 3;
     private static final int MAX_CONN_IN_POOL = 5;
-
     private static final String HOST = "127.0.0.1";
     private static final int CLIENT_PORT = 2181;
-
     private static final int TIME_OUT_MILLISECOND = 5000;
-
+    private static volatile ZooKeeperConnPool instance;
+    private static CountDownLatch connectZKClientLatch;
+    private static CountDownLatch closeZKClientLatch;
+    private static volatile Set<ZooKeeper> pool;
     private static int used = 0;
 
     private ZooKeeperConnPool() {
@@ -58,15 +52,6 @@ public class ZooKeeperConnPool {
                 }
             }
         return instance;
-    }
-
-    /**
-     * Make a initialization.
-     */
-    private void init() {
-        connectZKClientLatch = new CountDownLatch(1);
-        closeZKClientLatch = new CountDownLatch(1);
-        pool = Collections.synchronizedSet(new HashSet<>());
     }
 
     /**
@@ -106,6 +91,23 @@ public class ZooKeeperConnPool {
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static CountDownLatch getConnectZKClientLatch() {
+        return connectZKClientLatch;
+    }
+
+    public static CountDownLatch getCloseZKClientLatch() {
+        return closeZKClientLatch;
+    }
+
+    /**
+     * Make a initialization.
+     */
+    private void init() {
+        connectZKClientLatch = new CountDownLatch(1);
+        closeZKClientLatch = new CountDownLatch(1);
+        pool = Collections.synchronizedSet(new HashSet<>());
     }
 
     /**
@@ -223,13 +225,5 @@ public class ZooKeeperConnPool {
             };
             removeSomeConnThread.start();
         }
-    }
-
-    public static CountDownLatch getConnectZKClientLatch() {
-        return connectZKClientLatch;
-    }
-
-    public static CountDownLatch getCloseZKClientLatch() {
-        return closeZKClientLatch;
     }
 }

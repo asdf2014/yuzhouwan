@@ -7,8 +7,8 @@ import scala.io.Source
 
 
 /**
- * Created by Benedict Jin on 2015/9/6.
- */
+  * Created by Benedict Jin on 2015/9/6.
+  */
 class SendNetflow
 
 object SendNetflow {
@@ -25,8 +25,8 @@ object SendNetflow {
     val fileLines = getFileLines()
 
     /**
-     * DataSource: /src/main/resources/detect/kddcup.data.zip
-     */
+      * DataSource: /src/main/resources/detect/kddcup.data.zip
+      */
     while (true) {
 
       println("Ready for sending...")
@@ -73,26 +73,6 @@ object SendNetflow {
     return linked
   }
 
-  def send(out: PrintWriter, arg1: String, fileLines: List[String]): Unit = {
-
-    val len = fileLines.length
-    var counter = 0
-
-    while (true) {
-      Thread.sleep(arg1.toLong)
-
-      val line = fileLines(counter)
-
-      println(line)
-
-      out.write(line)
-      out.write("\n")
-
-      counter = (counter + 1) % len
-    }
-
-  }
-
   def clean(s: String): String = {
 
     // try unittest in scala with style.SendNetflowTest
@@ -122,6 +102,26 @@ object SendNetflow {
     }
 
     strBuffer.toString
+  }
+
+  def send(out: PrintWriter, arg1: String, fileLines: List[String]): Unit = {
+
+    val len = fileLines.length
+    var counter = 0
+
+    while (true) {
+      Thread.sleep(arg1.toLong)
+
+      val line = fileLines(counter)
+
+      println(line)
+
+      out.write(line)
+      out.write("\n")
+
+      counter = (counter + 1) % len
+    }
+
   }
 
 }

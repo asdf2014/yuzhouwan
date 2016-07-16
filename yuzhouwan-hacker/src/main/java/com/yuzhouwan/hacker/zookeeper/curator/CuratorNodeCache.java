@@ -24,6 +24,10 @@ public class CuratorNodeCache {
 
     private CuratorFramework curatorFramework;
 
+    public CuratorNodeCache() {
+        init();
+    }
+
     private void init() {
 
         curatorFramework = CuratorFrameworkFactory.
@@ -36,10 +40,6 @@ public class CuratorNodeCache {
                 build();
         curatorFramework.start();
         _log.info("Curator's Framework start...");
-    }
-
-    public CuratorNodeCache() {
-        init();
     }
 
     public void addNodeCacheListener(String path) throws Exception {

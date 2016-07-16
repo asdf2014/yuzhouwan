@@ -23,6 +23,10 @@ public class CuratorDistributedBarrier {
     private DistributedBarrier distributedBarrier;
     private DistributedDoubleBarrier distributedDoubleBarrier;
 
+    public CuratorDistributedBarrier() throws Exception {
+        init();
+    }
+
     private void init() throws Exception {
         curatorFramework = CuratorFrameworkFactory
                 .builder()
@@ -45,10 +49,6 @@ public class CuratorDistributedBarrier {
 //            throw new RuntimeException("Cannot create path '/double' !!", e);
 //        }
         distributedDoubleBarrier = new DistributedDoubleBarrier(curatorFramework, "/double", 3);
-    }
-
-    public CuratorDistributedBarrier() throws Exception {
-        init();
     }
 
     public void enterLeaveBarrier(int count) throws Exception {

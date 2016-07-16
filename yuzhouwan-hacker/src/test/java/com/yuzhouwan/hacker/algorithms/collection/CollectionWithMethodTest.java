@@ -38,13 +38,13 @@ public class CollectionWithMethodTest {
     }
 
     @Test
-    public void str(){
+    public void str() {
 
         System.out.println("a".compareTo("a"));
     }
 
     @Test
-    public void strEqual(){
+    public void strEqual() {
     }
 
 }

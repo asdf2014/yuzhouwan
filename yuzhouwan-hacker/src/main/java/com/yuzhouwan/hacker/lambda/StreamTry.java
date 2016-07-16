@@ -17,7 +17,7 @@ public class StreamTry {
 
         List<String> words = new ArrayList<>(10);
         words.add("asdf");
-        System.out.println(words.stream().allMatch(s->s.equals("asdf")));
+        System.out.println(words.stream().allMatch(s -> s.equals("asdf")));
     }
 
 }

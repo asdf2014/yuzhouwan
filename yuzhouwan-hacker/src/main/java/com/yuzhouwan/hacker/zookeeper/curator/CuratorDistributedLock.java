@@ -26,6 +26,10 @@ public class CuratorDistributedLock {
     private CuratorFramework curatorFramework;
     private SimpleDateFormat simpleDateFormat;
 
+    public CuratorDistributedLock() {
+        init();
+    }
+
     private void init() {
 
         curatorFramework = CuratorFrameworkFactory
@@ -38,10 +42,6 @@ public class CuratorDistributedLock {
                 .build();
         curatorFramework.start();
         simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss| SSS");
-    }
-
-    public CuratorDistributedLock() {
-        init();
     }
 
     public void noSupervene() {

@@ -26,6 +26,10 @@ public class ZkClientCRUD {
 
     private ZkSerializer zkSerializer;
 
+    public ZkClientCRUD() throws Exception {
+        init();
+    }
+
     private void init() throws Exception {
         zkClient = new ZkClient(HOST.concat(":" + CLIENT_PORT), TIME_OUT_MILLISECOND);
 
@@ -44,10 +48,6 @@ public class ZkClientCRUD {
             }
         };
 //        zkClient.setZkSerializer(zkSerializer);
-    }
-
-    public ZkClientCRUD() throws Exception {
-        init();
     }
 
     public void create(String path, Object data, CreateMode createMode) {

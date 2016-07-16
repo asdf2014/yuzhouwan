@@ -7,8 +7,8 @@ import java.util.Random
 import breeze.linalg._
 
 /**
- * Created by Benedict Jin on 2015/8/13.
- */
+  * Created by Benedict Jin on 2015/8/13.
+  */
 object SendMessage {
 
   def main(args: Array[String]): Unit = {

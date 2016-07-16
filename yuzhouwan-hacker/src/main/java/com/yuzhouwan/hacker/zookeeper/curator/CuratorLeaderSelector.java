@@ -24,6 +24,10 @@ public class CuratorLeaderSelector {
 
     private CuratorFramework curatorFramework;
 
+    public CuratorLeaderSelector() {
+        init();
+    }
+
     private void init() {
         curatorFramework = CuratorFrameworkFactory
                 .builder()
@@ -34,10 +38,6 @@ public class CuratorLeaderSelector {
                 .namespace("leaderSelector")
                 .build();
         curatorFramework.start();
-    }
-
-    public CuratorLeaderSelector() {
-        init();
     }
 
     public void leaderSelector(final String path) throws Exception {

@@ -4,8 +4,6 @@ class CompanionObject(co: String)
 
 object CompanionObject {
 
-  def apply(co: String) = new CompanionObject(co)
-
   def main(args: Array[String]) {
 
     val co = new CompanionObject("cObject")
@@ -14,6 +12,8 @@ object CompanionObject {
     val co2 = apply("companionO")
     println(co2)
   }
+
+  def apply(co: String) = new CompanionObject(co)
 }
 
 case class CaseClass(cc: Int)

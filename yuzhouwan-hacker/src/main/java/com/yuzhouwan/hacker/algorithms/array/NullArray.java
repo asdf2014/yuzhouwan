@@ -10,7 +10,7 @@ package com.yuzhouwan.hacker.algorithms.array;
  */
 public class NullArray {
 
-    public static void nullArray(){
+    public static void nullArray() {
         Object[] os = null;
     }
 

@@ -13,7 +13,7 @@ public class ComplexClass {
 
     private void sayE(String e) {
 
-        if(jrsrb == null)
+        if (jrsrb == null)
             return;
 
         System.out.println(e + ":\t" + jrsrb.toString());

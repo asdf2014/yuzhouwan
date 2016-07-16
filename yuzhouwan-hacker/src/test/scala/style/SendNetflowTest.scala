@@ -3,8 +3,8 @@ package style
 import com.yuzhouwan.spark.streaming.detect.SendNetflow
 
 /**
- * Created by Benedict Jin on 2015/9/7.
- */
+  * Created by Benedict Jin on 2015/9/7.
+  */
 class SendNetflowTest extends UnitTestStyle {
 
   "Clean method" should "output a string" in {

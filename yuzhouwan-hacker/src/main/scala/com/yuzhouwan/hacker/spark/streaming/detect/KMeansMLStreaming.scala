@@ -1,7 +1,5 @@
 package com.yuzhouwan.spark.streaming.detect
 
-import java.util.stream.DoubleStream
-
 import org.apache.spark.SparkContext.doubleRDDToDoubleRDDFunctions
 import org.apache.spark.mllib.clustering.StreamingKMeans
 import org.apache.spark.mllib.linalg.Vectors
@@ -9,8 +7,8 @@ import org.apache.spark.storage.StorageLevel
 import org.apache.spark.streaming._
 
 /**
- * Created by Benedict Jin on 2015/9/6.
- */
+  * Created by Benedict Jin on 2015/9/6.
+  */
 object KMeansMLStreaming {
 
   def main(args: Array[String]) {
@@ -88,10 +86,11 @@ object KMeansMLStreaming {
         val mse = sum / length
         val rmse = math.sqrt(mse)
 
-        println( s"""
-                    |-------------------------------------------
-                    |Time: $time
-            |-------------------------------------------
+        println(
+          s"""
+             |-------------------------------------------
+             |Time: $time
+             |-------------------------------------------
                       """.stripMargin)
         println(s"MSE current batch: Model : $mse")
         println(s"RMSE current batch: Model : $rmse")

@@ -37,18 +37,6 @@ public class JobExecutorWithQuartz implements Job {
         }
     }
 
-    @Override
-    public void execute(JobExecutionContext context) throws JobExecutionException {
-
-        // Say Hello to the World and display the date/time
-        _log.info("Hello World! - " + new Date());
-
-        /*
-         * asdf2014 in time:	2015-11-04/13:09:54
-         */
-        System.out.println("asdf2014 in time:\t" + dateFormat.format(new Date()));
-    }
-
     public static void main(String... args) throws Exception {
 
         init();
@@ -75,6 +63,18 @@ public class JobExecutorWithQuartz implements Job {
         Thread.sleep(1000);
 
         scheduler.shutdown(true);
+    }
+
+    @Override
+    public void execute(JobExecutionContext context) throws JobExecutionException {
+
+        // Say Hello to the World and display the date/time
+        _log.info("Hello World! - " + new Date());
+
+        /*
+         * asdf2014 in time:	2015-11-04/13:09:54
+         */
+        System.out.println("asdf2014 in time:\t" + dateFormat.format(new Date()));
     }
 
 }

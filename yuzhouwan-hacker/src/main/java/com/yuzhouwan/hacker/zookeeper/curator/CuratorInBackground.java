@@ -30,6 +30,11 @@ public class CuratorInBackground {
     private CountDownLatch countDownLatch;
     private ExecutorService executorService;
 
+    public CuratorInBackground() {
+        init();
+        showCurrentThreadName();
+    }
+
     private void init() {
         RetryPolicy retryPolicy = new RetryNTimes(3, 2000);
         curatorFramework = CuratorFrameworkFactory.builder()
@@ -43,11 +48,6 @@ public class CuratorInBackground {
 
         countDownLatch = new CountDownLatch(2);
         executorService = Executors.newFixedThreadPool(2);
-    }
-
-    public CuratorInBackground() {
-        init();
-        showCurrentThreadName();
     }
 
     public void createTwice(String path) throws Exception {

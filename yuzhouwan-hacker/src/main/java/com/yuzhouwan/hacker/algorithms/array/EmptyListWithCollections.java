@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class EmptyListWithCollections {
 
-    public static void emptyList(){
+    public static void emptyList() {
         List list = Collections.EMPTY_LIST;
     }
 

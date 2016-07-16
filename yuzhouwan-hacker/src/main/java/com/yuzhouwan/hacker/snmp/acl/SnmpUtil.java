@@ -23,7 +23,15 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
 
     public static final int DEFAULT = 0;
     public static final int WALK = 1;
+    private static Snmp _snmp = null;
 
+    static {
+        if (System.getProperty("log4j.configuration") == null) {
+            BasicConfigurator.configure();
+        }
+    }
+
+    protected int _operation = DEFAULT;
     private Target _target;
     private Address _address;
     private OID _authProtocol;
@@ -34,7 +42,6 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
     private OctetString _contextEngineID;
     private OctetString _contextName = new OctetString();
     private OctetString _securityName = new OctetString();
-    private static Snmp _snmp = null;
     private int _numThreads = 1;
     private int _port = 0;
     private ThreadPool _threadPool = null;
@@ -43,20 +50,11 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
     private TransportMapping _transport = null;
     private TimeTicks _sysUpTime = new TimeTicks(0);
     private OID _trapOID = new OID("1.3.6.1.4.1.2789.2005");
-
     private int _version = 0;
     private int _retries = 1;
     private int _timeout = 1000;
     private int _pduType = 0;
     private Vector _vbs = new Vector();
-
-    protected int _operation = DEFAULT;
-
-    static {
-        if (System.getProperty("log4j.configuration") == null) {
-            BasicConfigurator.configure();
-        }
-    }
 
     public SnmpUtil(String host, String varbind, boolean receiver, int type) {
         _version = SnmpConstants.version2c;
@@ -111,8 +109,120 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
         }
     }
 
+    protected static void printVariableBindings(PDU response) {
+        for (int i = 0; i < response.size(); i++) {
+            VariableBinding vb = response.get(i);
+            System.out.println(vb.toString());
+        }
+    }
+
+    protected static void printReport(PDU response) {
+        if (response.size() < 1) {
+            System.out.println("REPORT PDU does not contain a variable binding.");
+            return;
+        }
+
+        VariableBinding vb = response.get(0);
+        OID oid = vb.getOid();
+        if (SnmpConstants.usmStatsUnsupportedSecLevels.equals(oid)) {
+            System.out.print("REPORT: Unsupported Security Level.");
+        } else if (SnmpConstants.usmStatsNotInTimeWindows.equals(oid)) {
+            System.out.print("REPORT: Message not within time window.");
+        } else if (SnmpConstants.usmStatsUnknownUserNames.equals(oid)) {
+            System.out.print("REPORT: Unknown user name.");
+        } else if (SnmpConstants.usmStatsUnknownEngineIDs.equals(oid)) {
+            System.out.print("REPORT: Unknown engine id.");
+        } else if (SnmpConstants.usmStatsWrongDigests.equals(oid)) {
+            System.out.print("REPORT: Wrong digest.");
+        } else if (SnmpConstants.usmStatsDecryptionErrors.equals(oid)) {
+            System.out.print("REPORT: Decryption error.");
+        } else if (SnmpConstants.snmpUnknownSecurityModels.equals(oid)) {
+            System.out.print("REPORT: Unknown security model.");
+        } else if (SnmpConstants.snmpInvalidMsgs.equals(oid)) {
+            System.out.print("REPORT: Invalid message.");
+        } else if (SnmpConstants.snmpUnknownPDUHandlers.equals(oid)) {
+            System.out.print("REPORT: Unknown PDU handler.");
+        } else if (SnmpConstants.snmpUnavailableContexts.equals(oid)) {
+            System.out.print("REPORT: Unavailable context.");
+        } else if (SnmpConstants.snmpUnknownContexts.equals(oid)) {
+            System.out.print("REPORT: Unknown context.");
+        } else {
+            System.out.print("REPORT contains unknown OID ("
+                    + oid.toString() + ").");
+        }
+
+        System.out.println(" Current counter value is " +
+                vb.getVariable().toString() + ".");
+    }
+
+    private static PDU walk(Snmp snmp, PDU request, Target target)
+            throws IOException {
+        request.setNonRepeaters(0);
+        OID rootOID = request.get(0).getOid();
+        PDU response = null;
+        int objects = 0;
+        int requests = 0;
+        long startTime = System.currentTimeMillis();
+        do {
+            requests++;
+            ResponseEvent responseEvent = _snmp.send(request, target);
+            response = responseEvent.getResponse();
+            if (response != null) {
+                objects += response.size();
+            }
+        }
+        while (!processWalk(response, request, rootOID));
+
+        System.out.println();
+        System.out.println("Total requests sent:    " + requests);
+        System.out.println("Total objects received: " + objects);
+        System.out.println("Total walk time:        " +
+                (System.currentTimeMillis() - startTime) + " milliseconds");
+        return response;
+    }
+
+    private static boolean processWalk(PDU response, PDU request, OID rootOID) {
+        if ((response == null) || (response.getErrorStatus() != 0)
+                || (response.getType() == PDU.REPORT)) {
+            return true;
+        }
+        boolean finished = false;
+        OID lastOID = request.get(0).getOid();
+        for (int i = 0; (!finished) && (i < response.size()); i++) {
+            VariableBinding vb = response.get(i);
+            if ((vb.getOid() == null) || (vb.getOid().size() < rootOID.size())
+                    || (rootOID.leftMostCompare(rootOID.size(), vb.getOid()) != 0)) {
+                finished = true;
+            } else if (Null.isExceptionSyntax(vb.getVariable().getSyntax())) {
+                System.out.println(vb.toString());
+                finished = true;
+            } else if (vb.getOid().compareTo(lastOID) <= 0) {
+                System.out.println("Variable received is not lexicographic successor of requested one:");
+                System.out.println(vb.toString() + " <= " + lastOID);
+                finished = true;
+            } else {
+                System.out.println(vb.toString());
+                lastOID = vb.getOid();
+            }
+        }
+        if (response.size() == 0) {
+            finished = true;
+        }
+        if (!finished) {
+            VariableBinding next = response.get(response.size() - 1);
+            next.setVariable(new Null());
+            request.set(0, next);
+            request.setRequestID(new Integer32(0));
+        }
+        return finished;
+    }
+
     public void setVersion(int version) {
         _version = version;
+    }
+
+    public int getOperation() {
+        return _operation;
     }
 
     public void setOperation(int operation) {
@@ -120,10 +230,6 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
         if (_operation == WALK) {
             _pduType = PDU.GETNEXT;
         }
-    }
-
-    public int getOperation() {
-        return _operation;
     }
 
     public int getPduType() {
@@ -233,52 +339,6 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
         return response;
     }
 
-    protected static void printVariableBindings(PDU response) {
-        for (int i = 0; i < response.size(); i++) {
-            VariableBinding vb = response.get(i);
-            System.out.println(vb.toString());
-        }
-    }
-
-    protected static void printReport(PDU response) {
-        if (response.size() < 1) {
-            System.out.println("REPORT PDU does not contain a variable binding.");
-            return;
-        }
-
-        VariableBinding vb = response.get(0);
-        OID oid = vb.getOid();
-        if (SnmpConstants.usmStatsUnsupportedSecLevels.equals(oid)) {
-            System.out.print("REPORT: Unsupported Security Level.");
-        } else if (SnmpConstants.usmStatsNotInTimeWindows.equals(oid)) {
-            System.out.print("REPORT: Message not within time window.");
-        } else if (SnmpConstants.usmStatsUnknownUserNames.equals(oid)) {
-            System.out.print("REPORT: Unknown user name.");
-        } else if (SnmpConstants.usmStatsUnknownEngineIDs.equals(oid)) {
-            System.out.print("REPORT: Unknown engine id.");
-        } else if (SnmpConstants.usmStatsWrongDigests.equals(oid)) {
-            System.out.print("REPORT: Wrong digest.");
-        } else if (SnmpConstants.usmStatsDecryptionErrors.equals(oid)) {
-            System.out.print("REPORT: Decryption error.");
-        } else if (SnmpConstants.snmpUnknownSecurityModels.equals(oid)) {
-            System.out.print("REPORT: Unknown security model.");
-        } else if (SnmpConstants.snmpInvalidMsgs.equals(oid)) {
-            System.out.print("REPORT: Invalid message.");
-        } else if (SnmpConstants.snmpUnknownPDUHandlers.equals(oid)) {
-            System.out.print("REPORT: Unknown PDU handler.");
-        } else if (SnmpConstants.snmpUnavailableContexts.equals(oid)) {
-            System.out.print("REPORT: Unavailable context.");
-        } else if (SnmpConstants.snmpUnknownContexts.equals(oid)) {
-            System.out.print("REPORT: Unknown context.");
-        } else {
-            System.out.print("REPORT contains unknown OID ("
-                    + oid.toString() + ").");
-        }
-
-        System.out.println(" Current counter value is " +
-                vb.getVariable().toString() + ".");
-    }
-
     public PDU createPDU(Target target) {
         PDU request;
         if (_target.getVersion() == SnmpConstants.version3) {
@@ -354,69 +414,6 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
         }
         v.add(vb);
         return v;
-    }
-
-
-    private static PDU walk(Snmp snmp, PDU request, Target target)
-            throws IOException {
-        request.setNonRepeaters(0);
-        OID rootOID = request.get(0).getOid();
-        PDU response = null;
-        int objects = 0;
-        int requests = 0;
-        long startTime = System.currentTimeMillis();
-        do {
-            requests++;
-            ResponseEvent responseEvent = _snmp.send(request, target);
-            response = responseEvent.getResponse();
-            if (response != null) {
-                objects += response.size();
-            }
-        }
-        while (!processWalk(response, request, rootOID));
-
-        System.out.println();
-        System.out.println("Total requests sent:    " + requests);
-        System.out.println("Total objects received: " + objects);
-        System.out.println("Total walk time:        " +
-                (System.currentTimeMillis() - startTime) + " milliseconds");
-        return response;
-    }
-
-    private static boolean processWalk(PDU response, PDU request, OID rootOID) {
-        if ((response == null) || (response.getErrorStatus() != 0)
-                || (response.getType() == PDU.REPORT)) {
-            return true;
-        }
-        boolean finished = false;
-        OID lastOID = request.get(0).getOid();
-        for (int i = 0; (!finished) && (i < response.size()); i++) {
-            VariableBinding vb = response.get(i);
-            if ((vb.getOid() == null) || (vb.getOid().size() < rootOID.size())
-                    || (rootOID.leftMostCompare(rootOID.size(), vb.getOid()) != 0)) {
-                finished = true;
-            } else if (Null.isExceptionSyntax(vb.getVariable().getSyntax())) {
-                System.out.println(vb.toString());
-                finished = true;
-            } else if (vb.getOid().compareTo(lastOID) <= 0) {
-                System.out.println("Variable received is not lexicographic successor of requested one:");
-                System.out.println(vb.toString() + " <= " + lastOID);
-                finished = true;
-            } else {
-                System.out.println(vb.toString());
-                lastOID = vb.getOid();
-            }
-        }
-        if (response.size() == 0) {
-            finished = true;
-        }
-        if (!finished) {
-            VariableBinding next = response.get(response.size() - 1);
-            next.setVariable(new Null());
-            request.set(0, next);
-            request.setRequestID(new Integer32(0));
-        }
-        return finished;
     }
 
     public void initReceiver(String host) {

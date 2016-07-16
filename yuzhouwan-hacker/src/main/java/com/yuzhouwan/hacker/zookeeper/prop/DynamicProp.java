@@ -27,6 +27,14 @@ public class DynamicProp implements IDirUtils {
     private DirUtils.WatchRunnable runnable;
     private Thread thread;
 
+    public DynamicProp(String path) {
+        init(path, null);
+    }
+
+    public DynamicProp(String path, Long waitTime) {
+        init(path, waitTime);
+    }
+
     private void init(String path, Long waitTime) {
         try {
             runnable = DirUtils.buildWatchService(path, this, waitTime);
@@ -35,14 +43,6 @@ public class DynamicProp implements IDirUtils {
             _log.error("Dynamic Properties initialization failed, because {}", e.getMessage());
             throw new RuntimeException(e);
         }
-    }
-
-    public DynamicProp(String path) {
-        init(path, null);
-    }
-
-    public DynamicProp(String path, Long waitTime) {
-        init(path, waitTime);
     }
 
     public void startWatch() {
