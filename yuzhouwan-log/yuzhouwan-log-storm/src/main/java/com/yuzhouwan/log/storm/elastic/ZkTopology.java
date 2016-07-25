@@ -15,14 +15,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by TonyLee on 2015/1/15.
- * By IDEA
+ * Copyright @ 2015 yuzhouwan.com
+ * All right reserved.
+ * Function: ZkTopology
+ *
+ * @author Benedict Jin
+ * @since 2016/3/30 0030
  */
 public class ZkTopology {
 
     public static void main(String[] args) {
 
-        //这个地方其实就是kafka配置文件里边的zookeeper.connect这个参数，可以去那里拿过来。
+        //这个地方其实就是kafka配置文件里边的zookeeper.connect这个参数，可以去那里拿过来
         String brokerZkStr = "10.100.90.201:2181/kafka_online_sample";
         String brokerZkPath = "/brokers";
         ZkHosts zkHosts = new ZkHosts(brokerZkStr, brokerZkPath);
@@ -31,13 +35,12 @@ public class ZkTopology {
         //以下：将offset汇报到哪个zk集群,相应配置
         String offsetZkServers = "10.199.203.169";
         String offsetZkPort = "2181";
-        List<String> zkServersList = new ArrayList<String>();
+        List<String> zkServersList = new ArrayList<>();
         zkServersList.add(offsetZkServers);
         //汇报offset信息的root路径
         String offsetZkRoot = "/stormExample";
         //存储该spout id的消费offset信息,譬如以topoName来命名
         String offsetZkId = "storm-example";
-
 
         SpoutConfig kafkaConfig = new SpoutConfig(zkHosts, topic, offsetZkRoot, offsetZkId);
         kafkaConfig.zkPort = Integer.parseInt(offsetZkPort);

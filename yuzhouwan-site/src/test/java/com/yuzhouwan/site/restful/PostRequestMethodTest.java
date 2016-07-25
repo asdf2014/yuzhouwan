@@ -1,8 +1,8 @@
 package com.yuzhouwan.site.restful;
 
 import com.alibaba.fastjson.JSON;
+import com.yuzhouwan.common.http.HttpClientHelper;
 import com.yuzhouwan.common.json.A;
-import com.yuzhouwan.common.util.HttpClientHelper;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.junit.Test;
@@ -37,9 +37,9 @@ public class PostRequestMethodTest {
      */
     private List<A> doRequest(String msg) {
         try {
-            _log.debug("do request url {} param {}", this.url, msg);
+            _log.debug("do request url {} param {}", PostRequestMethodTest.url, msg);
             StringEntity entity = new StringEntity(msg, ContentType.DEFAULT_TEXT);
-            String post = HttpClientHelper.getInstance().postPlain(this.url, entity, null);
+            String post = HttpClientHelper.getInstance().postPlain(PostRequestMethodTest.url, entity, null);
             return JSON.parseArray(post, A.class);
         } catch (Exception e) {
             _log.error(e.getMessage());

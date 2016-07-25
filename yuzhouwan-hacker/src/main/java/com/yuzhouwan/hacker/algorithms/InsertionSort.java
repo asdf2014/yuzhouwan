@@ -5,20 +5,20 @@ package com.yuzhouwan.hacker.algorithms;
  */
 public class InsertionSort {
 
-    public int[] insertionSort(int[] unsort) {
+    public int[] insertionSort(int[] unSort) {
 
-        for (int j = 1; j < unsort.length; j++) {
+        for (int j = 1; j < unSort.length; j++) {
 
-            int key = unsort[j];
+            int key = unSort[j];
             int i = j - 1;
-            while (i >= 0 && unsort[i] > key) {
+            while (i >= 0 && unSort[i] > key) {
 
-                unsort[i + 1] = unsort[i];
+                unSort[i + 1] = unSort[i];
                 i--;
             }
-            unsort[i + 1] = key;
+            unSort[i + 1] = key;
         }
-        return unsort;
+        return unSort;
     }
 
 }

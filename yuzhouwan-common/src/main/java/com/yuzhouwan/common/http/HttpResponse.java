@@ -1,4 +1,4 @@
-package com.yuzhouwan.common.util;
+package com.yuzhouwan.common.http;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -14,7 +14,12 @@ import java.nio.charset.Charset;
  * @since 2016/3/21 0030
  */
 public class HttpResponse implements Serializable {
+
     private static final String DEFAULT_CHARSET = "UTF-8";
+
+    private byte[] bytes;
+    private int code;
+    private String contentType;
 
     public HttpResponse() {
     }
@@ -23,10 +28,6 @@ public class HttpResponse implements Serializable {
         this.bytes = bytes;
         this.code = code;
     }
-
-    private byte[] bytes;
-    private int code;
-    private String contentType;
 
     public String getCharset() {
         if (contentType != null && contentType.lastIndexOf("=") != -1) {

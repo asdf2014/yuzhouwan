@@ -1,8 +1,8 @@
 package com.yuzhouwan.hacker.algorithms.jvm;
 
 // http://ifeve.com/falsesharing/
-public final class FalseSharing
-        implements Runnable {
+public final class FalseSharing implements Runnable {
+
     public final static int NUM_THREADS = 4; // change
     public final static long ITERATIONS = 500L * 1000L * 1000L;
     private static VolatileLong[] longs = new VolatileLong[NUM_THREADS];

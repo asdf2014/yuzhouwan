@@ -26,7 +26,7 @@ public class MultiThreadsLoopWithNotify {
         t3.start();
     }
 
-    static class Leader implements Runnable {
+    private static class Leader implements Runnable {
 
         private volatile LockHolder lockHolder;
 
@@ -51,7 +51,7 @@ public class MultiThreadsLoopWithNotify {
         }
     }
 
-    static class Reporter implements Runnable {
+    private static class Reporter implements Runnable {
 
         private volatile LockHolder lockHolder;
 
@@ -78,7 +78,7 @@ public class MultiThreadsLoopWithNotify {
         }
     }
 
-    static class LockHolder {
+    private static class LockHolder {
         private String holder;
 
         public LockHolder(String holder) {

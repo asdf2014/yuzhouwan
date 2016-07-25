@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class A implements Serializable {
     private String rule;
     private String groupId;
-    private String mode;
+    public String mode;
     private int level;
 
     public A() {

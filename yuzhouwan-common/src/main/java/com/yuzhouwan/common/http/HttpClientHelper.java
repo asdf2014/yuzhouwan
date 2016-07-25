@@ -1,4 +1,4 @@
-package com.yuzhouwan.common.util;
+package com.yuzhouwan.common.http;
 
 import com.alibaba.fastjson.JSON;
 import org.apache.http.*;
@@ -20,8 +20,8 @@ import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.impl.client.*;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
-import org.apache.http.protocol.ExecutionContext;
 import org.apache.http.protocol.HttpContext;
+import org.apache.http.protocol.HttpCoreContext;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,40 +50,22 @@ public class HttpClientHelper {
 
     private static final Logger _log = LoggerFactory.getLogger(HttpClientHelper.class);
 
-    public static String userAgent;
-
-    private final static int TIMEOUT_CONNECTION = 60 * 1000;
-
-    private final static int TIMEOUT_SOCKET = 60 * 1000;
-
-    private final static int MAX_TOTAL = 200;
-
-    private final static int MAX_RETRY = 5;
-
-    private final static int MAX_ROUTE_TOTAL = 20;
-
-    private CloseableHttpClient httpClient = null;
-
-    private HttpClientContext httpClientContext = null;
-
-    private CookieStore cookieStore = null;
-
-    private PoolingHttpClientConnectionManager httpClientConnectionManager = null;
-
     private static HttpClientHelper helper;
 
-    RequestConfig defaultRequestConfig = null;
+    private static String userAgent;
 
-    TrustManager[] trustManagers = new TrustManager[1];
-    SSLContext sslContext = null;
-    SSLConnectionSocketFactory sslSocketFactory = null;
+    private final static int TIMEOUT_CONNECTION = 60 * 1000;
+    private final static int TIMEOUT_SOCKET = 60 * 1000;
+    private final static int MAX_TOTAL = 200;
+    private final static int MAX_RETRY = 5;
+    private final static int MAX_ROUTE_TOTAL = 20;
 
-    public static void destory() {
-        try {
-            helper.httpClient.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private CloseableHttpClient httpClient;
+    private HttpClientContext httpClientContext;
+    private TrustManager[] trustManagers = new TrustManager[1];
+    private SSLConnectionSocketFactory sslSocketFactory;
+
+    private HttpClientHelper() {
     }
 
     public static HttpClientHelper getInstance() {
@@ -94,7 +76,12 @@ public class HttpClientHelper {
         return helper;
     }
 
-    private HttpClientHelper() {
+    public static void destory() {
+        try {
+            helper.httpClient.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void initialize() {
@@ -106,28 +93,26 @@ public class HttpClientHelper {
         LaxRedirectStrategy redirectStrategy = new LaxRedirectStrategy();
 
         // 重试策略
-        HttpRequestRetryHandler retryHandler = new HttpRequestRetryHandler() {
-            public boolean retryRequest(IOException exception, int executionCount, HttpContext context) {
-                if (executionCount >= MAX_RETRY) {
-                    // Do not retry if over max retry count
-                    return false;
-                }
-                if (exception instanceof NoHttpResponseException) {
-                    // Retry if the server dropped connection on us
-                    return true;
-                }
-                if (exception instanceof SSLHandshakeException) {
-                    // Do not retry on SSL handshake exception
-                    return false;
-                }
-                HttpRequest request = (HttpRequest) context.getAttribute(ExecutionContext.HTTP_REQUEST);
-                boolean idempotent = !(request instanceof HttpEntityEnclosingRequest);
-                if (idempotent) {
-                    // Retry if the request is considered idempotent
-                    return true;
-                }
+        HttpRequestRetryHandler retryHandler = (IOException exception, int executionCount, HttpContext context) -> {
+            if (executionCount >= MAX_RETRY) {
+                // Do not retry if over max retry count
                 return false;
             }
+            if (exception instanceof NoHttpResponseException) {
+                // Retry if the server dropped connection on us
+                return true;
+            }
+            if (exception instanceof SSLHandshakeException) {
+                // Do not retry on SSL handshake exception
+                return false;
+            }
+            HttpRequest request = (HttpRequest) context.getAttribute(HttpCoreContext.HTTP_REQUEST);
+            boolean idempotent = !(request instanceof HttpEntityEnclosingRequest);
+            if (idempotent) {
+                // Retry if the request is considered idempotent
+                return true;
+            }
+            return false;
         };
 
         //覆盖证书检测过程（用以非CA的https链接）
@@ -135,11 +120,9 @@ public class HttpClientHelper {
             @Override
             public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
             }
-
             @Override
             public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
             }
-
             @Override
             public X509Certificate[] getAcceptedIssuers() {
                 return null;
@@ -147,7 +130,7 @@ public class HttpClientHelper {
         };
 
         try {
-            sslContext = SSLContext.getInstance("TLS");
+            SSLContext sslContext = SSLContext.getInstance("TLS");
             sslContext.init(new KeyManager[0], trustManagers, new SecureRandom());
             sslSocketFactory = new SSLConnectionSocketFactory(sslContext,
                     SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
@@ -156,13 +139,13 @@ public class HttpClientHelper {
         }
 
         // 默认请求配置
-        defaultRequestConfig = RequestConfig.custom()
+        RequestConfig defaultRequestConfig = RequestConfig.custom()
                 .setSocketTimeout(TIMEOUT_SOCKET)
                 .setConnectTimeout(TIMEOUT_CONNECTION)
                 .setConnectionRequestTimeout(TIMEOUT_CONNECTION).build();
 
         // 创建httpclient连接池
-        httpClientConnectionManager = new PoolingHttpClientConnectionManager(
+        PoolingHttpClientConnectionManager httpClientConnectionManager = new PoolingHttpClientConnectionManager(
                 RegistryBuilder.<ConnectionSocketFactory>create().
                         register("http", PlainConnectionSocketFactory.getSocketFactory()).
                         register("https", sslSocketFactory).build());
@@ -171,7 +154,7 @@ public class HttpClientHelper {
         httpClientConnectionManager.setDefaultConnectionConfig(connectionConfig);
 
         /* 默认cookie */
-        cookieStore = new BasicCookieStore();
+        CookieStore cookieStore = new BasicCookieStore();
 
         // httpclient上下文
         httpClientContext = HttpClientContext.create();
@@ -343,4 +326,11 @@ public class HttpClientHelper {
         }
     }
 
+    public static String getUserAgent() {
+        return userAgent;
+    }
+
+    public static void setUserAgent(String userAgent) {
+        HttpClientHelper.userAgent = userAgent;
+    }
 }

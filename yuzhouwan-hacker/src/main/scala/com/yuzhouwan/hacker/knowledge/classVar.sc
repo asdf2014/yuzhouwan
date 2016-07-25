@@ -6,12 +6,19 @@ val a = new A(1, 0)
 class A(val x: Int, val y: Int) {
   var v1 = x
   var v2 = y
+
+  def add(a: Int, b: Int): Int = {
+    a + b
+  }
 }
+
 print(a.x)
 print(a.y)
 
 print(a.v1)
 print(a.v2)
+
+println(a.add(1, 2))
 
 //val b = new B(0, 1)
 //print(b.x)

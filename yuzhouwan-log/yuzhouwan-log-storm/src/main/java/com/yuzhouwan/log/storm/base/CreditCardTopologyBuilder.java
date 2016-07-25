@@ -7,6 +7,14 @@ import org.elasticsearch.storm.EsBolt;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Copyright @ 2015 yuzhouwan.com
+ * All right reserved.
+ * Function: CreditCardTopologyBuilder
+ *
+ * @author Benedict Jin
+ * @since 2016/3/30 0030
+ */
 public class CreditCardTopologyBuilder {
 
     public static StormTopology build() {
@@ -14,7 +22,7 @@ public class CreditCardTopologyBuilder {
         String json1 = "{\"reason\" : \"business\",\"airport\" : \"SFO\"}";
         String json2 = "{\"participants\" : 5,\"airport\" : \"OTP\"}";
 
-        Map conf = new HashMap<String, String>();
+        Map<String, Object> conf = new HashMap<>();
         /**
          * Configuration: https://www.elastic.co/guide/en/elasticsearch/hadoop/current/configuration.html
          */

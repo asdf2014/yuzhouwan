@@ -1,4 +1,6 @@
-package com.yuzhouwan.common.util;
+package com.yuzhouwan.common.http;
+
+import com.yuzhouwan.common.util.StrUtils;
 
 /**
  * Copyright @ 2015 yuzhouwan.com

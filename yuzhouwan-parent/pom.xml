@@ -96,6 +96,8 @@
 
         <!-- json -->
         <fastjson.version>1.2.7</fastjson.version>
+        <jakson.version>2.8.0</jakson.version>
+        <org.codehaus.jackson.jackson-mapper-asl.version>1.9.13</org.codehaus.jackson.jackson-mapper-asl.version>
 
         <!-- apache tika -->
         <apache.tika.version>1.11</apache.tika.version>
@@ -113,10 +115,6 @@
         <apache.http.version>4.5.1</apache.http.version>
         <apache.httpcomponents.version>4.5.1</apache.httpcomponents.version>
         <commons-httpclient.version>3.1</commons-httpclient.version>
-
-        <!-- json -->
-        <org.codehaus.jackson.jackson-mapper-asl.version>1.9.13</org.codehaus.jackson.jackson-mapper-asl.version>
-
 
         <!-- collection -->
         <apache.collections.version>3.2.1</apache.collections.version>

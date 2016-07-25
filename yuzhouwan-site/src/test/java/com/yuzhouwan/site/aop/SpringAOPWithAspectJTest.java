@@ -9,11 +9,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.annotation.Resource;
 
 /**
- * SpringAOPWithAspectJ Tester.
+ * Copyright @ yuzhouwan.com
+ * All right reserved.
+ * Function：SpringAOPWithAspectJ Tester
  *
  * @author Benedict Jin
- * @version 1.0
- * @since 十一月 9, 2015
+ * @since 2015/11/9
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:/service/spring.service.xml")

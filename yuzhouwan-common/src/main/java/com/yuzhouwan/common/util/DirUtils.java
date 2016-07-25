@@ -22,18 +22,30 @@ import java.util.List;
 public class DirUtils implements IDirUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(DirUtils.class);
-    public static final String RESOURCES_PATH = System.getProperty("user.dir").concat("/src/main/resources/");
-    public static final String TEST_RESOURCES_PATH = System.getProperty("user.dir").concat("/src/test/resources/");
 
-    public static void createOutDir() {
+    private static final String PROJECT_BASE_PATH = System.getProperty("user.dir");
+    public static final String RESOURCES_PATH = PROJECT_BASE_PATH.concat("/src/main/resources/");
+    public static final String TEST_RESOURCES_PATH = PROJECT_BASE_PATH.concat("/src/test/resources/");
 
-        String currentDir = System.getProperty("user.dir");
-        String outDirPath = currentDir.concat("\\out");
+    /**
+     * Create $PROJECT_BASE_PATH/out directory.
+     *
+     * @return isSuccess
+     */
+    public static boolean createOutDir() {
+
+        String outDirPath = PROJECT_BASE_PATH.concat("\\out");
         File outDir = new File(outDirPath);
+        _log.debug(outDirPath);
+        boolean isCreated = true;
         if (!outDir.exists()) {
-            outDir.mkdir();
+            isCreated = outDir.mkdir();
         }
-        _log.debug(currentDir);
+        if (isCreated)
+            _log.debug("OutDir:{} was created success.", outDirPath);
+        else
+            _log.error("OutDir:{} was created failed!", outDirPath);
+        return isCreated;
     }
 
     /**
@@ -79,7 +91,7 @@ public class DirUtils implements IDirUtils {
      * @return
      */
     public static String getBasicPath() {
-        String path = "";
+        String path;
         try {
             URL location = Thread.currentThread().getContextClassLoader().getResource("");
             if (location == null) {
@@ -253,7 +265,7 @@ public class DirUtils implements IDirUtils {
      * @param path   be checked path
      * @param isFile true:  File
      *               false: Directory
-     * @return
+     * @return isExist
      */
     public static boolean makeSureExist(String path, boolean isFile) {
         _log.debug("Path: {}, isFile: {}", path, isFile);
@@ -286,6 +298,9 @@ public class DirUtils implements IDirUtils {
         private Long waitTime;
         private WatchService watchService;
 
+        /**
+         * controller for thread stops safely
+         */
         private boolean isRunning = true;
 
         public WatchRunnable(WatchService watchService, IDirUtils dealProcessor, Long waitTime) {

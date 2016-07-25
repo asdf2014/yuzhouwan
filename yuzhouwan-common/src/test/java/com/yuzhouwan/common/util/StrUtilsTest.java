@@ -2,6 +2,8 @@ package com.yuzhouwan.common.util;
 
 import org.junit.Test;
 
+import java.util.LinkedList;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -53,5 +55,9 @@ public class StrUtilsTest {
     @Test
     public void holderTest() throws Exception {
         assertEquals("a1b2c3", String.format("%s1b%Sc%d", "a", "2", 3));
+        LinkedList<String> linkedList = new LinkedList<>();
+        linkedList.add("a");
+        linkedList.add("b");
+        assertEquals("a b", String.format("%s %s", linkedList.toArray()));
     }
 }

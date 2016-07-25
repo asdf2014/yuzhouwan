@@ -148,5 +148,8 @@ public class TimeUtilsTest {
     @Test
     public void nowTester() {
         System.out.println(DateTime.now().toString("yyyyMM"));
+
+        System.out.println(new Date().getTime());
+        System.out.println(System.currentTimeMillis());
     }
 }
