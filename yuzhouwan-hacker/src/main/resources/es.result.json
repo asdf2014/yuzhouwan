@@ -11,7 +11,7 @@
     "max_score": 14.296166,
     "hits": [
       {
-        "_index": "cgpboss_day_20160122",
+        "_index": "yuzhouwan_day_20160122",
         "_type": "monitor_oid",
         "_id": "_create",
         "_score": 14.296166,
@@ -23,7 +23,7 @@
               "max_score": 10.108916,
               "hits": [
                 {
-                  "_index": "cgpboss_day_20160122",
+                  "_index": "yuzhouwan_day_20160122",
                   "_type": "monitor_oid",
                   "_id": "_create",
                   "_nested": {

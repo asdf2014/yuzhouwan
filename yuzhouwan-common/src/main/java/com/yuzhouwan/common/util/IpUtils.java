@@ -276,20 +276,23 @@ public class IpUtils {
     public static List<String> getCurrentEnvironmentNetworkIp() {
         if (currentHostIpAddress == null || currentHostIpAddress.isEmpty()) {
             currentHostIpAddress = new LinkedList<>();
-            Enumeration<NetworkInterface> netInterfaces;
             try {
-                netInterfaces = NetworkInterface.getNetworkInterfaces();
+                Enumeration<NetworkInterface> netInterfaces = NetworkInterface.getNetworkInterfaces();
+                NetworkInterface ni;
+                byte[] hardware;
+                Enumeration<InetAddress> address;
                 while (netInterfaces.hasMoreElements()) {
-                    NetworkInterface ni = netInterfaces.nextElement();
-                    byte[] hardware = ni.getHardwareAddress();
+                    ni = netInterfaces.nextElement();
+                    hardware = ni.getHardwareAddress();
                     if (!ni.isUp() || ni.isVirtual() || hardware == null || hardware.length == 0) {
                         continue;
                     }
-                    Enumeration<InetAddress> address = ni.getInetAddresses();
+                    address = ni.getInetAddresses();
+                    InetAddress inetAddress;
                     while (address.hasMoreElements()) {
-                        InetAddress inetAddress = address.nextElement();
+                        inetAddress = address.nextElement();
                         if (!inetAddress.isLoopbackAddress() && inetAddress.isSiteLocalAddress()
-                                && !(inetAddress.getHostAddress().indexOf(":") > -1)) {
+                                && !inetAddress.getHostAddress().contains(":")) {
                             currentHostIpAddress.add(inetAddress.getHostAddress());
                         }
                     }

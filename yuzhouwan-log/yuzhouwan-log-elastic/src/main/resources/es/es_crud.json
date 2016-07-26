@@ -1,4 +1,4 @@
-/* Create:  http://192.168.112.172:9200/cgpboss_month_201603/attack_alarm/ _create PUT */
+/* Create:  http://192.168.112.172:9200/yuzhouwan_month_201603/attack_alarm/ _create PUT */
 {
   "attackId": "74e64206095340f99c55de87d53b05d1",
   "instanceId": "790",
@@ -28,7 +28,7 @@
   }
 }
 
-/* Delete:  http://192.168.112.172:9200/cgpboss/attack_alarm/ _query DELETE */
+/* Delete:  http://192.168.112.172:9200/yuzhouwan/attack_alarm/ _query DELETE */
 {
   "query": {
     "term": {
@@ -37,7 +37,7 @@
   }
 }
 
-/* Delete Index all: http://192.168.112.172:9200/cgpboss_month_201603/ DELETE */
+/* Delete Index all: http://192.168.112.172:9200/yuzhouwan_month_201603/ DELETE */
 {}
 
 /* Update:  覆盖 */

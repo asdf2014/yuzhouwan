@@ -11,7 +11,7 @@
     "max_score": 1.0,
     "hits": [
       {
-        "_index": "cgpboss_month_201603",
+        "_index": "yuzhouwan_month_201603",
         "_type": "attack_alarm",
         "_id": "74e64206095340f99c55de87d53b05d1",
         "_score": 1.0,
@@ -36,7 +36,7 @@
         }
       },
       {
-        "_index": "cgpboss_month_201603",
+        "_index": "yuzhouwan_month_201603",
         "_type": "attack_alarm",
         "_id": "dd2077a992aa4ceb9a9a471e0efa8e87",
         "_score": 1.0,
@@ -61,7 +61,7 @@
         }
       },
       {
-        "_index": "cgpboss_month_201603",
+        "_index": "yuzhouwan_month_201603",
         "_type": "attack_alarm",
         "_id": "abaa732599f04306b9ceac1e7025c7d8",
         "_score": 1.0,
@@ -86,7 +86,7 @@
         }
       },
       {
-        "_index": "cgpboss_month_201603",
+        "_index": "yuzhouwan_month_201603",
         "_type": "attack_alarm",
         "_id": "10a8e4c6dc75463e8c6271b4510386c6",
         "_score": 1.0,
@@ -111,7 +111,7 @@
         }
       },
       {
-        "_index": "cgpboss_month_201603",
+        "_index": "yuzhouwan_month_201603",
         "_type": "attack_alarm",
         "_id": "29272a9f632e422cb2e3a3c1a122ddc8",
         "_score": 1.0,
@@ -136,7 +136,7 @@
         }
       },
       {
-        "_index": "cgpboss_month_201603",
+        "_index": "yuzhouwan_month_201603",
         "_type": "attack_alarm",
         "_id": "96356cd6c0ed45108c698819d25c62eb",
         "_score": 1.0,
@@ -161,7 +161,7 @@
         }
       },
       {
-        "_index": "cgpboss_month_201603",
+        "_index": "yuzhouwan_month_201603",
         "_type": "attack_alarm",
         "_id": "3ba5718df5764ad09733587cdb75ce21",
         "_score": 1.0,
@@ -186,7 +186,7 @@
         }
       },
       {
-        "_index": "cgpboss_month_201603",
+        "_index": "yuzhouwan_month_201603",
         "_type": "attack_alarm",
         "_id": "8c25bdc6442944ebbcd7f8a58f9f6f25",
         "_score": 1.0,
@@ -211,7 +211,7 @@
         }
       },
       {
-        "_index": "cgpboss_month_201603",
+        "_index": "yuzhouwan_month_201603",
         "_type": "attack_alarm",
         "_id": "10f7530a20a943b780c9c77b971ba197",
         "_score": 1.0,
@@ -236,7 +236,7 @@
         }
       },
       {
-        "_index": "cgpboss_month_201603",
+        "_index": "yuzhouwan_month_201603",
         "_type": "attack_alarm",
         "_id": "fd3e1a0a650041c7a1d1c5b724958a8b",
         "_score": 1.0,

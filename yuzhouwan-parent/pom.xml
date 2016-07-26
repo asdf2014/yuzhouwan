@@ -120,6 +120,12 @@
         <apache.collections.version>3.2.1</apache.collections.version>
         <apache.commons.io.version>2.4</apache.commons.io.version>
 
+        <!-- npl ansj_seg -->
+        <npl.ansj.seg.version>3.7.6</npl.ansj.seg.version>
+
+        <!-- apache hadoop -->
+        <hadoop.client.version>2.2.0</hadoop.client.version>
+
         <!-- apache storm -->
         <apache.storm.version>0.10.0</apache.storm.version>
 

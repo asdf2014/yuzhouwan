@@ -1,6 +1,7 @@
 package com.yuzhouwan.common.json;
 
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,12 +35,21 @@ public class JsonUtilsTest {
 
     @Test
     public void testMapParse() throws Exception {
-
-        //"{\"name\":\"mkyong\", \"age\":29}"
-        String json = "{'args':['0:userName', '0:userPassword'], 'rets':['0:email']}".replace("'", "\"");
-        LinkedHashMap<String, LinkedList<String>> map = new ObjectMapper().readValue(json,
-                new TypeReference<LinkedHashMap<String, LinkedList<String>>>() {
-                });
-        assertEquals("{args=[0:userName, 0:userPassword], rets=[0:email]}", map.toString());
+        {
+            //jackson
+            String json = "{'args':['0:userName', '0:userPassword'], 'rets':['0:email']}".replace("'", "\"");
+            LinkedHashMap<String, LinkedList<String>> map = new ObjectMapper().readValue(json,
+                    new com.fasterxml.jackson.core.type.TypeReference<LinkedHashMap<String, LinkedList<String>>>() {
+                    });
+            assertEquals("{args=[0:userName, 0:userPassword], rets=[0:email]}", map.toString());
+        }
+        {
+            //fastjson
+            String json = "{'args':['0:userName', '0:userPassword'], 'rets':['0:email']}";
+            LinkedHashMap<String, LinkedList<String>> map = JSON.parseObject(json,
+                    new TypeReference<LinkedHashMap<String, LinkedList<String>>>() {
+                    });
+            assertEquals("{args=[0:userName, 0:userPassword], rets=[0:email]}", map.toString());
+        }
     }
 }

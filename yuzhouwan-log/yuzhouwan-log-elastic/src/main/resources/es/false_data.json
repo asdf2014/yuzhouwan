@@ -1,4 +1,4 @@
-/* Create:  http://192.168.112.172:9200/cgpboss_month_201604/attack_alarm/ _create PUT */
+/* Create:  http://192.168.112.172:9200/yuzhouwan_month_201604/attack_alarm/ _create PUT */
 {
   "attackId": "111",
   "instanceId": "429",
