@@ -5,11 +5,13 @@ import org.ansj.app.keyword.Keyword;
 import org.junit.Test;
 
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedList;
 
 /**
  * Copyright @ 2015 yuzhouwan.com
  * All right reserved.
- * Function: com.yuzhouwan.log.hadoop.reverse.index
+ * Function: PatentMapper Tester
  *
  * @author Benedict Jin
  * @since 2016/7/26
@@ -52,4 +54,16 @@ public class PatentMapperTest {
         }
     }
 
+    @Test
+    public void testStrBuffer() {
+        LinkedList<String> value = new LinkedList<>();
+        value.add("a");
+        value.add("b");
+        Iterator iterator = value.iterator();
+        StringBuilder sb = new StringBuilder();
+        while (iterator.hasNext()) {
+            sb.append(iterator.next().toString() + (iterator.hasNext() ? " ," : ""));
+        }
+        System.out.println(sb.toString());
+    }
 }

@@ -2,11 +2,11 @@ package com.yuzhouwan.log.hadoop.reverse.index;
 
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
-import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Iterator;
-import java.util.LinkedList;
 
 /**
  * Copyright @ 2015 patent.com
@@ -17,6 +17,8 @@ import java.util.LinkedList;
  * @since 2016/3/31 0023
  */
 public class PatentReducer extends Reducer<Text, Text, Text, Text> {
+
+    private static final Logger _log = LoggerFactory.getLogger(PatentReducer.class);
 
     /**
      * Reducer 的核心方法，用来处理 海量的 Combiner端输入数据
@@ -57,8 +59,7 @@ public class PatentReducer extends Reducer<Text, Text, Text, Text> {
                 e.printStackTrace();
             }
         } catch (Exception e) {
-            //打印异常栈
-            e.printStackTrace();
+            _log.error("error: {}", e.getMessage());
         }
     }
 
@@ -70,18 +71,5 @@ public class PatentReducer extends Reducer<Text, Text, Text, Text> {
      */
     private void appendPatent(StringBuffer strBuffer, Iterator iterator) {
         strBuffer.append(iterator.next().toString() + (iterator.hasNext() ? " ;" : ""));
-    }
-
-    @Test
-    public void test() {
-        LinkedList<String> value = new LinkedList<>();
-        value.add("a");
-        value.add("b");
-        Iterator iterator = value.iterator();
-        StringBuffer sb = new StringBuffer();
-        while (iterator.hasNext()) {
-            sb.append(iterator.next().toString() + (iterator.hasNext() ? " ," : ""));
-        }
-        System.out.println(sb.toString());
     }
 }

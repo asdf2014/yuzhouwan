@@ -2,6 +2,8 @@ package com.yuzhouwan.log.hadoop.reverse.index;
 
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
@@ -14,6 +16,8 @@ import java.io.IOException;
  * @since 2016/3/31 0023
  */
 public class InverseIndexByKeywordCombiner extends Reducer<Text, Text, Text, Text> {
+
+    private static final Logger _log = LoggerFactory.getLogger(InverseIndexByKeywordCombiner.class);
 
     //输出的 Text的 Key
     private Text writeKey = new Text();
@@ -64,12 +68,8 @@ public class InverseIndexByKeywordCombiner extends Reducer<Text, Text, Text, Tex
             }
             //写入到 Hadoop上下文中
             context.write(writeKey, writeValue);
-        } catch (IOException e) {
-            // IO异常栈打印
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            // 通讯中断异常栈打印
-            e.printStackTrace();
+        } catch (IOException | InterruptedException e) {
+            _log.error("error: {}", e.getMessage());
         }
     }
 

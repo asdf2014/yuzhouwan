@@ -6,6 +6,8 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -20,6 +22,8 @@ import java.util.Iterator;
  * @since 2016/3/31 0023
  */
 public class PatentMapper extends Mapper<LongWritable, Text, Text, Text> {
+
+    private static final Logger _log = LoggerFactory.getLogger(PatentMapper.class);
 
     //分割出一行中 多个 patent的信息
     private static final String PATENT_SPLIT_TOKEN = "'\\),\\('";
@@ -135,12 +139,8 @@ public class PatentMapper extends Mapper<LongWritable, Text, Text, Text> {
             writeValue.set(type.concat(",").concat(company).concat(",1"));
             //写入到 Hadoop上下文中
             context.write(writeKey, writeValue);
-        } catch (IOException e) {
-            // IO异常栈打印
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            // 通讯中断异常栈打印
-            e.printStackTrace();
+        } catch (IOException | InterruptedException e) {
+            _log.error("error: {}", e.getMessage());
         }
     }
 

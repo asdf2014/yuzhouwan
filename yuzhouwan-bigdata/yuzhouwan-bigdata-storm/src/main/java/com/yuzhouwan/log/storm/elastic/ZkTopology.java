@@ -6,6 +6,8 @@ import backtype.storm.StormSubmitter;
 import backtype.storm.spout.SchemeAsMultiScheme;
 import backtype.storm.topology.TopologyBuilder;
 import org.elasticsearch.storm.EsBolt;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import storm.kafka.KafkaSpout;
 import storm.kafka.SpoutConfig;
 import storm.kafka.StringScheme;
@@ -23,6 +25,8 @@ import java.util.List;
  * @since 2016/3/30 0030
  */
 public class ZkTopology {
+
+    private static final Logger _log = LoggerFactory.getLogger(ZkTopology.class);
 
     public static void main(String[] args) {
 
@@ -60,7 +64,7 @@ public class ZkTopology {
             try {
                 StormSubmitter.submitTopology("storm-kafka-example", config, builder.createTopology());
             } catch (Exception e) {
-                e.printStackTrace();
+                _log.error("error: {}", e.getMessage());
             }
         } else {
             LocalCluster cluster = new LocalCluster();
