@@ -16,9 +16,9 @@
     </parent>
 
     <modules>
-        <module>yuzhouwan-log-hadoop</module>
-        <module>yuzhouwan-log-storm</module>
-        <module>yuzhouwan-log-elastic</module>
-        <module>yuzhouwan-log-flume</module>
+        <module>yuzhouwan-bigdata-hadoop</module>
+        <module>yuzhouwan-bigdata-storm</module>
+        <module>yuzhouwan-bigdata-elastic</module>
+        <module>yuzhouwan-bigdata-flume</module>
     </modules>
 </project>
