@@ -1,6 +1,8 @@
 # My Blog
 __[http://www.yuzhouwan.com][0]__
 
+(Hexo + Github，利用 node.js的 NIO框架快速生成，配合 github静态页面托管，免费但可能部分地区加载缓慢)
+
 ---------------
 
 ## My Organizations
