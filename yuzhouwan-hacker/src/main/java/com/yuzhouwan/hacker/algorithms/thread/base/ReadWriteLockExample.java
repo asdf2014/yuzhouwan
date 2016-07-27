@@ -14,6 +14,14 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+/**
+ * Copyright @ 2015 yuzhouwan.com
+ * All right reserved.
+ * Function: ReadWriteLock Example
+ *
+ * @author Benedict Jin
+ * @since 2016/7/27 0030
+ */
 public class ReadWriteLockExample {
 
     private static final Logger _log = LoggerFactory.getLogger(ReadWriteLockExample.class);
@@ -106,6 +114,8 @@ public class ReadWriteLockExample {
         }
 
         /**
+         * ReadWriteLock 默认非公平：
+         *
          * 2016-07-27 17:14:29.688 | DEBUG | Thread: pool-1-thread-1, count: 1, value: yuzhouwan|1, isExist: false | com.yuzhouwan.hacker.algorithms.thread.base.ReadWriteLockExample.isExist | ReadWriteLockExample.java:90
          * <p>
          * 2016-07-27 17:14:29.737 | DEBUG | Thread: pool-2-thread-1, count: 1, value: yuzhouwan|1, isExist: true | com.yuzhouwan.hacker.algorithms.thread.base.ReadWriteLockExample.isExist | ReadWriteLockExample.java:90
