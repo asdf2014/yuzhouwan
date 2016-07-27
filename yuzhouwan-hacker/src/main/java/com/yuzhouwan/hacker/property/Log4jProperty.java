@@ -42,8 +42,7 @@ public class Log4jProperty {
         /**
          * Auto
          */
-//        PropertyConfigurator.configure(new URL(path));
-        _log.info(PropertyConfigurator.LOGGER_FACTORY_KEY);
+        PropertyConfigurator.configure(new URL(path));
     }
 
 }

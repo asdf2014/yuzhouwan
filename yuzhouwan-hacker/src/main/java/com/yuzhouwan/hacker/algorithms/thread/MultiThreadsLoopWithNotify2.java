@@ -30,11 +30,11 @@ public class MultiThreadsLoopWithNotify2 {
 
 class Reporter implements Runnable {
 
-    private LockHolder lockHolder;
+    private final LockHolder lockHolder;
     private int number;
     private int threadSize;
 
-    public Reporter(LockHolder lockHolder, int number, int threadSize) {
+    Reporter(LockHolder lockHolder, int number, int threadSize) {
         this.lockHolder = lockHolder;
         this.number = number;
         this.threadSize = threadSize;
@@ -64,15 +64,15 @@ class Reporter implements Runnable {
 class LockHolder {
     private volatile int holder;
 
-    public LockHolder(int holder) {
+    LockHolder(int holder) {
         this.holder = holder;
     }
 
-    public int getHolder() {
+    int getHolder() {
         return holder;
     }
 
-    public void setHolder(int holder) {
+    void setHolder(int holder) {
         this.holder = holder;
     }
 }
