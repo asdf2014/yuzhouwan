@@ -6,11 +6,11 @@
 
     <parent>
         <groupId>com.yuzhouwan</groupId>
-        <artifactId>yuzhouwan-log</artifactId>
+        <artifactId>yuzhouwan-bigdata</artifactId>
         <version>0.1</version>
     </parent>
 
-    <artifactId>yuzhouwan-elastic</artifactId>
+    <artifactId>yuzhouwan-bigdata-elastic</artifactId>
     <version>0.1</version>
 
     <dependencies>
