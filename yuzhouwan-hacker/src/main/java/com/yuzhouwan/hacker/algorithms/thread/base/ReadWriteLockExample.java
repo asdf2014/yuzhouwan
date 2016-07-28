@@ -70,8 +70,8 @@ public class ReadWriteLockExample {
 
         private static final String PREFIX = "yuzhouwan|";
 
-        private static Map<Integer, String> myData = new HashMap<>();
-        private static ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
+        private Map<Integer, String> myData = new HashMap<>();
+        private ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
 
         private volatile static Business instance;
 
