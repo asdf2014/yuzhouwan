@@ -62,7 +62,7 @@ public class PatentMapperTest {
         Iterator iterator = value.iterator();
         StringBuilder sb = new StringBuilder();
         while (iterator.hasNext()) {
-            sb.append(iterator.next().toString() + (iterator.hasNext() ? " ," : ""));
+            sb.append(iterator.next().toString()).append(iterator.hasNext() ? " ," : "");
         }
         System.out.println(sb.toString());
     }

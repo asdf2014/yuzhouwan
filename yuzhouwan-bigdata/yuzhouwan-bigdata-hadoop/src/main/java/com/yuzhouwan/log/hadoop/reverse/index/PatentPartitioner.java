@@ -10,7 +10,7 @@ import org.apache.hadoop.mapreduce.Partitioner;
  * Function：指定最终的结果文件数量的 Partitioner组件
  *
  * @author Benedict Jin
- * @since 2016/3/31 0023
+ * @since 2016/3/31
  */
 public class PatentPartitioner extends Partitioner<Text, Text> {
 

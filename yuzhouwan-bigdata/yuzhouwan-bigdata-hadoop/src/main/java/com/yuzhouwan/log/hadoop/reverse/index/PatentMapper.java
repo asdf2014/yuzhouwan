@@ -19,7 +19,7 @@ import java.util.Iterator;
  * Function：处理 原始 Patent 数据的 Mapper组件
  *
  * @author Benedict Jin
- * @since 2016/3/31 0023
+ * @since 2016/3/31
  */
 public class PatentMapper extends Mapper<LongWritable, Text, Text, Text> {
 

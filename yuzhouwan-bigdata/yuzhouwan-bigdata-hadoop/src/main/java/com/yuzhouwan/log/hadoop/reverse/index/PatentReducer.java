@@ -51,12 +51,8 @@ public class PatentReducer extends Reducer<Text, Text, Text, Text> {
             try {
                 //写入到 Hadoop上下文中
                 context.write(key, new Text(strBuffer.toString()));
-            } catch (IOException e) {
-                // IO异常栈打印
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                // 通讯中断异常栈打印
-                e.printStackTrace();
+            } catch (IOException | InterruptedException e) {
+                throw new RuntimeException(e);
             }
         } catch (Exception e) {
             _log.error("error: {}", e.getMessage());
@@ -70,6 +66,6 @@ public class PatentReducer extends Reducer<Text, Text, Text, Text> {
      * @param iterator
      */
     private void appendPatent(StringBuffer strBuffer, Iterator iterator) {
-        strBuffer.append(iterator.next().toString() + (iterator.hasNext() ? " ;" : ""));
+        strBuffer.append(iterator.next().toString()).append(iterator.hasNext() ? " ;" : "");
     }
 }
