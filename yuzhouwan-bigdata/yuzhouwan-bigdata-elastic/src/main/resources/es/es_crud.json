@@ -1,43 +1,42 @@
-/* Create:  http://192.168.112.172:9200/yuzhouwan_month_201603/attack_alarm/ _create PUT */
-{
-  "attackId": "74e64206095340f99c55de87d53b05d1",
-  "instanceId": "790",
-  "customerId": "15",
-  "dstIp": "116.1.237.24",
-  "attackStatus": "worse",
-  "attackType": "cc",
-  "message": "bad",
-  "trafficRate": 100,
-  "packetRate": 20,
-  "alarmLevel": 5,
-  "alarmType": 6,
-  "startTime": "2016-03-02 22:34:05",
-  "endTime": "2016-03-03 22:34:05",
-  "duration": 1000,
-  "timestamp": "2016-03-09T09:54:16Z",
-  "maxTrafficRate": 1000,
-  "maxPacketRate": 120
-}
-
-/* Query:  http://192.168.112.172:9200/ _search POST */
-{
-  "query": {
-    "term": {
-      "attackStatus": "worse"
+[
+  /* Create:  http://192.168.112.172:9200/yuzhouwan_month_201603/attack_alarm/ _create PUT */
+  {
+    "attackId": "74e64206095340f99c55de87d53b05d1",
+    "instanceId": "790",
+    "customerId": "15",
+    "dstIp": "116.1.237.24",
+    "attackStatus": "worse",
+    "attackType": "cc",
+    "message": "bad",
+    "trafficRate": 100,
+    "packetRate": 20,
+    "alarmLevel": 5,
+    "alarmType": 6,
+    "startTime": "2016-03-02 22:34:05",
+    "endTime": "2016-03-03 22:34:05",
+    "duration": 1000,
+    "timestamp": "2016-03-09T09:54:16Z",
+    "maxTrafficRate": 1000,
+    "maxPacketRate": 120
+  },
+  /* Query:  http://192.168.112.172:9200/ _search POST */
+  {
+    "query": {
+      "term": {
+        "attackStatus": "worse"
+      }
     }
-  }
-}
-
-/* Delete:  http://192.168.112.172:9200/yuzhouwan/attack_alarm/ _query DELETE */
-{
-  "query": {
-    "term": {
-      "attackStatus": "worse"
+  },
+  /* Delete:  http://192.168.112.172:9200/yuzhouwan/attack_alarm/ _query DELETE */
+  {
+    "query": {
+      "term": {
+        "attackStatus": "worse"
+      }
     }
-  }
-}
-
-/* Delete Index all: http://192.168.112.172:9200/yuzhouwan_month_201603/ DELETE */
-{}
+  },
+  /* Delete Index all: http://192.168.112.172:9200/yuzhouwan_month_201603/ DELETE */
+  {}
+]
 
 /* Update:  覆盖 */

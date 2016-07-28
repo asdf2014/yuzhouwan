@@ -1,9 +1,0 @@
-{
-  "cc_attack": {
-    "theads": 66666,
-    "dst_port": 23,
-    "ip": "113.12.83.5"
-  },
-  "id": "1-113.12.83.5-cc",
-  "attack_type": "cc"
-}
