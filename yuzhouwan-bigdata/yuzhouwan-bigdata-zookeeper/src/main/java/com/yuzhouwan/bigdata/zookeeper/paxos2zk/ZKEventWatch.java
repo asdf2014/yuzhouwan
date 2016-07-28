@@ -1,4 +1,4 @@
-package com.yuzhouwan.hacker.zookeeper.paxos2zk;
+package com.yuzhouwan.bigdata.zookeeper.paxos2zk;
 
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;

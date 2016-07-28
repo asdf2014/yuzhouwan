@@ -21,5 +21,6 @@
         <module>yuzhouwan-bigdata-storm</module>
         <module>yuzhouwan-bigdata-elastic</module>
         <module>yuzhouwan-bigdata-flume</module>
+        <module>yuzhouwan-bigdata-zookeeper</module>
     </modules>
 </project>

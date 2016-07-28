@@ -1,4 +1,4 @@
-package com.yuzhouwan.hacker.zookeeper.crud;
+package com.yuzhouwan.bigdata.zookeeper.crud;
 
 import org.I0Itec.zkclient.ZkClient;
 import org.I0Itec.zkclient.exception.ZkMarshallingError;

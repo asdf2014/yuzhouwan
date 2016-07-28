@@ -1,4 +1,4 @@
-package com.yuzhouwan.hacker.zookeeper;
+package com.yuzhouwan.bigdata.zookeeper;
 
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;

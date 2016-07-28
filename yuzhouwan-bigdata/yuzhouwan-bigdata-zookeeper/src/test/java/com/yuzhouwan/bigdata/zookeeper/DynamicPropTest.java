@@ -1,5 +1,6 @@
-package com.yuzhouwan.hacker.zookeeper.prop;
+package com.yuzhouwan.bigdata.zookeeper;
 
+import com.yuzhouwan.bigdata.zookeeper.prop.DynamicProp;
 import com.yuzhouwan.common.util.DirUtils;
 import org.junit.Test;
 

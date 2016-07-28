@@ -1,4 +1,4 @@
-package com.yuzhouwan.hacker.zookeeper.curator;
+package com.yuzhouwan.bigdata.zookeeper.curator;
 
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;

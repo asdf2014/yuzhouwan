@@ -3,7 +3,12 @@ package com.yuzhouwan.bigdata.spark.analysis
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
-  * Created by Benedict Jin on 2015/9/18.
+  * Copyright @ 2016 yuzhouwan.com
+  * All right reserved.
+  * Function: Clustering
+  *
+  * @author Benedict Jin
+  * @since 2015/9/18
   */
 object Clustering {
 

@@ -1,4 +1,4 @@
-package com.yuzhouwan.hacker.zookeeper.prop;
+package com.yuzhouwan.bigdata.zookeeper.prop;
 
 import com.yuzhouwan.common.api.IDirUtils;
 import com.yuzhouwan.common.util.DirUtils;
