@@ -3,7 +3,7 @@ package com.yuzhouwan.common.collection;
 import org.junit.Test;
 
 /**
- * Copyright @ 2015 yuzhouwan.com
+ * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
  * Function: Remove Duplicate And Sort Test
  *

@@ -15,7 +15,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Copyright @ 2015 yuzhouwan.com
+ * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
  * Function: Curator In Background
  *

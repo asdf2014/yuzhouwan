@@ -3,7 +3,7 @@ package com.yuzhouwan.common.html;
 import org.openqa.selenium.Cookie;
 
 /**
- * Copyright @ 2015 yuzhouwan.com
+ * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
  * Function: com.yuzhouwan.common.html
  *

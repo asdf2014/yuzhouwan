@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.base
 
 /**
-  * Copyright @ 2015 yuzhouwan.com
+  * Copyright @ 2016 yuzhouwan.com
   * All right reserved.
   * Function: Zip
   *

@@ -3,7 +3,7 @@ package com.yuzhouwan.site.aop;
 import org.springframework.stereotype.Component;
 
 /**
- * Copyright @ 2015 yuzhouwan.com
+ * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
  * Function：spring.aop
  *

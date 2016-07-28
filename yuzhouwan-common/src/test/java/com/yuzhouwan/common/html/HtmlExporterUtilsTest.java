@@ -10,7 +10,7 @@ import java.util.Date;
 import static com.yuzhouwan.common.util.DirUtils.RESOURCES_PATH;
 
 /**
- * Copyright @ 2015 yuzhouwan.com
+ * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
  * Function: Html Exporter Tester
  *

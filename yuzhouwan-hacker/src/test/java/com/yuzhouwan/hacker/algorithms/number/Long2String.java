@@ -7,7 +7,7 @@ import java.text.DecimalFormat;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Copyright @ 2015 yuzhouwan.com
+ * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
  * Function: Long 2 String with thinking too big value.
  *

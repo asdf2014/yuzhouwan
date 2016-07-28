@@ -4,7 +4,7 @@ import org.openqa.selenium.Cookie;
 import org.openqa.selenium.OutputType;
 
 /**
- * Copyright @ 2015 yuzhouwan.com
+ * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
  * Function: Html Exporter
  *

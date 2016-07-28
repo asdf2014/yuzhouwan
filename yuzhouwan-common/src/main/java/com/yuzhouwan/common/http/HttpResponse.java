@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.nio.charset.Charset;
 
 /**
- * Copyright @ 2015 yuzhouwan.com
+ * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
  * Function: HttpResponse
  *

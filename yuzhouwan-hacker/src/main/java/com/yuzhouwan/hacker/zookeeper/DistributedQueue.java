@@ -12,7 +12,7 @@ import java.nio.charset.Charset;
 import java.util.List;
 
 /**
- * Copyright @ 2015 yuzhouwan.com
+ * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
  * Function: Distributed Queue with Zookeeper
  *

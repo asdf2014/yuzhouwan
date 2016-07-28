@@ -3,7 +3,7 @@ package com.yuzhouwan.common.http;
 import com.yuzhouwan.common.util.StrUtils;
 
 /**
- * Copyright @ 2015 yuzhouwan.com
+ * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
  * Function: HttpClientHelper Tester
  *

@@ -3,7 +3,7 @@ package com.yuzhouwan.annotation
 import java.io.{BufferedReader, FileNotFoundException, FileReader, IOException}
 
 /**
-  * Copyright @ 2015 yuzhouwan.com
+  * Copyright @ 2016 yuzhouwan.com
   * All right reserved.
   * Function：annotation
   *

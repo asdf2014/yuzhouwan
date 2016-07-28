@@ -1,7 +1,7 @@
 package com.yuzhouwan.jit
 
 /**
-  * Copyright @ 2015 yuzhouwan.com
+  * Copyright @ 2016 yuzhouwan.com
   * All right reserved.
   * 功能描述：jit
   *

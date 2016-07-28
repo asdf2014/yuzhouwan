@@ -9,7 +9,7 @@ __[http://www.yuzhouwan.com][0]__
 
 - Advance Maven Skill
 - BigData&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;(Hadoop/Storm/Spark/Flume/ElasticSearch/Zookeeper)
-- Hack technology&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;(Algorithm/Code Generate/Effective Code/Lambda/SNMP/Scala Feature)
+- Hack technology&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;(Algorithm/Code Generate/Effective Code/Multi Threads/Lambda/SNMP/Scala Feature)
 - WebSite&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;(Spring stuff)
 - A lot of Commons Utils
 
