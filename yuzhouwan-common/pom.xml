@@ -7,12 +7,12 @@
     <parent>
         <groupId>com.yuzhouwan</groupId>
         <artifactId>yuzhouwan-parent</artifactId>
-        <version>0.1</version>
+        <version>${project.version}</version>
         <relativePath>../yuzhouwan-parent/pom.xml</relativePath>
     </parent>
 
     <artifactId>yuzhouwan-common</artifactId>
-    <version>0.1</version>
+    <version>${project.version}</version>
     <packaging>jar</packaging>
 
     <profiles>

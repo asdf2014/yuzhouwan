@@ -5,18 +5,19 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>yuzhouwan-bigdata</artifactId>
-    <version>0.1</version>
+    <version>${project.version}</version>
     <packaging>pom</packaging>
 
     <parent>
         <groupId>com.yuzhouwan</groupId>
         <artifactId>yuzhouwan-parent</artifactId>
-        <version>0.1</version>
+        <version>${project.version}</version>
         <relativePath>../yuzhouwan-parent/pom.xml</relativePath>
     </parent>
 
     <modules>
         <module>yuzhouwan-bigdata-hadoop</module>
+        <module>yuzhouwan-bigdata-spark</module>
         <module>yuzhouwan-bigdata-storm</module>
         <module>yuzhouwan-bigdata-elastic</module>
         <module>yuzhouwan-bigdata-flume</module>
