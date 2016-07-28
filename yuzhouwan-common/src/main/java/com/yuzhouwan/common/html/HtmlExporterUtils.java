@@ -90,6 +90,7 @@ public class HtmlExporterUtils {
      */
     public static PhantomJSDriver prepare(String url, Cookie addedCookie, Integer width, Integer height) {
         // chrome driver maybe not necessary
+        // download from https://sites.google.com/a/chromium.org/chromedriver/downloads
 //        System.setProperty("webdriver.chrome.driver",
 //                DirUtils.RESOURCES_PATH.concat(
 //                        PropUtils.getInstance().getProperty("html.exporter.webdriver.chrome.driver")));
