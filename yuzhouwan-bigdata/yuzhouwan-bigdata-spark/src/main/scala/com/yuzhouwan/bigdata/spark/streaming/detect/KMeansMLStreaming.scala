@@ -1,6 +1,5 @@
 package com.yuzhouwan.bigdata.spark.streaming.detect
 
-import org.apache.spark.SparkContext.doubleRDDToDoubleRDDFunctions
 import org.apache.spark.mllib.clustering.StreamingKMeans
 import org.apache.spark.mllib.linalg.Vectors
 import org.apache.spark.storage.StorageLevel

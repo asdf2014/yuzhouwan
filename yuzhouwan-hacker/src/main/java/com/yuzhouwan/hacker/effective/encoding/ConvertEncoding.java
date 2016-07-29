@@ -5,7 +5,7 @@ import java.nio.charset.Charset;
 /**
  * Copyright @ yuzhouwan.com
  * All right reserved.
- * Function：effective.encoding
+ * Function：Convert Encoding
  *
  * @author Benedict Jin
  * @since 2015/11/19

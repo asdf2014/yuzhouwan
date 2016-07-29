@@ -84,7 +84,7 @@ public class GroupTry {
         try {
             System.out.println(sdf.parse(str));
         } catch (ParseException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -95,7 +95,7 @@ public class GroupTry {
         try {
             System.out.println(sdf.parse(str));
         } catch (ParseException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

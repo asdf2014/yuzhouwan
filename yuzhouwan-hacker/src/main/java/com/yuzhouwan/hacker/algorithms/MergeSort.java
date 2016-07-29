@@ -54,7 +54,7 @@ public class MergeSort {
         if (low < 0 || low > len - 1 || high < 0 || high > len - 1 || low > high)
             throw new ArithmeticException("0 <= low <= high < arr.length");
 
-        int maxLeft = 0, maxMiddle = 0, maxRight = 0;
+        int maxLeft, maxMiddle, maxRight;
         if (low == high)
             return benefits[low];
         else {

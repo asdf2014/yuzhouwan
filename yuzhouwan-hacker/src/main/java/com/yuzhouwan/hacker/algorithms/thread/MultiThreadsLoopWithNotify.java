@@ -45,7 +45,7 @@ public class MultiThreadsLoopWithNotify {
                         System.out.println("Thread: [".concat(threadName).concat("] sent the message is ").concat(lockHolder.getHolder()).concat("."));
                     }
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    throw new RuntimeException(e);
                 }
             }
         }
@@ -72,7 +72,7 @@ public class MultiThreadsLoopWithNotify {
                         System.out.println("Thread: [".concat(threadName).concat("] got the message is").concat(lockHolder.getHolder()).concat("."));
                     }
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    throw new RuntimeException(e);
                 }
             }
         }

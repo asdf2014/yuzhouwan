@@ -11,24 +11,24 @@ package com.yuzhouwan.common.collection;
 public class Company implements Comparable<Company> {
 
     private String city;
-    private double foundition;
+    private double foundation;
 
-    public Company(String city, double foundition) {
+    public Company(String city, double foundation) {
         this.city = city;
-        this.foundition = foundition;
+        this.foundation = foundation;
     }
 
     public String getCity() {
         return city;
     }
 
-    public double getFoundition() {
-        return foundition;
+    public double getFoundation() {
+        return foundation;
     }
 
     public int compareTo(Company o) {
-        double of = o.getFoundition();
-        double tf = this.getFoundition();
+        double of = o.getFoundation();
+        double tf = this.getFoundation();
         if (of > tf) {
             return 1;
         } else if (of < tf) {
@@ -42,7 +42,7 @@ public class Company implements Comparable<Company> {
     public String toString() {
         return "Company{" +
                 "city='" + city + '\'' +
-                ", foundition=" + foundition +
+                ", foundation=" + foundation +
                 '}';
     }
 }

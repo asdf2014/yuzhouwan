@@ -33,7 +33,7 @@ public class HtmlExporterUtils {
 //            FileUtils.writeByteArrayToFile(file, bytes);  // same as next line
             out.write(bytes);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -76,9 +76,8 @@ public class HtmlExporterUtils {
             pdfWriter.close();
             return byteArrayOutputStream.toByteArray();
         } catch (DocumentException | IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        return null;
     }
 
     /**
@@ -123,7 +122,7 @@ public class HtmlExporterUtils {
             Thread.sleep(Integer.valueOf(PropUtils.getInstance()
                     .getProperty("html.exporter.driver.timeouts.implicitly.seconds")) * 1000);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return driver;
     }
@@ -139,9 +138,8 @@ public class HtmlExporterUtils {
             BufferedImage bufferedImage = ImageIO.read(image);
             return new Rectangle(bufferedImage.getWidth(), bufferedImage.getHeight());
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        return null;
     }
 
     /**
@@ -155,9 +153,8 @@ public class HtmlExporterUtils {
             BufferedImage bufferedImage = ImageIO.read(inputStream);
             return new Rectangle(bufferedImage.getWidth(), bufferedImage.getHeight());
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        return null;
     }
 
     /**
@@ -171,9 +168,8 @@ public class HtmlExporterUtils {
             BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(bytes));
             return new Rectangle(bufferedImage.getWidth(), bufferedImage.getHeight());
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        return null;
     }
 
     /**

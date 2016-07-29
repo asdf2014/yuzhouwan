@@ -21,7 +21,7 @@ import static org.junit.Assert.assertEquals;
  * Function：MultiIPAddresses Tester
  *
  * @author Benedict Jin
- * @since 2016/3/15 0007
+ * @since 2016/3/15
  */
 public class SpringELTryTest {
 
@@ -77,8 +77,8 @@ public class SpringELTryTest {
                     timePart = datePrettyFormat.format(time);
                 }
             } catch (ParseException e) {
-                e.printStackTrace();
                 _log.error("Parsing date\"{}\" had a error:{}", timePart, e.getMessage());
+                throw new RuntimeException(e);
             }
         }
         _log.debug("Time:\t" + timePart);
@@ -91,7 +91,7 @@ public class SpringELTryTest {
         try {
             dataFormatChengdu.parse(aim);
         } catch (ParseException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         System.out.println(dataFormatChengdu.format(new Date()));
     }

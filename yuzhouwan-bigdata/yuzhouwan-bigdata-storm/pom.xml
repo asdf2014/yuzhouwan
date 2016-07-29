@@ -22,7 +22,7 @@
 
         <dependency>
             <groupId>org.apache.kafka</groupId>
-            <artifactId>${apache.kafka.artifactId}</artifactId>
+            <artifactId>kafka_${spark.scala.version}</artifactId>
             <version>${apache.kafka.version}</version>
         </dependency>
 

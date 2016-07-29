@@ -56,7 +56,7 @@ class Reporter implements Runnable {
                 }
             }
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 }

@@ -85,8 +85,7 @@ public class SnmpSimpleGet {
             }
             System.out.println("SNMP GET one OID value finished !");
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("SNMP Get Exception:" + e);
+            throw new RuntimeException(e);
         } finally {
             if (snmp != null) {
                 try {
@@ -160,8 +159,7 @@ public class SnmpSimpleGet {
 
             snmp.close();
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("SNMP Asyn GetList Exception:" + e);
+            throw new RuntimeException(e);
         }
     }
 }

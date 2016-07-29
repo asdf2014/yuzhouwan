@@ -59,14 +59,14 @@
 
         <dependency>
             <groupId>org.scalatest</groupId>
-            <artifactId>scalatest_2.10</artifactId>
+            <artifactId>scalatest_${spark.scala.version}</artifactId>
             <version>${scala.unittest.version}</version>
         </dependency>
 
         <!-- breeze -->
         <dependency>
             <groupId>org.scalanlp</groupId>
-            <artifactId>breeze_2.10</artifactId>
+            <artifactId>breeze_${spark.scala.version}</artifactId>
             <version>${breeze.version}</version>
         </dependency>
 
@@ -115,31 +115,6 @@
             <groupId>org.snmp4j</groupId>
             <artifactId>snmp4j-agent</artifactId>
             <version>${snmp4j.agent.version}</version>
-        </dependency>
-
-        <!-- fastjson -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.module</groupId>
-            <artifactId>jackson-module-scala_2.10</artifactId>
-            <version>${jackson.version}</version>
         </dependency>
 
         <!-- Apache PdfBox -->

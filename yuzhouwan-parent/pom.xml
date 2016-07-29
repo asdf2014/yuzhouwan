@@ -32,9 +32,13 @@
         <maven.eclipse.plugin.version>2.9</maven.eclipse.plugin.version>
 
         <!-- scala -->
-        <scala.version>2.10.4</scala.version>
+        <!--<scala.version>2.10.4</scala.version>-->
+        <scala.version>2.11.8</scala.version>
         <scala.unittest.version>2.2.1</scala.unittest.version>
-        <spark.version>1.2.2</spark.version>
+        <!--<spark.version>1.2.2</spark.version>-->
+        <spark.version>2.0.0</spark.version>
+        <!--<spark.scala.version>2.10</spark.scala.version>-->
+        <spark.scala.version>2.11</spark.scala.version>
         <breeze.version>0.10</breeze.version>
         <joda.time.version>2.8.2</joda.time.version>
         <jackson.version>2.6.3</jackson.version>
@@ -125,13 +129,12 @@
         <npl.ansj.seg.version>3.7.6</npl.ansj.seg.version>
 
         <!-- apache hadoop -->
-        <hadoop.client.version>2.2.0</hadoop.client.version>
+        <hadoop.client.version>2.7.2</hadoop.client.version>
 
         <!-- apache storm -->
         <apache.storm.version>0.10.0</apache.storm.version>
 
         <!-- apache kafka-->
-        <apache.kafka.artifactId>kafka_2.10</apache.kafka.artifactId>
         <apache.kafka.version>0.9.0.1</apache.kafka.version>
 
         <!-- elasticsearch -->
@@ -144,7 +147,6 @@
 
         <!-- storm + elasticsearch-->
         <storm.elasticsearch.version>${elasticsearch.version}</storm.elasticsearch.version>
-
     </properties>
 
     <build>

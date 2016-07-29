@@ -24,7 +24,7 @@ public class JodaTimeHaveATry {
         try {
             date = sdf.parse("2015-08-12-11:20:38");
         } catch (ParseException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

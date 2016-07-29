@@ -21,7 +21,7 @@ class WorkerThread implements Runnable {
             System.out.println("Time: " + time);
             Thread.sleep(time);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

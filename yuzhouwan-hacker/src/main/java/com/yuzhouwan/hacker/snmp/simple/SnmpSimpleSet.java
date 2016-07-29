@@ -80,7 +80,7 @@ public class SnmpSimpleSet {
             System.out.println("SNMP GET one OID value finished !");
             snmp.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 }

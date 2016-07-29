@@ -80,7 +80,7 @@ public class HttpClientHelper {
         try {
             helper.httpClient.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -135,7 +135,7 @@ public class HttpClientHelper {
             sslSocketFactory = new SSLConnectionSocketFactory(sslContext,
                     SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
         // 默认请求配置
@@ -322,7 +322,7 @@ public class HttpClientHelper {
                 response.close();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

@@ -20,36 +20,29 @@ public class RemoveDuplicateAndSort {
     private static Random r1 = new Random(34);
     private static Random r2 = new Random(91);
 
-    private static Comparator comparator = new Comparator<Company>() {
+    private static Comparator<Company> comparator = (c0, c1) -> {
 
-        public int compare(Company c0, Company c1) {
-
-            double of = c0.getFoundition();
-            double tf = c1.getFoundition();
-            if (of > tf) {
-                return -1;
-            } else if (of < tf) {
-                return 1;
-            } else {
-                return 0;
-            }
+        double of = c0.getFoundation();
+        double tf = c1.getFoundation();
+        if (of > tf) {
+            return -1;
+        } else if (of < tf) {
+            return 1;
+        } else {
+            return 0;
         }
     };
 
-    private static Comparator comparator4Equal = new Comparator<Company>() {
+    private static Comparator<Company> comparator4Equal = (c1, c2) -> {
+        String city1 = c1.getCity();
+        String city2 = c2.getCity();
 
-        @Override
-        public int compare(Company c1, Company c2) {
-            String city1 = c1.getCity();
-            String city2 = c2.getCity();
-
-            int result = city1.compareTo(city2);
+        int result = city1.compareTo(city2);
 //                _log.debug("{}-{}:{}", city1, city2, result);
-            return result;
-        }
+        return result;
     };
 
-    public void example() {
+    void example() {
 
         List<Company> companies = new ArrayList<>();
         companies.add(new Company("Washington", 2));
@@ -61,7 +54,7 @@ public class RemoveDuplicateAndSort {
             _log.debug(company.toString());
         }
         System.out.println("------------------------------------");
-        List<Company> result = removeDuplicteUsers(companies, 1);
+        List<Company> result = removeDuplicateUsers(companies, 1);
         System.out.println("------------------------------------");
         for (Company company : result) {
             _log.debug(company.toString());
@@ -71,7 +64,7 @@ public class RemoveDuplicateAndSort {
     /**
      * 100 0002, time:567 ms
      */
-    public void performance() {
+    void performance() {
 
         List<Company> companies = new ArrayList<>();
         int count = 333334;
@@ -83,7 +76,7 @@ public class RemoveDuplicateAndSort {
         }
         long start = System.currentTimeMillis();
         Collections.sort(companies, comparator);
-        List<Company> result = removeDuplicteUsers(companies, 2);
+        List<Company> result = removeDuplicateUsers(companies, 2);
         long end = System.currentTimeMillis();
         for (Company company : result) {
             _log.debug(company.toString());
@@ -96,7 +89,7 @@ public class RemoveDuplicateAndSort {
      * @param num              : limition for topN
      * @return
      */
-    private List<Company> removeDuplicteUsers(List<Company> companyIpResults, int num) {
+    private List<Company> removeDuplicateUsers(List<Company> companyIpResults, int num) {
         Set<Company> s = new TreeSet<>(comparator4Equal);
         for (Company companyIpResult : companyIpResults) {
             s.add(companyIpResult);
@@ -108,7 +101,7 @@ public class RemoveDuplicateAndSort {
                 break;
             }
         }
-        return new ArrayList<Company>(s);
+        return new ArrayList<>(s);
     }
 
 }

@@ -1,7 +1,12 @@
 package com.yuzhouwan.hacker.effective;
 
 /**
- * Created by Benedict Jin on 2015/10/9.
+ * Copyright @ yuzhouwan.com
+ * All right reserved.
+ * Function：Generic
+ *
+ * @author Benedict Jin
+ * @since 2015/10/9
  */
 public class Generic<Y> {
 

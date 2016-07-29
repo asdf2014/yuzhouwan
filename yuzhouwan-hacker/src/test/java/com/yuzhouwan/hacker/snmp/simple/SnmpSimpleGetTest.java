@@ -69,7 +69,7 @@ public class SnmpSimpleGetTest {
 //            snmpV2SetPort();
 //            snmpV2Set();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 //        snmpV3Set();
     }

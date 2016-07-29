@@ -44,7 +44,6 @@ public class ElasticNodeClient {
                                         new InetSocketTransportAddress(
                                                 InetAddress.getByAddress("192.168.1.101".getBytes()), 9300));
                     } catch (ElasticsearchException e) {
-                        e.printStackTrace();
                         client = null;
                         throw new RuntimeException(e);
                     }
@@ -68,7 +67,6 @@ public class ElasticNodeClient {
                                     .field("sex", "male").endObject())
                     .execute().actionGet();
         } catch (ElasticsearchException | IOException e) {
-            e.printStackTrace();
             throw new RuntimeException(e);
         }
 
@@ -114,7 +112,6 @@ public class ElasticNodeClient {
         try {
             client.update(updateRequest).get();
         } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
@@ -169,7 +166,6 @@ public class ElasticNodeClient {
         try {
             bulkProcessor.awaitClose(10, TimeUnit.MINUTES);
         } catch (InterruptedException e) {
-            e.printStackTrace();
             throw new RuntimeException(e);
         }
         bulkProcessor.close();
