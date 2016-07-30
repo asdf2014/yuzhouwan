@@ -3,7 +3,12 @@ package com.yuzhouwan.hacker.algorithms;
 import org.apache.commons.math3.exception.MathArithmeticException;
 
 /**
- * Created by Benedict Jin on 2015/10/8.
+ * Copyright @ 2016 yuzhouwan.com
+ * All right reserved.
+ * Function：Merge Sort
+ *
+ * @author Benedict Jin
+ * @since 2015/9/23
  */
 public class StrassenMatrix {
 

@@ -1,7 +1,12 @@
-package com.yuzhouwan.hacker.algorithms;
+package com.yuzhouwan.hacker.algorithms.sort;
 
 /**
- * Created by Benedict Jin on 2015/9/23.
+ * Copyright @ 2016 yuzhouwan.com
+ * All right reserved.
+ * Function：Merge Sort
+ *
+ * @author Benedict Jin
+ * @since 2015/9/23
  */
 public class MergeSort {
 
@@ -16,7 +21,6 @@ public class MergeSort {
         for (int i = 0; i < bLen - 1; i++) {
             transfer[i] = benefits[i + 1] - benefits[i];
         }
-
         return transfer;
     }
 

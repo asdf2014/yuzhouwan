@@ -13,7 +13,7 @@ public class MultiThreadsLoopWithNotify {
 
     public static void main(String[] args) {
 
-        LockHolder lockHolder = new LockHolder("goahead");
+        LockHolder lockHolder = new LockHolder("go ahead");
         Reporter reporter1 = new Reporter(lockHolder);
 //        Reporter reporter2 = new Reporter(lockHolder);
         Leader leader = new Leader(lockHolder);
@@ -28,7 +28,7 @@ public class MultiThreadsLoopWithNotify {
 
     private static class Leader implements Runnable {
 
-        private volatile LockHolder lockHolder;
+        private final LockHolder lockHolder;
 
         public Leader(LockHolder lockHolder) {
             this.lockHolder = lockHolder;
@@ -36,7 +36,9 @@ public class MultiThreadsLoopWithNotify {
 
         @Override
         public void run() {
-            while (true) {
+            int count = 10;
+            while (count > 0) {
+                count--;
                 String threadName = Thread.currentThread().getName();
                 try {
                     Thread.sleep(3000);
@@ -53,23 +55,24 @@ public class MultiThreadsLoopWithNotify {
 
     private static class Reporter implements Runnable {
 
-        private volatile LockHolder lockHolder;
+        private final LockHolder lockHolder;
 
-        public Reporter(LockHolder lockHolder) {
+        Reporter(LockHolder lockHolder) {
             this.lockHolder = lockHolder;
         }
 
         @Override
         public void run() {
-            while (true) {
+            int count = 10;
+            while (count > 0) {
+                count--;
                 String threadName = Thread.currentThread().getName();
                 try {
                     Thread.sleep(1000);
                     synchronized (lockHolder) {
-
                         System.out.println("Thread: [".concat(threadName).concat("] is waiting the message..."));
                         lockHolder.wait();
-                        System.out.println("Thread: [".concat(threadName).concat("] got the message is").concat(lockHolder.getHolder()).concat("."));
+                        System.out.println("Thread: [".concat(threadName).concat("] got the message is ").concat(lockHolder.getHolder()).concat("."));
                     }
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);

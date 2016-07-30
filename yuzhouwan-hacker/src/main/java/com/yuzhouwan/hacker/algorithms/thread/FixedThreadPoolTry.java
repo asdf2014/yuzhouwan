@@ -21,19 +21,24 @@ public class FixedThreadPoolTry {
      * @param args
      */
 //    volatile static int a = 0;        //volatile 只是保证了可见性，并不能保证 field 在 ++ 这种非原子操作下，不出现并发问题
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
 //        a++;
 
         ExecutorService executor = Executors.newFixedThreadPool(5);
+        Runnable worker;
         for (int i = 0; i < 10; i++) {
-            Runnable worker = new WorkerThread("" + i);
+            worker = new WorkerThread("" + i);
             executor.execute(worker);
         }
         executor.shutdown();
-        while (!executor.isTerminated()) {
+        for (int count = 10000; count >= 0; count--) {
+            Thread.sleep(10);
+            if (executor.isTerminated()) {
+                System.out.println("Finished all threads");
+                System.exit(0);
+            }
         }
-        System.out.println("Finished all threads");
     }
 
     /**

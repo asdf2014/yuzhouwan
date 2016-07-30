@@ -77,7 +77,6 @@ object KMeansMLStreaming {
 
     println("End?")
 
-
     predictResult.foreachRDD { (rdd, time) =>
 
       if (rdd.count() > 0) {
@@ -95,7 +94,7 @@ object KMeansMLStreaming {
              |-------------------------------------------
              |Time: $time
              |-------------------------------------------
-                      """.stripMargin)
+             """.stripMargin)
         println(s"MSE current batch: Model : $mse")
         println(s"RMSE current batch: Model : $rmse")
         println("...\n")

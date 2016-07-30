@@ -1,5 +1,6 @@
-package com.yuzhouwan.hacker.algorithms;
+package com.yuzhouwan.hacker.algorithms.sort;
 
+import com.yuzhouwan.hacker.algorithms.sort.MergeSort;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

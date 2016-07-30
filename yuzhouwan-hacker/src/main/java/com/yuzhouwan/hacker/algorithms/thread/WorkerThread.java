@@ -4,7 +4,7 @@ class WorkerThread implements Runnable {
 
     private String command;
 
-    public WorkerThread(String s) {
+    WorkerThread(String s) {
         this.command = s;
     }
 

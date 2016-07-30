@@ -6,7 +6,7 @@ package com.yuzhouwan.hacker.algorithms.thread;
  * Function：thread
  *
  * @author Benedict Jin
- * @since 2016/1/21 0021
+ * @since 2016/1/21
  */
 public class MultiThreadsLoopWithNotify2 {
 
@@ -44,7 +44,8 @@ class Reporter implements Runnable {
     public void run() {
         String threadName = Thread.currentThread().getName();
         try {
-            while (true) {
+            int count = 0;
+            while (count < 100) {
                 Thread.sleep(1000);
                 synchronized (lockHolder) {
                     if (lockHolder.getHolder() == number) {
@@ -54,6 +55,7 @@ class Reporter implements Runnable {
                         lockHolder.wait(100);
                     }
                 }
+                count++;
             }
         } catch (InterruptedException e) {
             throw new RuntimeException(e);

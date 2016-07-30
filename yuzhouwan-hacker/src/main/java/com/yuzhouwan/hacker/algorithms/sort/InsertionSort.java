@@ -1,7 +1,12 @@
-package com.yuzhouwan.hacker.algorithms;
+package com.yuzhouwan.hacker.algorithms.sort;
 
 /**
- * Created by Benedict Jin on 2015/9/21.
+ * Copyright @ 2016 yuzhouwan.com
+ * All right reserved.
+ * Function：Insertion Sort
+ *
+ * @author Benedict Jin
+ * @since 2015/9/21
  */
 public class InsertionSort {
 
@@ -12,7 +17,6 @@ public class InsertionSort {
             int key = unSort[j];
             int i = j - 1;
             while (i >= 0 && unSort[i] > key) {
-
                 unSort[i + 1] = unSort[i];
                 i--;
             }

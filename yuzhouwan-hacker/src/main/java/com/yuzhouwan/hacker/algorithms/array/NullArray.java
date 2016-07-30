@@ -17,5 +17,4 @@ public class NullArray {
     public static void main(String[] args) {
         nullArray();
     }
-
 }

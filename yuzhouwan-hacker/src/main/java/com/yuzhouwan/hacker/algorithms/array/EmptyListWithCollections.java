@@ -20,5 +20,4 @@ public class EmptyListWithCollections {
     public static void main(String[] args) {
         emptyList();
     }
-
 }

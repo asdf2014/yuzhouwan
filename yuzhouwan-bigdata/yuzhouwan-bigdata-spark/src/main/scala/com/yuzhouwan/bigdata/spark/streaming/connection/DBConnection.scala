@@ -1,5 +1,12 @@
 package com.yuzhouwan.bigdata.spark.streaming.connection
 
+import java.io.PrintStream
+import java.net.Socket
+
+import org.apache.commons.pool2.impl.{DefaultPooledObject, GenericObjectPool}
+import org.apache.commons.pool2.{BasePooledObjectFactory, ObjectPool, PooledObject}
+import org.apache.spark.streaming.dstream.DStream
+
 /**
   * Copyright @ 2016 yuzhouwan.com
   * All right reserved.
@@ -13,13 +20,6 @@ class DBConnection {
   //  spark-streaming and connection pool implementation
   //  http://stackoverflow.com/questions/30450763/spark-streaming-and-connection-pool-implementation
 }
-
-import java.io.PrintStream
-import java.net.Socket
-
-import org.apache.commons.pool2.impl.{DefaultPooledObject, GenericObjectPool}
-import org.apache.commons.pool2.{BasePooledObjectFactory, ObjectPool, PooledObject}
-import org.apache.spark.streaming.dstream.DStream
 
 class PooledSocketStreamPublisher[T](host: String, port: Int) extends Serializable {
 

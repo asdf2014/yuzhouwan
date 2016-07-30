@@ -142,12 +142,12 @@ public class StrassenMatrixTest {
                 matrixC[i][j] = subSum;
             }
         }
-        for (int[] line : matrixC) {
-            for (int element : line) {
-                System.out.print(element + "\t");
-            }
-            System.out.print("\r\n");
-        }
+//        for (int[] line : matrixC) {
+//            for (int element : line) {
+//                System.out.print(element + "\t");
+//            }
+//            System.out.print("\r\n");
+//        }
     }
 
     @Test
@@ -181,12 +181,12 @@ public class StrassenMatrixTest {
         matrixC[1][0] = p3 + p4;
         matrixC[1][1] = p5 + p1 - p3 - p7;
 
-        for (int[] line : matrixC) {
-            for (int element : line) {
-                System.out.print(element + "\t");
-            }
-            System.out.print("\r\n");
-        }
+//        for (int[] line : matrixC) {
+//            for (int element : line) {
+//                System.out.print(element + "\t");
+//            }
+//            System.out.print("\r\n");
+//        }
     }
 
     @Test

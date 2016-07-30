@@ -11,7 +11,7 @@ import org.apache.spark.{SparkConf, SparkContext}
   * Function：Convert txt into json.
   *
   * @author Benedict Jin
-  * @since 2015/12/4 0004
+  * @since 2015/12/4
   */
 object JsonUtils {
 

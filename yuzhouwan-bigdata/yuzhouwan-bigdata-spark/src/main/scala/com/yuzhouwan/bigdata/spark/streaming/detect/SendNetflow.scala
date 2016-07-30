@@ -25,8 +25,7 @@ object SendNetflow {
     }
 
     val listener = new ServerSocket(args(0).toInt)
-
-    val fileLines = getFileLines()
+    val fileLines = getFileLines
 
     /**
       * DataSource: /src/main/resources/detect/kddcup.data.zip
@@ -38,11 +37,11 @@ object SendNetflow {
 
       new Thread() {
 
-        override def run = {
+        override def run() = {
 
           println("Got client connected from: " + socket.getInetAddress)
 
-          val out = new PrintWriter(socket.getOutputStream(), true)
+          val out = new PrintWriter(socket.getOutputStream, true)
           send(out, args(1), fileLines)
           socket.close()
         }
@@ -50,8 +49,9 @@ object SendNetflow {
     }
   }
 
-  def getFileLines(): List[String] = {
+  def getFileLines: List[String] = {
 
+    //download from http://kdd.ics.uci.edu/databases/kddcup99/kddcup99.html
     val filePath = "F:\\kddcup.data.txt"
     val file = Source.fromFile(filePath)
     val lines = file.getLines()
@@ -59,9 +59,7 @@ object SendNetflow {
     var linked = List[String]()
 
     var counter = 0
-
     while (lines.hasNext) {
-
       val nextLine = lines.next()
 
       if (nextLine.length > 0 && counter % 10 == 0) {
@@ -70,11 +68,9 @@ object SendNetflow {
       }
       counter += 1
     }
-
     file.close()
     println("SUCCESS: load kddcup data file successfully.")
-
-    return linked
+    linked
   }
 
   def clean(s: String): String = {
@@ -87,24 +83,20 @@ object SendNetflow {
 
     val strBuffer = new StringBuffer()
     val length = columns.length
-    for (i <- 0 to length - 1) {
+    for (i <- 0 until length) {
 
       if (i == length - 2) {
-
         strBuffer.append(columns(i))
         strBuffer.append("\t")
 
       } else if (i == length - 1) {
-
         strBuffer.append(columns(i))
 
       } else if (i < 1 || i > 3) {
-
         strBuffer.append(columns(i))
         strBuffer.append(",")
       }
     }
-
     strBuffer.toString
   }
 
@@ -125,7 +117,5 @@ object SendNetflow {
 
       counter = (counter + 1) % len
     }
-
   }
-
 }
