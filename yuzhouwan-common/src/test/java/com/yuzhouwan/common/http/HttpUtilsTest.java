@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
  * @author Benedict Jin
  * @since 2016/3/21
  */
-public class HttpClientHelperTest {
+public class HttpUtilsTest {
 
 //    @Test
     public void getPlainTestLocal() throws Exception {
