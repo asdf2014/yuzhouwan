@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
  * Function：annotation
  *
  * @author Benedict Jin
- * @since 2015/11/23 0023
+ * @since 2015/11/23
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)

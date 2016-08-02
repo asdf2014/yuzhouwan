@@ -2,13 +2,13 @@ package com.yuzhouwan.hacker.snmp.v3;
 
 public class H3CUserTarget {
 
-    String address;
-    String securityName2;
-    int securityLevel;
-    int securityModel;
-    int retries;
-    long timeout;
-    int version;
+    private String address;
+    private String securityName2;
+    private int securityLevel;
+    private int securityModel;
+    private int retries;
+    private long timeout;
+    private int version;
 
     public H3CUserTarget(String address, String securityName2, int securityLevel, int securityModel, int retries, long timeout, int version) {
         this.address = address;

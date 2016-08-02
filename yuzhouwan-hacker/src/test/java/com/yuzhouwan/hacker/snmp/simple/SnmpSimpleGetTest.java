@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Copyright @ yuzhouwan.com
  * All right reserved.
- * Function：SnmpSimpleGet Tester.
+ * Function：SnmpSimpleGet Tester
  *
  * @author Benedict Jin
  * @since 2015/11/19
@@ -51,7 +51,7 @@ public class SnmpSimpleGetTest {
     /**
      * Method: snmpSyncSetList(String ip, String community, List<String> oidList)
      */
-//    @Test
+    //    @Test
     public void testSnmpSyncGetList() throws Exception {
 
         /**

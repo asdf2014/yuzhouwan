@@ -1,19 +1,17 @@
 package com.yuzhouwan.common.http;
 
 import com.alibaba.fastjson.JSON;
+import com.yuzhouwan.common.util.PropUtils;
 import org.apache.http.*;
-import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpRequestRetryHandler;
 import org.apache.http.client.config.RequestConfig;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.client.methods.*;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.config.ConnectionConfig;
 import org.apache.http.config.RegistryBuilder;
 import org.apache.http.conn.socket.ConnectionSocketFactory;
 import org.apache.http.conn.socket.PlainConnectionSocketFactory;
+import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.HttpMultipartMode;
@@ -36,49 +34,59 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 
 /**
  * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
- * Function: HttpClientHelper
+ * Function: HttpUtils
  *
  * @author Benedict Jin
- * @since 2016/3/21 0030
+ * @since 2016/3/21
  */
-public class HttpClientHelper {
+public class HttpUtils {
 
-    private static final Logger _log = LoggerFactory.getLogger(HttpClientHelper.class);
+    private static final Logger _log = LoggerFactory.getLogger(HttpUtils.class);
 
-    private static HttpClientHelper helper;
+    private static volatile HttpUtils helper;
 
     private static String userAgent;
 
-    private final static int TIMEOUT_CONNECTION = 60 * 1000;
-    private final static int TIMEOUT_SOCKET = 60 * 1000;
-    private final static int MAX_TOTAL = 200;
-    private final static int MAX_RETRY = 5;
-    private final static int MAX_ROUTE_TOTAL = 20;
+    private static int TIMEOUT_CONNECTION;
+    private static int TIMEOUT_SOCKET;
+    private static int MAX_TOTAL;
+    private static int MAX_RETRY;
+    private static int MAX_ROUTE_TOTAL;
 
     private CloseableHttpClient httpClient;
     private HttpClientContext httpClientContext;
     private TrustManager[] trustManagers = new TrustManager[1];
-    private SSLConnectionSocketFactory sslSocketFactory;
 
-    private HttpClientHelper() {
+    static {
+        TIMEOUT_CONNECTION = Integer.valueOf(PropUtils.getInstance().getProperty("TIMEOUT_CONNECTION"));
+        TIMEOUT_SOCKET = Integer.valueOf(PropUtils.getInstance().getProperty("TIMEOUT_SOCKET"));
+        MAX_TOTAL = Integer.valueOf(PropUtils.getInstance().getProperty("MAX_TOTAL"));
+        MAX_RETRY = Integer.valueOf(PropUtils.getInstance().getProperty("MAX_RETRY"));
+        MAX_ROUTE_TOTAL = Integer.valueOf(PropUtils.getInstance().getProperty("MAX_ROUTE_TOTAL"));
     }
 
-    public static HttpClientHelper getInstance() {
-        if (helper == null) {
-            helper = new HttpClientHelper();
-            helper.initialize();
-        }
+    private HttpUtils() {
+    }
+
+    public static HttpUtils getInstance() {
+        if (helper == null)
+            synchronized (HttpUtils.class) {
+                if (helper == null) {
+                    helper = new HttpUtils();
+                    helper.initialize();
+                }
+            }
         return helper;
     }
 
     public static void destory() {
         try {
-            helper.httpClient.close();
+            if (helper != null && helper.httpClient != null)
+                helper.httpClient.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -88,6 +96,51 @@ public class HttpClientHelper {
         // Connection配置
         ConnectionConfig connectionConfig = ConnectionConfig.custom().setMalformedInputAction(CodingErrorAction.IGNORE)
                 .setUnmappableInputAction(CodingErrorAction.IGNORE).setCharset(Consts.UTF_8).build();
+
+        // 覆盖证书检测过程 [用以非CA的https链接 (CA, Certificate Authority 数字证书)]
+        trustManagers[0] = new X509TrustManager() {
+            @Override
+            public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+            }
+
+            @Override
+            public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+            }
+
+            @Override
+            public X509Certificate[] getAcceptedIssuers() {
+                return null;
+            }
+        };
+
+        // httpClient上下文
+        httpClientContext = HttpClientContext.create();
+        httpClientContext.setCookieStore(new BasicCookieStore());
+
+        SSLConnectionSocketFactory sslSocketFactory;
+        try {
+            SSLContext sslContext = SSLContext.getInstance("TLS");
+            sslContext.init(new KeyManager[0], trustManagers, new SecureRandom());
+            sslSocketFactory = new SSLConnectionSocketFactory(sslContext, new NoopHostnameVerifier());
+        } catch (Exception e) {
+            _log.error("error: {}", e.getMessage());
+            throw new RuntimeException(e);
+        }
+
+        // 创建 httpClient连接池
+        PoolingHttpClientConnectionManager httpClientConnectionManager = new PoolingHttpClientConnectionManager(
+                RegistryBuilder.<ConnectionSocketFactory>create().
+                        register("http", PlainConnectionSocketFactory.getSocketFactory()).
+                        register("https", sslSocketFactory).build());
+        httpClientConnectionManager.setMaxTotal(MAX_TOTAL); // 设置连接池线程最大数量
+        httpClientConnectionManager.setDefaultMaxPerRoute(MAX_ROUTE_TOTAL); // 设置单个路由最大的连接线程数量
+        httpClientConnectionManager.setDefaultConnectionConfig(connectionConfig);
+
+        // 默认请求配置
+        RequestConfig defaultRequestConfig = RequestConfig.custom()
+                .setSocketTimeout(TIMEOUT_SOCKET)
+                .setConnectTimeout(TIMEOUT_CONNECTION)
+                .setConnectionRequestTimeout(TIMEOUT_CONNECTION).build();
 
         // 设置重定向策略
         LaxRedirectStrategy redirectStrategy = new LaxRedirectStrategy();
@@ -107,71 +160,21 @@ public class HttpClientHelper {
                 return false;
             }
             HttpRequest request = (HttpRequest) context.getAttribute(HttpCoreContext.HTTP_REQUEST);
-            boolean idempotent = !(request instanceof HttpEntityEnclosingRequest);
-            if (idempotent) {
-                // Retry if the request is considered idempotent
-                return true;
-            }
-            return false;
+            // Retry if the request is considered idempotent
+            return !(request instanceof HttpEntityEnclosingRequest);
         };
 
-        //覆盖证书检测过程（用以非CA的https链接）
-        trustManagers[0] = new X509TrustManager() {
-            @Override
-            public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-            }
-            @Override
-            public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-            }
-            @Override
-            public X509Certificate[] getAcceptedIssuers() {
-                return null;
-            }
-        };
-
-        try {
-            SSLContext sslContext = SSLContext.getInstance("TLS");
-            sslContext.init(new KeyManager[0], trustManagers, new SecureRandom());
-            sslSocketFactory = new SSLConnectionSocketFactory(sslContext,
-                    SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        // 默认请求配置
-        RequestConfig defaultRequestConfig = RequestConfig.custom()
-                .setSocketTimeout(TIMEOUT_SOCKET)
-                .setConnectTimeout(TIMEOUT_CONNECTION)
-                .setConnectionRequestTimeout(TIMEOUT_CONNECTION).build();
-
-        // 创建httpclient连接池
-        PoolingHttpClientConnectionManager httpClientConnectionManager = new PoolingHttpClientConnectionManager(
-                RegistryBuilder.<ConnectionSocketFactory>create().
-                        register("http", PlainConnectionSocketFactory.getSocketFactory()).
-                        register("https", sslSocketFactory).build());
-        httpClientConnectionManager.setMaxTotal(MAX_TOTAL); // 设置连接池线程最大数量
-        httpClientConnectionManager.setDefaultMaxPerRoute(MAX_ROUTE_TOTAL); // 设置单个路由最大的连接线程数量
-        httpClientConnectionManager.setDefaultConnectionConfig(connectionConfig);
-
-        /* 默认cookie */
-        CookieStore cookieStore = new BasicCookieStore();
-
-        // httpclient上下文
-        httpClientContext = HttpClientContext.create();
-        httpClientContext.setCookieStore(cookieStore);
-
-        // 初始化httpclient客户端
+        // 初始化 httpClient客户端
         HttpClientBuilder httpClientBuilder = HttpClients.custom()
                 .setConnectionManager(httpClientConnectionManager)
                 .setDefaultRequestConfig(defaultRequestConfig)
                 .setRedirectStrategy(redirectStrategy)
                 .setRetryHandler(retryHandler);
 
-        if (this.userAgent != null) {
+        if (HttpUtils.userAgent != null) {
             httpClientBuilder.setUserAgent(userAgent);
         }
         httpClient = httpClientBuilder.build();
-
     }
 
     private MultipartEntityBuilder processBuilderParams(Map<String, Object> params) {
@@ -180,12 +183,10 @@ public class HttpClientHelper {
         MultipartEntityBuilder builder = MultipartEntityBuilder.create();
         if (params != null) {
             _log.debug(params.toString());
-            Set<Entry<String, Object>> sets = params.entrySet();
-            for (Entry<String, Object> entry : sets) {
-                Object value = entry.getValue();
-                if (value == null) {
-                    continue;
-                } else if (value instanceof File) {
+            Object value;
+            for (Entry<String, Object> entry : params.entrySet()) {
+                value = entry.getValue();
+                if (value instanceof File) {
                     builder.addBinaryBody(entry.getKey(), (File) value);
                 } else if (value instanceof CharSequence) {
                     builder.addTextBody(entry.getKey(), value.toString(), contentType);
@@ -197,6 +198,63 @@ public class HttpClientHelper {
         return builder;
     }
 
+    /**
+     * PUT
+     *
+     * @param url
+     * @param params
+     * @param headers
+     * @return
+     * @throws Exception
+     */
+    public InputStream putStream(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
+        return this.put(url, params, headers).getStream();
+    }
+
+    public String putPlain(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
+        return this.put(url, params, headers).getText();
+    }
+
+    public HttpResponse put(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
+        HttpPut put = new HttpPut(processURL(url, params));
+        _log.debug(url);
+        processHeader(put, headers);
+        return internalProcess(put);
+    }
+
+    /**
+     * DELETE
+     *
+     * @param url
+     * @param params
+     * @param headers
+     * @return
+     * @throws Exception
+     */
+    public InputStream deleteStream(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
+        return this.delete(url, params, headers).getStream();
+    }
+
+    public String deletePlain(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
+        return this.delete(url, params, headers).getText();
+    }
+
+    public HttpResponse delete(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
+        HttpDelete delete = new HttpDelete(processURL(url, params));
+        _log.debug(url);
+        processHeader(delete, headers);
+        return internalProcess(delete);
+    }
+
+    /**
+     * POST
+     *
+     * @param url
+     * @param params
+     * @param headers
+     * @return
+     * @throws Exception
+     */
     public InputStream postStream(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
         return this.post(url, params, headers).getStream();
     }
@@ -214,7 +272,7 @@ public class HttpClientHelper {
         _log.debug(url);
         post.setEntity(entity);
         processHeader(post, headers);
-        return doPost(post);
+        return internalProcess(post);
     }
 
     public HttpResponse post(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
@@ -226,30 +284,18 @@ public class HttpClientHelper {
         HttpEntity entity = builder.build();
         post.setEntity(entity);
         processHeader(post, headers);
-        return doPost(post);
+        return internalProcess(post);
     }
 
-    private HttpResponse doPost(HttpPost post) throws Exception {
-        CloseableHttpResponse response = null;
-        try {
-            response = httpClient.execute(post, httpClientContext);
-            int statusCode = response.getStatusLine().getStatusCode();
-            HttpResponse httpResponse = new HttpResponse();
-            httpResponse.setCode(statusCode);
-            if (httpResponse.isError()) {
-                _log.error("error response status {},method post {} ", statusCode, post.toString());
-                throw new RuntimeException();
-            }
-            httpResponse.setBytes(EntityUtils.toByteArray(response.getEntity()));
-            httpResponse.setContentType(response.getEntity().getContentType().getValue());
-            return httpResponse;
-        } catch (Exception e) {
-            throw e;
-        } finally {
-            release(post, response, response != null ? response.getEntity() : null);
-        }
-    }
-
+    /**
+     * GET
+     *
+     * @param url
+     * @param params
+     * @param headers
+     * @return
+     * @throws Exception
+     */
     public InputStream getStream(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
         return this.get(url, params, headers).getStream();
     }
@@ -259,27 +305,41 @@ public class HttpClientHelper {
     }
 
     public HttpResponse get(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
+        HttpGet get = new HttpGet(processURL(url, params));
+        _log.debug(url);
+        processHeader(get, headers);
+        return internalProcess(get);
+    }
+
+    /**
+     * RESTful 内部操作
+     *
+     * @param rest
+     * @return
+     * @throws IOException
+     */
+    private HttpResponse internalProcess(HttpRequestBase rest) throws IOException {
         CloseableHttpResponse response = null;
-        HttpGet get = null;
         try {
-            _log.debug(url);
-            get = new HttpGet(processURL(url, params));
-            processHeader(get, headers);
-            response = httpClient.execute(get, httpClientContext);
+            response = httpClient.execute(rest, httpClientContext);
             int statusCode = response.getStatusLine().getStatusCode();
             HttpResponse httpResponse = new HttpResponse();
             httpResponse.setCode(statusCode);
             if (httpResponse.isError()) {
-                _log.error("error response status {},method get {} ", statusCode, get.toString());
-                throw new RuntimeException();
+                String errorInfo = String.format("error response: status %s, method %s ", statusCode, rest.getMethod());
+                _log.error(errorInfo);
+                throw new RuntimeException(errorInfo);
             }
             httpResponse.setBytes(EntityUtils.toByteArray(response.getEntity()));
-            httpResponse.setContentType(response.getEntity().getContentType().getValue());
+            Header header;
+            if ((header = response.getEntity().getContentType()) != null)
+                httpResponse.setContentType(header.getValue());
             return httpResponse;
         } catch (Exception e) {
+            _log.error("error: {}", e.getMessage());
             throw e;
         } finally {
-            release(get, response, response != null ? response.getEntity() : null);
+            release(rest, response, response != null ? response.getEntity() : null);
         }
     }
 
@@ -312,17 +372,22 @@ public class HttpClientHelper {
 
     private void release(HttpRequestBase request, CloseableHttpResponse response, HttpEntity entity) {
         try {
-            if (request != null) {
+            if (request != null)
                 request.releaseConnection();
+        } finally {
+            try {
+                if (entity != null)
+                    EntityUtils.consume(entity);
+            } catch (IOException e) {
+                _log.error("error: {}", e.getMessage());
+            } finally {
+                try {
+                    if (response != null)
+                        response.close();
+                } catch (IOException e) {
+                    _log.error("error: {}", e.getMessage());
+                }
             }
-            if (entity != null) {
-                EntityUtils.consume(entity);
-            }
-            if (response != null) {
-                response.close();
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -331,6 +396,6 @@ public class HttpClientHelper {
     }
 
     public static void setUserAgent(String userAgent) {
-        HttpClientHelper.userAgent = userAgent;
+        HttpUtils.userAgent = userAgent;
     }
 }

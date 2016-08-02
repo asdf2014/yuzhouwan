@@ -124,7 +124,7 @@ public class IpUtils {
      * @return
      */
     public static String long2ip(Long ipAddress) {
-        StringBuffer sb = new StringBuffer("");
+        StringBuilder sb = new StringBuilder();
         sb.append(String.valueOf((ipAddress >>> 24)));
         sb.append(".");
         sb.append(String.valueOf((ipAddress & 0x00FFFFFF) >>> 16));
@@ -299,6 +299,7 @@ public class IpUtils {
                 }
             } catch (SocketException e) {
                 _log.error("{}", e);
+                throw new RuntimeException(e);
             }
         }
         return currentHostIpAddress;

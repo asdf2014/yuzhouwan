@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
  * Function：MultiIPAddresses Tester
  *
  * @author Benedict Jin
- * @since 2015/12/7 0007
+ * @since 2015/12/7
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration(value = "site/src/main/resources")

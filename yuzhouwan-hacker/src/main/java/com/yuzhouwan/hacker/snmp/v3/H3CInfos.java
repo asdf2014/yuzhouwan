@@ -10,7 +10,7 @@ package com.yuzhouwan.hacker.snmp.v3;
  */
 public class H3CInfos {
 
-    String userName4USM;
+    private String userName4USM;
     private H3CSnmpV3User h3CSnmpV3User;
     private H3CUserTarget h3CUserTarget;
 

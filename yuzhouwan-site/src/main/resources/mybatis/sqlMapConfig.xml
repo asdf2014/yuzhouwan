@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 全局setting配置,根据需要添加 -->
+    <!-- 配置别名 -->
+    <typeAliases>
+        <!-- 批量扫描设置别名 -->
+        <package name="com.yuzhouwan.site"/>
+    </typeAliases>
+    <!-- 配置Mapper
+        备注:由于使用Spring整合mybtais的整合包进行mapper扫描,这里不需要配置了
+        必须遵循:mapper.xml和mapper.java文件同名且在同一目录下
+        <mappers></mappers>
+     -->
+</configuration>

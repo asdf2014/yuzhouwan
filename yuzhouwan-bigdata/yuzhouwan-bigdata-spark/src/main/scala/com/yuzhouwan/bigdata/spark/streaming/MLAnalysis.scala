@@ -1,7 +1,6 @@
 package com.yuzhouwan.bigdata.spark.streaming
 
 import breeze.linalg.DenseVector
-import org.apache.spark.SparkContext._
 import org.apache.spark.mllib.linalg.Vectors
 import org.apache.spark.mllib.regression.{LabeledPoint, StreamingLinearRegressionWithSGD}
 import org.apache.spark.storage.StorageLevel
@@ -52,7 +51,6 @@ object MLAnalysis {
       }
     }
 
-
     predictAndTrue.foreachRDD { (rdd, time) =>
       val mse = rdd.map { case (err) => math.pow(err, 2.0) }.mean()
       val rmse = math.sqrt(mse)
@@ -70,6 +68,5 @@ object MLAnalysis {
     ssc.start()
     ssc.awaitTermination()
   }
-
 
 }

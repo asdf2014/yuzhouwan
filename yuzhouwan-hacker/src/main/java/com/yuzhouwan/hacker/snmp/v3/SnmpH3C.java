@@ -30,7 +30,6 @@ public class SnmpH3C {
 
     private static final Logger _log = LoggerFactory.getLogger(SnmpH3C.class);
 
-    private TransportMapping transport;
     private Snmp snmp;
 
     private UsmUser usmUser;
@@ -85,7 +84,7 @@ public class SnmpH3C {
 
         _log.info("Creating SNMP...");
         try {
-            transport = new DefaultUdpTransportMapping();
+            TransportMapping transport = new DefaultUdpTransportMapping();
             transport.listen();
             snmp = new Snmp(transport);
 
@@ -120,7 +119,7 @@ public class SnmpH3C {
     /**
      * @param securityName
      * @param authenticationProtocol   AuthMD5 | AuthSHA
-     * @param authenticationPassphrase
+         * @param authenticationPassphrase
      * @param privacyProtocol          PrivDES | PrivAES128 | PrivAES192 | PrivAES256 | Priv3DES | PrivAES
      * @param privacyPassphrase
      * @return
@@ -198,7 +197,7 @@ public class SnmpH3C {
     }
 
     /**
-     * Send PDU to H3C, then waiting reponse event will be catched by listener
+     * Send PDU to H3C, then waiting response event will be caught by listener
      *
      * @param snmp
      * @param userTarget

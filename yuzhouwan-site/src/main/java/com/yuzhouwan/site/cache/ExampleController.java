@@ -7,6 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+/**
+ * Copyright @ 2016 yuzhouwan.com
+ * All right reserved.
+ * Function：Example Controller
+ *
+ * @author Benedict Jin
+ * @since 2016/3/28
+ */
 @Controller
 public class ExampleController {
 

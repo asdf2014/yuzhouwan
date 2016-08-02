@@ -19,5 +19,4 @@ public class StreamTry {
         words.add("asdf");
         System.out.println(words.stream().allMatch(s -> s.equals("asdf")));
     }
-
 }

@@ -10,6 +10,14 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 
+/**
+ * Copyright @ 2016 yuzhouwan.com
+ * All right reserved.
+ * Function：Cache Config
+ *
+ * @author Benedict Jin
+ * @since 2016/3/28
+ */
 @Configuration
 @EnableCaching
 public class CacheConfig extends CachingConfigurerSupport {

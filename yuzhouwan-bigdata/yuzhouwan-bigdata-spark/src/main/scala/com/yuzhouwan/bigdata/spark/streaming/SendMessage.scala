@@ -50,7 +50,7 @@ object SendMessage {
 
       new Thread() {
 
-        override def run = {
+        override def run() = {
 
           println("Got client connected from: " + socket.getInetAddress)
 

@@ -11,7 +11,7 @@ import java.nio.charset.Charset;
  * Function: HttpResponse
  *
  * @author Benedict Jin
- * @since 2016/3/21 0030
+ * @since 2016/3/21
  */
 public class HttpResponse implements Serializable {
 

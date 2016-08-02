@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 /**
  * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
- * Function：spring.aop
+ * Function：Spring AOP with AspectJ
  *
  * @author Benedict Jin
  * @since 2015/11/9

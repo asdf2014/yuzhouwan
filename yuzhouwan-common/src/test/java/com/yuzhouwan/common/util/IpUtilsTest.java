@@ -129,5 +129,4 @@ public class IpUtilsTest {
             System.out.println(IpUtils.ping(ip));
         }
     }
-
 }

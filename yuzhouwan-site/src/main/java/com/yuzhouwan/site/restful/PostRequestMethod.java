@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
  * Function: Stuff about Post in RESTful
  *
  * @author Benedict Jin
- * @since 2016/3/18 0007
+ * @since 2016/3/18
  */
 @RestController
 @RequestMapping("/post")

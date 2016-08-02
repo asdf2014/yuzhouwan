@@ -5,11 +5,11 @@ import org.snmp4j.security.PrivacyProtocol;
 
 public class H3CSnmpV3User {
 
-    String securityName;
-    AuthGeneric authenticationProtocol;
-    String authenticationPassphrase;
-    PrivacyProtocol privacyProtocol;
-    String privacyPassphrase;
+    private String securityName;
+    private AuthGeneric authenticationProtocol;
+    private String authenticationPassphrase;
+    private PrivacyProtocol privacyProtocol;
+    private String privacyPassphrase;
 
     public H3CSnmpV3User(String securityName, AuthGeneric authenticationProtocol, String authenticationPassphrase, PrivacyProtocol privacyProtocol, String privacyPassphrase) {
         this.securityName = securityName;

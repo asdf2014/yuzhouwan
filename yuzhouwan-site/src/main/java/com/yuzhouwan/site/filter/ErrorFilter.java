@@ -6,7 +6,7 @@ import java.io.IOException;
 /**
  * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
- * Function：spring.aop
+ * Function：Error Filter
  *
  * @author Benedict Jin
  * @since 2015/11/9

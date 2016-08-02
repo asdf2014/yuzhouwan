@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
  * Function: Input multi ip addresses as param into RESTful API in spring
  *
  * @author Benedict Jin
- * @since 2015/12/7 0007
+ * @since 2015/12/7
  */
 @RestController
 @RequestMapping("/rest")

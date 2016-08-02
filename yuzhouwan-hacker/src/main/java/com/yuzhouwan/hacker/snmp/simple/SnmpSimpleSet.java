@@ -18,11 +18,11 @@ import org.snmp4j.transport.DefaultUdpTransportMapping;
  */
 public class SnmpSimpleSet {
 
-    public static final int DEFAULT_VERSION = SnmpConstants.version2c;
-    public static final String DEFAULT_PROTOCOL = "udp";
-    public static final int DEFAULT_PORT = 161;
-    public static final long DEFAULT_TIMEOUT = 3 * 1000L;
-    public static final int DEFAULT_RETRY = 3;
+    private static final int DEFAULT_VERSION = SnmpConstants.version2c;
+    private static final String DEFAULT_PROTOCOL = "udp";
+    private static final int DEFAULT_PORT = 161;
+    private static final long DEFAULT_TIMEOUT = 3 * 1000L;
+    private static final int DEFAULT_RETRY = 3;
 
     /**
      * Create communityTarget
@@ -53,7 +53,7 @@ public class SnmpSimpleSet {
     public static void snmpSyncSetList(String ip, String community, String oidStr) {
 
         CommunityTarget target = createDefault(ip, community);
-        Snmp snmp = null;
+        Snmp snmp;
         try {
             DefaultUdpTransportMapping transport = new DefaultUdpTransportMapping();
             snmp = new Snmp(transport);

@@ -27,5 +27,4 @@ public class StringTest {
         assertEquals("2", r1[1]);
         assertEquals("1", r1[0]);
     }
-
 }

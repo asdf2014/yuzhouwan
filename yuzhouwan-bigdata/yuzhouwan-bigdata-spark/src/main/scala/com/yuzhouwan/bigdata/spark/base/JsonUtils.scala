@@ -56,6 +56,11 @@ object JsonUtils {
      * Origin:	yuzhouwan 23
      */
     persons.foreach(printf("Origin:\t%s\r\n", _))
+
+    /*
+     * Json:	{"name":"asdf","age":22}
+     * Json:	{"name":"yuzhouwan","age":23}
+     */
     personJson.foreach(printf("Json:\t%s\r\n", _))
   }
 
