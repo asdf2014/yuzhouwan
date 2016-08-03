@@ -4,12 +4,8 @@ import org.apache.commons.io.input.ReaderInputStream;
 import org.apache.hadoop.io.IOUtils;
 import org.junit.Test;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.StringReader;
+import java.io.*;
 
-import static java.lang.System.exit;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -48,16 +44,17 @@ public class IOUtilsTest {
 
     @Test
     public void test() throws Exception {
-        System.setIn(new ReaderInputStream(new StringReader("yuzhouwan")));
-        new Thread(() -> {
-            try {
-                IOUtils.copyBytes(System.in, new FileOutputStream(new File(FILE_PATH)), DEFAULT_IO_LENGTH);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }).start();
-        Thread.sleep(1000);
-        exit(0);
+        File f = new File(FILE_PATH);
+        assertEquals(true, f.delete());
+        String msg = "yuzhouwan";
+
+        System.setIn(new ReaderInputStream(new StringReader(msg)));
+        IOUtils.copyBytes(System.in, new FileOutputStream(f), DEFAULT_IO_LENGTH);
+
+        byte[] buff = new byte[DEFAULT_IO_LENGTH];
+        int len = new FileInputStream(f).read(buff, 0, msg.getBytes().length);
+
+        assertEquals(msg, new String(buff, 0, len));
     }
 
     @Test

@@ -15,11 +15,7 @@ import java.util.concurrent.Executors;
  */
 public class ExchangerExample {
 
-    /**
-     * @param args
-     */
     public static void main(String[] args) {
-
         new ExchangerExample();
     }
 
