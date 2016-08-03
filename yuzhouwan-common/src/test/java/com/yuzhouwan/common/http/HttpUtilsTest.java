@@ -17,7 +17,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class HttpUtilsTest {
 
-//    @Test
+    //    @Test     //need run yuzhouwan-site before test
     public void getPlainTestLocal() throws Exception {
         String urlD = "http://localhost:8080/full/delete";
         Map<String, Object> paramsD = new HashMap<>();
@@ -55,6 +55,17 @@ public class HttpUtilsTest {
             params.put("value", "http://www.yuzhouwan.com");
             String response = HttpUtils.getInstance().putPlain(url, params, null);
             assertEquals("yuzhouwan.com", JSON.parseObject(response, String.class));
+        }
+    }
+
+    //    @Test
+    public void getPlainTestLocalUnNormal() throws Exception {
+
+        String url = "http://localhost:8080/full/nothing";
+        try {
+            HttpUtils.getInstance().postPlain(url, new HashMap<>(), null);
+        } catch (RuntimeException re) {
+            assertEquals("Response is error, code: 404", re.getMessage());
         }
     }
 }

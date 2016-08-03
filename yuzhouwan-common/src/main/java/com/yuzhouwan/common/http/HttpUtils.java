@@ -199,55 +199,7 @@ public class HttpUtils {
     }
 
     /**
-     * PUT
-     *
-     * @param url
-     * @param params
-     * @param headers
-     * @return
-     * @throws Exception
-     */
-    public InputStream putStream(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
-        return this.put(url, params, headers).getStream();
-    }
-
-    public String putPlain(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
-        return this.put(url, params, headers).getText();
-    }
-
-    public HttpResponse put(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
-        HttpPut put = new HttpPut(processURL(url, params));
-        _log.debug(url);
-        processHeader(put, headers);
-        return internalProcess(put);
-    }
-
-    /**
-     * DELETE
-     *
-     * @param url
-     * @param params
-     * @param headers
-     * @return
-     * @throws Exception
-     */
-    public InputStream deleteStream(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
-        return this.delete(url, params, headers).getStream();
-    }
-
-    public String deletePlain(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
-        return this.delete(url, params, headers).getText();
-    }
-
-    public HttpResponse delete(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
-        HttpDelete delete = new HttpDelete(processURL(url, params));
-        _log.debug(url);
-        processHeader(delete, headers);
-        return internalProcess(delete);
-    }
-
-    /**
-     * POST
+     * POST with params
      *
      * @param url
      * @param params
@@ -256,23 +208,11 @@ public class HttpUtils {
      * @throws Exception
      */
     public InputStream postStream(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
-        return this.post(url, params, headers).getStream();
+        return checkResponseStatus(post(url, params, headers)).getStream();
     }
 
     public String postPlain(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
-        return this.post(url, params, headers).getText();
-    }
-
-    public String postPlain(String url, HttpEntity entityParam, Map<String, String> headers) throws Exception {
-        return this.post(url, entityParam, headers).getText();
-    }
-
-    public HttpResponse post(String url, HttpEntity entity, Map<String, String> headers) throws Exception {
-        HttpPost post = new HttpPost(url);
-        _log.debug(url);
-        post.setEntity(entity);
-        processHeader(post, headers);
-        return internalProcess(post);
+        return checkResponseStatus(post(url, params, headers)).getText();
     }
 
     public HttpResponse post(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
@@ -288,7 +228,32 @@ public class HttpUtils {
     }
 
     /**
-     * GET
+     * POST with HttpEntity
+     *
+     * @param url
+     * @param entityParam
+     * @param headers
+     * @return
+     * @throws Exception
+     */
+    public InputStream postStream(String url, HttpEntity entityParam, Map<String, String> headers) throws Exception {
+        return checkResponseStatus(post(url, entityParam, headers)).getStream();
+    }
+
+    public String postPlain(String url, HttpEntity entityParam, Map<String, String> headers) throws Exception {
+        return checkResponseStatus(post(url, entityParam, headers)).getText();
+    }
+
+    public HttpResponse post(String url, HttpEntity entity, Map<String, String> headers) throws Exception {
+        HttpPost post = new HttpPost(url);
+        _log.debug(url);
+        post.setEntity(entity);
+        processHeader(post, headers);
+        return internalProcess(post);
+    }
+
+    /**
+     * GET with params, except HttpEntity
      *
      * @param url
      * @param params
@@ -297,11 +262,11 @@ public class HttpUtils {
      * @throws Exception
      */
     public InputStream getStream(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
-        return this.get(url, params, headers).getStream();
+        return checkResponseStatus(get(url, params, headers)).getStream();
     }
 
     public String getPlain(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
-        return this.get(url, params, headers).getText();
+        return checkResponseStatus(get(url, params, headers)).getText();
     }
 
     public HttpResponse get(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
@@ -309,6 +274,79 @@ public class HttpUtils {
         _log.debug(url);
         processHeader(get, headers);
         return internalProcess(get);
+    }
+
+    /**
+     * PUT with params
+     *
+     * @param url
+     * @param params
+     * @param headers
+     * @return
+     * @throws Exception
+     */
+    public InputStream putStream(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
+        return checkResponseStatus(put(url, params, headers)).getStream();
+    }
+
+    public String putPlain(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
+        return checkResponseStatus(put(url, params, headers)).getText();
+    }
+
+    public HttpResponse put(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
+        HttpPut put = new HttpPut(processURL(url, params));
+        _log.debug(url);
+        processHeader(put, headers);
+        return internalProcess(put);
+    }
+
+    /**
+     * PUT with HttpEntity
+     *
+     * @param url
+     * @param entityParam
+     * @param headers
+     * @return
+     * @throws Exception
+     */
+    public InputStream putStream(String url, HttpEntity entityParam, Map<String, String> headers) throws Exception {
+        return checkResponseStatus(put(url, entityParam, headers)).getStream();
+    }
+
+    public String putPlain(String url, HttpEntity entityParam, Map<String, String> headers) throws Exception {
+        return checkResponseStatus(put(url, entityParam, headers)).getText();
+    }
+
+    public HttpResponse put(String url, HttpEntity entity, Map<String, String> headers) throws Exception {
+        HttpPut put = new HttpPut(url);
+        _log.debug(url);
+        put.setEntity(entity);
+        processHeader(put, headers);
+        return internalProcess(put);
+    }
+
+    /**
+     * DELETE with params, except HttpEntity
+     *
+     * @param url
+     * @param params
+     * @param headers
+     * @return
+     * @throws Exception
+     */
+    public InputStream deleteStream(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
+        return checkResponseStatus(delete(url, params, headers)).getStream();
+    }
+
+    public String deletePlain(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
+        return checkResponseStatus(delete(url, params, headers)).getText();
+    }
+
+    public HttpResponse delete(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
+        HttpDelete delete = new HttpDelete(processURL(url, params));
+        _log.debug(url);
+        processHeader(delete, headers);
+        return internalProcess(delete);
     }
 
     /**
@@ -326,9 +364,7 @@ public class HttpUtils {
             HttpResponse httpResponse = new HttpResponse();
             httpResponse.setCode(statusCode);
             if (httpResponse.isError()) {
-                String errorInfo = String.format("error response: status %s, method %s ", statusCode, rest.getMethod());
-                _log.error(errorInfo);
-                throw new RuntimeException(errorInfo);
+                _log.error("error response: status {}, method {} ", statusCode, rest.getMethod());
             }
             httpResponse.setBytes(EntityUtils.toByteArray(response.getEntity()));
             Header header;
@@ -341,6 +377,17 @@ public class HttpUtils {
         } finally {
             release(rest, response, response != null ? response.getEntity() : null);
         }
+    }
+
+    /**
+     * 检查 HttpResponse's Code [装饰器模式]
+     *
+     * @param response
+     */
+    private HttpResponse checkResponseStatus(HttpResponse response) {
+        if (response.isError())
+            throw new RuntimeException(String.format("Response is error, code: %s", response.getCode()));
+        return response;
     }
 
     private void processHeader(HttpRequestBase entity, Map<String, String> headers) {
