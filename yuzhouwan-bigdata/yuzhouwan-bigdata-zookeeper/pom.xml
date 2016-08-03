@@ -19,6 +19,19 @@
             <groupId>com.yuzhouwan</groupId>
             <artifactId>yuzhouwan-common</artifactId>
             <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>netty</artifactId>
+                    <groupId>io.netty</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <!-- zookeeper -->
@@ -31,6 +44,14 @@
                     <artifactId>slf4j-log4j12</artifactId>
                     <groupId>org.slf4j</groupId>
                 </exclusion>
+                <exclusion>
+                    <artifactId>junit</artifactId>
+                    <groupId>junit</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
             </exclusions>
         </dependency>
 
@@ -38,6 +59,16 @@
             <groupId>com.github.sgroschupf</groupId>
             <artifactId>zkclient</artifactId>
             <version>${zookeeper.zkclient.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>log4j</artifactId>
+                    <groupId>log4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>zookeeper</artifactId>
+                    <groupId>org.apache.zookeeper</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- Apache Curator -->
@@ -50,15 +81,15 @@
                     <artifactId>netty</artifactId>
                     <groupId>org.jboss.netty</groupId>
                 </exclusion>
+                <exclusion>
+                    <artifactId>zookeeper</artifactId>
+                    <groupId>org.apache.zookeeper</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
             </exclusions>
-        </dependency>
-
-        <!-- junit -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

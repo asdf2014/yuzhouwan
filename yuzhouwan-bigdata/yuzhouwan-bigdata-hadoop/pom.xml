@@ -14,11 +14,70 @@
     <version>${project.version}</version>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.yuzhouwan</groupId>
+            <artifactId>yuzhouwan-common</artifactId>
+            <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>gson</artifactId>
+                    <groupId>com.google.code.gson</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>netty</artifactId>
+                    <groupId>io.netty</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
         <!-- apache hadoop -->
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-client</artifactId>
             <version>${hadoop.client.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>guava</artifactId>
+                    <groupId>com.google.guava</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>slf4j-log4j12</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>netty</artifactId>
+                    <groupId>io.netty</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-codec</artifactId>
+                    <groupId>commons-codec</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-collections</artifactId>
+                    <groupId>commons-collections</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-core-asl</artifactId>
+                    <groupId>org.codehaus.jackson</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>log4j</artifactId>
+                    <groupId>log4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-mapper-asl</artifactId>
+                    <groupId>org.codehaus.jackson</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- junit -->

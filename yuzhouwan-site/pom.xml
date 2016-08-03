@@ -21,14 +21,12 @@
             <groupId>com.yuzhouwan</groupId>
             <artifactId>yuzhouwan-common</artifactId>
             <version>${project.version}</version>
-        </dependency>
-
-        <!-- junit -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-codec</artifactId>
+                    <groupId>commons-codec</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- spring + aspectj -->
@@ -76,6 +74,12 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
             <version>${spring.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-core</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -136,6 +140,12 @@
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
             <version>${file.upload.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-io</artifactId>
+                    <groupId>commons-io</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
@@ -172,12 +182,24 @@
             <artifactId>mockito-core</artifactId>
             <version>${mockito.version}</version>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>hamcrest-core</artifactId>
+                    <groupId>org.hamcrest</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
             <version>${spring.test.version}</version>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-core</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.jayway.jsonpath</groupId>
@@ -190,12 +212,24 @@
             <artifactId>json-path-assert</artifactId>
             <version>${json.path.assert.version}</version>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>hamcrest-core</artifactId>
+                    <groupId>org.hamcrest</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-webapp</artifactId>
             <version>${eclipse.jetty.webapp.version}</version>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>javax.servlet-api</artifactId>
+                    <groupId>javax.servlet</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- spring cacheable-->
@@ -203,6 +237,28 @@
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-redis</artifactId>
             <version>${spring.cache.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-core</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>spring-context</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>spring-context-support</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>spring-tx</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>spring-aop</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>redis.clients</groupId>
@@ -235,6 +291,16 @@
             <groupId>org.apache.struts</groupId>
             <artifactId>struts-core</artifactId>
             <version>${struts.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-digester</artifactId>
+                    <groupId>commons-digester</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.struts</groupId>

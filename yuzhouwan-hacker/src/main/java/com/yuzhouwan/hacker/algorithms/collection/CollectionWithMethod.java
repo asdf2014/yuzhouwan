@@ -6,10 +6,10 @@ import java.util.List;
 /**
  * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
- * Function: Collection Stuff
+ * Function: Collection with Method
  *
  * @author Benedict Jin
- * @since 2016/3/11 0030
+ * @since 2016/3/11
  */
 public class CollectionWithMethod {
 

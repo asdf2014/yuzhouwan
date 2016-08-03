@@ -1,5 +1,6 @@
 package com.yuzhouwan.hacker.algorithms.thread.base;
 
+import com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -61,28 +62,28 @@ public class CallableFutureExample {
          * Future:              need be waiting for thread finished.
          * CompletionService:   get those results of threads by the finish time of every single thread.
          *
-         * 2016-07-28 14:01:56.251 | INFO | waiting... | com.yuzhouwan.hacker.algorithms.thread.base.ReadWriteLockExample.main | CallableFutureExample.java:31
-         * 2016-07-28 14:01:56.255 | INFO | yuzhouwan|0 | com.yuzhouwan.hacker.algorithms.thread.base.ReadWriteLockExample.main | CallableFutureExample.java:33
-         * 2016-07-28 14:01:56.255 | INFO | waiting... | com.yuzhouwan.hacker.algorithms.thread.base.ReadWriteLockExample.main | CallableFutureExample.java:31
-         * 2016-07-28 14:01:56.260 | INFO | yuzhouwan|1 | com.yuzhouwan.hacker.algorithms.thread.base.ReadWriteLockExample.main | CallableFutureExample.java:33
-         * 2016-07-28 14:01:56.260 | INFO | waiting... | com.yuzhouwan.hacker.algorithms.thread.base.ReadWriteLockExample.main | CallableFutureExample.java:31
-         * 2016-07-28 14:01:56.265 | INFO | yuzhouwan|2 | com.yuzhouwan.hacker.algorithms.thread.base.ReadWriteLockExample.main | CallableFutureExample.java:33
-         * 2016-07-28 14:01:56.265 | INFO | waiting... | com.yuzhouwan.hacker.algorithms.thread.base.ReadWriteLockExample.main | CallableFutureExample.java:31
-         * 2016-07-28 14:01:56.270 | INFO | yuzhouwan|3 | com.yuzhouwan.hacker.algorithms.thread.base.ReadWriteLockExample.main | CallableFutureExample.java:33
-         * 2016-07-28 14:01:56.270 | INFO | waiting... | com.yuzhouwan.hacker.algorithms.thread.base.ReadWriteLockExample.main | CallableFutureExample.java:31
-         * 2016-07-28 14:01:56.275 | INFO | yuzhouwan|4 | com.yuzhouwan.hacker.algorithms.thread.base.ReadWriteLockExample.main | CallableFutureExample.java:33
+         * 2016-07-28 14:01:56.251 | INFO | waiting... | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.main | CallableFutureExample.java:31
+         * 2016-07-28 14:01:56.255 | INFO | yuzhouwan|0 | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.main | CallableFutureExample.java:33
+         * 2016-07-28 14:01:56.255 | INFO | waiting... | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.main | CallableFutureExample.java:31
+         * 2016-07-28 14:01:56.260 | INFO | yuzhouwan|1 | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.main | CallableFutureExample.java:33
+         * 2016-07-28 14:01:56.260 | INFO | waiting... | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.main | CallableFutureExample.java:31
+         * 2016-07-28 14:01:56.265 | INFO | yuzhouwan|2 | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.main | CallableFutureExample.java:33
+         * 2016-07-28 14:01:56.265 | INFO | waiting... | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.main | CallableFutureExample.java:31
+         * 2016-07-28 14:01:56.270 | INFO | yuzhouwan|3 | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.main | CallableFutureExample.java:33
+         * 2016-07-28 14:01:56.270 | INFO | waiting... | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.main | CallableFutureExample.java:31
+         * 2016-07-28 14:01:56.275 | INFO | yuzhouwan|4 | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.main | CallableFutureExample.java:33
          *
-         * 2016-07-28 14:01:56.277 | INFO | All thread were submitted into pool... | com.yuzhouwan.hacker.algorithms.thread.base.ReadWriteLockExample.main | CallableFutureExample.java:49
-         * 2016-07-28 14:01:56.277 | INFO | 0 | com.yuzhouwan.hacker.algorithms.thread.base.ReadWriteLockExample.main | CallableFutureExample.java:52
-         * 2016-07-28 14:01:56.278 | INFO | 1 | com.yuzhouwan.hacker.algorithms.thread.base.ReadWriteLockExample.main | CallableFutureExample.java:52
-         * 2016-07-28 14:01:56.279 | INFO | 3 | com.yuzhouwan.hacker.algorithms.thread.base.ReadWriteLockExample.main | CallableFutureExample.java:52
-         * 2016-07-28 14:01:56.280 | INFO | 7 | com.yuzhouwan.hacker.algorithms.thread.base.ReadWriteLockExample.main | CallableFutureExample.java:52
-         * 2016-07-28 14:01:56.280 | INFO | 5 | com.yuzhouwan.hacker.algorithms.thread.base.ReadWriteLockExample.main | CallableFutureExample.java:52
-         * 2016-07-28 14:01:56.283 | INFO | 8 | com.yuzhouwan.hacker.algorithms.thread.base.ReadWriteLockExample.main | CallableFutureExample.java:52
-         * 2016-07-28 14:01:56.284 | INFO | 4 | com.yuzhouwan.hacker.algorithms.thread.base.ReadWriteLockExample.main | CallableFutureExample.java:52
-         * 2016-07-28 14:01:56.285 | INFO | 2 | com.yuzhouwan.hacker.algorithms.thread.base.ReadWriteLockExample.main | CallableFutureExample.java:52
-         * 2016-07-28 14:01:56.286 | INFO | 6 | com.yuzhouwan.hacker.algorithms.thread.base.ReadWriteLockExample.main | CallableFutureExample.java:52
-         * 2016-07-28 14:01:56.286 | INFO | 9 | com.yuzhouwan.hacker.algorithms.thread.base.ReadWriteLockExample.main | CallableFutureExample.java:52
+         * 2016-07-28 14:01:56.277 | INFO | All thread were submitted into pool... | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.main | CallableFutureExample.java:49
+         * 2016-07-28 14:01:56.277 | INFO | 0 | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.main | CallableFutureExample.java:52
+         * 2016-07-28 14:01:56.278 | INFO | 1 | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.main | CallableFutureExample.java:52
+         * 2016-07-28 14:01:56.279 | INFO | 3 | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.main | CallableFutureExample.java:52
+         * 2016-07-28 14:01:56.280 | INFO | 7 | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.main | CallableFutureExample.java:52
+         * 2016-07-28 14:01:56.280 | INFO | 5 | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.main | CallableFutureExample.java:52
+         * 2016-07-28 14:01:56.283 | INFO | 8 | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.main | CallableFutureExample.java:52
+         * 2016-07-28 14:01:56.284 | INFO | 4 | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.main | CallableFutureExample.java:52
+         * 2016-07-28 14:01:56.285 | INFO | 2 | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.main | CallableFutureExample.java:52
+         * 2016-07-28 14:01:56.286 | INFO | 6 | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.main | CallableFutureExample.java:52
+         * 2016-07-28 14:01:56.286 | INFO | 9 | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.main | CallableFutureExample.java:52
          */
     }
 

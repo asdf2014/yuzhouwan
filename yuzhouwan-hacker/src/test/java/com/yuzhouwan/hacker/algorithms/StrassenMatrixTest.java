@@ -1,5 +1,6 @@
 package com.yuzhouwan.hacker.algorithms;
 
+import com.yuzhouwan.hacker.algorithms.array.StrassenMatrix;
 import org.apache.commons.math3.exception.MathArithmeticException;
 import org.junit.After;
 import org.junit.Before;

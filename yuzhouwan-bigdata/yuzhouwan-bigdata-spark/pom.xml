@@ -19,6 +19,16 @@
             <groupId>com.yuzhouwan</groupId>
             <artifactId>yuzhouwan-common</artifactId>
             <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>gson</artifactId>
+                    <groupId>com.google.code.gson</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>netty</artifactId>
+                    <groupId>io.netty</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- Spark -->
@@ -35,6 +45,22 @@
                     <groupId>org.apache.hadoop</groupId>
                     <artifactId>hadoop-client</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>org.scala-lang</groupId>
+                    <artifactId>scala-library</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>jul-to-slf4j</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
 
@@ -42,12 +68,56 @@
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-streaming_${spark.scala.version}</artifactId>
             <version>${spark.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.scala-lang</groupId>
+                    <artifactId>scala-library</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-mllib_${spark.scala.version}</artifactId>
             <version>${spark.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-databind</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>jcl-over-slf4j</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.xerial.snappy</groupId>
+                    <artifactId>snappy-java</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-databind</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.scalatest</groupId>
+                    <artifactId>scalatest_2.11</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.scala-lang</groupId>
+                    <artifactId>scala-library</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.scala-lang</groupId>
+                    <artifactId>scala-reflect</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>commons-codec</groupId>
+                    <artifactId>commons-codec</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- Hadoop -->
@@ -55,6 +125,60 @@
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-client</artifactId>
             <version>${hadoop.client.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.xerial.snappy</groupId>
+                    <artifactId>snappy-java</artifactId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>guava</artifactId>
+                    <groupId>com.google.guava</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-core-asl</artifactId>
+                    <groupId>org.codehaus.jackson</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>zookeeper</artifactId>
+                    <groupId>org.apache.zookeeper</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-codec</artifactId>
+                    <groupId>commons-codec</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>httpclient</artifactId>
+                    <groupId>org.apache.httpcomponents</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>curator-framework</artifactId>
+                    <groupId>org.apache.curator</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>paranamer</artifactId>
+                    <groupId>com.thoughtworks.paranamer</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-mapper-asl</artifactId>
+                    <groupId>org.codehaus.jackson</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-lang</artifactId>
+                    <groupId>commons-lang</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>curator-recipes</artifactId>
+                    <groupId>org.apache.curator</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- scala -->
@@ -72,6 +196,16 @@
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-compiler</artifactId>
             <version>${scala.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>scala-library</artifactId>
+                    <groupId>org.scala-lang</groupId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.scala-lang</groupId>
+                    <artifactId>scala-compiler</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.scala-lang</groupId>
@@ -83,19 +217,20 @@
             <groupId>org.scalatest</groupId>
             <artifactId>scalatest_${spark.scala.version}</artifactId>
             <version>${scala.unittest.version}</version>
-        </dependency>
-
-        <!-- junit -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>${mockito.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.scala-lang</groupId>
+                    <artifactId>scala-reflect</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.scala-lang.modules</groupId>
+                    <artifactId>scala-xml_2.11</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.scala-lang</groupId>
+                    <artifactId>scala-library</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- Apache Commons Pool2 -->
@@ -116,81 +251,38 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jackson-annotations</artifactId>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
             <version>${jackson.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>jcl-over-slf4j</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-scala_${spark.scala.version}</artifactId>
             <version>${jackson.version}</version>
-        </dependency>
-
-        <!-- log -->
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-            <version>${logback.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
             <exclusions>
                 <exclusion>
-                    <groupId>ch.qos.logback</groupId>
-                    <artifactId>logback-core</artifactId>
+                    <groupId>org.scala-lang</groupId>
+                    <artifactId>scala-library</artifactId>
                 </exclusion>
                 <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>${slf4j.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>log4j-over-slf4j</artifactId>
-            <version>${slf4j.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jul-to-slf4j</artifactId>
-            <version>${slf4j.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.scala-lang</groupId>
+                    <artifactId>scala-reflect</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>

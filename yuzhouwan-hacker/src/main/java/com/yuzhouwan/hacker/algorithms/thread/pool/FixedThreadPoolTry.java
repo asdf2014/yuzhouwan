@@ -1,4 +1,4 @@
-package com.yuzhouwan.hacker.algorithms.thread;
+package com.yuzhouwan.hacker.algorithms.thread.pool;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -6,10 +6,10 @@ import java.util.concurrent.Executors;
 /**
  * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
- * Function：algorithms
+ * Function：FixedThreadPoolTry
  *
  * @author Benedict Jin
- * @since 2015/12/29 0029
+ * @since 2015/12/29
  */
 public class FixedThreadPoolTry {
 

@@ -22,6 +22,13 @@
             <version>${project.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
         <!-- Apache Curator -->
         <dependency>
             <groupId>org.apache.curator</groupId>
@@ -31,6 +38,18 @@
                 <exclusion>
                     <artifactId>netty</artifactId>
                     <groupId>org.jboss.netty</groupId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>log4j</artifactId>
+                    <groupId>log4j</groupId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -50,6 +69,12 @@
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-compiler</artifactId>
             <version>${scala.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>scala-library</artifactId>
+                    <groupId>org.scala-lang</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.scala-lang</groupId>
@@ -61,6 +86,20 @@
             <groupId>org.scalatest</groupId>
             <artifactId>scalatest_${spark.scala.version}</artifactId>
             <version>${scala.unittest.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.scala-lang</groupId>
+                    <artifactId>scala-reflect</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.scala-lang.modules</groupId>
+                    <artifactId>scala-xml_2.11</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.scala-lang</groupId>
+                    <artifactId>scala-library</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- breeze -->
@@ -68,6 +107,24 @@
             <groupId>org.scalanlp</groupId>
             <artifactId>breeze_${spark.scala.version}</artifactId>
             <version>${breeze.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.scala-lang</groupId>
+                    <artifactId>scala-library</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.scala-lang</groupId>
+                    <artifactId>scala-reflect</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- joda time -->
@@ -77,17 +134,16 @@
             <version>${joda.time.version}</version>
         </dependency>
 
-        <!-- junit -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <version>${mockito.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>hamcrest-core</artifactId>
+                    <groupId>org.hamcrest</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- redis -->
@@ -102,6 +158,12 @@
             <groupId>org.quartz-scheduler</groupId>
             <artifactId>quartz</artifactId>
             <version>${quartz.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- snmp4j -->
@@ -135,71 +197,6 @@
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
             <version>${freemarker.version}</version>
-        </dependency>
-
-        <!-- log -->
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-            <version>${logback.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>ch.qos.logback</groupId>
-                    <artifactId>logback-core</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>${slf4j.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>log4j-over-slf4j</artifactId>
-            <version>${slf4j.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jul-to-slf4j</artifactId>
-            <version>${slf4j.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
     </dependencies>
 </project>

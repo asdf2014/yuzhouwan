@@ -12,7 +12,7 @@ import java.util.Map;
  * Function: Collection Stuff
  *
  * @author Benedict Jin
- * @since 2015/11/30 0030
+ * @since 2015/11/30
  */
 public class CollectionStuff<C extends Collection<E>, E> {
 

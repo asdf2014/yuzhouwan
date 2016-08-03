@@ -1,4 +1,4 @@
-package com.yuzhouwan.hacker.algorithms.thread;
+package com.yuzhouwan.hacker.algorithms.thread.loop;
 
 /**
  * Copyright @ 2016 yuzhouwan.com

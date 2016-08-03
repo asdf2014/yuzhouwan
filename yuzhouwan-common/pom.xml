@@ -73,6 +73,12 @@
             <artifactId>mockito-core</artifactId>
             <version>${mockito.version}</version>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>hamcrest-core</artifactId>
+                    <groupId>org.hamcrest</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- json-->
@@ -86,6 +92,12 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jackson-annotations</artifactId>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -100,8 +112,6 @@
             <version>${jackson.version}</version>
         </dependency>
 
-
-
         <!-- joda time -->
         <dependency>
             <groupId>joda-time</groupId>
@@ -114,6 +124,20 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-core</artifactId>
             <version>${logback.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -128,6 +152,10 @@
                 <exclusion>
                     <groupId>org.slf4j</groupId>
                     <artifactId>slf4j-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -179,6 +207,12 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>${apache.http.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -204,6 +238,12 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
             <version>${spring.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- phantom js -->
@@ -211,6 +251,12 @@
             <groupId>com.codeborne</groupId>
             <artifactId>phantomjsdriver</artifactId>
             <version>${phantom.js.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>guava</artifactId>
+                    <groupId>com.google.guava</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- itext pdf-->

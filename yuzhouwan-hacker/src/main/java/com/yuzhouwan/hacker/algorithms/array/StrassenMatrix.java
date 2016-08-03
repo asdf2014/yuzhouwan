@@ -1,4 +1,4 @@
-package com.yuzhouwan.hacker.algorithms;
+package com.yuzhouwan.hacker.algorithms.array;
 
 import org.apache.commons.math3.exception.MathArithmeticException;
 

@@ -1,5 +1,13 @@
-package com.yuzhouwan.hacker.algorithms.thread;
+package com.yuzhouwan.hacker.algorithms.thread.pool;
 
+/**
+ * Copyright @ 2016 yuzhouwan.com
+ * All right reserved.
+ * Function：WorkerThread
+ *
+ * @author Benedict Jin
+ * @since 2015/12/29
+ */
 class WorkerThread implements Runnable {
 
     private String command;
