@@ -43,7 +43,7 @@ public class IOUtilsTest {
      *[code]: https://github.com/c9n/hadoop/blob/master/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/fs/shell/CopyCommands.java#L346
      *[doc]:  https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/FileSystemShell.html#appendToFile
      */
-    private static final int DEFAULT_IO_LENGTH = 1;
+    private static final int DEFAULT_IO_LENGTH = 1024 * 1024;
     private static final String FILE_PATH = System.getProperty("user.dir").concat("/src/test/resources/io.copy");
 
     @Test
