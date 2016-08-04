@@ -9,7 +9,7 @@ __[http://www.yuzhouwan.com][0]__
 
 - Advance Maven Skill
 - BigData&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;(Hadoop/Storm/Spark/Flume/ElasticSearch/Zookeeper)
-- Hack technology&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;(Algorithm/Code Generate/Effective Code/Multi Threads/Lambda/SNMP/Scala Feature)
+- Hack technology&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;(Algorithm/Leetcode/Code Generate/Effective Code/Multi Threads/Lambda/SNMP/Scala Feature)
 - WebSite&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;(Spring stuff)
 - A lot of Commons Utils
 
@@ -19,7 +19,7 @@ __[http://www.yuzhouwan.com][0]__
 
 ## Technical Discussion Group
 
-Hadoop生态圈 253793003&ensp;&ensp;(2000人大群)
+Hadoop生态圈 253793003&ensp;&ensp;(__*2000*__人大群)
 
 本群创建于2015/3/1:<br/>
 &ensp;&ensp;讨论大数据生态圈的各种领域，<br/>
