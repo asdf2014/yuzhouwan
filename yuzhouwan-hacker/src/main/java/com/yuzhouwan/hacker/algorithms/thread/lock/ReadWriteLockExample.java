@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
@@ -66,7 +67,7 @@ public class ReadWriteLockExample {
         }
     }
 
-    private static class Business {
+    public static class Business implements Serializable {
 
         private static final String PREFIX = "yuzhouwan|";
 
@@ -115,7 +116,7 @@ public class ReadWriteLockExample {
 
         /**
          * ReadWriteLock 默认非公平：
-         *
+         * <p>
          * 2016-07-27 17:14:29.688 | DEBUG | Thread: pool-1-thread-1, count: 1, value: yuzhouwan|1, isExist: false | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.isExist | ReadWriteLockExample.java:90
          * <p>
          * 2016-07-27 17:14:29.737 | DEBUG | Thread: pool-2-thread-1, count: 1, value: yuzhouwan|1, isExist: true | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.isExist | ReadWriteLockExample.java:90
