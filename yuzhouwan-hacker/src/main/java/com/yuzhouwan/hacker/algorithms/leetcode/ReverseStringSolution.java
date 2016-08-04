@@ -24,8 +24,8 @@ class ReverseStringSolution {
         if (s == null || (len = s.length()) <= 1) {
             return s;
         }
-        char[] chars = new char[s.length()];
-        char[] result = new char[s.length()];
+        char[] chars = new char[len];
+        char[] result = new char[len];
         s.getChars(0, len, chars, 0);
         for (int i = 0; i < len; i++) {
             result[len - i - 1] = chars[i];
@@ -38,7 +38,7 @@ class ReverseStringSolution {
         if (s == null || (len = s.length()) <= 1) {
             return s;
         }
-        char[] chars = new char[s.length()];
+        char[] chars = new char[len];
         s.getChars(0, len, chars, 0);
         char c;
         for (int i = 0; i < len / 2; i++) {
