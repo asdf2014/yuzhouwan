@@ -14,6 +14,8 @@ import static org.junit.Assert.assertEquals;
  */
 public class ReverseStringSolutionTest {
 
+    private static final int SUPPRESS_TEST_LIMITATION = 100_1000;
+
     @Test
     public void solution() throws Exception {
 
@@ -23,17 +25,17 @@ public class ReverseStringSolutionTest {
         assertEquals("olleh", ReverseStringSolution.reverseString("hello"));
         assertEquals("!dlrow", ReverseStringSolution.reverseString("world!"));
         long b = System.currentTimeMillis();
-        int count = 100_0000;
+        int count = SUPPRESS_TEST_LIMITATION;
         while (count > 0) {
             count--;
             ReverseStringSolution.reverseString("yuzhouwan.com");
         }
         long e = System.currentTimeMillis();
-        System.out.println(e - b);      //1077
+        System.out.println(e - b);      //1035
     }
 
     @Test
-    public void solutionRecursionLitterSpace() throws Exception {
+    public void solutionLitterSpace() throws Exception {
 
         assertEquals(null, ReverseStringSolution.reverseStringLitterSpace(null));
         assertEquals("", ReverseStringSolution.reverseStringLitterSpace(""));
@@ -42,13 +44,13 @@ public class ReverseStringSolutionTest {
         assertEquals("!dlrow", ReverseStringSolution.reverseStringLitterSpace("world!"));
 
         long b = System.currentTimeMillis();
-        int count = 100_0000;
+        int count = SUPPRESS_TEST_LIMITATION;
         while (count > 0) {
             count--;
             ReverseStringSolution.reverseStringLitterSpace("yuzhouwan.com");
         }
         long e = System.currentTimeMillis();
-        System.out.println(e - b);      //29
+        System.out.println(e - b);      //43
     }
 
     @Test
@@ -61,12 +63,31 @@ public class ReverseStringSolutionTest {
         assertEquals("!dlrow", ReverseStringSolution.reverseStringRecursion("world!"));
 
         long b = System.currentTimeMillis();
-        int count = 100_0000;
+        int count = SUPPRESS_TEST_LIMITATION;
         while (count > 0) {
             count--;
             ReverseStringSolution.reverseStringRecursion("yuzhouwan.com");
         }
         long e = System.currentTimeMillis();
-        System.out.println(e - b);      //41
+        System.out.println(e - b);      //53
+    }
+
+    @Test
+    public void solutionSimplest() throws Exception {
+
+        assertEquals(null, ReverseStringSolution.reverseStringSimplest(null));
+        assertEquals("", ReverseStringSolution.reverseStringSimplest(""));
+        assertEquals("a", ReverseStringSolution.reverseStringSimplest("a"));
+        assertEquals("olleh", ReverseStringSolution.reverseStringSimplest("hello"));
+        assertEquals("!dlrow", ReverseStringSolution.reverseStringSimplest("world!"));
+
+        long b = System.currentTimeMillis();
+        int count = SUPPRESS_TEST_LIMITATION;
+        while (count > 0) {
+            count--;
+            ReverseStringSolution.reverseStringSimplest("yuzhouwan.com");
+        }
+        long e = System.currentTimeMillis();
+        System.out.println(e - b);      //73
     }
 }

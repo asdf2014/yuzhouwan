@@ -12,13 +12,12 @@ class ReverseStringSolution {
 
     /**
      * https://leetcode.com/problems/reverse-string/
-     * 
+     * <p>
      * 344. Reverse String
      * Write a function that takes a string as input and returns the string reversed.
-     * 
+     * <p>
      * Example:
      * Given s = "hello", return "olleh".
-     *
      */
     static String reverseString(String s) {
         int len;
@@ -56,5 +55,10 @@ class ReverseStringSolution {
         String leftStr = s.substring(0, length / 2);
         String rightStr = s.substring(length / 2, length);
         return reverseStringRecursion(rightStr) + reverseStringRecursion(leftStr);
+    }
+
+    static String reverseStringSimplest(String s) {
+        if (s == null || s.length() <= 1) return s;
+        return new StringBuilder(s).reverse().toString();
     }
 }
