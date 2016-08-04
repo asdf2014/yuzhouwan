@@ -33,8 +33,10 @@ public class SingleInstanceTest {
              ObjectInputStream ois1 = new ObjectInputStream(new FileInputStream(SERIALIZE_STORE))) {
             oos1.writeObject(instance);
             oos1.writeObject(business);
+
             SingleInstance instanceSerialized = ((SingleInstance) ois1.readObject());
             ReadWriteLockExample.Business businessSerialized = ((ReadWriteLockExample.Business) ois1.readObject());
+
             //Enum版的 single instance 保证了安全性
             assertEquals(true, 3 == instanceSerialized.getPoint());
             assertEquals(true, 0 == instance.compareTo(instanceSerialized));
