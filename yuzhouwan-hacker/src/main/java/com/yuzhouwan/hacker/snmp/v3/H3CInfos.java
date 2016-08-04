@@ -6,7 +6,7 @@ package com.yuzhouwan.hacker.snmp.v3;
  * Function：snmp v3 user informations
  *
  * @author Benedict Jin
- * @since 2015/12/31 0031
+ * @since 2015/12/31
  */
 public class H3CInfos {
 

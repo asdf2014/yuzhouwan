@@ -14,7 +14,7 @@ import org.snmp4j.transport.DefaultUdpTransportMapping;
  * Function：snmp.simple
  *
  * @author Benedict Jin
- * @since 2015/11/24 0024
+ * @since 2015/11/24
  */
 public class SnmpSimpleSet {
 

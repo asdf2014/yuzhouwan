@@ -1,4 +1,4 @@
-package com.yuzhouwan.hacker.algorithms.thread.base;
+package com.yuzhouwan.hacker.algorithms.thread.communication;
 
 import java.util.Random;
 import java.util.concurrent.Exchanger;

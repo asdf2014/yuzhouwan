@@ -1,5 +1,13 @@
 package com.yuzhouwan.hacker.snmp.v3;
 
+/**
+ * Copyright @ 2016 yuzhouwan.com
+ * All right reserved.
+ * Function：H3C User Target
+ *
+ * @author Benedict Jin
+ * @since 2015/12/31
+ */
 public class H3CUserTarget {
 
     private String address;

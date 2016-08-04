@@ -21,10 +21,10 @@ import java.util.concurrent.TimeUnit;
 /**
  * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
- * Function：snmp.v3
+ * Function：Snmp H3C
  *
  * @author Benedict Jin
- * @since 2015/12/29 0029
+ * @since 2015/12/29
  */
 public class SnmpH3C {
 

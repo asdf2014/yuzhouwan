@@ -19,6 +19,14 @@ import org.snmp4j.util.ThreadPool;
 import java.io.IOException;
 import java.util.Vector;
 
+/**
+ * Copyright @ 2016 yuzhouwan.com
+ * All right reserved.
+ * Function：SnmpUtil
+ *
+ * @author Benedict Jin
+ * @since 2015/11/30
+ */
 public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
 
     public static final int DEFAULT = 0;

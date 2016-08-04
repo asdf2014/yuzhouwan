@@ -6,7 +6,7 @@ package com.yuzhouwan.hacker.algorithms.thread.loop;
  * Function：thread
  *
  * @author Benedict Jin
- * @since 2016/1/21 0021
+ * @since 2016/1/21
  */
 public class MultiThreadsLoopWithNotify {
 

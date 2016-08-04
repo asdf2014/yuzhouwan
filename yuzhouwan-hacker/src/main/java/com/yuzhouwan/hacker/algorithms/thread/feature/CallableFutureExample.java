@@ -1,4 +1,4 @@
-package com.yuzhouwan.hacker.algorithms.thread.base;
+package com.yuzhouwan.hacker.algorithms.thread.feature;
 
 import com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample;
 import org.slf4j.Logger;

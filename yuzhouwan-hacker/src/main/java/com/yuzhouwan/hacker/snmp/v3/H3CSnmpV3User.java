@@ -3,6 +3,14 @@ package com.yuzhouwan.hacker.snmp.v3;
 import org.snmp4j.security.AuthGeneric;
 import org.snmp4j.security.PrivacyProtocol;
 
+/**
+ * Copyright @ 2016 yuzhouwan.com
+ * All right reserved.
+ * Function：H3C Snmp V3 User
+ *
+ * @author Benedict Jin
+ * @since 2015/12/31
+ */
 public class H3CSnmpV3User {
 
     private String securityName;

@@ -13,7 +13,7 @@ import java.util.concurrent.BlockingQueue;
  * Function: ArrayBlockingQueue Example
  *
  * @author Benedict Jin
- * @since 2016/7/28 0030
+ * @since 2016/7/28
  */
 public class ArrayBlockingQueueExample {
 
