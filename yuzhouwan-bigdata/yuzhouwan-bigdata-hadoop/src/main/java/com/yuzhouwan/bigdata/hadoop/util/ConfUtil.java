@@ -16,7 +16,7 @@ import java.util.Properties;
  * Function：针对不同任务，利用配置定制化处理流程
  *
  * @author Benedict Jin
- * @since 2016/3/31 0023
+ * @since 2016/3/31
  */
 public class ConfUtil {
 

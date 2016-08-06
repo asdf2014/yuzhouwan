@@ -85,6 +85,9 @@
         <!-- spring+mybatis -->
         <spring.mybatis.version>1.2.5</spring.mybatis.version>
 
+        <!-- spring+camel-->
+        <apache.camel.spring.version>2.16.3</apache.camel.spring.version>
+
         <!-- common -->
         <commons.io.version>2.4</commons.io.version>
         <commons.codec.version>1.10</commons.codec.version>

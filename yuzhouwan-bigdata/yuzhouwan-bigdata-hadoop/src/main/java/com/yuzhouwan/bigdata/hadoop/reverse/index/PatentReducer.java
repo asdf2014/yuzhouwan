@@ -14,7 +14,7 @@ import java.util.Iterator;
  * Function：处理 Mapper端传输过来的 Reducer组件
  *
  * @author Benedict Jin
- * @since 2016/3/31 0023
+ * @since 2016/3/31
  */
 public class PatentReducer extends Reducer<Text, Text, Text, Text> {
 
