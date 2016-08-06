@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class ReverseStringSolutionTest {
 
-    private static final int SUPPRESS_TEST_LIMITATION = 100_1000;
+    private static final int SUPPRESS_TEST_LIMITATION = 10_1000;
 
     @Test
     public void solution() throws Exception {
@@ -31,7 +31,7 @@ public class ReverseStringSolutionTest {
             ReverseStringSolution.reverseString("yuzhouwan.com");
         }
         long e = System.currentTimeMillis();
-        System.out.println(e - b);      //73
+        System.out.println(e - b);      //9
     }
 
     @Test
@@ -50,7 +50,7 @@ public class ReverseStringSolutionTest {
             ReverseStringSolution.reverseStringLitterSpace("yuzhouwan.com");
         }
         long e = System.currentTimeMillis();
-        System.out.println(e - b);      //33
+        System.out.println(e - b);      //8
     }
 
     @Test
@@ -69,7 +69,7 @@ public class ReverseStringSolutionTest {
             ReverseStringSolution.reverseStringRecursion("yuzhouwan.com");
         }
         long e = System.currentTimeMillis();
-        System.out.println(e - b);      //1055
+        System.out.println(e - b);      //160
     }
 
     @Test
@@ -88,6 +88,6 @@ public class ReverseStringSolutionTest {
             ReverseStringSolution.reverseStringSimplest("yuzhouwan.com");
         }
         long e = System.currentTimeMillis();
-        System.out.println(e - b);      //45
+        System.out.println(e - b);      //12
     }
 }

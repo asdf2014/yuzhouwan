@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class CountingBitsSolutionTest {
 
-    private static final int SUPPRESS_TEST_LIMITATION = 100_1000;
+    private static final int SUPPRESS_TEST_LIMITATION = 10_1000;
 
     @Test
     public void countingBits() throws Exception {
@@ -30,7 +30,7 @@ public class CountingBitsSolutionTest {
         long b = System.currentTimeMillis();
         CountingBitsSolution.countBits(SUPPRESS_TEST_LIMITATION);
         long e = System.currentTimeMillis();
-        System.out.println(e - b);      //115
+        System.out.println(e - b);      //20
     }
 
     @Test
@@ -47,6 +47,6 @@ public class CountingBitsSolutionTest {
         long b = System.currentTimeMillis();
         CountingBitsSolution.countBitsWisdom(SUPPRESS_TEST_LIMITATION);
         long e = System.currentTimeMillis();
-        System.out.println(e - b);      //5
+        System.out.println(e - b);      //1
     }
 }
