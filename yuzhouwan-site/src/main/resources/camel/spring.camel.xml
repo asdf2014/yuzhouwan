@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camel="http://camel.apache.org/schema/spring" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring-2.14.1.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.yuzhouwan.site"/>
+
+    <camel:camelContext xmlns="http://camel.apache.org/schema/spring">
+        <camel:endpoint id="jetty_from" uri="jetty:http://0.0.0.0:8282/directCamel"/>
+        <camel:endpoint id="log_to" uri="log:show?showExchangeId=true"/>
+
+        <camel:route>
+            <camel:from ref="jetty_from"/>
+            <camel:to ref="log_to"/>
+
+            <!-- 这是新加的processor处理器 -->
+            <camel:process ref="processorExample"/>
+        </camel:route>
+    </camel:camelContext>
+</beans>
