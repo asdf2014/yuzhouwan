@@ -1,7 +1,6 @@
 package com.yuzhouwan.common.util;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Copyright @ 2016 yuzhouwan.com
@@ -9,7 +8,7 @@ import java.util.List;
  * Function: Collection Util
  *
  * @author Benedict Jin
- * @since 2016/6/12 0030
+ * @since 2016/6/12
  */
 public class CollectionUtils {
 
@@ -39,6 +38,20 @@ public class CollectionUtils {
             }
         }
         return result;
+    }
+
+    public static Object[] duplicate(Object[] a, Object[] b) {
+        if (a == null || b == null || a.length == 0 || b.length == 0) return null;
+
+        Set<Object> set = new HashSet<>();
+        Collections.addAll(set, a);
+
+        Set<Object> result = new HashSet<>();
+        for (Object bi : b) {
+            if (set.contains(bi))
+                result.add(bi);
+        }
+        return result.toArray();
     }
 
 }

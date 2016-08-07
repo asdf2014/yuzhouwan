@@ -31,4 +31,17 @@ public class CollectionUtilsTest {
         assertEquals(Arrays.asList(""),
                 CollectionUtils.removeAllByStrWithSeparator(Arrays.asList(""), "a", ","));
     }
+
+    @Test
+    public void duplicate() throws Exception {
+
+        Integer[] a = new Integer[]{1, 2, 3};
+        Integer[] b = new Integer[]{3};
+        Integer[] c = new Integer[]{4};
+        Integer[] d = null;
+
+        assertEquals(3, CollectionUtils.duplicate(a, b)[0]);
+        assertEquals(0, CollectionUtils.duplicate(b, c).length);
+        assertEquals(true, CollectionUtils.duplicate(c, d) == null);
+    }
 }
