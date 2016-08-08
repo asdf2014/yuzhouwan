@@ -8,7 +8,7 @@ package com.yuzhouwan.hacker.algorithms.leetcode;
  * @author Benedict Jin
  * @since 2016/8/7
  */
-public class NimGameSolution {
+class NimGameSolution {
 
     /**
      * https://leetcode.com/problems/nim-game/

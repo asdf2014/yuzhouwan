@@ -42,6 +42,9 @@
         <breeze.version>0.10</breeze.version>
         <joda.time.version>2.8.2</joda.time.version>
         <jackson.version>2.6.3</jackson.version>
+        <scala.sepcs.version>3.3.1</scala.sepcs.version>
+        <scala.maven.plugin.version>3.2.2</scala.maven.plugin.version>
+        <maven.assembly.plugin.version>2.5.5</maven.assembly.plugin.version>
 
         <!-- test -->
         <junit.version>4.12</junit.version>
@@ -170,7 +173,7 @@
     </properties>
 
     <build>
-        <finalName>yuzhouwan</finalName>
+        <!--<finalName>yuzhouwan</finalName>-->
         <defaultGoal>install</defaultGoal>
 
         <plugins>
