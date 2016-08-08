@@ -19,3 +19,38 @@ a match {
   case "a" => print(a)
   case _ => print(_)
 }
+
+/* func as param */
+val arr2 = Array[Integer](1, 2, 3)
+
+def matching(aim: Integer,
+             matcher: (Integer, Integer) => Boolean): Boolean = {
+  var isExist = false
+  arr2.foreach(num =>
+    if (matcher(num, aim)) {
+      isExist = true
+    }
+  )
+  isExist
+}
+
+def equals(query: Integer) =
+  matching(query, (x, y) => x.compareTo(y) == 0)
+
+def more(query: Integer) =
+  matching(query, (x, y) => x.compareTo(y) == 1)
+
+def less(query: Integer) =
+  matching(query, (x, y) => x.compareTo(y) == -1)
+
+equals(new Integer(1))
+equals(2)   //type error
+equals(new Integer(3))
+
+more(new Integer(1))
+more(new Integer(2))
+more(new Integer(3))
+
+less(new Integer(1))
+less(new Integer(2))
+less(new Integer(3))
