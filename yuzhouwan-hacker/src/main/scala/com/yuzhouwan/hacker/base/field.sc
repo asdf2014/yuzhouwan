@@ -1,3 +1,4 @@
+import breeze.numerics.ceil
 
 println("asdf")
 for (i <- 0 to 10) {
@@ -10,13 +11,14 @@ array(0) = 1
 array(1) = 2
 val m1 = Map[Int, String](1 -> "a", 2 -> "s", 3 -> "d", 4 -> "f")
 val m2 = Map[Int, String] {
-  1 -> "a"; 2 -> "s"
+  1 -> "a"
+  2 -> "s"
 }
 val m3 = Map {
   1 -> "a"
 }
 val fun3: (Double) => Double = 3 * _
-m0.map(
+m0.foreach(
   a => {
     print(a._1 + ", ")
     println(a._2)
@@ -25,17 +27,15 @@ m0.map(
 m0.map {
   _._1 * 3
 }
-m0.map {
-  _._1
-}
-m1.map(println)
-m2.map {
+m0.keys
+m1.foreach(println)
+m2.foreach {
   b =>
     print(b._1 + ", ")
     println(b._2)
 }
-m3.map(print(_))
-Array(1, 2, 3, 4).map {
+m3.foreach(print(_))
+Array(1, 2, 3, 4).foreach {
   x => if (x * 10 + 1 == 11) println(x)
 }
 //Array(1, 2, 3, 4).map {
@@ -61,7 +61,6 @@ fun3(1)
 fun4(1)
 fun5(fun3)
 
-import scala.math._
 
 def fun5(f: (Double) => Double) = f(1)
 println(fun(1))
