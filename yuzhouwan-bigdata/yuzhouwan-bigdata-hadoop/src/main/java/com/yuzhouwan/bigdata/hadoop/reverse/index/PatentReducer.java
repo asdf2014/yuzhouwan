@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.Iterator;
 
 /**
- * Copyright @ 2015 patent.com
+ * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
  * Function：处理 Mapper端传输过来的 Reducer组件
  *

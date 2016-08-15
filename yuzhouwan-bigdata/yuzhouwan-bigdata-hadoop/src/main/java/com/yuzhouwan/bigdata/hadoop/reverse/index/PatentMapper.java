@@ -14,7 +14,7 @@ import java.util.Collection;
 import java.util.Iterator;
 
 /**
- * Copyright @ 2015 patent.com
+ * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
  * Function：处理 原始 Patent 数据的 Mapper组件
  *

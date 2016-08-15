@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 
 /**
- * Copyright @ 2015 patent.com
+ * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
  * Function：倒排索引的 Combiner组件
  *

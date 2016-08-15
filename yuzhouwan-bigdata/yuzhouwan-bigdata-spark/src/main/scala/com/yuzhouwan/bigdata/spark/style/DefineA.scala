@@ -1,7 +1,7 @@
 package com.yuzhouwan.bigdata.spark.style
 
 /**
-  * Copyright @ 2015 yuzhouwan
+  * Copyright @ 2016 yuzhouwan
   * All right reserved.
   * Function：annotation
   *

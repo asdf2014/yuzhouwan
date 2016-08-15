@@ -6,7 +6,7 @@ package com.yuzhouwan.hacker.base
   * Function: Zip
   *
   * @author Benedict Jin
-  * @since 2016/3/28 0001
+  * @since 2016/3/28
   */
 object DealWithZip {
 

@@ -11,7 +11,7 @@ import java.net.URISyntaxException;
 import java.util.Properties;
 
 /**
- * Copyright @ 2015 patent.com
+ * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
  * Function：针对不同任务，利用配置定制化处理流程
  *

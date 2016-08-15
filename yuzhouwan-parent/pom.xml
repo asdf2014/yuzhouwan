@@ -95,6 +95,8 @@
         <commons.io.version>2.4</commons.io.version>
         <commons.codec.version>1.10</commons.codec.version>
 
+        <!-- alipay-->
+        <alipay.version>20160812120103</alipay.version>
 
         <!-- cglib -->
         <cglib.version>2.2.2</cglib.version>
