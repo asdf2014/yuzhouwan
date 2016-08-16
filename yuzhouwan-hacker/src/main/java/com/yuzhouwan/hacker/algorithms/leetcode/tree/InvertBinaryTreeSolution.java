@@ -2,6 +2,7 @@ package com.yuzhouwan.hacker.algorithms.leetcode.tree;
 
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * Copyright @ 2016 yuzhouwan.com
@@ -37,14 +38,14 @@ class InvertBinaryTreeSolution {
     /* 递归 */
     static TreeNode invertTreeRecursion(TreeNode root) {
         if (root == null) return null;
-        TreeNode left = root.left,
+        final TreeNode left = root.left,
                 right = root.right;
         root.left = invertTreeRecursion(right);
         root.right = invertTreeRecursion(left);
         return root;
     }
 
-    /* 非递归 深度优先 */
+    /* 非递归 深度优先 (Deque) */
     static TreeNode invertTreeDFS(TreeNode root) {
 
         if (root == null) return null;
@@ -68,12 +69,12 @@ class InvertBinaryTreeSolution {
         return root;
     }
 
-    /* 非递归 广度优先 */
+    /* 非递归 广度优先 (Queue) */
     static TreeNode invertTreeBFS(TreeNode root) {
 
         if (root == null) return null;
 
-        final Deque<TreeNode> stack = new LinkedList<>();
+        final Queue<TreeNode> stack = new LinkedList<>();
         stack.offer(root);
 
         while (!stack.isEmpty()) {
@@ -91,4 +92,8 @@ class InvertBinaryTreeSolution {
         }
         return root;
     }
+    /**
+     * 队列(Queue)：	offer入队     poll出队
+     * 栈  (Deque)：	push 入栈     pop 出栈      peek查看栈顶
+     */
 }
