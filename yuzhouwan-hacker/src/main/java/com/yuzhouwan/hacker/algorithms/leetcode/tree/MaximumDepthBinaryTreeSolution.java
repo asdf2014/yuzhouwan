@@ -1,4 +1,4 @@
-package com.yuzhouwan.hacker.algorithms.leetcode;
+package com.yuzhouwan.hacker.algorithms.leetcode.tree;
 
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingDeque;
@@ -47,19 +47,5 @@ class MaximumDepthBinaryTreeSolution {
             }
         }
         return res;
-    }
-}
-
-/**
- * Definition for a binary tree node.
- */
-class TreeNode {
-
-    int val;
-    TreeNode left;
-    TreeNode right;
-
-    TreeNode(int x) {
-        val = x;
     }
 }

@@ -1,4 +1,4 @@
-package com.yuzhouwan.hacker.algorithms.leetcode;
+package com.yuzhouwan.hacker.algorithms.leetcode.tree;
 
 import org.junit.Test;
 
