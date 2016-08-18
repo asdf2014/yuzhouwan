@@ -1,6 +1,5 @@
 package com.yuzhouwan.hacker.algorithms.sort;
 
-import com.yuzhouwan.hacker.algorithms.sort.MergeSort;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,11 +7,12 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * MergeSort Tester.
+ * Copyright @ 2016 yuzhouwan.com
+ * All right reserved.
+ * Function: MergeSort Tester
  *
  * @author Benedict Jin
- * @version 1.0
- * @since <pre>9, 23, 2015</pre>
+ * @since 2015/9/23
  */
 public class MergeSortTest {
 
@@ -120,16 +120,16 @@ public class MergeSortTest {
     @Test
     public void simple() {
         {
-            int[] unsort = {0};
-            mergeSort.findMaximum(unsort, 0, 0);
+            int[] unSort = {0};
+            mergeSort.findMaximum(unSort, 0, 0);
         }
         {
-            int[] unsort = {0, 1};
-            mergeSort.findMaximum(unsort, 0, 1);
+            int[] unSort = {0, 1};
+            mergeSort.findMaximum(unSort, 0, 1);
         }
         {
-            int[] unsort = {0, 1, 2};
-            mergeSort.findMaximum(unsort, 0, 2);
+            int[] unSort = {0, 1, 2};
+            mergeSort.findMaximum(unSort, 0, 2);
         }
     }
 

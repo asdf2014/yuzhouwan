@@ -6,12 +6,15 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static org.junit.Assert.assertEquals;
+
 /**
- * InsertionSort Tester.
+ * Copyright @ 2016 yuzhouwan.com
+ * All right reserved.
+ * Function：InsertionSort Tester
  *
  * @author Benedict Jin
- * @version 1.0
- * @since <pre>九月 21, 2015</pre>
+ * @since 2015/9/21
  */
 public class InsertionSortTest {
 
@@ -34,48 +37,54 @@ public class InsertionSortTest {
      */
     @Test
     public void testInsertionSort() throws Exception {
+        StringBuilder strBuilder;
         {
             int[] unSort = {3, 2, 1};
             int[] sort = insertionSort.insertionSort(unSort);
+            strBuilder = new StringBuilder();
             for (int i : sort)
-                _log.debug("{}", i);
-            System.out.print("\r\n");
+                strBuilder.append(i);
+            assertEquals("123", strBuilder.toString());
         }
         {
             int[] unSort = {1, 1, 1};
             int[] sort = insertionSort.insertionSort(unSort);
+            strBuilder = new StringBuilder();
             for (int i : sort)
-                _log.debug("{}", i);
-            System.out.print("\r\n");
+                strBuilder.append(i);
+            assertEquals("111", strBuilder.toString());
         }
         {
             int[] unSort = {1, 2, 3};
             int[] sort = insertionSort.insertionSort(unSort);
+            strBuilder = new StringBuilder();
             for (int i : sort)
-                _log.debug("{}", i);
-            System.out.print("\r\n");
+                strBuilder.append(i);
+            assertEquals("123", strBuilder.toString());
         }
     }
 
     @Test
     public void pressureTest() {
 
-        final int ARRAY_SIZE = 10000;
+        final int ARRAY_SIZE = 1_0000;
 
         int[] sorted = new int[ARRAY_SIZE];
         int[] reversed = new int[ARRAY_SIZE];
         for (int i = 0; i < ARRAY_SIZE; i++)
             reversed[ARRAY_SIZE - i - 1] = sorted[i] = i;
+        long begin;
+        long end;
         {
-            long begin = System.currentTimeMillis();
+            begin = System.currentTimeMillis();
             insertionSort.insertionSort(sorted);
-            long end = System.currentTimeMillis();
+            end = System.currentTimeMillis();
             _log.debug("Max: " + sorted[ARRAY_SIZE - 1] + ", and finished in " + (end - begin) + " millisecond\r\n");
         }
         {
-            long begin = System.currentTimeMillis();
+            begin = System.currentTimeMillis();
             insertionSort.insertionSort(reversed);
-            long end = System.currentTimeMillis();
+            end = System.currentTimeMillis();
             _log.debug("Max: " + sorted[ARRAY_SIZE - 1] + ", and finished in " + (end - begin) + " millisecond\r\n");
         }
     }
