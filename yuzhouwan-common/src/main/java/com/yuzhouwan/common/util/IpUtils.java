@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 /**
  * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
- * Function: Ip Util
+ * Function: Ip Utils
  *
  * @author Benedict Jin
  * @since 2016/4/7 0030

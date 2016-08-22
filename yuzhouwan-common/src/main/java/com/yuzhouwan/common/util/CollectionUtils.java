@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
- * Function: Collection Util
+ * Function: Collection Utils
  *
  * @author Benedict Jin
  * @since 2016/6/12
@@ -40,6 +40,13 @@ public class CollectionUtils {
         return result;
     }
 
+    /**
+     * Remove duplicate
+     *
+     * @param a
+     * @param b
+     * @return
+     */
     public static Object[] duplicate(Object[] a, Object[] b) {
         if (a == null || b == null || a.length == 0 || b.length == 0) return null;
 

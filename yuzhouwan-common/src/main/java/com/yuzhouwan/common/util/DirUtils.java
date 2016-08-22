@@ -59,7 +59,7 @@ public class DirUtils implements IDirUtils {
     }
 
     /**
-     * 获得 target 目录的 test-classes绝对路径
+     * 获得 target 目录的 classes绝对路径
      *
      * @return
      */

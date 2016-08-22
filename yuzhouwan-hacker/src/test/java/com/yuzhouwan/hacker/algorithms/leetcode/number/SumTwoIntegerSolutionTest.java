@@ -1,4 +1,4 @@
-package com.yuzhouwan.hacker.algorithms.leetcode;
+package com.yuzhouwan.hacker.algorithms.leetcode.number;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.yuzhouwan.hacker.algorithms.leetcode;
+package com.yuzhouwan.hacker.algorithms.leetcode.number;
 
 /**
  * Copyright @ 2016 yuzhouwan.com

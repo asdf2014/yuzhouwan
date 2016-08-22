@@ -93,7 +93,7 @@ class InvertBinaryTreeSolution {
         return root;
     }
     /**
-     * 队列(Queue)：	offer入队     poll出队
-     * 栈  (Deque)：	push 入栈     pop 出栈      peek查看栈顶
+     * 队列(Queue)：	offer入队(tail)      poll出队(first)
+     * 栈  (Deque)：	push 入栈(front)     pop 出栈(first)      peek查看栈顶
      */
 }

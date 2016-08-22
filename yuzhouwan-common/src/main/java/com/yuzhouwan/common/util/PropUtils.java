@@ -13,7 +13,7 @@ import java.util.Properties;
 /**
  * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
- * Function: Properties Util
+ * Function: Properties Utils
  *
  * @author Benedict Jin
  * @since 2016/4/8 0030

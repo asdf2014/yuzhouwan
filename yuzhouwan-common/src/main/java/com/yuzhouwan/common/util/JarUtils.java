@@ -15,7 +15,7 @@ import java.util.zip.ZipInputStream;
 /**
  * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
- * Function: Jar Util
+ * Function: Jar Utils
  *
  * @author Benedict Jin
  * @since 2016/4/20 0030
