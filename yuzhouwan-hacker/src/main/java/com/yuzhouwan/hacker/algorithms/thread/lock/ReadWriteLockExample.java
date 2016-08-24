@@ -70,11 +70,9 @@ public class ReadWriteLockExample {
     public static class Business implements Serializable {
 
         private static final String PREFIX = "yuzhouwan|";
-
+        private volatile static Business instance;
         private Map<Integer, String> myData = new HashMap<>();
         private ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
-
-        private volatile static Business instance;
 
         private Business() {
         }

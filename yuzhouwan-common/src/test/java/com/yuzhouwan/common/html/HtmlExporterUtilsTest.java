@@ -33,7 +33,7 @@ public class HtmlExporterUtilsTest {
             //"http://192.168.112.189:8100/#/report?instanceId=22&customerId=5";
             "http://portal.cloudguarder.com:81/#/index/defend_monitor";
 
-//    @Test
+    //    @Test
     public void simpleTest() throws Exception {
         String url = "http://portal.cloudguarder.com:81";
         FileUtils.copyFile(new HtmlExporter2File().convert2Image(url, null, null),
@@ -56,7 +56,7 @@ public class HtmlExporterUtilsTest {
         }
     }
 
-//    @Test
+    //    @Test
     public void image2pdfTest() throws Exception {
         String url = "http://portal.cloudguarder.com:81";
         HtmlExporter2BYTES htmlExporter2BYTES = new HtmlExporter2BYTES();
@@ -68,7 +68,7 @@ public class HtmlExporterUtilsTest {
                 new File(RESOURCES_PATH.concat(PREFIX_OUTPUT_PATH).concat("login.pdf")));
     }
 
-//    @Test
+    //    @Test
     public void convert2PdfTest() throws Exception {
 
         Cookie cookie = new Cookie(name, value, domain, path, expiry, isSecure, isHttpOnly);

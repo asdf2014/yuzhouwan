@@ -15,10 +15,6 @@ import java.util.concurrent.Executors;
  */
 public class ExchangerExample {
 
-    public static void main(String[] args) {
-        new ExchangerExample();
-    }
-
     public ExchangerExample() {
         ExecutorService executorService = Executors.newCachedThreadPool();
         final Exchanger<String> exchanger = new Exchanger<>();
@@ -46,6 +42,10 @@ public class ExchangerExample {
             }
         });
         executorService.shutdown();
+    }
+
+    public static void main(String[] args) {
+        new ExchangerExample();
     }
 
 }

@@ -3,9 +3,9 @@ package com.yuzhouwan.common.json;
 import java.io.Serializable;
 
 public class A implements Serializable {
+    public String mode;
     private String rule;
     private String groupId;
-    public String mode;
     private int level;
 
     public A() {

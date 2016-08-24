@@ -26,6 +26,7 @@ Hadoop生态圈 253793003&ensp;&ensp;(__*2000*__人大群)
 &ensp;&ensp;包括 SSH（Spark / Storm / Hadoop）、Flink / Heron / Cassandra 框架、<br/>
 &ensp;&ensp;Paxos / Raft / Chubby / Zookeeper 分布式算法、<br/>
 &ensp;&ensp;Scala / Python / Golang / Clojure / Ruby 各大流行语言、<br/>
-&ensp;&ensp;PostgreSQL / HBase / Hive / ElasticSearch / Redis 数据持久化策略 等等
+&ensp;&ensp;PostgreSQL / HBase / Hive / ElasticSearch / Redis 数据持久化策略、<br/>
+&ensp;&ensp;Data Mining / Machine Learning / Deep Learning / ANN / AI 数据分析领域 等等
 
 欢迎加入，一起交流学习 :D 

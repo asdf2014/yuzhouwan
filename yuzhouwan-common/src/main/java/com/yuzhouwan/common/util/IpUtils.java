@@ -32,6 +32,10 @@ public class IpUtils {
     private static final Pattern EXTRACT_DOMAIN_SIMPLE_END_WITH_TAIL = Pattern.compile("(?<=//).*(?=/)");
 
     private static final String PING_PERFIX = "ping -c 1 ";
+    /**
+     * The current host IP address is the IP address from the device.
+     */
+    private static List<String> currentHostIpAddress;
 
     /**
      * 检查 IP地址是否是 合法的
@@ -242,11 +246,6 @@ public class IpUtils {
             return false;
         }
     }
-
-    /**
-     * The current host IP address is the IP address from the device.
-     */
-    private static List<String> currentHostIpAddress;
 
     /**
      * @return the current environment's IP address, taking into account the Internet connection to any of the available

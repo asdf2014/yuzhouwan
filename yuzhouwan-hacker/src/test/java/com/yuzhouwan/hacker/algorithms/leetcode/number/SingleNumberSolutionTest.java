@@ -1,6 +1,5 @@
 package com.yuzhouwan.hacker.algorithms.leetcode.number;
 
-import com.yuzhouwan.hacker.algorithms.leetcode.number.SingleNumberSolution;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

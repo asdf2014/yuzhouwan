@@ -57,10 +57,6 @@ public class HttpUtils {
     private static int MAX_RETRY;
     private static int MAX_ROUTE_TOTAL;
 
-    private CloseableHttpClient httpClient;
-    private HttpClientContext httpClientContext;
-    private TrustManager[] trustManagers = new TrustManager[1];
-
     static {
         TIMEOUT_CONNECTION = Integer.valueOf(PropUtils.getInstance().getProperty("TIMEOUT_CONNECTION"));
         TIMEOUT_SOCKET = Integer.valueOf(PropUtils.getInstance().getProperty("TIMEOUT_SOCKET"));
@@ -68,6 +64,10 @@ public class HttpUtils {
         MAX_RETRY = Integer.valueOf(PropUtils.getInstance().getProperty("MAX_RETRY"));
         MAX_ROUTE_TOTAL = Integer.valueOf(PropUtils.getInstance().getProperty("MAX_ROUTE_TOTAL"));
     }
+
+    private CloseableHttpClient httpClient;
+    private HttpClientContext httpClientContext;
+    private TrustManager[] trustManagers = new TrustManager[1];
 
     private HttpUtils() {
     }
@@ -90,6 +90,14 @@ public class HttpUtils {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static String getUserAgent() {
+        return userAgent;
+    }
+
+    public static void setUserAgent(String userAgent) {
+        HttpUtils.userAgent = userAgent;
     }
 
     private void initialize() {
@@ -436,13 +444,5 @@ public class HttpUtils {
                 }
             }
         }
-    }
-
-    public static String getUserAgent() {
-        return userAgent;
-    }
-
-    public static void setUserAgent(String userAgent) {
-        HttpUtils.userAgent = userAgent;
     }
 }

@@ -28,7 +28,7 @@ public class HtmlExporter2BASE64 implements IHtmlExporter {
     /**
      * 将带有 chart、map等动态图表的 html转换为 图片 (可以额外配置 cookie的权限控制)
      *
-     * @param url 目标URL
+     * @param url         目标URL
      * @param addedCookie 添加 cookie
      * @return
      */

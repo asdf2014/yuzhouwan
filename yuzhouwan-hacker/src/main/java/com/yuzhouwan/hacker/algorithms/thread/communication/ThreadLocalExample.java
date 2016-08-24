@@ -66,7 +66,21 @@ public class ThreadLocalExample {
 }
 
 class ThreadScopeThreadLocal {
+    private static ThreadLocal<ThreadScopeThreadLocal> map = new ThreadLocal<>();
     private String name;
+    private int age;
+
+    private ThreadScopeThreadLocal() {
+    }
+
+    public static synchronized ThreadScopeThreadLocal getInstance() {
+        ThreadScopeThreadLocal instance = map.get();
+        if (instance == null) {
+            instance = new ThreadScopeThreadLocal();
+            map.set(instance);
+        }
+        return instance;
+    }
 
     public String getName() {
         return name;
@@ -83,22 +97,6 @@ class ThreadScopeThreadLocal {
     public void setAge(int age) {
         this.age = age;
     }
-
-    private int age;
-
-    private ThreadScopeThreadLocal() {
-    }
-
-    public static synchronized ThreadScopeThreadLocal getInstance() {
-        ThreadScopeThreadLocal instance = map.get();
-        if (instance == null) {
-            instance = new ThreadScopeThreadLocal();
-            map.set(instance);
-        }
-        return instance;
-    }
-
-    private static ThreadLocal<ThreadScopeThreadLocal> map = new ThreadLocal<>();
 
     /**
      * Thread-0 put the data is 1727979134

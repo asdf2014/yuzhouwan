@@ -23,13 +23,12 @@ import java.util.zip.ZipInputStream;
 public class JarUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(JarUtils.class);
-    //    private static final String JAR_NAME = PropUtils.getInstance().getProperty("jar.name");
-    private static String JAR_PATH;
     private static final String PROP_PATH = PropUtils.getInstance().getProperty("prop.path");
-    private static Properties properties = new Properties();
-
     private static final String LIB_PATH = DirUtils.getLibPathInWebApp();
     private static final String CLASSES_PATH = DirUtils.getTestClassesPath();
+    //    private static final String JAR_NAME = PropUtils.getInstance().getProperty("jar.name");
+    private static String JAR_PATH;
+    private static Properties properties = new Properties();
 
     static {
         try {

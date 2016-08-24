@@ -26,7 +26,7 @@ public class HtmlExporterUtils {
      * 将 字符数组 转化为文件
      *
      * @param bytes 文件的 byte[]
-     * @param file 文件
+     * @param file  文件
      */
     public static void byte2File(byte[] bytes, File file) {
         try (OutputStream out = new FileOutputStream(file)) {
@@ -83,7 +83,7 @@ public class HtmlExporterUtils {
     /**
      * 初始化配置 PhantomJS Driver
      *
-     * @param url 目标URL
+     * @param url         目标URL
      * @param addedCookie 添加 cookie
      * @return 初始化过的 PhantomJS Driver
      */

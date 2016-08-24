@@ -249,17 +249,6 @@ public class DirUtils implements IDirUtils {
     }
 
     /**
-     * 处理 监控文件夹 的事件
-     *
-     * @param event
-     */
-    @Override
-    public void dealWithEvent(WatchEvent<?> event) {
-        // could expand more processes here
-        _log.info(event.context() + ":\t " + event.kind() + " event.");
-    }
-
-    /**
      * Make sure file or directory exist
      *
      * @param path   be checked path
@@ -287,6 +276,17 @@ public class DirUtils implements IDirUtils {
             }
         }
         return true;
+    }
+
+    /**
+     * 处理 监控文件夹 的事件
+     *
+     * @param event
+     */
+    @Override
+    public void dealWithEvent(WatchEvent<?> event) {
+        // could expand more processes here
+        _log.info(event.context() + ":\t " + event.kind() + " event.");
     }
 
     /**

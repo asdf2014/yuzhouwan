@@ -119,7 +119,7 @@ public class SnmpH3C {
     /**
      * @param securityName
      * @param authenticationProtocol   AuthMD5 | AuthSHA
-         * @param authenticationPassphrase
+     * @param authenticationPassphrase
      * @param privacyProtocol          PrivDES | PrivAES128 | PrivAES192 | PrivAES256 | Priv3DES | PrivAES
      * @param privacyPassphrase
      * @return

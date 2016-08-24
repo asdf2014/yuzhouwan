@@ -16,6 +16,17 @@ object Currying {
 
   val addTwoNumbers = (x: Int, y: Int) => println(x + " + " + y + " = " + (x + y))
 
+  def main(args: Array[String]) {
+
+    addTwoNumbers(1, 999999)
+
+    val x = 1
+    val y = -1
+    println(x + " + " + y + " = " + addCurry(x)(y))
+
+    showInfos("a", "b", "c")
+  }
+
   def showInfos(infos: String*) {
 
     var counter = 0
@@ -28,17 +39,6 @@ object Currying {
   def addCurry(x: Int)(y: Int): Int = {
 
     x + y
-  }
-
-  def main(args: Array[String]) {
-
-    addTwoNumbers(1, 999999)
-
-    val x = 1
-    val y = -1
-    println(x + " + " + y + " = " + addCurry(x)(y))
-
-    showInfos("a", "b", "c")
   }
 
 }

@@ -25,11 +25,11 @@ object ActorTry {
 
     NameResolver.start()
 
-    NameResolver ! ("www.scala-lang.org", self)
+    NameResolver !("www.scala-lang.org", self)
     Thread.sleep(2000)
     self.receiveWithin(0) { case x => println(x) }
 
-    NameResolver ! ("wwwwww.scala-lang.org", self)
+    NameResolver !("wwwwww.scala-lang.org", self)
     Thread.sleep(2000)
     self.receiveWithin(0) { case x => println(x) }
 

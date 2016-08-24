@@ -26,12 +26,11 @@ import java.util.Map;
 public class QueryTermWithAnalyzerTest {
 
     private static final Logger _log = LoggerFactory.getLogger(QueryTermWithAnalyzerTest.class);
-
-    private QueryTermWithAnalyzer query = new QueryTermWithAnalyzer();
     private static final String ES_INDEX = "analyzer";
     private static final String ES_TYPE = "attack_info";
+    private QueryTermWithAnalyzer query = new QueryTermWithAnalyzer();
 
-//    @Before
+    //    @Before
     public void init() throws Exception {
 
         if (query.getClient() == null) {
@@ -57,7 +56,7 @@ public class QueryTermWithAnalyzerTest {
         }
     }
 
-//    @Test
+    //    @Test
     public void ignoreCaseAndLikeQuery() {
 
         BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();

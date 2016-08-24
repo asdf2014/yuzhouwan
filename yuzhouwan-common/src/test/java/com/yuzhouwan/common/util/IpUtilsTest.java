@@ -93,7 +93,7 @@ public class IpUtilsTest {
         assertEquals(true, result);
     }
 
-//    @Test
+    //    @Test
     public void getIPFromURLTest() throws Exception {
 
         assertEquals(null, IpUtils.getIPFromURL("baidu.com"));
@@ -106,7 +106,7 @@ public class IpUtilsTest {
         System.out.println(IpUtils.getIPFromURL("http://www.baidu.com"));
     }
 
-//    @Test
+    //    @Test
     public void isReachableTest() throws Exception {
 
         assertEquals(true, IpUtils.isReachable("127.0.0.1"));
@@ -120,7 +120,7 @@ public class IpUtilsTest {
         System.out.println(IpUtils.ping("127.0.0.1"));
     }
 
-//    @Test
+    //    @Test
     public void getCurrentEnvironmentNetworkIpTest() throws Exception {
         List<String> ips = IpUtils.getCurrentEnvironmentNetworkIp();
         for (String ip : ips) {
