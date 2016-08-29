@@ -1,6 +1,7 @@
 package com.yuzhouwan.common.html;
 
 import org.apache.commons.io.FileUtils;
+import org.junit.Test;
 import org.openqa.selenium.Cookie;
 
 import java.io.ByteArrayInputStream;
@@ -33,9 +34,9 @@ public class HtmlExporterUtilsTest {
             //"http://192.168.112.189:8100/#/report?instanceId=22&customerId=5";
             "http://portal.cloudguarder.com:81/#/index/defend_monitor";
 
-    //    @Test
+    @Test
     public void simpleTest() throws Exception {
-        String url = "http://portal.cloudguarder.com:81";
+        String url = "http://portal.cloudguarder.com";
         FileUtils.copyFile(new HtmlExporter2File().convert2Image(url, null, null),
                 new File(RESOURCES_PATH.concat(PREFIX_OUTPUT_PATH).concat("login.png")));
     }

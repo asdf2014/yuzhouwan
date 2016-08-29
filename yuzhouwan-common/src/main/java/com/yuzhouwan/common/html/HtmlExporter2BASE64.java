@@ -2,6 +2,7 @@ package com.yuzhouwan.common.html;
 
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
 /**
  * Copyright @ 2016 yuzhouwan.com
@@ -35,7 +36,15 @@ public class HtmlExporter2BASE64 implements IHtmlExporter {
     @SuppressWarnings(value = {"unchecked"})
     @Override
     public String convert2Image(String url, Cookie addedCookie, Integer width, Integer height) {
-        return HtmlExporterUtils.prepare(url, addedCookie, width, height).getScreenshotAs(OutputType.BASE64);
+        PhantomJSDriver driver = null;
+        try {
+            driver = HtmlExporterUtils.prepare(url, addedCookie, width, height);
+            if (driver == null)
+                return "";
+            return driver.getScreenshotAs(OutputType.BASE64);
+        } finally {
+            HtmlExporterUtils.release(driver);
+        }
     }
 
 }

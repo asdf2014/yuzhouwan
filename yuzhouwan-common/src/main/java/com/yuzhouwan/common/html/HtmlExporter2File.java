@@ -2,6 +2,7 @@ package com.yuzhouwan.common.html;
 
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
 import java.io.File;
 
@@ -37,7 +38,15 @@ public class HtmlExporter2File implements IHtmlExporter {
     @SuppressWarnings(value = {"unchecked"})
     @Override
     public File convert2Image(String url, Cookie addedCookie, Integer width, Integer height) {
-        return HtmlExporterUtils.prepare(url, addedCookie, width, height).getScreenshotAs(OutputType.FILE);
+        PhantomJSDriver driver = null;
+        try {
+            driver = HtmlExporterUtils.prepare(url, addedCookie, width, height);
+            if (driver == null)
+                return null;
+            return driver.getScreenshotAs(OutputType.FILE);
+        } finally {
+            HtmlExporterUtils.release(driver);
+        }
     }
 
 }

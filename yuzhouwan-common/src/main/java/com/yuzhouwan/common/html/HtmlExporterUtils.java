@@ -7,6 +7,8 @@ import org.openqa.selenium.Cookie;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -21,6 +23,8 @@ import java.io.*;
  * @since 2016/6/20
  */
 public class HtmlExporterUtils {
+
+    private static final Logger _log = LoggerFactory.getLogger(HtmlExporterUtils.class);
 
     /**
      * 将 字符数组 转化为文件
@@ -154,6 +158,14 @@ public class HtmlExporterUtils {
             return new Rectangle(bufferedImage.getWidth(), bufferedImage.getHeight());
         } catch (IOException e) {
             throw new RuntimeException(e);
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    _log.error("Cannot close inputStream, because: {}!", e.getMessage());
+                }
+            }
         }
     }
 
@@ -164,8 +176,8 @@ public class HtmlExporterUtils {
      * @return 图片大小
      */
     public static Rectangle getSizeFromImage(byte[] bytes) {
-        try {
-            BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(bytes));
+        try (ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes)) {
+            BufferedImage bufferedImage = ImageIO.read(byteArrayInputStream);
             return new Rectangle(bufferedImage.getWidth(), bufferedImage.getHeight());
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -180,5 +192,15 @@ public class HtmlExporterUtils {
      */
     public static Rectangle getSizeFromImage(String base64) {
         return getSizeFromImage(base64.getBytes());
+    }
+
+    public static void release(PhantomJSDriver driver) {
+        try {
+            if (driver != null)
+                driver.close();
+        } finally {
+            if (driver != null)
+                driver.quit();
+        }
     }
 }
