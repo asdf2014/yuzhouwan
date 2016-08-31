@@ -17,7 +17,7 @@ import java.io.*;
 /**
  * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
- * Function: Html Exporter
+ * Function: Html Exporter Utils
  *
  * @author Benedict Jin
  * @since 2016/6/20
@@ -194,6 +194,11 @@ public class HtmlExporterUtils {
         return getSizeFromImage(base64.getBytes());
     }
 
+    /**
+     * Release those resource of phantomjs, include shutdown phantom process.
+     *
+     * @param driver close cannot shutdown, should do it with quit()
+     */
     public static void release(PhantomJSDriver driver) {
         try {
             if (driver != null)
