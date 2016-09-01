@@ -154,7 +154,7 @@
         <npl.ansj.seg.version>3.7.6</npl.ansj.seg.version>
 
         <!-- apache hadoop -->
-        <hadoop.client.version>2.7.2</hadoop.client.version>
+        <hadoop.client.version>2.7.3</hadoop.client.version>
 
         <!-- apache storm -->
         <apache.storm.version>0.10.0</apache.storm.version>
