@@ -5,11 +5,14 @@ import java.io.*;
 import static java.lang.System.out;
 
 /**
- * Simple serialization/deserialization demonstrator.
+ * Copyright @ 2016 yuzhouwan.com
+ * All right reserved.
+ * Function: Serialization Demonstrator
  *
- * @author Dustin
+ * @author Benedict Jin
+ * @since 2015/8/4
  */
-public class SerializationDemonstrator {
+public class SerializationConverter {
     /**
      * Serialize the provided object to the file of the provided name.
      *
@@ -50,6 +53,7 @@ public class SerializationDemonstrator {
      * provided class; may be null if something goes wrong with deserialization.
      * @throws IllegalArgumentException Thrown if either provided parameter is null.
      */
+    @SuppressWarnings("unchecked")
     public static <T> T deserialize(final String fileToDeserialize, final Class<T> classBeingDeserialized) {
         if (fileToDeserialize == null) {
             throw new IllegalArgumentException("Cannot deserialize from a null filename.");

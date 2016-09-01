@@ -11,7 +11,12 @@ import java.util.Date;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by Benedict Jin on 2015/8/20.
+ * Copyright @ 2016 yuzhouwan.com
+ * All right reserved.
+ * Function: Joda Time Have a Try
+ *
+ * @author Benedict Jin
+ * @since 2015/8/20
  */
 public class JodaTimeHaveATry {
 
@@ -37,7 +42,6 @@ public class JodaTimeHaveATry {
         assertEquals(20, jodaTime.getMinuteOfHour());
 
         assertEquals("八月", jodaTime.monthOfYear().getAsShortText());
-
     }
 
     /**

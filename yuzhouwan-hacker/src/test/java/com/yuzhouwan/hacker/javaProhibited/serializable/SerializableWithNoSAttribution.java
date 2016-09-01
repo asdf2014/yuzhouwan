@@ -6,9 +6,14 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 /**
- * Created by Benedict Jin on 2015/8/4.
+ * Copyright @ 2016 yuzhouwan.com
+ * All right reserved.
+ * Function: Serializable with No Serializable Attribution
+ *
+ * @author Benedict Jin
+ * @since 2015/8/4
  */
-public class SerializableWithNoSAttribuation implements Serializable {
+public class SerializableWithNoSAttribution implements Serializable {
 
     private String id;
     private String name;
@@ -16,10 +21,10 @@ public class SerializableWithNoSAttribuation implements Serializable {
 
     private Infos infos;
 
-    public SerializableWithNoSAttribuation() {
+    public SerializableWithNoSAttribution() {
     }
 
-    public SerializableWithNoSAttribuation(String id, String name, int age, Infos infos) {
+    public SerializableWithNoSAttribution(String id, String name, int age, Infos infos) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -75,7 +80,7 @@ public class SerializableWithNoSAttribuation implements Serializable {
 
     @Override
     public String toString() {
-        return "SerializableWithNoSAttribuation{" +
+        return "SerializableWithNoSAttribution{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", age=" + age +
@@ -115,11 +120,15 @@ class MainThread {
 
     public static void main(String... args) {
 
+        /**
+         * Serialization of Object SerializableWithNoSAttribution{id='ASDF2014', name='asdf', age=20, infos=Infos{tel='123456'}} completed.
+         * Deserialization of Object SerializableWithNoSAttribution{id='ASDF2014', name='asdf', age=20, infos=Infos{tel='123456'}} is completed.
+         */
         Infos infos = new Infos("123456");
-        SerializableWithNoSAttribuation s = new SerializableWithNoSAttribuation("ASDF2014", "asdf", 20, infos);
+        SerializableWithNoSAttribution s = new SerializableWithNoSAttribution("ASDF2014", "asdf", 20, infos);
 
-        SerializationDemonstrator.serialize(s, "asdf");
-        SerializableWithNoSAttribuation sDe = SerializationDemonstrator.deserialize("asdf", SerializableWithNoSAttribuation.class);
+        SerializationConverter.serialize(s, "asdf");
+        SerializableWithNoSAttribution sDe = SerializationConverter.deserialize("asdf", SerializableWithNoSAttribution.class);
     }
 
 }
