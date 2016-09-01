@@ -25,7 +25,7 @@ public class JosephRingTest {
             origin.add(i);
         }
         StringBuilder stringBuilder = new StringBuilder();
-        new JosephRing().joseph(origin, 3).forEach(e -> stringBuilder.append(e + " "));
+        new JosephRing().joseph(origin, 3).forEach(e -> stringBuilder.append(e).append(" "));
         assertEquals("3 6 9 2 7 1 8 5 10 4", stringBuilder.toString().trim());
     }
 }
