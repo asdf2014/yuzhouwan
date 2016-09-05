@@ -15,7 +15,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @since 2016/8/26
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:/service/spring.service.xml")
+@ContextConfiguration(locations = {
+        "classpath:/service/spring.service.xml" /*,*/
+})
 public class AsyncAnnotationTest {
 
     private static final long TTL = 5;
