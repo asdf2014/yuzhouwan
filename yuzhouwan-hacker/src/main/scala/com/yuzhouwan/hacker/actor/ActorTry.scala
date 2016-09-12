@@ -1,12 +1,12 @@
 package com.yuzhouwan.actor
 
+import scala.actors.Actor
 import scala.actors.Actor._
-import scala.actors._
 
 /**
   * Copyright @ 2016 yuzhouwan.com
   * All right reserved.
-  * Function：scala_knowledge
+  * Function：Actor Try
   *
   * @author Benedict Jin
   * @since 2016/1/13 0013
@@ -25,18 +25,18 @@ object ActorTry {
 
     NameResolver.start()
 
-    NameResolver !("www.scala-lang.org", self)
-    Thread.sleep(2000)
+    NameResolver !("www.yuzhouwan.com", self)
+    Thread.sleep(1000)
     self.receiveWithin(0) { case x => println(x) }
 
-    NameResolver !("wwwwww.scala-lang.org", self)
-    Thread.sleep(2000)
+    NameResolver !("wwww.yuzhouwan.com", self)
+    Thread.sleep(1000)
     self.receiveWithin(0) { case x => println(x) }
 
     NameResolver ! "EXIT"
   }
 
-  def alwaysReceive: Unit = {
+  def alwaysReceive(): Unit = {
     val actor2 = actor {
       while (true) {
         receive {
@@ -47,7 +47,7 @@ object ActorTry {
     actor2 ! "hi"
   }
 
-  def fiveQuestions: Unit = {
+  def fiveQuestions(): Unit = {
     actor {
       for (i <- 1 to 5)
         println("Question...")
@@ -79,6 +79,7 @@ object NameResolver extends Actor {
 
   import java.net.{InetAddress, UnknownHostException}
 
+  @Override
   def act() {
     react {
       case (name: String, actor: Actor) =>
@@ -93,9 +94,15 @@ object NameResolver extends Actor {
     }
   }
 
-  def getIp(name: String): Option[InetAddress] = {
+  /**
+    * Get IP Address from URL.
+    *
+    * @param url URL
+    * @return
+    */
+  def getIp(url: String): Option[InetAddress] = {
     try {
-      Some(InetAddress.getByName(name))
+      Some(InetAddress.getByName(url))
     } catch {
       case _: UnknownHostException => None
     }

@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Copyright @ 2016 yuzhouwan.com
@@ -104,12 +105,12 @@ public class HtmlExporterUtils {
                 PropUtils.getInstance().getProperty("html.exporter.user.agent"));
 
         PhantomJSDriver driver = new PhantomJSDriver(phantomCaps);
-//        driver.manage().timeouts().implicitlyWait(Integer.valueOf(PropUtils.getInstance()
-//                .getProperty("html.exporter.driver.timeouts.implicitly.seconds")), TimeUnit.SECONDS);
-//        driver.manage().timeouts().pageLoadTimeout(Integer.valueOf(PropUtils.getInstance()
-//                .getProperty("html.exporter.driver.timeouts.page.load.seconds")), TimeUnit.SECONDS);
-//        driver.manage().timeouts().setScriptTimeout(Integer.valueOf(PropUtils.getInstance()
-//                .getProperty("html.exporter.driver.timeouts.script.seconds")), TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Integer.valueOf(PropUtils.getInstance()
+                .getProperty("html.exporter.driver.timeouts.implicitly.seconds")), TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(Integer.valueOf(PropUtils.getInstance()
+                .getProperty("html.exporter.driver.timeouts.page.load.seconds")), TimeUnit.SECONDS);
+        driver.manage().timeouts().setScriptTimeout(Integer.valueOf(PropUtils.getInstance()
+                .getProperty("html.exporter.driver.timeouts.script.seconds")), TimeUnit.SECONDS);
 
         if (width == null || height == null) {
             driver.manage().window().maximize();
@@ -121,13 +122,13 @@ public class HtmlExporterUtils {
             driver.manage().addCookie(addedCookie);
 
         driver.get(url);
-        try {
-            // timeout is not work, so fix it by sleeping thread
-            Thread.sleep(Integer.valueOf(PropUtils.getInstance()
-                    .getProperty("html.exporter.driver.timeouts.implicitly.seconds")) * 1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            // timeout is not work, so fix it by sleeping thread
+//            Thread.sleep(Integer.valueOf(PropUtils.getInstance()
+//                    .getProperty("html.exporter.driver.timeouts.implicitly.seconds")) * 1000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
         return driver;
     }
 

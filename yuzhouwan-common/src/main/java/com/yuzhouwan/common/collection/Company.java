@@ -38,6 +38,14 @@ public class Company implements Comparable<Company> {
         }
     }
 
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setFoundation(double foundation) {
+        this.foundation = foundation;
+    }
+
     @Override
     public String toString() {
         return "Company{" +

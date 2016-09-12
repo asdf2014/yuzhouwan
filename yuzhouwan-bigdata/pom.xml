@@ -19,6 +19,7 @@
         <module>yuzhouwan-bigdata-hadoop</module>
         <module>yuzhouwan-bigdata-spark</module>
         <module>yuzhouwan-bigdata-storm</module>
+        <module>yuzhouwan-bigdata-hbase</module>
         <module>yuzhouwan-bigdata-elastic</module>
         <module>yuzhouwan-bigdata-flume</module>
         <module>yuzhouwan-bigdata-zookeeper</module>

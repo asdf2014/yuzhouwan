@@ -35,9 +35,18 @@ public class HtmlExporterUtilsTest {
 
     //    @Test
     public void simpleTest() throws Exception {
+        // 7s 306
         String url = "http://portal.cloudguarder.com";
         FileUtils.copyFile(new HtmlExporter2File().convert2Image(url, null, null),
                 new File(RESOURCES_PATH.concat(PREFIX_OUTPUT_PATH).concat("login.png")));
+    }
+
+    //    @Test
+    public void testTimeout() throws Exception {
+        // 38s 451ms
+        String url = "http://echarts.baidu.com/echarts2/doc/doc.html";
+        FileUtils.copyFile(new HtmlExporter2File().convert2Image(url, null, null),
+                new File(RESOURCES_PATH.concat(PREFIX_OUTPUT_PATH).concat("echarts.png")));
     }
 
     /**
@@ -45,7 +54,7 @@ public class HtmlExporterUtilsTest {
      *
      * @throws Exception
      */
-//    @Test
+    //    @Test
     public void convert2ImageTest() throws Exception {
 
         Cookie cookie = new Cookie(name, value, domain, path, expiry, isSecure, isHttpOnly);

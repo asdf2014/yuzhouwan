@@ -18,7 +18,7 @@ object JsonUtils {
   def main(args: Array[String]) {
 
     //    System.setProperty("hadoop.home.dir", "field/src/main/resources/hadoop_binaries_spark_needed/")     //not ok
-    System.setProperty("hadoop.home.dir", "D:/apps/hadoop/hadoop-2.7.2/")
+    System.setProperty("hadoop.home.dir", "D:/apps/hadoop/hadoop-2.7.3/")
 
     val conf = new SparkConf()
     conf.setMaster("local[2]")
