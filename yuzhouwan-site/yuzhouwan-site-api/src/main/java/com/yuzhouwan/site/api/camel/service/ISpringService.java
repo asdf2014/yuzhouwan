@@ -1,4 +1,4 @@
-package com.yuzhouwan.site.service.camel.spring.service;
+package com.yuzhouwan.site.api.camel.service;
 
 /**
  * Copyright @ 2016 yuzhouwan.com

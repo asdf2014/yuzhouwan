@@ -1,6 +1,6 @@
 package com.yuzhouwan.site.service.camel.spring;
 
-import com.yuzhouwan.site.service.camel.spring.service.ISpringService;
+import com.yuzhouwan.site.api.camel.service.ISpringService;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.commons.logging.Log;
