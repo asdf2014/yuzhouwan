@@ -21,7 +21,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Benedict Jin on 2016/5/30.
+ * Copyright @ 2016 yuzhouwan.com
+ * All right reserved.
+ * Function：Query Term with Analyzer Tester
+ *
+ * @author Benedict Jin
+ * @since 2016/5/30
  */
 public class QueryTermWithAnalyzerTest {
 

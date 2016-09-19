@@ -1,4 +1,4 @@
-package com.yuzhouwan.log.elastic.base;
+package com.yuzhouwan.bigdata.elastic.client;
 
 import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.action.bulk.BulkProcessor;
@@ -24,7 +24,14 @@ import java.util.concurrent.TimeUnit;
 
 import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 
-
+/**
+ * Copyright @ 2016 yuzhouwan.com
+ * All right reserved.
+ * Function：Elastic Node Client
+ *
+ * @author Benedict Jin
+ * @since 2016/2/26
+ */
 public class ElasticNodeClient {
 
     private volatile Client client;

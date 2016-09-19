@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Copyright @ 2016 zhong-ying Co.Ltd
+ * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
  * Function：lambda
  *

@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Copyright @ 2016 zhong-ying Co.Ltd
+ * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
  * Function：Like Query and Ignore Case with Analyzer
  *
