@@ -5,7 +5,7 @@ import org.springframework.validation.BindingResult;
 /**
  * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
- * Function: com.yuzhouwan.site.api.validation.utils
+ * Function: Validation Utils
  *
  * @author Benedict Jin
  * @since 2016/9/7

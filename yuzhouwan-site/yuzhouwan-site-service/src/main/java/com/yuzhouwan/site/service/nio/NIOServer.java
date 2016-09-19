@@ -25,6 +25,9 @@ import java.util.Set;
  */
 class NIOServer {
 
+    /**
+     * 原理参考：《Netty权威指南, 2nd》第22章 高性能之道
+     */
     private static final Logger _log = LoggerFactory.getLogger(NIOServer.class);
 
     private static final int SOCKET_PORT = 6603;

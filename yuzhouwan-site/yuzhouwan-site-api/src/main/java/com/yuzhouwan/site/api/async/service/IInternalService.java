@@ -1,4 +1,4 @@
-package com.yuzhouwan.site.service.async;
+package com.yuzhouwan.site.api.async.service;
 
 /**
  * Copyright @ 2016 yuzhouwan.com
