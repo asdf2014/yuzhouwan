@@ -152,4 +152,11 @@ public class TimeUtilsTest {
         System.out.println(new Date().getTime());
         System.out.println(System.currentTimeMillis());
     }
+
+    @Test
+    public void timeZone() {
+        Date now = new Date();
+        Date past = TimeUtils.zeroTimeZone(now);
+        assertEquals(0, now.getTime() - past.getTime());
+    }
 }

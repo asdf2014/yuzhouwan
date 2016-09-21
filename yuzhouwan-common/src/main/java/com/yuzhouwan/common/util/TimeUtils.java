@@ -1,9 +1,14 @@
 package com.yuzhouwan.common.util;
 
 import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 /**
  * Copyright @ 2016 yuzhouwan.com
@@ -14,6 +19,10 @@ import java.util.Date;
  * @since 2016/3/8 0030
  */
 public class TimeUtils {
+
+    private static final Logger _log = LoggerFactory.getLogger(TimeUtils.class);
+
+    private static final SimpleDateFormat isoFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss SSS z");
 
     /**
      * 今天是几月份
@@ -154,5 +163,21 @@ public class TimeUtils {
      */
     public static Date endMonth(int year, int month) {
         return new Date(new DateTime(beginMonth(year, month)).plusMonths(1).toDate().getTime() - 1);
+    }
+
+    /**
+     * Change Local Date into UTC Date (like, +08:00 -> +00:00)
+     *
+     * @param date
+     * @return
+     */
+    public static Date zeroTimeZone(Date date) {
+        isoFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        try {
+            return isoFormat.parse(isoFormat.format(date));
+        } catch (ParseException e) {
+            _log.error("Change TimeZone failed: {}!", e.getMessage());
+        }
+        return null;
     }
 }
