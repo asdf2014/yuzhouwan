@@ -198,6 +198,13 @@
             <artifactId>freemarker</artifactId>
             <version>${freemarker.version}</version>
         </dependency>
+
+        <!-- Groovy -->
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>${groovy.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -285,6 +292,40 @@
                         <sourceInclude>**/*.java</sourceInclude>
                     </sourceIncludes>
                 </configuration>
+            </plugin>
+
+            <!-- groovy plugin -->
+            <plugin>
+                <groupId>org.codehaus.gmaven</groupId>
+                <artifactId>gmaven-plugin</artifactId>
+                <version>${groovy.gmaven.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>execute</goal>
+                            <goal>compile</goal>
+                            <goal>testCompile</goal>
+                            <goal>generateStubs</goal>
+                            <goal>generateTestStubs</goal>
+                        </goals>
+
+                        <configuration>
+                            <debug>true</debug>
+                            <verbose>true</verbose>
+                            <stacktrace>true</stacktrace>
+                            <defaultScriptExtension>.groovy</defaultScriptExtension>
+                            <providerSelection>${java.version}</providerSelection>
+                            <source>
+                                <fileset>
+                                    <directory>src/main/groovy</directory>
+                                    <includes>
+                                        <include>**/*.groovy</include>
+                                    </includes>
+                                </fileset>
+                            </source>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
