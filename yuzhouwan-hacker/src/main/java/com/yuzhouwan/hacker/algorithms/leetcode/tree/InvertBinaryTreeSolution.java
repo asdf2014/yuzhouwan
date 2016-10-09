@@ -17,7 +17,7 @@ class InvertBinaryTreeSolution {
     /**
      * https://leetcode.com/problems/invert-binary-tree/
      *
-     *Invert a binary tree.
+     * 226. Invert a binary tree.
      *
      *      4
      *    /   \
