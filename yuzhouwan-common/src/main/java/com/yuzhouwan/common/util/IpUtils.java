@@ -192,6 +192,7 @@ public class IpUtils {
         int bits = Integer.parseInt(rangeArray[1]);
         int ip = ip2int(ipAddress);   // 10.1.1.99
 
+        long start = System.nanoTime();
         // Create bitmask to clear out irrelevant bits. For 10.1.1.0/24 this is
         // 0xFFFFFF00 -- the first 24 bits are 1's, the last 8 are 0's.
         //
@@ -200,11 +201,11 @@ public class IpUtils {
         //     -1 << 8   == 0xFFFFFF00
         int mask = -1 << (32 - bits);
 
-        if ((subnet & mask) == (ip & mask)) {
-            // IP address is in the subnet.
-            return true;
-        }
-        return false;
+        // IP address is in the subnet.
+        boolean result = (subnet & mask) == (ip & mask);
+        long end = System.nanoTime();
+        _log.debug("{}", (end - start) / 12);
+        return result;
     }
 
     /**

@@ -114,7 +114,7 @@ class NIOClient implements Runnable {
                 // 切换buffer到读状态, 内部指针归位
                 temp.flip();
                 String msg = CHARSET.decode(temp).toString();
-                _log.info("Server received [{}] from client address: {}", msg, sc.getRemoteAddress());
+                _log.info("Client received [{}] from server address: {}", msg, sc.getRemoteAddress());
 
 //                Thread.sleep(5);
                 // echo back

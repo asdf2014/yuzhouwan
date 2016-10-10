@@ -159,4 +159,12 @@ public class TimeUtilsTest {
         Date past = TimeUtils.zeroTimeZone(now);
         assertEquals(0, now.getTime() - past.getTime());
     }
+
+    @Test
+    public void nanoTime() {
+        long start = System.nanoTime();
+        System.out.println("Nano Time:");
+        long end = System.nanoTime();
+        System.out.println(end - start);
+    }
 }
