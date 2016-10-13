@@ -1,4 +1,4 @@
-package com.yuzhouwan.bigdata.hbase.tow_level_index;
+package com.yuzhouwan.bigdata.hbase.two_level_index;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
@@ -29,11 +29,11 @@ import java.util.Set;
  * @since 2016/9/23
  */
 @SuppressWarnings("deprecation")
-public class TowLevelIndexBuilder {
+public class TwoLevelIndexBuilder {
 
     private Configuration conf;
 
-    private TowLevelIndexBuilder(String rootDir, String zkServer, String port) throws IOException {
+    private TwoLevelIndexBuilder(String rootDir, String zkServer, String port) throws IOException {
 
         conf = HBaseConfiguration.create();
         conf.set("hbase.rootdir", rootDir);
@@ -107,12 +107,12 @@ public class TowLevelIndexBuilder {
         String zkServer = "hadoop1";
         String port = "2181";
 
-        TowLevelIndexBuilder conn = new TowLevelIndexBuilder(rootDir, zkServer, port);
+        TwoLevelIndexBuilder conn = new TwoLevelIndexBuilder(rootDir, zkServer, port);
 
         Configuration conf = conn.conf;
         String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
 
-        //TowLevelIndexBuilder: TableName, ColumnFamily, Qualifier
+        //TwoLevelIndexBuilder: TableName, ColumnFamily, Qualifier
         if (otherArgs.length < 3) {
             System.exit(-1);
         }
@@ -133,7 +133,7 @@ public class TowLevelIndexBuilder {
 
         Job job = new Job(conf, tableName);
 
-        job.setJarByClass(TowLevelIndexBuilder.class);
+        job.setJarByClass(TwoLevelIndexBuilder.class);
         job.setMapperClass(TowLevelIndexMapper.class);
         job.setNumReduceTasks(0);       //由于不需要执行 reduce阶段
         job.setInputFormatClass(TableInputFormat.class);

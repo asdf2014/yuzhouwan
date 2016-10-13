@@ -41,4 +41,9 @@ public class DecimalUtilsTest {
         assertEquals(new BigInteger("2"), DecimalUtils.double2BigInt(2.1d));
         assertEquals(new BigInteger("0"), DecimalUtils.double2BigInt(0.1d));
     }
+
+    @Test
+    public void charTest() throws Exception {
+        assertEquals(65, 'A');
+    }
 }
