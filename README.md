@@ -19,7 +19,7 @@ __[http://www.yuzhouwan.com][0]__
 
 ## Technical Discussion Group
 
-Hadoop生态圈 253793003&ensp;&ensp;(__*2000*__人大群)
+BigData生态圈 253793003&ensp;&ensp;(__*2000*__人大群)
 
 本群创建于2015/3/1:<br/>
 &ensp;&ensp;讨论大数据生态圈的各种领域，<br/>
