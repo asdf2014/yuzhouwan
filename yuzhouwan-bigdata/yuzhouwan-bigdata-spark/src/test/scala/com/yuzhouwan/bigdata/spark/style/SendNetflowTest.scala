@@ -5,7 +5,7 @@ import com.yuzhouwan.bigdata.spark.streaming.detect.SendNetflow
 /**
   * Copyright @ 2016 yuzhouwan.com
   * All right reserved.
-  * Function：scala
+  * Function：Send Netflow Test
   *
   * @author Benedict Jin
   * @since 2015/9/7

@@ -3,7 +3,7 @@ package com.yuzhouwan.bigdata.spark.style
 /**
   * Copyright @ 2016 yuzhouwan.com
   * All right reserved.
-  * Function：scala
+  * Function：DefineA Test
   *
   * @author Benedict Jin
   * @since 2015/11/23
