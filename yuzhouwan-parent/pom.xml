@@ -103,7 +103,7 @@
         <commons.codec.version>1.10</commons.codec.version>
 
         <!-- alipay-->
-        <alipay.version>20160812120103</alipay.version>
+        <alipay.version>20161121110022</alipay.version>
 
         <!-- cglib -->
         <cglib.version>2.2.2</cglib.version>
