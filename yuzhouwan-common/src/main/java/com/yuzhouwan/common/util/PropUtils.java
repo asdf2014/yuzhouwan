@@ -42,7 +42,6 @@ public class PropUtils {
                 properties.load(fis);
             } catch (IOException e) {
                 _log.error(e.getMessage());
-                continue;
             }
         }
     }

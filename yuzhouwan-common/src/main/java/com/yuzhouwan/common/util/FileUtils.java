@@ -19,18 +19,18 @@ public class FileUtils {
         File file = new File(filename);
         long len = file.length();
         byte data[] = new byte[(int) len];
-        FileInputStream fin = new FileInputStream(file);
-        int r = fin.read(data);
-        if (r != len)
-            throw new IOException("Only read " + r + " of " + len + " for " + file);
-        fin.close();
-        return data;
+        try (FileInputStream fin = new FileInputStream(file)) {
+            int r = fin.read(data);
+            if (r != len)
+                throw new IOException(String.format("Only read %d of %d for %s", r, len, file.getName()));
+            return data;
+        }
     }
 
     public static void writeFile(String filename, byte data[])
             throws IOException {
-        FileOutputStream fileOutputStream = new FileOutputStream(filename);
-        fileOutputStream.write(data);
-        fileOutputStream.close();
+        try (FileOutputStream fileOutputStream = new FileOutputStream(filename)) {
+            fileOutputStream.write(data);
+        }
     }
 }

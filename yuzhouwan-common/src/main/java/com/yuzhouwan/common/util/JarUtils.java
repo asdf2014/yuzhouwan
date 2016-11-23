@@ -83,7 +83,7 @@ public class JarUtils {
             return;
 
         try (ZipInputStream zip = new ZipInputStream(sourceUrl.toURI().toURL().openStream())) {
-            if (zip == null || zip.available() == 0)
+            if (zip.available() == 0)
                 throw new RuntimeException(JAR_PATH.concat(" is not exist or cannot be available!!"));
 
             while (true) {
@@ -110,11 +110,11 @@ public class JarUtils {
     /**
      * 判断某个 Class是否是 Project内的，还是外部依赖的 jar里的
      *
-     * @param klass
+     * @param clazz
      * @return
      */
-    public static boolean isProjectJar(Class<?> klass) {
-        final URL location = klass.getProtectionDomain().getCodeSource().getLocation();
+    public static boolean isProjectJar(Class<?> clazz) {
+        final URL location = clazz.getProtectionDomain().getCodeSource().getLocation();
         try {
             return !new File(location.toURI()).getName().endsWith(".jar");
         } catch (Exception ignored) {
