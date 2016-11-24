@@ -22,7 +22,12 @@ public class TimeUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(TimeUtils.class);
 
-    private static final SimpleDateFormat isoFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss SSS z");
+    private static final SimpleDateFormat SIMPLE_DATA_FORMAT_TIME_ZONE = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss SSS z");
+    private static final SimpleDateFormat SIMPLE_DATA_FORMAT_BASIC = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss SSS");
+
+    public static String nowStr() {
+        return SIMPLE_DATA_FORMAT_BASIC.format(System.currentTimeMillis());
+    }
 
     /**
      * 今天是几月份
@@ -172,12 +177,13 @@ public class TimeUtils {
      * @return
      */
     public static Date zeroTimeZone(Date date) {
-        isoFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        SIMPLE_DATA_FORMAT_TIME_ZONE.setTimeZone(TimeZone.getTimeZone("UTC"));
         try {
-            return isoFormat.parse(isoFormat.format(date));
+            return SIMPLE_DATA_FORMAT_TIME_ZONE.parse(SIMPLE_DATA_FORMAT_TIME_ZONE.format(date));
         } catch (ParseException e) {
             _log.error("Change TimeZone failed: {}!", e.getMessage());
         }
         return null;
     }
 }
+

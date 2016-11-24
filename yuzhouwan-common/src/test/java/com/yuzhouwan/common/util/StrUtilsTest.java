@@ -60,4 +60,21 @@ public class StrUtilsTest {
         linkedList.add("b");
         assertEquals("a b", String.format("%s %s", linkedList.toArray()));
     }
+
+    @Test
+    public void splitMulti() throws Exception {
+        LinkedList<String> expect = new LinkedList<>();
+        expect.add("ns_fac");
+        expect.add("hb_scapaysettlereg_acc");
+        expect.add("006b897c8c6b0cdc258566b81508efe5");
+        expect.add("storeCount");
+        LinkedList<String> result = StrUtils.splitMulti(
+                "namespace_ns_fac_table_hb_scapaysettlereg_acc_region_006b897c8c6b0cdc258566b81508efe5_metric_storeCount",
+                "namespace_", "_table_", "_region_", "_metric_");
+        int size = result.size();
+        assertEquals(true, expect.size() == size);
+        for (int i = 0; i < size; i++) {
+            assertEquals(expect.get(i), result.get(i));
+        }
+    }
 }

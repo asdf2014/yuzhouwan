@@ -1,6 +1,7 @@
 package com.yuzhouwan.common.util;
 
 import java.text.DecimalFormat;
+import java.util.LinkedList;
 
 /**
  * Copyright @ 2016 yuzhouwan.com
@@ -98,5 +99,31 @@ public class StrUtils {
      */
     public static String cutTailStr(String origin, String tail) {
         return origin.substring(0, origin.length() - tail.length());
+    }
+
+    /**
+     * Split String with Multi separators.
+     *
+     * @param origin     origin String
+     * @param separators separator array
+     * @return
+     */
+    public static LinkedList<String> splitMulti(String origin, String... separators) {
+        LinkedList<String> result = new LinkedList<>();
+        int index, len = separators.length;
+        for (int i = 0; i < separators.length; i++) {
+            index = origin.indexOf(separators[i]);
+            if (index == -1)
+                return null;
+            origin = origin.substring(index + separators[i].length());
+            if (i == len - 1) {
+                result.add(origin);
+                break;
+            }
+            index = origin.indexOf(separators[i + 1]);
+            result.add(origin.substring(0, index));
+            origin = origin.substring(index);
+        }
+        return result;
     }
 }

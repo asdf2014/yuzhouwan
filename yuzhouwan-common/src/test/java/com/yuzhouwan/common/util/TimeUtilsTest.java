@@ -27,12 +27,14 @@ public class TimeUtilsTest {
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS Z");
 
     @Test
-    public void test() {
+    public void nowStrTest() throws Exception {
+        // 2016-11-24 09:41:52 511
+        System.out.println(TimeUtils.nowStr());
+    }
 
-        Date now = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM");
-        String month = simpleDateFormat.format(now);
-        int m = Integer.parseInt(month);
+    @Test
+    public void test() {
+        int m = Integer.parseInt(new SimpleDateFormat("MM").format(new Date()));
         _log.debug("month:{}", m);
         assertEquals(m, TimeUtils.month());
     }

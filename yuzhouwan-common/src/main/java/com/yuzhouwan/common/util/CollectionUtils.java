@@ -1,5 +1,9 @@
 package com.yuzhouwan.common.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.lang.reflect.Field;
 import java.util.*;
 
 /**
@@ -11,6 +15,8 @@ import java.util.*;
  * @since 2016/6/12
  */
 public class CollectionUtils {
+
+    private static Logger _log = LoggerFactory.getLogger(CollectionUtils.class);
 
     /**
      * 按照 strWithSeparator 中包含的几个单词，模糊匹配 originList 内元素，并移除
@@ -59,6 +65,44 @@ public class CollectionUtils {
                 result.add(bi);
         }
         return result.toArray();
+    }
+
+    /**
+     * Get Duplicate from Collection
+     *
+     * @param coll
+     * @param o
+     * @param field
+     * @param clazz
+     * @param <E>
+     * @return
+     */
+    public static <E> Object getDuplicate(Collection<E> coll, E o, String field, Class clazz) {
+
+        Field f;
+        try {
+            f = o.getClass().getDeclaredField(field);
+            f.setAccessible(true);
+        } catch (NoSuchFieldException e) {
+            _log.error("{}", e.getMessage());
+            return null;
+        }
+        Object collO, aimO;
+        try {
+            for (E e : coll) {
+                collO = f.get(e);
+                aimO = f.get(o);
+                if (collO.equals(aimO) ||
+                        clazz.cast(collO).equals(clazz.cast(aimO))) {
+                    coll.remove(e);
+                    return e;
+                }
+            }
+        } catch (Exception iae) {
+            _log.error("{}", iae.getMessage());
+            return null;
+        }
+        return null;
     }
 
 }
