@@ -79,30 +79,22 @@ public class CollectionUtils {
      */
     public static <E> Object getDuplicate(Collection<E> coll, E o, String field, Class clazz) {
 
-        Field f;
+        if (coll == null || coll.isEmpty() || o == null || StrUtils.isEmpty(field) || clazz == null) return null;
         try {
-            f = o.getClass().getDeclaredField(field);
+            Field f = o.getClass().getDeclaredField(field);
             f.setAccessible(true);
-        } catch (NoSuchFieldException e) {
-            _log.error("{}", e.getMessage());
-            return null;
-        }
-        Object collO, aimO;
-        try {
+            Object collO, aimO;
             for (E e : coll) {
                 collO = f.get(e);
                 aimO = f.get(o);
-                if (collO.equals(aimO) ||
-                        clazz.cast(collO).equals(clazz.cast(aimO))) {
+                if (collO.equals(aimO) || clazz.cast(collO).equals(clazz.cast(aimO))) {
                     coll.remove(e);
                     return e;
                 }
             }
-        } catch (Exception iae) {
-            _log.error("{}", iae.getMessage());
-            return null;
+        } catch (Exception e) {
+            _log.error(ExceptionUtils.errorInfo(e));
         }
         return null;
     }
-
 }
