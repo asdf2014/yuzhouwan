@@ -1,7 +1,7 @@
 package com.yuzhouwan.common.util;
 
 /**
- * Copyright @ 2016 suning.com
+ * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
  * Function：Exception Utils
  *

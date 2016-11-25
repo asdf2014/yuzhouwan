@@ -1,6 +1,9 @@
 package com.yuzhouwan.common.util;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -156,10 +159,26 @@ public class TimeUtilsTest {
     }
 
     @Test
-    public void timeZone() {
+    public void timeZone() throws Exception {
         Date now = new Date();
         Date past = TimeUtils.zeroTimeZone(now);
         assertEquals(0, now.getTime() - past.getTime());
+
+        // 2016-11-25T07:01:23.000Z
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSz");
+        // 2016-11-25T15:06:59.401CST
+        System.out.println(sdf.format(now));
+
+        sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+        // 2016-11-25T15:07:28.233+0800
+        System.out.println(sdf.format(now));
+
+        sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyyMMddHHmmss");
+        // 2016-11-25T07:13:29.000Z
+        System.out.println(dtf.parseDateTime(sdf.format(now)).withZone(DateTimeZone.UTC));
+
     }
 
     @Test

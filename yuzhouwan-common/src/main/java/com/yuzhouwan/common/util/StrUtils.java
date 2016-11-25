@@ -109,8 +109,10 @@ public class StrUtils {
      * @return
      */
     public static LinkedList<String> splitMulti(String origin, String... separators) {
+        int len;
+        if (StrUtils.isEmpty(origin) || (len = separators.length) == 0) return null;
+        int index;
         LinkedList<String> result = new LinkedList<>();
-        int index, len = separators.length;
         for (int i = 0; i < separators.length; i++) {
             index = origin.indexOf(separators[i]);
             if (index == -1)
