@@ -16,6 +16,7 @@
     <packaging>jar</packaging>
 
     <profiles>
+        <!-- web / normal -->
         <profile>
             <id>normal-app</id>
             <activation>
@@ -31,6 +32,22 @@
                 <jar.util.lib.path>normal</jar.util.lib.path>
             </properties>
         </profile>
+        <!-- linux / windows -->
+        <profile>
+            <id>sys-linux</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <jar.util.lib.path>win</jar.util.lib.path>
+            </properties>
+        </profile>
+        <profile>
+            <id>sys-win</id>
+            <properties>
+                <jar.util.lib.path>linux</jar.util.lib.path>
+            </properties>
+        </profile>
     </profiles>
 
     <build>
@@ -41,9 +58,11 @@
                 <includes>
                     <include>**/*.properties</include>
                     <include>**/*.xml</include>
+                    <include>MANIFEST.MF</include>
                 </includes>
                 <excludes>
                     <exclude>prop/${jar.util.lib.path}.jar.util.properties</exclude>
+                    <exclude>prop/system.${jar.util.lib.path}.properties</exclude>
                 </excludes>
                 <filtering>true</filtering>
             </resource>
@@ -253,10 +272,10 @@
             <version>${phantom.js.version}</version>
             <!-- java.lang.NoClassDefFoundError: com/google/common/base/Function -->
             <!--<exclusions>-->
-                <!--<exclusion>-->
-                    <!--<artifactId>guava</artifactId>-->
-                    <!--<groupId>com.google.guava</groupId>-->
-                <!--</exclusion>-->
+            <!--<exclusion>-->
+            <!--<artifactId>guava</artifactId>-->
+            <!--<groupId>com.google.guava</groupId>-->
+            <!--</exclusion>-->
             <!--</exclusions>-->
         </dependency>
 

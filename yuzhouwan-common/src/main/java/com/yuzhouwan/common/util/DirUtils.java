@@ -23,7 +23,7 @@ public class DirUtils implements IDirUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(DirUtils.class);
 
-    private static final String PROJECT_BASE_PATH = System.getProperty("user.dir");
+    public static final String PROJECT_BASE_PATH = System.getProperty("user.dir");
     public static final String RESOURCES_PATH = PROJECT_BASE_PATH.concat("/src/main/resources/");
     public static final String TEST_RESOURCES_PATH = PROJECT_BASE_PATH.concat("/src/test/resources/");
 
@@ -55,6 +55,9 @@ public class DirUtils implements IDirUtils {
      */
     public static String getLibPathInWebApp() {
         String classesPath = getTestClassesPath();
+        if (StrUtils.isEmpty(classesPath)) {
+            return null;
+        }
         return classesPath.substring(0, classesPath.lastIndexOf("/")).concat("/lib");
     }
 
@@ -66,8 +69,10 @@ public class DirUtils implements IDirUtils {
     public static String getClassesPath() {
         String basicPath;
         if ((basicPath = getBasicPath()) == null) {
+            _log.debug("Basic Path is null");
             return null;
         }
+        _log.debug("Basic Path: {}", basicPath);
         return basicPath.concat("/classes");
     }
 
@@ -91,16 +96,27 @@ public class DirUtils implements IDirUtils {
      * @return
      */
     public static String getBasicPath() {
+
         String path;
+        ClassLoader classLoader;
+        URL location;
         try {
-            URL location = Thread.currentThread().getContextClassLoader().getResource("");
+            classLoader = Thread.currentThread().getContextClassLoader();
+            location = classLoader.getResource("/");
+            if (location == null) {
+                location = Thread.currentThread().getContextClassLoader().getResource("");
+            }
             if (location == null) {
                 return null;
             }
             path = location.toURI().getPath();
+            _log.debug("Current Thread Location: {}", path);
         } catch (Exception e) {
             _log.error("{}", e.getMessage());
             throw new RuntimeException(e);
+        }
+        if (StrUtils.isEmpty(path)) {
+            throw new RuntimeException("Basic Path is null!!!");
         }
         if (path.startsWith("file")) {
             path = path.substring(6);
@@ -111,6 +127,12 @@ public class DirUtils implements IDirUtils {
             path = path.substring(0, path.length() - 1);
         }
         return path.substring(0, path.lastIndexOf("/"));
+    }
+
+    public static String getProjectBasicPath() {
+        String projectBasicPath = System.getProperty("user.dir");
+        _log.debug("Project Basic Path: {}", projectBasicPath);
+        return projectBasicPath;
     }
 
     /**
@@ -127,7 +149,14 @@ public class DirUtils implements IDirUtils {
             return foundPath;
         }
         List<String> absolutePath = new LinkedList<>();
-        foundPath.forEach(s -> absolutePath.add(StrUtils.cutMiddleStr(s, basePath)));
+        for (String s : foundPath) {
+            // 如果是传入空，说明是直接以 项目基础路径为开头的
+            if (StrUtils.isEmpty(basePath)) {
+                absolutePath.add(StrUtils.cutStartStr(s, path));
+            } else {
+                absolutePath.add(StrUtils.cutMiddleStr(s, basePath));
+            }
+        }
         return absolutePath;
     }
 
@@ -162,16 +191,26 @@ public class DirUtils implements IDirUtils {
     public static List<String> scanDir(String path) {
         if (path == null)
             return null;
+        _log.debug("Scan path: {}", path);
         List<String> result = new LinkedList<>();
         File file = new File(path);
         if (file.exists()) {
             LinkedList<File> list = new LinkedList<>();
             File[] files = file.listFiles();
             dealWithSubFiles(result, list, files);
-            File temp_file;
+            File tempFile;
+            boolean isDirectory;
+            String absolutePath;
             while (!list.isEmpty()) {
-                temp_file = list.removeFirst();
-                files = temp_file.listFiles();
+                tempFile = list.removeFirst();
+                isDirectory = tempFile.isDirectory();
+                _log.debug("{} isDirectory: {}", tempFile.getPath(), isDirectory);
+                if (!isDirectory) {
+                    result.add((absolutePath = tempFile.getAbsolutePath()));
+                    _log.debug("scanDir absolutePath is {}", absolutePath);
+                    continue;
+                }
+                files = tempFile.listFiles();
                 if (files == null)
                     continue;
                 dealWithSubFiles(result, list, files);
@@ -191,13 +230,17 @@ public class DirUtils implements IDirUtils {
      * @param files
      */
     private static void dealWithSubFiles(List<String> result, LinkedList<File> list, File[] files) {
+        if (files == null || files.length == 0)
+            return;
+        String absolutePath;
         for (File file2 : files) {
             if (file2.isDirectory()) {
                 list.add(file2);
             }
-            result.add(file2.getAbsolutePath());
-            _log.debug(file2.getAbsolutePath());
+            result.add((absolutePath = file2.getAbsolutePath()));
+            _log.debug(absolutePath);
         }
+        _log.debug("Sub Files size is {}", result.size());
     }
 
     /**
@@ -283,7 +326,6 @@ public class DirUtils implements IDirUtils {
      *
      * @param event
      */
-    @Override
     public void dealWithEvent(WatchEvent<?> event) {
         // could expand more processes here
         _log.info(event.context() + ":\t " + event.kind() + " event.");

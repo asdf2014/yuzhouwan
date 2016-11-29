@@ -21,13 +21,18 @@ import java.util.Properties;
 public class PropUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(PropUtils.class);
-    private static Properties properties = new Properties();
+    private static final Properties properties = new Properties();
 
     private static volatile PropUtils instance;
 
     private PropUtils(List<String> confPathList) {
-
+        if (confPathList == null || confPathList.size() == 0) {
+            return;
+        }
         for (String confPath : confPathList) {
+            if (StrUtils.isEmpty(confPath)) {
+                continue;
+            }
             File confFile = new File(confPath);
             if (!confFile.exists())
                 continue;
@@ -49,16 +54,41 @@ public class PropUtils {
     public static PropUtils getInstance() {
         if (instance == null)
             synchronized (PropUtils.class) {
-                if (instance == null)
-                    instance = new PropUtils(DirUtils.findPath(DirUtils.getClassesPath(), ".properties", true, "prop"));
+                if (instance == null) {
+                    List<String> prop = DirUtils.findPath(DirUtils.getClassesPath(), ".properties", true, "prop");
+                    if (prop == null)
+                        prop = DirUtils.findPath(DirUtils.getProjectBasicPath(), ".properties", true, "prop");
+                    instance = new PropUtils(prop);
+                }
             }
         return instance;
     }
 
-    public String getProperty(String key) {
+    public String getProperty(String key, boolean withinJar) {
+        if (StrUtils.isEmpty(key)) {
+            return null;
+        }
         if (properties == null)
             throw new RuntimeException("Properties is not valid!!");
-        return properties.getProperty(key);
+        String value = properties.getProperty(key);
+        if (withinJar && StrUtils.isEmpty(value)) {
+            String valueJar = JarUtils.getInstance().getProperty(key);
+            return StrUtils.isEmpty(valueJar) ? value : valueJar;
+        }
+        return value;
     }
 
+    /**
+     * Avoid recursion in JarUtils' initializtion
+     *
+     * @param key
+     * @return
+     */
+    public String getPropertyInternal(String key) {
+        return getProperty(key, false);
+    }
+
+    public String getProperty(String key) {
+        return getProperty(key, true);
+    }
 }

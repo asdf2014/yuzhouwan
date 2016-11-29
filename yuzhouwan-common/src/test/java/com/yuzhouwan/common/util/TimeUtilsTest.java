@@ -170,15 +170,13 @@ public class TimeUtilsTest {
         // 2016-11-25T15:06:59.401CST
         System.out.println(sdf.format(now));
 
-        sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
         // 2016-11-25T15:07:28.233+0800
-        System.out.println(sdf.format(now));
+        System.out.println(TimeUtils.nowTimeWithZone());
 
         sdf = new SimpleDateFormat("yyyyMMddHHmmss");
         DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyyMMddHHmmss");
         // 2016-11-25T07:13:29.000Z
         System.out.println(dtf.parseDateTime(sdf.format(now)).withZone(DateTimeZone.UTC));
-
     }
 
     @Test

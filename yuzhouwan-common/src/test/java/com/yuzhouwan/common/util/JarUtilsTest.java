@@ -16,10 +16,10 @@ public class JarUtilsTest {
 
     @Test
     public void listDirWithinJarTest() throws Exception {
-        assertEquals("yuzhouwan.com", JarUtils.getProperty("site.domain"));
-        assertEquals("asdf's blog", JarUtils.getProperty("blog.name"));
+        assertEquals("yuzhouwan.com", JarUtils.getInstance().getProperty("site.domain"));
+        assertEquals("asdf's blog", JarUtils.getInstance().getProperty("blog.name"));
 
-        assertEquals("2.6.2", JarUtils.getProperty("hadoop.version"));
+        assertEquals("2.6.2", JarUtils.getInstance().getProperty("hadoop.version"));
     }
 
     @Test

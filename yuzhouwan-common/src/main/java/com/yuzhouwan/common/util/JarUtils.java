@@ -23,48 +23,79 @@ import java.util.zip.ZipInputStream;
 public class JarUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(JarUtils.class);
-    private static final String PROP_PATH = PropUtils.getInstance().getProperty("prop.path");
-    private static final String LIB_PATH = DirUtils.getLibPathInWebApp();
-    private static final String CLASSES_PATH = DirUtils.getTestClassesPath();
-    //    private static final String JAR_NAME = PropUtils.getInstance().getProperty("jar.name");
+    private static String PROP_PATH = PropUtils.getInstance().getPropertyInternal("prop.path");
+    private static String LIB_PATH = DirUtils.getLibPathInWebApp();
+    private static String CLASSES_PATH = DirUtils.getTestClassesPath();
     private static String JAR_PATH;
     private static Properties properties = new Properties();
 
-    static {
+    private static volatile JarUtils instance;
+
+    private JarUtils() {
+    }
+
+    public static JarUtils getInstance() {
+        if (instance == null)
+            synchronized (PropUtils.class) {
+                if (instance == null) {
+                    init();
+                    instance = new JarUtils();
+                }
+            }
+        return instance;
+    }
+
+    private static void init() {
+        List<String> jarPaths;
         try {
+            String projectJarPath = PropUtils.getInstance().getPropertyInternal("project.jar.path");
+            if (!StrUtils.isEmpty(projectJarPath) && projectJarPath.endsWith(".jar"))
+                loadPropsWithinJar(projectJarPath);
+
             /**
              * /classes/lib/*.jar
              */
-            List<String> jarPaths = DirUtils.findPath(CLASSES_PATH, ".jar", false, "lib");
-            if (jarPaths != null && jarPaths.size() > 0) {
-                for (String jarFile : jarPaths) {
-                    jarFile = jarFile.substring(1);
-                    jarPaths = DirUtils.findPath(CLASSES_PATH, jarFile, false, "classes");
-                    if (jarPaths != null && jarPaths.size() > 0) {
-                        JAR_PATH = jarPaths.get(0);
-                        scanDirWithinJar();
+            _log.debug("CLASSES_PATH is {}", CLASSES_PATH);
+            if (!StrUtils.isEmpty(CLASSES_PATH)) {
+                jarPaths = DirUtils.findPath(CLASSES_PATH, ".jar", false, "lib");
+                if (jarPaths != null && jarPaths.size() > 0) {
+                    for (String jarFile : jarPaths) {
+                        jarFile = jarFile.substring(1);
+                        jarPaths = DirUtils.findPath(CLASSES_PATH, jarFile, false, "classes");
+                        if (jarPaths != null && jarPaths.size() > 0) {
+                            JAR_PATH = jarPaths.get(0);
+                            scanDirWithinJar(JAR_PATH);
+                        }
                     }
                 }
             }
+
             /**
              * /lib/*.jar
              */
-            jarPaths = DirUtils.findPath(LIB_PATH, ".jar", false, "lib");
-            if (jarPaths != null && jarPaths.size() > 0) {
-                for (String jarFile : jarPaths) {
-                    jarFile = jarFile.substring(1);
-                    //如果是 webApp，这里需要改为 WEB-INF; 否则是 target (supported by profile in maven)
-                    jarPaths = DirUtils.findPath(LIB_PATH, jarFile, false,
-                            PropUtils.getInstance().getProperty("lib.path"));
-                    if (jarPaths != null && jarPaths.size() > 0) {
-                        JAR_PATH = jarPaths.get(0);
-                        scanDirWithinJar();
+            _log.debug("LIB_PATH is {}", LIB_PATH);
+            if (!StrUtils.isEmpty(LIB_PATH)) {
+                jarPaths = DirUtils.findPath(LIB_PATH, ".jar", false, "lib");
+                if (jarPaths != null && jarPaths.size() > 0) {
+                    for (String jarFile : jarPaths) {
+                        jarFile = jarFile.substring(1);
+                        //如果是 webApp，这里需要改为 WEB-INF; 否则是 target (supported by profile in maven)
+                        jarPaths = DirUtils.findPath(LIB_PATH, jarFile, false,
+                                PropUtils.getInstance().getPropertyInternal("lib.path"));
+                        if (jarPaths != null && jarPaths.size() > 0) {
+                            JAR_PATH = jarPaths.get(0);
+                            scanDirWithinJar(JAR_PATH);
+                        }
                     }
                 }
             }
-        } catch (IOException | URISyntaxException e) {
+        } catch (Exception e) {
             _log.error("{}", e.getMessage());
             throw new RuntimeException(e);
+        }
+        _log.debug("The number of Properties in Jar is {}.", properties.keySet().size());
+        for (Object key : properties.keySet()) {
+            _log.debug("{} : {}", key, properties.get(key));
         }
     }
 
@@ -74,34 +105,59 @@ public class JarUtils {
      * @throws IOException
      * @throws URISyntaxException
      */
-    private static void scanDirWithinJar() throws IOException, URISyntaxException {
+    private static void scanDirWithinJar(String jarPath) throws Exception {
         //如果是 webApp，这里需要是改为 ".." + JAR_PATH；否则，直接用 JAR_PATH (supported by profile in maven)
-        String prefix = PropUtils.getInstance().getProperty("prefix.path.for.scan.dir.with.jar");
-        URL sourceUrl = JarUtils.class.getClassLoader().getResource(
-                (StrUtils.isEmpty(prefix) ? "" : prefix).concat(JAR_PATH));
-        if (sourceUrl == null)
-            return;
+        String prefix = PropUtils.getInstance().getPropertyInternal("prefix.path.for.scan.dir.with.jar");
+        String sourcePath = (StrUtils.isEmpty(StrUtils.isEmpty(prefix) ? "" : prefix) ?
+                DirUtils.PROJECT_BASE_PATH.concat("/") : "").concat(jarPath);
+        _log.debug("SourcePath: {}", sourcePath);
+        URL sourceUrl = JarUtils.class.getClassLoader().getResource(sourcePath);
+        if (sourceUrl == null && StrUtils.isEmpty(sourcePath)) {
+            if (!StrUtils.isEmpty(sourcePath)) {
+                sourcePath = PropUtils.getInstance().getPropertyInternal("file.source.url.prefix").concat(sourcePath);
+                _log.debug("SourcePath: {}", sourcePath);
+                sourceUrl = new URL(sourcePath);
+            }
+            if (sourceUrl == null)
+                return;
+        }
+        _log.debug("Jar Path: {}", sourceUrl.getPath());
+        loadPropsWithinJar(sourceUrl);
+    }
 
+    public static void loadPropsWithinJar(String jarPath) throws Exception {
+        // file:/
+        String sysFilePrefix = PropUtils.getInstance().getPropertyInternal("file.source.url.prefix");
+        _log.debug("System File Url Prefix: {}", sysFilePrefix);
+        if (!StrUtils.isEmpty(sysFilePrefix))
+            loadPropsWithinJar(new URL(sysFilePrefix.concat(jarPath)));
+    }
+
+    public static void loadPropsWithinJar(URL sourceUrl) throws Exception {
+        _log.debug("Load Properties Within Jar File: {}", sourceUrl.getPath());
         try (ZipInputStream zip = new ZipInputStream(sourceUrl.toURI().toURL().openStream())) {
             if (zip.available() == 0)
-                throw new RuntimeException(JAR_PATH.concat(" is not exist or cannot be available!!"));
+                throw new RuntimeException(sourceUrl.getPath().concat(" is not exist or cannot be available!!"));
 
             while (true) {
                 ZipEntry e = zip.getNextEntry();
                 if (e == null)
                     break;
                 String name = e.getName();
-                if (name.startsWith(PROP_PATH)) {
+                _log.debug("Properties File name is {}", name);
+                if (!StrUtils.isEmpty(name) && name.startsWith(PROP_PATH)) {
                     if (StrUtils.isEmpty(StrUtils.cutStartStr(name, PROP_PATH)))
                         continue;
-                    _log.debug(name);
                     properties.load(JarUtils.class.getResourceAsStream("/".concat(name)));
+                    for (Object key : properties.keySet()) {
+                        _log.debug("JarUtils k-v: <{} = {}>", key, properties.get(key));
+                    }
                 }
             }
         }
     }
 
-    public static String getProperty(String key) {
+    public String getProperty(String key) {
         if (properties == null)
             return null;
         return properties.getProperty(key);

@@ -5,7 +5,7 @@ import com.yuzhouwan.common.util.PropUtils;
 /**
  * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
- * Function：com.yuzhouwan.bigdata.hadoop.util
+ * Function：Hadoop Utils
  *
  * @author Benedict Jin
  * @since 2016/11/25

@@ -25,6 +25,8 @@ public class TimeUtils {
     private static final SimpleDateFormat SIMPLE_DATA_FORMAT_TIME_ZONE = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss SSS z");
     private static final SimpleDateFormat SIMPLE_DATA_FORMAT_BASIC = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss SSS");
 
+    private static final SimpleDateFormat SIMPLE_DATE_FORMAT_WITH_TIME_ZONE = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+
     public static String nowStr() {
         return SIMPLE_DATA_FORMAT_BASIC.format(System.currentTimeMillis());
     }
@@ -185,5 +187,8 @@ public class TimeUtils {
         }
         return null;
     }
-}
 
+    public static String nowTimeWithZone() {
+        return SIMPLE_DATE_FORMAT_WITH_TIME_ZONE.format(new Date());
+    }
+}
