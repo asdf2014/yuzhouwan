@@ -299,7 +299,7 @@ public class DirUtils implements IDirUtils {
      *               false: Directory
      * @return isExist
      */
-    public static boolean makeSureExist(String path, boolean isFile) {
+    public static boolean makeSureExist(final String path, final boolean isFile) {
         _log.debug("Path: {}, isFile: {}", path, isFile);
 
         if (StrUtils.isEmpty(path)) {

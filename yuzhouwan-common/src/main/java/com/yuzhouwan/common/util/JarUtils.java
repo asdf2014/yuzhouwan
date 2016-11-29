@@ -169,7 +169,7 @@ public class JarUtils {
      * @param clazz
      * @return
      */
-    public static boolean isProjectJar(Class<?> clazz) {
+    public static boolean isProjectJar(final Class<?> clazz) {
         final URL location = clazz.getProtectionDomain().getCodeSource().getLocation();
         try {
             return !new File(location.toURI()).getName().endsWith(".jar");

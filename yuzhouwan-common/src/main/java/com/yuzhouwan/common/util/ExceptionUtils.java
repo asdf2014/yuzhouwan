@@ -10,7 +10,7 @@ package com.yuzhouwan.common.util;
  */
 public class ExceptionUtils {
 
-    public static String errorInfo(Exception e) {
+    public static String errorInfo(final Exception e) {
         return String.format("%s: %s", e.getClass().getSimpleName(), e.getMessage());
     }
 }

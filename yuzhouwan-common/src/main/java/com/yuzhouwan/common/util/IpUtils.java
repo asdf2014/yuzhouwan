@@ -43,7 +43,7 @@ public class IpUtils {
      * @param ip
      * @return
      */
-    public static boolean checkValid(String ip) {
+    public static boolean checkValid(final String ip) {
         return IP_ADDRESS_IS_VALID.matcher(ip).matches();
     }
 
@@ -168,7 +168,7 @@ public class IpUtils {
      * @param range
      * @return
      */
-    public static Boolean checkIPRange(String ipAddress, String range) {
+    public static Boolean checkIPRange(final String ipAddress, final String range) {
 
         if (StrUtils.isEmpty(range) || StrUtils.isEmpty(ipAddress)) {
             return null;
@@ -229,7 +229,7 @@ public class IpUtils {
      * @param ipAddress
      * @return
      */
-    public static Boolean isReachable(String ipAddress) {
+    public static Boolean isReachable(final String ipAddress) {
         try {
             return InetAddress.getByName(ipAddress).isReachable(10000);
         } catch (IOException e) {
@@ -238,7 +238,7 @@ public class IpUtils {
         }
     }
 
-    public static boolean ping(String ipAddress) {
+    public static boolean ping(final String ipAddress) {
         try {
             return Runtime.getRuntime().exec(PING_PERFIX.concat(ipAddress))
                     .waitFor(100000, TimeUnit.MICROSECONDS);
