@@ -23,10 +23,10 @@ import java.util.zip.ZipInputStream;
 public class JarUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(JarUtils.class);
-    private static String PROP_PATH = PropUtils.getInstance().getPropertyInternal("prop.path");
-    private static String LIB_PATH = DirUtils.getLibPathInWebApp();
-    private static String CLASSES_PATH = DirUtils.getTestClassesPath();
-    private static String JAR_PATH;
+
+    private static final String PROP_PATH = PropUtils.getInstance().getPropertyInternal("prop.path");
+    private static final String LIB_PATH = DirUtils.getLibPathInWebApp();
+    private static final String CLASSES_PATH = DirUtils.getTestClassesPath();
     private static Properties properties = new Properties();
 
     private static volatile JarUtils instance;
@@ -48,6 +48,9 @@ public class JarUtils {
     private static void init() {
         List<String> jarPaths;
         try {
+            /**
+             * $PROJECT_BASE_PATH/*.jar
+             */
             String projectJarPath = PropUtils.getInstance().getPropertyInternal("project.jar.path");
             if (!StrUtils.isEmpty(projectJarPath) && projectJarPath.endsWith(".jar"))
                 loadPropsWithinJar(projectJarPath);
@@ -56,6 +59,7 @@ public class JarUtils {
              * /classes/lib/*.jar
              */
             _log.debug("CLASSES_PATH is {}", CLASSES_PATH);
+            String jarPath;
             if (!StrUtils.isEmpty(CLASSES_PATH)) {
                 jarPaths = DirUtils.findPath(CLASSES_PATH, ".jar", false, "lib");
                 if (jarPaths != null && jarPaths.size() > 0) {
@@ -63,8 +67,8 @@ public class JarUtils {
                         jarFile = jarFile.substring(1);
                         jarPaths = DirUtils.findPath(CLASSES_PATH, jarFile, false, "classes");
                         if (jarPaths != null && jarPaths.size() > 0) {
-                            JAR_PATH = jarPaths.get(0);
-                            scanDirWithinJar(JAR_PATH);
+                            jarPath = jarPaths.get(0);
+                            scanDirWithinJar(jarPath);
                         }
                     }
                 }
@@ -83,8 +87,8 @@ public class JarUtils {
                         jarPaths = DirUtils.findPath(LIB_PATH, jarFile, false,
                                 PropUtils.getInstance().getPropertyInternal("lib.path"));
                         if (jarPaths != null && jarPaths.size() > 0) {
-                            JAR_PATH = jarPaths.get(0);
-                            scanDirWithinJar(JAR_PATH);
+                            jarPath = jarPaths.get(0);
+                            scanDirWithinJar(jarPath);
                         }
                     }
                 }
