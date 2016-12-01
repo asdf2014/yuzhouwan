@@ -760,7 +760,7 @@ public final class RBPainter implements ActionListener, MouseListener, MouseMoti
 
 
     /*************************************************************************
-     *  Keyboard interactions.
+     * Keyboard interactions.
      *************************************************************************/
 
     public void mouseReleased(MouseEvent e) {

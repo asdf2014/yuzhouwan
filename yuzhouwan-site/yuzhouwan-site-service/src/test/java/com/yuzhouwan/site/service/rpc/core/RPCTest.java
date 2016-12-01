@@ -1,7 +1,7 @@
 package com.yuzhouwan.site.service.rpc.core;
 
-import com.yuzhouwan.site.api.rpc.service.Server;
 import com.yuzhouwan.site.api.rpc.service.IRPCService;
+import com.yuzhouwan.site.api.rpc.service.Server;
 import com.yuzhouwan.site.service.rpc.service.RPCServiceImpl;
 import org.junit.Test;
 
