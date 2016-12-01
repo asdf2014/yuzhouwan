@@ -16,7 +16,7 @@ import java.util.Properties;
  * Function: Properties Utils
  *
  * @author Benedict Jin
- * @since 2016/4/8 0030
+ * @since 2016/4/8
  */
 public class PropUtils {
 
@@ -26,27 +26,15 @@ public class PropUtils {
     private static volatile PropUtils instance;
 
     private PropUtils(List<String> confPathList) {
-        if (confPathList == null || confPathList.size() == 0) {
-            return;
-        }
+        if (confPathList == null || confPathList.size() == 0) return;
+        File confFile;
         for (String confPath : confPathList) {
-            if (StrUtils.isEmpty(confPath)) {
+            if (StrUtils.isEmpty(confPath) || !(confFile = new File(confPath)).exists())
                 continue;
-            }
-            File confFile = new File(confPath);
-            if (!confFile.exists())
-                continue;
-            FileInputStream fis;
-            try {
-                fis = new FileInputStream(confFile);
-            } catch (FileNotFoundException e) {
-                _log.error(e.getMessage());
-                continue;
-            }
-            try {
+            try (FileInputStream fis = new FileInputStream(confFile)) {
                 properties.load(fis);
-            } catch (IOException e) {
-                _log.error(e.getMessage());
+            } catch (Exception e) {
+                _log.error(ExceptionUtils.errorInfo(e));
             }
         }
     }
@@ -73,9 +61,7 @@ public class PropUtils {
      * @return
      */
     public String getProperty(String key, boolean withinJar) {
-        if (StrUtils.isEmpty(key)) {
-            return null;
-        }
+        if (StrUtils.isEmpty(key)) return null;
         if (properties == null)
             throw new RuntimeException("Properties is not valid!!");
         String value = properties.getProperty(key);
