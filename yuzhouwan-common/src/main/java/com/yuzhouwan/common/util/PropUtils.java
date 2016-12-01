@@ -64,18 +64,31 @@ public class PropUtils {
         return instance;
     }
 
+    /**
+     * 1. Only load properties that located within project
+     * 2. External properties could rewrite exists k-v in PropUtils
+     *
+     * @param key
+     * @param withinJar
+     * @return
+     */
     public String getProperty(String key, boolean withinJar) {
         if (StrUtils.isEmpty(key)) {
             return null;
         }
+        if (withinJar) {
+            String valueJar = JarUtils.getInstance().getProperty(key);
+            if (StrUtils.isEmpty(valueJar)) {
+                if (properties == null)
+                    throw new RuntimeException("Properties is not valid!!");
+                String value = properties.getProperty(key);
+                return StrUtils.isEmpty(value) ? valueJar : value;
+            } else
+                return valueJar;
+        }
         if (properties == null)
             throw new RuntimeException("Properties is not valid!!");
-        String value = properties.getProperty(key);
-        if (withinJar && StrUtils.isEmpty(value)) {
-            String valueJar = JarUtils.getInstance().getProperty(key);
-            return StrUtils.isEmpty(valueJar) ? value : valueJar;
-        }
-        return value;
+        return properties.getProperty(key);
     }
 
     /**
