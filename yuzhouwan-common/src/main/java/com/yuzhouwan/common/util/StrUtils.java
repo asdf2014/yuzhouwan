@@ -128,4 +128,22 @@ public class StrUtils {
         }
         return result;
     }
+
+    /**
+     * Judge two string is like without ignore characters.
+     *
+     * @param origin  origin string
+     * @param aim     aim string
+     * @param ignores characters to ignores
+     * @return
+     */
+    public static boolean isLike(String origin, String aim, final String... ignores) {
+        if (StrUtils.isEmpty(origin) || StrUtils.isEmpty(aim)) return false;
+        if (ignores != null && ignores.length > 0)
+            for (String ignore : ignores) {
+                origin = origin.replaceAll(ignore, "");
+                aim = aim.replaceAll(ignore, "");
+            }
+        return origin.equalsIgnoreCase(aim);
+    }
 }

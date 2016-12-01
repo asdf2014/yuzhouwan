@@ -17,10 +17,18 @@ public class BeanUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(BeanUtils.class);
 
+    /**
+     * Swap values into object's similar filed.
+     *
+     * @param o       object
+     * @param key     filed
+     * @param value   value
+     * @param ignores character to be ignored
+     */
     public static void swapper(Object o, String key, Object value, String... ignores) {
         Field[] fields = o.getClass().getDeclaredFields();
         for (Field field : fields) {
-            if (isLike(field.getName(), key, ignores)) {
+            if (StrUtils.isLike(field.getName(), key, ignores)) {
                 field.setAccessible(true);
                 try {
                     field.set(o, value);
@@ -30,13 +38,5 @@ public class BeanUtils {
                 return;
             }
         }
-    }
-
-    public static boolean isLike(String origin, String aim, String... ignores) {
-        for (String ignore : ignores) {
-            origin = origin.replaceAll(ignore, "");
-            aim = aim.replaceAll(ignore, "");
-        }
-        return origin.equalsIgnoreCase(aim);
     }
 }
