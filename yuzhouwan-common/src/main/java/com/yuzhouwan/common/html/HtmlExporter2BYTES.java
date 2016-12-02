@@ -14,6 +14,11 @@ import org.openqa.selenium.phantomjs.PhantomJSDriver;
  */
 public class HtmlExporter2BYTES implements IHtmlExporter {
 
+    @Override
+    public byte[] convert2Image(String url) {
+        return convert2Image(url, null, null);
+    }
+
     /**
      * 将带有 chart、map等动态图表的 html转换为 图片
      *
@@ -23,6 +28,11 @@ public class HtmlExporter2BYTES implements IHtmlExporter {
     @Override
     public byte[] convert2Image(String url, Integer width, Integer height) {
         return convert2Image(url, null, width, height);
+    }
+
+    @Override
+    public byte[] convert2Image(String url, Cookie addedCookie) {
+        return convert2Image(url, addedCookie, null, null);
     }
 
     /**
@@ -45,5 +55,4 @@ public class HtmlExporter2BYTES implements IHtmlExporter {
             HtmlExporterUtils.release(driver);
         }
     }
-
 }

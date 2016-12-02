@@ -14,6 +14,12 @@ import org.openqa.selenium.phantomjs.PhantomJSDriver;
  */
 public class HtmlExporter2BASE64 implements IHtmlExporter {
 
+    @SuppressWarnings(value = {"unchecked"})
+    @Override
+    public String convert2Image(String url) {
+        return convert2Image(url, null, null);
+    }
+
     /**
      * 将带有 chart、map等动态图表的 html转换为 图片
      *
@@ -24,6 +30,12 @@ public class HtmlExporter2BASE64 implements IHtmlExporter {
     @Override
     public String convert2Image(String url, Integer width, Integer height) {
         return convert2Image(url, null, width, height);
+    }
+
+    @SuppressWarnings(value = {"unchecked"})
+    @Override
+    public String convert2Image(String url, Cookie addedCookie) {
+        return convert2Image(url, addedCookie, null, null);
     }
 
     /**
@@ -46,5 +58,4 @@ public class HtmlExporter2BASE64 implements IHtmlExporter {
             HtmlExporterUtils.release(driver);
         }
     }
-
 }
