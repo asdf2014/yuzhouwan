@@ -1,0 +1,28 @@
+{
+  "metricsSpec": [
+    {
+      "name": "count",
+      "type": "count"
+    },
+    {
+      "fieldName": "b",
+      "name": "b_min",
+      "type": "longMin"
+    },
+    {
+      "fieldName": "b",
+      "name": "b_max",
+      "type": "longMax"
+    },
+    {
+      "fieldName": "c",
+      "name": "c_min",
+      "type": "doubleMin"
+    },
+    {
+      "fieldName": "c",
+      "name": "c_max",
+      "type": "doubleMax"
+    }
+  ]
+}
