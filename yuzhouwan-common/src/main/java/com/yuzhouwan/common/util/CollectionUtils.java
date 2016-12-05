@@ -80,10 +80,10 @@ public class CollectionUtils {
     public static <E> Object getDuplicate(Collection<E> coll, E o, String field, Class clazz) {
 
         if (coll == null || coll.isEmpty() || o == null || StrUtils.isEmpty(field) || clazz == null) return null;
+        Object collO = null, aimO = null;
         try {
             Field f = o.getClass().getDeclaredField(field);
             f.setAccessible(true);
-            Object collO, aimO;
             for (E e : coll) {
                 collO = f.get(e);
                 aimO = f.get(o);
@@ -93,7 +93,9 @@ public class CollectionUtils {
                 }
             }
         } catch (Exception e) {
-            _log.error(ExceptionUtils.errorInfo(e));
+            _log.error(ExceptionUtils.errorInfo(e,
+                    String.format("field: %s, class: %s, object in collection: %s, object aim: %s",
+                            field, clazz.getName(), collO, aimO)));
         }
         return null;
     }

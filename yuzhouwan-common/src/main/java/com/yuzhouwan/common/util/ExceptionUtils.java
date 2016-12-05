@@ -10,7 +10,15 @@ package com.yuzhouwan.common.util;
  */
 public class ExceptionUtils {
 
-    public static String errorInfo(final Exception e) {
-        return String.format("%s: %s", e.getClass().getSimpleName(), e.getMessage());
+    public static String errorInfo(Exception e) {
+        return errorInfo(e, null);
+    }
+
+    public static String errorInfo(Exception e, String detail) {
+        if (e == null)
+            return null;
+        Class<?> clazz = e.getClass();
+        return String.format("%s: %s%s", clazz == null ? "" : clazz.getSimpleName(),
+                e.getMessage(), StrUtils.isEmpty(detail) ? "" : ", Detail: ".concat(detail));
     }
 }

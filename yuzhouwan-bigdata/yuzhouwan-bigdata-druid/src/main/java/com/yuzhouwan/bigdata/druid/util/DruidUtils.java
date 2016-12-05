@@ -1,5 +1,8 @@
 package com.yuzhouwan.bigdata.druid.util;
 
+import com.yuzhouwan.common.util.PropUtils;
+import com.yuzhouwan.common.util.StrUtils;
+
 import java.lang.reflect.Field;
 
 /**
@@ -12,23 +15,24 @@ import java.lang.reflect.Field;
  */
 public class DruidUtils {
 
-    private static final String METRICS_SPEC_TEMPLATE = "{\"fieldName\":\"stores\",\"name\":\"stores_min\",\"type\":\"longMin\"},{\"fieldName\":\"stores\",\"name\":\"stores_max\",\"type\":\"longMax\"}";
-
     public static String genTranquilityMetricsSpec(Class clazz) {
 
-        StringBuilder strBuilder = new StringBuilder("{\"metricsSpec\":[{\"name\":\"count\",\"type\":\"count\"},");
+        PropUtils p = PropUtils.getInstance();
+        String metricsSpecPrefix = p.getProperty("metrics.spec.prefix");
+        String metricsSpecMiddle = p.getProperty("metrics.spec.middle");
+        if (StrUtils.isEmpty(metricsSpecPrefix) || StrUtils.isEmpty(metricsSpecMiddle)) {
+            throw new RuntimeException("Properties is empty!");
+        }
+        StringBuilder strBuilder = new StringBuilder(metricsSpecPrefix);
         Field[] fields = clazz.getDeclaredFields();
-        String fieldName;
-        String simpleTypeName;
+        String fieldName, simpleTypeName;
         for (Field field : fields) {
             fieldName = field.getName();
             simpleTypeName = field.getType().getSimpleName();
-            if ("string".equalsIgnoreCase(simpleTypeName) || !"long".equalsIgnoreCase(simpleTypeName)
-                    && !"double".equalsIgnoreCase(simpleTypeName))
+            if ("string".equalsIgnoreCase(simpleTypeName) ||
+                    !"long".equalsIgnoreCase(simpleTypeName) && !"double".equalsIgnoreCase(simpleTypeName))
                 continue;
-            strBuilder.append(String.format(
-                    "{\"fieldName\":\"%s\",\"name\":\"%s_min\",\"type\":\"%sMin\"}," +
-                            "{\"fieldName\":\"%s\",\"name\":\"%s_max\",\"type\":\"%sMax\"},",
+            strBuilder.append(String.format(metricsSpecMiddle,
                     fieldName, fieldName, simpleTypeName, fieldName, fieldName, simpleTypeName));
         }
         strBuilder.append("]}");
