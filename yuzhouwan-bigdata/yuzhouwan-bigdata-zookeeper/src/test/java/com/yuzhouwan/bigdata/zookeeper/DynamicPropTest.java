@@ -1,7 +1,7 @@
 package com.yuzhouwan.bigdata.zookeeper;
 
 import com.yuzhouwan.bigdata.zookeeper.prop.DynamicProp;
-import com.yuzhouwan.common.util.DirUtils;
+import com.yuzhouwan.common.dir.DirUtils;
 import org.junit.Test;
 
 import java.io.File;

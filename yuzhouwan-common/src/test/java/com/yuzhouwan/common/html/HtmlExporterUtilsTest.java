@@ -7,7 +7,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.util.Date;
 
-import static com.yuzhouwan.common.util.DirUtils.RESOURCES_PATH;
+import static com.yuzhouwan.common.dir.DirUtils.RESOURCES_PATH;
 
 /**
  * Copyright @ 2016 yuzhouwan.com

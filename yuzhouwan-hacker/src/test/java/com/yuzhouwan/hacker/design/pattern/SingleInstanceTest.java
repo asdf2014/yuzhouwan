@@ -1,6 +1,6 @@
 package com.yuzhouwan.hacker.design.pattern;
 
-import com.yuzhouwan.common.util.DirUtils;
+import com.yuzhouwan.common.dir.DirUtils;
 import com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample;
 import org.junit.Test;
 

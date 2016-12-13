@@ -1,6 +1,6 @@
 package com.yuzhouwan.hacker.security;
 
-import com.yuzhouwan.common.util.DirUtils;
+import com.yuzhouwan.common.dir.DirUtils;
 import org.junit.Test;
 
 /**

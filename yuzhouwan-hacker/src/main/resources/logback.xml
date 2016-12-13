@@ -143,11 +143,13 @@
     <logger name="java.sql.Statement" level="DEBUG"/>
     <logger name="java.sql.PreparedStatement" level="DEBUG"/>
 
+    <!-- level="INFO" in product-->
     <root level="DEBUG">
         <appender-ref ref="DEBUG_TRACK"/>
         <appender-ref ref="INFO_TRACK"/>
         <appender-ref ref="WARN_TRACK"/>
         <appender-ref ref="ERROR_TRACK"/>
+        <!-- remove std out in product -->
         <appender-ref ref="STDOUT_TRACK"/>
     </root>
 </configuration>

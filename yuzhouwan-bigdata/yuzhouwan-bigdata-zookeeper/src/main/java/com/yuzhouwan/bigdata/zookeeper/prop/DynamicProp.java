@@ -1,7 +1,7 @@
 package com.yuzhouwan.bigdata.zookeeper.prop;
 
-import com.yuzhouwan.common.api.IDirUtils;
-import com.yuzhouwan.common.util.DirUtils;
+import com.yuzhouwan.common.dir.DirUtils;
+import com.yuzhouwan.common.dir.IDirUtils;
 import com.yuzhouwan.common.util.PropUtils;
 import com.yuzhouwan.common.util.StrUtils;
 import org.slf4j.Logger;

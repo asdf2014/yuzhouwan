@@ -1,5 +1,6 @@
 package com.yuzhouwan.common.util;
 
+import com.yuzhouwan.common.dir.DirUtils;
 import org.junit.Test;
 
 import java.io.File;

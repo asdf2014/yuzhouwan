@@ -1,6 +1,6 @@
-package com.yuzhouwan.common.util;
+package com.yuzhouwan.common.dir;
 
-import com.yuzhouwan.common.api.IDirUtils;
+import com.yuzhouwan.common.util.StrUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
