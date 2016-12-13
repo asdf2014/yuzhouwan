@@ -1,5 +1,6 @@
 package com.yuzhouwan.common.util;
 
+import com.alibaba.fastjson.JSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,5 +39,7 @@ public class BeanUtils {
                 return;
             }
         }
+        _log.debug("[Warn] Cannot be swapped, object: {}, key: {}, value: {}, ignores: {}.",
+                o, key, value, JSON.toJSONString(ignores));
     }
 }

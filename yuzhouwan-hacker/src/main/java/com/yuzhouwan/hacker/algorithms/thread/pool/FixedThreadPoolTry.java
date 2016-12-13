@@ -1,7 +1,10 @@
 package com.yuzhouwan.hacker.algorithms.thread.pool;
 
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 
 /**
  * Copyright @ 2016 yuzhouwan.com
@@ -25,7 +28,11 @@ public class FixedThreadPoolTry {
 
 //        a++;
 
-        ExecutorService executor = Executors.newFixedThreadPool(5);
+        ThreadFactory threadFactory = new ThreadFactoryBuilder()
+                .setNameFormat("[FixedThread]-%d")
+                .setDaemon(true)
+                .build();
+        ExecutorService executor = Executors.newFixedThreadPool(5, threadFactory);
         Runnable worker;
         for (int i = 0; i < 10; i++) {
             worker = new WorkerThread("" + i);

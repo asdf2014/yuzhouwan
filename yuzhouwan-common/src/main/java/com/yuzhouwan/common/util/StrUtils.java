@@ -68,6 +68,16 @@ public class StrUtils {
     }
 
     /**
+     * Parsing String is not Empty.
+     *
+     * @param s
+     * @return
+     */
+    public static boolean isNotEmpty(final String s) {
+        return !isEmpty(s);
+    }
+
+    /**
      * Cut Start String
      *
      * @param origin

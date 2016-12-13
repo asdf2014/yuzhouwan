@@ -37,5 +37,4 @@ public class HBaseUtils {
     public static LinkedList<String> splitJmxRegion(String aim) {
         return StrUtils.splitMulti(aim, "namespace_", "_table_", "_region_", "_metric_");
     }
-
 }

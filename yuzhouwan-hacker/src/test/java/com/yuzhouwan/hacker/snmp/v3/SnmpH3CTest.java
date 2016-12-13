@@ -25,24 +25,24 @@ public class SnmpH3CTest {
     public void before() throws Exception {
 
         /**
-         * snmp-agent target-host trap address udp-domain 192.168.112.155 udp-port 5000 params securityname zyuc
+         * snmp-agent target-host trap address udp-domain 192.168.112.155 udp-port 5000 params securityname yuzhouwan
          * <p/>
-         * snmp-agent usm-user v3 jinjy managev3group simple authentication-mode md5 hellozyuc privacy-mode 3des hellozyuc acl 2222
+         * snmp-agent usm-user v3 yuzhouwan managev3group simple authentication-mode md5 helloyuzhouwan privacy-mode 3des helloyuzhouwan acl 2222
          */
-        String securityName = "jinjy2"; //"managev3group"; //"zyuc"; //"jinjy";
+        String securityName = "yuzhouwan2"; //"managev3group"; //"yuzhouwan"; //"yuzhouwan";
         AuthGeneric authenticationProtocol = new AuthMD5();
-        String authenticationPassphrase = "hellozyuc";
+        String authenticationPassphrase = "helloyuzhouwan";
         PrivacyProtocol privacyProtocol = new PrivAES128();      //new Priv3DES();
-        String privacyPassphrase = "hellozyuc";
+        String privacyPassphrase = "helloyuzhouwan";
 
         H3CSnmpV3User h3CSnmpV3User = new H3CSnmpV3User(securityName,
                 authenticationProtocol, authenticationPassphrase,
                 privacyProtocol, privacyPassphrase);
 
-        String userName = "jinjy2";   //same as securityName ?
+        String userName = "yuzhouwan2";   //same as securityName ?
 
         String address = "192.168.6.201";
-        String securityName2 = "jinjy2"; //"managev3group"; //"zyuc"; //"jinjy";
+        String securityName2 = "yuzhouwan2"; //"managev3group"; //"yuzhouwan"; //"yuzhouwan";
         int securityLevel = SecurityLevel.AUTH_PRIV;
         int securityModel = 3;
          /*int maxSizeRequestPDU = '\uffff';*/

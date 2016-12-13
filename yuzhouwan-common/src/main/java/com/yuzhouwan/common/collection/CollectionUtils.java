@@ -1,5 +1,7 @@
-package com.yuzhouwan.common.util;
+package com.yuzhouwan.common.collection;
 
+import com.yuzhouwan.common.util.ExceptionUtils;
+import com.yuzhouwan.common.util.StrUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,6 +19,9 @@ import java.util.*;
 public class CollectionUtils {
 
     private static Logger _log = LoggerFactory.getLogger(CollectionUtils.class);
+
+    private volatile static long NANO_SECOND_TOTAL;
+    private volatile static long CALL_COUNT_TOTAL;
 
     /**
      * 按照 strWithSeparator 中包含的几个单词，模糊匹配 originList 内元素，并移除
@@ -67,35 +72,58 @@ public class CollectionUtils {
         return result.toArray();
     }
 
+    public static <E> Object getDuplicate(Collection<E> coll, E o, String field, Class fieldClass) {
+        return getDuplicate(coll, o, field, fieldClass, null);
+    }
+
     /**
      * Get Duplicate from Collection
      *
-     * @param coll
-     * @param o
-     * @param field
-     * @param clazz
-     * @param <E>
-     * @return
+     * @param coll         collection
+     * @param o            aim object
+     * @param field        which field is used for judging
+     * @param fieldClass   the class type of field
+     * @param elementClass the sub-class of element in collection
+     * @param <E>          the class type of elements in collection
+     * @return the object which has same the value of field in collection
      */
-    public static <E> Object getDuplicate(Collection<E> coll, E o, String field, Class clazz) {
+    public static <E> Object getDuplicate(Collection<E> coll, E o, String field, Class fieldClass, Class elementClass) {
 
-        if (coll == null || coll.isEmpty() || o == null || StrUtils.isEmpty(field) || clazz == null) return null;
+        long startTime = System.nanoTime();
+        if (coll == null || coll.isEmpty() || o == null || StrUtils.isEmpty(field) || fieldClass == null)
+            return null;
         Object collO = null, aimO = null;
+        String elementClassName = "";
+        boolean subClass = false;
+        if (elementClass != null) {
+            elementClassName = elementClass.getName();
+            subClass = StrUtils.isNotEmpty(elementClassName);
+        }
         try {
             Field f = o.getClass().getDeclaredField(field);
             f.setAccessible(true);
+            long endTime, period;
             for (E e : coll) {
+                if (subClass && !elementClassName.equals(e.getClass().getName())) {
+                    continue;
+                }
                 collO = f.get(e);
                 aimO = f.get(o);
-                if (collO.equals(aimO) || clazz.cast(collO).equals(clazz.cast(aimO))) {
+                if (collO.equals(aimO) || fieldClass.cast(collO).equals(fieldClass.cast(aimO))) {
                     coll.remove(e);
+                    endTime = System.nanoTime();
+                    period = endTime - startTime;
+                    // 2016-12-08 09:07:56.746 | DEBUG | getDuplicate method used time: 622 nanosecond, total count: 57746148, total time: 1057645752619 nanosecond, time pre call: 18315 nanosecond | com.yuzhouwan.common.collection.CollectionUtils.getDuplicate | CollectionUtils.java:104
+                    _log.debug("getDuplicate method used time: {} nanosecond, total count: {}, total time: {} nanosecond, time pre call: {} nanosecond",
+                            period, CALL_COUNT_TOTAL++, (NANO_SECOND_TOTAL = NANO_SECOND_TOTAL + period),
+                            NANO_SECOND_TOTAL / CALL_COUNT_TOTAL);
                     return e;
                 }
             }
         } catch (Exception e) {
             _log.error(ExceptionUtils.errorInfo(e,
                     String.format("field: %s, class: %s, object in collection: %s, object aim: %s",
-                            field, clazz.getName(), collO, aimO)));
+                            field, fieldClass.getName(), collO, aimO)));
         }
         return null;
     }

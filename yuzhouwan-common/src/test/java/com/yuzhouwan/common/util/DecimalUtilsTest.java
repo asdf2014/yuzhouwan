@@ -46,4 +46,13 @@ public class DecimalUtilsTest {
     public void charTest() throws Exception {
         assertEquals(65, 'A');
     }
+
+    @Test
+    public void twoTest() throws Exception {
+        assertEquals("0.23", DecimalUtils.saveTwoPoint(0.23456d));
+        assertEquals("1.23", DecimalUtils.saveTwoPoint(1.23456d));
+        assertEquals("11.23", DecimalUtils.saveTwoPoint(11.23456d));
+        assertEquals("1.23", DecimalUtils.saveTwoPoint(01.23456d));
+        assertEquals("10.23", DecimalUtils.saveTwoPoint(010.23456d));
+    }
 }

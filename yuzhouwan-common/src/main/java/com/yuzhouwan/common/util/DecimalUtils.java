@@ -22,4 +22,8 @@ public class DecimalUtils {
     public static BigInteger double2BigInt(double d) {
         return new BigInteger(decimalFormat.format(d));
     }
+
+    public static String saveTwoPoint(double d) {
+        return String.format("%.2f", d);
+    }
 }

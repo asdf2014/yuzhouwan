@@ -4,6 +4,7 @@ import com.yuzhouwan.common.util.PropUtils;
 import com.yuzhouwan.common.util.StrUtils;
 
 import java.lang.reflect.Field;
+import java.util.HashSet;
 
 /**
  * Copyright @ 2016 yuzhouwan.com
@@ -15,7 +16,7 @@ import java.lang.reflect.Field;
  */
 public class DruidUtils {
 
-    public static String genTranquilityMetricsSpec(Class clazz) {
+    public static String genTranquilityMetricsSpec(Class... classList) {
 
         PropUtils p = PropUtils.getInstance();
         String metricsSpecPrefix = p.getProperty("metrics.spec.prefix");
@@ -24,16 +25,22 @@ public class DruidUtils {
             throw new RuntimeException("Properties is empty!");
         }
         StringBuilder strBuilder = new StringBuilder(metricsSpecPrefix);
-        Field[] fields = clazz.getDeclaredFields();
         String fieldName, simpleTypeName;
-        for (Field field : fields) {
-            fieldName = field.getName();
-            simpleTypeName = field.getType().getSimpleName();
-            if ("string".equalsIgnoreCase(simpleTypeName) ||
-                    !"long".equalsIgnoreCase(simpleTypeName) && !"double".equalsIgnoreCase(simpleTypeName))
-                continue;
-            strBuilder.append(String.format(metricsSpecMiddle,
-                    fieldName, fieldName, simpleTypeName, fieldName, fieldName, simpleTypeName));
+        HashSet<String> checkExists = new HashSet<>();
+        for (Class clazz : classList) {
+            Field[] fields = clazz.getDeclaredFields();
+            for (Field field : fields) {
+                fieldName = field.getName();
+                if (checkExists.contains(fieldName))
+                    continue;
+                checkExists.add(fieldName);
+                simpleTypeName = field.getType().getSimpleName();
+                if ("string".equalsIgnoreCase(simpleTypeName) ||
+                        !"long".equalsIgnoreCase(simpleTypeName) && !"double".equalsIgnoreCase(simpleTypeName))
+                    continue;
+                strBuilder.append(String.format(metricsSpecMiddle,
+                        fieldName, fieldName, simpleTypeName, fieldName, fieldName, simpleTypeName));
+            }
         }
         strBuilder.append("]}");
         return strBuilder.toString().replaceAll(",]", "]");

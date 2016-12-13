@@ -1,13 +1,21 @@
 package com.yuzhouwan.bigdata.kafka.util;
 
+import com.yuzhouwan.common.util.ExceptionUtils;
 import com.yuzhouwan.common.util.PropUtils;
+import com.yuzhouwan.common.util.StrUtils;
+import com.yuzhouwan.common.util.TimeUtils;
 import kafka.javaapi.producer.Producer;
 import kafka.producer.KeyedMessage;
 import kafka.producer.ProducerConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Properties;
+import java.util.concurrent.ExecutorService;
+
+import static com.yuzhouwan.common.util.ThreadUtils.buildExecutorService;
 
 /**
  * Copyright @ 2016 yuzhouwan.com
@@ -22,15 +30,23 @@ public class KafkaUtils {
     private static final Logger _log = LoggerFactory.getLogger(KafkaUtils.class);
 
     private volatile static KafkaUtils instance;
-    private volatile static Producer<String, String> producer;
+    private volatile static ExecutorService pool;
+
+    private static Integer SEND_KAFKA_FACTOR;
+
+    static {
+        SEND_KAFKA_FACTOR = Integer.parseInt(PropUtils.getInstance().getProperty("job.send.2.kafka.factor"));
+        if (SEND_KAFKA_FACTOR < 10 || SEND_KAFKA_FACTOR > 1000)
+            SEND_KAFKA_FACTOR = 100;
+    }
 
     private KafkaUtils() {
     }
 
     private static void init() {
-        if (producer == null)
+        if (instance == null)
             synchronized (KafkaUtils.class) {
-                if (producer == null) {
+                if (instance == null) {
                     internalInit();
                 }
             }
@@ -38,19 +54,23 @@ public class KafkaUtils {
 
     private static void internalInit() {
         instance = new KafkaUtils();
+        buildPool();
+    }
+
+    public static Producer<String, String> createProducer() {
+        Properties props = new Properties();
         try {
             PropUtils p = PropUtils.getInstance();
-            Properties props = new Properties();
             props.put("zk.connect", p.getProperty("kafka.zk.connect"));
             props.put("serializer.class", p.getProperty("kafka.serializer.class"));
             props.put("metadata.broker.list", p.getProperty("kafka.metadata.broker.list"));
             props.put("request.required.acks", p.getProperty("kafka.request.required.acks"));
-            producer = new Producer<>(new ProducerConfig(props));
         } catch (Exception e) {
             _log.error("{} ---- Connect with kafka failed!", e.getMessage());
             throw new RuntimeException(e);
         }
         _log.info("Connect with kafka successfully!");
+        return new Producer<>(new ProducerConfig(props));
     }
 
     public static KafkaUtils getInstance() {
@@ -59,17 +79,83 @@ public class KafkaUtils {
     }
 
     public void sendMessageToKafka(String message) {
-//        _log.debug("Send to Kafka: {}", message);
-        producer.send(new KeyedMessage<String, String>(PropUtils.getInstance().getProperty("kafka.topic"), message));
+        Producer<String, String> p = KafkaConnPoolUtils.getInstance().getConn();
+        if (p == null) {
+            _log.warn("Cannot get Producer in connect pool!");
+            return;
+        }
+        p.send(new KeyedMessage<>(PropUtils.getInstance().getProperty("kafka.topic"), message));
     }
 
-    public void reConnect() {
-        closeConnectionWithKafka();
-        internalInit();
+    public boolean putPool(Runnable r) {
+        if (r == null || pool == null) return false;
+        pool.execute(r);
+        return true;
     }
 
-    public void closeConnectionWithKafka() {
-        if (producer != null)
-            producer.close();
+    private static void buildPool() {
+        PropUtils p = PropUtils.getInstance();
+        String jobMetricThreadCorePoolSize = p.getProperty("job.kafka.thread.core.pool.size");
+        String jobMetricThreadMaximumPoolSize = p.getProperty("job.kafka.thread.maximum.pool.size");
+        String jobMetricThreadKeepAliveSecond = p.getProperty("job.kafka.thread.keep.alive.second");
+        String jobMetricArrayBlockingQueueSize = p.getProperty("job.kafka.array.blocking.queue.size");
+        pool = buildExecutorService(Integer.parseInt(jobMetricThreadCorePoolSize),
+                Integer.parseInt(jobMetricThreadMaximumPoolSize),
+                Integer.parseInt(jobMetricThreadKeepAliveSecond),
+                Integer.parseInt(jobMetricArrayBlockingQueueSize), "Kafka", false);
+    }
+
+    public static <T> void save2Kafka(final List<T> objs) {
+        save2Kafka(objs, false, null);
+    }
+
+    public static <T> void save2Kafka(final List<T> objs, final String describe) {
+        save2Kafka(objs, false, describe);
+    }
+
+    public static <T> void save2Kafka(final List<T> objs, boolean isBalance, final String describe) {
+        KafkaUtils k = KafkaUtils.getInstance();
+        List<T> copy;
+        int len;
+        if (isBalance) {
+            copy = new LinkedList<>();
+            for (int i = 0; i < (len = objs.size()); i++) {
+                copy.add(objs.get(i));
+                if (i % (KafkaConnPoolUtils.CONN_IN_POOL * SEND_KAFKA_FACTOR) == 0 || i == (len - 1)) {
+                    internalPutPool(copy, describe, k);
+                }
+            }
+        } else {
+            copy = new LinkedList<>(objs);
+            internalPutPool(copy, describe, k);
+        }
+    }
+
+    private static <T> void internalPutPool(final List<T> copy, final String describe, KafkaUtils k) {
+        k.putPool(new Runnable() {
+            final List<T> deepCopy = new LinkedList<>(copy);
+
+            @Override
+            public void run() {
+                long start = System.currentTimeMillis();
+                double size = 0;
+                String json;
+                KafkaUtils k = KafkaUtils.getInstance();
+                for (T obj : deepCopy) {
+                    try {
+                        k.sendMessageToKafka(json = obj.toString());
+                        size += json.getBytes().length;
+                    } catch (Exception e) {
+                        _log.error(ExceptionUtils.errorInfo(e));
+                    }
+                }
+                long end = System.currentTimeMillis();
+                _log.info(StrUtils.isEmpty(describe) ? "" :
+                                "[{}] ".concat("Thread:{}, Time: {}, Used Time: {}, Size: {} MB"),
+                        describe, Thread.currentThread().getName(), TimeUtils.nowTimeWithZone(), end - start,
+                        String.format("%.2f", size / 1024 / 1024));
+            }
+        });
+        copy.clear();
     }
 }

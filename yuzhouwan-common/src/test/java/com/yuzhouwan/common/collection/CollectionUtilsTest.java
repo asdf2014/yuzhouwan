@@ -1,4 +1,4 @@
-package com.yuzhouwan.common.util;
+package com.yuzhouwan.common.collection;
 
 import org.junit.Test;
 

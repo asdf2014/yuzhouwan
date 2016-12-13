@@ -15,6 +15,5 @@ public class KafkaUtilsTest {
 
         KafkaUtils k = KafkaUtils.getInstance();
         k.sendMessageToKafka("yuzhouwan");
-        k.closeConnectionWithKafka();
     }
 }
