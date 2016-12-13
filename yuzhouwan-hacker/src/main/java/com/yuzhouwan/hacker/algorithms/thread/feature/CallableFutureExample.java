@@ -31,7 +31,7 @@ public class CallableFutureExample {
             );
             _log.info("waiting...");
             try {
-                _log.info(future.get());
+                _log.debug(future.get());
             } catch (InterruptedException | ExecutionException e) {
                 _log.error("error: {}", e.getMessage());
             }
@@ -50,7 +50,7 @@ public class CallableFutureExample {
         _log.info("All thread were submitted into pool...");
         for (int i = 0; i < 10; i++) {
             try {
-                _log.info("{}", completionService.take().get());
+                _log.debug("{}", completionService.take().get());
             } catch (InterruptedException | ExecutionException e) {
                 _log.error("error: {}", e.getMessage());
             }
