@@ -19,7 +19,7 @@ public class KafkaConnPoolUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(KafkaConnPoolUtils.class);
 
-    public static final int CONN_IN_POOL;
+    static final int CONN_IN_POOL;
     private static volatile KafkaConnPoolUtils instance;
     private static volatile ConcurrentHashMap<String, Producer<String, String>> pool;
 
@@ -27,6 +27,7 @@ public class KafkaConnPoolUtils {
 
     static {
         CONN_IN_POOL = Integer.parseInt(PropUtils.getInstance().getProperty("kafka.conn.pool.size"));
+        // do not use lazy initialization
         getInstance();
     }
 

@@ -50,8 +50,8 @@ public class CollectionUtilsTest {
     public void getDuplicate() throws Exception {
 
         A _a = new A(1, "2", 3);
-        A _b = new A(1, "a", 3);
-        A _c = new A(1, "!", 3);
+        A _b = new A(1, "a", 5);
+        A _c = new A(4, "!", 3);
 
         A _d = new A(4, "2", 5);
 
@@ -59,10 +59,14 @@ public class CollectionUtilsTest {
         aList.add(_a);
         aList.add(_b);
         aList.add(_c);
-        assertEquals(_a, CollectionUtils.getDuplicate(aList, _d, "b", A.class));
+        assertEquals(_a, CollectionUtils.getDuplicate(aList, _d, "b", String.class));
         assertEquals(true, 2 == aList.size());
-        assertEquals(null, CollectionUtils.getDuplicate(aList, _d, "d", A.class));
-        assertEquals(true, 2 == aList.size());
+        assertEquals(_c, CollectionUtils.getDuplicate(aList, _d, "a", Integer.class));
+        assertEquals(true, 1 == aList.size());
+        assertEquals(_b, CollectionUtils.getDuplicate(aList, _d, "c", Object.class));
+        assertEquals(true, 0 == aList.size());
+        assertEquals(null, CollectionUtils.getDuplicate(aList, _d, "d", Object.class));
+        assertEquals(true, 0 == aList.size());
     }
 
     private class A {

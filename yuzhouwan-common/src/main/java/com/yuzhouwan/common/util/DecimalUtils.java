@@ -14,6 +14,7 @@ import java.text.DecimalFormat;
 public class DecimalUtils {
 
     private static final DecimalFormat decimalFormat = new DecimalFormat("0");
+    private static final String SAVE_POINT_FORMAT = "%.%df";
 
     public static int convert(int n) {
         return Integer.valueOf(String.valueOf(n), 16);
@@ -24,6 +25,10 @@ public class DecimalUtils {
     }
 
     public static String saveTwoPoint(double d) {
-        return String.format("%.2f", d);
+        return savePoint(d, 2);
+    }
+
+    public static String savePoint(double d, int point) {
+        return String.format("%.".concat(point + "f"), d);
     }
 }

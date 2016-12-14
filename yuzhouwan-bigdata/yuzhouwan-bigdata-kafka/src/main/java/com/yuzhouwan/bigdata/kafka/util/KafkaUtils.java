@@ -1,9 +1,6 @@
 package com.yuzhouwan.bigdata.kafka.util;
 
-import com.yuzhouwan.common.util.ExceptionUtils;
-import com.yuzhouwan.common.util.PropUtils;
-import com.yuzhouwan.common.util.StrUtils;
-import com.yuzhouwan.common.util.TimeUtils;
+import com.yuzhouwan.common.util.*;
 import kafka.javaapi.producer.Producer;
 import kafka.producer.KeyedMessage;
 import kafka.producer.ProducerConfig;
@@ -28,6 +25,9 @@ import static com.yuzhouwan.common.util.ThreadUtils.buildExecutorService;
 public class KafkaUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(KafkaUtils.class);
+
+    private static final String SEND_KAFKA_INFOS_BASIC = "Thread:{}, Time: {}, Used Time: {}, Size: {} MB";
+    private static final String SEND_KAFKA_INFOS_DESCRIBE = "[{}] ".concat(SEND_KAFKA_INFOS_BASIC);
 
     private volatile static KafkaUtils instance;
     private volatile static ExecutorService pool;
@@ -114,7 +114,6 @@ public class KafkaUtils {
     }
 
     public static <T> void save2Kafka(final List<T> objs, boolean isBalance, final String describe) {
-        KafkaUtils k = KafkaUtils.getInstance();
         List<T> copy;
         int len;
         if (isBalance) {
@@ -122,17 +121,17 @@ public class KafkaUtils {
             for (int i = 0; i < (len = objs.size()); i++) {
                 copy.add(objs.get(i));
                 if (i % (KafkaConnPoolUtils.CONN_IN_POOL * SEND_KAFKA_FACTOR) == 0 || i == (len - 1)) {
-                    internalPutPool(copy, describe, k);
+                    internalPutPool(copy, describe);
                 }
             }
         } else {
             copy = new LinkedList<>(objs);
-            internalPutPool(copy, describe, k);
+            internalPutPool(copy, describe);
         }
     }
 
-    private static <T> void internalPutPool(final List<T> copy, final String describe, KafkaUtils k) {
-        k.putPool(new Runnable() {
+    private static <T> void internalPutPool(final List<T> copy, final String describe) {
+        getInstance().putPool(new Runnable() {
             final List<T> deepCopy = new LinkedList<>(copy);
 
             @Override
@@ -140,20 +139,24 @@ public class KafkaUtils {
                 long start = System.currentTimeMillis();
                 double size = 0;
                 String json;
-                KafkaUtils k = KafkaUtils.getInstance();
                 for (T obj : deepCopy) {
                     try {
-                        k.sendMessageToKafka(json = obj.toString());
+                        getInstance().sendMessageToKafka(json = obj.toString());
                         size += json.getBytes().length;
                     } catch (Exception e) {
                         _log.error(ExceptionUtils.errorInfo(e));
                     }
                 }
                 long end = System.currentTimeMillis();
-                _log.info(StrUtils.isEmpty(describe) ? "" :
-                                "[{}] ".concat("Thread:{}, Time: {}, Used Time: {}, Size: {} MB"),
-                        describe, Thread.currentThread().getName(), TimeUtils.nowTimeWithZone(), end - start,
-                        String.format("%.2f", size / 1024 / 1024));
+                if (StrUtils.isEmpty(describe)) {
+                    _log.info(SEND_KAFKA_INFOS_BASIC,
+                            Thread.currentThread().getName(), TimeUtils.nowTimeWithZone(), end - start,
+                            DecimalUtils.saveTwoPoint(size / 1024 / 1024));
+                } else {
+                    _log.info(SEND_KAFKA_INFOS_DESCRIBE,
+                            describe, Thread.currentThread().getName(), TimeUtils.nowTimeWithZone(), end - start,
+                            DecimalUtils.saveTwoPoint(size / 1024 / 1024));
+                }
             }
         });
         copy.clear();

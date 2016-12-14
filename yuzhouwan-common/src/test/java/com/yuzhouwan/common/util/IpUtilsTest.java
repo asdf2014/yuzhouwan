@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
  * Function: Ip Util Tester
  *
  * @author Benedict Jin
- * @since 2016/4/7 0030
+ * @since 2016/4/7
  */
 public class IpUtilsTest {
 

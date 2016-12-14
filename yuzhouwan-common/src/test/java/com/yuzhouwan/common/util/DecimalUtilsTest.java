@@ -48,11 +48,15 @@ public class DecimalUtilsTest {
     }
 
     @Test
-    public void twoTest() throws Exception {
+    public void savePointTest() throws Exception {
         assertEquals("0.23", DecimalUtils.saveTwoPoint(0.23456d));
         assertEquals("1.23", DecimalUtils.saveTwoPoint(1.23456d));
         assertEquals("11.23", DecimalUtils.saveTwoPoint(11.23456d));
         assertEquals("1.23", DecimalUtils.saveTwoPoint(01.23456d));
         assertEquals("10.23", DecimalUtils.saveTwoPoint(010.23456d));
+
+        assertEquals("10", DecimalUtils.savePoint(010.23456d, 0));
+        assertEquals("10.2", DecimalUtils.savePoint(010.23456d, 1));
+        assertEquals("10.2345600000", DecimalUtils.savePoint(010.23456d, 10));
     }
 }
