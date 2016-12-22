@@ -1,6 +1,11 @@
 package com.yuzhouwan.bigdata.hbase.util;
 
+import com.alibaba.fastjson.JSON;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,6 +18,8 @@ import static org.junit.Assert.assertEquals;
  * @since 2016/11/21
  */
 public class HBaseUtilsTest {
+
+    private Logger _log = LoggerFactory.getLogger(HBaseUtilsTest.class);
 
     @Test
     public void generateSplitKeysTest() throws Exception {
@@ -30,5 +37,15 @@ public class HBaseUtilsTest {
 
         assertEquals("SPLITS => ['1', '2', '3', '4', '5', '6', '7', '8', '9']",
                 HBaseUtils.generateSplitKeys(1, 10, 1, 0));
+    }
+
+    @Test
+    public void getHexSplitsTest() throws Exception {
+//        byte[][] splits = HBaseUtils.getHexSplits("0000000000", "ffffffffffffffffffffffffffffffffffffffff", 400_0000);
+        byte[][] splits = HBaseUtils.getHexSplits("0", "f", 16);
+        _log.debug("Splits size: {}", splits.length);
+        for (byte[] split : splits) {
+            _log.debug("Hex Splits: {}", JSON.toJSONString(Arrays.asList(split)));
+        }
     }
 }

@@ -144,7 +144,7 @@ public class DirUtils implements IDirUtils {
      * @return
      */
     public static List<String> findPath(String path, String fileName, boolean isAbsolute, String basePath) {
-        List<String> foundPath = findAbsolutePath(path, fileName);
+        List<String> foundPath = findAbsolutePath(path, fileName, basePath);
         if (foundPath == null || isAbsolute) {
             return foundPath;
         }
@@ -158,28 +158,6 @@ public class DirUtils implements IDirUtils {
             }
         }
         return absolutePath;
-    }
-
-    /**
-     * 扫描文件夹，返回指定文件名的绝对路径
-     *
-     * @param path
-     * @param fileName
-     * @return
-     */
-    public static List<String> findAbsolutePath(String path, String fileName) {
-        if (StrUtils.isEmpty(path) || StrUtils.isEmpty(fileName))
-            return null;
-        List<String> filePathList = scanDir(path);
-        if (filePathList == null || filePathList.size() == 0) {
-            return null;
-        }
-        List<String> filePathListFiltered = new LinkedList<>();
-        filePathList.forEach(filePath -> {
-            if (filePath.endsWith(fileName))
-                filePathListFiltered.add(filePath);
-        });
-        return filePathListFiltered;
     }
 
     /**
@@ -220,6 +198,38 @@ public class DirUtils implements IDirUtils {
             _log.error("{} is not exist!!", path);
             return null;
         }
+    }
+
+    public static List<String> findAbsolutePath(String path, String fileName) {
+        return findAbsolutePath(path, fileName, null);
+    }
+
+    /**
+     * 扫描文件夹，返回指定文件名的绝对路径
+     *
+     * @param path
+     * @param fileName
+     * @return
+     */
+    public static List<String> findAbsolutePath(String path, String fileName, String basePath) {
+        if (StrUtils.isEmpty(path) || StrUtils.isEmpty(fileName))
+            return null;
+        List<String> filePathList = scanDir(path);
+        if (filePathList == null || filePathList.size() == 0) {
+            return null;
+        }
+        List<String> filePathListFiltered = new LinkedList<>();
+        // replaceAll DON'T support \\
+        // File.separator is \ on win and / on linux
+        if (StrUtils.isNotEmpty(basePath)) {
+            basePath = basePath.replaceAll("/", "").concat(File.separator);
+        }
+        String finalBasePath = basePath;
+        filePathList.forEach(filePath -> {
+            if (filePath.endsWith(fileName) && (StrUtils.isEmpty(finalBasePath) || filePath.contains(finalBasePath)))
+                filePathListFiltered.add(filePath);
+        });
+        return filePathListFiltered;
     }
 
     /**

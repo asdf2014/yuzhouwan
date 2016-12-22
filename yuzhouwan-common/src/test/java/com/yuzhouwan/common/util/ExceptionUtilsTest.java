@@ -18,5 +18,11 @@ public class ExceptionUtilsTest {
     public void errorInfo() throws Exception {
         assertEquals("RuntimeException: Connection is closed!",
                 ExceptionUtils.errorInfo(new RuntimeException("Connection is closed!")));
+
+        assertEquals("RuntimeException: Connection is closed!",
+                ExceptionUtils.errorInfo(new RuntimeException("Connection is closed!"), null));
+
+        assertEquals("RuntimeException: Connection is closed, Detail: port is 31",
+                ExceptionUtils.errorInfo(new RuntimeException("Connection is closed"), "port is 31"));
     }
 }

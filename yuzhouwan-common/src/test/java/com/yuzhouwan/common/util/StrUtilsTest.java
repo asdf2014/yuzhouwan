@@ -71,6 +71,7 @@ public class StrUtilsTest {
         LinkedList<String> result = StrUtils.splitMulti(
                 "namespace_ns_fac_table_hb_scapaysettlereg_acc_region_006b897c8c6b0cdc258566b81508efe5_metric_storeCount",
                 "namespace_", "_table_", "_region_", "_metric_");
+        assert result != null;
         int size = result.size();
         assertEquals(true, expect.size() == size);
         for (int i = 0; i < size; i++) {

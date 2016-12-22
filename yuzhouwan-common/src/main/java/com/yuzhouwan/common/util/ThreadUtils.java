@@ -18,7 +18,7 @@ public class ThreadUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(ThreadUtils.class);
 
-    private static final Long minPeriod = Long.parseLong(PropUtils.getInstance().getProperty("thread.min.period.millisecond"));
+    private static final Long MIN_PERIOD = Long.parseLong(PropUtils.getInstance().getProperty("thread.min.period.millisecond"));
 
     public static ExecutorService buildExecutorService(Integer jobThreadCorePoolSize,
                                                        Integer jobThreadMaximumPoolSize,
@@ -56,12 +56,12 @@ public class ThreadUtils {
             long sleep;
             if (passedPeriod < aimPeriod) {
                 sleep = aimPeriod - passedPeriod;
-                if (sleep < minPeriod)
-                    sleep = minPeriod;
+                if (sleep < MIN_PERIOD)
+                    sleep = MIN_PERIOD;
             } else {
                 _log.warn("Thread:{}, Used Time: {}, Excepted Period Time: {}", Thread.currentThread().getName(),
                         passedPeriod, aimPeriod);
-                sleep = minPeriod;
+                sleep = MIN_PERIOD;
             }
             Thread.sleep(sleep);
         } catch (InterruptedException e) {

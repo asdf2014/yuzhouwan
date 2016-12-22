@@ -118,21 +118,23 @@ public class StrUtils {
      * @param separators separator array
      * @return
      */
-    public static LinkedList<String> splitMulti(String origin, String... separators) {
+    public static LinkedList<String> splitMulti(String origin, final String... separators) {
         int len;
-        if (StrUtils.isEmpty(origin) || (len = separators.length) == 0) return null;
+        if (StrUtils.isEmpty(origin) || separators == null || (len = separators.length) == 0) return null;
         int index;
         LinkedList<String> result = new LinkedList<>();
         for (int i = 0; i < separators.length; i++) {
             index = origin.indexOf(separators[i]);
             if (index == -1)
-                return null;
+                break;
             origin = origin.substring(index + separators[i].length());
             if (i == len - 1) {
                 result.add(origin);
                 break;
             }
             index = origin.indexOf(separators[i + 1]);
+            if (index == -1)
+                break;
             result.add(origin.substring(0, index));
             origin = origin.substring(index);
         }
