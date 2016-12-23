@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Copyright @ 2016 yuzhouwan.com
@@ -18,6 +19,8 @@ public class BeanUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(BeanUtils.class);
 
+    private static final ConcurrentHashMap<String, Field[]> FIELDS_CACHE = new ConcurrentHashMap<>();
+
     /**
      * Swap values into object's similar filed.
      *
@@ -27,7 +30,19 @@ public class BeanUtils {
      * @param ignores character to be ignored
      */
     public static void swapper(Object o, String key, Object value, String... ignores) {
-        Field[] fields = o.getClass().getDeclaredFields();
+        if (o == null || StrUtils.isEmpty(key)) return;
+        Class<?> clazz;
+        if ((clazz = o.getClass()) == null) return;
+        String className = clazz.getName();
+        if (StrUtils.isEmpty(className)) return;
+        Field[] fields;
+        if (FIELDS_CACHE.size() == 0 || !FIELDS_CACHE.containsKey(className)) {
+            fields = clazz.getDeclaredFields();
+            FIELDS_CACHE.put(className, fields);
+        } else {
+            fields = FIELDS_CACHE.get(className);
+        }
+        if (fields == null || fields.length == 0) return;
         for (Field field : fields) {
             if (StrUtils.isLike(field.getName(), key, ignores)) {
                 field.setAccessible(true);
