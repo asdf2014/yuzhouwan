@@ -1,37 +1,72 @@
 #!/bin/sh
-# nohup bash /home/yuzhouwan/yuzhouwan-monitor/gc_monitor2.sh "/data07/yuzhouwan/dumps" "27259" "75" "10" >> /data07/yuzhouwan/pid_27259_gc_monitor2.log &
+# nohup bash /home/hbase/hbase-monitor/gc_monitor2.sh "/data01/hbase/dumps" "HRegionServer" "75" "5" >> /data01/hbase/gc_monitor2.log &
 # need create $DUMP_OUTPUT_PATH firstly
 
 DUMP_OUTPUT_PATH="$1"
-PROCESS_ID="$2"
+PROCESS_NAME="$2"
 OLD_PERCENT_THRESHOLD="$3"
 OVER_THRESHOLD_COUNT="$4"
 
-if [ -z "$DUMP_OUTPUT_PATH" -o -z "$PROCESS_ID" -o -z "$OLD_PERCENT_THRESHOLD"  -o -z "$OVER_THRESHOLD_COUNT" ]; then
-    echo "Usage: gc_monitor2.sh <gc log file> <dump output path> <gc time threshold second> <process id>"
-    echo 'Example: gc_monitor2.sh "/data01/yuzhouwan/dumps" "29140" "75" "10"'
+if [ -z "$DUMP_OUTPUT_PATH" -o -z "$PROCESS_NAME" -o -z "$OLD_PERCENT_THRESHOLD"  -o -z "$OVER_THRESHOLD_COUNT" ]; then
+    echo "Usage: gc_monitor2.sh <dump output path> <process name> <old generation percent> <overtop threshold second>"
+    echo 'Example: gc_monitor2.sh "/data01/hbase/dumps" "HRegionServer" "75" "10"'
     exit
 fi
 
+if [ -d "$DUMP_OUTPUT_PATH" ]; then
+    echo "$DUMP_OUTPUT_PATH is exist."
+else
+    echo "$DUMP_OUTPUT_PATH is not exist!";
+    mkdir -p ${DUMP_OUTPUT_PATH}
+    echo "${DUMP_OUTPUT_PATH} is created."
+fi
+
+PROCESS_ID=-1
+
+HOST_NAME=`hostname`
+OLD_IFS="$IFS"
+IFS="-"
+eval SIMPLE_HOSTNAME=(${HOST_NAME})
+IFS="$OLD_IFS"
+echo "Now Machine: ${SIMPLE_HOSTNAME[0]}"
+
+JSTAT_LOG_FILE="${DUMP_OUTPUT_PATH}"/gc_monitor2_jstat.log
+jstatMonitor(){
+    jstatMonitorCount=`ps -ef | grep "jstat -gcutil" | grep -v grep | grep "${PROCESS_ID}" | wc -l`
+    if [ $(echo "${jstatMonitorCount}==0" | bc) -eq 1  ]; then
+        PROCESS_ID=`jps | grep "${PROCESS_NAME}" | awk '{print $1}'`
+        echo "[JSTAT]: now jstat process number: ${jstatMonitorCount}, then recreate jstat process..."
+        jstat -gcutil ${PROCESS_ID} 1000 >> "${JSTAT_LOG_FILE}" &
+        echo "[EXEC]: jstat -gcutil ${PROCESS_ID} 1000 >> "${JSTAT_LOG_FILE}" &"
+    else
+        echo "[JSTAT]: jstat process is healthy..."
+    fi
+}
+
 GLOBAL_COUNT=0
+GLOBAL_LIMIT_COUNT=1
 GLOBAL_LAST_GC_DATE=`date '++%Y%m%d%H%M%S'`
 LONG_GC_MESSAGE_TITLE="Long GC Warning"
 
 longGc() {
+    PROCESS_ID=`jps | grep "${PROCESS_NAME}" | awk '{print $1}'`
+    echo "Process: ${PROCESS_NAME}, and PID: ${PROCESS_ID}"
     if [ "$DUMP_OUTPUT_PATH" = "" -o "$OLD_PERCENT_THRESHOLD" = ""  -o "$PROCESS_ID" = "" ]; then
         return 0
     fi
+    echo "Begin Checking..."
+    jstatMonitor
     count=0
     while [ $(echo "${count}<${OVER_THRESHOLD_COUNT}" | bc) -eq 1 ]; do
         # jstat -gcutil 16125
         # S0     S1     E      O      P     YGC     YGCT    FGC    FGCT     GCT
         # 0.00  96.03  92.77  49.71  34.07  11855  803.209   255   15.829  819.039
-        oldPercent=`jstat -gcutil ${PROCESS_ID} | awk '{print $4}' | sed '1d'`
-
+        oldPercent=`tail -1 "${JSTAT_LOG_FILE}" | awk '{print $4}'`
+        NOW=`date '+%Y-%m-%d %H:%M:%S'`
         if [ -z ${oldPercent} ]; then
             return 1
         fi
-        echo "Current Old Generation used percent: ${oldPercent} %"
+        echo "${NOW} Current Old Generation used percent: ${oldPercent} %"
         if [ $(echo "${OLD_PERCENT_THRESHOLD}<${oldPercent}" | bc) -eq 1 ]; then
             count=$(echo "${count}+1" | bc)
             echo "Overload threshold: (${count}/${OVER_THRESHOLD_COUNT})"
@@ -52,22 +87,22 @@ dealAlert() {
     checkResult=$?
     if [ ${checkResult} -eq 0 ]; then
         # 2016_12_13-17:01:11
-        NOW=`date '+%Y_%m_%d-%H:%M:%S'`
+        NOW=`date '+%Y%m%d%H%M%S'`
         if [ -z ${DUMP_OUTPUT_PATH} ]; then
-            BASIC_PATH=`printf "%s%s" "./" "pid_${PROCESS_ID}_date_${NOW}"`
+            BASIC_PATH=`printf "%s%s%s" "./" "${SIMPLE_HOSTNAME[0]}" "_${PROCESS_ID}_${NOW}"`
         else
-            BASIC_PATH=`printf "%s%s%s" "${DUMP_OUTPUT_PATH}" "/" "pid_${PROCESS_ID}_date_${NOW}"`
+            BASIC_PATH=`printf "%s%s%s%s" "${DUMP_OUTPUT_PATH}" "/" "${SIMPLE_HOSTNAME[0]}" "_${PROCESS_ID}_${NOW}"`
         fi
         DUMP_PATH=`printf "%s%s" "${BASIC_PATH}" ".hprof"`
         JSTACK_PATH=`printf "%s%s" "${BASIC_PATH}" ".jstack"`
         echo "Process ID [${PROCESS_ID}] could happening long GC!!!"
-        echo "Now dump: ${DUMP_PATH}"
-        # jmap -dump:live,format=b,file=/data/yuzhouwan/dumps/pid_29140_date_2016_12_14-09:26:37.hprof 29140
+        echo "Now dump into: ${DUMP_PATH}"
+        # jmap -dump:live,format=b,file=/data/hbase/dumps/pid_29140_date_2016_12_14-09:26:37.hprof 29140
         DUMP_EXEC=`printf "%s%s%s" "-dump:live,format=b,file=" "${DUMP_PATH}" " ${PROCESS_ID}"`
-        jmap ${DUMP_EXEC}
-        echo "Jstack info: ${JSTACK_PATH}"
+        echo "[EXEC]: jmap ${DUMP_EXEC} &, Date: ${NOW}"
+        jmap ${DUMP_EXEC} &
+        echo "[EXEC]: jstack -l "${PROCESS_ID}" >> "${JSTACK_PATH}", Date: ${NOW}"
         jstack -l "${PROCESS_ID}" >> "${JSTACK_PATH}"
-        echo "Exec: jmap ${DUMP_EXEC}"
 
         if [ ${GLOBAL_COUNT} -ne 0 -a $(( `date '+%Y%m%d%H%M%S'` - $GLOBAL_LAST_GC_DATE )) -gt $(echo "${OVER_THRESHOLD_COUNT}*2" | bc) ]; then
             GLOBAL_LAST_GC_DATE=`date '++%Y%m%d%H%M%S'`
@@ -81,7 +116,7 @@ dealAlert() {
         GLOBAL_COUNT=$(echo "${GLOBAL_COUNT}+1" | bc)
         echo "GLOBAL_COUNT: $GLOBAL_COUNT"
 
-        if [ $(echo "${GLOBAL_COUNT}==5" | bc) -eq 1 ]; then
+        if [ $(echo "${GLOBAL_COUNT}==${GLOBAL_LIMIT_COUNT}" | bc) -eq 1 ]; then
             GLOBAL_COUNT=0
             skillCooling
         fi
@@ -110,7 +145,6 @@ skillCooling() {
 }
 
 echo "Begin monitor..."
-echo "Process ID is '$PROCESS_ID'"
 while true; do
     dealAlert
     sleep 1
