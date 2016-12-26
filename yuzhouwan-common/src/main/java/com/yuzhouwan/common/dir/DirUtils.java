@@ -1,5 +1,6 @@
 package com.yuzhouwan.common.dir;
 
+import com.yuzhouwan.common.util.ExceptionUtils;
 import com.yuzhouwan.common.util.StrUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,14 +34,11 @@ public class DirUtils implements IDirUtils {
      * @return isSuccess
      */
     public static boolean createOutDir() {
-
         String outDirPath = PROJECT_BASE_PATH.concat("\\out");
         File outDir = new File(outDirPath);
         _log.debug(outDirPath);
         boolean isCreated = true;
-        if (!outDir.exists()) {
-            isCreated = outDir.mkdir();
-        }
+        if (!outDir.exists()) isCreated = outDir.mkdir();
         if (isCreated)
             _log.debug("OutDir:{} was created success.", outDirPath);
         else
@@ -55,9 +53,7 @@ public class DirUtils implements IDirUtils {
      */
     public static String getLibPathInWebApp() {
         String classesPath = getTestClassesPath();
-        if (StrUtils.isEmpty(classesPath)) {
-            return null;
-        }
+        if (StrUtils.isEmpty(classesPath)) return null;
         return classesPath.substring(0, classesPath.lastIndexOf("/")).concat("/lib");
     }
 
@@ -96,36 +92,27 @@ public class DirUtils implements IDirUtils {
      * @return
      */
     public static String getBasicPath() {
-
         String path;
         ClassLoader classLoader;
         URL location;
         try {
             classLoader = Thread.currentThread().getContextClassLoader();
             location = classLoader.getResource("/");
-            if (location == null) {
-                location = Thread.currentThread().getContextClassLoader().getResource("");
-            }
-            if (location == null) {
-                return null;
-            }
+            if (location == null) location = classLoader.getResource("");
+            if (location == null) return null;
             path = location.toURI().getPath();
             _log.debug("Current Thread Location: {}", path);
         } catch (Exception e) {
-            _log.error("{}", e.getMessage());
+            _log.error("{}", ExceptionUtils.errorInfo(e));
             throw new RuntimeException(e);
         }
-        if (StrUtils.isEmpty(path)) {
-            throw new RuntimeException("Basic Path is null!!!");
-        }
+        if (StrUtils.isEmpty(path)) throw new RuntimeException("Basic Path is null!!!");
         if (path.startsWith("file")) {
             path = path.substring(6);
         } else if (path.startsWith("jar")) {
             path = path.substring(10);
         }
-        if (path.endsWith("/") || path.endsWith("\\")) {
-            path = path.substring(0, path.length() - 1);
-        }
+        if (path.endsWith("/") || path.endsWith("\\")) path = path.substring(0, path.length() - 1);
         return path.substring(0, path.lastIndexOf("/"));
     }
 
@@ -145,9 +132,7 @@ public class DirUtils implements IDirUtils {
      */
     public static List<String> findPath(String path, String fileName, boolean isAbsolute, String basePath) {
         List<String> foundPath = findAbsolutePath(path, fileName, basePath);
-        if (foundPath == null || isAbsolute) {
-            return foundPath;
-        }
+        if (foundPath == null || isAbsolute) return foundPath;
         List<String> absolutePath = new LinkedList<>();
         for (String s : foundPath) {
             // 如果是传入空，说明是直接以 项目基础路径为开头的
@@ -167,8 +152,7 @@ public class DirUtils implements IDirUtils {
      * @return
      */
     public static List<String> scanDir(String path) {
-        if (path == null)
-            return null;
+        if (path == null) return null;
         _log.debug("Scan path: {}", path);
         List<String> result = new LinkedList<>();
         File file = new File(path);
@@ -181,16 +165,13 @@ public class DirUtils implements IDirUtils {
             String absolutePath;
             while (!list.isEmpty()) {
                 tempFile = list.removeFirst();
-                isDirectory = tempFile.isDirectory();
-                _log.debug("{} isDirectory: {}", tempFile.getPath(), isDirectory);
+                _log.debug("{} isDirectory: {}", tempFile.getPath(), (isDirectory = tempFile.isDirectory()));
                 if (!isDirectory) {
                     result.add((absolutePath = tempFile.getAbsolutePath()));
                     _log.debug("scanDir absolutePath is {}", absolutePath);
                     continue;
                 }
-                files = tempFile.listFiles();
-                if (files == null)
-                    continue;
+                if ((files = tempFile.listFiles()) == null) continue;
                 dealWithSubFiles(result, list, files);
             }
             return result;
@@ -212,19 +193,14 @@ public class DirUtils implements IDirUtils {
      * @return
      */
     public static List<String> findAbsolutePath(String path, String fileName, String basePath) {
-        if (StrUtils.isEmpty(path) || StrUtils.isEmpty(fileName))
-            return null;
+        if (StrUtils.isEmpty(path) || StrUtils.isEmpty(fileName)) return null;
         List<String> filePathList = scanDir(path);
-        if (filePathList == null || filePathList.size() == 0) {
-            return null;
-        }
+        if (filePathList == null || filePathList.size() == 0) return null;
         List<String> filePathListFiltered = new LinkedList<>();
         // replaceAll DON'T support \\
         // File.separator is \ on win and / on linux
-        if (StrUtils.isNotEmpty(basePath)) {
-            basePath = basePath.replaceAll("/", "").concat(File.separator);
-        }
-        String finalBasePath = basePath;
+        if (StrUtils.isNotEmpty(basePath)) basePath = basePath.replaceAll("/", "").concat(File.separator);
+        final String finalBasePath = basePath;
         filePathList.forEach(filePath -> {
             if (filePath.endsWith(fileName) && (StrUtils.isEmpty(finalBasePath) || filePath.contains(finalBasePath)))
                 filePathListFiltered.add(filePath);
@@ -240,17 +216,14 @@ public class DirUtils implements IDirUtils {
      * @param files
      */
     private static void dealWithSubFiles(List<String> result, LinkedList<File> list, File[] files) {
-        if (files == null || files.length == 0)
-            return;
+        if (files == null || files.length == 0) return;
         String absolutePath;
-        for (File file2 : files) {
-            if (file2.isDirectory()) {
-                list.add(file2);
-            }
-            result.add((absolutePath = file2.getAbsolutePath()));
+        for (File file : files) {
+            if (file.isDirectory()) list.add(file);
+            result.add((absolutePath = file.getAbsolutePath()));
             _log.debug(absolutePath);
         }
-        _log.debug("Sub Files size is {}", result.size());
+        _log.debug("Sub Files size is {}, and Sub Directories size is {}", result.size(), list.size());
     }
 
     /**
@@ -292,11 +265,8 @@ public class DirUtils implements IDirUtils {
         _log.debug("Starting build watch service...");
         final WatchService watchService = FileSystems.getDefault().newWatchService();
         Paths.get(watchedPath).register(watchService,
-                StandardWatchEventKinds.ENTRY_CREATE,
-                StandardWatchEventKinds.ENTRY_DELETE,
-                StandardWatchEventKinds.ENTRY_MODIFY,
-                StandardWatchEventKinds.OVERFLOW);
-
+                StandardWatchEventKinds.ENTRY_CREATE, StandardWatchEventKinds.ENTRY_DELETE,
+                StandardWatchEventKinds.ENTRY_MODIFY, StandardWatchEventKinds.OVERFLOW);
         _log.debug("Finished build watch service, and ready for watching...");
         return new WatchRunnable(watchService, dealProcessor, waitTime);
     }
@@ -311,12 +281,9 @@ public class DirUtils implements IDirUtils {
      */
     public static boolean makeSureExist(final String path, final boolean isFile) {
         _log.debug("Path: {}, isFile: {}", path, isFile);
-
-        if (StrUtils.isEmpty(path)) {
-            return false;
-        }
-        File file = new File(path);
-        if (!file.exists()) {
+        if (StrUtils.isEmpty(path)) return false;
+        File file;
+        if (!(file = new File(path)).exists()) {
             if (isFile) {
                 try {
                     return file.createNewFile();
@@ -345,7 +312,6 @@ public class DirUtils implements IDirUtils {
      * 监控线程 (主要为了多线程，能安全地 stop)
      */
     public static class WatchRunnable implements Runnable {
-
         private IDirUtils dealProcessor;
         private Long waitTime;
         private WatchService watchService;
@@ -378,21 +344,16 @@ public class DirUtils implements IDirUtils {
             }
             IDirUtils dirUtil = dealProcessor == null ? new DirUtils() : dealProcessor;
             while (true) {
-                if (!isRunning) {
-                    return;
-                }
+                if (!isRunning) return;
                 if (waitTime != null && waitTime > 0)
                     try {
                         Thread.sleep(waitTime);
                     } catch (InterruptedException e) {
                         _log.error("Thread sleep error, because {}", e.getMessage());
                     }
-                if (!key.reset()) {
-                    break;
-                }
+                if (!key.reset()) break;
                 key.pollEvents().forEach(dirUtil::dealWithEvent);
             }
         }
     }
-
 }

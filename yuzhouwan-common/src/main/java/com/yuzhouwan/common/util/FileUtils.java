@@ -20,8 +20,8 @@ public class FileUtils {
         long len = file.length();
         byte data[] = new byte[(int) len];
         try (FileInputStream fin = new FileInputStream(file)) {
-            int r = fin.read(data);
-            if (r != len)
+            int r;
+            if ((r = fin.read(data)) != len)
                 throw new IOException(String.format("Only read %d of %d for %s", r, len, file.getName()));
             return data;
         }

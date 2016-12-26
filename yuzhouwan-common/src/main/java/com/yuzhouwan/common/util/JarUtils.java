@@ -28,7 +28,7 @@ public class JarUtils {
     private static final String PROP_PATH = PropUtils.getInstance().getPropertyInternal("prop.path");
     private static final String LIB_PATH = DirUtils.getLibPathInWebApp();
     private static final String CLASSES_PATH = DirUtils.getTestClassesPath();
-    private static Properties properties = new Properties();
+    private static Properties p = new Properties();
 
     private static volatile JarUtils instance;
 
@@ -98,9 +98,9 @@ public class JarUtils {
             _log.error("{}", e.getMessage());
             throw new RuntimeException(e);
         }
-        _log.debug("The number of Properties in Jar is {}.", properties.keySet().size());
-        for (Object key : properties.keySet()) {
-            _log.debug("{} : {}", key, properties.get(key));
+        _log.debug("The number of Properties in Jar is {}.", p.keySet().size());
+        for (Object key : p.keySet()) {
+            _log.debug("{} : {}", key, p.get(key));
         }
     }
 
@@ -143,19 +143,19 @@ public class JarUtils {
         try (ZipInputStream zip = new ZipInputStream(sourceUrl.toURI().toURL().openStream())) {
             if (zip.available() == 0)
                 throw new RuntimeException(sourceUrl.getPath().concat(" is not exist or cannot be available!!"));
-
+            ZipEntry e;
+            String name;
             while (true) {
-                ZipEntry e = zip.getNextEntry();
-                if (e == null)
-                    break;
-                String name = e.getName();
+                e = zip.getNextEntry();
+                if (e == null) break;
+                name = e.getName();
                 _log.debug("Properties File name is {}", name);
                 if (!StrUtils.isEmpty(name) && name.startsWith(PROP_PATH)) {
                     if (StrUtils.isEmpty(StrUtils.cutStartStr(name, PROP_PATH)))
                         continue;
-                    properties.load(JarUtils.class.getResourceAsStream("/".concat(name)));
-                    for (Object key : properties.keySet()) {
-                        _log.debug("JarUtils k-v: <{} = {}>", key, properties.get(key));
+                    p.load(JarUtils.class.getResourceAsStream("/".concat(name)));
+                    for (Object key : p.keySet()) {
+                        _log.debug("JarUtils k-v: <{} = {}>", key, p.get(key));
                     }
                 }
             }
@@ -163,9 +163,8 @@ public class JarUtils {
     }
 
     public String getProperty(String key) {
-        if (properties == null)
-            return null;
-        return properties.getProperty(key);
+        if (p == null) return null;
+        return p.getProperty(key);
     }
 
     /**

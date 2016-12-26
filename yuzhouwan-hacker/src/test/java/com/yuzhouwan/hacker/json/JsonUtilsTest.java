@@ -1,4 +1,4 @@
-package com.yuzhouwan.common.json;
+package com.yuzhouwan.hacker.json;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
@@ -17,7 +17,7 @@ import static org.junit.Assert.assertEquals;
  * Function: JsonUtils Tester
  *
  * @author Benedict Jin
- * @since 2016/3/17 0030
+ * @since 2016/3/17
  */
 public class JsonUtilsTest {
 

@@ -28,8 +28,7 @@ public class PropUtils {
         if (confPathList == null || confPathList.size() == 0) return;
         File confFile;
         for (String confPath : confPathList) {
-            if (StrUtils.isEmpty(confPath) || !(confFile = new File(confPath)).exists())
-                continue;
+            if (StrUtils.isEmpty(confPath) || !(confFile = new File(confPath)).exists()) continue;
             try (FileInputStream fis = new FileInputStream(confFile)) {
                 properties.load(fis);
             } catch (Exception e) {

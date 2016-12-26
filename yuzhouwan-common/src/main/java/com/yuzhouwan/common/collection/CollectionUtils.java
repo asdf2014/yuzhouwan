@@ -20,8 +20,8 @@ public class CollectionUtils {
 
     private static Logger _log = LoggerFactory.getLogger(CollectionUtils.class);
 
-    private volatile static long NANO_SECOND_TOTAL;
-    private volatile static long CALL_COUNT_TOTAL;
+//    private volatile static long NANO_SECOND_TOTAL;
+//    private volatile static long CALL_COUNT_TOTAL;
 
     /**
      * 按照 strWithSeparator 中包含的几个单词，模糊匹配 originList 内元素，并移除
@@ -72,29 +72,26 @@ public class CollectionUtils {
         return result.toArray();
     }
 
-    @Deprecated
     public static <E> Object getDuplicate(Collection<E> coll, E o, String field, Class fieldClass) {
         return getDuplicate(coll, o, field, fieldClass, null);
     }
 
     /**
      * Get Duplicate from Collection
-     *
      * [Note]: Should use HashMap when the coll holds a lot of data.
      *
      * @param coll         collection
      * @param o            aim object
-     * @param field        which field is used for judging
-     * @param fieldClass   the class type of field
+     * @param fieldName    which fieldName is used for judging
+     * @param fieldClass   the class type of fieldName
      * @param elementClass the sub-class of element in collection
      * @param <E>          the class type of elements in collection
-     * @return the object which has same the value of field in collection
+     * @return the object which has same the value of fieldName in collection
      */
-    @Deprecated
-    public static <E> Object getDuplicate(Collection<E> coll, E o, String field, Class fieldClass, Class elementClass) {
+    public static <E> Object getDuplicate(Collection<E> coll, E o, String fieldName, Class fieldClass, Class elementClass) {
 
-        long startTime = System.nanoTime();
-        if (coll == null || coll.isEmpty() || o == null || StrUtils.isEmpty(field) || fieldClass == null)
+//        long startTime = System.nanoTime();
+        if (coll == null || coll.isEmpty() || o == null || StrUtils.isEmpty(fieldName) || fieldClass == null)
             return null;
         Object collO = null, aimO = null;
         String elementClassName = "";
@@ -105,30 +102,28 @@ public class CollectionUtils {
         }
         E end = null;
         try {
-            Field f = o.getClass().getDeclaredField(field);
+            Field f = o.getClass().getDeclaredField(fieldName);
             f.setAccessible(true);
-            long endTime, period;
+//            long endTime, period;
             for (E e : coll) {
-                if (subClass && !elementClassName.equals(e.getClass().getName())) {
-                    continue;
-                }
+                if (subClass && !elementClassName.equals(e.getClass().getName())) continue;
                 collO = f.get(e);
                 aimO = f.get(o);
                 if (collO.equals(aimO) || fieldClass.cast(collO).equals(fieldClass.cast(aimO))) {
-                    endTime = System.nanoTime();
-                    period = endTime - startTime;
+//                    endTime = System.nanoTime();
+//                    period = endTime - startTime;
                     // 2016-12-08 09:07:56.746 | DEBUG | getDuplicate method used time: 622 nanosecond, total count: 57746148, total time: 1057645752619 nanosecond, time pre call: 18315 nanosecond | com.yuzhouwan.common.collection.CollectionUtils.getDuplicate | CollectionUtils.java:104
-                    _log.debug("getDuplicate method used time: {} nanosecond, total count: {}, " +
-                                    "total time: {} nanosecond, time pre call: {} nanosecond",
-                            period, CALL_COUNT_TOTAL++, (NANO_SECOND_TOTAL = NANO_SECOND_TOTAL + period),
-                            NANO_SECOND_TOTAL / CALL_COUNT_TOTAL);
+//                    _log.debug("getDuplicate method used time: {} nanosecond, total count: {}, " +
+//                                    "total time: {} nanosecond, time pre call: {} nanosecond",
+//                            period, CALL_COUNT_TOTAL++, (NANO_SECOND_TOTAL = NANO_SECOND_TOTAL + period),
+//                            NANO_SECOND_TOTAL / CALL_COUNT_TOTAL);
                     return (end = e);
                 }
             }
         } catch (Exception e) {
             _log.error(ExceptionUtils.errorInfo(e,
-                    String.format("field: %s, class: %s, object in collection: %s, object aim: %s",
-                            field, fieldClass.getName(), collO, aimO)));
+                    String.format("fieldName: %s, class: %s, object in collection: %s, object aim: %s",
+                            fieldName, fieldClass.getName(), collO, aimO)));
         } finally {
             if (end != null)
                 coll.remove(end);

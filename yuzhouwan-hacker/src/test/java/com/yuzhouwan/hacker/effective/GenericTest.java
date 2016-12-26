@@ -1,6 +1,6 @@
 package com.yuzhouwan.hacker.effective;
 
-import com.yuzhouwan.common.collection.Company;
+import com.yuzhouwan.hacker.algorithms.collection.sort.Company;
 import org.junit.Before;
 import org.junit.Test;
 

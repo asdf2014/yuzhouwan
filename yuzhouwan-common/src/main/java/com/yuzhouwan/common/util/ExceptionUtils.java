@@ -15,8 +15,7 @@ public class ExceptionUtils {
     }
 
     public static String errorInfo(Exception e, String detail) {
-        if (e == null)
-            return null;
+        if (e == null) return null;
         Class<?> clazz = e.getClass();
         return String.format("%s: %s%s", clazz == null ? "" : clazz.getSimpleName(),
                 e.getMessage(), StrUtils.isEmpty(detail) ? "" : ", Detail: ".concat(detail));

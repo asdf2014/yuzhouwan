@@ -1,4 +1,4 @@
-package com.yuzhouwan.common.collection;
+package com.yuzhouwan.hacker.algorithms.collection.sort;
 
 /**
  * Copyright @ 2016 yuzhouwan.com
@@ -48,10 +48,7 @@ public class Company implements Comparable<Company> {
 
     @Override
     public String toString() {
-        return "Company{" +
-                "city='" + city + '\'' +
-                ", foundation=" + foundation +
-                '}';
+        return "Company{" + "city='" + city + '\'' + ", foundation=" + foundation + '}';
     }
 }
 

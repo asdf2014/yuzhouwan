@@ -24,7 +24,6 @@ public class TimeUtils {
 
     private static final SimpleDateFormat SIMPLE_DATA_FORMAT_TIME_ZONE = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss SSS z");
     private static final SimpleDateFormat SIMPLE_DATA_FORMAT_BASIC = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss SSS");
-
     private static final SimpleDateFormat SIMPLE_DATE_FORMAT_WITH_TIME_ZONE = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
     public static String nowStr() {
@@ -34,7 +33,7 @@ public class TimeUtils {
     /**
      * 今天是几月份
      *
-     * @return
+     * @return month
      */
     public static int month() {
         Calendar calendar = Calendar.getInstance();
@@ -88,7 +87,7 @@ public class TimeUtils {
     /**
      * 上个月的同一天，凌晨 0点
      *
-     * @return
+     * @return date
      */
     public static Date lastMonthTodayInBegin() {
         return DateTime.now().minusMonths(1)
@@ -99,7 +98,7 @@ public class TimeUtils {
     /**
      * 几天前，凌晨 00:00:00 000
      *
-     * @return
+     * @return date
      */
     public static Date lastFewDaysInBegin(Integer days) {
         return DateTime.now().minusDays(days)
@@ -111,7 +110,7 @@ public class TimeUtils {
      * 某天的最后一秒 23:59:59 999
      *
      * @param index -1：今天的最后一秒；0：昨天的最后一秒；1：前天最后一秒
-     * @return
+     * @return date
      */
     public static Date yesterdayEnd(int index) {
         Calendar calendar = Calendar.getInstance();
@@ -126,14 +125,14 @@ public class TimeUtils {
     }
 
     /**
-     * 某天的开始 00:00:00 000
+     * n天前的 00:00:00 000
      *
-     * @param index
-     * @return
+     * @param index n天
+     * @return date
      */
-    public static Date pastWeekStart(int index) {
+    public static Date fewDaysAgoBegin(int index) {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH) - index);
+        calendar.setTime(DateTime.now().minusDays(index).toDate());
         calendar.set(Calendar.HOUR_OF_DAY, 0);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);

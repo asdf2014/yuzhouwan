@@ -18,32 +18,39 @@ public class ThreadUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(ThreadUtils.class);
 
-    private static final Long MIN_PERIOD = Long.parseLong(PropUtils.getInstance().getProperty("thread.min.period.millisecond"));
+    private static long MIN_PERIOD;
+
+    static {
+        String minPeriodStr = PropUtils.getInstance().getProperty("thread.min.period.millisecond");
+        if (StrUtils.isEmpty(minPeriodStr)) {
+            MIN_PERIOD = 0L;
+        } else {
+            MIN_PERIOD = Long.parseLong(minPeriodStr);
+        }
+    }
 
     public static ExecutorService buildExecutorService(Integer jobThreadCorePoolSize,
                                                        Integer jobThreadMaximumPoolSize,
                                                        Integer jobThreadKeepAliveSecond,
                                                        Integer jobArrayBlockingQueueSize, String poolName, boolean isDaemon) {
-        ExecutorService executorServiceMetrics;
+        ExecutorService executorService;
         ThreadFactoryBuilder threadFactoryBuilder = new ThreadFactoryBuilder();
-        if (!StrUtils.isEmpty(poolName)) {
-            threadFactoryBuilder.setNameFormat("[".concat(poolName).concat("]-%d"));
-        }
+        if (!StrUtils.isEmpty(poolName)) threadFactoryBuilder.setNameFormat("[".concat(poolName).concat("]-%d"));
         ThreadFactory threadFactory = threadFactoryBuilder.setDaemon(isDaemon).build();
         if (jobThreadCorePoolSize == null || jobThreadMaximumPoolSize == null
                 || jobThreadKeepAliveSecond == null || jobArrayBlockingQueueSize == null) {
-            executorServiceMetrics = Executors.newCachedThreadPool(threadFactory);
+            executorService = Executors.newCachedThreadPool(threadFactory);
         } else {
             try {
-                executorServiceMetrics = new ThreadPoolExecutor(jobThreadCorePoolSize,
-                        jobThreadMaximumPoolSize, jobThreadKeepAliveSecond, TimeUnit.SECONDS,
+                executorService = new ThreadPoolExecutor(jobThreadCorePoolSize, jobThreadMaximumPoolSize,
+                        jobThreadKeepAliveSecond, TimeUnit.SECONDS,
                         new ArrayBlockingQueue<>(jobArrayBlockingQueueSize), threadFactory);
             } catch (Exception e) {
                 _log.error(ExceptionUtils.errorInfo(e));
-                executorServiceMetrics = Executors.newCachedThreadPool(threadFactory);
+                executorService = Executors.newCachedThreadPool(threadFactory);
             }
         }
-        return executorServiceMetrics;
+        return executorService;
     }
 
 

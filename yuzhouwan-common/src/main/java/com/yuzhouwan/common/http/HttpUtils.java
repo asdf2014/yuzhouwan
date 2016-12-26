@@ -2,6 +2,7 @@ package com.yuzhouwan.common.http;
 
 import com.alibaba.fastjson.JSON;
 import com.yuzhouwan.common.util.PropUtils;
+import com.yuzhouwan.common.util.StrUtils;
 import org.apache.http.*;
 import org.apache.http.client.HttpRequestRetryHandler;
 import org.apache.http.client.config.RequestConfig;
@@ -51,6 +52,10 @@ public class HttpUtils {
 
     private static String userAgent;
 
+    private CloseableHttpClient httpClient;
+    private HttpClientContext httpClientContext;
+    private TrustManager[] trustManagers = new TrustManager[1];
+
     private static int TIMEOUT_CONNECTION;
     private static int TIMEOUT_SOCKET;
     private static int MAX_TOTAL;
@@ -58,16 +63,17 @@ public class HttpUtils {
     private static int MAX_ROUTE_TOTAL;
 
     static {
-        TIMEOUT_CONNECTION = Integer.valueOf(PropUtils.getInstance().getProperty("TIMEOUT_CONNECTION"));
-        TIMEOUT_SOCKET = Integer.valueOf(PropUtils.getInstance().getProperty("TIMEOUT_SOCKET"));
-        MAX_TOTAL = Integer.valueOf(PropUtils.getInstance().getProperty("MAX_TOTAL"));
-        MAX_RETRY = Integer.valueOf(PropUtils.getInstance().getProperty("MAX_RETRY"));
-        MAX_ROUTE_TOTAL = Integer.valueOf(PropUtils.getInstance().getProperty("MAX_ROUTE_TOTAL"));
+        String timeOutConn = PropUtils.getInstance().getProperty("TIMEOUT_CONNECTION");
+        TIMEOUT_CONNECTION = StrUtils.isEmpty(timeOutConn) ? 60000 : Integer.valueOf(timeOutConn);
+        String timeSocket = PropUtils.getInstance().getProperty("TIMEOUT_SOCKET");
+        TIMEOUT_SOCKET = StrUtils.isEmpty(timeSocket) ? 60000 : Integer.valueOf(timeSocket);
+        String maxTotal = PropUtils.getInstance().getProperty("MAX_TOTAL");
+        MAX_TOTAL = StrUtils.isEmpty(maxTotal) ? 200 : Integer.valueOf(maxTotal);
+        String maxRetry = PropUtils.getInstance().getProperty("MAX_RETRY");
+        MAX_RETRY = StrUtils.isEmpty(maxRetry) ? 5 : Integer.valueOf(maxRetry);
+        String maxRouteTotal = PropUtils.getInstance().getProperty("MAX_ROUTE_TOTAL");
+        MAX_ROUTE_TOTAL = StrUtils.isEmpty(maxRouteTotal) ? 20 : Integer.valueOf(maxRouteTotal);
     }
-
-    private CloseableHttpClient httpClient;
-    private HttpClientContext httpClientContext;
-    private TrustManager[] trustManagers = new TrustManager[1];
 
     private HttpUtils() {
     }
@@ -171,17 +177,13 @@ public class HttpUtils {
             // Retry if the request is considered idempotent
             return !(request instanceof HttpEntityEnclosingRequest);
         };
-
         // 初始化 httpClient客户端
         HttpClientBuilder httpClientBuilder = HttpClients.custom()
                 .setConnectionManager(httpClientConnectionManager)
                 .setDefaultRequestConfig(defaultRequestConfig)
                 .setRedirectStrategy(redirectStrategy)
                 .setRetryHandler(retryHandler);
-
-        if (HttpUtils.userAgent != null) {
-            httpClientBuilder.setUserAgent(userAgent);
-        }
+        if (HttpUtils.userAgent != null) httpClientBuilder.setUserAgent(userAgent);
         httpClient = httpClientBuilder.build();
     }
 

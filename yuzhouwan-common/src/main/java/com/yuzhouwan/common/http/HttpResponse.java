@@ -31,9 +31,8 @@ public class HttpResponse implements Serializable {
 
     public String getCharset() {
         if (contentType != null && contentType.lastIndexOf("=") != -1) {
-            String charset = contentType.substring(contentType.lastIndexOf("=") + 1);
             try {
-                Charset.forName(charset);
+                Charset.forName(contentType.substring(contentType.lastIndexOf("=") + 1));
             } catch (Exception e) {
                 return DEFAULT_CHARSET;
             }

@@ -29,6 +29,8 @@ hs_err_pid*
 # JIT log files
 *.log
 /logs
+**/logs
+**/logs/**
 
 # sorry for copyright
 /yuzhouwan-log/yuzhouwan-log-elastic/src/main/resources/es/web/

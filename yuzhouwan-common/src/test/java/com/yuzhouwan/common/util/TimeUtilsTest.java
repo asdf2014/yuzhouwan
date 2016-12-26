@@ -110,25 +110,25 @@ public class TimeUtilsTest {
     public void testTime() {
         {
             Calendar c = Calendar.getInstance();
-            c.set(2016, 5, 16, 12, 0, 0);
+            c.set(2016, Calendar.MAY, 16, 12, 0, 0);
             System.out.println(c.getTime());
             System.out.println(c.getTime().getTime());
         }
         {
             Calendar c = Calendar.getInstance();
-            c.set(2016, 5, 16, 12, 0, 29);
+            c.set(2016, Calendar.MAY, 16, 12, 0, 29);
             System.out.println(c.getTime());
             System.out.println(c.getTime().getTime());
         }
         {
             Calendar c = Calendar.getInstance();
-            c.set(2016, 5, 16, 12, 0, 35);
+            c.set(2016, Calendar.MAY, 16, 12, 0, 35);
             System.out.println(c.getTime());
             System.out.println(c.getTime().getTime());
         }
         {
             Calendar c = Calendar.getInstance();
-            c.set(2016, 5, 16, 12, 1, 35);
+            c.set(2016, Calendar.MAY, 16, 12, 1, 35);
             System.out.println(c.getTime());
             System.out.println(c.getTime().getTime());
         }
@@ -138,6 +138,19 @@ public class TimeUtilsTest {
     public void lastMonthTodayInBeginTest() {
         System.out.println(sdf.format(TimeUtils.lastMonthTodayInBegin()));
         System.out.println(sdf.format(TimeUtils.lastFewDaysInBegin(30)));
+    }
+
+    @Test
+    public void pastWeekStartTest() {
+        // now: 2016-12-27 00:00:00:000 +0800
+        // 2016-12-27 00:00:00:000 +0800
+        // 2016-12-26 00:00:00:000 +0800
+        // 2016-12-19 00:00:00:000 +0800
+        // 2016-11-25 00:00:00:000 +0800
+        System.out.println(sdf.format(TimeUtils.fewDaysAgoBegin(-1)));
+        System.out.println(sdf.format(TimeUtils.fewDaysAgoBegin(0)));
+        System.out.println(sdf.format(TimeUtils.fewDaysAgoBegin(7)));
+        System.out.println(sdf.format(TimeUtils.fewDaysAgoBegin(31)));
     }
 
     @Test

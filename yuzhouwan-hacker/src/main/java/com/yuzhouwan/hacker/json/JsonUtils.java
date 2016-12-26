@@ -1,4 +1,4 @@
-package com.yuzhouwan.common.json;
+package com.yuzhouwan.hacker.json;
 
 import com.alibaba.fastjson.JSON;
 
@@ -10,7 +10,7 @@ import java.util.List;
  * Function: Make some simple example for fastJSON
  *
  * @author Benedict Jin
- * @since 2016/3/17 0030
+ * @since 2016/3/17
  */
 public class JsonUtils {
 
@@ -23,5 +23,4 @@ public class JsonUtils {
         String s = "[{\"rule\":\"is down\", \"groupId\":\"1\",\"mode\":\"WECHAT\", \"level\":\"1\"}]";
         return JSON.parseArray(s, A.class);
     }
-
 }

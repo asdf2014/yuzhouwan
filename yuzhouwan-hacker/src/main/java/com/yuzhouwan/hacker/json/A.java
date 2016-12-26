@@ -1,7 +1,15 @@
-package com.yuzhouwan.common.json;
+package com.yuzhouwan.hacker.json;
 
 import java.io.Serializable;
 
+/**
+ * Copyright @ 2016 yuzhouwan.com
+ * All right reserved.
+ * Function: A
+ *
+ * @author Benedict Jin
+ * @since 2016/3/17
+ */
 public class A implements Serializable {
     public String mode;
     private String rule;
