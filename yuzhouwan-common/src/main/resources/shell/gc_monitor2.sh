@@ -1,5 +1,5 @@
 #!/bin/sh
-# nohup bash /home/hbase/hbase-monitor/gc_monitor2.sh "/data01/hbase/dumps" "HRegionServer" "75" "5" >> /data01/hbase/gc_monitor2.log &
+# nohup bash /home/hbase/hbase-monitor/gc_monitor2.sh "/data01/hbase/dumps" "HRegionServer" "75" "10" >> /data01/hbase/gc_monitor2.log &
 # need create $DUMP_OUTPUT_PATH firstly
 
 DUMP_OUTPUT_PATH="$1"
@@ -23,11 +23,14 @@ fi
 
 PROCESS_ID=-1
 
+
 HOST_NAME=`hostname`
 OLD_IFS="$IFS"
 IFS="-"
 eval SIMPLE_HOSTNAME=(${HOST_NAME})
 IFS="$OLD_IFS"
+# yuzhouwan01-prd -> yuzhouwan01
+# yuzhouwan02     -> yuzhouwan02
 echo "Now Machine: ${SIMPLE_HOSTNAME[0]}"
 
 JSTAT_LOG_FILE="${DUMP_OUTPUT_PATH}"/gc_monitor2_jstat.log
@@ -36,7 +39,8 @@ jstatMonitor(){
     if [ $(echo "${jstatMonitorCount}==0" | bc) -eq 1  ]; then
         PROCESS_ID=`jps | grep "${PROCESS_NAME}" | awk '{print $1}'`
         echo "[JSTAT]: now jstat process number: ${jstatMonitorCount}, then recreate jstat process..."
-        jstat -gcutil ${PROCESS_ID} 1000 >> "${JSTAT_LOG_FILE}" &
+        # make sure that could get those informations of `jstat`
+        jstat -gcutil ${PROCESS_ID} 500 >> "${JSTAT_LOG_FILE}" &
         echo "[EXEC]: jstat -gcutil ${PROCESS_ID} 1000 >> "${JSTAT_LOG_FILE}" &"
     else
         echo "[JSTAT]: jstat process is healthy..."
@@ -131,6 +135,7 @@ sendMessage() {
     echo "Sending Alert Message..."
     message="[Machine HostName]: `hostname` \r\n [Process ID]: ${PROCESS_ID} \r\n [Old Generation Percent Threshold]: ${OLD_PERCENT_THRESHOLD}% \r\n [Old Generation Percent Now]: ${oldPercent}% \r\n [The length of time beyond the threshold]: ${OVER_THRESHOLD_COUNT}s \r\n [Dump file path]: ${DUMP_PATH}"
     echo -e "Title: ${LONG_GC_MESSAGE_TITLE} \n Message: ${message}"
+    # maybe should setup SMTP service
     echo "${message}" | mail -s "${LONG_GC_MESSAGE_TITLE}" 1571805553@qq.com
 }
 
