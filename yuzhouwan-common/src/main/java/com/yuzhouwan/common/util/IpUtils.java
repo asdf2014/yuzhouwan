@@ -163,12 +163,12 @@ public class IpUtils {
         String[] rangeArray = range.split("/");
         if (rangeArray.length != 2) return null;
         if (StrUtils.isEmpty(rangeArray[0]) || StrUtils.isEmpty(rangeArray[1])) return null;
-        String rangeIp = rangeArray[0];
-        if (!checkValid(rangeIp) || !checkValid(ipAddress)) return null;
-        Integer subnet = ip2int(rangeIp);   // 10.1.1.0/24
-        if (subnet == null) return false;
-        Integer ip = ip2int(ipAddress);   // 10.1.1.99
-        if (ip == null) return false;
+        String rangeIp;
+        if (!checkValid(rangeIp = rangeArray[0]) || !checkValid(ipAddress)) return null;
+        Integer subnet;     // 10.1.1.0/24
+        if ((subnet = ip2int(rangeIp)) == null) return false;
+        Integer ip;         // 10.1.1.99
+        if ((ip = ip2int(ipAddress)) == null) return false;
 
         // Create bitmask to clear out irrelevant bits. For 10.1.1.0/24 this is
         // 0xFFFFFF00 -- the first 24 bits are 1's, the last 8 are 0's.

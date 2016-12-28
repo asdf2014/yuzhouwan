@@ -33,14 +33,10 @@ public class HBaseUtils {
      * @return
      */
     public static String generateSplitKeys(int startKey, int endKey, int stepSize, int fill) {
-
         StringBuilder strBuilder = new StringBuilder("SPLITS => [");
-        for (int i = startKey; i < endKey; i += stepSize) {
-
+        for (int i = startKey; i < endKey; i += stepSize)
             strBuilder.append("'").append(StrUtils.fillWitchZero(i, fill)).append("', ");
-        }
-        strBuilder.append("]");
-        return strBuilder.toString().replaceAll(", ]", "]");
+        return strBuilder.append("]").toString().replaceAll(", ]", "]");
     }
 
     public static boolean createTable(Admin admin, HTableDescriptor table, byte[][] splits) throws IOException {
@@ -60,11 +56,9 @@ public class HBaseUtils {
         BigInteger range = highestKey.subtract(lowestKey);
         BigInteger regionIncrement = range.divide(BigInteger.valueOf(numRegions));
         lowestKey = lowestKey.add(regionIncrement);
-        for (int i = 0; i < numRegions - 1; i++) {
-            BigInteger key = lowestKey.add(regionIncrement.multiply(BigInteger.valueOf(i)));
-            byte[] b = String.format("%016x", key).getBytes();
-            splits[i] = b;
-        }
+        for (int i = 0; i < numRegions - 1; i++)
+            splits[i] = String.format("%016x",
+                    lowestKey.add(regionIncrement.multiply(BigInteger.valueOf(i)))).getBytes();
         return splits;
     }
 

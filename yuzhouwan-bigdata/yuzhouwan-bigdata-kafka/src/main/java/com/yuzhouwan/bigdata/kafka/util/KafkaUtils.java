@@ -36,8 +36,7 @@ public class KafkaUtils {
 
     static {
         SEND_KAFKA_FACTOR = Integer.parseInt(PropUtils.getInstance().getProperty("job.send.2.kafka.factor"));
-        if (SEND_KAFKA_FACTOR < 10 || SEND_KAFKA_FACTOR > 1000)
-            SEND_KAFKA_FACTOR = 100;
+        if (SEND_KAFKA_FACTOR < 10 || SEND_KAFKA_FACTOR > 1000) SEND_KAFKA_FACTOR = 100;
     }
 
     private KafkaUtils() {
@@ -79,8 +78,8 @@ public class KafkaUtils {
     }
 
     public void sendMessageToKafka(String message) {
-        Producer<String, String> p = KafkaConnPoolUtils.getInstance().getConn();
-        if (p == null) {
+        Producer<String, String> p;
+        if ((p = KafkaConnPoolUtils.getInstance().getConn()) == null) {
             _log.warn("Cannot get Producer in connect pool!");
             return;
         }
@@ -120,9 +119,8 @@ public class KafkaUtils {
             copy = new LinkedList<>();
             for (int i = 0; i < (len = objs.size()); i++) {
                 copy.add(objs.get(i));
-                if (i % (KafkaConnPoolUtils.CONN_IN_POOL * SEND_KAFKA_FACTOR) == 0 || i == (len - 1)) {
+                if (i % (KafkaConnPoolUtils.CONN_IN_POOL * SEND_KAFKA_FACTOR) == 0 || i == (len - 1))
                     internalPutPool(copy, describe);
-                }
             }
         } else {
             copy = new LinkedList<>(objs);

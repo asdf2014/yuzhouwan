@@ -60,19 +60,12 @@ public class JarUtils {
              * /classes/lib/*.jar
              */
             _log.debug("CLASSES_PATH is {}", CLASSES_PATH);
-            String jarPath;
             if (!StrUtils.isEmpty(CLASSES_PATH)) {
-                jarPaths = DirUtils.findPath(CLASSES_PATH, ".jar", false, "lib");
-                if (jarPaths != null && jarPaths.size() > 0) {
+                if ((jarPaths = DirUtils.findPath(CLASSES_PATH, ".jar", false, "lib")) != null && jarPaths.size() > 0)
                     for (String jarFile : jarPaths) {
-                        jarFile = jarFile.substring(1);
-                        jarPaths = DirUtils.findPath(CLASSES_PATH, jarFile, false, "classes");
-                        if (jarPaths != null && jarPaths.size() > 0) {
-                            jarPath = jarPaths.get(0);
-                            scanDirWithinJar(jarPath);
-                        }
+                        jarPaths = DirUtils.findPath(CLASSES_PATH, jarFile.substring(1), false, "classes");
+                        if (jarPaths != null && jarPaths.size() > 0) scanDirWithinJar(jarPaths.get(0));
                     }
-                }
             }
 
             /**
@@ -80,22 +73,16 @@ public class JarUtils {
              */
             _log.debug("LIB_PATH is {}", LIB_PATH);
             if (!StrUtils.isEmpty(LIB_PATH)) {
-                jarPaths = DirUtils.findPath(LIB_PATH, ".jar", false, "lib");
-                if (jarPaths != null && jarPaths.size() > 0) {
+                if ((jarPaths = DirUtils.findPath(LIB_PATH, ".jar", false, "lib")) != null && jarPaths.size() > 0)
                     for (String jarFile : jarPaths) {
-                        jarFile = jarFile.substring(1);
                         //如果是 webApp，这里需要改为 WEB-INF; 否则是 target (supported by profile in maven)
-                        jarPaths = DirUtils.findPath(LIB_PATH, jarFile, false,
+                        jarPaths = DirUtils.findPath(LIB_PATH, jarFile.substring(1), false,
                                 PropUtils.getInstance().getPropertyInternal("lib.path"));
-                        if (jarPaths != null && jarPaths.size() > 0) {
-                            jarPath = jarPaths.get(0);
-                            scanDirWithinJar(jarPath);
-                        }
+                        if (jarPaths != null && jarPaths.size() > 0) scanDirWithinJar(jarPaths.get(0));
                     }
-                }
             }
         } catch (Exception e) {
-            _log.error("{}", e.getMessage());
+            _log.error("{}", ExceptionUtils.errorInfo(e));
             throw new RuntimeException(e);
         }
         _log.debug("The number of Properties in Jar is {}.", p.keySet().size());
@@ -123,9 +110,8 @@ public class JarUtils {
                 _log.debug("SourcePath: {}", sourcePath);
                 sourceUrl = new URL(sourcePath);
             }
-            if (sourceUrl == null)
-                return;
         }
+        if (sourceUrl == null) return;
         _log.debug("Jar Path: {}", sourceUrl.getPath());
         loadPropsWithinJar(sourceUrl);
     }
@@ -146,18 +132,14 @@ public class JarUtils {
             ZipEntry e;
             String name;
             while (true) {
-                e = zip.getNextEntry();
-                if (e == null) break;
-                name = e.getName();
-                _log.debug("Properties File name is {}", name);
-                if (!StrUtils.isEmpty(name) && name.startsWith(PROP_PATH)) {
-                    if (StrUtils.isEmpty(StrUtils.cutStartStr(name, PROP_PATH)))
-                        continue;
+                if ((e = zip.getNextEntry()) == null) break;
+                if (!StrUtils.isEmpty(name = e.getName()) && name.startsWith(PROP_PATH)) {
+                    if (StrUtils.isEmpty(StrUtils.cutStartStr(name, PROP_PATH))) continue;
                     p.load(JarUtils.class.getResourceAsStream("/".concat(name)));
-                    for (Object key : p.keySet()) {
+                    for (Object key : p.keySet())
                         _log.debug("JarUtils k-v: <{} = {}>", key, p.get(key));
-                    }
                 }
+                _log.debug("Properties File name is {}", name);
             }
         }
     }
@@ -174,11 +156,10 @@ public class JarUtils {
      * @return
      */
     public static boolean isProjectJar(final Class<?> clazz) {
-        final URL location = clazz.getProtectionDomain().getCodeSource().getLocation();
         try {
-            return !new File(location.toURI()).getName().endsWith(".jar");
+            return !new File(clazz.getProtectionDomain().getCodeSource().getLocation().toURI()).getName().endsWith(".jar");
         } catch (Exception ignored) {
-            _log.error("{}", ignored);
+            _log.error("{}", ExceptionUtils.errorInfo(ignored));
             return true;
         }
     }

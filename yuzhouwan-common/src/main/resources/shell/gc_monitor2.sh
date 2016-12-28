@@ -53,9 +53,9 @@ GLOBAL_COOL_LIMIT_COUNT=1
 
 GLOBAL_PRE_OLD_PERCENT=-1
 GLOBAL_HIGH_GROWTH_COUNT=0
-GLOBAL_HIGH_GROWTH_LIMIT_COUNT=5
+GLOBAL_HIGH_GROWTH_LIMIT_COUNT=20
 
-GLOBAL_JSTACK_LIMIT_COUNT=3
+GLOBAL_JSTACK_LIMIT_COUNT=5
 
 GLOBAL_LAST_GC_DATE=`date '++%Y%m%d%H%M%S'`
 LONG_GC_MESSAGE_TITLE="Long GC Warning"
@@ -90,10 +90,12 @@ longGc() {
             elif [ $(echo "${incrPercent}>=3" | bc) -eq 1 -a $(echo "${incrPercent}<5" | bc) -eq 1 ]; then
                 thresholdCount=$(echo "${thresholdCount}+5" | bc)
                 GLOBAL_HIGH_GROWTH_COUNT=$(echo "${GLOBAL_HIGH_GROWTH_COUNT}+1" | bc)
+                jstackProcess &
                 echo "High Growth of Old Generation! [${GLOBAL_HIGH_GROWTH_COUNT}/${GLOBAL_HIGH_GROWTH_LIMIT_COUNT}]"
             elif [ $(echo "${incrPercent}>=5" | bc) -eq 1 ]; then
                 thresholdCount=$(echo "${thresholdCount}+10" | bc)
                 GLOBAL_HIGH_GROWTH_COUNT=$(echo "${GLOBAL_HIGH_GROWTH_COUNT}+2" | bc)
+                jstackProcess &
                 echo "High Growth of Old Generation! [${GLOBAL_HIGH_GROWTH_COUNT}/${GLOBAL_HIGH_GROWTH_LIMIT_COUNT}]"
             fi
         fi
@@ -136,7 +138,7 @@ dealAlert() {
             sendMessage
         fi
         GLOBAL_COOL_COUNT=$(echo "${GLOBAL_COOL_COUNT}+1" | bc)
-        if [ $(echo "${GLOBAL_COOL_COUNT}==${GLOBAL_COOL_LIMIT_COUNT}" | bc) -eq 1 ]; then
+        if [ $(echo "${GLOBAL_COOL_COUNT}>=${GLOBAL_COOL_LIMIT_COUNT}" | bc) -eq 1 ]; then
             GLOBAL_COOL_COUNT=0
             GLOBAL_HIGH_GROWTH_COUNT=0
             skillCooling
@@ -167,7 +169,7 @@ jstackProcess() {
         echo "[EXEC]: jstack -l "${PROCESS_ID}" >> "${JSTACK_PATH}", Date: ${NOW}"
         jstack -l "${PROCESS_ID}" >> "${JSTACK_PATH}"
         jstackCount=$(echo "${jstackCount}+1" | bc)
-        sleep 2
+        sleep 3
     done
 }
 
@@ -184,19 +186,20 @@ buildOutputPath() {
 
 sendMessage() {
     echo "Sending Alert Message..."
-    message="[Machine HostName]: `hostname` \r\n [Process ID]: ${PROCESS_ID} \r\n [Old Generation Percent Threshold]: ${OLD_PERCENT_THRESHOLD}% \r\n [Old Generation Percent Now]: ${oldPercent}% \r\n [The length of time beyond the threshold]: ${OVER_THRESHOLD_COUNT}s \r\n [Dump file path]: ${DUMP_PATH}"
+#    message="[Machine HostName]: `hostname` \r\n [Process ID]: ${PROCESS_ID} \r\n [Old Generation Percent Threshold]: ${OLD_PERCENT_THRESHOLD}% \r\n [Old Generation Percent Now]: ${oldPercent}% \r\n [The length of time beyond the threshold]: ${OVER_THRESHOLD_COUNT}s \r\n [Dump file path]: ${DUMP_PATH}"
+    message="[Old Generation Percent]: ${oldPercent}%, [High Growth of OG]: ${GLOBAL_HIGH_GROWTH_COUNT} times"
     echo -e "Title: ${LONG_GC_MESSAGE_TITLE} \n Message: ${message}"
-    # maybe should setup SMTP service
-    echo "${message}" | mail -s "${LONG_GC_MESSAGE_TITLE}" 1571805553@qq.com
+    sh /home/hbase/hbase-monitor/alarm.sh -t "${LONG_GC_MESSAGE_TITLE}" -v "${message}" -g "hbase_long_gc_mine" -d 0 -m ALL    # hbase_long_gc 平台开发部
+    echo "Message sends successfully."
 }
 
 skillCooling() {
     echo "Skill cooling..."
-    sleepCountDown=61
+    sleepCountDown=31
     while [ $(echo "${sleepCountDown}>1" | bc) -eq 1 ]; do
         sleepCountDown=$(echo "${sleepCountDown}-1" | bc)
-        echo "Skill cooling... ${sleepCountDown} second"
-        sleep 1
+        echo "Skill cooling... ${sleepCountDown} min"
+        sleep 60
     done
     echo "Continue."
 }

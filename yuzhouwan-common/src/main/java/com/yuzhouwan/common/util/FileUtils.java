@@ -16,9 +16,9 @@ import java.io.IOException;
 public class FileUtils {
 
     public static byte[] readFile(String filename) throws IOException {
-        File file = new File(filename);
-        long len = file.length();
-        byte data[] = new byte[(int) len];
+        long len;
+        File file;
+        byte[] data = new byte[(int) (len = (file = new File(filename)).length())];
         try (FileInputStream fin = new FileInputStream(file)) {
             int r;
             if ((r = fin.read(data)) != len)

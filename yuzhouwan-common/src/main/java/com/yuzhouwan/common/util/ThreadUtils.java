@@ -21,12 +21,11 @@ public class ThreadUtils {
     private static long MIN_PERIOD;
 
     static {
-        String minPeriodStr = PropUtils.getInstance().getProperty("thread.min.period.millisecond");
-        if (StrUtils.isEmpty(minPeriodStr)) {
+        String minPeriodStr;
+        if (StrUtils.isEmpty(minPeriodStr = PropUtils.getInstance().getProperty("thread.min.period.millisecond")))
             MIN_PERIOD = 0L;
-        } else {
+        else
             MIN_PERIOD = Long.parseLong(minPeriodStr);
-        }
     }
 
     public static ExecutorService buildExecutorService(Integer jobThreadCorePoolSize,
@@ -63,8 +62,7 @@ public class ThreadUtils {
             long sleep;
             if (passedPeriod < aimPeriod) {
                 sleep = aimPeriod - passedPeriod;
-                if (sleep < MIN_PERIOD)
-                    sleep = MIN_PERIOD;
+                if (sleep < MIN_PERIOD) sleep = MIN_PERIOD;
             } else {
                 _log.warn("Thread:{}, Used Time: {}, Excepted Period Time: {}", Thread.currentThread().getName(),
                         passedPeriod, aimPeriod);

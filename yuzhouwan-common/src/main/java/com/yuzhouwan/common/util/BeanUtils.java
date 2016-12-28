@@ -18,7 +18,6 @@ import java.util.concurrent.ConcurrentHashMap;
 public class BeanUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(BeanUtils.class);
-
     private static final ConcurrentHashMap<String, Field[]> FIELDS_CACHE = new ConcurrentHashMap<>();
 
     /**
@@ -33,12 +32,11 @@ public class BeanUtils {
         if (o == null || StrUtils.isEmpty(key)) return;
         Class<?> clazz;
         if ((clazz = o.getClass()) == null) return;
-        String className = clazz.getName();
-        if (StrUtils.isEmpty(className)) return;
+        String className;
+        if (StrUtils.isEmpty(className = clazz.getName())) return;
         Field[] fields;
         if (FIELDS_CACHE.size() == 0 || !FIELDS_CACHE.containsKey(className)) {
-            fields = clazz.getDeclaredFields();
-            FIELDS_CACHE.put(className, fields);
+            FIELDS_CACHE.put(className, fields = clazz.getDeclaredFields());
         } else {
             fields = FIELDS_CACHE.get(className);
         }

@@ -142,15 +142,24 @@ public class TimeUtilsTest {
 
     @Test
     public void pastWeekStartTest() {
-        // now: 2016-12-27 00:00:00:000 +0800
-        // 2016-12-27 00:00:00:000 +0800
-        // 2016-12-26 00:00:00:000 +0800
-        // 2016-12-19 00:00:00:000 +0800
-        // 2016-11-25 00:00:00:000 +0800
+        // now: 2016-12-28 21:00:13:523 +0800
+        // 2016-12-29 00:00:00:000 +0800
+        // 2016-12-28 00:00:00:000 +0800
+        // 2016-12-21 00:00:00:000 +0800
+        // 2016-11-27 00:00:00:000 +0800
         System.out.println(sdf.format(TimeUtils.fewDaysAgoBegin(-1)));
         System.out.println(sdf.format(TimeUtils.fewDaysAgoBegin(0)));
         System.out.println(sdf.format(TimeUtils.fewDaysAgoBegin(7)));
         System.out.println(sdf.format(TimeUtils.fewDaysAgoBegin(31)));
+
+        // 2016-12-29 23:59:59:999 +0800
+        // 2016-12-28 23:59:59:999 +0800
+        // 2016-12-21 23:59:59:999 +0800
+        // 2016-11-27 23:59:59:999 +0800
+        System.out.println(sdf.format(TimeUtils.fewDaysAgoEnd(-1)));
+        System.out.println(sdf.format(TimeUtils.fewDaysAgoEnd(0)));
+        System.out.println(sdf.format(TimeUtils.fewDaysAgoEnd(7)));
+        System.out.println(sdf.format(TimeUtils.fewDaysAgoEnd(31)));
     }
 
     @Test

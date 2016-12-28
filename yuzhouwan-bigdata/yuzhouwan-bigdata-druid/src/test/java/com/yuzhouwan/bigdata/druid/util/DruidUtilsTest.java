@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-
 /**
  * Copyright @ 2016 yuzhouwan.com
  * All right reserved.

@@ -21,18 +21,17 @@ public class DruidUtils {
         PropUtils p = PropUtils.getInstance();
         String metricsSpecPrefix = p.getProperty("metrics.spec.prefix");
         String metricsSpecMiddle = p.getProperty("metrics.spec.middle");
-        if (StrUtils.isEmpty(metricsSpecPrefix) || StrUtils.isEmpty(metricsSpecMiddle)) {
+        if (StrUtils.isEmpty(metricsSpecPrefix) || StrUtils.isEmpty(metricsSpecMiddle))
             throw new RuntimeException("Properties is empty!");
-        }
         StringBuilder strBuilder = new StringBuilder(metricsSpecPrefix);
         String fieldName, simpleTypeName;
+        Field[] fields;
         HashSet<String> checkExists = new HashSet<>();
         for (Class clazz : classList) {
-            Field[] fields = clazz.getDeclaredFields();
+            fields = clazz.getDeclaredFields();
             for (Field field : fields) {
                 fieldName = field.getName();
-                if (checkExists.contains(fieldName))
-                    continue;
+                if (checkExists.contains(fieldName)) continue;
                 checkExists.add(fieldName);
                 simpleTypeName = field.getType().getSimpleName();
                 if ("string".equalsIgnoreCase(simpleTypeName) ||

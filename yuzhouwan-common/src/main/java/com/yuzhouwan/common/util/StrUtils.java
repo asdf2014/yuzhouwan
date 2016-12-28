@@ -44,14 +44,11 @@ public class StrUtils {
      */
     public static String getMainValue(String suppressCode, int headIndex, String needRemoved) {
         if (!StrUtils.isEmpty(suppressCode)) {
-
             String tail = suppressCode.substring(headIndex, suppressCode.length());
             while (tail.length() >= 0) {
-                if (tail.startsWith(needRemoved)) {
-                    tail = tail.substring(1);
-                } else {
-                    return tail;
-                }
+                if (tail.startsWith(needRemoved)) tail = tail.substring(1);
+                else return tail;
+
             }
         }
         return null;
@@ -96,8 +93,8 @@ public class StrUtils {
      * @return
      */
     public static String cutMiddleStr(String origin, String middle) {
-        String[] strs = origin.split(middle);
-        return strs[strs.length - 1];
+        String[] strs;
+        return (strs = origin.split(middle))[strs.length - 1];
     }
 
     /**
@@ -124,17 +121,14 @@ public class StrUtils {
         int index;
         LinkedList<String> result = new LinkedList<>();
         for (int i = 0; i < separators.length; i++) {
-            index = origin.indexOf(separators[i]);
-            if (index == -1)
-                break;
+            if ((index = origin.indexOf(separators[i])) == -1) break;
             origin = origin.substring(index + separators[i].length());
             if (i == len - 1) {
                 result.add(origin);
                 break;
             }
             index = origin.indexOf(separators[i + 1]);
-            if (index == -1)
-                break;
+            if (index == -1) break;
             result.add(origin.substring(0, index));
             origin = origin.substring(index);
         }
