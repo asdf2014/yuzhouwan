@@ -18,9 +18,9 @@ public class DecimalUtilsTest {
 
     @Test
     public void convertInto16() throws Exception {
-        assertEquals(1, DecimalUtils.convert(1));
-        assertEquals(22, DecimalUtils.convert(16));
-        assertEquals(23, DecimalUtils.convert(17));
+        assertEquals(1, DecimalUtils.convert2Hex(1));
+        assertEquals(22, DecimalUtils.convert2Hex(16));
+        assertEquals(23, DecimalUtils.convert2Hex(17));
     }
 
     @Test

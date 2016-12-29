@@ -152,8 +152,8 @@ public class JarUtils {
     /**
      * 判断某个 Class是否是 Project内的，还是外部依赖的 jar里的
      *
-     * @param clazz
-     * @return
+     * @param clazz Class
+     * @return isProjectJar
      */
     public static boolean isProjectJar(final Class<?> clazz) {
         try {

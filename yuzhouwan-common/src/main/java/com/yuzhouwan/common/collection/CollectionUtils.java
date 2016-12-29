@@ -32,21 +32,14 @@ public class CollectionUtils {
      * @return
      */
     public static List<String> removeAllByStrWithSeparator(List<String> originList, String strWithSeparator, String separator) {
-        if (originList == null || originList.size() <= 0 || strWithSeparator == null || separator == null) {
-            return null;
-        }
+        if (originList == null || originList.size() <= 0 || strWithSeparator == null || separator == null) return null;
         List<String> result = new LinkedList<>();
         boolean isContains;
         for (String origin : originList) {
             isContains = false;
-            for (String aim : strWithSeparator.split(separator)) {
-                if (!isContains && origin.contains(aim)) {
-                    isContains = true;
-                }
-            }
-            if (!isContains) {
-                result.add(origin);
-            }
+            for (String aim : strWithSeparator.split(separator))
+                if (!isContains && origin.contains(aim)) isContains = true;
+            if (!isContains) result.add(origin);
         }
         return result;
     }
@@ -65,10 +58,7 @@ public class CollectionUtils {
         Collections.addAll(set, a);
 
         Set<Object> result = new HashSet<>();
-        for (Object bi : b) {
-            if (set.contains(bi))
-                result.add(bi);
-        }
+        for (Object bi : b) if (set.contains(bi)) result.add(bi);
         return result.toArray();
     }
 

@@ -30,13 +30,12 @@ public class HttpResponse implements Serializable {
     }
 
     public String getCharset() {
-        if (contentType != null && contentType.lastIndexOf("=") != -1) {
+        if (contentType != null && contentType.lastIndexOf("=") != -1)
             try {
                 Charset.forName(contentType.substring(contentType.lastIndexOf("=") + 1));
             } catch (Exception e) {
                 return DEFAULT_CHARSET;
             }
-        }
         return DEFAULT_CHARSET;
     }
 

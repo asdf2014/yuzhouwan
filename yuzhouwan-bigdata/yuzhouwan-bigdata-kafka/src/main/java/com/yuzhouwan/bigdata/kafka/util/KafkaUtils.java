@@ -137,24 +137,22 @@ public class KafkaUtils {
                 long start = System.currentTimeMillis();
                 double size = 0;
                 String json;
-                for (T obj : deepCopy) {
+                for (T obj : deepCopy)
                     try {
                         getInstance().sendMessageToKafka(json = obj.toString());
                         size += json.getBytes().length;
                     } catch (Exception e) {
                         _log.error(ExceptionUtils.errorInfo(e));
                     }
-                }
                 long end = System.currentTimeMillis();
-                if (StrUtils.isEmpty(describe)) {
+                if (StrUtils.isEmpty(describe))
                     _log.info(SEND_KAFKA_INFOS_BASIC,
                             Thread.currentThread().getName(), TimeUtils.nowTimeWithZone(), end - start,
                             DecimalUtils.saveTwoPoint(size / 1024 / 1024));
-                } else {
+                else
                     _log.info(SEND_KAFKA_INFOS_DESCRIBE,
                             describe, Thread.currentThread().getName(), TimeUtils.nowTimeWithZone(), end - start,
                             DecimalUtils.saveTwoPoint(size / 1024 / 1024));
-                }
             }
         });
         copy.clear();

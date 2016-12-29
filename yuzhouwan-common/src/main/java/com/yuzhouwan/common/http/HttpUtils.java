@@ -1,6 +1,7 @@
 package com.yuzhouwan.common.http;
 
 import com.alibaba.fastjson.JSON;
+import com.yuzhouwan.common.util.ExceptionUtils;
 import com.yuzhouwan.common.util.PropUtils;
 import com.yuzhouwan.common.util.StrUtils;
 import org.apache.http.*;
@@ -91,8 +92,7 @@ public class HttpUtils {
 
     public static void destory() {
         try {
-            if (helper != null && helper.httpClient != null)
-                helper.httpClient.close();
+            if (helper != null && helper.httpClient != null) helper.httpClient.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -137,7 +137,7 @@ public class HttpUtils {
             sslContext.init(new KeyManager[0], trustManagers, new SecureRandom());
             sslSocketFactory = new SSLConnectionSocketFactory(sslContext, new NoopHostnameVerifier());
         } catch (Exception e) {
-            _log.error("error: {}", e.getMessage());
+            _log.error(ExceptionUtils.errorInfo(e));
             throw new RuntimeException(e);
         }
 
@@ -161,18 +161,12 @@ public class HttpUtils {
 
         // 重试策略
         HttpRequestRetryHandler retryHandler = (IOException exception, int executionCount, HttpContext context) -> {
-            if (executionCount >= MAX_RETRY) {
-                // Do not retry if over max retry count
-                return false;
-            }
-            if (exception instanceof NoHttpResponseException) {
-                // Retry if the server dropped connection on us
-                return true;
-            }
-            if (exception instanceof SSLHandshakeException) {
-                // Do not retry on SSL handshake exception
-                return false;
-            }
+            // Do not retry if over max retry count
+            if (executionCount >= MAX_RETRY) return false;
+            // Retry if the server dropped connection on us
+            if (exception instanceof NoHttpResponseException) return true;
+            // Do not retry on SSL handshake exception
+            if (exception instanceof SSLHandshakeException) return false;
             HttpRequest request = (HttpRequest) context.getAttribute(HttpCoreContext.HTTP_REQUEST);
             // Retry if the request is considered idempotent
             return !(request instanceof HttpEntityEnclosingRequest);
@@ -200,9 +194,7 @@ public class HttpUtils {
                     builder.addBinaryBody(entry.getKey(), (File) value);
                 } else if (value instanceof CharSequence) {
                     builder.addTextBody(entry.getKey(), value.toString(), contentType);
-                } else {
-                    builder.addTextBody(entry.getKey(), JSON.toJSONString(value), contentType);
-                }
+                } else builder.addTextBody(entry.getKey(), JSON.toJSONString(value), contentType);
             }
         }
         return builder;
@@ -226,13 +218,12 @@ public class HttpUtils {
     }
 
     public HttpResponse post(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
-        HttpPost post = new HttpPost(url);
         _log.debug(url);
         MultipartEntityBuilder builder = processBuilderParams(params);
         builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
         builder.setCharset(Consts.UTF_8);
-        HttpEntity entity = builder.build();
-        post.setEntity(entity);
+        HttpPost post = new HttpPost(url);
+        post.setEntity(builder.build());
         processHeader(post, headers);
         return internalProcess(post);
     }
@@ -280,8 +271,8 @@ public class HttpUtils {
     }
 
     public HttpResponse get(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
-        HttpGet get = new HttpGet(processURL(url, params));
         _log.debug(url);
+        HttpGet get = new HttpGet(processURL(url, params));
         processHeader(get, headers);
         return internalProcess(get);
     }
@@ -304,8 +295,8 @@ public class HttpUtils {
     }
 
     public HttpResponse put(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
-        HttpPut put = new HttpPut(processURL(url, params));
         _log.debug(url);
+        HttpPut put = new HttpPut(processURL(url, params));
         processHeader(put, headers);
         return internalProcess(put);
     }
@@ -328,8 +319,8 @@ public class HttpUtils {
     }
 
     public HttpResponse put(String url, HttpEntity entity, Map<String, String> headers) throws Exception {
-        HttpPut put = new HttpPut(url);
         _log.debug(url);
+        HttpPut put = new HttpPut(url);
         put.setEntity(entity);
         processHeader(put, headers);
         return internalProcess(put);
@@ -353,9 +344,9 @@ public class HttpUtils {
     }
 
     public HttpResponse delete(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
-        HttpDelete delete = new HttpDelete(processURL(url, params));
         _log.debug(url);
-        processHeader(delete, headers);
+        HttpDelete delete;
+        processHeader((delete = new HttpDelete(processURL(url, params))), headers);
         return internalProcess(delete);
     }
 
@@ -373,9 +364,8 @@ public class HttpUtils {
             int statusCode = response.getStatusLine().getStatusCode();
             HttpResponse httpResponse = new HttpResponse();
             httpResponse.setCode(statusCode);
-            if (httpResponse.isError()) {
+            if (httpResponse.isError())
                 _log.error("error response: status {}, method {} ", statusCode, rest.getMethod());
-            }
             httpResponse.setBytes(EntityUtils.toByteArray(response.getEntity()));
             Header header;
             if ((header = response.getEntity().getContentType()) != null)
@@ -401,23 +391,16 @@ public class HttpUtils {
     }
 
     private void processHeader(HttpRequestBase entity, Map<String, String> headers) {
-        if (headers == null) {
-            return;
-        }
-        for (Entry<String, String> entry : headers.entrySet()) {
+        if (headers == null) return;
+        for (Entry<String, String> entry : headers.entrySet())
             entity.addHeader(entry.getKey(), entry.getValue());
-        }
     }
 
     private String processURL(String processUrl, Map<String, Object> params) {
-        if (params == null) {
-            return processUrl;
-        }
-        _log.debug(params.toString());
-        StringBuilder url = new StringBuilder(processUrl);
-        if (url.indexOf("?") < 0)
-            url.append('?');
-
+        if (params == null) return processUrl;
+        _log.debug("{}", params.toString());
+        StringBuilder url;
+        if ((url = new StringBuilder(processUrl)).indexOf("?") < 0) url.append('?');
         for (String name : params.keySet()) {
             url.append('&');
             url.append(name);
@@ -429,18 +412,15 @@ public class HttpUtils {
 
     private void release(HttpRequestBase request, CloseableHttpResponse response, HttpEntity entity) {
         try {
-            if (request != null)
-                request.releaseConnection();
+            if (request != null) request.releaseConnection();
         } finally {
             try {
-                if (entity != null)
-                    EntityUtils.consume(entity);
+                if (entity != null) EntityUtils.consume(entity);
             } catch (IOException e) {
                 _log.error("error: {}", e.getMessage());
             } finally {
                 try {
-                    if (response != null)
-                        response.close();
+                    if (response != null) response.close();
                 } catch (IOException e) {
                     _log.error("error: {}", e.getMessage());
                 }

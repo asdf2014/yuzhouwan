@@ -14,9 +14,8 @@ import java.text.DecimalFormat;
 public class DecimalUtils {
 
     private static final DecimalFormat decimalFormat = new DecimalFormat("0");
-    private static final String SAVE_POINT_FORMAT = "%.%df";
 
-    public static int convert(int n) {
+    public static int convert2Hex(int n) {
         return Integer.valueOf(String.valueOf(n), 16);
     }
 

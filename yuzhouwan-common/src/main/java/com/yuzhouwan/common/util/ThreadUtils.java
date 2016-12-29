@@ -24,14 +24,13 @@ public class ThreadUtils {
         String minPeriodStr;
         if (StrUtils.isEmpty(minPeriodStr = PropUtils.getInstance().getProperty("thread.min.period.millisecond")))
             MIN_PERIOD = 0L;
-        else
-            MIN_PERIOD = Long.parseLong(minPeriodStr);
+        else MIN_PERIOD = Long.parseLong(minPeriodStr);
+        if (MIN_PERIOD < 0) MIN_PERIOD = 0L;
     }
 
-    public static ExecutorService buildExecutorService(Integer jobThreadCorePoolSize,
-                                                       Integer jobThreadMaximumPoolSize,
-                                                       Integer jobThreadKeepAliveSecond,
-                                                       Integer jobArrayBlockingQueueSize, String poolName, boolean isDaemon) {
+    public static ExecutorService buildExecutorService(Integer jobThreadCorePoolSize, Integer jobThreadMaximumPoolSize,
+                                                       Integer jobThreadKeepAliveSecond, Integer jobArrayBlockingQueueSize,
+                                                       String poolName, boolean isDaemon) {
         ExecutorService executorService;
         ThreadFactoryBuilder threadFactoryBuilder = new ThreadFactoryBuilder();
         if (!StrUtils.isEmpty(poolName)) threadFactoryBuilder.setNameFormat("[".concat(poolName).concat("]-%d"));
@@ -52,7 +51,6 @@ public class ThreadUtils {
         return executorService;
     }
 
-
     public static int availableProcessors() {
         return Runtime.getRuntime().availableProcessors();
     }
@@ -61,8 +59,7 @@ public class ThreadUtils {
         try {
             long sleep;
             if (passedPeriod < aimPeriod) {
-                sleep = aimPeriod - passedPeriod;
-                if (sleep < MIN_PERIOD) sleep = MIN_PERIOD;
+                if ((sleep = aimPeriod - passedPeriod) < MIN_PERIOD) sleep = MIN_PERIOD;
             } else {
                 _log.warn("Thread:{}, Used Time: {}, Excepted Period Time: {}", Thread.currentThread().getName(),
                         passedPeriod, aimPeriod);

@@ -66,21 +66,17 @@ public class IpUtils {
      */
     public static String extractDomain(String url) {
         if (StrUtils.isEmpty(url)) return null;
-        int len = url.split("/").length;
+        int len;
         Matcher m;
-        if (len < 3) {
+        if ((len = url.split("/").length) < 3) {
             _log.error("URL[{}] is invalid!", url);
             return null;
         } else if (len > 3) {
-            m = EXTRACT_DOMAIN_WITH_SUB_PATH.matcher(url);
             //这里必须先 find，才能 group取到值
-            if (m.find()) return m.group(0);
+            if ((m = EXTRACT_DOMAIN_WITH_SUB_PATH.matcher(url)).find()) return m.group(0);
         } else {
-            if (!url.endsWith("/")) {
-                m = EXTRACT_DOMAIN_SIMPLE.matcher(url);
-            } else {
-                m = EXTRACT_DOMAIN_SIMPLE_END_WITH_TAIL.matcher(url);
-            }
+            if (!url.endsWith("/")) m = EXTRACT_DOMAIN_SIMPLE.matcher(url);
+            else m = EXTRACT_DOMAIN_SIMPLE_END_WITH_TAIL.matcher(url);
             if (m.find()) return m.group(0);
         }
         return null;
@@ -93,8 +89,8 @@ public class IpUtils {
      * @return
      */
     public static String getTailFromURL(String url) {
-        String domain = extractDomain(url);
-        return StrUtils.isEmpty(domain) ? null : StrUtils.cutMiddleStr(url, domain).substring(1);
+        String domain;
+        return StrUtils.isEmpty(domain = extractDomain(url)) ? null : StrUtils.cutMiddleStr(url, domain).substring(1);
     }
 
     /**
@@ -120,15 +116,10 @@ public class IpUtils {
      * @return
      */
     public static String long2ip(Long ipAddress) {
-        StringBuilder strBuilder = new StringBuilder();
-        strBuilder.append(String.valueOf((ipAddress >>> 24)));
-        strBuilder.append(".");
-        strBuilder.append(String.valueOf((ipAddress & 0x00FFFFFF) >>> 16));
-        strBuilder.append(".");
-        strBuilder.append(String.valueOf((ipAddress & 0x0000FFFF) >>> 8));
-        strBuilder.append(".");
-        strBuilder.append(String.valueOf((ipAddress & 0x000000FF)));
-        return strBuilder.toString();
+        return String.valueOf(ipAddress >>> 24) + "." +
+                String.valueOf((ipAddress & 0x00FFFFFF) >>> 16) + "." +
+                String.valueOf((ipAddress & 0x0000FFFF) >>> 8) + "." +
+                String.valueOf((ipAddress & 0x000000FF));
     }
 
     /**
@@ -138,7 +129,6 @@ public class IpUtils {
      * @return
      */
     public static Integer ip2int(String ipAddress) {
-
         Inet4Address a;
         try {
             a = (Inet4Address) InetAddress.getByName(ipAddress);

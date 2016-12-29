@@ -35,11 +35,9 @@ public class BeanUtils {
         String className;
         if (StrUtils.isEmpty(className = clazz.getName())) return;
         Field[] fields;
-        if (FIELDS_CACHE.size() == 0 || !FIELDS_CACHE.containsKey(className)) {
+        if (FIELDS_CACHE.size() == 0 || !FIELDS_CACHE.containsKey(className))
             FIELDS_CACHE.put(className, fields = clazz.getDeclaredFields());
-        } else {
-            fields = FIELDS_CACHE.get(className);
-        }
+        else fields = FIELDS_CACHE.get(className);
         if (fields == null || fields.length == 0) return;
         for (Field field : fields) {
             if (StrUtils.isLike(field.getName(), key, ignores)) {
