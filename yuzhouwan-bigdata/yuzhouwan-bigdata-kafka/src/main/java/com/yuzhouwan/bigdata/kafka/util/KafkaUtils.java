@@ -11,6 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static com.yuzhouwan.common.util.ThreadUtils.buildExecutorService;
 
@@ -26,15 +27,22 @@ public class KafkaUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(KafkaUtils.class);
 
-    private static final String SEND_KAFKA_INFOS_BASIC = "Thread:{}, Time: {}, Used Time: {}, Size: {} MB";
-    private static final String SEND_KAFKA_INFOS_DESCRIBE = "[{}] ".concat(SEND_KAFKA_INFOS_BASIC);
-
     private volatile static KafkaUtils instance;
     private volatile static ExecutorService pool;
 
     private static Integer SEND_KAFKA_FACTOR;
 
+    private static final String SEND_KAFKA_INFOS_BASIC = "Thread:{}, Time: {}, Used Time: {}, Size: {} MB";
+    private static final String SEND_KAFKA_INFOS_DESCRIBE = "[{}] ".concat(SEND_KAFKA_INFOS_BASIC);
+    private static final String PARTITIONER_CLASS_NAME = KafkaPartitioner.class.getName();
+
+    // using for judge key instanceof Number, MUST use atomicInteger instead of volatile
+    private static AtomicInteger PRODUCER_INDEX = new AtomicInteger(0);
+
     static {
+        // <number of message> / (<number of partition> * factor>)
+        // 31934 / (24 * 100) = 13.3 = 14
+        // 4759  / (3 * 100)  = 15.8 = 16
         SEND_KAFKA_FACTOR = Integer.parseInt(PropUtils.getInstance().getProperty("job.send.2.kafka.factor"));
         if (SEND_KAFKA_FACTOR < 10 || SEND_KAFKA_FACTOR > 1000) SEND_KAFKA_FACTOR = 100;
     }
@@ -45,9 +53,7 @@ public class KafkaUtils {
     private static void init() {
         if (instance == null)
             synchronized (KafkaUtils.class) {
-                if (instance == null) {
-                    internalInit();
-                }
+                if (instance == null) internalInit();
             }
     }
 
@@ -60,12 +66,13 @@ public class KafkaUtils {
         Properties props = new Properties();
         try {
             PropUtils p = PropUtils.getInstance();
-            props.put("zk.connect", p.getProperty("kafka.zk.connect"));
+//            props.put("zk.connect", p.getProperty("kafka.zk.connect"));   // not need zk in new version
             props.put("serializer.class", p.getProperty("kafka.serializer.class"));
             props.put("metadata.broker.list", p.getProperty("kafka.metadata.broker.list"));
             props.put("request.required.acks", p.getProperty("kafka.request.required.acks"));
+            props.put("partitioner.class", PARTITIONER_CLASS_NAME);
         } catch (Exception e) {
-            _log.error("{} ---- Connect with kafka failed!", e.getMessage());
+            _log.error("Connect with kafka failed, error: {}!", e.getMessage());
             throw new RuntimeException(e);
         }
         _log.info("Connect with kafka successfully!");
@@ -78,12 +85,18 @@ public class KafkaUtils {
     }
 
     public void sendMessageToKafka(String message) {
+        sendMessageToKafka(message, null);
+    }
+
+    public void sendMessageToKafka(String message, String key) {
         Producer<String, String> p;
         if ((p = KafkaConnPoolUtils.getInstance().getConn()) == null) {
             _log.warn("Cannot get Producer in connect pool!");
             return;
         }
-        p.send(new KeyedMessage<>(PropUtils.getInstance().getProperty("kafka.topic"), message));
+        p.send(new KeyedMessage<>(PropUtils.getInstance().getProperty("kafka.topic"),
+                StrUtils.isEmpty(key) ? PRODUCER_INDEX + "" : key, message));
+        if (StrUtils.isEmpty(key)) if (PRODUCER_INDEX.incrementAndGet() >= Integer.MAX_VALUE) PRODUCER_INDEX.set(0);
     }
 
     public boolean putPool(Runnable r) {
@@ -114,9 +127,9 @@ public class KafkaUtils {
 
     public static <T> void save2Kafka(final List<T> objs, boolean isBalance, final String describe) {
         List<T> copy;
-        int len;
         if (isBalance) {
             copy = new LinkedList<>();
+            int len;
             for (int i = 0; i < (len = objs.size()); i++) {
                 copy.add(objs.get(i));
                 if (i % (KafkaConnPoolUtils.CONN_IN_POOL * SEND_KAFKA_FACTOR) == 0 || i == (len - 1))

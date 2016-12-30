@@ -1,5 +1,6 @@
 package com.yuzhouwan.common.collection;
 
+import com.yuzhouwan.common.util.CollectionUtils;
 import org.junit.Test;
 
 import java.util.Arrays;

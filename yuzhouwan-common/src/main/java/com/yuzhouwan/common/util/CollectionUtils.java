@@ -1,7 +1,5 @@
-package com.yuzhouwan.common.collection;
+package com.yuzhouwan.common.util;
 
-import com.yuzhouwan.common.util.ExceptionUtils;
-import com.yuzhouwan.common.util.StrUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

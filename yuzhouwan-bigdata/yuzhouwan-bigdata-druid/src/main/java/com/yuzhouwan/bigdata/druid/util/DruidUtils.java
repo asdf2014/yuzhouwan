@@ -22,7 +22,7 @@ public class DruidUtils {
         String metricsSpecPrefix = p.getProperty("metrics.spec.prefix");
         String metricsSpecMiddle = p.getProperty("metrics.spec.middle");
         if (StrUtils.isEmpty(metricsSpecPrefix) || StrUtils.isEmpty(metricsSpecMiddle))
-            throw new RuntimeException("Properties is empty!");
+            throw new RuntimeException("Properties [metrics.spec.prefix/middle] is empty!");
         StringBuilder strBuilder = new StringBuilder(metricsSpecPrefix);
         String fieldName, simpleTypeName;
         Field[] fields;
@@ -30,8 +30,7 @@ public class DruidUtils {
         for (Class clazz : classList) {
             fields = clazz.getDeclaredFields();
             for (Field field : fields) {
-                fieldName = field.getName();
-                if (checkExists.contains(fieldName)) continue;
+                if (checkExists.contains(fieldName = field.getName())) continue;
                 checkExists.add(fieldName);
                 simpleTypeName = field.getType().getSimpleName();
                 if ("string".equalsIgnoreCase(simpleTypeName) ||

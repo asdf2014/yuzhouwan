@@ -78,4 +78,14 @@ public class StrUtilsTest {
             assertEquals(expect.get(i), result.get(i));
         }
     }
+
+    @Test
+    public void isNumberTest() throws Exception {
+        assertEquals(true, StrUtils.isNumber("0"));
+        assertEquals(true, StrUtils.isNumber("1"));
+        assertEquals(true, StrUtils.isNumber("100"));
+        assertEquals(false, StrUtils.isNumber("-1"));
+        assertEquals(false, StrUtils.isNumber("1.1"));
+        assertEquals(false, StrUtils.isNumber("abc"));
+    }
 }
