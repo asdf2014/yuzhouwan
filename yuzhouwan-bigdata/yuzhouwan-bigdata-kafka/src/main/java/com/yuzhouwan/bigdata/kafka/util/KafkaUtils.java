@@ -106,15 +106,9 @@ public class KafkaUtils {
     }
 
     private static void buildPool() {
-        PropUtils p = PropUtils.getInstance();
-        String jobMetricThreadCorePoolSize = p.getProperty("job.kafka.thread.core.pool.size");
-        String jobMetricThreadMaximumPoolSize = p.getProperty("job.kafka.thread.maximum.pool.size");
-        String jobMetricThreadKeepAliveSecond = p.getProperty("job.kafka.thread.keep.alive.second");
-        String jobMetricArrayBlockingQueueSize = p.getProperty("job.kafka.array.blocking.queue.size");
-        pool = buildExecutorService(Integer.parseInt(jobMetricThreadCorePoolSize),
-                Integer.parseInt(jobMetricThreadMaximumPoolSize),
-                Integer.parseInt(jobMetricThreadKeepAliveSecond),
-                Integer.parseInt(jobMetricArrayBlockingQueueSize), "Kafka", false);
+        String kafkaSendThreadPoolCoreNumber = PropUtils.getInstance().getProperty("kafka.send.thread.pool.core.number");
+        if (StrUtils.isEmpty(kafkaSendThreadPoolCoreNumber)) kafkaSendThreadPoolCoreNumber = "10";
+        pool = buildExecutorService(Integer.parseInt(kafkaSendThreadPoolCoreNumber), "Kafka", true);
     }
 
     public static <T> void save2Kafka(final List<T> objs) {
@@ -166,6 +160,7 @@ public class KafkaUtils {
                     _log.info(SEND_KAFKA_INFOS_DESCRIBE,
                             describe, Thread.currentThread().getName(), TimeUtils.nowTimeWithZone(), end - start,
                             DecimalUtils.saveTwoPoint(size / 1024 / 1024));
+                deepCopy.clear();
             }
         });
         copy.clear();

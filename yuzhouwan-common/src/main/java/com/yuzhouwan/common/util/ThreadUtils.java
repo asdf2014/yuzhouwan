@@ -28,13 +28,68 @@ public class ThreadUtils {
         if (MIN_PERIOD < 0) MIN_PERIOD = 0L;
     }
 
+    /**
+     * CachedThreadPool
+     *
+     * @param poolName
+     * @return
+     */
+    public static ExecutorService buildExecutorService(String poolName) {
+        return buildExecutorService(null, poolName, null);
+    }
+
+    /**
+     * CachedThreadPool with isDaemon
+     *
+     * @param poolName
+     * @param isDaemon
+     * @return
+     */
+    public static ExecutorService buildExecutorService(String poolName, Boolean isDaemon) {
+        return buildExecutorService(null, poolName, isDaemon);
+    }
+
+    /**
+     * FixedThreadPool
+     *
+     * @param poolName
+     * @return
+     */
+    public static ExecutorService buildExecutorService(Integer nThread, String poolName) {
+        return buildExecutorService(nThread, poolName, null);
+    }
+
+    /**
+     * FixedThreadPool with isDaemon
+     *
+     * @param nThread
+     * @param poolName
+     * @param isDaemon
+     * @return
+     */
+    public static ExecutorService buildExecutorService(Integer nThread, String poolName, Boolean isDaemon) {
+        if (nThread != null && nThread >= 0)
+            return Executors.newFixedThreadPool(nThread, buildThreadFactory(poolName, isDaemon));
+        else
+            return buildExecutorService(null, null, null, null, poolName, isDaemon);
+    }
+
+    /**
+     * CachedThreadPool / (ThreadPoolExecutor with ArrayBlockingQueue)
+     *
+     * @param jobThreadCorePoolSize
+     * @param jobThreadMaximumPoolSize
+     * @param jobThreadKeepAliveSecond
+     * @param jobArrayBlockingQueueSize
+     * @param poolName
+     * @param isDaemon
+     * @return
+     */
     public static ExecutorService buildExecutorService(Integer jobThreadCorePoolSize, Integer jobThreadMaximumPoolSize,
-                                                       Integer jobThreadKeepAliveSecond, Integer jobArrayBlockingQueueSize,
-                                                       String poolName, boolean isDaemon) {
+                                                       Long jobThreadKeepAliveSecond, Integer jobArrayBlockingQueueSize,
+                                                       String poolName, Boolean isDaemon) {
+        ThreadFactory threadFactory = buildThreadFactory(poolName, isDaemon);
         ExecutorService executorService;
-        ThreadFactoryBuilder threadFactoryBuilder = new ThreadFactoryBuilder();
-        if (!StrUtils.isEmpty(poolName)) threadFactoryBuilder.setNameFormat("[".concat(poolName).concat("]-%d"));
-        ThreadFactory threadFactory = threadFactoryBuilder.setDaemon(isDaemon).build();
         if (jobThreadCorePoolSize == null || jobThreadMaximumPoolSize == null
                 || jobThreadKeepAliveSecond == null || jobArrayBlockingQueueSize == null) {
             executorService = Executors.newCachedThreadPool(threadFactory);
@@ -42,13 +97,20 @@ public class ThreadUtils {
             try {
                 executorService = new ThreadPoolExecutor(jobThreadCorePoolSize, jobThreadMaximumPoolSize,
                         jobThreadKeepAliveSecond, TimeUnit.SECONDS,
-                        new ArrayBlockingQueue<>(jobArrayBlockingQueueSize), threadFactory);
+                        new ArrayBlockingQueue<>(jobArrayBlockingQueueSize), threadFactory);    // jdk7: new ArrayBlockingQueue<Runnable>
             } catch (Exception e) {
                 _log.error(ExceptionUtils.errorInfo(e));
                 executorService = Executors.newCachedThreadPool(threadFactory);
             }
         }
         return executorService;
+    }
+
+    private static ThreadFactory buildThreadFactory(String poolName, Boolean isDaemon) {
+        ThreadFactoryBuilder threadFactoryBuilder = new ThreadFactoryBuilder();
+        if (!StrUtils.isEmpty(poolName)) threadFactoryBuilder.setNameFormat("[".concat(poolName).concat("]-%d"));
+        if (isDaemon != null) threadFactoryBuilder.setDaemon(isDaemon);
+        return threadFactoryBuilder.build();
     }
 
     public static int availableProcessors() {
