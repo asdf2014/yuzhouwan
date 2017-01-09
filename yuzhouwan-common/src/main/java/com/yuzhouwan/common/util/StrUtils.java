@@ -48,7 +48,6 @@ public class StrUtils {
             while (tail.length() >= 0) {
                 if (tail.startsWith(needRemoved)) tail = tail.substring(1);
                 else return tail;
-
             }
         }
         return null;

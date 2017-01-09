@@ -40,6 +40,7 @@ public class BeanUtils {
         else fields = FIELDS_CACHE.get(className);
         if (fields == null || fields.length == 0) return;
         for (Field field : fields) {
+            if (field == null) continue;
             if (StrUtils.isLike(field.getName(), key, ignores)) {
                 field.setAccessible(true);
                 try {

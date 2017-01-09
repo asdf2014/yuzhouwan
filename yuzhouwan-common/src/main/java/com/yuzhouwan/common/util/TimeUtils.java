@@ -130,6 +130,17 @@ public class TimeUtils {
     }
 
     /**
+     * 某年某月 最后一时刻
+     *
+     * @param year
+     * @param month
+     * @return
+     */
+    public static Date endMonth(int year, int month) {
+        return new Date(new DateTime(beginMonth(year, month)).plusMonths(1).toDate().getTime() - 1);
+    }
+
+    /**
      * 某年某月 最开始一时刻
      *
      * @param year  2016
@@ -137,6 +148,7 @@ public class TimeUtils {
      * @return
      */
     public static Date beginMonth(int year, int month) {
+        if (month < 0 || month > 11) return null;
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month - 1);
@@ -146,17 +158,6 @@ public class TimeUtils {
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
         return new Date(calendar.getTime().getTime());
-    }
-
-    /**
-     * 某年某月 最后一时刻
-     *
-     * @param year
-     * @param month
-     * @return
-     */
-    public static Date endMonth(int year, int month) {
-        return new Date(new DateTime(beginMonth(year, month)).plusMonths(1).toDate().getTime() - 1);
     }
 
     /**

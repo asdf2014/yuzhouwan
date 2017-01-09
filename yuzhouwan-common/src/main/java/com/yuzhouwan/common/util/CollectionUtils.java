@@ -113,8 +113,7 @@ public class CollectionUtils {
                     String.format("fieldName: %s, class: %s, object in collection: %s, object aim: %s",
                             fieldName, fieldClass.getName(), collO, aimO)));
         } finally {
-            if (end != null)
-                coll.remove(end);
+            if (end != null) coll.remove(end);
         }
         return null;
     }

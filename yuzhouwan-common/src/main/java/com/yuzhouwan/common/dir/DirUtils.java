@@ -136,11 +136,8 @@ public class DirUtils implements IDirUtils {
         List<String> absolutePath = new LinkedList<>();
         for (String s : foundPath) {
             // 如果是传入空，说明是直接以 项目基础路径为开头的
-            if (StrUtils.isEmpty(basePath)) {
-                absolutePath.add(StrUtils.cutStartStr(s, path));
-            } else {
-                absolutePath.add(StrUtils.cutMiddleStr(s, basePath));
-            }
+            if (StrUtils.isEmpty(basePath)) absolutePath.add(StrUtils.cutStartStr(s, path));
+            else absolutePath.add(StrUtils.cutMiddleStr(s, basePath));
         }
         return absolutePath;
     }

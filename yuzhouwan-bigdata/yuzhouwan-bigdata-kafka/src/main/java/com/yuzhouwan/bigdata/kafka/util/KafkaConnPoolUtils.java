@@ -58,8 +58,7 @@ public class KafkaConnPoolUtils {
      * Create some new connections into pool, when the size of pool less than MIN_CONN_IN_POOL.
      */
     private static void initStorage() {
-        int count = 0;
-        int size;
+        int size, count = 0;
         while ((size = pool.size()) < CONN_IN_POOL && count < CONN_IN_POOL * 2) {
             createNewConnIntoPool(size);
             count++;
