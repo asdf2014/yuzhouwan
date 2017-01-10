@@ -57,6 +57,19 @@ public class BeanUtils {
                 o, key, value, JSON.toJSONString(ignores));
     }
 
+    /**
+     * [Object{Str a, Str b, int c, int d}, ...] -> ["{a, b, c}", "{a, b, d}", ...]
+     * <p>
+     * The method is suit for (small head && long tail / large head && short tail).
+     *
+     * @param objList    aim object list
+     * @param fields     fields
+     * @param isLongTail true:  $fields is head
+     *                   false: $fields is tail
+     * @param ignores    ignored fields
+     * @param <T>        generic type
+     * @return rows
+     */
     public static <T> LinkedList<String> columns2Row(List<T> objList, String[] fields, boolean isLongTail, Object... ignores) {
         return columns2Row(objList, fields, null, isLongTail, ignores);
     }
@@ -64,13 +77,16 @@ public class BeanUtils {
     /**
      * [Object{Str a, Str b, int c, int d}, ...] -> ["{a, b, c}", "{a, b, d}", ...]
      * <p>
-     * The method is suit for small head and long tail.
+     * The method is suit for (small head && long tail / large head && short tail).
      *
-     * @param objList
-     * @param fields
-     * @param ignores
-     * @param <T>
-     * @return
+     * @param objList     aim object list
+     * @param fields      fields
+     * @param parentClass get some fields from parent class
+     * @param isLongTail  true:  $fields is head
+     *                    false: $fields is tail
+     * @param ignores     ignored fields
+     * @param <T>         generic type
+     * @return rows
      */
     public static <T> LinkedList<String> columns2Row(List<T> objList, String[] fields, Class parentClass, boolean isLongTail, Object... ignores) {
         LinkedList<String> rows = new LinkedList<>();
@@ -78,6 +94,19 @@ public class BeanUtils {
         return rows;
     }
 
+    /**
+     * [Object{Str a, Str b, int c, int d}, ...] -> ["{a, b, c}", "{a, b, d}", ...]
+     * <p>
+     * The method is suit for (small head && long tail / large head && short tail).
+     *
+     * @param obj        aim object
+     * @param fields     fields
+     * @param isLongTail true:  $fields is head
+     *                   false: $fields is tail
+     * @param ignores    ignored fields
+     * @param <T>        generic type
+     * @return rows
+     */
     public static <T> LinkedList<String> column2Row(T obj, String[] fields, boolean isLongTail, Object... ignores) {
         return column2Row(obj, fields, null, isLongTail, ignores);
     }
@@ -85,13 +114,16 @@ public class BeanUtils {
     /**
      * Object{Str a, Str b, int c, int d} -> ["{a, b, c}", "{a, b, d}"]
      * <p>
-     * The method is suit for small head and long tail.
+     * The method is suit for (small head && long tail / large head && short tail).
      *
-     * @param obj
-     * @param fields
-     * @param ignores
-     * @param <T>
-     * @return
+     * @param obj         aim object
+     * @param fields      fields
+     * @param parentClass get some fields from parent class
+     * @param isLongTail  true:  $fields is head
+     *                    false: $fields is tail
+     * @param ignores     ignored fields
+     * @param <T>         generic type
+     * @return rows
      */
     public static <T> LinkedList<String> column2Row(T obj, String[] fields, Class parentClass, boolean isLongTail, Object... ignores) {
         if (obj == null || fields == null || fields.length == 0) return null;
@@ -132,11 +164,11 @@ public class BeanUtils {
      * <p>
      * The method is suit for small head/tail.
      *
-     * @param objList
-     * @param head
-     * @param tail
-     * @param <T>
-     * @return
+     * @param objList aim object list
+     * @param head    head fields
+     * @param tail    tail fields
+     * @param <T>     generic type
+     * @return rows
      */
     public static <T> LinkedList<String> columns2Row(List<T> objList, Set<Field> head, Set<Field> tail) {
         LinkedList<String> rows = new LinkedList<>();
@@ -149,11 +181,11 @@ public class BeanUtils {
      * <p>
      * The method is suit for small head/tail.
      *
-     * @param obj
-     * @param head
-     * @param tail
-     * @param <T>
-     * @return
+     * @param obj  aim object
+     * @param head head fields
+     * @param tail tail fields
+     * @param <T>  generic type
+     * @return rows
      */
     public static <T> LinkedList<String> column2Row(T obj, Set<Field> head, Set<Field> tail) {
         LinkedList<String> rows = new LinkedList<>();
@@ -182,9 +214,9 @@ public class BeanUtils {
     /**
      * Get fields with <code>FIELDS_CACHE</code>
      *
-     * @param clazz
-     * @param className
-     * @return
+     * @param clazz     class
+     * @param className the simple name of class as the key in FIELDS_CACHE
+     * @return fields
      */
     public static Vector<Field> getFields(Class<?> clazz, String className) {
         Vector<Field> fields;
@@ -196,12 +228,22 @@ public class BeanUtils {
 
     /**
      * Return the set of fields declared at all level of class hierarchy
+     *
+     * @param clazz class
+     * @return all fields in class and it's super classes
      */
     public static Vector<Field> getAllFields(Class clazz) {
         return getAllFieldsRec(clazz, new Vector<>()).stream().filter(field -> !field.getName().equals("this$0"))
                 .collect(Collectors.toCollection(Vector::new));
     }
 
+    /**
+     * Get all fields from super classes with recursion.
+     *
+     * @param clazz  class
+     * @param vector hold fields
+     * @return fields
+     */
     private static Vector<Field> getAllFieldsRec(Class clazz, Vector<Field> vector) {
         Class superClazz;
         if ((superClazz = clazz.getSuperclass()) != null) getAllFieldsRec(superClazz, vector);

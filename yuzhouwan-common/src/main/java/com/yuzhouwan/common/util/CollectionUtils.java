@@ -121,10 +121,10 @@ public class CollectionUtils {
     /**
      * Remove element from List with special field.
      *
-     * @param coll
-     * @param field
-     * @param removes
-     * @param <T>
+     * @param coll    aim collection
+     * @param field   could be null, meaning those elements in coll have a simple class type
+     * @param removes need be removed elements or those fields' value of elements
+     * @param <T>     generic type
      */
     public static <T> Collection<T> remove(Collection<T> coll, final String field, final Object... removes) {
         if (coll == null || coll.size() == 0 || removes == null || removes.length == 0) return null;
