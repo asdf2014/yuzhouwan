@@ -16,7 +16,7 @@ import java.util.*;
  */
 public class CollectionUtils {
 
-    private static Logger _log = LoggerFactory.getLogger(CollectionUtils.class);
+    private static final Logger _log = LoggerFactory.getLogger(CollectionUtils.class);
 
 //    private volatile static long NANO_SECOND_TOTAL;
 //    private volatile static long CALL_COUNT_TOTAL;
@@ -126,28 +126,26 @@ public class CollectionUtils {
      * @param removes
      * @param <T>
      */
-    public static <T> void remove4List(List<T> coll, final String field, final Object... removes) {
-        if (coll == null || coll.size() == 0 || removes == null || removes.length == 0) return;
-        T t;
+    public static <T> Collection<T> remove(Collection<T> coll, final String field, final Object... removes) {
+        if (coll == null || coll.size() == 0 || removes == null || removes.length == 0) return null;
         Field f;
         Object tmp;
-        TreeSet<Integer> removeIndexs = new TreeSet<>();
+        Collection<T> needRemoved = new LinkedList<>();
         try {
-            for (int i = 0; i < coll.size(); i++)
+            for (T c : coll)
                 for (Object remove : removes) {
-                    t = coll.get(i);
                     if (StrUtils.isNotEmpty(field)) {
-                        f = t.getClass().getDeclaredField(field);
+                        f = c.getClass().getDeclaredField(field);
                         f.setAccessible(true);
-                        tmp = f.get(t);
-                    } else tmp = t;
-                    if (tmp.equals(remove)) removeIndexs.add(i);
+                        tmp = f.get(c);
+                    } else tmp = c;
+                    if (tmp.equals(remove)) needRemoved.add(c);
                 }
         } catch (Exception e) {
             _log.error(ExceptionUtils.errorInfo(e));
             throw new RuntimeException(e);
         }
-        Iterator<Integer> iterator = removeIndexs.descendingIterator();
-        while (iterator.hasNext()) coll.remove((int) iterator.next());
+        coll.removeAll(needRemoved);
+        return needRemoved;
     }
 }

@@ -6,11 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static com.yuzhouwan.common.util.CollectionUtils.remove4List;
+import static com.yuzhouwan.common.util.CollectionUtils.remove;
 
 /**
  * Copyright @ 2016 yuzhouwan.com
@@ -91,19 +90,25 @@ public class BeanUtils {
         if ((clazz = obj.getClass()) == null) return null;
         String className;
         if (StrUtils.isEmpty(className = clazz.getName())) return null;
-        LinkedList<Field> head = new LinkedList<>(), tail = new LinkedList<>();
-        boolean flag;
-        for (Field cacheF : getFields(clazz, className))
-            for (String aimF : fields) {
-                if (StrUtils.isEmpty(aimF) || cacheF == null) continue;
-                flag = aimF.equals(cacheF.getName());
-                if (!isLongTail) flag = !flag;
-                if (flag) head.add(cacheF);
-                else tail.add(cacheF);
-            }
+        Set<Field> head = new HashSet<>(), tail = new HashSet<>();
+        for (Field field : getFields(clazz, className)) {
+            head.add(field);
+            tail.add(field);
+        }
+        if (isLongTail) {
+            remove(tail, "name", (Object[]) fields);
+            Collection<Field> cHead = remove(head, "name", (Object[]) fields);
+            head.clear();
+            head.addAll(cHead);
+        } else {
+            remove(head, "name", (Object[]) fields);
+            Collection<Field> cTail = remove(tail, "name", (Object[]) fields);
+            tail.clear();
+            tail.addAll(cTail);
+        }
         if (ignores != null && ignores.length > 0) {
-            remove4List(head, "name", ignores);
-            remove4List(tail, "name", ignores);
+            remove(head, "name", ignores);
+            remove(tail, "name", ignores);
         }
         return column2Row(obj, head, tail);
     }
@@ -119,7 +124,7 @@ public class BeanUtils {
      * @param <T>
      * @return
      */
-    public static <T> LinkedList<String> column2Row(List<T> objList, LinkedList<Field> head, LinkedList<Field> tail) {
+    public static <T> LinkedList<String> columns2Row(List<T> objList, Set<Field> head, Set<Field> tail) {
         LinkedList<String> rows = new LinkedList<>();
         for (Object o : objList) rows.addAll(column2Row(o, head, tail));
         return rows;
@@ -136,7 +141,7 @@ public class BeanUtils {
      * @param <T>
      * @return
      */
-    public static <T> LinkedList<String> column2Row(T obj, LinkedList<Field> head, LinkedList<Field> tail) {
+    public static <T> LinkedList<String> column2Row(T obj, Set<Field> head, Set<Field> tail) {
         LinkedList<String> rows = new LinkedList<>();
         JSONObject jsonObject = new JSONObject();
         for (Field h : head)
@@ -146,13 +151,14 @@ public class BeanUtils {
             } catch (IllegalAccessException e) {
                 _log.error(ExceptionUtils.errorInfo(e));
             }
-        Field tailTmp;
-        for (int i = 0; i < tail.size(); i++)
+        Field tailPrev = null;
+        for (Field t : tail)
             try {
-                (tailTmp = tail.get(i)).setAccessible(true);
-                if (i > 0) jsonObject.remove(tail.get(i - 1).getName());
-                jsonObject.put(tailTmp.getName(), tailTmp.get(obj));
+                t.setAccessible(true);
+                if (tailPrev != null) jsonObject.remove(tailPrev.getName());
+                jsonObject.put(t.getName(), t.get(obj));
                 rows.add(jsonObject.toJSONString());
+                tailPrev = t;
             } catch (IllegalAccessException e) {
                 _log.error(ExceptionUtils.errorInfo(e));
             }

@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.TreeSet;
 
-import static com.yuzhouwan.common.util.CollectionUtils.remove4List;
+import static com.yuzhouwan.common.util.CollectionUtils.remove;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -40,7 +40,7 @@ public class BeanUtilsTest {
             head.add("b");
             head.add("c");
             head.add("d");
-            remove4List(head, null, "b", "c");
+            remove(head, null, "b", "c");
             assertEquals("a", head.get(0));
             assertEquals("d", head.get(1));
         }
@@ -54,7 +54,7 @@ public class BeanUtilsTest {
             BeanUtils.swapper(bean2, "bB", 4L, "_");
             head.add(bean1);
             head.add(bean2);
-            remove4List(head, "bB", 4L);
+            remove(head, "bB", 4L);
             assertEquals(true, head.size() == 1);
             assertEquals(1, head.get(0).getaA());
         }
@@ -92,10 +92,11 @@ public class BeanUtilsTest {
         String[] fields = {"aA"};
         LinkedList<String> rows = BeanUtils.columns2Row(beans, fields, true, "d_D", "this$0");
         assertEquals(true, rows.size() == 4);
-        assertEquals("{\"aA\":1,\"bB\":2}", rows.get(0));
-        assertEquals("{\"aA\":1,\"cC\":3}", rows.get(1));
-        assertEquals("{\"aA\":4,\"bB\":5}", rows.get(2));
-        assertEquals("{\"aA\":4,\"cC\":6}", rows.get(3));
+        int count = 0;
+        for (String row : rows)
+            if (row.equals("{\"aA\":1,\"bB\":2}") || row.equals("{\"aA\":1,\"cC\":3}")
+                    || row.equals("{\"aA\":4,\"bB\":5}") || row.equals("{\"aA\":4,\"cC\":6}")) count++;
+        assertEquals(true, count == 4);
     }
 
     private class BeanA {
