@@ -6,16 +6,16 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Copyright @ 2016 suning.com
+ * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
- * Function：KafkaConnPool 2 Utils Test
+ * Function：KafkaConnPool Utils Test
  *
  * @author Benedict Jin
  * @since 2016/12/9
  */
-public class KafkaConnPool2UtilsTest {
+public class KafkaConnPoolUtilsTest {
 
-//    @Test
+    //    @Test
     public void getConnTest() throws Exception {
         for (int i = 0; i < 2 * Integer.parseInt(PropUtils.getInstance().getProperty("kafka.conn.pool.size")); i++) {
             KafkaConnPoolUtils.getInstance().getConn();

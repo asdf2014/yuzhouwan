@@ -99,6 +99,15 @@ public class BeanUtilsTest {
         assertEquals(true, count == 4);
     }
 
+    @Test
+    public void getAllFieldsTest() throws Exception {
+        assertEquals(5, BeanUtils.getAllFields(BeanB.class).size());
+    }
+
+    private class BeanB extends BeanA {
+        private String e;
+    }
+
     private class BeanA {
         private int aA;
         public long bB;

@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import java.lang.reflect.Field;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 import static com.yuzhouwan.common.util.CollectionUtils.remove;
 
@@ -22,7 +23,7 @@ import static com.yuzhouwan.common.util.CollectionUtils.remove;
 public class BeanUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(BeanUtils.class);
-    private static final ConcurrentHashMap<String, Field[]> FIELDS_CACHE = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<String, Vector<Field>> FIELDS_CACHE = new ConcurrentHashMap<>();
 
     /**
      * Swap values into object's similar filed.
@@ -38,8 +39,8 @@ public class BeanUtils {
         if ((clazz = o.getClass()) == null) return;
         String className;
         if (StrUtils.isEmpty(className = clazz.getName())) return;
-        Field[] fields = getFields(clazz, className);
-        if (fields == null || fields.length == 0) return;
+        Vector<Field> fields = getFields(clazz, className);
+        if (fields == null || fields.size() == 0) return;
         for (Field field : fields) {
             if (field == null) continue;
             if (StrUtils.isLike(field.getName(), key, ignores)) {
@@ -56,6 +57,10 @@ public class BeanUtils {
                 o, key, value, JSON.toJSONString(ignores));
     }
 
+    public static <T> LinkedList<String> columns2Row(List<T> objList, String[] fields, boolean isLongTail, Object... ignores) {
+        return columns2Row(objList, fields, null, isLongTail, ignores);
+    }
+
     /**
      * [Object{Str a, Str b, int c, int d}, ...] -> ["{a, b, c}", "{a, b, d}", ...]
      * <p>
@@ -67,10 +72,14 @@ public class BeanUtils {
      * @param <T>
      * @return
      */
-    public static <T> LinkedList<String> columns2Row(List<T> objList, String[] fields, boolean isLongTail, Object... ignores) {
+    public static <T> LinkedList<String> columns2Row(List<T> objList, String[] fields, Class parentClass, boolean isLongTail, Object... ignores) {
         LinkedList<String> rows = new LinkedList<>();
-        for (Object o : objList) rows.addAll(column2Row(o, fields, isLongTail, ignores));
+        for (Object o : objList) rows.addAll(column2Row(o, fields, parentClass, isLongTail, ignores));
         return rows;
+    }
+
+    public static <T> LinkedList<String> column2Row(T obj, String[] fields, boolean isLongTail, Object... ignores) {
+        return column2Row(obj, fields, null, isLongTail, ignores);
     }
 
     /**
@@ -84,7 +93,7 @@ public class BeanUtils {
      * @param <T>
      * @return
      */
-    public static <T> LinkedList<String> column2Row(T obj, String[] fields, boolean isLongTail, Object... ignores) {
+    public static <T> LinkedList<String> column2Row(T obj, String[] fields, Class parentClass, boolean isLongTail, Object... ignores) {
         if (obj == null || fields == null || fields.length == 0) return null;
         Class<?> clazz;
         if ((clazz = obj.getClass()) == null) return null;
@@ -95,6 +104,11 @@ public class BeanUtils {
             head.add(field);
             tail.add(field);
         }
+        if (parentClass != null)
+            for (Field field : parentClass.getDeclaredFields()) {
+                head.add(field);
+                tail.add(field);
+            }
         if (isLongTail) {
             remove(tail, "name", (Object[]) fields);
             Collection<Field> cHead = remove(head, "name", (Object[]) fields);
@@ -172,11 +186,26 @@ public class BeanUtils {
      * @param className
      * @return
      */
-    public static Field[] getFields(Class<?> clazz, String className) {
-        Field[] fields;
+    public static Vector<Field> getFields(Class<?> clazz, String className) {
+        Vector<Field> fields;
         if (FIELDS_CACHE.size() == 0 || !FIELDS_CACHE.containsKey(className))
-            FIELDS_CACHE.put(className, fields = clazz.getDeclaredFields());
+            FIELDS_CACHE.put(className, fields = getAllFields(clazz));
         else fields = FIELDS_CACHE.get(className);
         return fields;
+    }
+
+    /**
+     * Return the set of fields declared at all level of class hierarchy
+     */
+    public static Vector<Field> getAllFields(Class clazz) {
+        return getAllFieldsRec(clazz, new Vector<>()).stream().filter(field -> !field.getName().equals("this$0"))
+                .collect(Collectors.toCollection(Vector::new));
+    }
+
+    private static Vector<Field> getAllFieldsRec(Class clazz, Vector<Field> vector) {
+        Class superClazz;
+        if ((superClazz = clazz.getSuperclass()) != null) getAllFieldsRec(superClazz, vector);
+        Collections.addAll(vector, clazz.getDeclaredFields());
+        return vector;
     }
 }
