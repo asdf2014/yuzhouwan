@@ -206,7 +206,7 @@ public class DirUtils implements IDirUtils {
     }
 
     /**
-     * 对子文件进行处理
+     * 对子文件进行处理，如果是子文件夹，则递归遍历下去，直到拿到所有文件的绝对路径
      *
      * @param result
      * @param list
@@ -281,16 +281,14 @@ public class DirUtils implements IDirUtils {
         if (StrUtils.isEmpty(path)) return false;
         File file;
         if (!(file = new File(path)).exists()) {
-            if (isFile) {
+            if (isFile)
                 try {
                     return file.createNewFile();
                 } catch (IOException e) {
                     _log.error("Cannot create new file, because {}", e.getMessage());
                     return false;
                 }
-            } else {
-                return file.mkdir();
-            }
+            else return file.mkdir();
         }
         return true;
     }
@@ -336,9 +334,7 @@ public class DirUtils implements IDirUtils {
             } catch (InterruptedException e) {
                 _log.error("WatchService is error, because {}", e.getMessage());
             }
-            if (key == null) {
-                return;
-            }
+            if (key == null) return;
             IDirUtils dirUtil = dealProcessor == null ? new DirUtils() : dealProcessor;
             while (true) {
                 if (!isRunning) return;

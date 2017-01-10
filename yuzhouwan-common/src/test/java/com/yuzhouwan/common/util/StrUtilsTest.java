@@ -1,5 +1,6 @@
 package com.yuzhouwan.common.util;
 
+import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;
 
 import java.util.LinkedList;
@@ -87,5 +88,19 @@ public class StrUtilsTest {
         assertEquals(false, StrUtils.isNumber("-1"));
         assertEquals(false, StrUtils.isNumber("1.1"));
         assertEquals(false, StrUtils.isNumber("abc"));
+    }
+
+    @Test
+    public void map2JsonTest() throws Exception {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("cluster", "test");
+        jsonObject.put("table", "default");
+        assertEquals("{\"cluster\":\"test\",\"table\":\"default\"}", jsonObject.toJSONString());
+        jsonObject.put("metric", 1L);
+        assertEquals("{\"cluster\":\"test\",\"metric\":1,\"table\":\"default\"}", jsonObject.toJSONString());
+        jsonObject.remove("metric");
+        assertEquals("{\"cluster\":\"test\",\"table\":\"default\"}", jsonObject.toJSONString());
+        jsonObject.put("metric2", 0.02d);
+        assertEquals("{\"cluster\":\"test\",\"metric2\":0.02,\"table\":\"default\"}", jsonObject.toJSONString());
     }
 }

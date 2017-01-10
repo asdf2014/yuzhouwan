@@ -1,6 +1,5 @@
-package com.yuzhouwan.common.collection;
+package com.yuzhouwan.common.util;
 
-import com.yuzhouwan.common.util.CollectionUtils;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -42,9 +41,9 @@ public class CollectionUtilsTest {
         Integer[] c = new Integer[]{4};
         Integer[] d = null;
 
-        assertEquals(3, CollectionUtils.duplicate(a, b)[0]);
-        assertEquals(0, CollectionUtils.duplicate(b, c).length);
-        assertEquals(true, CollectionUtils.duplicate(c, d) == null);
+        assertEquals(3, CollectionUtils.removeDuplicate(a, b)[0]);
+        assertEquals(0, CollectionUtils.removeDuplicate(b, c).length);
+        assertEquals(true, CollectionUtils.removeDuplicate(c, d) == null);
     }
 
     @Test
@@ -68,6 +67,26 @@ public class CollectionUtilsTest {
         assertEquals(true, 0 == aList.size());
         assertEquals(null, CollectionUtils.getDuplicate(aList, _d, "d", Object.class));
         assertEquals(true, 0 == aList.size());
+    }
+
+    @Test
+    public void removeCollTest() throws Exception {
+        A _a = new A(1, "2", 3);
+        A _b = new A(1, "a", 3);
+        A _c = new A(1, "!", 3);
+
+        LinkedList<A> aList = new LinkedList<>();
+        aList.add(_a);
+        aList.add(_b);
+        aList.add(_c);
+        try {
+            aList.remove(0);
+            aList.remove(2);
+            aList.remove(1);
+            assertEquals(true, aList.size() == 0);
+        } catch (Exception e) {
+            assertEquals(true, e instanceof IndexOutOfBoundsException);
+        }
     }
 
     private class A {

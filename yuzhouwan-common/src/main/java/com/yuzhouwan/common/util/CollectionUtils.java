@@ -43,13 +43,13 @@ public class CollectionUtils {
     }
 
     /**
-     * Remove duplicate
+     * Remove Duplicate
      *
      * @param a
      * @param b
      * @return
      */
-    public static Object[] duplicate(Object[] a, Object[] b) {
+    public static Object[] removeDuplicate(Object[] a, Object[] b) {
         if (a == null || b == null || a.length == 0 || b.length == 0) return null;
 
         Set<Object> set = new HashSet<>();
@@ -116,5 +116,38 @@ public class CollectionUtils {
             if (end != null) coll.remove(end);
         }
         return null;
+    }
+
+    /**
+     * Remove element from List with special field.
+     *
+     * @param coll
+     * @param field
+     * @param removes
+     * @param <T>
+     */
+    public static <T> void remove4List(List<T> coll, final String field, final Object... removes) {
+        if (coll == null || coll.size() == 0 || removes == null || removes.length == 0) return;
+        T t;
+        Field f;
+        Object tmp;
+        TreeSet<Integer> removeIndexs = new TreeSet<>();
+        try {
+            for (int i = 0; i < coll.size(); i++)
+                for (Object remove : removes) {
+                    t = coll.get(i);
+                    if (StrUtils.isNotEmpty(field)) {
+                        f = t.getClass().getDeclaredField(field);
+                        f.setAccessible(true);
+                        tmp = f.get(t);
+                    } else tmp = t;
+                    if (tmp.equals(remove)) removeIndexs.add(i);
+                }
+        } catch (Exception e) {
+            _log.error(ExceptionUtils.errorInfo(e));
+            throw new RuntimeException(e);
+        }
+        Iterator<Integer> iterator = removeIndexs.descendingIterator();
+        while (iterator.hasNext()) coll.remove((int) iterator.next());
     }
 }
