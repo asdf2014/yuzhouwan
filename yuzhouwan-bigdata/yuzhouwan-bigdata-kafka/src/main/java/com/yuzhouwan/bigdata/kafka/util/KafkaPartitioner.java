@@ -22,6 +22,9 @@ public class KafkaPartitioner implements Partitioner {
     private static final Logger _log = LoggerFactory.getLogger(KafkaPartitioner.class);
     private static final Random r = new Random();
 
+    /**
+     * [Note]: the construction is necessary.
+     */
     public KafkaPartitioner(VerifiableProperties vp) {
     }
 
@@ -30,6 +33,13 @@ public class KafkaPartitioner implements Partitioner {
         return getPartition(key, numPartitions);
     }
 
+    /**
+     * Load balancer
+     *
+     * @param key           the message that sending to kafka hold a key
+     * @param numPartitions start with zero
+     * @return which index of partition
+     */
     public static int getPartition(Object key, int numPartitions) {
         if (numPartitions <= 1) return 0;
         String keyStr;

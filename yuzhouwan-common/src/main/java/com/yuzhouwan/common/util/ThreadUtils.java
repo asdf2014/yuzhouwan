@@ -70,8 +70,7 @@ public class ThreadUtils {
     public static ExecutorService buildExecutorService(Integer nThread, String poolName, Boolean isDaemon) {
         if (nThread != null && nThread >= 0)
             return Executors.newFixedThreadPool(nThread, buildThreadFactory(poolName, isDaemon));
-        else
-            return buildExecutorService(null, null, null, null, poolName, isDaemon);
+        else return buildExecutorService(null, null, null, null, poolName, isDaemon);
     }
 
     /**
@@ -91,17 +90,15 @@ public class ThreadUtils {
         ThreadFactory threadFactory = buildThreadFactory(poolName, isDaemon);
         ExecutorService executorService;
         if (jobThreadCorePoolSize == null || jobThreadMaximumPoolSize == null
-                || jobThreadKeepAliveSecond == null || jobArrayBlockingQueueSize == null) {
+                || jobThreadKeepAliveSecond == null || jobArrayBlockingQueueSize == null)
             executorService = Executors.newCachedThreadPool(threadFactory);
-        } else {
-            try {
-                executorService = new ThreadPoolExecutor(jobThreadCorePoolSize, jobThreadMaximumPoolSize,
-                        jobThreadKeepAliveSecond, TimeUnit.SECONDS,
-                        new ArrayBlockingQueue<>(jobArrayBlockingQueueSize), threadFactory);    // jdk7: new ArrayBlockingQueue<Runnable>
-            } catch (Exception e) {
-                _log.error(ExceptionUtils.errorInfo(e));
-                executorService = Executors.newCachedThreadPool(threadFactory);
-            }
+        else try {
+            executorService = new ThreadPoolExecutor(jobThreadCorePoolSize, jobThreadMaximumPoolSize,
+                    jobThreadKeepAliveSecond, TimeUnit.SECONDS,
+                    new ArrayBlockingQueue<>(jobArrayBlockingQueueSize), threadFactory);    // jdk7: new ArrayBlockingQueue<Runnable>
+        } catch (Exception e) {
+            _log.error(ExceptionUtils.errorInfo(e));
+            executorService = Executors.newCachedThreadPool(threadFactory);
         }
         return executorService;
     }

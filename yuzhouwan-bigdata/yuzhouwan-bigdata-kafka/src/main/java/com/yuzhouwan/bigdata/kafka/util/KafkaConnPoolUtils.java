@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ConcurrentHashMap;
 
+import static com.yuzhouwan.bigdata.kafka.util.KafkaUtils.createProducer;
+
 /**
  * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
@@ -21,10 +23,9 @@ public class KafkaConnPoolUtils {
     private static final Logger _log = LoggerFactory.getLogger(KafkaConnPoolUtils.class);
 
     static int CONN_IN_POOL;
+    private static volatile long CONN_INDEX;
     private static volatile KafkaConnPoolUtils instance;
     private static volatile ConcurrentHashMap<String, Producer<String, String>> pool;
-
-    private static volatile long CONN_INDEX;
 
     static {
         String connPoolSizeStr;
@@ -34,24 +35,30 @@ public class KafkaConnPoolUtils {
         getInstance();  // do not use lazy initialization
     }
 
-    private KafkaConnPoolUtils() {
-        init();
-    }
-
     /**
      * Single instance.
      *
      * @return a single instance of this class
      */
     public static KafkaConnPoolUtils getInstance() {
-        if (instance == null)
-            synchronized (KafkaConnPoolUtils.class) {
-                if (instance == null) {
-                    instance = new KafkaConnPoolUtils();
-                    initStorage();
-                }
+        if (instance == null) synchronized (KafkaConnPoolUtils.class) {
+            if (instance == null) {
+                instance = new KafkaConnPoolUtils();
+                initStorage();
             }
+        }
         return instance;
+    }
+
+    private KafkaConnPoolUtils() {
+        init();
+    }
+
+    /**
+     * Make a initialization.
+     */
+    private void init() {
+        pool = new ConcurrentHashMap<>();
     }
 
     /**
@@ -72,17 +79,10 @@ public class KafkaConnPoolUtils {
      */
     private static void createNewConnIntoPool(int index) {
         Producer<String, String> p;
-        if ((p = KafkaUtils.createProducer()) == null) return;
+        if ((p = createProducer()) == null) return;
         pool.put(index + "", p);
-        _log.debug("Add a new ZKClient Connection into pool...");
+        _log.debug("Add a new Kafka Connection into pool...");
         _log.debug("Storage: [{}/{}]", pool.size(), CONN_IN_POOL);
-    }
-
-    /**
-     * Make a initialization.
-     */
-    private void init() {
-        pool = new ConcurrentHashMap<>();
     }
 
     /**
@@ -93,7 +93,7 @@ public class KafkaConnPoolUtils {
     public Producer<String, String> getConn() {
         long index = (CONN_INDEX %= CONN_IN_POOL);
         CONN_INDEX++;
-        _log.debug("Get ZKClient Connection from pool, index: [{} in {}] ...", index, CONN_IN_POOL);
+        _log.debug("Get Kafka Connection from pool, index: [{} in {}] ...", index, CONN_IN_POOL);
         return pool.get(index + "");
     }
 }
