@@ -1,6 +1,9 @@
 package com.yuzhouwan.bigdata.kafka.util;
 
-import com.yuzhouwan.common.util.*;
+import com.yuzhouwan.common.util.DecimalUtils;
+import com.yuzhouwan.common.util.ExceptionUtils;
+import com.yuzhouwan.common.util.PropUtils;
+import com.yuzhouwan.common.util.StrUtils;
 import kafka.javaapi.producer.Producer;
 import kafka.producer.KeyedMessage;
 import kafka.producer.ProducerConfig;
@@ -32,7 +35,7 @@ public class KafkaUtils {
 
     private static Integer SEND_KAFKA_FACTOR;
 
-    private static final String SEND_KAFKA_INFOS_BASIC = "Thread:{}, Time: {}, Used Time: {}, Size: {} MB";
+    private static final String SEND_KAFKA_INFOS_BASIC = "Thread:{}, Used Time: {}ms, Size: {}MB, Speed: {}ms/MB";
     private static final String SEND_KAFKA_INFOS_DESCRIBE = "[{}] ".concat(SEND_KAFKA_INFOS_BASIC);
     private static final String PARTITIONER_CLASS_NAME = KafkaPartitioner.class.getName();
 
@@ -152,14 +155,17 @@ public class KafkaUtils {
                         _log.error(ExceptionUtils.errorInfo(e));
                     }
                 long end = System.currentTimeMillis();
+                long period = end - start;
+                double dataSize = size / 1024 / 1024;
                 if (StrUtils.isEmpty(describe))
                     _log.info(SEND_KAFKA_INFOS_BASIC,
-                            Thread.currentThread().getName(), TimeUtils.nowTimeWithZone(), end - start,
-                            DecimalUtils.saveTwoPoint(size / 1024 / 1024));
+                            Thread.currentThread().getName(), period, DecimalUtils.saveTwoPoint(size / 1024 / 1024),
+                            DecimalUtils.saveTwoPoint(period / dataSize));
                 else
                     _log.info(SEND_KAFKA_INFOS_DESCRIBE,
-                            describe, Thread.currentThread().getName(), TimeUtils.nowTimeWithZone(), end - start,
-                            DecimalUtils.saveTwoPoint(size / 1024 / 1024));
+                            describe, Thread.currentThread().getName(), period,
+                            DecimalUtils.saveTwoPoint(size / 1024 / 1024),
+                            DecimalUtils.saveTwoPoint(period / dataSize));
                 deepCopy.clear();
             }
         });
