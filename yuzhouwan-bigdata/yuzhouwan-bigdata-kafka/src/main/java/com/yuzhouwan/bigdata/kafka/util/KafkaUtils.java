@@ -81,14 +81,12 @@ public class KafkaUtils {
 
     private static void buildPool() {
         String kafkaSendThreadPoolCoreNumber = p.getProperty("kafka.send.thread.pool.core.number");
-        String jobMetricPeriodMillisecond = p.getProperty("job.metric.period.millisecond");
-        String jobJmxPeriodMillisecond = p.getProperty("job.jmx.period.millisecond");
+        String jobPeriodMillisecond = p.getProperty("job.period.millisecond");
         if (StrUtils.isEmpty(kafkaSendThreadPoolCoreNumber)) kafkaSendThreadPoolCoreNumber = "10";
-        if (StrUtils.isEmpty(jobMetricPeriodMillisecond)) jobMetricPeriodMillisecond = "30000";
-        if (StrUtils.isEmpty(jobJmxPeriodMillisecond)) jobJmxPeriodMillisecond = "30000";
+        if (StrUtils.isEmpty(jobPeriodMillisecond)) jobPeriodMillisecond = "60000";
         Integer poolCore = Integer.parseInt(kafkaSendThreadPoolCoreNumber);
         pool = new ExecutorCompletionService<>(buildExecutorService(poolCore, poolCore * 2,
-                Long.parseLong(jobMetricPeriodMillisecond) + Long.parseLong(jobJmxPeriodMillisecond), "Kafka", true));
+                Long.parseLong(jobPeriodMillisecond), "Kafka", true));
     }
 
     static Producer<String, String> createProducer() {
