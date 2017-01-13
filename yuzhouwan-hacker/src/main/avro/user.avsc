@@ -1,4 +1,4 @@
-{"namespace": "example.avro",
+{"namespace": "com.yuzhouwan.hacker.avro",
  "type": "record",
  "name": "User",
  "fields": [
