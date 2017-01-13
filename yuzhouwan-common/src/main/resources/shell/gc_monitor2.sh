@@ -54,6 +54,7 @@ GLOBAL_COOL_LIMIT_COUNT=1
 GLOBAL_PRE_OLD_PERCENT=-1
 GLOBAL_HIGH_GROWTH_COUNT=0
 GLOBAL_HIGH_GROWTH_LIMIT_COUNT=20
+GLOBAL_LAST_HIGH_GROWTH_DATE=`date '++%Y%m%d%H%M%S'`
 
 GLOBAL_JSTACK_LIMIT_COUNT=5
 
@@ -89,13 +90,15 @@ longGc() {
                 thresholdCount=$(echo "${thresholdCount}+2" | bc)
             elif [ $(echo "${incrPercent}>=3" | bc) -eq 1 -a $(echo "${incrPercent}<5" | bc) -eq 1 ]; then
                 thresholdCount=$(echo "${thresholdCount}+5" | bc)
+                clearHighGrowthCount
                 GLOBAL_HIGH_GROWTH_COUNT=$(echo "${GLOBAL_HIGH_GROWTH_COUNT}+1" | bc)
-                jstackProcess &
+#                jstackProcess &
                 echo "High Growth of Old Generation! [${GLOBAL_HIGH_GROWTH_COUNT}/${GLOBAL_HIGH_GROWTH_LIMIT_COUNT}]"
             elif [ $(echo "${incrPercent}>=5" | bc) -eq 1 ]; then
                 thresholdCount=$(echo "${thresholdCount}+10" | bc)
+                clearHighGrowthCount
                 GLOBAL_HIGH_GROWTH_COUNT=$(echo "${GLOBAL_HIGH_GROWTH_COUNT}+2" | bc)
-                jstackProcess &
+#                jstackProcess &
                 echo "High Growth of Old Generation! [${GLOBAL_HIGH_GROWTH_COUNT}/${GLOBAL_HIGH_GROWTH_LIMIT_COUNT}]"
             fi
         fi
@@ -121,6 +124,15 @@ longGc() {
     fi
 }
 
+clearHighGrowthCount() {
+    # 6h = 6 * 60 * 60 = 21600s
+    if [ $(( `date '+%Y%m%d%H%M%S'` - $GLOBAL_LAST_HIGH_GROWTH_DATE )) -gt 21600 ]; then
+            echo "So long not happen high growth, More than 6 hour, then clear High Growth Counter."
+            GLOBAL_HIGH_GROWTH_COUNT=0
+    fi
+    GLOBAL_LAST_HIGH_GROWTH_DATE=`date '++%Y%m%d%H%M%S'`
+}
+
 dealAlert() {
     longGc
     checkResult=$?
@@ -134,7 +146,7 @@ dealAlert() {
 
         if [ ${GLOBAL_COOL_COUNT} -eq 0 ]; then
             jstackProcess &
-            jmapProcess &
+#            jmapProcess &
             sendMessage
         fi
         GLOBAL_COOL_COUNT=$(echo "${GLOBAL_COOL_COUNT}+1" | bc)
@@ -144,7 +156,7 @@ dealAlert() {
             skillCooling
         fi
     elif [ ${checkResult} -eq 2 ]; then
-        echo "Process is healthy."
+        echo "Process [${PROCESS_NAME}] is healthy."
     else
         echo "Cannot catch Old Generation used size!"
     fi
@@ -186,11 +198,10 @@ buildOutputPath() {
 
 sendMessage() {
     echo "Sending Alert Message..."
-#    message="[Machine HostName]: `hostname` \r\n [Process ID]: ${PROCESS_ID} \r\n [Old Generation Percent Threshold]: ${OLD_PERCENT_THRESHOLD}% \r\n [Old Generation Percent Now]: ${oldPercent}% \r\n [The length of time beyond the threshold]: ${OVER_THRESHOLD_COUNT}s \r\n [Dump file path]: ${DUMP_PATH}"
-    message="[Old Generation Percent]: ${oldPercent}%, [High Growth of OG]: ${GLOBAL_HIGH_GROWTH_COUNT} times"
+    message="[Machine HostName]: `hostname` \r\n [Process ID]: ${PROCESS_ID} \r\n [Old Generation Percent Threshold]: ${OLD_PERCENT_THRESHOLD}% \r\n [Old Generation Percent Now]: ${oldPercent}% \r\n [The length of time beyond the threshold]: ${OVER_THRESHOLD_COUNT}s \r\n [Dump file path]: ${DUMP_PATH}"
     echo -e "Title: ${LONG_GC_MESSAGE_TITLE} \n Message: ${message}"
-    sh /home/hbase/hbase-monitor/alarm.sh -t "${LONG_GC_MESSAGE_TITLE}" -v "${message}" -g "hbase_long_gc_mine" -d 0 -m ALL    # hbase_long_gc 平台开发部
-    echo "Message sends successfully."
+    # maybe should setup SMTP service
+    echo "${message}" | mail -s "${LONG_GC_MESSAGE_TITLE}" 1571805553@qq.com
 }
 
 skillCooling() {

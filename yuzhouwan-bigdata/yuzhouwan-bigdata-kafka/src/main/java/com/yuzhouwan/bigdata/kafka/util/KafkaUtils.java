@@ -13,7 +13,10 @@ import org.slf4j.LoggerFactory;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
-import java.util.concurrent.ExecutorService;
+import java.util.concurrent.CompletionService;
+import java.util.concurrent.ExecutorCompletionService;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static com.yuzhouwan.common.util.ThreadUtils.buildExecutorService;
@@ -29,12 +32,15 @@ import static com.yuzhouwan.common.util.ThreadUtils.buildExecutorService;
 public class KafkaUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(KafkaUtils.class);
+    private static final PropUtils p = PropUtils.getInstance();
     private static final String PARTITIONER_CLASS_NAME = KafkaPartitioner.class.getName();
 
     private volatile static KafkaUtils instance;
-    private volatile static ExecutorService pool;
+    private volatile static CompletionService<Boolean> pool;
 
-    private static Integer SEND_KAFKA_FACTOR;
+    private static Integer SEND_KAFKA_BLOCK_SIZE;
+    private static Integer SEND_KAFKA_BLOCK_SIZE_MIN;
+    private static Integer SEND_KAFKA_RUNNABLE_TIMEOUT_MILLISECOND;
 
     private static final String SEND_KAFKA_INFOS_BASIC = "Thread:{}, Used Time: {}ms, Size: {}MB, Speed: {}ms/MB";
     private static final String SEND_KAFKA_INFOS_DESCRIBE = "[{}] ".concat(SEND_KAFKA_INFOS_BASIC);
@@ -46,8 +52,12 @@ public class KafkaUtils {
         // <number of message> / (<number of partition> * factor>)
         // 31934 / (24 * 100) = 13.3 = 14
         // 4759  / (3 * 100)  = 15.8 = 16
-        SEND_KAFKA_FACTOR = Integer.parseInt(PropUtils.getInstance().getProperty("job.send.2.kafka.factor"));
-        if (SEND_KAFKA_FACTOR < 10 || SEND_KAFKA_FACTOR > 1000) SEND_KAFKA_FACTOR = 100;
+        Integer SEND_KAFKA_FACTOR = Integer.parseInt(p.getProperty("job.send.2.kafka.factor"));
+        if (SEND_KAFKA_FACTOR < 10 || SEND_KAFKA_FACTOR > 100_0000) SEND_KAFKA_FACTOR = 100;
+        SEND_KAFKA_BLOCK_SIZE = KafkaConnPoolUtils.CONN_IN_POOL * SEND_KAFKA_FACTOR;
+        SEND_KAFKA_BLOCK_SIZE_MIN = SEND_KAFKA_BLOCK_SIZE / 10;
+        SEND_KAFKA_RUNNABLE_TIMEOUT_MILLISECOND = Integer.parseInt(p.getProperty("job.send.2.kafka.runnable.timeout.millisecond"));
+        if (SEND_KAFKA_FACTOR < 0) SEND_KAFKA_RUNNABLE_TIMEOUT_MILLISECOND = 60000;
     }
 
     private KafkaUtils() {
@@ -70,15 +80,20 @@ public class KafkaUtils {
     }
 
     private static void buildPool() {
-        String kafkaSendThreadPoolCoreNumber = PropUtils.getInstance().getProperty("kafka.send.thread.pool.core.number");
+        String kafkaSendThreadPoolCoreNumber = p.getProperty("kafka.send.thread.pool.core.number");
+        String jobMetricPeriodMillisecond = p.getProperty("job.metric.period.millisecond");
+        String jobJmxPeriodMillisecond = p.getProperty("job.jmx.period.millisecond");
         if (StrUtils.isEmpty(kafkaSendThreadPoolCoreNumber)) kafkaSendThreadPoolCoreNumber = "10";
-        pool = buildExecutorService(Integer.parseInt(kafkaSendThreadPoolCoreNumber), "Kafka", true);
+        if (StrUtils.isEmpty(jobMetricPeriodMillisecond)) jobMetricPeriodMillisecond = "30000";
+        if (StrUtils.isEmpty(jobJmxPeriodMillisecond)) jobJmxPeriodMillisecond = "30000";
+        Integer poolCore = Integer.parseInt(kafkaSendThreadPoolCoreNumber);
+        pool = new ExecutorCompletionService<>(buildExecutorService(poolCore, poolCore * 2,
+                Long.parseLong(jobMetricPeriodMillisecond) + Long.parseLong(jobJmxPeriodMillisecond), "Kafka", true));
     }
 
     static Producer<String, String> createProducer() {
         Properties props = new Properties();
         try {
-            PropUtils p = PropUtils.getInstance();
 //            props.put("zk.connect", p.getProperty("kafka.zk.connect"));   // not need zk in new version
             props.put("serializer.class", p.getProperty("kafka.serializer.class"));
             props.put("metadata.broker.list", p.getProperty("kafka.metadata.broker.list"));
@@ -94,50 +109,64 @@ public class KafkaUtils {
 
     public boolean putPool(Runnable r) {
         if (r == null || pool == null) return false;
-        pool.execute(r);
-        return true;
+        Future<Boolean> f = null;
+        try {
+            return (f = pool.submit(r, true)).get(SEND_KAFKA_RUNNABLE_TIMEOUT_MILLISECOND, TimeUnit.MILLISECONDS);
+        } catch (Exception e) {
+            _log.warn(ExceptionUtils.errorInfo(e));
+            return false;
+        } finally {
+            if (f != null) f.cancel(true);
+        }
     }
 
-    public void sendMessageToKafka(String message) {
-        sendMessageToKafka(message, null);
+    public void sendMessageToKafka(String message, final String topic) {
+        sendMessageToKafka(message, topic, null);
     }
 
-    public void sendMessageToKafka(String message, String key) {
-        Producer<String, String> p;
-        if ((p = KafkaConnPoolUtils.getInstance().getConn()) == null) {
+    public void sendMessageToKafka(String message, final String topic, String key) {
+        Producer<String, String> producer;
+        if ((producer = KafkaConnPoolUtils.getInstance().getConn()) == null) {
             _log.warn("Cannot get Producer in connect pool!");
             return;
         }
-        p.send(new KeyedMessage<>(PropUtils.getInstance().getProperty("kafka.topic"),
+        producer.send(new KeyedMessage<>(topic,
                 StrUtils.isEmpty(key) ? PRODUCER_INDEX + "" : key, message));
         if (StrUtils.isEmpty(key)) if (PRODUCER_INDEX.incrementAndGet() >= Integer.MAX_VALUE) PRODUCER_INDEX.set(0);
     }
 
-    public static <T> void save2Kafka(final List<T> objs) {
-        save2Kafka(objs, false, null);
+    public static <T> void save2Kafka(final List<T> objs, final String topic) {
+        save2Kafka(objs, false, topic, null);
     }
 
-    public static <T> void save2Kafka(final List<T> objs, final String describe) {
-        save2Kafka(objs, false, describe);
+    public static <T> void save2Kafka(final List<T> objs, final String topic, final String describe) {
+        save2Kafka(objs, false, topic, describe);
     }
 
-    public static <T> void save2Kafka(final List<T> objs, boolean isBalance, final String describe) {
+    public static <T> void save2Kafka(final List<T> objs, boolean isBalance, final String topic, final String describe) {
         if (isBalance) {
-            int len;
-            List<T> copy = new LinkedList<>();
-            for (int i = 0; i < (len = objs.size()); i++) {
-                copy.add(objs.get(i));
-                if (i % (KafkaConnPoolUtils.CONN_IN_POOL * SEND_KAFKA_FACTOR) == 0 || i == (len - 1))
-                    internalPutPool(copy, describe);
+            int len, next;
+            List<T> copy;
+            for (int i = 0; i < (len = objs.size()); i = next) {
+                if ((next = (i + SEND_KAFKA_BLOCK_SIZE)) < len && ((len - next) > SEND_KAFKA_BLOCK_SIZE_MIN))
+                    copy = objs.subList(i, next);
+                else copy = objs.subList(i, len);
+                internalPutPool(copy, describe);
             }
-        } else internalPutPool(objs, describe);
+//            List<T> copy = new LinkedList<>();
+//            for (int i = 0; i < (len = objs.size()); i++) {
+//                copy.add(objs.get(i));
+//                if ((i % SEND_KAFKA_BLOCK_SIZE == 0 || i == (len - 1)) && (len - i) > SEND_KAFKA_BLOCK_SIZE_MIN)
+//                    internalPutPool(copy, describe);
+//            }
+        } else internalPutPool(objs, topic, describe);
     }
 
-    private static <T> void internalPutPool(final List<T> copy) {
-        internalPutPool(copy, null);
+    private static <T> void internalPutPool(final List<T> copy, final String topic) {
+        internalPutPool(copy, topic, null);
     }
 
-    private static <T> void internalPutPool(final List<T> copy, final String describe) {
+    private static <T> void internalPutPool(final List<T> copy, final String topic, final String describe) {
         getInstance().putPool(new Runnable() {
             final List<T> deepCopy = new LinkedList<>(copy);
 
@@ -148,7 +177,7 @@ public class KafkaUtils {
                 String json;
                 for (T obj : deepCopy)
                     try {
-                        getInstance().sendMessageToKafka(json = obj.toString());
+                        getInstance().sendMessageToKafka(json = obj.toString(), topic);
                         size += json.getBytes().length;
                     } catch (Exception e) {
                         _log.error(ExceptionUtils.errorInfo(e));

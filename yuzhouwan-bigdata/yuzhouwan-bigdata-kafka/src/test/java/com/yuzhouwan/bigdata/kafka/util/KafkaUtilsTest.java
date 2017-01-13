@@ -1,5 +1,7 @@
 package com.yuzhouwan.bigdata.kafka.util;
 
+import com.yuzhouwan.common.util.PropUtils;
+
 /**
  * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
@@ -14,6 +16,6 @@ public class KafkaUtilsTest {
     public void testSendMessage() throws Exception {
 
         KafkaUtils k = KafkaUtils.getInstance();
-        k.sendMessageToKafka("yuzhouwan");
+        k.sendMessageToKafka("yuzhouwan", PropUtils.getInstance().getProperty("kafka.topic"));
     }
 }

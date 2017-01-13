@@ -17,7 +17,6 @@ import java.util.concurrent.*;
 public class ThreadUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(ThreadUtils.class);
-
     private static long MIN_PERIOD;
 
     static {
@@ -70,6 +69,24 @@ public class ThreadUtils {
     public static ExecutorService buildExecutorService(Integer nThread, String poolName, Boolean isDaemon) {
         if (nThread != null && nThread >= 0)
             return Executors.newFixedThreadPool(nThread, buildThreadFactory(poolName, isDaemon));
+        else return buildExecutorService(null, null, null, null, poolName, isDaemon);
+    }
+
+    /**
+     * ThreadPoolExecutor with LinkedBlockingQueue
+     *
+     * @param nThreadCore
+     * @param nThreadMax
+     * @param poolName
+     * @param isDaemon
+     * @return
+     */
+    public static ExecutorService buildExecutorService(Integer nThreadCore, Integer nThreadMax, Long ttlMillisecond,
+                                                       String poolName, Boolean isDaemon) {
+        if (nThreadCore != null && nThreadCore >= 0 && nThreadMax != null && nThreadMax >= 0
+                && ttlMillisecond != null && ttlMillisecond >= 0)
+            return new ThreadPoolExecutor(nThreadCore, nThreadMax, ttlMillisecond, TimeUnit.MILLISECONDS,
+                    new LinkedBlockingQueue<Runnable>(), buildThreadFactory(poolName, isDaemon));
         else return buildExecutorService(null, null, null, null, poolName, isDaemon);
     }
 
