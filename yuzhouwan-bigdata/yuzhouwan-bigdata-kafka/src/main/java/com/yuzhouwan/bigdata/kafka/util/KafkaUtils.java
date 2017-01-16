@@ -128,8 +128,7 @@ public class KafkaUtils {
             _log.warn("Cannot get Producer in connect pool!");
             return;
         }
-        producer.send(new KeyedMessage<>(topic,
-                StrUtils.isEmpty(key) ? PRODUCER_INDEX + "" : key, message));
+        producer.send(new KeyedMessage<>(topic, StrUtils.isEmpty(key) ? PRODUCER_INDEX + "" : key, message));
         if (StrUtils.isEmpty(key)) if (PRODUCER_INDEX.incrementAndGet() >= Integer.MAX_VALUE) PRODUCER_INDEX.set(0);
     }
 
@@ -146,17 +145,11 @@ public class KafkaUtils {
             int len, next;
             List<T> copy;
             for (int i = 0; i < (len = objs.size()); i = next) {
-                if ((next = (i + SEND_KAFKA_BLOCK_SIZE)) < len && ((len - next) > SEND_KAFKA_BLOCK_SIZE_MIN) || next > len)
+                if ((next = (i + SEND_KAFKA_BLOCK_SIZE)) < len && ((len - next) > SEND_KAFKA_BLOCK_SIZE_MIN))
                     copy = objs.subList(i, next);
                 else copy = objs.subList(i, len);
                 internalPutPool(copy, topic, describe);
             }
-//            List<T> copy = new LinkedList<>();
-//            for (int i = 0; i < (len = objs.size()); i++) {
-//                copy.add(objs.get(i));
-//                if ((i % SEND_KAFKA_BLOCK_SIZE == 0 || i == (len - 1)) && (len - i) > SEND_KAFKA_BLOCK_SIZE_MIN)
-//                    internalPutPool(copy, describe);
-//            }
         } else internalPutPool(objs, topic, describe);
     }
 
@@ -190,6 +183,7 @@ public class KafkaUtils {
                 deepCopy.clear();
             }
         });
-        copy.clear();
+        // [note]: clear the result of sublist method will bring on "structurally modified" issues
+        // copy.clear();
     }
 }
