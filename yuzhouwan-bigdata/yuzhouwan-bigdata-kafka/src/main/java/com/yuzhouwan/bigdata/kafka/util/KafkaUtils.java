@@ -146,7 +146,7 @@ public class KafkaUtils {
             int len, next;
             List<T> copy;
             for (int i = 0; i < (len = objs.size()); i = next) {
-                if ((next = (i + SEND_KAFKA_BLOCK_SIZE)) < len && ((len - next) > SEND_KAFKA_BLOCK_SIZE_MIN))
+                if ((next = (i + SEND_KAFKA_BLOCK_SIZE)) < len && ((len - next) > SEND_KAFKA_BLOCK_SIZE_MIN) || next > len)
                     copy = objs.subList(i, next);
                 else copy = objs.subList(i, len);
                 internalPutPool(copy, topic, describe);
