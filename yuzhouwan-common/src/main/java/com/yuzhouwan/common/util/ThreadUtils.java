@@ -86,7 +86,7 @@ public class ThreadUtils {
         if (nThreadCore != null && nThreadCore >= 0 && nThreadMax != null && nThreadMax >= 0
                 && ttlMillisecond != null && ttlMillisecond >= 0)
             return new ThreadPoolExecutor(nThreadCore, nThreadMax, ttlMillisecond, TimeUnit.MILLISECONDS,
-                    new LinkedBlockingQueue<Runnable>(), buildThreadFactory(poolName, isDaemon));
+                    new LinkedBlockingQueue<>(), buildThreadFactory(poolName, isDaemon));
         else return buildExecutorService(null, null, null, null, poolName, isDaemon);
     }
 
