@@ -41,6 +41,7 @@ public class BeanUtilsTest {
             head.add("c");
             head.add("d");
             remove(head, null, "b", "c");
+            assertEquals(true, head.size() == 2);
             assertEquals("a", head.get(0));
             assertEquals("d", head.get(1));
         }
@@ -68,9 +69,7 @@ public class BeanUtilsTest {
         t.add(2);
         StringBuilder stringBuilder = new StringBuilder();
         Iterator<Integer> iterator = t.descendingIterator();
-        while (iterator.hasNext()) {
-            stringBuilder.append(iterator.next());
-        }
+        while (iterator.hasNext()) stringBuilder.append(iterator.next());
         assertEquals("321", stringBuilder.toString());
     }
 
@@ -90,7 +89,7 @@ public class BeanUtilsTest {
         beans.add(bean1);
         beans.add(bean2);
         String[] fields = {"aA"};
-        LinkedList<String> rows = BeanUtils.columns2Row(beans, fields, true, "d_D", "this$0");
+        LinkedList<String> rows = BeanUtils.columns2Row(beans, fields, true, false, "d_D", "this$0");
         assertEquals(true, rows.size() == 4);
         int count = 0;
         for (String row : rows)

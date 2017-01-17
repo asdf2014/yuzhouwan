@@ -39,8 +39,8 @@ public class BeanUtils {
         if ((clazz = o.getClass()) == null) return;
         String className;
         if (StrUtils.isEmpty(className = clazz.getName())) return;
-        Vector<Field> fields = getFields(clazz, className);
-        if (fields == null || fields.size() == 0) return;
+        Vector<Field> fields;
+        if ((fields = getFields(clazz, className)) == null || fields.size() == 0) return;
         for (Field field : fields) {
             if (field == null) continue;
             if (StrUtils.isLike(field.getName(), key, ignores)) {
@@ -66,12 +66,14 @@ public class BeanUtils {
      * @param fields     fields
      * @param isLongTail true:  $fields is head
      *                   false: $fields is tail
+     * @param forDruid   true:  tail will be format as {..., "metric": "xxx", "value": yyy}
+     *                   false: normal {..., "xxx": yyy}
      * @param ignores    ignored fields
      * @param <T>        generic type
      * @return rows
      */
-    public static <T> LinkedList<String> columns2Row(List<T> objList, String[] fields, boolean isLongTail, Object... ignores) {
-        return columns2Row(objList, fields, null, isLongTail, ignores);
+    public static <T> LinkedList<String> columns2Row(List<T> objList, String[] fields, boolean isLongTail, boolean forDruid, Object... ignores) {
+        return columns2Row(objList, fields, null, isLongTail, forDruid, ignores);
     }
 
     /**
@@ -84,13 +86,15 @@ public class BeanUtils {
      * @param parentClass get some fields from parent class
      * @param isLongTail  true:  $fields is head
      *                    false: $fields is tail
+     * @param forDruid    true:  tail will be format as {..., "metric": "xxx", "value": yyy}
+     *                    false: normal {..., "xxx": yyy}
      * @param ignores     ignored fields
      * @param <T>         generic type
      * @return rows
      */
-    public static <T> LinkedList<String> columns2Row(List<T> objList, String[] fields, Class parentClass, boolean isLongTail, Object... ignores) {
+    public static <T> LinkedList<String> columns2Row(List<T> objList, String[] fields, Class parentClass, boolean isLongTail, boolean forDruid, Object... ignores) {
         LinkedList<String> rows = new LinkedList<>();
-        for (Object o : objList) rows.addAll(column2Row(o, fields, parentClass, isLongTail, ignores));
+        for (Object o : objList) rows.addAll(column2Row(o, fields, parentClass, isLongTail, forDruid, ignores));
         return rows;
     }
 
@@ -103,12 +107,14 @@ public class BeanUtils {
      * @param fields     fields
      * @param isLongTail true:  $fields is head
      *                   false: $fields is tail
+     * @param forDruid   true:  tail will be format as {..., "metric": "xxx", "value": yyy}
+     *                   false: normal {..., "xxx": yyy}
      * @param ignores    ignored fields
      * @param <T>        generic type
      * @return rows
      */
-    public static <T> LinkedList<String> column2Row(T obj, String[] fields, boolean isLongTail, Object... ignores) {
-        return column2Row(obj, fields, null, isLongTail, ignores);
+    public static <T> LinkedList<String> column2Row(T obj, String[] fields, boolean isLongTail, boolean forDruid, Object... ignores) {
+        return column2Row(obj, fields, null, isLongTail, forDruid, ignores);
     }
 
     /**
@@ -121,42 +127,31 @@ public class BeanUtils {
      * @param parentClass get some fields from parent class
      * @param isLongTail  true:  $fields is head
      *                    false: $fields is tail
+     * @param forDruid    true:  tail will be format as {..., "metric": "xxx", "value": yyy}
+     *                    false: normal {..., "xxx": yyy}
      * @param ignores     ignored fields
      * @param <T>         generic type
      * @return rows
      */
-    public static <T> LinkedList<String> column2Row(T obj, String[] fields, Class parentClass, boolean isLongTail, Object... ignores) {
+    public static <T> LinkedList<String> column2Row(T obj, String[] fields, Class parentClass, boolean isLongTail, boolean forDruid, Object... ignores) {
         if (obj == null || fields == null || fields.length == 0) return null;
         Class<?> clazz;
         if ((clazz = obj.getClass()) == null) return null;
         String className;
         if (StrUtils.isEmpty(className = clazz.getName())) return null;
         Set<Field> head = new HashSet<>(), tail = new HashSet<>();
-        for (Field field : getFields(clazz, className)) {
-            head.add(field);
-            tail.add(field);
-        }
-        if (parentClass != null)
-            for (Field field : parentClass.getDeclaredFields()) {
-                head.add(field);
-                tail.add(field);
-            }
-        if (isLongTail) {
-            remove(tail, "name", (Object[]) fields);
-            Collection<Field> cHead = remove(head, "name", (Object[]) fields);
-            head.clear();
-            head.addAll(cHead);
-        } else {
-            remove(head, "name", (Object[]) fields);
-            Collection<Field> cTail = remove(tail, "name", (Object[]) fields);
-            tail.clear();
-            tail.addAll(cTail);
-        }
+        Vector<Field> fieldVector = getFields(clazz, className);
+        if (isLongTail) tail.addAll(fieldVector);
+        else head.addAll(fieldVector);
+        if (parentClass != null) Collections.addAll(isLongTail ? tail : head, parentClass.getDeclaredFields());
+        // [note]: 1. tail/head: difference set; 2. removed: intersection in remove method
+        if (isLongTail) head.addAll(remove(tail, "name", (Object[]) fields));
+        else tail.addAll(remove(head, "name", (Object[]) fields));
         if (ignores != null && ignores.length > 0) {
             remove(head, "name", ignores);
             remove(tail, "name", ignores);
         }
-        return column2Row(obj, head, tail);
+        return column2Row(obj, head, tail, forDruid);
     }
 
     /**
@@ -164,15 +159,17 @@ public class BeanUtils {
      * <p>
      * The method is suit for small head/tail.
      *
-     * @param objList aim object list
-     * @param head    head fields
-     * @param tail    tail fields
-     * @param <T>     generic type
+     * @param objList  aim object list
+     * @param head     head fields
+     * @param tail     tail fields
+     * @param forDruid true:  tail will be format as {..., "metric": "xxx", "value": yyy}
+     *                 false: normal {..., "xxx": yyy}
+     * @param <T>      generic type
      * @return rows
      */
-    public static <T> LinkedList<String> columns2Row(List<T> objList, Set<Field> head, Set<Field> tail) {
+    public static <T> LinkedList<String> columns2Row(List<T> objList, Set<Field> head, Set<Field> tail, boolean forDruid) {
         LinkedList<String> rows = new LinkedList<>();
-        for (Object o : objList) rows.addAll(column2Row(o, head, tail));
+        for (Object o : objList) rows.addAll(column2Row(o, head, tail, forDruid));
         return rows;
     }
 
@@ -181,13 +178,15 @@ public class BeanUtils {
      * <p>
      * The method is suit for small head/tail.
      *
-     * @param obj  aim object
-     * @param head head fields
-     * @param tail tail fields
-     * @param <T>  generic type
+     * @param obj      aim object
+     * @param head     head fields
+     * @param tail     tail fields
+     * @param forDruid true:  tail will be format as {..., "metric": "xxx", "value": yyy}
+     *                 false: normal {..., "xxx": yyy}
+     * @param <T>      generic type
      * @return rows
      */
-    public static <T> LinkedList<String> column2Row(T obj, Set<Field> head, Set<Field> tail) {
+    public static <T> LinkedList<String> column2Row(T obj, Set<Field> head, Set<Field> tail, boolean forDruid) {
         LinkedList<String> rows = new LinkedList<>();
         JSONObject jsonObject = new JSONObject();
         for (Field h : head)
@@ -197,6 +196,21 @@ public class BeanUtils {
             } catch (IllegalAccessException e) {
                 _log.error(ExceptionUtils.errorInfo(e));
             }
+        if (forDruid) dealWithTail4Druid(obj, tail, rows, jsonObject);
+        else dealWithTail(obj, tail, rows, jsonObject);
+        return rows;
+    }
+
+    /**
+     * Deal with tail that will be format as {..., "xxx": yyy} normally
+     *
+     * @param obj
+     * @param tail
+     * @param rows
+     * @param jsonObject
+     * @param <T>
+     */
+    public static <T> void dealWithTail(T obj, Set<Field> tail, LinkedList<String> rows, JSONObject jsonObject) {
         Field tailPrev = null;
         for (Field t : tail)
             try {
@@ -208,7 +222,34 @@ public class BeanUtils {
             } catch (IllegalAccessException e) {
                 _log.error(ExceptionUtils.errorInfo(e));
             }
-        return rows;
+    }
+
+    /**
+     * Deal with tail that will be format as {..., "metric": "xxx", "value": yyy}
+     *
+     * @param obj
+     * @param tail
+     * @param rows
+     * @param jsonObject
+     * @param <T>
+     */
+    public static <T> void dealWithTail4Druid(T obj, Set<Field> tail, LinkedList<String> rows, JSONObject jsonObject) {
+        boolean isFirst = true;
+        for (Field t : tail)
+            try {
+                t.setAccessible(true);
+                if (!isFirst) {
+                    jsonObject.remove("metric");
+                    jsonObject.remove("value");
+                }
+                if (isFirst) isFirst = false;
+                jsonObject.put("metric", t.getName());
+//                jsonObject.put("value_".concat(t.getType().getSimpleName()), t.get(obj));
+                jsonObject.put("value", t.get(obj));        // then should use double sum/max/min with Aggregation in Druid
+                rows.add(jsonObject.toJSONString());
+            } catch (IllegalAccessException e) {
+                _log.error(ExceptionUtils.errorInfo(e));
+            }
     }
 
     /**
