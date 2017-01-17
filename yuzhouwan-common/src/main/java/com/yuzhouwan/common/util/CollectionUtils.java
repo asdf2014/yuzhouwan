@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Copyright @ 2016 yuzhouwan.com
@@ -43,21 +44,32 @@ public class CollectionUtils {
     }
 
     /**
-     * Remove Duplicate
+     * Remove Duplicate for Object[]
      *
      * @param a
      * @param b
      * @return
      */
-    public static Object[] removeDuplicate(Object[] a, Object[] b) {
+    public static Object[] intersection(Object[] a, Object[] b) {
         if (a == null || b == null || a.length == 0 || b.length == 0) return null;
-
-        Set<Object> set = new HashSet<>();
+        LinkedHashSet<Object> set = new LinkedHashSet<>(), result = new LinkedHashSet<>();
         Collections.addAll(set, a);
-
-        Set<Object> result = new HashSet<>();
         for (Object bi : b) if (set.contains(bi)) result.add(bi);
         return result.toArray();
+    }
+
+    /**
+     * Remove Duplicate for Collection
+     *
+     * @param a
+     * @param b
+     * @return
+     */
+    public static <T> Collection<T> intersection(Collection<T> a, Collection<T> b) {
+        if (a == null || b == null || a.size() == 0 || b.size() == 0) return null;
+        LinkedHashSet<T> set = new LinkedHashSet<>();
+        set.addAll(a);
+        return b.stream().filter(set::contains).collect(Collectors.toSet());
     }
 
     public static <E> Object getDuplicate(Collection<E> coll, E o, String field, Class fieldClass) {

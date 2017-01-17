@@ -2,9 +2,9 @@ package com.yuzhouwan.common.util;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.*;
 
+import static com.yuzhouwan.common.util.CollectionUtils.intersection;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -35,15 +35,29 @@ public class CollectionUtilsTest {
 
     @Test
     public void duplicate() throws Exception {
-
-        Integer[] a = new Integer[]{1, 2, 3};
-        Integer[] b = new Integer[]{3};
-        Integer[] c = new Integer[]{4};
-        Integer[] d = null;
-
-        assertEquals(3, CollectionUtils.removeDuplicate(a, b)[0]);
-        assertEquals(0, CollectionUtils.removeDuplicate(b, c).length);
-        assertEquals(true, CollectionUtils.removeDuplicate(c, d) == null);
+        {
+            Integer[] a = new Integer[]{1, 2, 3};
+            Integer[] b = new Integer[]{3};
+            Integer[] c = new Integer[]{4};
+            Integer[] d = null;
+            assertEquals(3, intersection(a, b)[0]);
+            assertEquals(0, intersection(b, c).length);
+            assertEquals(true, intersection(c, d) == null);
+        }
+        {
+            List<String> a = new LinkedList<>();
+            a.add("a");
+            a.add("c");
+            List<String> b = new LinkedList<>();
+            b.add("a");
+            b.add("b");
+            b.add("c");
+            Collection<String> result = intersection(a, b);
+            Iterator iterator = result.iterator();
+            assertEquals(2, result.size());
+            assertEquals("a", iterator.next());
+            assertEquals("c", iterator.next());
+        }
     }
 
     @Test
