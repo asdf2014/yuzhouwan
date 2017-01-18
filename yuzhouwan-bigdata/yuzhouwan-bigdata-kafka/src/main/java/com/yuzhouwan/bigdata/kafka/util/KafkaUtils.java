@@ -10,6 +10,7 @@ import kafka.producer.ProducerConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
@@ -132,6 +133,25 @@ public class KafkaUtils {
         if (StrUtils.isEmpty(key)) if (PRODUCER_INDEX.incrementAndGet() >= Integer.MAX_VALUE) PRODUCER_INDEX.set(0);
     }
 
+    public void sendMessageToKafka(List<String> message, final String topic) {
+        sendMessageToKafka(message, topic, null);
+    }
+
+    public void sendMessageToKafka(List<String> message, final String topic, String key) {
+        Producer<String, String> producer;
+        if ((producer = KafkaConnPoolUtils.getInstance().getConn()) == null) {
+            _log.warn("Cannot get Producer in connect pool!");
+            return;
+        }
+
+        List<KeyedMessage<String, String>> keyedMessages = new ArrayList<>();
+        for (String msg : message) {
+            keyedMessages.add(new KeyedMessage<>(topic, StrUtils.isEmpty(key) ? PRODUCER_INDEX + "" : key, msg));
+            if (StrUtils.isEmpty(key)) if (PRODUCER_INDEX.incrementAndGet() >= Integer.MAX_VALUE) PRODUCER_INDEX.set(0);
+        }
+        producer.send(keyedMessages);
+    }
+
     public static <T> void save2Kafka(final List<T> objs, final String topic) {
         save2Kafka(objs, false, topic, null);
     }
@@ -158,30 +178,27 @@ public class KafkaUtils {
     }
 
     private static <T> void internalPutPool(final List<T> copy, final String topic, final String describe) {
-        getInstance().putPool(new Runnable() {
-            final List<T> deepCopy = new LinkedList<>(copy);
-
-            @Override
-            public void run() {
-                long start = System.currentTimeMillis();
-                double size = 0;
-                String json;
-                for (T obj : deepCopy)
-                    try {
-                        getInstance().sendMessageToKafka(json = obj.toString(), topic);
-                        size += json.getBytes().length;
-                    } catch (Exception e) {
-                        _log.error(ExceptionUtils.errorInfo(e));
-                    }
-                long end = System.currentTimeMillis();
-                long period = end - start;
-                double dataSize = size / 1024 / 1024;
-                if (StrUtils.isEmpty(describe)) _log.info(SEND_KAFKA_INFOS_BASIC, Thread.currentThread().getName(),
-                        period, DecimalUtils.saveTwoPoint(dataSize), DecimalUtils.saveTwoPoint(period / dataSize));
-                else _log.info(SEND_KAFKA_INFOS_DESCRIBE, describe, Thread.currentThread().getName(), period,
-                        DecimalUtils.saveTwoPoint(dataSize), DecimalUtils.saveTwoPoint(period / dataSize));
-                deepCopy.clear();
-            }
+        getInstance().putPool(() -> {
+            long start = System.currentTimeMillis();
+            double size = 0;
+            String json;
+            List<String> deepCopy = new LinkedList<>();
+            for (T obj : copy)
+                try {
+                    deepCopy.add(json = obj.toString());
+                    size += json.getBytes().length;
+                } catch (Exception e) {
+                    _log.error(ExceptionUtils.errorInfo(e));
+                }
+            getInstance().sendMessageToKafka(deepCopy, topic);
+            long end = System.currentTimeMillis();
+            long period = end - start;
+            double dataSize = size / 1024 / 1024;
+            if (StrUtils.isEmpty(describe)) _log.info(SEND_KAFKA_INFOS_BASIC, Thread.currentThread().getName(),
+                    period, DecimalUtils.saveTwoPoint(dataSize), DecimalUtils.saveTwoPoint(period / dataSize));
+            else _log.info(SEND_KAFKA_INFOS_DESCRIBE, describe, Thread.currentThread().getName(), period,
+                    DecimalUtils.saveTwoPoint(dataSize), DecimalUtils.saveTwoPoint(period / dataSize));
+            deepCopy.clear();
         });
         // [note]: clear the result of sublist method will bring on "structurally modified" issues
         // copy.clear();

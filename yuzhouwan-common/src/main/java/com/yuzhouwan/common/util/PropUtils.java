@@ -41,9 +41,9 @@ public class PropUtils {
         if (instance == null)
             synchronized (PropUtils.class) {
                 if (instance == null) {
-                    List<String> prop = DirUtils.findPath(DirUtils.getClassesPath(), ".properties", true, "prop");
+                    List<String> prop = DirUtils.findPath(DirUtils.getClassesPath(), "prop", ".properties", true);
                     if (prop == null || prop.size() == 0)
-                        prop = DirUtils.findPath(DirUtils.getProjectBasicPath(), ".properties", true, "prop");
+                        prop = DirUtils.findPath(DirUtils.getProjectBasicPath(), "prop", ".properties", true);
                     instance = new PropUtils(prop);
                 }
             }

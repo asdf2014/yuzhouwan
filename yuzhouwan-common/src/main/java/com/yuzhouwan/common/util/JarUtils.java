@@ -57,9 +57,9 @@ public class JarUtils {
             // /classes/lib/*.jar
             _log.debug("CLASSES_PATH is {}", CLASSES_PATH);
             if (!StrUtils.isEmpty(CLASSES_PATH)) {
-                if ((jarPaths = DirUtils.findPath(CLASSES_PATH, ".jar", false, "lib")) != null && jarPaths.size() > 0)
+                if ((jarPaths = DirUtils.findPath(CLASSES_PATH, "lib", ".jar", false)) != null && jarPaths.size() > 0)
                     for (String jarFile : jarPaths) {
-                        jarPaths = DirUtils.findPath(CLASSES_PATH, jarFile.substring(1), false, "classes");
+                        jarPaths = DirUtils.findPath(CLASSES_PATH, "classes", jarFile.substring(1), false);
                         if (jarPaths != null && jarPaths.size() > 0) scanDirWithinJar(jarPaths.get(0));
                     }
             }
@@ -67,11 +67,11 @@ public class JarUtils {
             // /lib/*.jar
             _log.debug("LIB_PATH is {}", LIB_PATH);
             if (!StrUtils.isEmpty(LIB_PATH)) {
-                if ((jarPaths = DirUtils.findPath(LIB_PATH, ".jar", false, "lib")) != null && jarPaths.size() > 0)
+                if ((jarPaths = DirUtils.findPath(LIB_PATH, "lib", ".jar", false)) != null && jarPaths.size() > 0)
                     for (String jarFile : jarPaths) {
                         //如果是 webApp，这里需要改为 WEB-INF; 否则是 target (supported by profile in maven)
-                        jarPaths = DirUtils.findPath(LIB_PATH, jarFile.substring(1), false,
-                                PropUtils.getInstance().getPropertyInternal("lib.path"));
+                        jarPaths = DirUtils.findPath(LIB_PATH, PropUtils.getInstance().getPropertyInternal("lib.path"), jarFile.substring(1), false
+                        );
                         if (jarPaths != null && jarPaths.size() > 0) scanDirWithinJar(jarPaths.get(0));
                     }
             }

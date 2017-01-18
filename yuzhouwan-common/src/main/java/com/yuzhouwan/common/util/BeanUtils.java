@@ -23,6 +23,7 @@ import static com.yuzhouwan.common.util.CollectionUtils.remove;
 public class BeanUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(BeanUtils.class);
+    private static final String FIELD_NAME = "name", DRUID_METRICS = "metric", DRUID_VALUE = "value";
     private static final ConcurrentHashMap<String, Vector<Field>> FIELDS_CACHE = new ConcurrentHashMap<>();
 
     /**
@@ -188,11 +189,11 @@ public class BeanUtils {
      * @param ignores
      */
     private static void removeFields(Set<Field> head, Set<Field> tail, boolean isLongTail, Object[] fields, Object[] ignores) {
-        if (isLongTail) head.addAll(remove(tail, "name", fields));
-        else tail.addAll(remove(head, "name", fields));
+        if (isLongTail) head.addAll(remove(tail, FIELD_NAME, fields));
+        else tail.addAll(remove(head, FIELD_NAME, fields));
         if (ignores != null && ignores.length > 0) {
-            remove(head, "name", ignores);
-            remove(tail, "name", ignores);
+            remove(head, FIELD_NAME, ignores);
+            remove(tail, FIELD_NAME, ignores);
         }
     }
 
@@ -281,13 +282,13 @@ public class BeanUtils {
             try {
                 t.setAccessible(true);
                 if (!isFirst) {
-                    jsonObject.remove("metric");
-                    jsonObject.remove("value");
+                    jsonObject.remove(DRUID_METRICS);
+                    jsonObject.remove(DRUID_VALUE);
                 }
                 if (isFirst) isFirst = false;
-                jsonObject.put("metric", t.getName());
+                jsonObject.put(DRUID_METRICS, t.getName());
 //                jsonObject.put("value_".concat(t.getType().getSimpleName()), t.get(obj));
-                jsonObject.put("value", t.get(obj));        // then should use double sum/max/min with Aggregation in Druid
+                jsonObject.put(DRUID_VALUE, t.get(obj));        // then should use double sum/max/min with Aggregation in Druid
                 rows.add(jsonObject.toJSONString());
             } catch (IllegalAccessException e) {
                 _log.error(ExceptionUtils.errorInfo(e));

@@ -60,19 +60,19 @@ public class DirUtilsTest {
     @Test
     public void testDirScanAbsolute() throws Exception {
         assertEquals("\\com\\yuzhouwan\\common\\util\\DirUtilsTest.class", DirUtils.findPath(
-                DirUtils.getTestClassesPath(), "DirUtilsTest.class", false, "test-classes")
+                DirUtils.getTestClassesPath(), "test-classes", "DirUtilsTest.class", false)
                 .get(0));
     }
 
     @Test
     public void testJarPath() throws Exception {
         assertEquals(new LinkedList<>(Arrays.asList("\\yuzhouwan-common.jar")),
-                DirUtils.findPath(DirUtils.getTestClassesPath(), ".jar", false, "lib"));
+                DirUtils.findPath(DirUtils.getTestClassesPath(), "lib", ".jar", false));
     }
 
     @Test
     public void testPropertiesPath() throws Exception {
-        DirUtils.findPath(DirUtils.getClassesPath(), ".properties", true, "prop").forEach(System.out::println);
+        DirUtils.findPath(DirUtils.getClassesPath(), "prop", ".properties", true).forEach(System.out::println);
     }
 
     @Test

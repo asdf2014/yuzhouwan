@@ -80,13 +80,12 @@ public class HttpUtils {
     }
 
     public static HttpUtils getInstance() {
-        if (helper == null)
-            synchronized (HttpUtils.class) {
-                if (helper == null) {
-                    helper = new HttpUtils();
-                    helper.initialize();
-                }
+        if (helper == null) synchronized (HttpUtils.class) {
+            if (helper == null) {
+                helper = new HttpUtils();
+                helper.initialize();
             }
+        }
         return helper;
     }
 
@@ -110,8 +109,33 @@ public class HttpUtils {
         // Connection配置
         ConnectionConfig connectionConfig = ConnectionConfig.custom().setMalformedInputAction(CodingErrorAction.IGNORE)
                 .setUnmappableInputAction(CodingErrorAction.IGNORE).setCharset(Consts.UTF_8).build();
+        coverCA();
+        httpClientContext();
+        HttpClientBuilder httpClientBuilder = initHttpClient(createHttpClientConnPool(connectionConfig),
+                requestConfig(), redirectStrategy(), retryPolicy());
+        if (HttpUtils.userAgent != null) httpClientBuilder.setUserAgent(userAgent);
+        httpClient = httpClientBuilder.build();
+    }
 
-        // 覆盖证书检测过程 [用以非CA的https链接 (CA, Certificate Authority 数字证书)]
+    /**
+     * 初始化 httpClient客户端
+     *
+     * @param httpClientConnectionManager
+     * @param defaultRequestConfig
+     * @param redirectStrategy
+     * @param retryHandler
+     * @return
+     */
+    private HttpClientBuilder initHttpClient(PoolingHttpClientConnectionManager httpClientConnectionManager, RequestConfig defaultRequestConfig, LaxRedirectStrategy redirectStrategy, HttpRequestRetryHandler retryHandler) {
+        return HttpClients.custom()
+                .setConnectionManager(httpClientConnectionManager).setDefaultRequestConfig(defaultRequestConfig)
+                .setRedirectStrategy(redirectStrategy).setRetryHandler(retryHandler);
+    }
+
+    /**
+     * 覆盖证书检测过程 [用以非CA的https链接 (CA, Certificate Authority 数字证书)]
+     */
+    private void coverCA() {
         trustManagers[0] = new X509TrustManager() {
             @Override
             public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
@@ -126,11 +150,17 @@ public class HttpUtils {
                 return null;
             }
         };
+    }
 
-        // httpClient上下文
+    /**
+     * httpClient上下文
+     */
+    private void httpClientContext() {
         httpClientContext = HttpClientContext.create();
         httpClientContext.setCookieStore(new BasicCookieStore());
+    }
 
+    private SSLConnectionSocketFactory buildSSLConn() {
         SSLConnectionSocketFactory sslSocketFactory;
         try {
             SSLContext sslContext = SSLContext.getInstance("TLS");
@@ -140,27 +170,45 @@ public class HttpUtils {
             _log.error(ExceptionUtils.errorInfo(e));
             throw new RuntimeException(e);
         }
+        return sslSocketFactory;
+    }
 
-        // 创建 httpClient连接池
+    /**
+     * 创建 httpClient连接池
+     *
+     * @param connectionConfig
+     * @return
+     */
+    private PoolingHttpClientConnectionManager createHttpClientConnPool(ConnectionConfig connectionConfig) {
         PoolingHttpClientConnectionManager httpClientConnectionManager = new PoolingHttpClientConnectionManager(
                 RegistryBuilder.<ConnectionSocketFactory>create().
                         register("http", PlainConnectionSocketFactory.getSocketFactory()).
-                        register("https", sslSocketFactory).build());
+                        register("https", buildSSLConn()).build());
         httpClientConnectionManager.setMaxTotal(MAX_TOTAL); // 设置连接池线程最大数量
         httpClientConnectionManager.setDefaultMaxPerRoute(MAX_ROUTE_TOTAL); // 设置单个路由最大的连接线程数量
         httpClientConnectionManager.setDefaultConnectionConfig(connectionConfig);
+        return httpClientConnectionManager;
+    }
 
-        // 默认请求配置
-        RequestConfig defaultRequestConfig = RequestConfig.custom()
+    /**
+     * 默认请求配置
+     *
+     * @return
+     */
+    private RequestConfig requestConfig() {
+        return RequestConfig.custom()
                 .setSocketTimeout(TIMEOUT_SOCKET)
                 .setConnectTimeout(TIMEOUT_CONNECTION)
                 .setConnectionRequestTimeout(TIMEOUT_CONNECTION).build();
+    }
 
-        // 设置重定向策略
-        LaxRedirectStrategy redirectStrategy = new LaxRedirectStrategy();
-
-        // 重试策略
-        HttpRequestRetryHandler retryHandler = (IOException exception, int executionCount, HttpContext context) -> {
+    /**
+     * 重试策略
+     *
+     * @return
+     */
+    private HttpRequestRetryHandler retryPolicy() {
+        return (IOException exception, int executionCount, HttpContext context) -> {
             // Do not retry if over max retry count
             if (executionCount >= MAX_RETRY) return false;
             // Retry if the server dropped connection on us
@@ -171,12 +219,15 @@ public class HttpUtils {
             // Retry if the request is considered idempotent
             return !(request instanceof HttpEntityEnclosingRequest);
         };
-        // 初始化 httpClient客户端
-        HttpClientBuilder httpClientBuilder = HttpClients.custom()
-                .setConnectionManager(httpClientConnectionManager).setDefaultRequestConfig(defaultRequestConfig)
-                .setRedirectStrategy(redirectStrategy).setRetryHandler(retryHandler);
-        if (HttpUtils.userAgent != null) httpClientBuilder.setUserAgent(userAgent);
-        httpClient = httpClientBuilder.build();
+    }
+
+    /**
+     * 设置重定向策略
+     *
+     * @return
+     */
+    private LaxRedirectStrategy redirectStrategy() {
+        return new LaxRedirectStrategy();
     }
 
     private MultipartEntityBuilder processBuilderParams(Map<String, Object> params) {

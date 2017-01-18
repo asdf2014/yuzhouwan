@@ -130,8 +130,8 @@ public class DirUtils implements IDirUtils {
      * @param isAbsolute
      * @return
      */
-    public static List<String> findPath(String path, String fileName, boolean isAbsolute, String basePath) {
-        List<String> foundPath = findAbsolutePath(path, fileName, basePath);
+    public static List<String> findPath(String path, String basePath, String fileName, boolean isAbsolute) {
+        List<String> foundPath = findAbsolutePath(path, basePath, fileName);
         if (foundPath == null || isAbsolute) return foundPath;
         List<String> absolutePath = new LinkedList<>();
         for (String s : foundPath) {
@@ -179,7 +179,7 @@ public class DirUtils implements IDirUtils {
     }
 
     public static List<String> findAbsolutePath(String path, String fileName) {
-        return findAbsolutePath(path, fileName, null);
+        return findAbsolutePath(path, null, fileName);
     }
 
     /**
@@ -189,7 +189,7 @@ public class DirUtils implements IDirUtils {
      * @param fileName
      * @return
      */
-    public static List<String> findAbsolutePath(String path, String fileName, String basePath) {
+    public static List<String> findAbsolutePath(String path, String basePath, String fileName) {
         if (StrUtils.isEmpty(path) || StrUtils.isEmpty(fileName)) return null;
         List<String> filePathList = scanDir(path);
         if (filePathList == null || filePathList.size() == 0) return null;
