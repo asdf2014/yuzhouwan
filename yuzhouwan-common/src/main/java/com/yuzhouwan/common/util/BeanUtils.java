@@ -43,18 +43,33 @@ public class BeanUtils {
         if ((fields = getFields(clazz, className)) == null || fields.size() == 0) return;
         for (Field field : fields) {
             if (field == null) continue;
-            if (StrUtils.isLike(field.getName(), key, ignores)) {
-                field.setAccessible(true);
-                try {
-                    field.set(o, value);
-                } catch (IllegalAccessException e) {
-                    _log.error(ExceptionUtils.errorInfo(e));
-                }
-                return;
-            }
+            if (valueField(o, key, value, field, ignores)) return;
         }
         _log.debug("[Warn] Cannot be swapped, object: {}, key: {}, value: {}, ignores: {}.",
                 o, key, value, JSON.toJSONString(ignores));
+    }
+
+    /**
+     * Value field
+     *
+     * @param o
+     * @param key
+     * @param value
+     * @param field
+     * @param ignores
+     * @return
+     */
+    private static boolean valueField(Object o, String key, Object value, Field field, String[] ignores) {
+        if (StrUtils.isLike(field.getName(), key, ignores)) {
+            field.setAccessible(true);
+            try {
+                field.set(o, value);
+            } catch (IllegalAccessException e) {
+                _log.error(ExceptionUtils.errorInfo(e));
+            }
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -140,18 +155,45 @@ public class BeanUtils {
         String className;
         if (StrUtils.isEmpty(className = clazz.getName())) return null;
         Set<Field> head = new HashSet<>(), tail = new HashSet<>();
+        initFields(head, tail, clazz, className, parentClass, isLongTail);
+        removeFields(head, tail, isLongTail, fields, ignores);
+        return column2Row(obj, head, tail, forDruid);
+    }
+
+    /**
+     * Init total fields.
+     *
+     * @param head
+     * @param tail
+     * @param clazz
+     * @param className
+     * @param parentClass
+     * @param isLongTail
+     */
+    private static void initFields(Set<Field> head, Set<Field> tail, Class<?> clazz, String className, Class parentClass, boolean isLongTail) {
         Vector<Field> fieldVector = getFields(clazz, className);
         if (isLongTail) tail.addAll(fieldVector);
         else head.addAll(fieldVector);
         if (parentClass != null) Collections.addAll(isLongTail ? tail : head, parentClass.getDeclaredFields());
-        // [note]: 1. tail/head: difference set; 2. removed: intersection in remove method
-        if (isLongTail) head.addAll(remove(tail, "name", (Object[]) fields));
-        else tail.addAll(remove(head, "name", (Object[]) fields));
+    }
+
+    /**
+     * Remove fields.
+     * [note]: 1. tail/head: difference set; 2. removed: intersection in remove method
+     *
+     * @param head
+     * @param tail
+     * @param isLongTail
+     * @param fields
+     * @param ignores
+     */
+    private static void removeFields(Set<Field> head, Set<Field> tail, boolean isLongTail, Object[] fields, Object[] ignores) {
+        if (isLongTail) head.addAll(remove(tail, "name", fields));
+        else tail.addAll(remove(head, "name", fields));
         if (ignores != null && ignores.length > 0) {
             remove(head, "name", ignores);
             remove(tail, "name", ignores);
         }
-        return column2Row(obj, head, tail, forDruid);
     }
 
     /**
@@ -187,15 +229,15 @@ public class BeanUtils {
      * @return rows
      */
     public static <T> LinkedList<String> column2Row(T obj, Set<Field> head, Set<Field> tail, boolean forDruid) {
-        LinkedList<String> rows = new LinkedList<>();
         JSONObject jsonObject = new JSONObject();
-        for (Field h : head)
+        for (Field f : head)
             try {
-                h.setAccessible(true);
-                jsonObject.put(h.getName(), h.get(obj));
+                f.setAccessible(true);
+                jsonObject.put(f.getName(), f.get(obj));
             } catch (IllegalAccessException e) {
                 _log.error(ExceptionUtils.errorInfo(e));
             }
+        LinkedList<String> rows = new LinkedList<>();
         if (forDruid) dealWithTail4Druid(obj, tail, rows, jsonObject);
         else dealWithTail(obj, tail, rows, jsonObject);
         return rows;
@@ -256,15 +298,15 @@ public class BeanUtils {
      * Get fields with <code>FIELDS_CACHE</code>
      *
      * @param clazz     class
-     * @param className the simple name of class as the key in FIELDS_CACHE
+     * @param className the name of class as the key in FIELDS_CACHE
      * @return fields
      */
     public static Vector<Field> getFields(Class<?> clazz, String className) {
-        Vector<Field> fields;
-        if (FIELDS_CACHE.size() == 0 || !FIELDS_CACHE.containsKey(className))
+        if (FIELDS_CACHE.size() == 0 || !FIELDS_CACHE.containsKey(className)) {
+            Vector<Field> fields;
             FIELDS_CACHE.put(className, fields = getAllFields(clazz));
-        else fields = FIELDS_CACHE.get(className);
-        return fields;
+            return fields;
+        } else return FIELDS_CACHE.get(className);
     }
 
     /**

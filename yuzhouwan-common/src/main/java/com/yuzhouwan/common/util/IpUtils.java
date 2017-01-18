@@ -116,10 +116,8 @@ public class IpUtils {
      * @return
      */
     public static String long2ip(Long ipAddress) {
-        return String.valueOf(ipAddress >>> 24) + "." +
-                String.valueOf((ipAddress & 0x00FFFFFF) >>> 16) + "." +
-                String.valueOf((ipAddress & 0x0000FFFF) >>> 8) + "." +
-                String.valueOf((ipAddress & 0x000000FF));
+        return String.valueOf(ipAddress >>> 24) + "." + String.valueOf((ipAddress & 0x00FFFFFF) >>> 16) + "." +
+                String.valueOf((ipAddress & 0x0000FFFF) >>> 8) + "." + String.valueOf((ipAddress & 0x000000FF));
     }
 
     /**
@@ -133,7 +131,7 @@ public class IpUtils {
         try {
             a = (Inet4Address) InetAddress.getByName(ipAddress);
         } catch (UnknownHostException e) {
-            _log.error("{}", ExceptionUtils.errorInfo(e));
+            _log.error(ExceptionUtils.errorInfo(e));
             return null;
         }
         byte[] b = a.getAddress();
@@ -182,7 +180,7 @@ public class IpUtils {
         try {
             return Inet4Address.getByName(new URL(url).getHost()).getHostAddress();
         } catch (Exception e) {
-            _log.error("{}", ExceptionUtils.errorInfo(e));
+            _log.error(ExceptionUtils.errorInfo(e));
             return null;
         }
     }
@@ -197,7 +195,7 @@ public class IpUtils {
         try {
             return InetAddress.getByName(ipAddress).isReachable(10000);
         } catch (IOException e) {
-            _log.error("{}", ExceptionUtils.errorInfo(e));
+            _log.error(ExceptionUtils.errorInfo(e));
         }
         return null;
     }
@@ -206,7 +204,7 @@ public class IpUtils {
         try {
             return Runtime.getRuntime().exec(PING_PREFIX.concat(ipAddress)).waitFor(10000, TimeUnit.MICROSECONDS);
         } catch (Exception e) {
-            _log.error("{}", ExceptionUtils.errorInfo(e));
+            _log.error(ExceptionUtils.errorInfo(e));
             return false;
         }
     }
@@ -258,7 +256,7 @@ public class IpUtils {
                     }
                 }
             } catch (SocketException e) {
-                _log.error("{}", ExceptionUtils.errorInfo(e));
+                _log.error(ExceptionUtils.errorInfo(e));
                 throw new RuntimeException(e);
             }
         }

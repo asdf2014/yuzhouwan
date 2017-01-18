@@ -1,6 +1,7 @@
 package com.yuzhouwan.common.util;
 
 import com.yuzhouwan.common.dir.DirUtils;
+import com.yuzhouwan.common.dir.WatchRunnable;
 import org.junit.Test;
 
 import java.io.File;
@@ -76,7 +77,7 @@ public class DirUtilsTest {
 
     @Test
     public void testBuildWatchService() throws Exception {
-        DirUtils.WatchRunnable thread = DirUtils.buildWatchService("Z:/watch");
+        WatchRunnable thread = DirUtils.buildWatchService("Z:/watch");
         assertEquals(null, thread);
 
         // 2 ms is lowest limitation for me ;)

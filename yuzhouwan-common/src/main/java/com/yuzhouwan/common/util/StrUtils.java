@@ -45,10 +45,9 @@ public class StrUtils {
     public static String getMainValue(String suppressCode, int headIndex, String needRemoved) {
         if (!StrUtils.isEmpty(suppressCode)) {
             String tail = suppressCode.substring(headIndex, suppressCode.length());
-            while (tail.length() >= 0) {
+            while (tail.length() >= 0)
                 if (tail.startsWith(needRemoved)) tail = tail.substring(1);
                 else return tail;
-            }
         }
         return null;
     }

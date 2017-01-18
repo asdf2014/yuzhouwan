@@ -18,7 +18,7 @@ import java.util.List;
  * Function: Directory Util
  *
  * @author Benedict Jin
- * @since 2016/4/7 0030
+ * @since 2016/4/7
  */
 public class DirUtils implements IDirUtils {
 
@@ -103,7 +103,7 @@ public class DirUtils implements IDirUtils {
             path = location.toURI().getPath();
             _log.debug("Current Thread Location: {}", path);
         } catch (Exception e) {
-            _log.error("{}", ExceptionUtils.errorInfo(e));
+            _log.error(ExceptionUtils.errorInfo(e));
             throw new RuntimeException(e);
         }
         if (StrUtils.isEmpty(path)) throw new RuntimeException("Basic Path is null!!!");
@@ -300,53 +300,6 @@ public class DirUtils implements IDirUtils {
      */
     public void dealWithEvent(WatchEvent<?> event) {
         // could expand more processes here
-        _log.info(event.context() + ":\t " + event.kind() + " event.");
-    }
-
-    /**
-     * 监控线程 (主要为了多线程，能安全地 stop)
-     */
-    public static class WatchRunnable implements Runnable {
-        private IDirUtils dealProcessor;
-        private Long waitTime;
-        private WatchService watchService;
-
-        /**
-         * controller for thread stops safely
-         */
-        private boolean isRunning = true;
-
-        public WatchRunnable(WatchService watchService, IDirUtils dealProcessor, Long waitTime) {
-            this.dealProcessor = dealProcessor;
-            this.waitTime = waitTime;
-            this.watchService = watchService;
-        }
-
-        public void setRunning(boolean running) {
-            isRunning = running;
-        }
-
-        @Override
-        public void run() {
-            WatchKey key = null;
-            try {
-                key = watchService.take();
-            } catch (InterruptedException e) {
-                _log.error("WatchService is error, because {}", e.getMessage());
-            }
-            if (key == null) return;
-            IDirUtils dirUtil = dealProcessor == null ? new DirUtils() : dealProcessor;
-            while (true) {
-                if (!isRunning) return;
-                if (waitTime != null && waitTime > 0)
-                    try {
-                        Thread.sleep(waitTime);
-                    } catch (InterruptedException e) {
-                        _log.error("Thread sleep error, because {}", e.getMessage());
-                    }
-                if (!key.reset()) break;
-                key.pollEvents().forEach(dirUtil::dealWithEvent);
-            }
-        }
+        _log.info("{}:\t {} event.", event.context(), event.kind());
     }
 }

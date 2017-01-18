@@ -2,6 +2,7 @@ package com.yuzhouwan.bigdata.zookeeper.prop;
 
 import com.yuzhouwan.common.dir.DirUtils;
 import com.yuzhouwan.common.dir.IDirUtils;
+import com.yuzhouwan.common.dir.WatchRunnable;
 import com.yuzhouwan.common.util.PropUtils;
 import com.yuzhouwan.common.util.StrUtils;
 import org.slf4j.Logger;
@@ -24,7 +25,7 @@ public class DynamicProp implements IDirUtils {
     //0: nothing; 1: upload
     private static final String DYNAMIC_PROP_UPLOAD = "1";
 
-    private DirUtils.WatchRunnable runnable;
+    private WatchRunnable runnable;
     private Thread thread;
 
     public DynamicProp(String path) {

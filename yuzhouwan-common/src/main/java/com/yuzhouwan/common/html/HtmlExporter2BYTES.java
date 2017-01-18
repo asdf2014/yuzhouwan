@@ -48,9 +48,7 @@ public class HtmlExporter2BYTES implements IHtmlExporter {
         PhantomJSDriver driver = null;
         try {
             driver = HtmlExporterUtils.prepare(url, addedCookie, width, height);
-            if (driver == null)
-                return null;
-            return driver.getScreenshotAs(OutputType.BYTES);
+            return driver == null ? null : driver.getScreenshotAs(OutputType.BYTES);
         } finally {
             HtmlExporterUtils.release(driver);
         }

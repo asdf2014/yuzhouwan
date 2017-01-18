@@ -19,9 +19,6 @@ public class CollectionUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(CollectionUtils.class);
 
-//    private volatile static long NANO_SECOND_TOTAL;
-//    private volatile static long CALL_COUNT_TOTAL;
-
     /**
      * 按照 strWithSeparator 中包含的几个单词，模糊匹配 originList 内元素，并移除
      *
@@ -90,35 +87,21 @@ public class CollectionUtils {
      */
     public static <E> Object getDuplicate(Collection<E> coll, E o, String fieldName, Class fieldClass, Class elementClass) {
 
-//        long startTime = System.nanoTime();
         if (coll == null || coll.isEmpty() || o == null || StrUtils.isEmpty(fieldName) || fieldClass == null)
             return null;
         Object collO = null, aimO = null;
         String elementClassName = "";
         boolean subClass = false;
-        if (elementClass != null) {
-            elementClassName = elementClass.getName();
-            subClass = StrUtils.isNotEmpty(elementClassName);
-        }
+        if (elementClass != null) subClass = StrUtils.isNotEmpty(elementClassName = elementClass.getName());
         E end = null;
         try {
             Field f = o.getClass().getDeclaredField(fieldName);
             f.setAccessible(true);
-//            long endTime, period;
             for (E e : coll) {
                 if (subClass && !elementClassName.equals(e.getClass().getName())) continue;
                 collO = f.get(e);
                 aimO = f.get(o);
-                if (collO.equals(aimO) || fieldClass.cast(collO).equals(fieldClass.cast(aimO))) {
-//                    endTime = System.nanoTime();
-//                    period = endTime - startTime;
-                    // 2016-12-08 09:07:56.746 | DEBUG | getDuplicate method used time: 622 nanosecond, total count: 57746148, total time: 1057645752619 nanosecond, time pre call: 18315 nanosecond | com.yuzhouwan.common.collection.CollectionUtils.getDuplicate | CollectionUtils.java:104
-//                    _log.debug("getDuplicate method used time: {} nanosecond, total count: {}, " +
-//                                    "total time: {} nanosecond, time pre call: {} nanosecond",
-//                            period, CALL_COUNT_TOTAL++, (NANO_SECOND_TOTAL = NANO_SECOND_TOTAL + period),
-//                            NANO_SECOND_TOTAL / CALL_COUNT_TOTAL);
-                    return (end = e);
-                }
+                if (collO.equals(aimO) || fieldClass.cast(collO).equals(fieldClass.cast(aimO))) return (end = e);
             }
         } catch (Exception e) {
             _log.error(ExceptionUtils.errorInfo(e,
@@ -139,25 +122,40 @@ public class CollectionUtils {
      * @param <T>     generic type
      */
     public static <T> Collection<T> remove(Collection<T> coll, final String field, final Object... removes) {
-        if (coll == null || coll.size() == 0 || removes == null || removes.length == 0) return null;
-        Field f;
-        Object tmp;
+        if (coll == null || coll.size() == 0 || removes == null || removes.length == 0) return coll;
         Collection<T> needRemoved = new LinkedList<>();
         try {
-            for (T c : coll)
-                for (Object remove : removes) {
-                    if (StrUtils.isNotEmpty(field)) {
-                        f = c.getClass().getDeclaredField(field);
-                        f.setAccessible(true);
-                        tmp = f.get(c);
-                    } else tmp = c;
-                    if (tmp.equals(remove)) needRemoved.add(c);
-                }
+            for (T c : coll) if (canRemove(field, c, removes)) needRemoved.add(c);
         } catch (Exception e) {
             _log.error(ExceptionUtils.errorInfo(e));
             throw new RuntimeException(e);
         }
         coll.removeAll(needRemoved);
         return needRemoved;
+    }
+
+    /**
+     * Check the object could be removed.
+     *
+     * @param field
+     * @param c
+     * @param removes
+     * @param <T>
+     * @return
+     * @throws NoSuchFieldException
+     * @throws IllegalAccessException
+     */
+    private static <T> boolean canRemove(String field, T c, Object[] removes) throws NoSuchFieldException, IllegalAccessException {
+        Field f;
+        Object tmp;
+        for (Object remove : removes) {
+            if (StrUtils.isNotEmpty(field)) {
+                f = c.getClass().getDeclaredField(field);
+                f.setAccessible(true);
+                tmp = f.get(c);
+            } else tmp = c;
+            if (tmp.equals(remove)) return true;
+        }
+        return false;
     }
 }

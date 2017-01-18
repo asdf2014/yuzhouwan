@@ -173,16 +173,13 @@ public class HttpUtils {
         };
         // 初始化 httpClient客户端
         HttpClientBuilder httpClientBuilder = HttpClients.custom()
-                .setConnectionManager(httpClientConnectionManager)
-                .setDefaultRequestConfig(defaultRequestConfig)
-                .setRedirectStrategy(redirectStrategy)
-                .setRetryHandler(retryHandler);
+                .setConnectionManager(httpClientConnectionManager).setDefaultRequestConfig(defaultRequestConfig)
+                .setRedirectStrategy(redirectStrategy).setRetryHandler(retryHandler);
         if (HttpUtils.userAgent != null) httpClientBuilder.setUserAgent(userAgent);
         httpClient = httpClientBuilder.build();
     }
 
     private MultipartEntityBuilder processBuilderParams(Map<String, Object> params) {
-
         ContentType contentType = ContentType.TEXT_PLAIN.withCharset(Consts.UTF_8);
         MultipartEntityBuilder builder = MultipartEntityBuilder.create();
         if (params != null) {
@@ -344,7 +341,7 @@ public class HttpUtils {
     }
 
     public HttpResponse delete(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
-        _log.debug(url);
+        _log.debug("Url: {}", url);
         HttpDelete delete;
         processHeader((delete = new HttpDelete(processURL(url, params))), headers);
         return internalProcess(delete);
@@ -372,8 +369,8 @@ public class HttpUtils {
                 httpResponse.setContentType(header.getValue());
             return httpResponse;
         } catch (Exception e) {
-            _log.error("error: {}", e.getMessage());
-            throw e;
+            _log.error(ExceptionUtils.errorInfo(e));
+            throw new RuntimeException(e);
         } finally {
             release(rest, response, response != null ? response.getEntity() : null);
         }
@@ -392,8 +389,7 @@ public class HttpUtils {
 
     private void processHeader(HttpRequestBase entity, Map<String, String> headers) {
         if (headers == null) return;
-        for (Entry<String, String> entry : headers.entrySet())
-            entity.addHeader(entry.getKey(), entry.getValue());
+        for (Entry<String, String> entry : headers.entrySet()) entity.addHeader(entry.getKey(), entry.getValue());
     }
 
     private String processURL(String processUrl, Map<String, Object> params) {
@@ -401,12 +397,8 @@ public class HttpUtils {
         _log.debug("{}", params.toString());
         StringBuilder url;
         if ((url = new StringBuilder(processUrl)).indexOf("?") < 0) url.append('?');
-        for (String name : params.keySet()) {
-            url.append('&');
-            url.append(name);
-            url.append('=');
-            url.append(String.valueOf(params.get(name)));
-        }
+        for (String name : params.keySet())
+            url.append('&').append(name).append('=').append(String.valueOf(params.get(name)));
         return url.toString().replace("?&", "?");
     }
 
@@ -417,12 +409,12 @@ public class HttpUtils {
             try {
                 if (entity != null) EntityUtils.consume(entity);
             } catch (IOException e) {
-                _log.error("error: {}", e.getMessage());
+                _log.error(ExceptionUtils.errorInfo(e));
             } finally {
                 try {
                     if (response != null) response.close();
                 } catch (IOException e) {
-                    _log.error("error: {}", e.getMessage());
+                    _log.error(ExceptionUtils.errorInfo(e));
                 }
             }
         }

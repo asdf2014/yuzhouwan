@@ -67,10 +67,8 @@ public class HtmlExporterUtils {
                                    Float marginTop, Float marginBottom) {
 
         Document document = new Document(pageSize == null ? PageSize.A4 : pageSize,
-                marginLeft == null ? 0f : marginLeft,
-                marginRight == null ? 0f : marginRight,
-                marginTop == null ? 0f : marginTop,
-                marginBottom == null ? 0f : marginBottom);
+                marginLeft == null ? 0f : marginLeft, marginRight == null ? 0f : marginRight,
+                marginTop == null ? 0f : marginTop, marginBottom == null ? 0f : marginBottom);
         PdfWriter pdfWriter;
         try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
             pdfWriter = PdfWriter.getInstance(document, byteArrayOutputStream);
@@ -112,14 +110,10 @@ public class HtmlExporterUtils {
         driver.manage().timeouts().setScriptTimeout(Integer.valueOf(PropUtils.getInstance()
                 .getProperty("html.exporter.driver.timeouts.script.seconds")), TimeUnit.SECONDS);
 
-        if (width == null || height == null) {
-            driver.manage().window().maximize();
-        } else {
-            driver.manage().window().setSize(new Dimension(width, height));
-        }
+        if (width == null || height == null) driver.manage().window().maximize();
+        else driver.manage().window().setSize(new Dimension(width, height));
 
-        if (addedCookie != null)
-            driver.manage().addCookie(addedCookie);
+        if (addedCookie != null) driver.manage().addCookie(addedCookie);
 
         driver.get(url);
 //        try {
@@ -202,11 +196,9 @@ public class HtmlExporterUtils {
      */
     public static void release(PhantomJSDriver driver) {
         try {
-            if (driver != null)
-                driver.close();
+            if (driver != null) driver.close();
         } finally {
-            if (driver != null)
-                driver.quit();
+            if (driver != null) driver.quit();
         }
     }
 }

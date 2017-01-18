@@ -107,7 +107,7 @@ public class QueryEndpoint extends DataProtos.QueryDataService implements Coproc
                 try {
                     scanner.close();
                 } catch (IOException e) {
-                    _log.error("{}", ExceptionUtils.errorInfo(e));
+                    _log.error(ExceptionUtils.errorInfo(e));
                 }
             }
         }

@@ -100,6 +100,7 @@ public class BeanUtilsTest {
 
     @Test
     public void getAllFieldsTest() throws Exception {
+        assertEquals(5, BeanUtils.getFields(BeanB.class, BeanB.class.getName()).size());
         assertEquals(5, BeanUtils.getAllFields(BeanB.class).size());
     }
 

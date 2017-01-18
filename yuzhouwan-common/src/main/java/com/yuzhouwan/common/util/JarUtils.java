@@ -49,16 +49,12 @@ public class JarUtils {
     private static void init() {
         List<String> jarPaths;
         try {
-            /**
-             * $PROJECT_BASE_PATH/*.jar
-             */
+            // $PROJECT_BASE_PATH/*.jar
             String projectJarPath = PropUtils.getInstance().getPropertyInternal("project.jar.path");
             if (!StrUtils.isEmpty(projectJarPath) && projectJarPath.endsWith(".jar"))
                 loadPropsWithinJar(projectJarPath);
 
-            /**
-             * /classes/lib/*.jar
-             */
+            // /classes/lib/*.jar
             _log.debug("CLASSES_PATH is {}", CLASSES_PATH);
             if (!StrUtils.isEmpty(CLASSES_PATH)) {
                 if ((jarPaths = DirUtils.findPath(CLASSES_PATH, ".jar", false, "lib")) != null && jarPaths.size() > 0)
@@ -68,9 +64,7 @@ public class JarUtils {
                     }
             }
 
-            /**
-             * /lib/*.jar
-             */
+            // /lib/*.jar
             _log.debug("LIB_PATH is {}", LIB_PATH);
             if (!StrUtils.isEmpty(LIB_PATH)) {
                 if ((jarPaths = DirUtils.findPath(LIB_PATH, ".jar", false, "lib")) != null && jarPaths.size() > 0)
@@ -82,7 +76,7 @@ public class JarUtils {
                     }
             }
         } catch (Exception e) {
-            _log.error("{}", ExceptionUtils.errorInfo(e));
+            _log.error(ExceptionUtils.errorInfo(e));
             throw new RuntimeException(e);
         }
         _log.debug("The number of Properties in Jar is {}.", p.keySet().size());
@@ -159,7 +153,7 @@ public class JarUtils {
         try {
             return !new File(clazz.getProtectionDomain().getCodeSource().getLocation().toURI()).getName().endsWith(".jar");
         } catch (Exception ignored) {
-            _log.error("{}", ExceptionUtils.errorInfo(ignored));
+            _log.error(ExceptionUtils.errorInfo(ignored));
             return true;
         }
     }

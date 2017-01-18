@@ -9,7 +9,7 @@ import java.io.File;
 /**
  * Copyright @ 2016 yuzhouwan.com
  * All right reserved.
- * Function: com.yuzhouwan.hacker.zookeeper.prop
+ * Function: Dynamic Prop Test
  *
  * @author Benedict Jin
  * @since 2016/7/14

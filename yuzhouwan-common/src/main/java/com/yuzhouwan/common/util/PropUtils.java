@@ -60,8 +60,7 @@ public class PropUtils {
      */
     public String getProperty(String key, boolean withinJar) {
         if (StrUtils.isEmpty(key)) return null;
-        if (properties == null)
-            throw new RuntimeException("Properties is not valid!!");
+        if (properties == null) throw new RuntimeException("Properties is not valid!!");
         String value = properties.getProperty(key);
         if (withinJar && StrUtils.isEmpty(value)) {
             String valueJar = JarUtils.getInstance().getProperty(key);
