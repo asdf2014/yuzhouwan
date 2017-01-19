@@ -150,8 +150,7 @@ public class CollectionUtils {
         Object tmp;
         for (Object remove : removes) {
             if (StrUtils.isNotEmpty(field)) {
-                f = c.getClass().getDeclaredField(field);
-                f.setAccessible(true);
+                (f = c.getClass().getDeclaredField(field)).setAccessible(true);
                 tmp = f.get(c);
             } else tmp = c;
             if (tmp.equals(remove)) return true;

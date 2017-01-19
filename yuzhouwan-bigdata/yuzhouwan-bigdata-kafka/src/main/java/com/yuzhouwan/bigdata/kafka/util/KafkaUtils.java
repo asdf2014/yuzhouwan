@@ -143,7 +143,6 @@ public class KafkaUtils {
             _log.warn("Cannot get Producer in connect pool!");
             return;
         }
-
         List<KeyedMessage<String, String>> keyedMessages = new ArrayList<>();
         for (String msg : message) {
             keyedMessages.add(new KeyedMessage<>(topic, StrUtils.isEmpty(key) ? PRODUCER_INDEX + "" : key, msg));

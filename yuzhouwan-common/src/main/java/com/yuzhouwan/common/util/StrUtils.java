@@ -1,5 +1,7 @@
 package com.yuzhouwan.common.util;
 
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
 import java.text.DecimalFormat;
 import java.util.LinkedList;
 
@@ -9,11 +11,15 @@ import java.util.LinkedList;
  * Function: String Utils
  *
  * @author Benedict Jin
- * @since 2016/3/23 0030
+ * @since 2016/3/23
  */
 public class StrUtils {
 
     public static final String ZERO = "0";
+    public static final String DOUBLE_TRANSFER = "\\\\";
+
+    public static final String HEX = "\\x";
+    public static final String UTF_8 = "UTF-8";
 
     /**
      * 用 "0" 填充 aim数值之前的 (num-((int)aim).length)个空位
@@ -161,5 +167,33 @@ public class StrUtils {
         if (isEmpty(s)) return false;
         for (int i = 0; i < s.length(); i++) if (!Character.isDigit(s.charAt(i))) return false;
         return true;
+    }
+
+    /**
+     * Convert String form UTF-8 into Hex
+     *
+     * @param str
+     * @return
+     * @throws UnsupportedEncodingException
+     */
+    public static String str2Hex(String str) throws UnsupportedEncodingException {
+        char[] hexRawArr = String.format("%x", new BigInteger(1, str.getBytes(UTF_8))).toCharArray();
+        StringBuilder hexFmtStr = new StringBuilder();
+        for (int i = 0; i < hexRawArr.length; i++) hexFmtStr.append(HEX).append(hexRawArr[i]).append(hexRawArr[++i]);
+        return hexFmtStr.toString();
+    }
+
+    /**
+     * Convert String form Hex into UTF-8
+     *
+     * @param str
+     * @return
+     * @throws UnsupportedEncodingException
+     */
+    public static String hex2Str(String str) throws UnsupportedEncodingException {
+        String strArr[] = str.split(DOUBLE_TRANSFER);
+        byte[] byteArr = new byte[strArr.length - 1];
+        for (int i = 1; i < strArr.length; i++) byteArr[i - 1] = Integer.decode(ZERO.concat(strArr[i])).byteValue();
+        return new String(byteArr, UTF_8);
     }
 }

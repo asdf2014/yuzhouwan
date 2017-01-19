@@ -5,6 +5,8 @@ import org.junit.Test;
 
 import java.util.LinkedList;
 
+import static com.yuzhouwan.common.util.StrUtils.hex2Str;
+import static com.yuzhouwan.common.util.StrUtils.str2Hex;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -102,5 +104,14 @@ public class StrUtilsTest {
         assertEquals("{\"cluster\":\"test\",\"table\":\"default\"}", jsonObject.toJSONString());
         jsonObject.put("metric2", 0.02d);
         assertEquals("{\"cluster\":\"test\",\"metric2\":0.02,\"table\":\"default\"}", jsonObject.toJSONString());
+    }
+
+    @Test
+    public void hexTest() throws Exception {
+        String yuzhouwan = "宇宙湾yuzhouwan123";
+        String yuzhouwanHex = "\\xe5\\xae\\x87\\xe5\\xae\\x99\\xe6\\xb9\\xbe\\x79\\x75\\x7a\\x68\\x6f\\x75\\x77\\x61\\x6e\\x31\\x32\\x33";
+        assertEquals(yuzhouwanHex, str2Hex(yuzhouwan));
+        assertEquals(yuzhouwan, hex2Str(str2Hex(yuzhouwan)));
+        assertEquals(yuzhouwan, hex2Str(yuzhouwanHex));
     }
 }
