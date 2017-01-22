@@ -1,9 +1,8 @@
 import datetime
 import re
-import sys
 
 
-class SQLParser():
+class SQLParser:
     def __init__(self, input_file):
         self.buffer_string = ""
         self.fin = open(input_file)
@@ -22,10 +21,10 @@ class SQLParser():
 
         self.current_quote = ""
         self.current_line = ""
-        self.curent_create_table_statement_bracket_count = 0
+        self.current_create_table_statement_bracket_count = 0
 
         # better set the encoding in the database first
-        # self.fw_data.write("SET NAMES 'utf8' COLLATE 'utf8_general_ci';\n")
+        self.fw_data.write("SET NAMES 'utf8' COLLATE 'utf8_general_ci';\n")
 
         return
 
@@ -52,7 +51,6 @@ class SQLParser():
                 self.fw_schema.write(self.current_line)
 
             self.current_line = ""
-
         return
 
     def add_buffer(self, c):
@@ -79,7 +77,8 @@ class SQLParser():
     def is_in_quote(self):
         return self.current_quote != ""
 
-    def is_skip_line(self, value):  # no need to copy this line
+    @staticmethod
+    def is_skip_line(value):  # no need to copy this line
         return value.startswith("BEGIN TRANSACTION") or value.startswith("COMMIT") or \
                value.startswith("sqlite_sequence") or value.startswith("CREATE UNIQUE INDEX") or \
                value.startswith("PRAGMA")
@@ -90,7 +89,6 @@ class SQLParser():
             bracket_count += self.buffer_string.count("(")
             bracket_count -= self.buffer_string.count(")")
 
-        # print "@130", self.buffer_string, bracket_count
         return bracket_count > 0
 
     def start(self):
@@ -103,9 +101,7 @@ class SQLParser():
                 print "End of file"
                 break
 
-            if (c == "'" or c == "\""):
-                # if self.prev_char == "\\" and self.next_char != c: #it's just an escaped single quote
-                #    continue
+            if c == "'" or c == "\"":
                 if not self.is_in_quote():
                     self.flush_buffer(skip_last_char=True)
                     self.set_current_quote(c)
@@ -118,17 +114,13 @@ class SQLParser():
                         self.flush_buffer()
                         self.clean_current_quote()
 
-            if (c == "\n" or c == "\r"):
+            if c == "\n" or c == "\r":
                 # flush teh buffer
                 line_number += 1
-
                 if line_number % 10000 == 0:
-                    print "Processing line: ", line_number, "elpased: ", datetime.datetime.now() - start_time, "seconds"
-
+                    print "Processing line: ", line_number, "elapsed: ", datetime.datetime.now() - start_time, "seconds"
                 if not self.is_in_quote() and not self.is_in_create_table():
                     self.flush_buffer(write_to_file=True)
-
-                    # print "@119, current line", self.current_line
 
         # flush the last buffer
         self.flush_buffer(write_to_file=True)
@@ -200,17 +192,17 @@ class SQLParser():
             new_lines.append(line)
 
         new_value = "\n".join(new_lines)
-        #        print "@239, after processing: ", value
         return new_value
 
 
 def main():
     if __name__ == "__main__":
-        if len(sys.argv) != 2:
-            print "Usage: python " + sys.argv[0] + " input_file\n"
-            return -1
-
-        input_file = sys.argv[1]
+        # if len(sys.argv) != 2:
+        #     print "Usage: python " + sys.argv[0] + " input_file\n"
+        #     return -1
+        #
+        # input_file = sys.argv[1]
+        input_file = "E:/Core Code/yuzhouwan/yuzhouwan-hacker/yuzhouwan-hacker-python/src/main/resources/sqlite2mysql/superset.sql"
 
         parser = SQLParser(input_file)
         parser.start()
