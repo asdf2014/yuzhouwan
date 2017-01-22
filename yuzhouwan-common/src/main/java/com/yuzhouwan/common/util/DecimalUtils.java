@@ -9,7 +9,7 @@ import java.text.DecimalFormat;
  * Function: Decimal Utils
  *
  * @author Benedict Jin
- * @since 2016/5/9 0030
+ * @since 2016/5/9
  */
 public class DecimalUtils {
 

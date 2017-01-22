@@ -11,7 +11,7 @@ import backtype.storm.utils.Utils;
  * Function: LocalTopologyRunner
  *
  * @author Benedict Jin
- * @since 2016/3/30 0030
+ * @since 2016/3/30
  */
 public class LocalTopologyRunner {
 

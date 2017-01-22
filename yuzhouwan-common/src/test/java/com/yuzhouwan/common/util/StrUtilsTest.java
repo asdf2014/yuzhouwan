@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
  * Function: String Stuff Tester
  *
  * @author Benedict Jin
- * @since 2016/3/23 0030
+ * @since 2016/3/23
  */
 public class StrUtilsTest {
 

@@ -11,7 +11,7 @@ import java.util.*;
  * Function: Remove Duplicate And Sort
  *
  * @author Benedict Jin
- * @since 2016/3/8 0030
+ * @since 2016/3/8
  */
 public class RemoveDuplicateAndSort {
 

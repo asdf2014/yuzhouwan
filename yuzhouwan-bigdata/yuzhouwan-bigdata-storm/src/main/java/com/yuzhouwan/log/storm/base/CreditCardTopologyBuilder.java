@@ -13,7 +13,7 @@ import java.util.Map;
  * Function: CreditCardTopologyBuilder
  *
  * @author Benedict Jin
- * @since 2016/3/30 0030
+ * @since 2016/3/30
  */
 public class CreditCardTopologyBuilder {
 

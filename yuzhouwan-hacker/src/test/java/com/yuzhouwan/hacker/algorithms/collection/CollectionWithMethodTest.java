@@ -11,7 +11,7 @@ import java.util.List;
  * Function: Collection Stuff
  *
  * @author Benedict Jin
- * @since 2016/3/11 0030
+ * @since 2016/3/11
  */
 public class CollectionWithMethodTest {
 

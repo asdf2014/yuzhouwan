@@ -16,7 +16,7 @@ import java.util.TimeZone;
  * Function: Time Utils
  *
  * @author Benedict Jin
- * @since 2016/3/8 0030
+ * @since 2016/3/8
  */
 public class TimeUtils {
 

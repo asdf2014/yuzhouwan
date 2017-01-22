@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
  * Function: Ip Utils
  *
  * @author Benedict Jin
- * @since 2016/4/7 0030
+ * @since 2016/4/7
  */
 public class IpUtils {
 

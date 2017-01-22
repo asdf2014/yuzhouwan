@@ -6,7 +6,7 @@ package com.yuzhouwan.hacker.algorithms.collection.sort;
  * Function: Company
  *
  * @author Benedict Jin
- * @since 2016/3/8 0030
+ * @since 2016/3/8
  */
 public class Company implements Comparable<Company> {
 

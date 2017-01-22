@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
  * Function：CollectionStuff Tester
  *
  * @author Benedict Jin
- * @since 2016/3/15 0030
+ * @since 2016/3/15
  */
 public class StringTest {
 

@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
  * Function: Properties Util Tester
  *
  * @author Benedict Jin
- * @since 2016/4/8 0030
+ * @since 2016/4/8
  */
 public class PropUtilsTest {
 

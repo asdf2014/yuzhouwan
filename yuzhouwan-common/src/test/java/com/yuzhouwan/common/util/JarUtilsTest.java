@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
  * Function: Jar Util Tester
  *
  * @author Benedict Jin
- * @since 2016/4/20 0030
+ * @since 2016/4/20
  */
 public class JarUtilsTest {
 
