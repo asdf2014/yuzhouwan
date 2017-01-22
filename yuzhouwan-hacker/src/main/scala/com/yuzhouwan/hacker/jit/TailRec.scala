@@ -3,7 +3,7 @@ package com.yuzhouwan.jit
 import scala.annotation.tailrec
 
 /**
-  * Copyright @ 2016 yuzhouwan.com
+  * Copyright @ 2017 yuzhouwan.com
   * All right reserved.
   * 功能描述：jit
   *

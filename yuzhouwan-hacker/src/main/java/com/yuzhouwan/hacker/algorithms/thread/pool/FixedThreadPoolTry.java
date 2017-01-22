@@ -7,7 +7,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function：FixedThreadPoolTry
  *

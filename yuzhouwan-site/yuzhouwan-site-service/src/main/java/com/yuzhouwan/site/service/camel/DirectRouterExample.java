@@ -5,7 +5,7 @@ import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.model.ModelCamelContext;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function：Apache Camel Example about Direct Router
  *

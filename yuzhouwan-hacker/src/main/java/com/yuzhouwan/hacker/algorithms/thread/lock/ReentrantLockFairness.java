@@ -4,7 +4,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function: ReentrantLockFairness
  *

@@ -8,7 +8,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function: Async Annotation Tester
  *

@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function：Apache Camel Processor Example
  *

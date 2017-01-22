@@ -3,7 +3,7 @@ package com.yuzhouwan.bigdata.kafka.util;
 import com.yuzhouwan.common.util.PropUtils;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function：Kafka Utils Test
  *

@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.TimeZone;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function: Time Utils
  *
@@ -28,6 +28,14 @@ public class TimeUtils {
 
     public static String nowStr() {
         return SIMPLE_DATA_FORMAT_BASIC.format(System.currentTimeMillis());
+    }
+
+    public static String date2Str(Date date) {
+        return SIMPLE_DATA_FORMAT_BASIC.format(date);
+    }
+
+    public static String date2Str(long date) {
+        return SIMPLE_DATA_FORMAT_BASIC.format(date);
     }
 
     /**

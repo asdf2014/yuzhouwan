@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.text.DecimalFormat;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function: Decimal Utils
  *

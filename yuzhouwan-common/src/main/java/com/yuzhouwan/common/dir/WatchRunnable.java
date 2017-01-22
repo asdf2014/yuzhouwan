@@ -7,7 +7,7 @@ import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function: 监控线程 (主要为了多线程，能安全地 stop)
  *

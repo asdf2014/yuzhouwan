@@ -8,7 +8,7 @@ import static com.yuzhouwan.common.util.CollectionUtils.intersection;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function: Collection Util Tester
  *
@@ -81,6 +81,11 @@ public class CollectionUtilsTest {
         assertEquals(true, 0 == aList.size());
         assertEquals(null, CollectionUtils.getDuplicate(aList, _d, "d", Object.class));
         assertEquals(true, 0 == aList.size());
+        aList.add(_a);
+        aList.add(_b);
+        aList.add(_c);
+        assertEquals(null, CollectionUtils.getDuplicate(aList, _d, "d", Object.class));
+        assertEquals(true, 3 == aList.size());
     }
 
     @Test

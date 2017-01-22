@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.algorithms.leetcode.number;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function: Count Numbers with Unique Digits Solution
  *

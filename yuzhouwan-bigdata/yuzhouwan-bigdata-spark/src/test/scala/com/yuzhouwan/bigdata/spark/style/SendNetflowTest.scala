@@ -3,7 +3,7 @@ package com.yuzhouwan.bigdata.spark.style
 import com.yuzhouwan.bigdata.spark.streaming.detect.SendNetflow
 
 /**
-  * Copyright @ 2016 yuzhouwan.com
+  * Copyright @ 2017 yuzhouwan.com
   * All right reserved.
   * Function：Send Netflow Test
   *

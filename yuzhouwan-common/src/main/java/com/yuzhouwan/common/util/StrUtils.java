@@ -6,7 +6,7 @@ import java.text.DecimalFormat;
 import java.util.LinkedList;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function: String Utils
  *
@@ -195,5 +195,16 @@ public class StrUtils {
         byte[] byteArr = new byte[strArr.length - 1];
         for (int i = 1; i < strArr.length; i++) byteArr[i - 1] = Integer.decode(ZERO.concat(strArr[i])).byteValue();
         return new String(byteArr, UTF_8);
+    }
+
+    /**
+     * Compression String
+     *
+     * @param s
+     * @return
+     */
+    public static String compression(String s) {
+        if (isEmpty(s)) return null;
+        return s.replaceAll(" ", "").replaceAll("\\r\\n", "").replaceAll("\\r", "").replaceAll("\\n", "");
     }
 }

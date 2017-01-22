@@ -1,0 +1,257 @@
+[
+  {
+    "version": "v1",
+    "timestamp": "2017-01-18T09:59:30.000Z",
+    "event": {
+      "!T_0": 0.0,
+      "!T_1": 76368,
+      "avg_storefileSizeMB_min": 0.0,
+      "!T_2": 0.0,
+      "regionName": "HBASE_TDPA_INV_DTL_D,,1449366818867.80822aa09e8ad544b98b1539e3e718ad.",
+      "!T_3": 0.0,
+      "avg_storefileSizeMB_max": 0.0,
+      "!T_4": 0.0,
+      "source": null,
+      "avg_incrementalWriteRequestsCount_sum": 0.0,
+      "avg_incrementalReadRequestsCount_sum": 0.0
+    }
+  },
+  {
+    "version": "v1",
+    "timestamp": "2017-01-18T09:59:30.000Z",
+    "event": {
+      "!T_0": 0.0,
+      "!T_1": 3384,
+      "avg_storefileSizeMB_min": 0.0,
+      "!T_2": 0.0,
+      "regionName": "HBASE_TDPA_INV_DTL_D,,1484890244158.c42b4d28ed7c0929bd148e402f74fb0e.",
+      "!T_3": 0.0,
+      "avg_storefileSizeMB_max": 0.0,
+      "!T_4": 0.0,
+      "source": null,
+      "avg_incrementalWriteRequestsCount_sum": 0.0,
+      "avg_incrementalReadRequestsCount_sum": 0.0
+    }
+  },
+  {
+    "version": "v1",
+    "timestamp": "2017-01-18T09:59:30.000Z",
+    "event": {
+      "!T_0": 0.0,
+      "!T_1": 28080,
+      "avg_storefileSizeMB_min": 0.0,
+      "!T_2": 0.0,
+      "regionName": "HBASE_TDPA_INV_DTL_D,-C04V4J000W--101159061,1460602407328.38598b2ff21c7e7c9196994f6fcc210c.",
+      "!T_3": 0.0,
+      "avg_storefileSizeMB_max": 0.0,
+      "!T_4": 0.0,
+      "source": null,
+      "avg_incrementalWriteRequestsCount_sum": 0.0,
+      "avg_incrementalReadRequestsCount_sum": 0.0
+    }
+  },
+  {
+    "version": "v1",
+    "timestamp": "2017-01-18T09:59:30.000Z",
+    "event": {
+      "!T_0": 0.0,
+      "!T_1": 48288,
+      "avg_storefileSizeMB_min": 0.0,
+      "!T_2": 0.0,
+      "regionName": "HBASE_TDPA_INV_DTL_D,-C04V4J000W--101159061,1484829899228.3f84da8d3c3178ad7820b1d677ca0b01.",
+      "!T_3": 0.0,
+      "avg_storefileSizeMB_max": 0.0,
+      "!T_4": 0.0,
+      "source": null,
+      "avg_incrementalWriteRequestsCount_sum": 0.0,
+      "avg_incrementalReadRequestsCount_sum": 0.0
+    }
+  },
+  {
+    "version": "v1",
+    "timestamp": "2017-01-18T09:59:30.000Z",
+    "event": {
+      "!T_0": 0.0,
+      "!T_1": 28080,
+      "avg_storefileSizeMB_min": 0.0,
+      "!T_2": 0.0,
+      "regionName": "HBASE_TDPA_INV_DTL_D,7023-10057085-7023-101049718,1460602407328.33552b86bf2f7f09b650b4335f252161.",
+      "!T_3": 0.0,
+      "avg_storefileSizeMB_max": 0.0,
+      "!T_4": 0.0,
+      "source": null,
+      "avg_incrementalWriteRequestsCount_sum": 0.0,
+      "avg_incrementalReadRequestsCount_sum": 0.0
+    }
+  },
+  {
+    "version": "v1",
+    "timestamp": "2017-01-18T09:59:30.000Z",
+    "event": {
+      "!T_0": 0.0,
+      "!T_1": 76368,
+      "avg_storefileSizeMB_min": 0.0,
+      "!T_2": 0.0,
+      "regionName": "HBASE_TDPA_INV_DTL_D,7185-A0051,1449366802690.3b3e0099f68994b02812b627298def34.",
+      "!T_3": 0.0,
+      "avg_storefileSizeMB_max": 0.0,
+      "!T_4": 0.0,
+      "source": null,
+      "avg_incrementalWriteRequestsCount_sum": 0.0,
+      "avg_incrementalReadRequestsCount_sum": 0.0
+    }
+  },
+  {
+    "version": "v1",
+    "timestamp": "2017-01-18T09:59:30.000Z",
+    "event": {
+      "!T_0": 0.0,
+      "!T_1": 3384,
+      "avg_storefileSizeMB_min": 0.0,
+      "!T_2": 0.0,
+      "regionName": "HBASE_TDPA_INV_DTL_D,7185-A0051,1484890247159.0f290dca6f975ae4c1f93b5665f8f4c6.",
+      "!T_3": 0.0,
+      "avg_storefileSizeMB_max": 0.0,
+      "!T_4": 0.0,
+      "source": null,
+      "avg_incrementalWriteRequestsCount_sum": 0.0,
+      "avg_incrementalReadRequestsCount_sum": 0.0
+    }
+  },
+  {
+    "version": "v1",
+    "timestamp": "2017-01-18T09:59:30.000Z",
+    "event": {
+      "!T_0": 0.0,
+      "!T_1": 76368,
+      "avg_storefileSizeMB_min": 0.0,
+      "!T_2": 0.0,
+      "regionName": "HBASE_TDPA_INV_DTL_D,7599-C04LBD000S-J599-101159061,1449366802690.a81cf0456fb220660be04f357664df03.",
+      "!T_3": 0.0,
+      "avg_storefileSizeMB_max": 0.0,
+      "!T_4": 0.0,
+      "source": null,
+      "avg_incrementalWriteRequestsCount_sum": 0.0,
+      "avg_incrementalReadRequestsCount_sum": 0.0
+    }
+  },
+  {
+    "version": "v1",
+    "timestamp": "2017-01-18T09:59:30.000Z",
+    "event": {
+      "!T_0": 0.0,
+      "!T_1": 76368,
+      "avg_storefileSizeMB_min": 0.0,
+      "!T_2": 0.0,
+      "regionName": "HBASE_TDPA_INV_DTL_D,7981-10043093-0001-1013,1449366812904.dec2cfa83d3080a92f4f4674f297e83b.",
+      "!T_3": 0.0,
+      "avg_storefileSizeMB_max": 0.0,
+      "!T_4": 0.0,
+      "source": null,
+      "avg_incrementalWriteRequestsCount_sum": 0.0,
+      "avg_incrementalReadRequestsCount_sum": 0.0
+    }
+  },
+  {
+    "version": "v1",
+    "timestamp": "2017-01-18T09:59:30.000Z",
+    "event": {
+      "!T_0": 0.0,
+      "!T_1": 3384,
+      "avg_storefileSizeMB_min": 0.0,
+      "!T_2": 0.0,
+      "regionName": "HBASE_TDPA_INV_DTL_D,7981-10043093-0001-1013,1484890250158.d8bab98f3fa6de5930920cc002c978e9.",
+      "!T_3": 0.0,
+      "avg_storefileSizeMB_max": 0.0,
+      "!T_4": 0.0,
+      "source": null,
+      "avg_incrementalWriteRequestsCount_sum": 0.0,
+      "avg_incrementalReadRequestsCount_sum": 0.0
+    }
+  },
+  {
+    "version": "v1",
+    "timestamp": "2017-01-18T09:59:30.000Z",
+    "event": {
+      "!T_0": 0.0,
+      "!T_1": 76368,
+      "avg_storefileSizeMB_min": 0.0,
+      "!T_2": 0.0,
+      "regionName": "HBASE_TDPA_INV_DTL_D,8530-10055091-8530-101071534,1449366812904.41fe79e842aa7a8c152f5445e29583f3.",
+      "!T_3": 0.0,
+      "avg_storefileSizeMB_max": 0.0,
+      "!T_4": 0.0,
+      "source": null,
+      "avg_incrementalWriteRequestsCount_sum": 0.0,
+      "avg_incrementalReadRequestsCount_sum": 0.0
+    }
+  },
+  {
+    "version": "v1",
+    "timestamp": "2017-01-18T09:59:30.000Z",
+    "event": {
+      "!T_0": 0.0,
+      "!T_1": 76368,
+      "avg_storefileSizeMB_min": 0.0,
+      "!T_2": 0.0,
+      "regionName": "HBASE_TDPA_INV_DTL_D,9384-10008445-0002-101784789,1460115734837.56429f784957ce79e542f7b33f0d61f2.",
+      "!T_3": 0.0,
+      "avg_storefileSizeMB_max": 0.0,
+      "!T_4": 0.0,
+      "source": null,
+      "avg_incrementalWriteRequestsCount_sum": 0.0,
+      "avg_incrementalReadRequestsCount_sum": 0.0
+    }
+  },
+  {
+    "version": "v1",
+    "timestamp": "2017-01-18T09:59:30.000Z",
+    "event": {
+      "!T_0": 0.0,
+      "!T_1": 3384,
+      "avg_storefileSizeMB_min": 0.0,
+      "!T_2": 0.0,
+      "regionName": "HBASE_TDPA_INV_DTL_D,9384-10008445-0002-101784789,1484890253276.bf17eba3ccc75fcfef74a667db58bccb.",
+      "!T_3": 0.0,
+      "avg_storefileSizeMB_max": 0.0,
+      "!T_4": 0.0,
+      "source": null,
+      "avg_incrementalWriteRequestsCount_sum": 0.0,
+      "avg_incrementalReadRequestsCount_sum": 0.0
+    }
+  },
+  {
+    "version": "v1",
+    "timestamp": "2017-01-18T09:59:30.000Z",
+    "event": {
+      "!T_0": 0.0,
+      "!T_1": 76368,
+      "avg_storefileSizeMB_min": 0.0,
+      "!T_2": 0.0,
+      "regionName": "HBASE_TDPA_INV_DTL_D,9701-10033093-0001-101432441,1460115734837.252e9ca1d198bf7e128f3422e1c4780d.",
+      "!T_3": 0.0,
+      "avg_storefileSizeMB_max": 0.0,
+      "!T_4": 0.0,
+      "source": null,
+      "avg_incrementalWriteRequestsCount_sum": 0.0,
+      "avg_incrementalReadRequestsCount_sum": 0.0
+    }
+  },
+  {
+    "version": "v1",
+    "timestamp": "2017-01-18T09:59:30.000Z",
+    "event": {
+      "!T_0": 0.0,
+      "!T_1": 79752,
+      "avg_storefileSizeMB_min": 0.0,
+      "!T_2": 0.0,
+      "regionName": "HBASE_TDPA_INV_DTL_D,D009-10046759-0001-101362559,1449366792624.e27924220c69893c12ea8ffa6a7734f2.",
+      "!T_3": 0.0,
+      "avg_storefileSizeMB_max": 0.0,
+      "!T_4": 0.0,
+      "source": null,
+      "avg_incrementalWriteRequestsCount_sum": 0.0,
+      "avg_incrementalReadRequestsCount_sum": 0.0
+    }
+  }
+]

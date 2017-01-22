@@ -23,7 +23,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import static com.yuzhouwan.common.util.ThreadUtils.buildExecutorService;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function：Kafka Utils
  *
@@ -97,6 +97,8 @@ public class KafkaUtils {
             props.put("serializer.class", p.getProperty("kafka.serializer.class"));
             props.put("metadata.broker.list", p.getProperty("kafka.metadata.broker.list"));
             props.put("request.required.acks", p.getProperty("kafka.request.required.acks"));
+            props.put("producer.type", p.getProperty("kafka.async"));
+//            props.put("compression.type", "snappy");
             props.put("partitioner.class", PARTITIONER_CLASS_NAME);
         } catch (Exception e) {
             _log.error("Connect with kafka failed, error: {}!", e.getMessage());

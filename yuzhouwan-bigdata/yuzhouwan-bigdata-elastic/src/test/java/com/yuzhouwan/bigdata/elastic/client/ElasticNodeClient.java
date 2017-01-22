@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function：Elastic Node Client
  *

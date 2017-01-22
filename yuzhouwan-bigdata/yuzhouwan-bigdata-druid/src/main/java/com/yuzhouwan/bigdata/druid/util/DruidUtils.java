@@ -8,7 +8,7 @@ import java.lang.reflect.Field;
 import java.util.LinkedHashSet;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function：Druid Utils
  *
@@ -17,38 +17,38 @@ import java.util.LinkedHashSet;
  */
 public class DruidUtils {
 
-    private static final String metricsSpecPrefix;
-    private static final String metricsSpecMiddle;
-
-    static {
-        PropUtils p = PropUtils.getInstance();
-        if (StrUtils.isEmpty(metricsSpecPrefix = p.getProperty("metrics.spec.prefix")) ||
-                StrUtils.isEmpty(metricsSpecMiddle = p.getProperty("metrics.spec.middle")))
-            throw new RuntimeException("Properties [metrics.spec.prefix/middle] is empty!");
-    }
-
     /**
      * Generate tranquility metricsSpec in Druid config file.
+     * [Note]: if using <code>BeanUtils#columns2Row</code>, then could avoid this situation
      *
      * @param classList the list of classes
      * @return metricsSpec
      */
     public static String genTranquilityMetricsSpec(Class... classList) {
         if (classList == null || classList.length <= 0) return "";
+        String metricsSpecPrefix, metricsSpecMiddle;
+        if (StrUtils.isEmpty(metricsSpecPrefix = PropUtils.getInstance().getProperty("metrics.spec.prefix")) ||
+                StrUtils.isEmpty(metricsSpecMiddle = PropUtils.getInstance().getProperty("metrics.spec.middle")))
+            throw new RuntimeException("Properties [metrics.spec.prefix/middle] is empty!");
+        String fieldName;
         StringBuilder strBuilder = new StringBuilder(metricsSpecPrefix);
-        String fieldName, simpleTypeName;
         LinkedHashSet<String> checkExists = new LinkedHashSet<>();
         for (Class clazz : classList)
             for (Field field : BeanUtils.getAllFields(clazz)) {
                 if (checkExists.contains(fieldName = field.getName())) continue;
-                checkExists.add(fieldName);
-                if ("string".equalsIgnoreCase(simpleTypeName = field.getType().getSimpleName()) ||
-                        !"long".equalsIgnoreCase(simpleTypeName) && !"double".equalsIgnoreCase(simpleTypeName))
-                    continue;
-                strBuilder.append(String.format(metricsSpecMiddle, fieldName, fieldName, simpleTypeName,
-                        fieldName, fieldName, simpleTypeName));
+                buildMiddlePart(strBuilder, field, fieldName, metricsSpecMiddle, checkExists);
             }
-        strBuilder.append("]}");
-        return strBuilder.toString().replaceAll(",]", "]");
+        return strBuilder.append("]}").toString().replaceAll(",]", "]");
+    }
+
+    private static void buildMiddlePart(StringBuilder strBuilder, Field field, String fieldName,
+                                        String metricsSpecMiddle, LinkedHashSet<String> checkExists) {
+        String simpleTypeName;
+        checkExists.add(fieldName);
+        if ("string".equalsIgnoreCase(simpleTypeName = field.getType().getSimpleName()) ||
+                !"long".equalsIgnoreCase(simpleTypeName) && !"double".equalsIgnoreCase(simpleTypeName))
+            return;
+        strBuilder.append(String.format(metricsSpecMiddle, fieldName, fieldName, simpleTypeName,
+                fieldName, fieldName, simpleTypeName));
     }
 }

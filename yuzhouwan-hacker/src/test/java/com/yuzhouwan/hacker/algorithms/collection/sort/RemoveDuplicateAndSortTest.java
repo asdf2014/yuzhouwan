@@ -3,7 +3,7 @@ package com.yuzhouwan.hacker.algorithms.collection.sort;
 import org.junit.Test;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function: Remove Duplicate And Sort Test
  *

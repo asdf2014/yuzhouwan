@@ -3,7 +3,7 @@ package com.yuzhouwan.bigdata.spark.analysis
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
-  * Copyright @ 2016 yuzhouwan.com
+  * Copyright @ 2017 yuzhouwan.com
   * All right reserved.
   * Function: Clustering
   *

@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function: Invert Binary Tree Solution
  *

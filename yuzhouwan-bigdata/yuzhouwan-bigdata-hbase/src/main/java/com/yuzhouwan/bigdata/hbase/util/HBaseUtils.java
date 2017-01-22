@@ -1,7 +1,9 @@
 package com.yuzhouwan.bigdata.hbase.util;
 
+import com.yuzhouwan.common.util.ExceptionUtils;
 import com.yuzhouwan.common.util.PropUtils;
 import com.yuzhouwan.common.util.StrUtils;
+import com.yuzhouwan.common.util.TimeUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.HTableDescriptor;
@@ -14,12 +16,11 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.math.BigInteger;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function：HBase Utils
  *
@@ -29,7 +30,7 @@ import java.util.LinkedList;
 public class HBaseUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(HBaseUtils.class);
-    private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private static final String NAMESPACE_DEFAULT = "default";
 
     private static volatile HBaseUtils instance;
     private static Configuration configuration;
@@ -80,6 +81,20 @@ public class HBaseUtils {
         configuration.set("metric.zookeeper.znode.parent", znodeParent);
     }
 
+    public static boolean createTable(Admin admin, HTableDescriptor table, byte[][] splits) {
+        if (admin == null || table == null || splits == null) return false;
+        try {
+            admin.createTable(table, splits);
+        } catch (TableExistsException e) {
+            _log.error("Table {} already exists!", table.getNameAsString());
+            return false;
+        } catch (Exception e) {
+            _log.error(ExceptionUtils.errorInfo(e));
+            throw new RuntimeException(e);
+        }
+        return true;
+    }
+
     public Date getClusterStartTime() {
         try {
             return new Date(new HBaseAdmin(configuration).getClusterStatus().getMaster().getStartcode());
@@ -89,7 +104,7 @@ public class HBaseUtils {
     }
 
     public String getClusterStartTimeStr() {
-        return sdf.format(getClusterStartTime());
+        return TimeUtils.date2Str(getClusterStartTime());
     }
 
     public static String getNameSpace(RegionLoad region) {
@@ -161,26 +176,15 @@ public class HBaseUtils {
         return strBuilder.append("]").toString().replaceAll(", ]", "]");
     }
 
-    public static boolean createTable(Admin admin, HTableDescriptor table, byte[][] splits) throws IOException {
-        try {
-            admin.createTable(table, splits);
-            return true;
-        } catch (TableExistsException e) {
-            _log.info("table " + table.getNameAsString() + " already exists");
-            return false;
-        }
-    }
-
     public static byte[][] getHexSplits(String startKey, String endKey, int numRegions) {
         byte[][] splits = new byte[numRegions - 1][];
         BigInteger lowestKey = new BigInteger(startKey, 16);
         BigInteger highestKey = new BigInteger(endKey, 16);
-        BigInteger range = highestKey.subtract(lowestKey);
-        BigInteger regionIncrement = range.divide(BigInteger.valueOf(numRegions));
+        BigInteger regionIncrement = highestKey.subtract(lowestKey).divide(BigInteger.valueOf(numRegions));
         lowestKey = lowestKey.add(regionIncrement);
         for (int i = 0; i < numRegions - 1; i++)
-            splits[i] = String.format("%016x",
-                    lowestKey.add(regionIncrement.multiply(BigInteger.valueOf(i)))).getBytes();
+            splits[i] = String.format("%016x", lowestKey.add(
+                    regionIncrement.multiply(BigInteger.valueOf(i)))).getBytes();
         return splits;
     }
 }

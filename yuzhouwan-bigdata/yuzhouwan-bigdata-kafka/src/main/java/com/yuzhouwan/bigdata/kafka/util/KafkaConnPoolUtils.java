@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import static com.yuzhouwan.bigdata.kafka.util.KafkaUtils.createProducer;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function：Kafka Connection Pool Utils
  *
@@ -28,10 +28,16 @@ public class KafkaConnPoolUtils {
     private static volatile ConcurrentHashMap<String, Producer<String, String>> pool;
 
     static {
+        /*
+         * the best practical number of threads for CPU / IO intensive applications
+         *
+         *     cpu : n
+         *     io  : 2n + 1
+         */
         String connPoolSizeStr;
         CONN_IN_POOL = StrUtils.isEmpty(connPoolSizeStr = PropUtils.getInstance().getProperty("kafka.conn.pool.size")) ?
-                1 : Integer.parseInt(connPoolSizeStr);
-        if (CONN_IN_POOL <= 0 || CONN_IN_POOL > 1_000) CONN_IN_POOL = 1;
+                3 : Integer.parseInt(connPoolSizeStr);
+        if (CONN_IN_POOL <= 0 || CONN_IN_POOL > 1_000) CONN_IN_POOL = 3;    // default: 2 * 1 + 1 = 3
         getInstance();  // do not use lazy initialization
     }
 

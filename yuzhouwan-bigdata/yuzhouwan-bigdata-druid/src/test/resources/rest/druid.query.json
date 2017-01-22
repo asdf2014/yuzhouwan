@@ -1,0 +1,152 @@
+{
+  "queryType": "groupBy",
+  "dataSource": "yuzhouwan",
+  "intervals": "2017-01-18T09:59:30Z/2017-01-20T23:00:00.001Z",
+  "granularity": "all",
+  "context": {
+    "timeout": 180000
+  },
+  "filter": {
+    "type": "and",
+    "fields": [
+      {
+        "type": "selector",
+        "dimension": "tableName",
+        "value": "HBASE_TDPA_INV_DTL_D"
+      },
+      {
+        "type": "regex",
+        "dimension": "regionName",
+        "pattern": "^HBASE.TDPA.INV.DTL.D.*$"
+      }
+    ]
+  },
+  "dimensions": [
+    {
+      "type": "default",
+      "dimension": "regionName",
+      "outputName": "regionName"
+    },
+    {
+      "type": "default",
+      "dimension": "source",
+      "outputName": "source"
+    }
+  ],
+  "aggregations": [
+    {
+      "name": "!T_0",
+      "type": "doubleSum",
+      "fieldName": "storefileSizeMB_max"
+    },
+    {
+      "name": "!T_1",
+      "type": "count"
+    },
+    {
+      "name": "!T_2",
+      "type": "doubleSum",
+      "fieldName": "storefileSizeMB_min"
+    },
+    {
+      "name": "!T_3",
+      "type": "doubleSum",
+      "fieldName": "incrementalWriteRequestsCount_sum"
+    },
+    {
+      "name": "!T_4",
+      "type": "doubleSum",
+      "fieldName": "incrementalReadRequestsCount_sum"
+    }
+  ],
+  "postAggregations": [
+    {
+      "type": "arithmetic",
+      "fn": "/",
+      "fields": [
+        {
+          "type": "fieldAccess",
+          "fieldName": "!T_0"
+        },
+        {
+          "type": "fieldAccess",
+          "fieldName": "!T_1"
+        }
+      ],
+      "name": "avg_storefileSizeMB_max"
+    },
+    {
+      "type": "arithmetic",
+      "fn": "/",
+      "fields": [
+        {
+          "type": "fieldAccess",
+          "fieldName": "!T_2"
+        },
+        {
+          "type": "fieldAccess",
+          "fieldName": "!T_1"
+        }
+      ],
+      "name": "avg_storefileSizeMB_min"
+    },
+    {
+      "type": "arithmetic",
+      "fn": "/",
+      "fields": [
+        {
+          "type": "fieldAccess",
+          "fieldName": "!T_3"
+        },
+        {
+          "type": "fieldAccess",
+          "fieldName": "!T_1"
+        }
+      ],
+      "name": "avg_incrementalWriteRequestsCount_sum"
+    },
+    {
+      "type": "arithmetic",
+      "fn": "/",
+      "fields": [
+        {
+          "type": "fieldAccess",
+          "fieldName": "!T_4"
+        },
+        {
+          "type": "fieldAccess",
+          "fieldName": "!T_1"
+        }
+      ],
+      "name": "avg_incrementalReadRequestsCount_sum"
+    }
+  ],
+  "having": {
+    "type": "and",
+    "havingSpecs": [
+      {
+        "type": "lessThan",
+        "aggregation": "avg_storefileSizeMB_max",
+        "value": 500
+      },
+      {
+        "type": "lessThan",
+        "aggregation": "avg_incrementalWriteRequestsCount_sum",
+        "value": 10
+      },
+      {
+        "type": "lessThan",
+        "aggregation": "avg_incrementalReadRequestsCount_sum",
+        "value": 10
+      }
+    ]
+  },
+  "limitSpec": {
+    "type": "default",
+    "columns": [
+      {
+        "dimension": "regionName"
+      }
+    ]
+  }
+}

@@ -8,7 +8,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function: Collection Utils
  *
@@ -98,9 +98,8 @@ public class CollectionUtils {
             Field f = o.getClass().getDeclaredField(fieldName);
             f.setAccessible(true);
             for (E e : coll) {
-                if (subClass && !elementClassName.equals(e.getClass().getName())) continue;
-                collO = f.get(e);
-                aimO = f.get(o);
+                if (subClass && !elementClassName.equals(e.getClass().getName()) ||
+                        (collO = f.get(e)) == null || (aimO = f.get(o)) == null) continue;
                 if (collO.equals(aimO) || fieldClass.cast(collO).equals(fieldClass.cast(aimO))) return (end = e);
             }
         } catch (Exception e) {
