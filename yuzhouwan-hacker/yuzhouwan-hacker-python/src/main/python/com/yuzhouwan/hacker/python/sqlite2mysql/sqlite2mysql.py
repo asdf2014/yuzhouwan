@@ -1,14 +1,42 @@
 import datetime
 import re
 
+import sys
+
 
 class SQLParser:
-    def __init__(self, input_file):
+    # keywords in mysql, and not in sqlite
+    # [Note]: except "LIMIT"
+    mysql_keyword_list = ["ACCESSIBLE", "ASENSITIVE", "BIGINT", "BINARY", "BLOB", "BOTH", "CALL", "CHANGE", "CHAR",
+                          "CHARACTER", "COLUMN", "CONDITION", "CONTINUE", "CONVERT", "CURRENT_USER", "CURSOR",
+                          "DATABASES", "DAY_HOUR", "DAY_MICROSECOND", "DAY_MINUTE", "DAY_SECOND", "DEC", "DECIMAL",
+                          "DECLARE", "DELAYED", "DESCRIBE", "DETERMINISTIC", "DISTINCTROW", "DIV", "DOUBLE", "DUAL",
+                          "ELSEIF", "ENCLOSED", "ESCAPED", "EXISTS", "EXIT", "FALSE", "FETCH", "FLOAT", "FLOAT4",
+                          "FLOAT8", "FORCE", "FULLTEXT", "GRANT", "HIGH_PRIORITY", "HOUR_MICROSECOND", "HOUR_MINUTE",
+                          "HOUR_SECOND", "INFILE", "INOUT", "INSENSITIVE", "INT", "INT1", "INT2", "INT3", "INT4",
+                          "INT8", "INTEGER", "INTERVAL", "ITERATE", "KEYS", "KILL", "LEADING", "LEAVE", "LINEAR",
+                          "LINES", "LOAD", "LOCALTIME", "LOCALTIMESTAMP", "LOCK", "LONG", "LONGBLOB", "LONGTEXT",
+                          "LOOP", "LOW_PRIORITY", "MASTER_SSL_VERIFY_SERVER_CERT", "MAXVALUE", "MEDIUMBLOB",
+                          "MEDIUMINT", "MEDIUMTEXT", "MIDDLEINT", "MINUTE_MICROSECOND", "MINUTE_SECOND", "MOD",
+                          "MODIFIES", "NO_WRITE_TO_BINLOG", "NUMERIC", "OPTIMIZE", "OPTION", "OPTIONALLY", "OUT",
+                          "OUTFILE", "PRECISION", "PROCEDURE", "PURGE", "RANGE", "READ", "READS", "READ_WRITE", "REAL",
+                          "REGEXP", "RELEASE", "REPEAT", "REQUIRE", "RESIGNAL", "RETURN", "REVOKE", "RLIKE", "SCHEMA",
+                          "SCHEMAS", "SECOND_MICROSECOND", "SENSITIVE", "SEPARATOR", "SHOW", "SIGNAL", "SMALLINT",
+                          "SPATIAL", "SPECIFIC", "SQL", "SQLEXCEPTION", "SQLSTATE", "SQLWARNING", "SQL_BIG_RESULT",
+                          "SQL_CALC_FOUND_ROWS", "SQL_SMALL_RESULT", "SSL", "STARTING", "STRAIGHT_JOIN", "TERMINATED",
+                          "TINYBLOB", "TINYINT", "TINYTEXT", "TRAILING", "TRUE", "UNDO", "UNLOCK", "UNSIGNED", "USAGE",
+                          "USE", "UTC_DATE", "UTC_TIME", "UTC_TIMESTAMP", "VARBINARY", "VARCHAR", "VARCHARACTER",
+                          "VARYING", "WHILE", "WITH", "WRITE", "XOR", "YEAR_MONTH", "ZEROFILL", "GENERAL",
+                          "IGNORE_SERVER_IDS", "MASTER_HEARTBEAT_PERIOD", "SLOW", "LIMIT"]
+
+    def __init__(self, input_file, database):
         self.buffer_string = ""
         self.fin = open(input_file)
+        self.database_file = input_file + ".database.sql"
         self.schema_file = input_file + ".schema.sql"
         self.data_file = input_file + ".data.sql"
 
+        self.fw_database = open(self.database_file, "w", buffering=0)
         self.fw_schema = open(self.schema_file, "w", buffering=0)
         self.fw_data = open(self.data_file, "w")
 
@@ -23,8 +51,12 @@ class SQLParser:
         self.current_line = ""
         self.current_create_table_statement_bracket_count = 0
 
-        # better set the encoding in the database first
-        self.fw_data.write("SET NAMES 'utf8' COLLATE 'utf8_general_ci';\n")
+        self.fw_database.write("-- Only once [start] \n")
+        self.fw_database.write("SET NAMES 'utf8' COLLATE 'utf8_general_ci';\n")
+        self.fw_database.write("drop database " + database + ";\n")
+        self.fw_database.write("create database " + database + ";\n")
+        self.fw_database.write("use " + database + ";\n")
+        self.fw_database.write("-- Only once [end]")
 
         return
 
@@ -83,6 +115,32 @@ class SQLParser:
                value.startswith("sqlite_sequence") or value.startswith("CREATE UNIQUE INDEX") or \
                value.startswith("PRAGMA")
 
+    @staticmethod
+    def mysql_keywords(line):
+        if re.match(r".*,.*", line):
+            result = ""
+            for l in line.split(","):
+                if len(l.strip()) == 0:
+                    continue
+                result = result + SQLParser.sub_keywords(l) + ","
+            return result
+        else:
+            return line
+
+    @staticmethod
+    def sub_keywords(line):
+        line = line.strip().strip('\t')
+        lines = line.split(" ", 1)
+        if len(re.split(r"\s+", line)) == 2:
+            var_name = lines[0]
+            var_type = lines[1]
+            if var_name.startswith("\"") & var_name.endswith("\""):
+                var_name = var_name.strip("\"")
+            if var_name.upper() in SQLParser.mysql_keyword_list:
+                var_name = "`" + var_name + "`"
+            line = var_name + " " + var_type
+        return line
+
     def is_in_create_table(self):
         bracket_count = 0
         if self.buffer_string.strip().startswith("CREATE TABLE"):
@@ -115,7 +173,7 @@ class SQLParser:
                         self.clean_current_quote()
 
             if c == "\n" or c == "\r":
-                # flush teh buffer
+                # flush the buffer
                 line_number += 1
                 if line_number % 10000 == 0:
                     print "Processing line: ", line_number, "elapsed: ", datetime.datetime.now() - start_time, "seconds"
@@ -146,8 +204,6 @@ class SQLParser:
             return ""
 
         new_value = value
-
-        # http://stackoverflow.com/questions/18671/quick-easy-way-to-migrate-sqlite3-to-mysql
         new_lines = []
         for line in new_value.split("\n"):
             searching_for_end = False
@@ -163,7 +219,8 @@ class SQLParser:
             m = re.search('CREATE TABLE "?([a-z_]*)"?(.*)', line)
             if m:
                 name, sub = m.groups()
-                line = "DROP TABLE IF EXISTS `%(name)s` ;\nCREATE TABLE IF NOT EXISTS `%(name)s`%(sub)s\n"
+                # line = "DROP TABLE IF EXISTS `%(name)s` ;\nCREATE TABLE IF NOT EXISTS `%(name)s`%(sub)s\n"
+                line = "CREATE TABLE IF NOT EXISTS `%(name)s`%(sub)s\n"
                 line = line % dict(name=name, sub=sub)
 
             # Add auto_increment if it's not there since sqlite auto_increments ALL
@@ -189,6 +246,7 @@ class SQLParser:
             if re.match(r"CREATE INDEX", line):
                 line = re.sub('"', '`', line)
 
+            line = self.mysql_keywords(line)
             new_lines.append(line)
 
         new_value = "\n".join(new_lines)
@@ -197,14 +255,14 @@ class SQLParser:
 
 def main():
     if __name__ == "__main__":
-        # if len(sys.argv) != 2:
-        #     print "Usage: python " + sys.argv[0] + " input_file\n"
-        #     return -1
-        #
-        # input_file = sys.argv[1]
-        input_file = "E:/Core Code/yuzhouwan/yuzhouwan-hacker/yuzhouwan-hacker-python/src/main/resources/sqlite2mysql/superset.sql"
+        if len(sys.argv) != 3:
+            print "Usage: python " + sys.argv[0] + " input_file database\n"
+            return -1
 
-        parser = SQLParser(input_file)
+        input_file = sys.argv[1]
+        database = sys.argv[2]
+
+        parser = SQLParser(input_file, database)
         parser.start()
 
         print "Done."

@@ -48,6 +48,7 @@ public class CollectionUtilsTest {
             List<String> a = new LinkedList<>();
             a.add("a");
             a.add("c");
+            a.add("d");
             List<String> b = new LinkedList<>();
             b.add("a");
             b.add("b");
@@ -57,6 +58,8 @@ public class CollectionUtilsTest {
             assertEquals(2, result.size());
             assertEquals("a", iterator.next());
             assertEquals("c", iterator.next());
+            assertEquals(3, a.size());
+            assertEquals(3, b.size());
         }
     }
 
