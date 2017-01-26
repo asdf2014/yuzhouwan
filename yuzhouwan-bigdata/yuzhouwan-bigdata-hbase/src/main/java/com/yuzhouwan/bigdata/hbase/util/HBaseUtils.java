@@ -36,11 +36,10 @@ public class HBaseUtils {
     private static Configuration configuration;
 
     public static HBaseUtils getInstance() {
-        if (instance == null)
-            synchronized (HBaseUtils.class) {
-                if (instance == null)
-                    init();
-            }
+        if (instance == null) synchronized (HBaseUtils.class) {
+            if (instance == null)
+                init();
+        }
         return instance;
     }
 

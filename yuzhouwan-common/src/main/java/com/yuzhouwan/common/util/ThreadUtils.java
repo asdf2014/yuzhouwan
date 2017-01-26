@@ -17,14 +17,13 @@ import java.util.concurrent.*;
 public class ThreadUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(ThreadUtils.class);
-    private static long MIN_PERIOD;
+    private static long MIN_PERIOD_MILLISECOND;
 
     static {
-        String minPeriodStr;
-        if (StrUtils.isEmpty(minPeriodStr = PropUtils.getInstance().getProperty("thread.min.period.millisecond")))
-            MIN_PERIOD = 0L;
-        else MIN_PERIOD = Long.parseLong(minPeriodStr);
-        if (MIN_PERIOD < 0) MIN_PERIOD = 0L;
+        String minPeriodStr = PropUtils.getInstance().getProperty("thread.min.period.millisecond");
+        if (StrUtils.isEmpty(minPeriodStr)) MIN_PERIOD_MILLISECOND = 0L;
+        else MIN_PERIOD_MILLISECOND = Long.parseLong(minPeriodStr);
+        if (MIN_PERIOD_MILLISECOND < 0) MIN_PERIOD_MILLISECOND = 0L;
     }
 
     /**
@@ -132,14 +131,18 @@ public class ThreadUtils {
     }
 
     public static void wait4Period(long passedPeriod, long aimPeriod) {
+        wait4Period(passedPeriod, aimPeriod, MIN_PERIOD_MILLISECOND);
+    }
+
+    public static void wait4Period(long passedPeriod, long aimPeriod, long minPeriod) {
         try {
             long sleep;
             if (passedPeriod < aimPeriod) {
-                if ((sleep = aimPeriod - passedPeriod) < MIN_PERIOD) sleep = MIN_PERIOD;
+                if ((sleep = aimPeriod - passedPeriod) < minPeriod) sleep = minPeriod;
             } else {
-                _log.warn("Thread:{}, Used Time: {}, Excepted Period Time: {}", Thread.currentThread().getName(),
-                        passedPeriod, aimPeriod);
-                sleep = MIN_PERIOD;
+                _log.warn("Thread:{}, Used Time: {}, Excepted Period Time: {}",
+                        Thread.currentThread().getName(), passedPeriod, aimPeriod);
+                sleep = minPeriod;
             }
             Thread.sleep(sleep);
         } catch (InterruptedException e) {

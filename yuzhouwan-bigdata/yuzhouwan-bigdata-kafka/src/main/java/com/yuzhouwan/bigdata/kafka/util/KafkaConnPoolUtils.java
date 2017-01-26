@@ -84,8 +84,8 @@ public class KafkaConnPoolUtils {
      * Create a new connection.
      */
     private static void createNewConnIntoPool(int index) {
-        Producer<String, String> p;
-        if ((p = createProducer()) == null) return;
+        Producer<String, String> p = createProducer();
+        if (p == null) return;
         pool.put(index + "", p);
         _log.debug("Add a new Kafka Connection into pool...");
         _log.debug("Storage: [{}/{}]", pool.size(), CONN_IN_POOL);

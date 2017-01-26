@@ -101,5 +101,4 @@ public class DistributedQueue {
             System.out.println("No node to consume.");
         }
     }
-
 }

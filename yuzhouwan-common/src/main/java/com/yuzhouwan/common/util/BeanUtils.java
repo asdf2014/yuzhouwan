@@ -36,12 +36,12 @@ public class BeanUtils {
      */
     public static void swapper(Object o, String key, Object value, String... ignores) {
         if (o == null || StrUtils.isEmpty(key)) return;
-        Class<?> clazz;
-        if ((clazz = o.getClass()) == null) return;
-        String className;
-        if (StrUtils.isEmpty(className = clazz.getName())) return;
-        Vector<Field> fields;
-        if ((fields = getFields(clazz, className)) == null || fields.size() == 0) return;
+        Class<?> clazz = o.getClass();
+        if (clazz == null) return;
+        String className = clazz.getName();
+        if (StrUtils.isEmpty(className)) return;
+        Vector<Field> fields = getFields(clazz, className);
+        if (fields == null || fields.size() == 0) return;
         for (Field field : fields) {
             if (field == null) continue;
             if (valueField(o, key, value, field, ignores)) return;
@@ -67,6 +67,7 @@ public class BeanUtils {
                 field.set(o, value);
             } catch (IllegalAccessException e) {
                 _log.error(ExceptionUtils.errorInfo(e));
+                return false;
             }
             return true;
         }
@@ -151,10 +152,10 @@ public class BeanUtils {
      */
     public static <T> LinkedList<String> column2Row(T obj, String[] fields, Class parentClass, boolean isLongTail, boolean forDruid, Object... ignores) {
         if (obj == null || fields == null || fields.length == 0) return null;
-        Class<?> clazz;
-        if ((clazz = obj.getClass()) == null) return null;
-        String className;
-        if (StrUtils.isEmpty(className = clazz.getName())) return null;
+        Class<?> clazz = obj.getClass();
+        if (clazz == null) return null;
+        String className = clazz.getName();
+        if (StrUtils.isEmpty(className)) return null;
         Set<Field> head = new HashSet<>(), tail = new HashSet<>();
         initFields(head, tail, clazz, className, parentClass, isLongTail);
         removeFields(head, tail, isLongTail, fields, ignores);
@@ -304,8 +305,8 @@ public class BeanUtils {
      */
     public static Vector<Field> getFields(Class<?> clazz, String className) {
         if (FIELDS_CACHE.size() == 0 || !FIELDS_CACHE.containsKey(className)) {
-            Vector<Field> fields;
-            FIELDS_CACHE.put(className, fields = getAllFields(clazz));
+            Vector<Field> fields = getAllFields(clazz);
+            FIELDS_CACHE.put(className, fields);
             return fields;
         } else return FIELDS_CACHE.get(className);
     }
@@ -324,14 +325,14 @@ public class BeanUtils {
     /**
      * Get all fields from super classes with recursion.
      *
-     * @param clazz  class
-     * @param vector hold fields
+     * @param clazz class
+     * @param v     hold fields
      * @return fields
      */
-    private static Vector<Field> getAllFieldsRec(Class clazz, Vector<Field> vector) {
-        Class superClazz;
-        if ((superClazz = clazz.getSuperclass()) != null) getAllFieldsRec(superClazz, vector);
-        Collections.addAll(vector, clazz.getDeclaredFields());
-        return vector;
+    private static Vector<Field> getAllFieldsRec(Class clazz, Vector<Field> v) {
+        Class superClass = clazz.getSuperclass();
+        if (superClass != null) getAllFieldsRec(superClass, v);
+        Collections.addAll(v, clazz.getDeclaredFields());
+        return v;
     }
 }

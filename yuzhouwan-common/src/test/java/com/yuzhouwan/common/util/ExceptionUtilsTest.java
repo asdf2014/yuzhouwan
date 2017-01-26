@@ -1,6 +1,8 @@
 package com.yuzhouwan.common.util;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static org.junit.Assert.assertEquals;
 
@@ -14,6 +16,8 @@ import static org.junit.Assert.assertEquals;
  */
 public class ExceptionUtilsTest {
 
+    private static final Logger _log = LoggerFactory.getLogger(ExceptionUtilsTest.class);
+
     @Test
     public void errorInfo() throws Exception {
         assertEquals("RuntimeException: Connection is closed!",
@@ -24,5 +28,15 @@ public class ExceptionUtilsTest {
 
         assertEquals("RuntimeException: Connection is closed, Detail: port is 31",
                 ExceptionUtils.errorInfo(new RuntimeException("Connection is closed"), "port is 31"));
+    }
+
+    @Test
+    public void errorPrint() throws Exception {
+        try {
+            throw new RuntimeException("Runtime Exception...");
+        } catch (Exception e) {
+//            _log.error("{}", e);    // will print whole exception stack trace
+            assertEquals("Runtime Exception...", e.getMessage());
+        }
     }
 }

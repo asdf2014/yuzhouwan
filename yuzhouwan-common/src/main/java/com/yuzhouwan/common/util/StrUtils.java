@@ -147,14 +147,16 @@ public class StrUtils {
      * @param ignores characters to ignores
      * @return
      */
-    public static boolean isLike(String origin, String aim, final String... ignores) {
+    public static boolean isLike(final String origin, final String aim, final String... ignores) {
         if (StrUtils.isEmpty(origin) || StrUtils.isEmpty(aim)) return false;
+        String originCopy = origin.intern();
+        String aimCopy = aim.intern();
         if (ignores != null && ignores.length > 0)
             for (String ignore : ignores) {
-                origin = origin.replaceAll(ignore, "");
-                aim = aim.replaceAll(ignore, "");
+                originCopy = originCopy.replaceAll(ignore, "");
+                aimCopy = aimCopy.replaceAll(ignore, "");
             }
-        return origin.equalsIgnoreCase(aim);
+        return originCopy.equalsIgnoreCase(aimCopy);
     }
 
     /**
@@ -172,12 +174,13 @@ public class StrUtils {
     /**
      * Convert String form UTF-8 into Hex
      *
-     * @param str
+     * @param s
      * @return
      * @throws UnsupportedEncodingException
      */
-    public static String str2Hex(String str) throws UnsupportedEncodingException {
-        char[] hexRawArr = String.format("%x", new BigInteger(1, str.getBytes(UTF_8))).toCharArray();
+    public static String str2Hex(String s) throws UnsupportedEncodingException {
+        if (StrUtils.isEmpty(s)) return s;
+        char[] hexRawArr = String.format("%x", new BigInteger(1, s.getBytes(UTF_8))).toCharArray();
         StringBuilder hexFmtStr = new StringBuilder();
         for (int i = 0; i < hexRawArr.length; i++) hexFmtStr.append(HEX).append(hexRawArr[i]).append(hexRawArr[++i]);
         return hexFmtStr.toString();
@@ -186,12 +189,13 @@ public class StrUtils {
     /**
      * Convert String form Hex into UTF-8
      *
-     * @param str
+     * @param s
      * @return
      * @throws UnsupportedEncodingException
      */
-    public static String hex2Str(String str) throws UnsupportedEncodingException {
-        String strArr[] = str.split(DOUBLE_TRANSFER);
+    public static String hex2Str(String s) throws UnsupportedEncodingException {
+        if (StrUtils.isEmpty(s)) return s;
+        String strArr[] = s.split(DOUBLE_TRANSFER);
         byte[] byteArr = new byte[strArr.length - 1];
         for (int i = 1; i < strArr.length; i++) byteArr[i - 1] = Integer.decode(ZERO.concat(strArr[i])).byteValue();
         return new String(byteArr, UTF_8);

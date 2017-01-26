@@ -179,7 +179,7 @@ public class TimeUtils {
         try {
             return SIMPLE_DATA_FORMAT_TIME_ZONE.parse(SIMPLE_DATA_FORMAT_TIME_ZONE.format(date));
         } catch (ParseException e) {
-            _log.error("Change TimeZone failed: {}!", e.getMessage());
+            _log.error("Change TimeZone failed: {}!", e);
         }
         return null;
     }

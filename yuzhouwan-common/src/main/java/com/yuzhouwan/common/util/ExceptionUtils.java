@@ -16,10 +16,10 @@ public class ExceptionUtils {
 
     public static String errorInfo(Exception e, String detail) {
         if (e == null) return null;
-        Class<?> clazz;
-        String msg;
-        return String.format("%s: %s%s", (clazz = e.getClass()) == null ? "" : clazz.getSimpleName(),
-                StrUtils.isEmpty(msg = e.getMessage()) ? "[No More Detail Info]" : msg,
+        Class<?> clazz = e.getClass();
+        String msg = e.getMessage();
+        return String.format("%s: %s%s", clazz == null ? "" : clazz.getSimpleName(),
+                StrUtils.isEmpty(msg) ? "[No More Detail Info]" : msg,
                 StrUtils.isEmpty(detail) ? "" : ", Detail: ".concat(detail));
     }
 }

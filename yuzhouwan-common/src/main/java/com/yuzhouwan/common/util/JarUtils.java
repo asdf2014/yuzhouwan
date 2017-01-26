@@ -150,6 +150,7 @@ public class JarUtils {
      * @return isProjectJar
      */
     public static boolean isProjectJar(final Class<?> clazz) {
+        if (clazz == null) return false;
         try {
             return !new File(clazz.getProtectionDomain().getCodeSource().getLocation().toURI()).getName().endsWith(".jar");
         } catch (Exception ignored) {

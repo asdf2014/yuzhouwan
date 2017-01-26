@@ -163,9 +163,9 @@ public class KafkaUtils {
 
     public static <T> void save2Kafka(final List<T> objs, boolean isBalance, final String topic, final String describe) {
         if (isBalance) {
-            int len, next;
+            int len = objs.size(), next;
             List<T> copy;
-            for (int i = 0; i < (len = objs.size()); i = next) {
+            for (int i = 0; i < len; i = next) {
                 if ((next = (i + SEND_KAFKA_BLOCK_SIZE)) < len && ((len - next) > SEND_KAFKA_BLOCK_SIZE_MIN))
                     copy = objs.subList(i, next);
                 else copy = objs.subList(i, len);

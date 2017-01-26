@@ -28,5 +28,4 @@ public class PatentPartitioner extends Partitioner<Text, Text> {
         //这里可以暂时不指定（使用 Hadoop默认分区），到后面能掌握好 Partition的级别程度，可以加入进行调整
         return ConfUtil.getMax();
     }
-
 }

@@ -111,6 +111,23 @@ public class CollectionUtilsTest {
         }
     }
 
+    @Test
+    public void forTest() {
+
+        LinkedList<String> l = new LinkedList<>();
+        l.add("a");
+        l.add("b");
+        l.add("c");
+        int len, count = 0;
+        String s;
+        // l.size() will be called 4 times
+        for (int i = 0; i < (len = l.size()); i++) {
+            s = String.format("%s [%d/%d]", l.get(i), i + 1, len);
+            if ("a [1/3]".equals(s) || "b [2/3]".equals(s) || "c [3/3]".equals(s)) count++;
+        }
+        assertEquals(3, count);
+    }
+
     private class A {
         int a;
         String b;

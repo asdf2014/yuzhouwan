@@ -6,6 +6,6 @@
 ## import schema & data
     run com.yuzhouwan.common.util.StrUtilsTest.sqlData
     mysql> source ~/sqlite_database.sql.database.sql
-    mysql> source ~/sqlite_database.sql.schema.sql
+    mysql> source ~/sqlite_database.sql.schema.sql          (run until all tables are created)
     mysql> source ~/sqlite_database.sql.data_normal.sql
-    mysql> source ~/sqlite_database.sql.data_primary.sql   (run until all throw depulication error)
+    mysql> source ~/sqlite_database.sql.data_primary.sql    (run until all throw depulication error)

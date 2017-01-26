@@ -66,9 +66,9 @@ public class IpUtils {
      */
     public static String extractDomain(String url) {
         if (StrUtils.isEmpty(url)) return null;
-        int len;
+        int len = url.split("/").length;
         Matcher m;
-        if ((len = url.split("/").length) < 3) {
+        if (len < 3) {
             _log.error("URL[{}] is invalid!", url);
             return null;
         } else if (len > 3) {
@@ -89,8 +89,8 @@ public class IpUtils {
      * @return
      */
     public static String getTailFromURL(String url) {
-        String domain;
-        return StrUtils.isEmpty(domain = extractDomain(url)) ? null : StrUtils.cutMiddleStr(url, domain).substring(1);
+        String domain = extractDomain(url);
+        return StrUtils.isEmpty(domain) ? null : StrUtils.cutMiddleStr(url, domain).substring(1);
     }
 
     /**
@@ -146,17 +146,16 @@ public class IpUtils {
      * @return
      */
     public static Boolean checkIPRange(final String ipAddress, final String range) {
-
         if (StrUtils.isEmpty(range) || StrUtils.isEmpty(ipAddress) || !range.contains("/")) return null;
         String[] rangeArray = range.split("/");
         if (rangeArray.length != 2) return null;
         if (StrUtils.isEmpty(rangeArray[0]) || StrUtils.isEmpty(rangeArray[1])) return null;
-        String rangeIp;
-        if (!checkValid(rangeIp = rangeArray[0]) || !checkValid(ipAddress)) return null;
-        Integer subnet;     // 10.1.1.0/24
-        if ((subnet = ip2int(rangeIp)) == null) return false;
-        Integer ip;         // 10.1.1.99
-        if ((ip = ip2int(ipAddress)) == null) return false;
+        String rangeIp = rangeArray[0];
+        if (!checkValid(rangeIp) || !checkValid(ipAddress)) return null;
+        Integer subnet = ip2int(rangeIp);     // 10.1.1.0/24
+        if (subnet == null) return false;
+        Integer ip = ip2int(ipAddress);         // 10.1.1.99
+        if (ip == null) return false;
 
         // Create bitmask to clear out irrelevant bits. For 10.1.1.0/24 this is
         // 0xFFFFFF00 -- the first 24 bits are 1's, the last 8 are 0's.
@@ -196,8 +195,8 @@ public class IpUtils {
             return InetAddress.getByName(ipAddress).isReachable(10000);
         } catch (IOException e) {
             _log.error(ExceptionUtils.errorInfo(e));
+            return null;
         }
-        return null;
     }
 
     public static boolean ping(final String ipAddress) {
@@ -244,8 +243,9 @@ public class IpUtils {
                 Enumeration<InetAddress> address;
                 while (netInterfaces.hasMoreElements()) {
                     ni = netInterfaces.nextElement();
+                    if (!ni.isUp() || ni.isVirtual()) continue;
                     hardware = ni.getHardwareAddress();
-                    if (!ni.isUp() || ni.isVirtual() || hardware == null || hardware.length == 0) continue;
+                    if (hardware == null || hardware.length == 0) continue;
                     address = ni.getInetAddresses();
                     InetAddress inetAddress;
                     while (address.hasMoreElements()) {

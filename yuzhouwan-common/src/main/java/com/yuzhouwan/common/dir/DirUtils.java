@@ -1,6 +1,7 @@
 package com.yuzhouwan.common.dir;
 
 import com.yuzhouwan.common.util.ExceptionUtils;
+import com.yuzhouwan.common.util.FileUtils;
 import com.yuzhouwan.common.util.StrUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,10 +40,8 @@ public class DirUtils implements IDirUtils {
         _log.debug(outDirPath);
         boolean isCreated = true;
         if (!outDir.exists()) isCreated = outDir.mkdir();
-        if (isCreated)
-            _log.debug("OutDir:{} was created success.", outDirPath);
-        else
-            _log.error("OutDir:{} was created failed!", outDirPath);
+        if (isCreated) _log.debug("OutDir:{} was created success.", outDirPath);
+        else _log.error("OutDir:{} was created failed!", outDirPath);
         return isCreated;
     }
 
@@ -79,10 +78,8 @@ public class DirUtils implements IDirUtils {
      * @return
      */
     public static String getTestClassesPath() {
-        String basicPath;
-        if ((basicPath = getBasicPath()) == null) {
-            return null;
-        }
+        String basicPath = getBasicPath();
+        if (basicPath == null) return null;
         return basicPath.concat("/test-classes");
     }
 
@@ -107,11 +104,8 @@ public class DirUtils implements IDirUtils {
             throw new RuntimeException(e);
         }
         if (StrUtils.isEmpty(path)) throw new RuntimeException("Basic Path is null!!!");
-        if (path.startsWith("file")) {
-            path = path.substring(6);
-        } else if (path.startsWith("jar")) {
-            path = path.substring(10);
-        }
+        if (path.startsWith("file")) path = path.substring(6);
+        else if (path.startsWith("jar")) path = path.substring(10);
         if (path.endsWith("/") || path.endsWith("\\")) path = path.substring(0, path.length() - 1);
         return path.substring(0, path.lastIndexOf("/"));
     }
@@ -151,30 +145,35 @@ public class DirUtils implements IDirUtils {
     public static List<String> scanDir(String path) {
         if (path == null) return null;
         _log.debug("Scan path: {}", path);
-        List<String> result = new LinkedList<>();
+        List<String> wholeFiles = new LinkedList<>();
         File file = new File(path);
         if (file.exists()) {
-            LinkedList<File> list = new LinkedList<>();
-            File[] files = file.listFiles();
-            dealWithSubFiles(result, list, files);
-            File tempFile;
-            boolean isDirectory;
-            String absolutePath;
-            while (!list.isEmpty()) {
-                tempFile = list.removeFirst();
-                _log.debug("{} isDirectory: {}", tempFile.getPath(), (isDirectory = tempFile.isDirectory()));
-                if (!isDirectory) {
-                    result.add((absolutePath = tempFile.getAbsolutePath()));
-                    _log.debug("scanDir absolutePath is {}", absolutePath);
-                    continue;
-                }
-                if ((files = tempFile.listFiles()) == null) continue;
-                dealWithSubFiles(result, list, files);
-            }
-            return result;
+            LinkedList<File> currentDirFiles = new LinkedList<>();
+            dealWithSubFiles(wholeFiles, currentDirFiles, file.listFiles());
+            getAllFiles(wholeFiles, currentDirFiles);
+            return wholeFiles;
         } else {
             _log.error("{} is not exist!!", path);
             return null;
+        }
+    }
+
+    private static void getAllFiles(List<String> wholeFiles, LinkedList<File> currentDirFiles) {
+        File tempFile;
+        boolean isDirectory;
+        String absolutePath;
+        File[] files;
+        while (!currentDirFiles.isEmpty()) {
+            tempFile = currentDirFiles.removeFirst();
+            isDirectory = tempFile.isDirectory();
+            _log.debug("{} is directory: {}", tempFile.getPath(), isDirectory);
+            if (!isDirectory) {
+                wholeFiles.add((absolutePath = tempFile.getAbsolutePath()));
+                _log.debug("scanDir absolutePath is {}", absolutePath);
+                continue;
+            }
+            if ((files = tempFile.listFiles()) == null) continue;
+            dealWithSubFiles(wholeFiles, currentDirFiles, files);
         }
     }
 
@@ -279,8 +278,8 @@ public class DirUtils implements IDirUtils {
     public static boolean makeSureExist(final String path, final boolean isFile) {
         _log.debug("Path: {}, isFile: {}", path, isFile);
         if (StrUtils.isEmpty(path)) return false;
-        File file;
-        if (!(file = new File(path)).exists()) {
+        File file = new File(path);
+        if (!FileUtils.checkExist(file)) {
             if (isFile)
                 try {
                     return file.createNewFile();

@@ -72,5 +72,4 @@ public class InverseIndexByKeywordCombiner extends Reducer<Text, Text, Text, Tex
             _log.error("error: {}", e.getMessage());
         }
     }
-
 }

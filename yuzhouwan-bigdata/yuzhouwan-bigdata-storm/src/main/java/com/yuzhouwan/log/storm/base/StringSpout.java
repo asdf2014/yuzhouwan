@@ -37,9 +37,7 @@ public class StringSpout extends BaseRichSpout {
     }
 
     public void nextTuple() {
-        for (String word : words) {
-            collector.emit(new Values(word));
-        }
+        for (String word : words) collector.emit(new Values(word));
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {

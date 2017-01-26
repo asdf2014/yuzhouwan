@@ -16,21 +16,26 @@ import java.io.IOException;
 public class FileUtils {
 
     public static byte[] readFile(String filename) throws IOException {
-        long len;
-        File file;
-        byte[] data = new byte[(int) (len = (file = new File(filename)).length())];
+        if (StrUtils.isEmpty(filename)) return null;
+        File file = new File(filename);
+        if (!checkExist(file)) return null;
+        long fileLen = file.length();
+        byte[] data = new byte[(int) fileLen];
         try (FileInputStream fin = new FileInputStream(file)) {
-            int r;
-            if ((r = fin.read(data)) != len)
-                throw new IOException(String.format("Only read %d of %d for %s", r, len, file.getName()));
+            int readLen = fin.read(data);
+            if (readLen != fileLen)
+                throw new IOException(String.format("Only read %d of %d for %s", readLen, fileLen, file.getName()));
             return data;
         }
     }
 
-    public static void writeFile(String filename, byte data[])
-            throws IOException {
-        try (FileOutputStream fileOutputStream = new FileOutputStream(filename)) {
-            fileOutputStream.write(data);
+    public static void writeFile(String filename, byte data[]) throws IOException {
+        try (FileOutputStream fos = new FileOutputStream(filename)) {
+            fos.write(data);
         }
+    }
+
+    public static boolean checkExist(File f) {
+        return f != null && f.exists();
     }
 }
