@@ -9,7 +9,9 @@ __[http://www.yuzhouwan.com][0]__
 
 - Advance Maven Skill
 - BigData&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;(Hadoop **/** Storm **/** Spark **/** HBase **/** ElasticSearch **/** Druid **/** Kafka **/** Flume **/** Zookeeper)
-- Hack technology&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;(Algorithm **/** Leetcode **/** Code Generate **/** Effective Code **/** Multi Threads **/** Lambda **/** SNMP **/** &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Scala Feature **/** Groovy for DSL **/** Python for SQL Parser)
+- Hack technology&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;(Algorithm **/** Leetcode **/** Code Generate **/** Effective Code **/** Multi Threads **/** Lambda **/** SNMP)
+- Languages&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;(Java for Most Logic **/** Scala Feature **/** Groovy for DSL **/** Python for SQL Parser **/** 
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Shell for JVM Monitor)
 - WebSite&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;(RPC **/** NIO **/** Spring stuff **/** Swagger for Doc)
 - A lot of Commons Utils
 
