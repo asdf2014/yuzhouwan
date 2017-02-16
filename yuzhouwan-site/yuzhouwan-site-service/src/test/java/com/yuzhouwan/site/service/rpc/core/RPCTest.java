@@ -1,14 +1,14 @@
 package com.yuzhouwan.site.service.rpc.core;
 
-import com.yuzhouwan.site.api.rpc.service.Server;
 import com.yuzhouwan.site.api.rpc.service.IRPCService;
+import com.yuzhouwan.site.api.rpc.service.Server;
 import com.yuzhouwan.site.service.rpc.service.RPCServiceImpl;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function: RPC Tester
  *

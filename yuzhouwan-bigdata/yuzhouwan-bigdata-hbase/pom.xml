@@ -16,9 +16,21 @@
     <dependencies>
 
         <dependency>
+            <groupId>com.yuzhouwan</groupId>
+            <artifactId>yuzhouwan-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.apache.hbase</groupId>
             <artifactId>hbase-server</artifactId>
             <version>${hbase.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>${protobuf.java.version}</version>
         </dependency>
 
         <!-- for test -->

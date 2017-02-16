@@ -6,7 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function: File Utils
  *
@@ -16,21 +16,26 @@ import java.io.IOException;
 public class FileUtils {
 
     public static byte[] readFile(String filename) throws IOException {
+        if (StrUtils.isEmpty(filename)) return null;
         File file = new File(filename);
-        long len = file.length();
-        byte data[] = new byte[(int) len];
-        FileInputStream fin = new FileInputStream(file);
-        int r = fin.read(data);
-        if (r != len)
-            throw new IOException("Only read " + r + " of " + len + " for " + file);
-        fin.close();
-        return data;
+        if (!checkExist(file)) return null;
+        long fileLen = file.length();
+        byte[] data = new byte[(int) fileLen];
+        try (FileInputStream fin = new FileInputStream(file)) {
+            int readLen = fin.read(data);
+            if (readLen != fileLen)
+                throw new IOException(String.format("Only read %d of %d for %s", readLen, fileLen, file.getName()));
+            return data;
+        }
     }
 
-    public static void writeFile(String filename, byte data[])
-            throws IOException {
-        FileOutputStream fileOutputStream = new FileOutputStream(filename);
-        fileOutputStream.write(data);
-        fileOutputStream.close();
+    public static void writeFile(String filename, byte data[]) throws IOException {
+        try (FileOutputStream fos = new FileOutputStream(filename)) {
+            fos.write(data);
+        }
+    }
+
+    public static boolean checkExist(File f) {
+        return f != null && f.exists();
     }
 }

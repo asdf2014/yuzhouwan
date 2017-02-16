@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertNotEquals;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function: Linked List Random Node Solution Tester
  *

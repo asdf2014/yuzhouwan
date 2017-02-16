@@ -12,7 +12,7 @@ import java.nio.charset.Charset;
 import java.util.List;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function: Distributed Queue with Zookeeper
  *
@@ -101,5 +101,4 @@ public class DistributedQueue {
             System.out.println("No node to consume.");
         }
     }
-
 }

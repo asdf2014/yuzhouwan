@@ -1,6 +1,6 @@
 package com.yuzhouwan.hacker.effective;
 
-import com.yuzhouwan.common.collection.Company;
+import com.yuzhouwan.hacker.algorithms.collection.sort.Company;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,7 +11,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function: Generic Tester
  *

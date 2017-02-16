@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function: RBPainter
  *
@@ -760,7 +760,7 @@ public final class RBPainter implements ActionListener, MouseListener, MouseMoti
 
 
     /*************************************************************************
-     *  Keyboard interactions.
+     * Keyboard interactions.
      *************************************************************************/
 
     public void mouseReleased(MouseEvent e) {

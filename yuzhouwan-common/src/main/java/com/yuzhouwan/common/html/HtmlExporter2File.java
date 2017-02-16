@@ -7,7 +7,7 @@ import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import java.io.File;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function: Html Exporter
  *
@@ -15,6 +15,12 @@ import java.io.File;
  * @since 2016/6/20
  */
 public class HtmlExporter2File implements IHtmlExporter {
+
+    @SuppressWarnings(value = {"unchecked"})
+    @Override
+    public File convert2Image(String url) {
+        return convert2Image(url, null);
+    }
 
     /**
      * 将带有 chart、map等动态图表的 html转换为 图片
@@ -26,6 +32,12 @@ public class HtmlExporter2File implements IHtmlExporter {
     @Override
     public File convert2Image(String url, Integer width, Integer height) {
         return convert2Image(url, null, width, height);
+    }
+
+    @SuppressWarnings(value = {"unchecked"})
+    @Override
+    public File convert2Image(String url, Cookie addedCookie) {
+        return convert2Image(url, addedCookie, null, null);
     }
 
     /**
@@ -41,12 +53,9 @@ public class HtmlExporter2File implements IHtmlExporter {
         PhantomJSDriver driver = null;
         try {
             driver = HtmlExporterUtils.prepare(url, addedCookie, width, height);
-            if (driver == null)
-                return null;
-            return driver.getScreenshotAs(OutputType.FILE);
+            return driver == null ? null : driver.getScreenshotAs(OutputType.FILE);
         } finally {
             HtmlExporterUtils.release(driver);
         }
     }
-
 }

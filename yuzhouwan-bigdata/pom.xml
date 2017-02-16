@@ -21,7 +21,9 @@
         <module>yuzhouwan-bigdata-storm</module>
         <module>yuzhouwan-bigdata-hbase</module>
         <module>yuzhouwan-bigdata-elastic</module>
+        <module>yuzhouwan-bigdata-druid</module>
         <module>yuzhouwan-bigdata-flume</module>
         <module>yuzhouwan-bigdata-zookeeper</module>
+        <module>yuzhouwan-bigdata-kafka</module>
     </modules>
 </project>

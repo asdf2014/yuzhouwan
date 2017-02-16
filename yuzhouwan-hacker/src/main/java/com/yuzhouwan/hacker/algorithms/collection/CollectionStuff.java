@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function: Collection Stuff
  *
@@ -16,26 +16,21 @@ import java.util.Map;
  */
 public class CollectionStuff<C extends Collection<E>, E> {
 
-    public C listDeduplication(C c, int fieldIndex, boolean isDeclared) {
+    public C listReduplication(C c, int fieldIndex, boolean isDeclared) {
 
-        int size = c.size();
-        if (size == 0)
-            return c;
+        if (c == null || c.size() == 0) return c;
 
         Class clazz = ((ArrayList) c).get(0).getClass();
         Field[] fs;
-        if (isDeclared)
-            fs = clazz.getDeclaredFields();
-        else
-            fs = clazz.getFields();
+        if (isDeclared) fs = clazz.getDeclaredFields();
+        else fs = clazz.getFields();
 
         int len = fs.length;
         if (len == 0 || len <= fieldIndex)
             throw new RuntimeException("Refection Exception[fields length is not enough]!");
 
         Field f = fs[fieldIndex];
-        if (isDeclared)
-            f.setAccessible(true);
+        if (isDeclared) f.setAccessible(true);
 
         Map<Object, E> map = new HashMap<>(c.size());
         for (E e : c) {
@@ -49,5 +44,4 @@ public class CollectionStuff<C extends Collection<E>, E> {
         }
         return (C) map.values();
     }
-
 }

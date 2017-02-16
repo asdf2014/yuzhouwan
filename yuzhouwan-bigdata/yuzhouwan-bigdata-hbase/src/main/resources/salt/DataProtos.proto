@@ -1,0 +1,35 @@
+package generated;
+
+option java_package = "com.yuzhouwan.bigdata.hbase.util.salt";
+option java_outer_classname = "DataProtos";
+option java_generic_services = true;
+option java_generate_equals_and_hash = true;
+option optimize_for = SPEED;
+
+message DataQueryRequest {
+    optional string tableName = 1;
+    optional string startRow = 2;
+    optional string endRow = 3;
+    optional string rowKey = 4;
+    optional bool incluedEnd = 5;
+    optional bool isSalting = 6;
+}
+
+message DataQueryResponse {
+    message Cell {
+        required bytes value = 1;
+        required bytes family = 2;
+        required bytes qualifier = 3;
+        required bytes row = 4;
+    }
+    message Row {
+        optional bytes rowKey = 1;
+        repeated Cell cellList = 2;
+    }
+    repeated Row rowList = 1;
+}
+
+service QueryDataService {
+    rpc queryByStartRowAndEndRow (DataQueryRequest) returns (DataQueryResponse);
+    rpc queryByRowKey (DataQueryRequest) returns (DataQueryResponse);
+}

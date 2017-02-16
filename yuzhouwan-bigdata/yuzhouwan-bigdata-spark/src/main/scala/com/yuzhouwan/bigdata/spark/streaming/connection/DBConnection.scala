@@ -8,7 +8,7 @@ import org.apache.commons.pool2.{BasePooledObjectFactory, ObjectPool, PooledObje
 import org.apache.spark.streaming.dstream.DStream
 
 /**
-  * Copyright @ 2016 yuzhouwan.com
+  * Copyright @ 2017 yuzhouwan.com
   * All right reserved.
   * Function: DB Connection
   *

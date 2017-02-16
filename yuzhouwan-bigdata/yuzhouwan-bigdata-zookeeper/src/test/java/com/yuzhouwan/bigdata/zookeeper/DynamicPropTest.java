@@ -1,15 +1,15 @@
 package com.yuzhouwan.bigdata.zookeeper;
 
 import com.yuzhouwan.bigdata.zookeeper.prop.DynamicProp;
-import com.yuzhouwan.common.util.DirUtils;
+import com.yuzhouwan.common.dir.DirUtils;
 import org.junit.Test;
 
 import java.io.File;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
- * Function: com.yuzhouwan.hacker.zookeeper.prop
+ * Function: Dynamic Prop Test
  *
  * @author Benedict Jin
  * @since 2016/7/14

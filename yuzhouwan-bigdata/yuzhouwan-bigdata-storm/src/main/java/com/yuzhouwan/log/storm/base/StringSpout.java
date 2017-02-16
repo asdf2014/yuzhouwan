@@ -13,12 +13,12 @@ import org.slf4j.LoggerFactory;
 import java.util.Map;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function: StringSpout
  *
  * @author Benedict Jin
- * @since 2016/3/30 0030
+ * @since 2016/3/30
  */
 public class StringSpout extends BaseRichSpout {
 
@@ -37,9 +37,7 @@ public class StringSpout extends BaseRichSpout {
     }
 
     public void nextTuple() {
-        for (String word : words) {
-            collector.emit(new Values(word));
-        }
+        for (String word : words) collector.emit(new Values(word));
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {

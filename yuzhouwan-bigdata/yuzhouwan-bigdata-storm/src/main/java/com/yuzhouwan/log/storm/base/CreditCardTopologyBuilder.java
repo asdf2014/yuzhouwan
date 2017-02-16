@@ -8,12 +8,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function: CreditCardTopologyBuilder
  *
  * @author Benedict Jin
- * @since 2016/3/30 0030
+ * @since 2016/3/30
  */
 public class CreditCardTopologyBuilder {
 
@@ -23,7 +23,7 @@ public class CreditCardTopologyBuilder {
         String json2 = "{\"participants\" : 5,\"airport\" : \"OTP\"}";
 
         Map<String, Object> conf = new HashMap<>();
-        /**
+        /*
          * Configuration: https://www.elastic.co/guide/en/elasticsearch/hadoop/current/configuration.html
          */
         conf.put("es.nodes", "192.168.1.101");

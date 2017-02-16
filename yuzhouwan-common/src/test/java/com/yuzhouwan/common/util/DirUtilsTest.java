@@ -1,5 +1,7 @@
 package com.yuzhouwan.common.util;
 
+import com.yuzhouwan.common.dir.DirUtils;
+import com.yuzhouwan.common.dir.WatchRunnable;
 import org.junit.Test;
 
 import java.io.File;
@@ -11,12 +13,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function: Directory Util Tester
  *
  * @author Benedict Jin
- * @since 2016/4/7 0030
+ * @since 2016/4/7
  */
 public class DirUtilsTest {
 
@@ -58,24 +60,24 @@ public class DirUtilsTest {
     @Test
     public void testDirScanAbsolute() throws Exception {
         assertEquals("\\com\\yuzhouwan\\common\\util\\DirUtilsTest.class", DirUtils.findPath(
-                DirUtils.getTestClassesPath(), "DirUtilsTest.class", false, "test-classes")
+                DirUtils.getTestClassesPath(), "test-classes", "DirUtilsTest.class", false)
                 .get(0));
     }
 
     @Test
     public void testJarPath() throws Exception {
         assertEquals(new LinkedList<>(Arrays.asList("\\yuzhouwan-common.jar")),
-                DirUtils.findPath(DirUtils.getTestClassesPath(), ".jar", false, "lib"));
+                DirUtils.findPath(DirUtils.getTestClassesPath(), "lib", ".jar", false));
     }
 
     @Test
     public void testPropertiesPath() throws Exception {
-        DirUtils.findPath(DirUtils.getClassesPath(), ".properties", true, "prop").forEach(System.out::println);
+        DirUtils.findPath(DirUtils.getClassesPath(), "prop", ".properties", true).forEach(System.out::println);
     }
 
     @Test
     public void testBuildWatchService() throws Exception {
-        DirUtils.WatchRunnable thread = DirUtils.buildWatchService("Z:/watch");
+        WatchRunnable thread = DirUtils.buildWatchService("Z:/watch");
         assertEquals(null, thread);
 
         // 2 ms is lowest limitation for me ;)

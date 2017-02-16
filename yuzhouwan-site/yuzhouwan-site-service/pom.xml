@@ -35,6 +35,13 @@
             <version>${project.version}</version>
         </dependency>
 
+        <!-- Apache Commons Pool2 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>${apache.commons.pool2.version}</version>
+        </dependency>
+
         <!-- spring + aspectj -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -378,7 +385,7 @@
 
         <!-- Alipay -->
         <!-- download sdk from https://doc.open.alipay.com/doc2/detail.htm?spm=a219a.7629140.0.0.CKZqgd&treeId=193&articleId=103419&docType=1 -->
-        <!-- mvn install:install-file -DgroupId=com.alipay -DartifactId=sdk-Java -Dversion=20160812120103 -Dpackaging=jar -Dfile=alipay-sdk-java20160812120103.jar -->
+        <!-- mvn install:install-file -DgroupId=com.alipay -DartifactId=sdk-Java -Dversion=20161121110022 -Dpackaging=jar -Dfile=alipay-sdk-java20161121110022.jar -->
         <dependency>
             <groupId>com.alipay</groupId>
             <artifactId>sdk-java</artifactId>

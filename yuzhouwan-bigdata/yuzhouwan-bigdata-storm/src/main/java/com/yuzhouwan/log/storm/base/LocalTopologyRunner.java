@@ -6,12 +6,12 @@ import backtype.storm.generated.StormTopology;
 import backtype.storm.utils.Utils;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function: LocalTopologyRunner
  *
  * @author Benedict Jin
- * @since 2016/3/30 0030
+ * @since 2016/3/30
  */
 public class LocalTopologyRunner {
 

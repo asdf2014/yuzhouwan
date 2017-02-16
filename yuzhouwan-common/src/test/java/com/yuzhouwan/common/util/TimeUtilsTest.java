@@ -1,6 +1,9 @@
 package com.yuzhouwan.common.util;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,12 +17,12 @@ import java.util.LinkedList;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function：TimeUtils Test
  *
  * @author Benedict Jin
- * @since 2016/3/8 0030
+ * @since 2016/3/8
  */
 public class TimeUtilsTest {
 
@@ -27,12 +30,14 @@ public class TimeUtilsTest {
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS Z");
 
     @Test
-    public void test() {
+    public void nowStrTest() throws Exception {
+        // 2016-11-24 09:41:52 511
+        System.out.println(TimeUtils.nowStr());
+    }
 
-        Date now = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM");
-        String month = simpleDateFormat.format(now);
-        int m = Integer.parseInt(month);
+    @Test
+    public void test() {
+        int m = Integer.parseInt(new SimpleDateFormat("MM").format(new Date()));
         _log.debug("month:{}", m);
         assertEquals(m, TimeUtils.month());
     }
@@ -105,25 +110,25 @@ public class TimeUtilsTest {
     public void testTime() {
         {
             Calendar c = Calendar.getInstance();
-            c.set(2016, 5, 16, 12, 0, 0);
+            c.set(2016, Calendar.MAY, 16, 12, 0, 0);
             System.out.println(c.getTime());
             System.out.println(c.getTime().getTime());
         }
         {
             Calendar c = Calendar.getInstance();
-            c.set(2016, 5, 16, 12, 0, 29);
+            c.set(2016, Calendar.MAY, 16, 12, 0, 29);
             System.out.println(c.getTime());
             System.out.println(c.getTime().getTime());
         }
         {
             Calendar c = Calendar.getInstance();
-            c.set(2016, 5, 16, 12, 0, 35);
+            c.set(2016, Calendar.MAY, 16, 12, 0, 35);
             System.out.println(c.getTime());
             System.out.println(c.getTime().getTime());
         }
         {
             Calendar c = Calendar.getInstance();
-            c.set(2016, 5, 16, 12, 1, 35);
+            c.set(2016, Calendar.MAY, 16, 12, 1, 35);
             System.out.println(c.getTime());
             System.out.println(c.getTime().getTime());
         }
@@ -133,6 +138,28 @@ public class TimeUtilsTest {
     public void lastMonthTodayInBeginTest() {
         System.out.println(sdf.format(TimeUtils.lastMonthTodayInBegin()));
         System.out.println(sdf.format(TimeUtils.lastFewDaysInBegin(30)));
+    }
+
+    @Test
+    public void pastWeekStartTest() {
+        // now: 2016-12-28 21:00:13:523 +0800
+        // 2016-12-29 00:00:00:000 +0800
+        // 2016-12-28 00:00:00:000 +0800
+        // 2016-12-21 00:00:00:000 +0800
+        // 2016-11-27 00:00:00:000 +0800
+        System.out.println(sdf.format(TimeUtils.fewDaysAgoBegin(-1)));
+        System.out.println(sdf.format(TimeUtils.fewDaysAgoBegin(0)));
+        System.out.println(sdf.format(TimeUtils.fewDaysAgoBegin(7)));
+        System.out.println(sdf.format(TimeUtils.fewDaysAgoBegin(31)));
+
+        // 2016-12-29 23:59:59:999 +0800
+        // 2016-12-28 23:59:59:999 +0800
+        // 2016-12-21 23:59:59:999 +0800
+        // 2016-11-27 23:59:59:999 +0800
+        System.out.println(sdf.format(TimeUtils.fewDaysAgoEnd(-1)));
+        System.out.println(sdf.format(TimeUtils.fewDaysAgoEnd(0)));
+        System.out.println(sdf.format(TimeUtils.fewDaysAgoEnd(7)));
+        System.out.println(sdf.format(TimeUtils.fewDaysAgoEnd(31)));
     }
 
     @Test
@@ -154,10 +181,24 @@ public class TimeUtilsTest {
     }
 
     @Test
-    public void timeZone() {
+    public void timeZone() throws Exception {
         Date now = new Date();
         Date past = TimeUtils.zeroTimeZone(now);
         assertEquals(0, now.getTime() - past.getTime());
+
+        // 2016-11-25T07:01:23.000Z
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSz");
+        // 2016-11-25T15:06:59.401CST
+        System.out.println(sdf.format(now));
+
+        // 2016-11-25T15:07:28.233+0800
+        System.out.println(TimeUtils.nowTimeWithZone());
+
+        sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyyMMddHHmmss");
+        // 2016-11-25T07:13:29.000Z
+        System.out.println(dtf.parseDateTime(sdf.format(now)).withZone(DateTimeZone.UTC));
     }
 
     @Test

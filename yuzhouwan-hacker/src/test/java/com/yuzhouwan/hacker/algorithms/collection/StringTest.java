@@ -5,12 +5,12 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function：CollectionStuff Tester
  *
  * @author Benedict Jin
- * @since 2016/3/15 0030
+ * @since 2016/3/15
  */
 public class StringTest {
 

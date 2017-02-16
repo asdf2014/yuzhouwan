@@ -7,7 +7,7 @@ import javax.crypto.SecretKey;
 import java.security.SecureRandom;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function: GenerateKey
  *

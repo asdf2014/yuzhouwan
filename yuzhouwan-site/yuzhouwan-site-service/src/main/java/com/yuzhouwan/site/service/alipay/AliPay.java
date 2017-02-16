@@ -19,7 +19,7 @@ import java.util.Map;
 import static com.alipay.api.AlipayConstants.APP_ID;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function: AliPay
  *

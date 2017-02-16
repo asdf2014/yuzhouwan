@@ -28,9 +28,15 @@ hs_err_pid*
 
 # JIT log files
 *.log
+/logs
+**/logs
+**/logs/**
 
 # sorry for copyright
 /yuzhouwan-log/yuzhouwan-log-elastic/src/main/resources/es/web/
 /yuzhouwan-log/yuzhouwan-log-elastic/src/main/resources/api/suppress.json
 /yuzhouwan-common/src/main/resources/html/month_report.png
 /yuzhouwan-common/src/main/resources/html/month_report.pdf
+
+# too large file size
+/yuzhouwan-hacker/src/main/avro/avro-tools-1.8.1.jar

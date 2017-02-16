@@ -8,12 +8,12 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function：CollectionStuff Tester
  *
  * @author Benedict Jin
- * @since 2015/11/30 0030
+ * @since 2015/11/30
  */
 public class CollectionStuffTest {
 
@@ -31,7 +31,6 @@ public class CollectionStuffTest {
         c.setS("1");
         c.setO(new CollectionStuffTest());
 
-
         cs = new ArrayList<>();
         cs.add(c0);
         cs.add(c);
@@ -39,18 +38,16 @@ public class CollectionStuffTest {
 
 
     /**
-     * Method: listDeduplication(C c, int fieldIndex, boolean isDeclared)
+     * Method: listReduplication(C c, int fieldIndex, boolean isDeclared)
      */
     @Test
-    public void testListDeduplication() throws Exception {
+    public void testListReduplication() throws Exception {
         CollectionStuff<List<ComplexClass>, ComplexClass> collectionStuff = new CollectionStuff<>();
-        Collection<ComplexClass> collection = collectionStuff.listDeduplication(cs, 1, true);
-        for (ComplexClass complexClass : collection) {
-            System.out.println(complexClass);
-        }
+        Collection<ComplexClass> collection = collectionStuff.listReduplication(cs, 1, true);
+        collection.forEach(System.out::println);
     }
 
-    class ComplexClass {
+    private class ComplexClass {
         private Integer i;
         private String s;
         private Object o;

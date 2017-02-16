@@ -1,7 +1,8 @@
 package com.yuzhouwan.bigdata.zookeeper.prop;
 
-import com.yuzhouwan.common.api.IDirUtils;
-import com.yuzhouwan.common.util.DirUtils;
+import com.yuzhouwan.common.dir.DirUtils;
+import com.yuzhouwan.common.dir.IDirUtils;
+import com.yuzhouwan.common.dir.WatchRunnable;
 import com.yuzhouwan.common.util.PropUtils;
 import com.yuzhouwan.common.util.StrUtils;
 import org.slf4j.Logger;
@@ -10,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import java.nio.file.WatchEvent;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function: Dynamic Prop
  *
@@ -24,7 +25,7 @@ public class DynamicProp implements IDirUtils {
     //0: nothing; 1: upload
     private static final String DYNAMIC_PROP_UPLOAD = "1";
 
-    private DirUtils.WatchRunnable runnable;
+    private WatchRunnable runnable;
     private Thread thread;
 
     public DynamicProp(String path) {

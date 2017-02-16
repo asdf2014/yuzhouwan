@@ -1,6 +1,6 @@
 package com.yuzhouwan.hacker.design.pattern;
 
-import com.yuzhouwan.common.util.DirUtils;
+import com.yuzhouwan.common.dir.DirUtils;
 import com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample;
 import org.junit.Test;
 
@@ -12,7 +12,7 @@ import java.io.ObjectOutputStream;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function: SingleInstance Tester
  *

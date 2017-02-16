@@ -5,7 +5,7 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Partitioner;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function：指定最终的结果文件数量的 Partitioner组件
  *
@@ -28,5 +28,4 @@ public class PatentPartitioner extends Partitioner<Text, Text> {
         //这里可以暂时不指定（使用 Hadoop默认分区），到后面能掌握好 Partition的级别程度，可以加入进行调整
         return ConfUtil.getMax();
     }
-
 }

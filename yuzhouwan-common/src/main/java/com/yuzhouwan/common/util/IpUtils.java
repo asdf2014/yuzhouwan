@@ -13,12 +13,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function: Ip Utils
  *
  * @author Benedict Jin
- * @since 2016/4/7 0030
+ * @since 2016/4/7
  */
 public class IpUtils {
 
@@ -31,7 +31,8 @@ public class IpUtils {
     private static final Pattern EXTRACT_DOMAIN_SIMPLE = Pattern.compile("(?<=//).*");
     private static final Pattern EXTRACT_DOMAIN_SIMPLE_END_WITH_TAIL = Pattern.compile("(?<=//).*(?=/)");
 
-    private static final String PING_PERFIX = "ping -c 1 ";
+    private static final String PING_PREFIX = "ping -c 1 ";
+
     /**
      * The current host IP address is the IP address from the device.
      */
@@ -43,7 +44,7 @@ public class IpUtils {
      * @param ip
      * @return
      */
-    public static boolean checkValid(String ip) {
+    public static boolean checkValid(final String ip) {
         return IP_ADDRESS_IS_VALID.matcher(ip).matches();
     }
 
@@ -64,28 +65,19 @@ public class IpUtils {
      * @return
      */
     public static String extractDomain(String url) {
-        if (StrUtils.isEmpty(url))
-            return null;
+        if (StrUtils.isEmpty(url)) return null;
         int len = url.split("/").length;
         Matcher m;
         if (len < 3) {
             _log.error("URL[{}] is invalid!", url);
             return null;
         } else if (len > 3) {
-            m = EXTRACT_DOMAIN_WITH_SUB_PATH.matcher(url);
             //这里必须先 find，才能 group取到值
-            if (m.find()) {
-                return m.group(0);
-            }
+            if ((m = EXTRACT_DOMAIN_WITH_SUB_PATH.matcher(url)).find()) return m.group(0);
         } else {
-            if (!url.endsWith("/")) {
-                m = EXTRACT_DOMAIN_SIMPLE.matcher(url);
-            } else {
-                m = EXTRACT_DOMAIN_SIMPLE_END_WITH_TAIL.matcher(url);
-            }
-            if (m.find()) {
-                return m.group(0);
-            }
+            if (!url.endsWith("/")) m = EXTRACT_DOMAIN_SIMPLE.matcher(url);
+            else m = EXTRACT_DOMAIN_SIMPLE_END_WITH_TAIL.matcher(url);
+            if (m.find()) return m.group(0);
         }
         return null;
     }
@@ -97,12 +89,8 @@ public class IpUtils {
      * @return
      */
     public static String getTailFromURL(String url) {
-
         String domain = extractDomain(url);
-        if (StrUtils.isEmpty(domain)) {
-            return null;
-        }
-        return StrUtils.cutMiddleStr(url, domain).substring(1);
+        return StrUtils.isEmpty(domain) ? null : StrUtils.cutMiddleStr(url, domain).substring(1);
     }
 
     /**
@@ -128,15 +116,8 @@ public class IpUtils {
      * @return
      */
     public static String long2ip(Long ipAddress) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(String.valueOf((ipAddress >>> 24)));
-        sb.append(".");
-        sb.append(String.valueOf((ipAddress & 0x00FFFFFF) >>> 16));
-        sb.append(".");
-        sb.append(String.valueOf((ipAddress & 0x0000FFFF) >>> 8));
-        sb.append(".");
-        sb.append(String.valueOf((ipAddress & 0x000000FF)));
-        return sb.toString();
+        return String.valueOf(ipAddress >>> 24) + "." + String.valueOf((ipAddress & 0x00FFFFFF) >>> 16) + "." +
+                String.valueOf((ipAddress & 0x0000FFFF) >>> 8) + "." + String.valueOf((ipAddress & 0x000000FF));
     }
 
     /**
@@ -146,19 +127,15 @@ public class IpUtils {
      * @return
      */
     public static Integer ip2int(String ipAddress) {
-
         Inet4Address a;
         try {
             a = (Inet4Address) InetAddress.getByName(ipAddress);
         } catch (UnknownHostException e) {
-            _log.error("{}", e.getMessage());
+            _log.error(ExceptionUtils.errorInfo(e));
             return null;
         }
         byte[] b = a.getAddress();
-        return ((b[0] & 0xFF) << 24) |
-                ((b[1] & 0xFF) << 16) |
-                ((b[2] & 0xFF) << 8) |
-                (b[3] & 0xFF);
+        return ((b[0] & 0xFF) << 24) | ((b[1] & 0xFF) << 16) | ((b[2] & 0xFF) << 8) | (b[3] & 0xFF);
     }
 
     /**
@@ -168,44 +145,28 @@ public class IpUtils {
      * @param range
      * @return
      */
-    public static Boolean checkIPRange(String ipAddress, String range) {
-
-        if (StrUtils.isEmpty(range) || StrUtils.isEmpty(ipAddress)) {
-            return null;
-        }
-        if (!range.contains("/")) {
-            return null;
-        }
+    public static Boolean checkIPRange(final String ipAddress, final String range) {
+        if (StrUtils.isEmpty(range) || StrUtils.isEmpty(ipAddress) || !range.contains("/")) return null;
         String[] rangeArray = range.split("/");
-        if (rangeArray.length != 2) {
-            return null;
-        }
-        if (StrUtils.isEmpty(rangeArray[0]) || StrUtils.isEmpty(rangeArray[1])) {
-            return null;
-        }
+        if (rangeArray.length != 2) return null;
+        if (StrUtils.isEmpty(rangeArray[0]) || StrUtils.isEmpty(rangeArray[1])) return null;
         String rangeIp = rangeArray[0];
-        if (!checkValid(rangeIp) || !checkValid(ipAddress)) {
-            return null;
-        }
+        if (!checkValid(rangeIp) || !checkValid(ipAddress)) return null;
+        Integer subnet = ip2int(rangeIp);     // 10.1.1.0/24
+        if (subnet == null) return false;
+        Integer ip = ip2int(ipAddress);         // 10.1.1.99
+        if (ip == null) return false;
 
-        int subnet = ip2int(rangeIp);   // 10.1.1.0/24
-        int bits = Integer.parseInt(rangeArray[1]);
-        int ip = ip2int(ipAddress);   // 10.1.1.99
-
-        long start = System.nanoTime();
         // Create bitmask to clear out irrelevant bits. For 10.1.1.0/24 this is
         // 0xFFFFFF00 -- the first 24 bits are 1's, the last 8 are 0's.
         //
         //     -1        == 0xFFFFFFFF
         //     32 - bits == 8
         //     -1 << 8   == 0xFFFFFF00
-        int mask = -1 << (32 - bits);
+        int mask = -1 << (32 - Integer.parseInt(rangeArray[1]));
 
         // IP address is in the subnet.
-        boolean result = (subnet & mask) == (ip & mask);
-        long end = System.nanoTime();
-        _log.debug("{}", (end - start) / 12);
-        return result;
+        return (subnet & mask) == (ip & mask);
     }
 
     /**
@@ -218,7 +179,7 @@ public class IpUtils {
         try {
             return Inet4Address.getByName(new URL(url).getHost()).getHostAddress();
         } catch (Exception e) {
-            _log.error("{}", e.getMessage());
+            _log.error(ExceptionUtils.errorInfo(e));
             return null;
         }
     }
@@ -229,21 +190,20 @@ public class IpUtils {
      * @param ipAddress
      * @return
      */
-    public static Boolean isReachable(String ipAddress) {
+    public static Boolean isReachable(final String ipAddress) {
         try {
             return InetAddress.getByName(ipAddress).isReachable(10000);
         } catch (IOException e) {
-            _log.error("{}", e.getMessage());
+            _log.error(ExceptionUtils.errorInfo(e));
             return null;
         }
     }
 
-    public static boolean ping(String ipAddress) {
+    public static boolean ping(final String ipAddress) {
         try {
-            return Runtime.getRuntime().exec(PING_PERFIX.concat(ipAddress))
-                    .waitFor(100000, TimeUnit.MICROSECONDS);
+            return Runtime.getRuntime().exec(PING_PREFIX.concat(ipAddress)).waitFor(10000, TimeUnit.MICROSECONDS);
         } catch (Exception e) {
-            _log.error("{}", e.getMessage());
+            _log.error(ExceptionUtils.errorInfo(e));
             return false;
         }
     }
@@ -283,26 +243,23 @@ public class IpUtils {
                 Enumeration<InetAddress> address;
                 while (netInterfaces.hasMoreElements()) {
                     ni = netInterfaces.nextElement();
+                    if (!ni.isUp() || ni.isVirtual()) continue;
                     hardware = ni.getHardwareAddress();
-                    if (!ni.isUp() || ni.isVirtual() || hardware == null || hardware.length == 0) {
-                        continue;
-                    }
+                    if (hardware == null || hardware.length == 0) continue;
                     address = ni.getInetAddresses();
                     InetAddress inetAddress;
                     while (address.hasMoreElements()) {
                         inetAddress = address.nextElement();
                         if (!inetAddress.isLoopbackAddress() && inetAddress.isSiteLocalAddress()
-                                && !inetAddress.getHostAddress().contains(":")) {
+                                && !inetAddress.getHostAddress().contains(":"))
                             currentHostIpAddress.add(inetAddress.getHostAddress());
-                        }
                     }
                 }
             } catch (SocketException e) {
-                _log.error("{}", e);
+                _log.error(ExceptionUtils.errorInfo(e));
                 throw new RuntimeException(e);
             }
         }
         return currentHostIpAddress;
     }
-
 }

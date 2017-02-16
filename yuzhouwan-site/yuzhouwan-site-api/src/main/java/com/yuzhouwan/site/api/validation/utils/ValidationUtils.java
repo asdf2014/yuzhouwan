@@ -3,7 +3,7 @@ package com.yuzhouwan.site.api.validation.utils;
 import org.springframework.validation.BindingResult;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function: Validation Utils
  *

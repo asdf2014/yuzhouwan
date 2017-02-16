@@ -1,6 +1,6 @@
 package com.yuzhouwan.hacker.algorithms.reflection;
 
-import com.yuzhouwan.common.json.A;
+import com.yuzhouwan.hacker.json.A;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,7 +10,7 @@ import java.lang.reflect.Field;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function：ReflectionPrivate Tester.
  *

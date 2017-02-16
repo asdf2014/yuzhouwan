@@ -1,7 +1,7 @@
 package com.yuzhouwan.bigdata.spark.style
 
 /**
-  * Copyright @ 2016 yuzhouwan.com
+  * Copyright @ 2017 yuzhouwan.com
   * All right reserved.
   * Function：DefineA Test
   *

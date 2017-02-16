@@ -16,7 +16,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function：NIO Server
  *
