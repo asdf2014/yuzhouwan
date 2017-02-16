@@ -31,11 +31,9 @@ public final class FalseSharing implements Runnable {
         for (int i = 0; i < threads.length; i++) {
             threads[i] = new Thread(new FalseSharing(i));
         }
-
         for (Thread t : threads) {
             t.start();
         }
-
         for (Thread t : threads) {
             t.join();
         }

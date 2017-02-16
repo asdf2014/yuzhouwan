@@ -61,6 +61,9 @@
         <json.path.assert.version>0.8.1</json.path.assert.version>
         <eclipse.jetty.webapp.version>9.2.10.v20150310</eclipse.jetty.webapp.version>
 
+        <!-- algorithm -->
+        <circuitwall.ml.version>1.1.1</circuitwall.ml.version>
+
         <!-- redis -->
         <redis.version>2.7.3</redis.version>
         <apache.commons.pool2.version>2.3</apache.commons.pool2.version>
