@@ -23,7 +23,7 @@ CREATE TABLE ab_user (
 	FOREIGN KEY(changed_by_fk) REFERENCES ab_user (id)
 );
 INSERT INTO "ab_user" VALUES(1,'admin','user','admin','pbkdf2:sha1:1000$sZRobnh7$3217dfa97fd183b69f207a7829a61bbd1300591d',1,'admin@fab.org','2016-12-23 11:02:29.474892',7,0,'2016-11-17 20:32:25.452827','2016-11-17 20:32:25.452864',NULL,NULL);
-INSERT INTO "ab_user" VALUES(2,'superset','jinjy','superset','pbkdf2:sha1:1000$qyOiYsI7$669dd91df94162c2c84b9f0153cc776c11a27c49',1,'16110505@cnsuning.com','2017-01-22 14:06:02.424812',12,0,'2016-12-14 17:53:40.937795','2016-12-14 18:54:43.259585',NULL,1);
+INSERT INTO "ab_user" VALUES(2,'superset','jinjy','superset','pbkdf2:sha1:1000$qyOiYsI7$669dd91df94162c2c84b9f0153cc776c11a27c49',1,'16110505@yuzhouwan.com','2017-01-22 14:06:02.424812',12,0,'2016-12-14 17:53:40.937795','2016-12-14 18:54:43.259585',NULL,1);
 CREATE TABLE ab_view_menu (
 	id INTEGER NOT NULL, 
 	name VARCHAR(100) NOT NULL, 

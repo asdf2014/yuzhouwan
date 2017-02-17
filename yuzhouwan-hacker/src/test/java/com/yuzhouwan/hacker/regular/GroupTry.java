@@ -8,6 +8,8 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
@@ -107,4 +109,14 @@ public class GroupTry {
         }
     }
 
+    @Test
+    public void testGroup() {
+        String str = "2017-01-12 07:00:00,648 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem.audit: allowed=true ugi=aps (auth:SIMPLE) ip=/10.27.236.67 cmd=listStatus src=/user/aps/admds/priceTextRealtime/aa/bb dst=null perm=null";
+        Pattern p = Pattern.compile("(?<=ugi=)(?<ugi>\\w+).*(?<= src=)(?<src>.*(?= dst))");
+        Matcher m = p.matcher(str);
+        if (m.find()) {
+            assertEquals("aps", m.group(1));
+            assertEquals("/user/aps/admds/priceTextRealtime/aa/bb", m.group("src"));
+        }
+    }
 }

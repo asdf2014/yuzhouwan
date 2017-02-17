@@ -1,5 +1,5 @@
 insert into ab_user values(1,'admin','user','admin','pbkdf2:sha1:1000$szrobnh7$3217dfa97fd183b69f207a7829a61bbd1300591d',1,'admin@fab.org','2016-12-23 11:02:29.474892',7,0,'2016-11-17 20:32:25.452827','2016-11-17 20:32:25.452864',null,null);
-insert into ab_user values(2,'superset','jinjy','superset','pbkdf2:sha1:1000$qyoiysi7$669dd91df94162c2c84b9f0153cc776c11a27c49',1,'16110505@cnsuning.com','2017-01-22 14:06:02.424812',12,0,'2016-12-14 17:53:40.937795','2016-12-14 18:54:43.259585',null,1);
+insert into ab_user values(2,'superset','jinjy','superset','pbkdf2:sha1:1000$qyoiysi7$669dd91df94162c2c84b9f0153cc776c11a27c49',1,'16110505@yuzhouwan.com','2017-01-22 14:06:02.424812',12,0,'2016-12-14 17:53:40.937795','2016-12-14 18:54:43.259585',null,1);
 insert into ab_view_menu values(1,'myindexview');
 insert into ab_view_menu values(2,'utilview');
 insert into ab_view_menu values(3,'localeview');
