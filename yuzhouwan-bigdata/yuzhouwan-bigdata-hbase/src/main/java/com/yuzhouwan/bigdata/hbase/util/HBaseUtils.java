@@ -19,6 +19,9 @@ import java.math.BigInteger;
 import java.util.Date;
 import java.util.LinkedList;
 
+import static com.yuzhouwan.common.util.StrUtils.COLON;
+import static com.yuzhouwan.common.util.StrUtils.COMMA;
+
 /**
  * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
@@ -109,13 +112,13 @@ public class HBaseUtils {
     public static String getNameSpace(RegionLoad region) {
         String tableName;
         if (StrUtils.isEmpty(tableName = getTableName(region))) return null;
-        return tableName.split(":")[0];
+        return tableName.split(COLON)[0];
     }
 
     public static String getSingleTableName(RegionLoad region) {
         String tableName;
         if (StrUtils.isEmpty(tableName = getTableName(region))) return null;
-        return tableName.split(":")[1];
+        return tableName.split(COLON)[1];
     }
 
     public static String getTableName(RegionLoad region) {
@@ -127,14 +130,16 @@ public class HBaseUtils {
     public static String extractTableName(String regionName) {
         String[] rn = regionName.split(",");
         if (rn.length != 3) return null;
-        String[] t1 = rn[0].split(":");
-        String namespace = "default";
-        String tableName = rn[0];
+        String[] t1 = rn[0].split(COLON);
+        String namespace, tableName;
         if (t1.length == 2) {
             namespace = t1[0];
             tableName = t1[1];
+        } else {
+            namespace = NAMESPACE_DEFAULT;
+            tableName = rn[0];
         }
-        return namespace.concat(":").concat(tableName);
+        return namespace.concat(COLON).concat(tableName);
     }
 
     public static LinkedList<String> splitJmxRegion(String aim) {
@@ -146,17 +151,17 @@ public class HBaseUtils {
      * @return hostname, like: slave06-sit.yuzhouwan.com
      */
     public static String extractHostName(String regionServerName) {
-        return StrUtils.isEmpty(regionServerName) ? "" : regionServerName.substring(0, regionServerName.indexOf(","));
+        return StrUtils.isEmpty(regionServerName) ? "" : regionServerName.substring(0, regionServerName.indexOf(COMMA));
     }
 
     public static String removeTimestamp(String regionServerName) {
         if (StrUtils.isEmpty(regionServerName)) return regionServerName;
-        return regionServerName.substring(0, regionServerName.lastIndexOf(","));
+        return regionServerName.substring(0, regionServerName.lastIndexOf(COMMA));
     }
 
     public static String extractTimestamp(String regionServerName) {
         if (StrUtils.isEmpty(regionServerName)) return regionServerName;
-        return regionServerName.substring(regionServerName.lastIndexOf(",") + 1);
+        return regionServerName.substring(regionServerName.lastIndexOf(COMMA) + 1);
     }
 
     /**

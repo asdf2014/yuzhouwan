@@ -26,7 +26,7 @@ public class DruidRestUtils {
     private static final Logger _log = LoggerFactory.getLogger(DruidRestUtils.class);
 
     private static long DEFEAT_TIMEOUT;
-    private static final TimeUnit DEFEAT_UNIT = TimeUnit.SECONDS;
+    private static final TimeUnit DEFEAT_UNIT = TimeUnit.MILLISECONDS;
 
     static {
         String timeOut = PropUtils.getInstance().getProperty("http.timeout.default.second");
@@ -44,7 +44,7 @@ public class DruidRestUtils {
      * @return the result of query
      */
     public static String post(String url, String json) {
-        return post(url, json, null, null);
+        return post(url, json, null, null, null);
     }
 
     /**
@@ -56,7 +56,7 @@ public class DruidRestUtils {
      * @return the result of query
      */
     public static String post(String url, String json, Long timeOut) {
-        return post(url, json, timeOut, null);
+        return post(url, json, timeOut, null, null);
     }
 
     /**
@@ -64,16 +64,17 @@ public class DruidRestUtils {
      *
      * @param url     <Broker>:<Port, default: 8082>
      * @param json    query json
-     * @param timeOut the timeout of http connection, unit is second
+     * @param timeOut the timeout of http connection, default unit is millisecond
      * @param charset charset
      * @return the result of query
      */
-    public static String post(String url, String json, Long timeOut, String charset) {
+    public static String post(String url, String json, Long timeOut, TimeUnit timeUnit, String charset) {
         Future<Response> f = null;
         try (AsyncHttpClient asyncHttpClient = new AsyncHttpClient()) {
             AsyncHttpClient.BoundRequestBuilder builder = asyncHttpClient.preparePost(url);
             builder.setBodyEncoding(StrUtils.UTF_8).setBody(json);
-            return (f = builder.execute()).get(timeOut == null ? DEFEAT_TIMEOUT : timeOut, DEFEAT_UNIT)
+            return (f = builder.execute()).get(timeOut == null ? DEFEAT_TIMEOUT : timeOut,
+                    timeUnit == null ? DEFEAT_UNIT : timeUnit)
                     .getResponseBody(charset == null ? StrUtils.UTF_8 : charset);
         } catch (Exception e) {
             _log.error(ExceptionUtils.errorInfo(e));

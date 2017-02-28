@@ -16,9 +16,12 @@ import java.util.LinkedList;
 public class StrUtils {
 
     public static final String ZERO = "0";
+    public static final String HEX = "\\x";
+
+    public static final String COLON = ":";
+    public static final String COMMA = ",";
     public static final String DOUBLE_TRANSFER = "\\\\";
 
-    public static final String HEX = "\\x";
     public static final String UTF_8 = "UTF-8";
 
     /**

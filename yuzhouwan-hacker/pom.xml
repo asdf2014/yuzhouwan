@@ -213,19 +213,18 @@
             <version>${groovy.version}</version>
         </dependency>
 
-<<<<<<< HEAD
         <!-- Evolution Algorithm -->
         <dependency>
             <groupId>com.circuitwall.ml</groupId>
             <artifactId>platform-monolithic</artifactId>
             <version>${circuitwall.ml.version}</version>
-=======
+        </dependency>
+
         <!-- apache avro -->
         <dependency>
             <groupId>org.apache.avro</groupId>
             <artifactId>avro</artifactId>
             <version>${apache.avro.version}</version>
->>>>>>> ae50b5781c3832a4ec8bde2954727e4b469feebd
         </dependency>
     </dependencies>
 

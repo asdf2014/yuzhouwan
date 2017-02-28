@@ -18,7 +18,8 @@ public class DruidRestUtilsTest {
 
     //    @Test
     public void testPost() throws Exception {
-        String except = new String(FileUtils.readFile(DirUtils.TEST_RESOURCES_PATH.concat("rest/druid.query.result.json")));
+        String except = new String(FileUtils.readFile(DirUtils.TEST_RESOURCES_PATH.concat(
+                "rest/druid.query.result.json")));
         String result = DruidRestUtils.post("http://yuzhouwan:8082/druid/v2/?pretty",
                 new String(FileUtils.readFile(DirUtils.TEST_RESOURCES_PATH.concat("rest/druid.query.json"))));
         assertEquals(StrUtils.compression(except), StrUtils.compression(result));

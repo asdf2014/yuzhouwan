@@ -1,0 +1,32 @@
+{
+  "metric": "Write OPS",
+  "aggregations": [
+    {
+      "filter": [
+        {
+          "type": "selector",
+          "dimension": "metric",
+          "value": "incrementalWriteRequestsCount"
+        }
+      ],
+      "aggregator": {
+        "type": "doubleSum",
+        "fieldName": "sum",
+        "name": "Write OPS"
+      },
+      "type": "filtered"
+    }
+  ],
+  "dimension": "tableName",
+  "filter": {
+    "type": "selector",
+    "dimension": "level",
+    "value": "METRIC > Region"
+  },
+  "intervals": "2017-02-22T10:58:14+08:00/2017-02-22T11:58:14+08:00",
+  "dataSource": "hbase_metrics2",
+  "granularity": "all",
+  "threshold": 50000,
+  "postAggregations": [],
+  "queryType": "topN"
+}

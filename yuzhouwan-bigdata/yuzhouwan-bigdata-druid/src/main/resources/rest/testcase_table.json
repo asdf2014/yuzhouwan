@@ -1,0 +1,148 @@
+{
+  "status": "success",
+  "filter_endpoint": "/superset/filter/druid/11/?goto_dash=false&new_dashboard_name=&slice_name=%E4%B8%9A%E5%8A%A1%E4%B8%AD%E5%86%99%E8%AF%B7%E6%B1%82%E9%87%8F%E6%9C%80%E5%A4%A7%E7%9A%84Top10+%5B%E9%A5%BC%E5%9B%BE%5D&save_to_dashboard_id=&add_to_dash=false&show_legend=false&new_slice_name=&flt_op_1=in&flt_op_0=in&viz_type=pie&since=1+hour+ago&having_col_0=&until=now&having_eq_0=&rdo_save=overwrite&having_op_0=%3D%3D&collapsed_fieldsets=&datasource_id=11&metrics=Write+OPS&labels_outside=y&granularity=1+hour&flt_eq_0=&flt_eq_1=METRIC+%3E+Region&flt_col_1=level&flt_col_0=&userid=1&datasource_type=druid&druid_time_origin=now&donut=false&limit=500&pie_label_type=key&datasource_name=hbase_metrics2&others_category=10&groupby=tableName",
+    "json_endpoint": "/superset/explore_json/druid/11/?goto_dash=false&new_dashboard_name=&slice_name=%E4%B8%9A%E5%8A%A1%E4%B8%AD%E5%86%99%E8%AF%B7%E6%B1%82%E9%87%8F%E6%9C%80%E5%A4%A7%E7%9A%84Top10+%5B%E9%A5%BC%E5%9B%BE%5D&save_to_dashboard_id=&add_to_dash=false&show_legend=false&new_slice_name=&flt_op_1=in&flt_op_0=in&viz_type=pie&since=1+hour+ago&having_col_0=&until=now&having_eq_0=&rdo_save=overwrite&having_op_0=%3D%3D&collapsed_fieldsets=&datasource_id=11&metrics=Write+OPS&labels_outside=y&granularity=1+hour&flt_eq_0=&flt_eq_1=METRIC+%3E+Region&flt_col_1=level&flt_col_0=&userid=1&datasource_type=druid&druid_time_origin=now&donut=false&limit=500&pie_label_type=key&datasource_name=hbase_metrics2&others_category=10&groupby=tableName",
+  "csv_endpoint": "/superset/explore/druid/11/?goto_dash=false&new_dashboard_name=&slice_name=%E4%B8%9A%E5%8A%A1%E4%B8%AD%E5%86%99%E8%AF%B7%E6%B1%82%E9%87%8F%E6%9C%80%E5%A4%A7%E7%9A%84Top10+%5B%E9%A5%BC%E5%9B%BE%5D&save_to_dashboard_id=&add_to_dash=false&show_legend=false&new_slice_name=&flt_op_1=in&flt_op_0=in&viz_type=pie&since=1+hour+ago&having_col_0=&until=now&having_eq_0=&csv=true&having_op_0=%3D%3D&collapsed_fieldsets=&datasource_id=11&metrics=Write+OPS&labels_outside=y&granularity=1+hour&flt_eq_0=&flt_eq_1=METRIC+%3E+Region&flt_col_1=level&flt_col_0=&rdo_save=overwrite&userid=1&datasource_type=druid&druid_time_origin=now&donut=false&limit=500&pie_label_type=key&datasource_name=hbase_metrics2&others_category=10&groupby=tableName",
+  "cached_dttm": "2017-02-22T14:23:50",
+  "column_formats": {},
+  "is_cached": false,
+  "query": "{\n  \"metric\": \"Write OPS\", \n  \"aggregations\": [\n    {\n      \"filter\": {\n        \"type\": \"selector\", \n        \"dimension\": \"metric\", \n        \"value\": \"incrementalWriteRequestsCount\"\n      }, \n      \"aggregator\": {\n        \"type\": \"doubleSum\", \n        \"fieldName\": \"sum\", \n        \"name\": \"Write OPS\"\n      }, \n      \"type\": \"filtered\"\n    }\n  ], \n  \"dimension\": \"tableName\", \n  \"filter\": {\n    \"type\": \"selector\", \n    \"dimension\": \"level\", \n    \"value\": \"METRIC > Region\"\n  }, \n  \"intervals\": \"2017-02-22T13:23:50+08:00/2017-02-22T14:23:50+08:00\", \n  \"dataSource\": \"hbase_metrics2\", \n  \"granularity\": \"all\", \n  \"threshold\": 50000, \n  \"postAggregations\": [], \n  \"queryType\": \"topN\"\n}",
+  "cache_timeout": 10000000,
+  "data": [
+    {
+      "y": 105576.0,
+      "x": "tb_jmx"
+    },
+    {
+      "y": 87704.0,
+      "x": "t_abc_dim_wh_place"
+    },
+    {
+      "y": 31078.0,
+      "x": "tb_other_monitor_pre"
+    },
+    {
+      "y": 30476.0,
+      "x": "tb_minute_monitor_pre"
+    },
+    {
+      "y": 15979.0,
+      "x": "tb_changed"
+    },
+    {
+      "y": 15711.0,
+      "x": "tb_second_monitor_pre"
+    },
+    {
+      "y": 14492.0,
+      "x": "crawl_task_exception_detail"
+    },
+    {
+      "y": 13475.0,
+      "x": "yq_opinion_info"
+    },
+    {
+      "y": 10224.0,
+      "x": "hbase_table_monitor"
+    },
+    {
+      "y": 7673.0,
+      "x": "Others"
+    },
+    {
+      "y": 3111.0,
+      "x": "cap_trace_logger_original"
+    }
+  ],
+  "standalone_endpoint": "/superset/explore/druid/11/?goto_dash=false&new_dashboard_name=&slice_name=%E4%B8%9A%E5%8A%A1%E4%B8%AD%E5%86%99%E8%AF%B7%E6%B1%82%E9%87%8F%E6%9C%80%E5%A4%A7%E7%9A%84Top10+%5B%E9%A5%BC%E5%9B%BE%5D&save_to_dashboard_id=&add_to_dash=false&show_legend=false&new_slice_name=&flt_op_1=in&flt_op_0=in&viz_type=pie&since=1+hour+ago&having_col_0=&until=now&having_eq_0=&rdo_save=overwrite&having_op_0=%3D%3D&collapsed_fieldsets=&datasource_id=11&metrics=Write+OPS&labels_outside=y&granularity=1+hour&flt_eq_0=&flt_eq_1=METRIC+%3E+Region&flt_col_1=level&flt_col_0=&standalone=true&userid=1&datasource_type=druid&druid_time_origin=now&donut=false&limit=500&pie_label_type=key&datasource_name=hbase_metrics2&others_category=10&groupby=tableName",
+  "error": null,
+  "form_data": {
+    "slice_name": "\u4e1a\u52a1\u4e2d\u5199\u8bf7\u6c42\u91cf\u6700\u5927\u7684Top10 [\u997c\u56fe]",
+    "granularity": "1 hour",
+    "show_legend": false,
+    "flt_op_5": "in",
+    "flt_op_4": "in",
+    "flt_op_7": "in",
+    "flt_op_6": "in",
+    "flt_op_1": "in",
+    "flt_op_0": "in",
+    "flt_op_3": "in",
+    "flt_op_2": "in",
+    "flt_op_9": "in",
+    "flt_op_8": "in",
+    "having_col_1": "",
+    "having_col_0": "",
+    "json": null,
+    "having_col_2": "",
+    "having_col_5": "",
+    "having_col_4": "",
+    "having_col_7": "",
+    "having_col_6": "",
+    "having_col_9": "",
+    "having_col_8": "",
+    "until": "now",
+    "pie_label_type": "key",
+    "collapsed_fieldsets": "",
+    "having_op_5": "==",
+    "labels_outside": true,
+    "having_op_4": "==",
+    "having_eq_0": "",
+    "having_eq_1": "",
+    "slice_id": null,
+    "having_col_3": "",
+    "having_eq_6": "",
+    "flt_col_6": "",
+    "having_op_0": "==",
+    "donut": false,
+    "limit": "500",
+    "having_eq_4": "",
+    "flt_col_2": "",
+    "async": null,
+    "having_eq_5": "",
+    "force": null,
+    "viz_type": "pie",
+    "since": "1 hour ago",
+    "having_eq_8": "",
+    "having_eq_9": "",
+    "having_op_9": "==",
+    "having_op_8": "==",
+    "having_eq_2": "",
+    "having_eq_3": "",
+    "having_op_7": "==",
+    "having_op_6": "==",
+    "having_op_1": "==",
+    "having_eq_7": "",
+    "having_op_3": "==",
+    "having_op_2": "==",
+    "metrics": [
+      "Write OPS"
+    ],
+    "flt_eq_8": "",
+    "flt_eq_9": "",
+    "flt_eq_6": "",
+    "flt_eq_7": "",
+    "flt_eq_4": "",
+    "flt_eq_5": "",
+    "flt_eq_2": "",
+    "flt_eq_3": "",
+    "flt_eq_0": "",
+    "flt_eq_1": "METRIC > Region",
+    "flt_col_1": "level",
+    "flt_col_0": "",
+    "flt_col_3": "",
+    "others_category": "10",
+    "flt_col_5": "",
+    "flt_col_4": "",
+    "flt_col_7": "",
+    "standalone": null,
+    "flt_col_9": "",
+    "flt_col_8": "",
+    "previous_viz_type": "pie",
+    "druid_time_origin": "now",
+    "extra_filters": null,
+    "groupby": [
+      "tableName"
+    ]
+  },
+  "cache_key": "c138edf9978a2d0be4e582cfe96653ae"
+}

@@ -1,0 +1,20 @@
+{
+  "filter": {
+    "type": "and",
+    "fields": [
+      {
+        "filter": {
+          "dimension": "metric",
+          "value": "incrementalWriteRequestsCount",
+          "type": "selector"
+        }
+      }
+    ]
+  },
+  "aggregator": {
+    "fieldName": "sum",
+    "name": "writeOps",
+    "type": "doubleSum"
+  },
+  "type": "filtered"
+}
