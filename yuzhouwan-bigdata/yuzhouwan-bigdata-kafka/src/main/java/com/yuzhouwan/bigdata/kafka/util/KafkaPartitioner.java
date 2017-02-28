@@ -44,7 +44,7 @@ public class KafkaPartitioner implements Partitioner {
         if (numPartitions <= 1) return 0;
         String keyStr;
         if (key == null || StrUtils.isEmpty(keyStr = key.toString()) || keyStr.length() > 1_000)
-            return r.nextInt(numPartitions);
+            return r.nextInt(numPartitions);    // [0, numPartitions)
         try {
             if (StrUtils.isNumber(keyStr)) return (int) Math.abs(Long.parseLong(keyStr) % numPartitions);
         } catch (Exception e) {
