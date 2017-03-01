@@ -99,7 +99,7 @@ public class KafkaConnPoolUtils {
     public Producer<String, String> getConn() {
         long index = (CONN_INDEX %= CONN_IN_POOL);
         CONN_INDEX++;
-        _log.debug("Get Kafka Connection from pool, index: [{} in {}] ...", index, CONN_IN_POOL);
+        _log.debug("Get Kafka Connection from pool, index: [{} in {}] ...", index + 1, CONN_IN_POOL);
         return pool.get(index + "");
     }
 }

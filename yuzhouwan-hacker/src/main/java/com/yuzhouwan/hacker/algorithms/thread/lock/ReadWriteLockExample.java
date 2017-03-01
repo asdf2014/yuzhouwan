@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -27,7 +28,7 @@ public class ReadWriteLockExample {
 
     private static final Logger _log = LoggerFactory.getLogger(ReadWriteLockExample.class);
 
-    public static void main(String... args) {
+    public static void main(String... args) throws InterruptedException {
 
         ExecutorService executorService = Executors.newCachedThreadPool();
         executorService.execute(() -> {
@@ -59,9 +60,8 @@ public class ReadWriteLockExample {
         executorService2.shutdown();
 
         for (; ; ) {
-            if (!executorService.isTerminated() || !executorService2.isTerminated()) {
-                continue;
-            }
+            if (!executorService.awaitTermination(1000L, TimeUnit.MILLISECONDS) ||
+                    !executorService2.awaitTermination(1000L, TimeUnit.MILLISECONDS)) continue;
             Business.getInstance().check();
             System.exit(0);
         }

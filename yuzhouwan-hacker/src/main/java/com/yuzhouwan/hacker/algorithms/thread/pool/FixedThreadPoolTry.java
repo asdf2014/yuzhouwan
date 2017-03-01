@@ -5,6 +5,7 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Copyright @ 2017 yuzhouwan.com
@@ -39,9 +40,8 @@ public class FixedThreadPoolTry {
             executor.execute(worker);
         }
         executor.shutdown();
-        for (int count = 10000; count >= 0; count--) {
-            Thread.sleep(10);
-            if (executor.isTerminated()) {
+        for (int count = 1000; count >= 0; count--) {
+            if (executor.awaitTermination(100L, TimeUnit.MILLISECONDS)) {
                 System.out.println("Finished all threads");
                 System.exit(0);
             }
