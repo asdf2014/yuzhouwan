@@ -14,14 +14,18 @@ a match {
   case d(d1, d2, d3) => print(d1, d2, d3)
 }
 
-for(data <- c.matchData; r <- data.subgroups) println(r)
+for (data <- c.matchData; r <- data.subgroups) println(r)
 
 val str = "2017-01-12 07:00:00,648 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem.audit: allowed=true ugi=aps (auth:SIMPLE) ip=/10.27.236.67 cmd=listStatus src=/user/aps/admds/priceTextRealtime/aa/bb dst=null perm=null"
 val regex = """(?<=ugi=)(?<ugi>\w+).*(?<= src=)(?<src>.*(?= dst))""".r
-for(data <- regex.findAllIn(str).matchData; r <- data.subgroups) println(r)
+for (data <- regex.findAllIn(str).matchData; r <- data.subgroups) println(r)
 
 regex.findAllIn(str).matchData.foreach(
   r => r.subgroups.foreach(
     sub => println(sub)
   )
 )
+
+var k = 1
+("2", k).copy(4, 3)
+k

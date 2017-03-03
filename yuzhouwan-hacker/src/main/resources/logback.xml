@@ -144,7 +144,7 @@
     <logger name="java.sql.PreparedStatement" level="DEBUG"/>
 
     <!-- level="INFO" in product-->
-    <root level="DEBUG">
+    <root level="INFO">
         <appender-ref ref="DEBUG_TRACK"/>
         <appender-ref ref="INFO_TRACK"/>
         <appender-ref ref="WARN_TRACK"/>
