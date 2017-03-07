@@ -1,8 +1,6 @@
 package com.yuzhouwan.common.util;
 
-import java.util.Collections;
 import java.util.LinkedList;
-import java.util.Random;
 
 /**
  * Copyright @ 2017 yuzhouwan.com
@@ -86,83 +84,14 @@ public class RandomUtils {
         }
     }
 
-    public static void main(String[] args) {
-        int N = 11;
-        int[] a = perm(N);
-        for (int i = 0; i < N; i++)
-            System.out.print(a[i] + " ");
-        System.out.println();
-
-        for (int i = 1; i <= N; i++)
-            System.out.print((int) gaussian(1.5, i) + " ");
-        System.out.println();
-
-        Random r = new Random();
-        LinkedList<Double> l = new LinkedList<>();
-        for (int i = 0; i < N; i++) {
-            double g = r.nextGaussian();
-            l.add(g);
-            System.out.print(g + " ");
-        }
-        System.out.println();
-        for (double d : l)
-            System.out.print((int) (d * 10) + " ");
-        System.out.println();
-        Collections.sort(l);
-        for (Double d : l)
-            System.out.print(d + " ");
-        System.out.println();
-
-        int threadShort = 3, threadLong = 70;
-        int total = 0;
-        int time = 15;
+    public static LinkedList<Integer> getGaussian(int start, int end, int num, long factor,
+                                                  double stdDeviation, double variance, double mean) {
         LinkedList<Integer> gaussianList = new LinkedList<>();
-        LinkedList<Integer> gaussianListShort = new LinkedList<>();
-        LinkedList<Integer> gaussianListLong = new LinkedList<>();
-        for (int i = 1; i <= time; i++) {
-            int y = (int) (getY(i) * 1500);
+        for (int i = start; i <= end; i++) {
+            int y = (int) (getY(i, stdDeviation, variance, mean) * factor);
             gaussianList.add(y);
-            total += y;
-            System.out.print(y + " ");
         }
-        System.out.println();
-        System.out.println("total: " + total);
-        System.out.println();
-
-        for (int i = 0; i < threadShort; i++) {
-            gaussianListShort.add(gaussianList.get(i));
-        }
-        int step = threadLong / time + 1;
-        for (int i = 0; i < time && gaussianListLong.size() < threadLong; i++) {
-            int y = gaussianList.get(i);
-            int subY = y / step;
-            for (int k = 0; k < step; k++) {
-                gaussianListLong.add(subY);
-            }
-        }
-        total = 0;
-        for (Integer iShort : gaussianListShort) {
-            total += iShort;
-            System.out.print(iShort + " ");
-        }
-        System.out.println();
-        System.out.println("Short Total:" + total + ", Length: " + gaussianListShort.size());
-        total = 0;
-        for (Integer iLong : gaussianListLong) {
-            total += iLong;
-            System.out.print(iLong + " ");
-        }
-        System.out.println();
-        System.out.println("Long Total:" + total + ", Length: " + gaussianListLong.size());
-    }
-
-    public static LinkedList<Integer> getGaussian(int start, int end, int num) {
-        LinkedList<Integer> gaussianList = new LinkedList<>();
         LinkedList<Integer> result = new LinkedList<>();
-        for (int i = start; i <= end; i += 1) {
-            int y = (int) (getY(i) * 6000);
-            gaussianList.add(y);
-        }
         if (end > num) {
             int step = (end - 1) / num;
             for (int i = 0; i < num; i++) {
@@ -181,10 +110,8 @@ public class RandomUtils {
         return result;
     }
 
-    public static double getY(double x) {
-        double stdDeviation = 0.7;
-        double variance = 1;
-        double mean = 4;
-        return Math.pow(Math.exp(-(((x - mean) * (x - mean)) / ((2 * variance)))), 1 / (stdDeviation * Math.sqrt(2 * Math.PI)));
+    public static double getY(double x, double stdDeviation, double variance, double mean) {
+        return Math.pow(Math.exp(-(((x - mean) * (x - mean)) / ((2 * variance)))),
+                1 / (stdDeviation * Math.sqrt(2 * Math.PI)));
     }
 }

@@ -51,5 +51,13 @@ public class JsonUtilsTest {
                     });
             assertEquals("{args=[0:userName, 0:userPassword], rets=[0:email]}", map.toString());
         }
+        {
+            LinkedHashMap<String, Integer> l = new LinkedHashMap<>();
+            l.put("3", 3);
+            l.put("1", 2);
+            l.put("2", 1);
+            l.put("4", 4);
+            assertEquals("{\"3\":3,\"1\":2,\"2\":1,\"4\":4}", JSON.toJSONString(l));
+        }
     }
 }

@@ -7,6 +7,10 @@ import org.slf4j.LoggerFactory;
 
 import java.util.LinkedList;
 
+import static com.yuzhouwan.common.util.RandomUtils.perm;
+import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+
 /**
  * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
@@ -20,32 +24,57 @@ public class RandomUtilsTest {
     private static final Logger _log = LoggerFactory.getLogger(RandomUtilsTest.class);
 
     @Test
+    public void permTest() {
+        assertNotEquals("[9,0,8,3,5,7,2,10,4,1,6] ", JSON.toJSONString(perm(11)));
+    }
+
+    @Test
     public void getGaussianTest() {
 
-        LinkedList<Integer> gaussian = RandomUtils.getGaussian(0, 15, 15);
+        long factor = 6000;
+        double stdDeviation = 0.7;
+        double variance = 1;
+        double mean = 4;
+
+        LinkedList<Integer> gaussian = RandomUtils.getGaussian(0, 15, 15, factor, stdDeviation, variance, mean);
         int total = 0;
         for (Integer g : gaussian) total += g;
         _log.info("Param: {}/{}/{}, Total: {}", 0, 15, 15, total);
-        System.out.println(JSON.toJSONString(gaussian));
-//        assertEquals("[53,101,178,294,453,653,881,1112,1313,1450,1500,1450,1313,1112,881]",
-//                JSON.toJSONString(gaussian));
-//        assertEquals(true, total == 12744);
+        _log.info(JSON.toJSONString(gaussian));
+        assertEquals("[62,461,1919,4512,6000,4512,1919,461,62,4,0,0,0,0,0]", JSON.toJSONString(gaussian));
+        assertEquals(true, total == 19912);
 
-        gaussian = RandomUtils.getGaussian(0, 9, 9);
+        gaussian = RandomUtils.getGaussian(0, 9, 9, factor, stdDeviation, variance, mean);
         total = 0;
         for (Integer g : gaussian) total += g;
         _log.info("Param: {}/{}/{}, Total: {}", 0, 9, 9, total);
-        System.out.println(JSON.toJSONString(gaussian));
-//        assertEquals("[53,101,178]", JSON.toJSONString(gaussian));
-//        assertEquals(true, total == 332);
+        _log.info(JSON.toJSONString(gaussian));
+        assertEquals("[62,461,1919,4512,6000,4512,1919,461,62]", JSON.toJSONString(gaussian));
+        assertEquals(true, total == 19908);
 
-        gaussian = RandomUtils.getGaussian(0, 15, 71);
+        gaussian = RandomUtils.getGaussian(0, 15, 71, factor, stdDeviation, variance, mean);
         total = 0;
         for (Integer g : gaussian) total += g;
         _log.info("Param: {}/{}/{}, Total: {}", 0, 15, 71, total);
-        System.out.println(JSON.toJSONString(gaussian));
-//        assertEquals("[10,10,10,10,10,20,20,20,20,20,35,35,35,35,35,58,58,58,58,58,90,90,90,90,90,130,130,130,130,130,176,176,176,176,176,222,222,222,222,222,262,262,262,262,262,290,290,290,290,290,300,300,300,300,300,290,290,290,290,290,262,262,262,262,262,222,222,222,222,222,176,176,176,176,176]",
-//                JSON.toJSONString(gaussian));
-//        assertEquals(true, total == 12715);
+        _log.info(JSON.toJSONString(gaussian));
+        assertEquals("[12,12,12,12,12,92,92,92,92,92,383,383,383,383,383,902,902,902,902,902,1200,1200,1200,1200,1200,902,902,902,902,902,383,383,383,383,383,92,92,92,92,92,12,12,12,12,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
+                JSON.toJSONString(gaussian));
+        assertEquals(true, total == 19890);
+
+        factor = 2500;
+        stdDeviation = 8;
+        variance = 1;
+
+        gaussian = RandomUtils.getGaussian(0, 15, 9, factor, stdDeviation, variance, 32 / 6 + 1);
+        total = 0;
+        for (Integer g : gaussian) total += g;
+        _log.info("Param: {}/{}/{}, Size: {}, Total: {}", 0, 15, 9, gaussian.size(), total);
+        _log.info(JSON.toJSONString(gaussian));
+
+        gaussian = RandomUtils.getGaussian(0, 15, 70, factor, stdDeviation, variance, 32 / 6 + 1);
+        total = 0;
+        for (Integer g : gaussian) total += g;
+        _log.info("Param: {}/{}/{}, Size: {}, Total: {}", 0, 15, 70, gaussian.size(), total);
+        _log.info(JSON.toJSONString(gaussian));
     }
 }
