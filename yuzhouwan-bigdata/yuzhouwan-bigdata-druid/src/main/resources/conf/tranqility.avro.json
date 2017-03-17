@@ -1,0 +1,108 @@
+{
+  "dataSources": {
+    "ops_datasource": {
+      "spec": {
+        "dataSchema": {
+          "dataSource": "ops_datasource",
+          "parser": {
+            "type": "avro_stream",
+            "avroBytesDecoder": {
+              "type": "schema_inline",
+              "schema": {
+                "namespace": "com.yuzhouwan.bigdata.kafka.util",
+                "type": "record",
+                "name": "AvroBean",
+                "fields": [
+                  {
+                    "name": "timestamp",
+                    "type": "long"
+                  },
+                  {
+                    "name": "d1",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  {
+                    "name": "d2",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  {
+                    "name": "value",
+                    "type": "double"
+                  }
+                ]
+              }
+            },
+            "parseSpec": {
+              "format": "timeAndDims",
+              "timestampSpec": {
+                "column": "timestamp",
+                "format": "millis"
+              },
+              "dimensionsSpec": {
+                "dimensions": [
+                  "d1",
+                  "d2"
+                ]
+              }
+            }
+          },
+          "granularitySpec": {
+            "type": "uniform",
+            "segmentGranularity": "hour",
+            "queryGranularity": "minute"
+          },
+          "metricsSpec": [
+            {
+              "name": "count",
+              "type": "count"
+            },
+            {
+              "name": "max",
+              "type": "doubleMax",
+              "fieldName": "value"
+            },
+            {
+              "name": "min",
+              "type": "doubleMin",
+              "fieldName": "value"
+            },
+            {
+              "name": "sum",
+              "type": "doubleSum",
+              "fieldName": "value"
+            }
+          ]
+        },
+        "ioConfig": {
+          "type": "realtime"
+        },
+        "tuningConfig": {
+          "type": "realtime",
+          "maxRowsInMemory": "100000",
+          "intermediatePersistPeriod": "PT10M",
+          "windowPeriod": "PT10M"
+        }
+      },
+      "properties": {
+        "task.partitions": "2",
+        "task.replicants": "1",
+        "topicPattern": "ops"
+      }
+    }
+  },
+  "properties": {
+    "zookeeper.connect": "yuzhouwan01:2181,yuzhouwan02:2181,yuzhouwan03:2181",
+    "druid.discovery.curator.path": "/druid/discovery",
+    "druid.selectors.indexing.serviceName": "druid/overlord",
+    "commit.periodMillis": "15000",
+    "consumer.numThreads": "1",
+    "kafka.zookeeper.connect": "yuzhouwan01:2181,yuzhouwan02:2181,yuzhouwan03:2181",
+    "kafka.group.id": "ops"
+  }
+}

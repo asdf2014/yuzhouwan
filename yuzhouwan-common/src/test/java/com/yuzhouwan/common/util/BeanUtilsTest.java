@@ -29,7 +29,7 @@ public class BeanUtilsTest {
         BeanUtils.swapper(beanA, "c_C", 3d, "_");
         BeanUtils.swapper(beanA, "dD", beanA, "_");
 
-        assertEquals("{\"aA\":1,\"bB\":2,\"cC\":3,\"d_D\":{\"$ref\":\"@\"}}", beanA.toString());
+        assertEquals("{\"aA\":1,\"bB\":2,\"cC\":3.0,\"d_D\":{\"$ref\":\"@\"}}", beanA.toString());
     }
 
     @Test
@@ -93,8 +93,8 @@ public class BeanUtilsTest {
         assertEquals(true, rows.size() == 4);
         int count = 0;
         for (String row : rows)
-            if (row.equals("{\"aA\":1,\"bB\":2}") || row.equals("{\"aA\":1,\"cC\":3}")
-                    || row.equals("{\"aA\":4,\"bB\":5}") || row.equals("{\"aA\":4,\"cC\":6}")) count++;
+            if (row.equals("{\"aA\":1,\"bB\":2}") || row.equals("{\"aA\":1,\"cC\":3.0}")
+                    || row.equals("{\"aA\":4,\"bB\":5}") || row.equals("{\"aA\":4,\"cC\":6.0}")) count++;
         assertEquals(true, count == 4);
     }
 
