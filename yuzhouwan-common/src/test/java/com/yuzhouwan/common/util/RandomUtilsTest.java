@@ -71,10 +71,20 @@ public class RandomUtilsTest {
         _log.info("Param: {}/{}/{}, Size: {}, Total: {}", 0, 15, 9, gaussian.size(), total);
         _log.info(JSON.toJSONString(gaussian));
 
-        gaussian = RandomUtils.getGaussian(0, 15, 70, factor, stdDeviation, variance, 32 / 6 + 1);
+        factor = 2000;
+        stdDeviation = 8;
+        variance = 1.5;
+
+        gaussian = RandomUtils.getGaussian(0, 15, 71, factor, stdDeviation, variance, 6);
         total = 0;
         for (Integer g : gaussian) total += g;
-        _log.info("Param: {}/{}/{}, Size: {}, Total: {}", 0, 15, 70, gaussian.size(), total);
+        _log.info("Param: {}/{}/{}, Size: {}, Total: {}", 0, 15, 71, gaussian.size(), total);
         _log.info(JSON.toJSONString(gaussian));
+        //start: 0, end: 15, num: 71, factor: 2000, stdDeviation: 8.0, variance: 1.0, mean: 4.0,
+        //Gaussian: [268,268,268,268,268,319,319,319,319,319,362,362,362,362,362,390,390,390,390,390,400,400,400,
+        // 400,400,390,390,390,390,390,362,362,362,362,362,319,319,319,319,319,268,268,268,268,268,214,214,214,
+        // 214,214,163,163,163,163,163,117,117,117,117,117,81,81,81,81,81,53,53,53,53,53,33,33,33,33,33
+        // ],
+        //total: 18695
     }
 }

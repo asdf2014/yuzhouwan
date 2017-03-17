@@ -6,6 +6,7 @@ import kafka.javaapi.producer.Producer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static com.yuzhouwan.bigdata.kafka.util.KafkaUtils.createProducer;
@@ -22,22 +23,16 @@ public class KafkaConnPoolUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(KafkaConnPoolUtils.class);
 
-    static int CONN_IN_POOL;
+    private static int CONN_IN_POOL;
     private static volatile long CONN_INDEX;
     private static volatile KafkaConnPoolUtils instance;
-    private static volatile ConcurrentHashMap<String, Producer<String, String>> pool;
+    private static volatile ConcurrentHashMap<String, Producer<String, byte[]>> pool;
 
     static {
-        /*
-         * the best practical number of threads for CPU / IO intensive applications
-         *
-         *     cpu : n
-         *     io  : 2n + 1
-         */
-        String connPoolSizeStr;
-        CONN_IN_POOL = StrUtils.isEmpty(connPoolSizeStr = PropUtils.getInstance().getProperty("kafka.conn.pool.size")) ?
+        String connPoolSizeStr = PropUtils.getInstance().getProperty("kafka.conn.2.CONN_IN_POOL");
+        CONN_IN_POOL = StrUtils.isEmpty(connPoolSizeStr) ?
                 3 : Integer.parseInt(connPoolSizeStr);
-        if (CONN_IN_POOL <= 0 || CONN_IN_POOL > 1_000) CONN_IN_POOL = 3;    // default: 2 * 1 + 1 = 3
+        if (CONN_IN_POOL <= 0 || CONN_IN_POOL > 1_000) CONN_IN_POOL = 3;
         getInstance();  // do not use lazy initialization
     }
 
@@ -84,8 +79,8 @@ public class KafkaConnPoolUtils {
      * Create a new connection.
      */
     private static void createNewConnIntoPool(int index) {
-        Producer<String, String> p = createProducer();
-        if (p == null) return;
+        Producer<String, byte[]> p;
+        if ((p = createProducer()) == null) return;
         pool.put(index + "", p);
         _log.debug("Add a new Kafka Connection into pool...");
         _log.debug("Storage: [{}/{}]", pool.size(), CONN_IN_POOL);
@@ -96,10 +91,14 @@ public class KafkaConnPoolUtils {
      *
      * @return a alive zookeeper connection which state is Watcher.Event.KeeperState.SyncConnected
      */
-    public Producer<String, String> getConn() {
+    public Producer<String, byte[]> getConn() {
         long index = (CONN_INDEX %= CONN_IN_POOL);
         CONN_INDEX++;
         _log.debug("Get Kafka Connection from pool, index: [{} in {}] ...", index + 1, CONN_IN_POOL);
         return pool.get(index + "");
+    }
+
+    public static Collection<Producer<String, byte[]>> getPool() {
+        return pool.values();
     }
 }

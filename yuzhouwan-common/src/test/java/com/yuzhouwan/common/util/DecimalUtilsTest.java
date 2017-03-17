@@ -3,6 +3,7 @@ package com.yuzhouwan.common.util;
 import org.junit.Test;
 
 import java.math.BigInteger;
+import java.nio.ByteBuffer;
 
 import static org.junit.Assert.assertEquals;
 
@@ -58,5 +59,16 @@ public class DecimalUtilsTest {
         assertEquals("10", DecimalUtils.savePoint(010.23456d, 0));
         assertEquals("10.2", DecimalUtils.savePoint(010.23456d, 1));
         assertEquals("10.2345600000", DecimalUtils.savePoint(010.23456d, 10));
+    }
+
+    @Test
+    public void byteBuffer2byteArrayTest() throws Exception {
+        String s = "yuzhouwan.com";
+        byte[] bytes = s.getBytes();
+        ByteBuffer bb = ByteBuffer.allocate(bytes.length);
+        bb.put(bytes);
+        assertEquals(s, new String(DecimalUtils.byteBuffer2byteArray(bb)));
+        assertEquals(s, new String(DecimalUtils.byteBuffer2byteArray(
+                DecimalUtils.byteArray2byteBuffer(bytes))));
     }
 }

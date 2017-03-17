@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 
+import static com.yuzhouwan.bigdata.hbase.util.HBaseUtils.removeEndKey;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -47,5 +48,17 @@ public class HBaseUtilsTest {
         for (byte[] split : splits) {
             _log.debug("Hex Splits: {}", JSON.toJSONString(Arrays.asList(split)));
         }
+    }
+
+    @Test
+    public void removeEndKeyTest() throws Exception {
+        String regionName = "hbase:meta,,1";
+        assertEquals("hbase:meta,", removeEndKey(regionName));
+        regionName = "hbase:meta,0,1";
+        assertEquals("hbase:meta,0", removeEndKey(regionName));
+        regionName = "";
+        assertEquals("", removeEndKey(regionName));
+        regionName = " ";
+        assertEquals(" ", removeEndKey(regionName));
     }
 }

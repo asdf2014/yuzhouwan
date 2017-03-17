@@ -1,6 +1,7 @@
 package com.yuzhouwan.common.util;
 
 import java.math.BigInteger;
+import java.nio.ByteBuffer;
 import java.text.DecimalFormat;
 
 /**
@@ -29,5 +30,16 @@ public class DecimalUtils {
 
     public static String savePoint(double d, int point) {
         return String.format("%.".concat(point + "f"), d);
+    }
+
+    public static byte[] byteBuffer2byteArray(ByteBuffer bb) {
+        bb.clear();
+        byte[] ba = new byte[bb.remaining()];
+        bb.get(ba, 0, ba.length);
+        return ba;
+    }
+
+    public static ByteBuffer byteArray2byteBuffer(byte[] ba) {
+        return ByteBuffer.wrap(ba);
     }
 }

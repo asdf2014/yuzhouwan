@@ -19,8 +19,7 @@ import java.math.BigInteger;
 import java.util.Date;
 import java.util.LinkedList;
 
-import static com.yuzhouwan.common.util.StrUtils.COLON;
-import static com.yuzhouwan.common.util.StrUtils.COMMA;
+import static com.yuzhouwan.common.util.StrUtils.*;
 
 /**
  * Copyright @ 2017 yuzhouwan.com
@@ -65,15 +64,15 @@ public class HBaseUtils {
     public static void setUpEnv() {
         PropUtils p = PropUtils.getInstance();
         String HADOOP_HOME_DIR = p.getProperty("hadoop.home.dir");
-        if (!StrUtils.isEmpty(HADOOP_HOME_DIR))
+        if (!isEmpty(HADOOP_HOME_DIR))
             System.setProperty("hadoop.home.dir", HADOOP_HOME_DIR);
 
         String HADOOP_USER_NAME = p.getProperty("HADOOP_USER_NAME");
-        if (!StrUtils.isEmpty(HADOOP_USER_NAME))
+        if (!isEmpty(HADOOP_USER_NAME))
             System.setProperty("HADOOP_USER_NAME", HADOOP_USER_NAME);
 
         String HADOOP_GROUP_NAME = p.getProperty("HADOOP_GROUP_NAME");
-        if (!StrUtils.isEmpty(HADOOP_GROUP_NAME))
+        if (!isEmpty(HADOOP_GROUP_NAME))
             System.setProperty("HADOOP_GROUP_NAME", HADOOP_GROUP_NAME);
     }
 
@@ -111,13 +110,13 @@ public class HBaseUtils {
 
     public static String getNameSpace(RegionLoad region) {
         String tableName;
-        if (StrUtils.isEmpty(tableName = getTableName(region))) return null;
+        if (isEmpty(tableName = getTableName(region))) return null;
         return tableName.split(COLON)[0];
     }
 
     public static String getSingleTableName(RegionLoad region) {
         String tableName;
-        if (StrUtils.isEmpty(tableName = getTableName(region))) return null;
+        if (isEmpty(tableName = getTableName(region))) return null;
         return tableName.split(COLON)[1];
     }
 
@@ -146,21 +145,26 @@ public class HBaseUtils {
         return StrUtils.splitMulti(aim, "namespace_", "_table_", "_region_", "_metric_");
     }
 
+    public static String removeEndKey(String regionName) {
+        if (isEmpty(regionName) || !regionName.contains(",")) return regionName;
+        return regionName.substring(0, regionName.lastIndexOf(",")).trim();
+    }
+
     /**
      * @param regionServerName like: slave06-sit.yuzhouwan.com,60020,1478326494532
      * @return hostname, like: slave06-sit.yuzhouwan.com
      */
     public static String extractHostName(String regionServerName) {
-        return StrUtils.isEmpty(regionServerName) ? "" : regionServerName.substring(0, regionServerName.indexOf(COMMA));
+        return isEmpty(regionServerName) ? "" : regionServerName.substring(0, regionServerName.indexOf(COMMA));
     }
 
     public static String removeTimestamp(String regionServerName) {
-        if (StrUtils.isEmpty(regionServerName)) return regionServerName;
+        if (isEmpty(regionServerName)) return regionServerName;
         return regionServerName.substring(0, regionServerName.lastIndexOf(COMMA));
     }
 
     public static String extractTimestamp(String regionServerName) {
-        if (StrUtils.isEmpty(regionServerName)) return regionServerName;
+        if (isEmpty(regionServerName)) return regionServerName;
         return regionServerName.substring(regionServerName.lastIndexOf(COMMA) + 1);
     }
 

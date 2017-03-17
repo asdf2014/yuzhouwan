@@ -33,5 +33,19 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- apache avro -->
+        <dependency>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro</artifactId>
+            <version>${apache.avro.version}</version>
+        </dependency>
+
+        <!-- lmax disruptor -->
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+            <version>${lmax.disruptor.version}</version>
+        </dependency>
     </dependencies>
 </project>
