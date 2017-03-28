@@ -1,7 +1,11 @@
 package com.yuzhouwan.common.util;
 
+import org.apache.avro.io.BinaryDecoder;
+import org.apache.avro.io.DecoderFactory;
+import org.apache.avro.util.ByteBufferInputStream;
 import org.junit.Test;
 
+import java.nio.ByteBuffer;
 import java.util.*;
 
 import static com.yuzhouwan.common.util.CollectionUtils.intersection;
@@ -138,5 +142,15 @@ public class CollectionUtilsTest {
             this.b = b;
             this.c = c;
         }
+    }
+
+    @Test
+    public void singletonListTest() throws Exception {
+        ByteBuffer bb = DecimalUtils.byteArray2byteBuffer("yuzhouwan".getBytes());
+        List<ByteBuffer> bytes = Collections.singletonList(bb);
+        ByteBufferInputStream inputStream = new ByteBufferInputStream(bytes);
+        BinaryDecoder bd = DecoderFactory.get().binaryDecoder(inputStream, null);
+//        System.out.println(new String(DecimalUtils.byteBuffer2byteArray(
+//                DecoderFactory.get().binaryDecoder(inputStream, null).readBytes(bb))));
     }
 }

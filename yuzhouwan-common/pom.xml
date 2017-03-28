@@ -285,5 +285,12 @@
             <artifactId>itextpdf</artifactId>
             <version>${itextpdf.version}</version>
         </dependency>
+
+        <!-- apache avro -->
+        <dependency>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro</artifactId>
+            <version>${apache.avro.version}</version>
+        </dependency>
     </dependencies>
 </project>
