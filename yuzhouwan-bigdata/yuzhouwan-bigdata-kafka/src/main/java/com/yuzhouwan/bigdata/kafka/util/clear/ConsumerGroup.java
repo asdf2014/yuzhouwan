@@ -69,7 +69,7 @@ public class ConsumerGroup {
         executor = Executors.newFixedThreadPool(threadNum);
 
         int threadNumber = 0;
-        _log.info("the streams size is " + streams.size());
+        _log.info("the streams size is {}", streams.size());
         for (final KafkaStream<byte[], byte[]> stream : streams) {
             executor.submit(new ConsumerWorker(stream, threadNumber));
             consumer.commitOffsets();

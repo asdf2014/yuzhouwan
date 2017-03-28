@@ -122,7 +122,7 @@ public class KafkaUtils {
     }
 
     @SuppressWarnings("unchecked")
-    public static <T> void sendMessageToKafka(T message, Class<T> clazz) {
+    public static synchronized <T> void sendMessageToKafka(T message, Class<T> clazz) {
         try {
             DatumWriter datumWriter;
             if (datumWriterPool.containsKey(clazz)) datumWriter = datumWriterPool.get(clazz);

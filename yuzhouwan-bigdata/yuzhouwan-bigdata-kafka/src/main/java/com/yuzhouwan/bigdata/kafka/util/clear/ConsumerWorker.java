@@ -6,8 +6,6 @@ import kafka.message.MessageAndMetadata;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.UnsupportedEncodingException;
-
 /**
  * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
@@ -30,21 +28,22 @@ public class ConsumerWorker implements Runnable {
 
     @Override
     public void run() {
-        ConsumerIterator<byte[], byte[]> consumerIterator = kafkaStream.iterator();
-        while (consumerIterator.hasNext()) {
+        ConsumerIterator<byte[], byte[]> iter = kafkaStream.iterator();
+        MessageAndMetadata<byte[], byte[]> msg;
+        int total = 0, fail = 0, success = 0;
+        long start = System.currentTimeMillis();
+        while (iter.hasNext()) {
             try {
-                MessageAndMetadata<byte[], byte[]> thisMetadata = consumerIterator.next();
-                String jsonStr = new String(thisMetadata.message(), "utf-8");
-                _log.info("Thread {}: {}", threadNum, jsonStr);
-                _log.info("partition{}, offset: {}", thisMetadata.partition(), thisMetadata.offset());
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    _log.error("{}", e);
-                }
-            } catch (UnsupportedEncodingException e) {
+                msg = iter.next();
+                _log.info("Thread {}: {}", threadNum, new String(msg.message(), "utf-8"));
+                _log.info("partition: {}, offset: {}", msg.partition(), msg.offset());
+                success++;
+            } catch (Exception e) {
                 _log.error("{}", e);
+                fail++;
             }
+            _log.info("Count [fail/success/total]: [{}/{}/{}], Time: {}s", fail, success, ++total,
+                    (System.currentTimeMillis() - start) / 1000);
         }
     }
 }
