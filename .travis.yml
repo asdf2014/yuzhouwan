@@ -1,7 +1,20 @@
-language: java
+language:
+ - java
+ - scala
+ - python
+ - groovy
 
 jdk:
   - oraclejdk8
+
+scala:
+  - 2.11.8
+
+python:
+ - 2.7.12
+
+groovy:
+ - 2.3.11
 
 script:
   - mvn clean test -B && mvn clean -B
