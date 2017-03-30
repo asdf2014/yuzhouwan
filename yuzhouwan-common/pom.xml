@@ -13,7 +13,7 @@
 
     <artifactId>yuzhouwan-common</artifactId>
     <version>${project.version}</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
     <profiles>
         <!-- web / normal -->

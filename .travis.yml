@@ -4,7 +4,7 @@ jdk:
   - oraclejdk8
 
 script:
-  - mvn clean test -T 1C -B && mvn clean -T 1C -B
+  - mvn clean test -B && mvn clean -B
 
 sudo: false
 

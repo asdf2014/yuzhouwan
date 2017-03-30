@@ -15,7 +15,6 @@
     <version>${project.version}</version>
 
     <dependencies>
-
         <dependency>
             <groupId>com.yuzhouwan</groupId>
             <artifactId>yuzhouwan-common</artifactId>
@@ -270,7 +269,7 @@
             </plugin>
 
             <!-- package jar example with Currying -->
-            <plugin>
+            <!--<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>${maven.assembly.plugin.version}</version>
@@ -292,7 +291,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
 
             <!-- old plugin -->
             <plugin>
