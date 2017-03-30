@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/asdf2014/yuzhouwan.svg?branch=master)](https://travis-ci.org/asdf2014/yuzhouwan)
+
 ## My Blog
 __[http://www.yuzhouwan.com][0]__
 
