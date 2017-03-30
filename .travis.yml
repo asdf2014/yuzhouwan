@@ -19,10 +19,16 @@ python:
 groovy:
   - 2.3.11
 
+before_install: sudo echo "MAVEN_OPTS='-Xmx2048m -Xms1024m -Dorg.slf4j.simpleLogger.defaultLogLevel=error'" > ~/.mavenrc
+
 script:
   - mvn clean test -B && mvn clean -B
 
-sudo: false
+env:
+  global:
+    - MAVEN_OPTS: "-Xmx2048m -Xms1024m -Dorg.slf4j.simpleLogger.defaultLogLevel=error"
+
+sudo: required
 
 cache:
   directories:

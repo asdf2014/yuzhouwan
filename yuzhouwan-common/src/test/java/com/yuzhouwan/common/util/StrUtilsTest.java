@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.yuzhouwan.common.dir.DirUtils;
 import org.junit.Test;
 
+import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -44,16 +45,28 @@ public class StrUtilsTest {
 
     @Test
     public void cutMiddle() throws Exception {
-        assertEquals("\\com\\yuzhouwan\\common\\util\\StrUtilsTest.class",
-                StrUtils.cutMiddleStr("F:\\如何成为 Java 高手\\笔记\\Soft Engineering\\Git\\[code]\\yuzhouwan\\yuzhouwan-common\\target\\test-classes\\..\\test-classes\\com\\yuzhouwan\\common\\util\\StrUtilsTest.class",
+        assertEquals(File.separator + "com" + File.separator + "yuzhouwan" + File.separator + "common" +
+                        File.separator + "util" + File.separator + "StrUtilsTest.class",
+                StrUtils.cutMiddleStr("F:" + File.separator + "如何成为 Java 高手" + File.separator + "笔记" +
+                                File.separator + "Soft Engineering" + File.separator + "Git" + File.separator +
+                                "[code]" + File.separator + "yuzhouwan" + File.separator + "yuzhouwan-common" +
+                                File.separator + "target" + File.separator + "test-classes" + File.separator + ".." +
+                                File.separator + "test-classes" + File.separator + "com" + File.separator +
+                                "yuzhouwan" + File.separator + "common" + File.separator + "util" + File.separator +
+                                "StrUtilsTest.class",
                         "test-classes"));
     }
 
     @Test
     public void cutTail() throws Exception {
-        assertEquals("F:\\如何成为 Java 高手\\笔记\\Soft Engineering\\Git\\[code]\\yuzhouwan\\yuzhouwan-common\\target\\",
-                StrUtils.cutTailStr("F:\\如何成为 Java 高手\\笔记\\Soft Engineering\\Git\\[code]\\yuzhouwan\\yuzhouwan-common\\target\\test-classes\\",
-                        "test-classes\\"));
+        assertEquals("F:" + File.separator + "如何成为 Java 高手" + File.separator + "笔记" + File.separator +
+                        "Soft Engineering" + File.separator + "Git" + File.separator + "[code]" + File.separator +
+                        "yuzhouwan" + File.separator + "yuzhouwan-common" + File.separator + "target" + File.separator,
+                StrUtils.cutTailStr("F:" + File.separator + "如何成为 Java 高手" + File.separator + "笔记" +
+                                File.separator + "Soft Engineering" + File.separator + "Git" + File.separator +
+                                "[code]" + File.separator + "yuzhouwan" + File.separator + "yuzhouwan-common" +
+                                File.separator + "target" + File.separator + "test-classes" + File.separator + "",
+                        "test-classes" + File.separator + ""));
     }
 
     @Test
@@ -110,7 +123,7 @@ public class StrUtilsTest {
     @Test
     public void hexTest() throws Exception {
         String yuzhouwan = "宇宙湾yuzhouwan123";
-        String yuzhouwanHex = "\\xe5\\xae\\x87\\xe5\\xae\\x99\\xe6\\xb9\\xbe\\x79\\x75\\x7a\\x68\\x6f\\x75\\x77\\x61\\x6e\\x31\\x32\\x33";
+        String yuzhouwanHex = File.separator + "xe5" + File.separator + "xae" + File.separator + "x87" + File.separator + "xe5" + File.separator + "xae" + File.separator + "x99" + File.separator + "xe6" + File.separator + "xb9" + File.separator + "xbe" + File.separator + "x79" + File.separator + "x75" + File.separator + "x7a" + File.separator + "x68" + File.separator + "x6f" + File.separator + "x75" + File.separator + "x77" + File.separator + "x61" + File.separator + "x6e" + File.separator + "x31" + File.separator + "x32" + File.separator + "x33";
         assertEquals(yuzhouwanHex, str2Hex(yuzhouwan));
         assertEquals(yuzhouwan, hex2Str(str2Hex(yuzhouwan)));
         assertEquals(yuzhouwan, hex2Str(yuzhouwanHex));
