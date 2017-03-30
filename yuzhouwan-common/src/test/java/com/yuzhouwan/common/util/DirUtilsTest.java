@@ -5,7 +5,7 @@ import com.yuzhouwan.common.dir.WatchRunnable;
 import org.junit.Test;
 
 import java.io.File;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -66,7 +66,7 @@ public class DirUtilsTest {
 
     @Test
     public void testJarPath() throws Exception {
-        assertEquals(new LinkedList<>(Arrays.asList("\\yuzhouwan-common.jar")),
+        assertEquals(new LinkedList<>(Collections.singletonList("\\yuzhouwan-common.jar")),
                 DirUtils.findPath(DirUtils.getTestClassesPath(), "lib", ".jar", false));
     }
 

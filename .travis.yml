@@ -1,8 +1,11 @@
 language:
- - java
- - scala
- - python
- - groovy
+  - java
+  - scala
+  - python
+  - groovy
+
+os:
+  - windows
 
 jdk:
   - oraclejdk8
@@ -11,10 +14,10 @@ scala:
   - 2.11.8
 
 python:
- - 2.7.12
+  - 2.7.12
 
 groovy:
- - 2.3.11
+  - 2.3.11
 
 script:
   - mvn clean test -B && mvn clean -B
