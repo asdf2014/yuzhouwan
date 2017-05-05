@@ -26,7 +26,7 @@ public class QueryTermWithAnalyzer {
         settings.put("client.transport.sniff", "true");
         settings.put("cluster.name", "thirdpartpay");
 
-        /**
+        /*
          * Configuration: https://www.elastic.co/guide/en/elasticsearch/hadoop/current/configuration.html
          */
         settings.put("es.nodes", "192.168.1.101");

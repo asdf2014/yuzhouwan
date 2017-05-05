@@ -1,0 +1,49 @@
+package com.yuzhouwan.bigdata.elastic.client;
+
+import org.elasticsearch.action.bulk.BulkRequestBuilder;
+import org.elasticsearch.client.Client;
+import org.elasticsearch.client.transport.TransportClient;
+import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.net.InetAddress;
+
+/**
+ * Copyright @ 2017 yuzhouwan.com
+ * All right reserved.
+ * Function：ES Client Example
+ *
+ * @author Benedict Jin
+ * @since 2017/5/3
+ */
+public class ESClientExample {
+
+    private static Logger _log = LoggerFactory.getLogger(ESClientExample.class);
+
+    /*
+        vim elasticsearch.yml
+
+            cluster.name: thirdpartpay
+            node.name: yuzhouwan
+            network.bind_host: 192.168.1.101
+            network.host: 0.0.0.0
+            transport.tcp.port: 9300
+
+        # Open the Firewall ports for 9200,9300
+    */
+    public static void main(String[] args) {
+        Client client;
+        BulkRequestBuilder requestBuilder;
+        try {
+            client = TransportClient.builder().settings(Settings.builder().put("cluster.name", "thirdpartpay")
+                    .put("node.name", "yuzhouwan"))
+                    .build()
+                    .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(""), 9300));
+            requestBuilder = (client).prepareBulk();
+        } catch (Exception e) {
+            _log.error("{}", e);
+        }
+    }
+}
