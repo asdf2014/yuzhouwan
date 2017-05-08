@@ -179,7 +179,7 @@ public class HBaseUtils {
      */
     public static String generateSplitKeys(int startKey, int endKey, int stepSize, int fill) {
         StringBuilder strBuilder = new StringBuilder("SPLITS => [");
-        for (int i = startKey; i < endKey; i += stepSize)
+        for (int i = startKey; i <= endKey; i += stepSize)
             strBuilder.append("'").append(StrUtils.fillWitchZero(i, fill)).append("', ");
         return strBuilder.append("]").toString().replaceAll(", ]", "]");
     }
