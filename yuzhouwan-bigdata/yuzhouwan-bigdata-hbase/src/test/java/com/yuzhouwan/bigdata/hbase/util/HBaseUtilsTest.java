@@ -20,6 +20,10 @@ import static org.junit.Assert.assertEquals;
  */
 public class HBaseUtilsTest {
 
+    /*
+     关闭自动分区
+     alter 'yuzhouwan', {METHOD => 'table_att', SPLIT_POLICY => 'org.apache.hadoop.hbase.regionserver.DisabledRegionSplitPolicy'}
+      */
     private Logger _log = LoggerFactory.getLogger(HBaseUtilsTest.class);
 
     @Test
