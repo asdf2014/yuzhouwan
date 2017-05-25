@@ -17,7 +17,20 @@ import java.util.concurrent.atomic.LongAdder;
  */
 public class LongAdderExample {
 
+    @Test
+    public void longAdder() throws Exception {
+        LongAdder longAdder = new LongAdder();
+        longAdder.increment();
+        longAdder.increment();
+    }
+
+    @Test
+    public void atomicLong() throws Exception {
+        new AtomicLong().incrementAndGet();
+    }
+
     // -Xmx512M -Xms512M -Xmn256M -XX:+AlwaysPreTouch -ea
+    // JIT: -server -XX:+UnlockDiagnosticVMOptions -XX:+TraceClassLoading  -XX:+PrintAssembly -XX:+LogCompilation -XX:LogFile=pressureLongAdder.log
 //    @Test
     public void pressureLongAdder() throws Exception {
         final LongAdder longAdder = new LongAdder();
