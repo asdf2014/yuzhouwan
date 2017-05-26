@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
  */
 public class CuratorChildrenCache {
 
+    // Start a org.apache.zookeeper.server.ZooKeeperServerMain instance local first
     private final static Logger _log = LoggerFactory.getLogger(CuratorChildrenCache.class);
     private CuratorFramework curatorFramework;
 
@@ -93,6 +94,12 @@ public class CuratorChildrenCache {
                 .forPath(path);
     }
 
+    public String readNode(String path) throws Exception {
+        return new String(curatorFramework
+                .getData()
+                .forPath(path));
+    }
+
     public void deleteNode(String path) throws Exception {
         curatorFramework
                 .delete()
@@ -106,4 +113,10 @@ public class CuratorChildrenCache {
                 .forPath(path, data);
     }
 
+    public static void main(String[] args) throws Exception {
+        CuratorChildrenCache ccc = new CuratorChildrenCache();
+        ccc.createNode("/yuzhouwan");
+        ccc.updateNode("/yuzhouwan", "blog".getBytes());
+        System.out.println(ccc.readNode("/yuzhouwan"));
+    }
 }
