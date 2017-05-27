@@ -151,6 +151,7 @@ public class CuratorChildrenCache {
         jute(ccc, 1024 * 1024 - 42);
         /*
         java.io.IOException: 您的主机中的软件中止了一个已建立的连接。
+        Server 和 Client都不设置 `jute.maxbuffer`参数，将超出默认 server端 `jute.maxbuffer` 1MB的上限
          */
         jute(ccc, 1024 * 1024 - 41);  // write > 1024 * 1024 (1M)
         jute(ccc, 1024 * 1024);
