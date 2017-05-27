@@ -74,4 +74,18 @@ public class ZkClientCRUD {
         return zkClient.exists(path);
     }
 
+    public static void main(String[] args) throws Exception {
+        ZkClientCRUD zkClientCRUD = new ZkClientCRUD();
+        String origin = "/origin";
+        if (!zkClientCRUD.exist(origin))
+            zkClientCRUD.create(origin, "", CreateMode.PERSISTENT);
+        zkClientCRUD.create(origin.concat("/1"), "1", CreateMode.EPHEMERAL);
+        zkClientCRUD.create(origin.concat("/2"), "2", CreateMode.EPHEMERAL);
+        zkClientCRUD.create(origin.concat("/3"), "3", CreateMode.EPHEMERAL);
+        zkClientCRUD.create(origin.concat("/4"), "4", CreateMode.EPHEMERAL);
+
+        System.out.println(zkClientCRUD.read(origin.concat("/1")));
+//        System.out.println(zkClientCRUD.read(origin.concat("/1,/2")));    // not support list
+//        System.out.println(zkClientCRUD.read(origin.concat("/*")));       // not support pattern
+    }
 }

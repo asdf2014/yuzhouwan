@@ -1,5 +1,6 @@
 package com.yuzhouwan.bigdata.zookeeper.curator;
 
+import com.yuzhouwan.common.util.TimeUtils;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.framework.recipes.cache.PathChildrenCache;
@@ -114,9 +115,58 @@ public class CuratorChildrenCache {
     }
 
     public static void main(String[] args) throws Exception {
+        System.setProperty("jute.maxbuffer", "1024");
+//        System.setProperty("zookeeper.clientCnxnSocket", "org.apache.zookeeper.ClientCnxnSocketNetty");
         CuratorChildrenCache ccc = new CuratorChildrenCache();
         ccc.createNode("/yuzhouwan");
-        ccc.updateNode("/yuzhouwan", "blog".getBytes());
+        ccc.updateNode("/yuzhouwan", "Blog Update Date: ".concat(TimeUtils.nowStr()).getBytes());
         System.out.println(ccc.readNode("/yuzhouwan"));
+//        for (int i = 1024 * 1024 - 42; i < 1024 * 1024; i++) {
+//            jute(ccc, i);
+//        }
+        jute(ccc, 512 - 89);
+        System.out.println(ccc.readNode("/"));
+        jute(ccc, 512 - 88);
+//        jute(ccc, 511);
+//        jute(ccc, 512);
+//        jute(ccc, 513);
+
+        jute(ccc, 1024 - 89);
+        /*
+        java.io.IOException: Packet len1024 is out of range!
+        返回的包大小超出了 1024字节
+         */
+        jute(ccc, 936); // read > 1024
+        jute(ccc, 937);
+
+        jute(ccc, 1023);
+        /*
+        Exception in thread "main" org.apache.zookeeper.KeeperException$ConnectionLossException:
+        KeeperErrorCode = ConnectionLoss for /children/jute1023
+        写 ZNode数据的包大小超出了 1024字节
+         */
+        jute(ccc, 1024); // write > 1024
+        jute(ccc, 1025);
+
+        jute(ccc, 1024 * 1024 - 42);
+        /*
+        java.io.IOException: 您的主机中的软件中止了一个已建立的连接。
+         */
+        jute(ccc, 1024 * 1024 - 41);  // write > 1024 * 1024 (1M)
+        jute(ccc, 1024 * 1024);
+        jute(ccc, 1024 * 1024 + 1);
+    }
+
+    private static void jute(CuratorChildrenCache ccc, int len) throws Exception {
+        String jutePath = "/jute" + len;
+        ccc.createNode(jutePath);
+        System.out.println("Created ".concat(jutePath));
+        byte[] jute = new byte[len];
+        for (int i = 0; i < len; i++) {
+            jute[i] = '0';
+        }
+        ccc.updateNode(jutePath, jute);
+        System.out.println("Updated ".concat(jutePath));
+        System.out.println(ccc.readNode(jutePath));
     }
 }
