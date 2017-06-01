@@ -57,9 +57,9 @@ public class HBaseUtilsTest {
 
     @Test
     public void removeEndKeyTest() throws Exception {
-        String regionName = "hbase:meta,,1";
+        String regionName = "hbase:meta,,1..";
         assertEquals("hbase:meta,", removeEndKey(regionName));
-        regionName = "hbase:meta,0,1";
+        regionName = "hbase:meta,0,1..";
         assertEquals("hbase:meta,0", removeEndKey(regionName));
         regionName = "";
         assertEquals("", removeEndKey(regionName));
