@@ -151,12 +151,13 @@ public class StrUtilsTest {
     public void drop() throws Exception {
         String schema = new String(FileUtils.readFile(DirUtils.TEST_RESOURCES_PATH.concat("db/superset.sql.schema.sql")));
         LinkedList<String> drops = new LinkedList<>();
-        for (String s : schema.split("\r\n")) {
+        for (String s : schema.split("\n")) {
             if (s.toLowerCase().startsWith("drop table if exists")) drops.add(s);
         }
         StringBuilder stringBuilder = new StringBuilder();
         drops.forEach(stringBuilder::append);
-        assertEquals("DROP TABLE IF EXISTS `ab_user` ;DROP TABLE IF EXISTS `ab_view_menu` ;DROP TABLE IF EXISTS `ab_role` ;DROP TABLE IF EXISTS `ab_permission` ;DROP TABLE IF EXISTS `ab_register_user` ;DROP TABLE IF EXISTS `ab_user_role` ;DROP TABLE IF EXISTS `ab_permission_view` ;DROP TABLE IF EXISTS `ab_permission_view_role` ;DROP TABLE IF EXISTS `alembic_version` ;DROP TABLE IF EXISTS `dashboards` ;DROP TABLE IF EXISTS `dbs` ;DROP TABLE IF EXISTS `metrics` ;DROP TABLE IF EXISTS `slices` ;DROP TABLE IF EXISTS `sql_metrics` ;DROP TABLE IF EXISTS `dashboard_slices` ;DROP TABLE IF EXISTS `logs` ;DROP TABLE IF EXISTS `url` ;DROP TABLE IF EXISTS `css_templates` ;DROP TABLE IF EXISTS `favstar` ;DROP TABLE IF EXISTS `dashboard_user` ;DROP TABLE IF EXISTS `slice_user` ;DROP TABLE IF EXISTS `clusters` ;DROP TABLE IF EXISTS `columns` ;DROP TABLE IF EXISTS `datasources` ;DROP TABLE IF EXISTS `table_columns` ;DROP TABLE IF EXISTS `tables` ;DROP TABLE IF EXISTS `access_request` ;DROP TABLE IF EXISTS `query` ;DROP TABLE IF EXISTS `energy_usage` ;DROP TABLE IF EXISTS `wb_health_population` ;DROP TABLE IF EXISTS `birth_names` ;DROP TABLE IF EXISTS `random_time_series` ;DROP TABLE IF EXISTS `long_lat` ;DROP TABLE IF EXISTS `multiformat_time_series` ;", stringBuilder.toString());
+        assertEquals("DROP TABLE IF EXISTS `ab_user` ;DROP TABLE IF EXISTS `ab_view_menu` ;DROP TABLE IF EXISTS `ab_role` ;DROP TABLE IF EXISTS `ab_permission` ;DROP TABLE IF EXISTS `ab_register_user` ;DROP TABLE IF EXISTS `ab_user_role` ;DROP TABLE IF EXISTS `ab_permission_view` ;DROP TABLE IF EXISTS `ab_permission_view_role` ;DROP TABLE IF EXISTS `alembic_version` ;DROP TABLE IF EXISTS `dashboards` ;DROP TABLE IF EXISTS `dbs` ;DROP TABLE IF EXISTS `metrics` ;DROP TABLE IF EXISTS `slices` ;DROP TABLE IF EXISTS `sql_metrics` ;DROP TABLE IF EXISTS `dashboard_slices` ;DROP TABLE IF EXISTS `logs` ;DROP TABLE IF EXISTS `url` ;DROP TABLE IF EXISTS `css_templates` ;DROP TABLE IF EXISTS `favstar` ;DROP TABLE IF EXISTS `dashboard_user` ;DROP TABLE IF EXISTS `slice_user` ;DROP TABLE IF EXISTS `clusters` ;DROP TABLE IF EXISTS `columns` ;DROP TABLE IF EXISTS `datasources` ;DROP TABLE IF EXISTS `table_columns` ;DROP TABLE IF EXISTS `tables` ;DROP TABLE IF EXISTS `access_request` ;DROP TABLE IF EXISTS `query` ;DROP TABLE IF EXISTS `energy_usage` ;DROP TABLE IF EXISTS `wb_health_population` ;DROP TABLE IF EXISTS `birth_names` ;DROP TABLE IF EXISTS `random_time_series` ;DROP TABLE IF EXISTS `long_lat` ;DROP TABLE IF EXISTS `multiformat_time_series` ;",
+                stringBuilder.toString());
     }
 
     @Test
