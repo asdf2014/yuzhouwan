@@ -1,4 +1,4 @@
-package com.yuzhouwan.bigdata.zookeeper;
+package com.yuzhouwan.bigdata.zookeeper.zxid;
 
 import org.junit.Test;
 
