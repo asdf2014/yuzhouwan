@@ -1,5 +1,6 @@
 package com.yuzhouwan.common.util;
 
+import com.alibaba.fastjson.JSON;
 import org.apache.avro.io.BinaryDecoder;
 import org.apache.avro.io.DecoderFactory;
 import org.apache.avro.util.ByteBufferInputStream;
@@ -152,5 +153,15 @@ public class CollectionUtilsTest {
         BinaryDecoder bd = DecoderFactory.get().binaryDecoder(inputStream, null);
 //        System.out.println(new String(DecimalUtils.byteBuffer2byteArray(
 //                DecoderFactory.get().binaryDecoder(inputStream, null).readBytes(bb))));
+    }
+
+    @Test
+    public void collectionReferenceTest() throws Exception {
+        LinkedList<Long> oldList = new LinkedList<>();
+        oldList.add(0L);
+        LinkedList<Long> newList = oldList;
+        newList.add(1L);
+        assertEquals("[0,1]", JSON.toJSONString(oldList));
+        assertEquals("[0,1]", JSON.toJSONString(newList));
     }
 }

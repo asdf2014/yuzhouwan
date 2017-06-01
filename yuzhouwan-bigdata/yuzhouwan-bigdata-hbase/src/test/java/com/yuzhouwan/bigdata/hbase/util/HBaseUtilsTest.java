@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 
+import static com.yuzhouwan.bigdata.hbase.util.HBaseUtils.extractTimestamp4Region;
 import static com.yuzhouwan.bigdata.hbase.util.HBaseUtils.removeEndKey;
 import static org.junit.Assert.assertEquals;
 
@@ -64,5 +65,17 @@ public class HBaseUtilsTest {
         assertEquals("", removeEndKey(regionName));
         regionName = " ";
         assertEquals(" ", removeEndKey(regionName));
+    }
+
+    @Test
+    public void extraTimestampTest() throws Exception {
+        String regionName = "hbase:acl,400309eb,1495941314418.4cc9912158f76cdabb253c7dbe9059c2.";
+        assertEquals("1495941314418", extractTimestamp4Region(regionName));
+        regionName = "hbase:acl,,1495941314418..";
+        assertEquals("1495941314418", extractTimestamp4Region(regionName));
+        regionName = ":,,1495941314418..";
+        assertEquals("1495941314418", extractTimestamp4Region(regionName));
+        regionName = ":,,..";
+        assertEquals("", extractTimestamp4Region(regionName));
     }
 }

@@ -146,8 +146,19 @@ public class HBaseUtils {
     }
 
     public static String removeEndKey(String regionName) {
-        if (isEmpty(regionName) || !regionName.contains(",")) return regionName;
+        if (!validRegionName(regionName)) return regionName;
         return regionName.substring(0, regionName.lastIndexOf(",")).trim();
+    }
+
+    public static String extractTimestamp4Region(String regionName) {
+        if (!validRegionName(regionName)) return regionName;
+        String[] infos = regionName.split(",");
+        if (infos.length != 3) return regionName;
+        return infos[2].substring(0, infos[2].indexOf("."));
+    }
+
+    private static boolean validRegionName(String regionName) {
+        return !(isEmpty(regionName) || !regionName.contains(",") || !regionName.contains("."));
     }
 
     /**
@@ -163,7 +174,7 @@ public class HBaseUtils {
         return regionServerName.substring(0, regionServerName.lastIndexOf(COMMA));
     }
 
-    public static String extractTimestamp(String regionServerName) {
+    public static String extractTimestamp4RS(String regionServerName) {
         if (isEmpty(regionServerName)) return regionServerName;
         return regionServerName.substring(regionServerName.lastIndexOf(COMMA) + 1);
     }
