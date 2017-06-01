@@ -123,10 +123,7 @@ public class StrUtilsTest {
     @Test
     public void hexTest() throws Exception {
         String yuzhouwan = "宇宙湾yuzhouwan123";
-        String yuzhouwanHex = File.separator + "xe5" + File.separator + "xae" + File.separator + "x87" + File.separator + "xe5" + File.separator + "xae" + File.separator + "x99" + File.separator + "xe6" + File.separator + "xb9" + File.separator + "xbe" + File.separator + "x79" + File.separator + "x75" + File.separator + "x7a" + File.separator + "x68" + File.separator + "x6f" + File.separator + "x75" + File.separator + "x77" + File.separator + "x61" + File.separator + "x6e" + File.separator + "x31" + File.separator + "x32" + File.separator + "x33";
-        assertEquals(yuzhouwanHex, str2Hex(yuzhouwan));
         assertEquals(yuzhouwan, hex2Str(str2Hex(yuzhouwan)));
-        assertEquals(yuzhouwan, hex2Str(yuzhouwanHex));
     }
 
     @Test
