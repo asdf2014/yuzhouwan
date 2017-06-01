@@ -27,7 +27,7 @@ import static org.junit.Assert.assertEquals;
 public class TimeUtilsTest {
 
     private Logger _log = LoggerFactory.getLogger(TimeUtilsTest.class);
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS Z");
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
 
     @Test
     public void nowStrTest() throws Exception {
@@ -142,20 +142,20 @@ public class TimeUtilsTest {
 
     @Test
     public void pastWeekStartTest() {
-        // now: 2016-12-28 21:00:13:523 +0800
-        // 2016-12-29 00:00:00:000 +0800
-        // 2016-12-28 00:00:00:000 +0800
-        // 2016-12-21 00:00:00:000 +0800
-        // 2016-11-27 00:00:00:000 +0800
+        // now: 2016-12-28 21:00:13:523
+        // 2016-12-29 00:00:00:000
+        // 2016-12-28 00:00:00:000
+        // 2016-12-21 00:00:00:000
+        // 2016-11-27 00:00:00:000
         System.out.println(sdf.format(TimeUtils.fewDaysAgoBegin(-1)));
         System.out.println(sdf.format(TimeUtils.fewDaysAgoBegin(0)));
         System.out.println(sdf.format(TimeUtils.fewDaysAgoBegin(7)));
         System.out.println(sdf.format(TimeUtils.fewDaysAgoBegin(31)));
 
-        // 2016-12-29 23:59:59:999 +0800
-        // 2016-12-28 23:59:59:999 +0800
-        // 2016-12-21 23:59:59:999 +0800
-        // 2016-11-27 23:59:59:999 +0800
+        // 2016-12-29 23:59:59:999
+        // 2016-12-28 23:59:59:999
+        // 2016-12-21 23:59:59:999
+        // 2016-11-27 23:59:59:999
         System.out.println(sdf.format(TimeUtils.fewDaysAgoEnd(-1)));
         System.out.println(sdf.format(TimeUtils.fewDaysAgoEnd(0)));
         System.out.println(sdf.format(TimeUtils.fewDaysAgoEnd(7)));
@@ -164,12 +164,12 @@ public class TimeUtilsTest {
 
     @Test
     public void beginMonthTester() {
-        assertEquals("2016-07-01 00:00:00:000 +0800", sdf.format(TimeUtils.beginMonth(2016, 7)));
+        assertEquals("2016-07-01 00:00:00:000", sdf.format(TimeUtils.beginMonth(2016, 7)));
     }
 
     @Test
     public void endMonthTester() {
-        assertEquals("2016-07-31 23:59:59:999 +0800", sdf.format(TimeUtils.endMonth(2016, 7)));
+        assertEquals("2016-07-31 23:59:59:999", sdf.format(TimeUtils.endMonth(2016, 7)));
     }
 
     @Test
