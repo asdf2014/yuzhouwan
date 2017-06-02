@@ -61,7 +61,11 @@ public class JodaTimeHaveATry {
     public void longTest() {
         assertEquals("Sun May 28 11:15:14 CST 2017", new Date(Long.valueOf("1495941314418")).toString());
         assertEquals("2017-05-28T11:15:14.418+08:00", new DateTime(Long.valueOf("1495941314418")).toString());
+        DateTime afterOneMinter = new DateTime(Long.valueOf("1495941314418")).plusMillis(Integer.valueOf(60000L + ""));
         assertEquals("2017-05-28T11:16:14.418+08:00",
-                new DateTime(Long.valueOf("1495941314418")).plusMillis(Integer.valueOf(60000L + "")).toString());
+                afterOneMinter.toString());
+        assertEquals(true,
+                new DateTime(Long.valueOf("1496384856085")).plusMillis(Integer.valueOf(60000L + ""))
+                        .isAfter(new DateTime(Long.valueOf("1496384820000"))));
     }
 }
