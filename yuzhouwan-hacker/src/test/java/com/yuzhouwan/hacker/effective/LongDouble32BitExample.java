@@ -3,7 +3,7 @@ package com.yuzhouwan.hacker.effective;
 import org.junit.Test;
 
 /**
- * Copyright @ 2017 suning.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function：Long/Double 32Bit
  *
