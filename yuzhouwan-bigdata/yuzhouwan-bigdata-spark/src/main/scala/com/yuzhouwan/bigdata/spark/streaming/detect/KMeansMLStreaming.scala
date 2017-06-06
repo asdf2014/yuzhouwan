@@ -104,5 +104,4 @@ object KMeansMLStreaming {
     ssc.start()
     ssc.awaitTermination()
   }
-
 }

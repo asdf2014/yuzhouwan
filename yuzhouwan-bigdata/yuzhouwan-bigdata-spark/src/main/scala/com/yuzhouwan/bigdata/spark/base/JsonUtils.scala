@@ -40,7 +40,7 @@ object JsonUtils {
           if (fields.length == 2) {
             val name = fields(0)
             val age = fields(1).toInt
-            val p = new Person(name, age)
+            val p = Person(name, age)
             result = toJson(p)
           }
         }
@@ -72,5 +72,4 @@ object JsonUtils {
   }
 
   case class Person(name: String, age: Int)
-
 }

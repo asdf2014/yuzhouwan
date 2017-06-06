@@ -5,6 +5,8 @@ import org.apache.avro.io.BinaryDecoder;
 import org.apache.avro.io.DecoderFactory;
 import org.apache.avro.util.ByteBufferInputStream;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.nio.ByteBuffer;
 import java.util.*;
@@ -21,6 +23,8 @@ import static org.junit.Assert.assertEquals;
  * @since 2016/6/12
  */
 public class CollectionUtilsTest {
+
+    private static final Logger _log = LoggerFactory.getLogger(CollectionUtilsTest.class);
 
     @Test
     public void removeAllByStrWithSeparator() throws Exception {
@@ -163,5 +167,49 @@ public class CollectionUtilsTest {
         newList.add(1L);
         assertEquals("[0,1]", JSON.toJSONString(oldList));
         assertEquals("[0,1]", JSON.toJSONString(newList));
+    }
+
+    /*
+    JVM: -ea -Xmx700M -Xms700M -Xmn256M -XX:+AlwaysPreTouch
+    1_1111_1111 / 1024 / 1024 / 1024 = 0.1035G
+
+    Array length:10, Spend Time: 1048744.0ns = 1.048744ms
+    Array length:100, Spend Time: 37322.0ns = 0.037322ms
+    Array length:1000, Spend Time: 324078.0ns = 0.324078ms
+    Array length:10000, Spend Time: 2465421.0ns = 2.465421ms
+    Array length:100000, Spend Time: 7394085.0ns = 7.394085ms
+    Array length:1000000, Spend Time: 2.5203459E7ns = 25.203459ms
+    Array length:10000000, Spend Time: 6.91587931E8ns = 691.587931ms
+    Array length:100000000, Spend Time: 7.105568329E9ns = 7105.568329ms
+     */
+    @Test
+    public void getNthNumberTest() throws Exception {
+        internalNthTest(10, 1);
+        internalNthTest(100, 10);
+        internalNthTest(1000, 100);
+        internalNthTest(1_0000, 1000);
+        internalNthTest(10_0000, 10000);
+        internalNthTest(100_0000, 10_0000);
+        internalNthTest(1000_0000, 100_0000);
+        internalNthTest(1_0000_0000, 1000_0000);
+    }
+
+    private void internalNthTest(int len, int n) {
+        int[] arr = new int[len];
+        Random r = new Random(17);
+        for (int i = 0; i < len - n; i++) {
+            arr[i] = r.nextInt(len) + 1;
+        }
+        arr[len - 1] = 1;
+        long startTime = System.nanoTime();
+        int nth = CollectionUtils.getNthNumberMin(arr, n);
+        long endTime = System.nanoTime();
+        assertEquals(1, nth);
+        /*
+        Array length:1024, Spend Time: 1204252.0ns = 1.204252ms
+        Array length:1048576, Spend Time: 3.3747056E7ns = 33.747056ms
+         */
+        double totalTime = endTime - startTime;
+        _log.info("Array length:{}, Spend Time: {}ns = {}ms", len, totalTime, totalTime / Math.pow(10, 6));
     }
 }
