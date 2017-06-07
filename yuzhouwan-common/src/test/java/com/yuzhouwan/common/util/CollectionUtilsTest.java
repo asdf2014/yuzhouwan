@@ -187,11 +187,11 @@ public class CollectionUtilsTest {
         internalNthTest(10, 1);
         internalNthTest(100, 10);
         internalNthTest(1000, 100);
-        internalNthTest(1_0000, 1000);
-        internalNthTest(10_0000, 10000);
-        internalNthTest(100_0000, 10_0000);
-        internalNthTest(1000_0000, 100_0000);
-        internalNthTest(1_0000_0000, 1000_0000);
+//        internalNthTest(1_0000, 1000);
+//        internalNthTest(10_0000, 10000);
+//        internalNthTest(100_0000, 10_0000);
+//        internalNthTest(1000_0000, 100_0000);
+//        internalNthTest(1_0000_0000, 1000_0000);
     }
 
     private void internalNthTest(int len, int n) {
@@ -205,10 +205,6 @@ public class CollectionUtilsTest {
         int nth = CollectionUtils.getNthNumberMin(arr, n);
         long endTime = System.nanoTime();
         assertEquals(1, nth);
-        /*
-        Array length:1024, Spend Time: 1204252.0ns = 1.204252ms
-        Array length:1048576, Spend Time: 3.3747056E7ns = 33.747056ms
-         */
         double totalTime = endTime - startTime;
         _log.info("Array length:{}, Spend Time: {}ns = {}ms", len, totalTime, totalTime / Math.pow(10, 6));
     }
