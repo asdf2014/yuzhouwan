@@ -3,10 +3,8 @@ package com.yuzhouwan.hacker.algorithms.collection;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
+import java.nio.ByteBuffer;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 
@@ -111,6 +109,23 @@ public class CollectionStuffTest {
             System.out.println(list.removeFirst());
         }
         assertEquals(0, list.size());
+    }
+
+    @Test
+    public void testByteBufferMap() throws Exception {
+
+        byte[] bytesA = {1, 2};
+        byte[] bytesB = {2, 3};
+        byte[] bytesC = {2, 3};
+
+        ByteBuffer byteBufferA = ByteBuffer.wrap(bytesA);
+        ByteBuffer byteBufferB = ByteBuffer.wrap(bytesB);
+        ByteBuffer byteBufferC = ByteBuffer.wrap(bytesC);
+
+        HashMap<ByteBuffer, String> map = new HashMap<>();
+        map.put(byteBufferA, "A");
+        map.put(byteBufferB, "B");
+        assertEquals(true, map.containsKey(byteBufferC));
     }
 
 }
