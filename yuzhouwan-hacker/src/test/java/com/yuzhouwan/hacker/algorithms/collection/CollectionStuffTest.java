@@ -5,7 +5,10 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Copyright @ 2017 yuzhouwan.com
@@ -96,6 +99,18 @@ public class CollectionStuffTest {
         public void setO(Object o) {
             this.o = o;
         }
+    }
+
+    @Test
+    public void testFastFail() throws Exception {
+        LinkedList<Integer> list = new LinkedList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        while (list.size() > 0) {
+            System.out.println(list.removeFirst());
+        }
+        assertEquals(0, list.size());
     }
 
 }

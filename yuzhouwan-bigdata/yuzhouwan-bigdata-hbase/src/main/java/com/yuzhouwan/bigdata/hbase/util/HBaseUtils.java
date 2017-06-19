@@ -142,6 +142,8 @@ public class HBaseUtils {
     }
 
     public static LinkedList<String> splitJmxRegion(String aim) {
+        if (aim.startsWith("N"))
+            return StrUtils.splitMulti(aim, "Namespace_", "_table_", "_region_", "_metric_");   // for hbase0.98
         return StrUtils.splitMulti(aim, "namespace_", "_table_", "_region_", "_metric_");
     }
 
