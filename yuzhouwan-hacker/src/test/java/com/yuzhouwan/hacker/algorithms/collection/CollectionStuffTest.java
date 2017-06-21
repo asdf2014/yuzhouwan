@@ -128,4 +128,25 @@ public class CollectionStuffTest {
         assertEquals(true, map.containsKey(byteBufferC));
     }
 
+    @Test
+    public void testBoxMap() throws Exception {
+
+        HashMap<Long, String> map = new HashMap<>();
+        map.put(1L, "1L");
+        map.put(2L, "2L");
+        map.put(3L, "3L");
+        map.put(4L, "4L");
+
+        long key = 2;
+        class A {
+            public long a;
+        }
+        A a = new A();
+        a.a = 4;
+        assertEquals(null, map.get(1));
+        assertEquals("2L", map.get(key));
+        assertEquals("3L", map.get(3L));
+        assertEquals("4L", map.get(a.a));
+    }
+
 }
