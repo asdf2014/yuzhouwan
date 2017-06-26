@@ -12,6 +12,9 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.yuzhouwan.common.util.StrUtils.isEmpty;
+import static com.yuzhouwan.common.util.StrUtils.isNotEmpty;
+
 /**
  * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
@@ -45,7 +48,7 @@ public class IpUtils {
      * @return
      */
     public static boolean checkValid(final String ip) {
-        return IP_ADDRESS_IS_VALID.matcher(ip).matches();
+        return isNotEmpty(ip) && IP_ADDRESS_IS_VALID.matcher(ip).matches();
     }
 
     /**
@@ -55,7 +58,7 @@ public class IpUtils {
      * @return
      */
     public static String removeTail32(String ip) {
-        return !StrUtils.isEmpty(ip) && ip.endsWith("/32") ? ip.substring(0, ip.length() - 3) : ip;
+        return isNotEmpty(ip) && ip.endsWith("/32") ? ip.substring(0, ip.length() - 3) : ip;
     }
 
     /**
@@ -65,7 +68,7 @@ public class IpUtils {
      * @return
      */
     public static String extractDomain(String url) {
-        if (StrUtils.isEmpty(url)) return null;
+        if (isEmpty(url)) return null;
         int len = url.split("/").length;
         Matcher m;
         if (len < 3) {
@@ -90,7 +93,7 @@ public class IpUtils {
      */
     public static String getTailFromURL(String url) {
         String domain = extractDomain(url);
-        return StrUtils.isEmpty(domain) ? null : StrUtils.cutMiddleStr(url, domain).substring(1);
+        return isEmpty(domain) ? null : StrUtils.cutMiddleStr(url, domain).substring(1);
     }
 
     /**
@@ -146,10 +149,10 @@ public class IpUtils {
      * @return
      */
     public static Boolean checkIPRange(final String ipAddress, final String range) {
-        if (StrUtils.isEmpty(range) || StrUtils.isEmpty(ipAddress) || !range.contains("/")) return null;
+        if (isEmpty(range) || isEmpty(ipAddress) || !range.contains("/")) return null;
         String[] rangeArray = range.split("/");
         if (rangeArray.length != 2) return null;
-        if (StrUtils.isEmpty(rangeArray[0]) || StrUtils.isEmpty(rangeArray[1])) return null;
+        if (isEmpty(rangeArray[0]) || isEmpty(rangeArray[1])) return null;
         String rangeIp = rangeArray[0];
         if (!checkValid(rangeIp) || !checkValid(ipAddress)) return null;
         Integer subnet = ip2int(rangeIp);     // 10.1.1.0/24
