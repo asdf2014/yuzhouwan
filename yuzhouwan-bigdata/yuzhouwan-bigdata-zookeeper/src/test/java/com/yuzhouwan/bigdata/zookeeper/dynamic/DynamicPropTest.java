@@ -22,19 +22,21 @@ public class DynamicPropTest {
     public void dynamic() throws Exception {
 
         DynamicProp dynamicProp = new DynamicProp(PROP_PATH);
-        dynamicProp.startWatch();
+        try {
+            dynamicProp.startWatch();
 
-        DirUtils.makeSureExist(PROP_PATH.concat("a"), false);
-        DirUtils.makeSureExist(PROP_PATH.concat("b/"), false);
-        DirUtils.makeSureExist(PROP_PATH.concat("c.txt"), true);
+            DirUtils.makeSureExist(PROP_PATH.concat("a"), false);
+            DirUtils.makeSureExist(PROP_PATH.concat("b/"), false);
+            DirUtils.makeSureExist(PROP_PATH.concat("c.txt"), true);
 
-        new File(PROP_PATH.concat("a")).delete();
-        new File(PROP_PATH.concat("b/")).delete();
-        new File(PROP_PATH.concat("c.txt")).delete();
+            new File(PROP_PATH.concat("a")).delete();
+            new File(PROP_PATH.concat("b/")).delete();
+            new File(PROP_PATH.concat("c.txt")).delete();
 
-        new File(PROP_PATH).deleteOnExit();
-
-        Thread.sleep(500);
-        dynamicProp.stopWatch();
+            new File(PROP_PATH).deleteOnExit();
+        } finally {
+            Thread.sleep(50);
+            dynamicProp.stopWatch();
+        }
     }
 }
