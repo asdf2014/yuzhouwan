@@ -149,4 +149,15 @@ public class CollectionStuffTest {
         assertEquals("4L", map.get(a.a));
     }
 
+    @Test
+    public void testMap2Array() {
+        HashMap<String, Integer> map = new HashMap<>(3);
+        map.put("a", 1);
+        map.put("b", 2);
+        map.put("c", 3);
+        assertEquals("c", map.keySet().toArray(new String[0])[2]);
+        assertEquals("c", map.keySet().toArray(new String[3])[2]);
+        assertEquals(null, map.keySet().toArray(new String[4])[3]);
+        assertEquals("c", map.keySet().toArray()[2]);
+    }
 }
