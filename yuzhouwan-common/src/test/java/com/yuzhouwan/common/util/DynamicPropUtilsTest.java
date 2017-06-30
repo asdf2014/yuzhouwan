@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class DynamicPropUtilsTest {
 
-    @Test
+//    @Test
     public void syncTest() throws Exception {
         String projectName = "yuzhouwan", key = "site", value = "blog";
         DynamicPropUtils dp = DynamicPropUtils.getInstance();
