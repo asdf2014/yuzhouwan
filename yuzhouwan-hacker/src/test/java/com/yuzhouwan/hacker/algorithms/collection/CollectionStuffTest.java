@@ -2,6 +2,8 @@ package com.yuzhouwan.hacker.algorithms.collection;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.nio.ByteBuffer;
 import java.util.*;
@@ -17,6 +19,8 @@ import static org.junit.Assert.assertEquals;
  * @since 2015/11/30
  */
 public class CollectionStuffTest {
+
+    private static final Logger _log = LoggerFactory.getLogger(CollectionStuffTest.class);
 
     private List<ComplexClass> cs;
 
@@ -159,5 +163,47 @@ public class CollectionStuffTest {
         assertEquals("c", map.keySet().toArray(new String[3])[2]);
         assertEquals(null, map.keySet().toArray(new String[4])[3]);
         assertEquals("c", map.keySet().toArray()[2]);
+    }
+
+    // -ea -Xmx512M -Xms512M -Xmn256M -XX:+AlwaysPreTouch
+    @Test
+    public void testSingletonListPerformance() {
+        String site = "yuzhouwan.com";
+        int count = 1_0000_0000;
+        long spendTime = 0;
+        while (count > 0) {
+            long startTime = System.nanoTime();
+            Collections.singleton(site);
+            long endTime = System.nanoTime();
+            count--;
+            spendTime += endTime - startTime;
+        }
+        Runtime runtime = Runtime.getRuntime();
+        long totalMemory = runtime.totalMemory() / 1024 / 1024;
+        long freeMemory = runtime.freeMemory() / 1024 / 1024;
+        // [Collections.singleton] Spend Time: 1370786852ns = 1370.786852ms, Mem: 39/441/480 MB (diff/free/total)
+        _log.info("[Collections.singleton] Spend Time: {}ns = {}ms, Mem: {}/{}/{} MB (diff/free/total)",
+                spendTime, spendTime / Math.pow(10, 6), totalMemory - freeMemory, freeMemory, totalMemory);
+    }
+
+    // -ea -Xmx512M -Xms512M -Xmn256M -XX:+AlwaysPreTouch
+    @Test
+    public void testArraysAsListPerformance() {
+        String site = "yuzhouwan.com";
+        int count = 1_0000_0000;
+        long spendTime = 0;
+        while (count > 0) {
+            long startTime = System.nanoTime();
+            Arrays.asList(site);
+            long endTime = System.nanoTime();
+            count--;
+            spendTime += endTime - startTime;
+        }
+        Runtime runtime = Runtime.getRuntime();
+        long totalMemory = runtime.totalMemory() / 1024 / 1024;
+        long freeMemory = runtime.freeMemory() / 1024 / 1024;
+        // [Arrays.asList] Spend Time: 1549508768ns = 1549.508768ms, Mem: 195/312/507 MB (diff/free/total)
+        _log.info("[Arrays.asList] Spend Time: {}ns = {}ms, Mem: {}/{}/{} MB (diff/free/total)",
+                spendTime, spendTime / Math.pow(10, 6), totalMemory - freeMemory, freeMemory, totalMemory);
     }
 }
