@@ -5,9 +5,14 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.nio.ByteBuffer;
 import java.util.*;
+import java.util.concurrent.LinkedBlockingQueue;
 
+import static com.yuzhouwan.common.util.FileUtils.retryDelete;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -206,4 +211,47 @@ public class CollectionStuffTest {
         _log.info("[Arrays.asList] Spend Time: {}ns = {}ms, Mem: {}/{}/{} MB (diff/free/total)",
                 spendTime, spendTime / Math.pow(10, 6), totalMemory - freeMemory, freeMemory, totalMemory);
     }
+
+    @Test
+    public void testQueue() throws Exception {
+        LinkedBlockingQueue<Byte> lbq = new LinkedBlockingQueue<>();
+        lbq.add(Byte.valueOf("1"));
+        lbq.add(Byte.valueOf("2"));
+        lbq.add(Byte.valueOf("3"));
+        assertEquals(true, lbq.peek() == 1);
+        assertEquals(true, lbq.peek() == 1);
+        assertEquals(true, lbq.peek() == 1);
+
+        Byte[] bufferList = new Byte[lbq.size()];
+        Byte[] lbqList = lbq.toArray(bufferList);
+        assertEquals(true, Arrays.equals(bufferList, lbqList));
+        assertEquals(true, bufferList == lbqList);
+
+        File file = new File("queue.txt");
+        try (FileOutputStream fileChannel = new FileOutputStream(file)) {
+            byte[] bytes = new byte[3];
+            bytes[0] = Byte.valueOf("1");
+            bytes[1] = Byte.valueOf("2");
+            bytes[2] = Byte.valueOf("3");
+            fileChannel.write(bytes);
+            fileChannel.flush();
+            fileChannel.close();
+
+            try (FileReader fr = new FileReader(file)) {
+                char[] chars = new char[3];
+                fr.read(chars);
+                assertEquals(1, chars[0]);
+                assertEquals(2, chars[1]);
+                assertEquals(3, chars[2]);
+
+                assertEquals(true, lbq.remove() == 1);
+                assertEquals(true, lbq.remove() == 2);
+                assertEquals(true, lbq.remove() == 3);
+            }
+        } finally {
+            int count = 3;
+            retryDelete(file, count);
+        }
+    }
+
 }

@@ -1,5 +1,8 @@
 package com.yuzhouwan.common.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -14,6 +17,8 @@ import java.io.IOException;
  * @since 2016/8/20
  */
 public class FileUtils {
+
+    private static final Logger _log = LoggerFactory.getLogger(FileUtils.class);
 
     public static byte[] readFile(String filename) throws IOException {
         if (StrUtils.isEmpty(filename)) return null;
@@ -37,5 +42,29 @@ public class FileUtils {
 
     public static boolean checkExist(File f) {
         return f != null && f.exists();
+    }
+
+    public static void retryDelete(File file) {
+        retryDelete(file, 3, 100);
+    }
+
+    public static void retryDelete(File file, int count) {
+        retryDelete(file, count, 100);
+    }
+
+    public static void retryDelete(File file, int count, long millisecond) {
+        int copyCount = count;
+        while (checkExist(file) && count > 0) {
+            _log.debug("File Delete Try Count: {}", copyCount - count + 1);
+            if (file.delete()) {
+                _log.debug("File Deleted!");
+                return;
+            }
+            count--;
+            try {
+                Thread.sleep(millisecond);
+            } catch (InterruptedException ignore) {
+            }
+        }
     }
 }
