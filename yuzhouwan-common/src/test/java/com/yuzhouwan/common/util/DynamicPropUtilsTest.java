@@ -26,5 +26,6 @@ public class DynamicPropUtilsTest {
         assertEquals(value, dp.get(projectName, key));
         dp.sync(projectName);
         assertEquals(value, dp.getFromRemote(projectName, key));
+        dp.close();
     }
 }

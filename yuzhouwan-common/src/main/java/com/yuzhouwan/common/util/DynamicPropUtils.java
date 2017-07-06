@@ -32,17 +32,18 @@ public class DynamicPropUtils {
     private static CuratorFramework curatorFramework;
     private static final ConcurrentHashMap<String, Prop> PROJECT_PROPERTIES = new ConcurrentHashMap<>();
 
-    private volatile static long tick;
+    private volatile static long TICK;
     private static final long TICK_THRESHOLD = 30L;
-    private static final Thread timingSync = new Thread(() -> {
-        for (; ; ) {
-            if (tick >= TICK_THRESHOLD) {
+    private volatile static boolean KEEP_SYNCING = true;
+    private static final Thread TIMING_SYNC = new Thread(() -> {
+        while (KEEP_SYNCING) {
+            if (TICK >= TICK_THRESHOLD) {
                 for (Map.Entry<String, Prop> entry : PROJECT_PROPERTIES.entrySet()) {
                     getInstance().sync(entry.getKey());
                 }
-                tick = 0;
+                TICK = 0;
             } else {
-                tick++;
+                TICK++;
             }
             try {
                 Thread.sleep(1000);
@@ -59,7 +60,7 @@ public class DynamicPropUtils {
             _log.error("Cannot init curator in Dynamic PropUtils!", e);
             throw new RuntimeException(e);
         }
-        timingSync.start();
+        TIMING_SYNC.start();
     }
 
     private static void initCurator() throws Exception {
@@ -223,5 +224,14 @@ public class DynamicPropUtils {
         String data = new String(curatorFramework.getData()
                 .forPath(ZNODE_PREFIX.concat(projectName)), Charset.forName("UTF-8"));
         return JSON.parseObject(data, Prop.class);
+    }
+
+    public void close() {
+        KEEP_SYNCING = false;
+        instance = null;
+        if (curatorFramework != null) {
+            curatorFramework.close();
+            curatorFramework = null;
+        }
     }
 }
