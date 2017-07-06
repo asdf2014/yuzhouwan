@@ -1,16 +1,18 @@
 package com.yuzhouwan.bigdata.zookeeper.benchmark;
 
+import com.yuzhouwan.common.util.ThreadUtils;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.zookeeper.CreateMode;
-import org.junit.Test;
+import org.junit.After;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
 
 import static org.junit.Assert.assertEquals;
 
@@ -52,10 +54,10 @@ public class ZKBenchmark {
     private void init() throws Exception {
         curatorFramework = CuratorFrameworkFactory
                 .builder()
-                .connectString("localhost:2181")
-                .connectionTimeoutMs(5000)
-                .sessionTimeoutMs(10000)
-                .retryPolicy(new ExponentialBackoffRetry(2000, 3))
+                .connectString("10.27.129.60:2181,10.27.129.60:2182,10.27.129.60:2183")
+                .connectionTimeoutMs(500)
+                .sessionTimeoutMs(1000)
+                .retryPolicy(new ExponentialBackoffRetry(100, 3))
                 .namespace("benchmark")
                 .build();
         _log.debug("Initialized.");
@@ -95,21 +97,44 @@ public class ZKBenchmark {
     }
 
     /*
-    JVM: -ea -Xmx1024M -Xms1024M -Xmn256M -XX:+AlwaysPreTouch
+    JVM: -ea -Xmx512M -Xms512M -Xmn256M -XX:+AlwaysPreTouch
 
-    [DataSize: 0.001kb, MaxTime: 99ms, MinTime: 21ms, AvgTime: 50ms]
-    [DataSize: 0.01kb, MaxTime: 75ms, MinTime: 22ms, AvgTime: 49ms]
-    [DataSize: 0.1kb, MaxTime: 66ms, MinTime: 20ms, AvgTime: 43ms]
-    [DataSize: 1.0kb, MaxTime: 31ms, MinTime: 23ms, AvgTime: 31ms]
-    [DataSize: 10.0kb, MaxTime: 156ms, MinTime: 25ms, AvgTime: 67ms]
-    [DataSize: 100.0kb, MaxTime: 62ms, MinTime: 29ms, AvgTime: 49ms]
-    [DataSize: 1000.0kb, MaxTime: 219ms, MinTime: 140ms, AvgTime: 202ms]
+    [DataSize: 0.001kb, MaxTime: 9ms, MinTime: 1ms, AvgTime: 4ms]
+    [DataSize: 0.01kb, MaxTime: 43ms, MinTime: 2ms, AvgTime: 11ms]
+    [DataSize: 0.1kb, MaxTime: 4ms, MinTime: 2ms, AvgTime: 3ms]
+    [DataSize: 1.0kb, MaxTime: 5ms, MinTime: 2ms, AvgTime: 3ms]
+    [DataSize: 10.0kb, MaxTime: 11ms, MinTime: 3ms, AvgTime: 6ms]
+    [DataSize: 100.0kb, MaxTime: 284ms, MinTime: 13ms, AvgTime: 53ms]
+    [DataSize: 1000.0kb, MaxTime: 228ms, MinTime: 107ms, AvgTime: 161ms]
      */
-    @Test
+//    @Test
     public void dataSizeTest() throws Exception {
         double dataSize = 1024;
         for (int i = -3; i < 4; i++) {
             dataSize(dataSize * Math.pow(10, i));
+        }
+    }
+
+    //    @Test
+    public void reConn() throws Exception {
+        ExecutorService es = ThreadUtils.buildExecutorService(10, "reConn");
+        int count = 10;
+        while (count > 0) {
+            System.out.println(count);
+
+            es.execute(() -> {
+                try {
+                    init();
+                    Thread.sleep(1000);
+                    close();
+                } catch (Exception ignored) {
+                }
+            });
+            count--;
+        }
+        es.shutdown();
+        while (!es.isTerminated()) {
+            Thread.sleep(1000);
         }
     }
 
@@ -138,5 +163,15 @@ public class ZKBenchmark {
         _log.info("[DataSize: {}kb, MaxTime: {}ms, MinTime: {}ms, AvgTime: {}ms]",
                 dataSize / 1024D, time.remove(timeLen - 1), time.remove(0), totalTime / (timeLen - 2));
         time.clear();
+    }
+
+    @After
+    public void release() throws Exception {
+        close();
+    }
+
+    private void close() throws Exception {
+        if (curatorFramework != null) curatorFramework.close();
+        _log.info("Closed.");
     }
 }

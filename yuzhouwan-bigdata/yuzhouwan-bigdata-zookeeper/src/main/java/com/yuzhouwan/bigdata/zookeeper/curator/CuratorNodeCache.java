@@ -3,7 +3,6 @@ package com.yuzhouwan.bigdata.zookeeper.curator;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.framework.recipes.cache.NodeCache;
-import org.apache.curator.framework.recipes.cache.NodeCacheListener;
 import org.apache.curator.retry.RetryNTimes;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.data.Stat;
@@ -54,12 +53,8 @@ public class CuratorNodeCache {
                     .forPath(path);
         NodeCache nodeCache = new NodeCache(curatorFramework, path, false);
         nodeCache.start();
-        nodeCache.getListenable().addListener(new NodeCacheListener() {
-            @Override
-            public void nodeChanged() throws Exception {
-                _log.info("New Cache Data: {}", new String(nodeCache.getCurrentData().getData()));
-            }
-        });
+        nodeCache.getListenable().addListener(() ->
+                _log.info("New Cache Data: {}", new String(nodeCache.getCurrentData().getData())));
     }
 
     public void setData(String path, byte[] data) throws Exception {
