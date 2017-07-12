@@ -15,6 +15,8 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 
+import static com.yuzhouwan.common.util.StrUtils.isEmpty;
+
 /**
  * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
@@ -34,6 +36,7 @@ public class DynamicPropUtils {
 
     private volatile static long TICK;
     private static final long TICK_THRESHOLD = 30L;
+    private static final long TICK_MILLIS = 1000L;
     private volatile static boolean KEEP_SYNCING = true;
     private static final Thread TIMING_SYNC = new Thread(() -> {
         while (KEEP_SYNCING) {
@@ -42,11 +45,9 @@ public class DynamicPropUtils {
                     getInstance().sync(entry.getKey());
                 }
                 TICK = 0;
-            } else {
-                TICK++;
-            }
+            } else TICK++;
             try {
-                Thread.sleep(1000);
+                Thread.sleep(TICK_MILLIS);
             } catch (InterruptedException e) {
                 _log.error("", e);
             }
@@ -65,9 +66,12 @@ public class DynamicPropUtils {
 
     private static void initCurator() throws Exception {
         _log.debug("Begin init Curator...");
+        String zkPath = PropUtils.getInstance().getProperty("dynamic.prop.utils.zk.path");
+        if (isEmpty(zkPath))
+            throw new RuntimeException("Cannot get dynamic.prop.utils.zk.path form PropUtils.");
         curatorFramework = CuratorFrameworkFactory
                 .builder()
-                .connectString(PropUtils.getInstance().getProperty("dynamic.prop.utils.zk.path"))
+                .connectString(zkPath)
                 .connectionTimeoutMs(5000)
                 .sessionTimeoutMs(40000)
                 .retryPolicy(new ExponentialBackoffRetry(2000, 3))
@@ -84,8 +88,8 @@ public class DynamicPropUtils {
     public static DynamicPropUtils getInstance() {
         if (instance == null) synchronized (DynamicPropUtils.class) {
             if (instance == null) {
-                instance = new DynamicPropUtils();
                 init();
+                instance = new DynamicPropUtils();
             }
         }
         return instance;
@@ -117,11 +121,19 @@ public class DynamicPropUtils {
             _log.warn("Params is invalid! projectName: {}, key: {}.", projectName, key);
             return null;
         }
-        Prop prop = PROJECT_PROPERTIES.get(projectName);
-        if (prop == null) return null;
-        Properties p = prop.getP();
+        Properties p = getProperties(projectName);
         if (p == null) return null;
         return p.get(key);
+    }
+
+    public Properties getProperties(String projectName) {
+        if (projectName == null) {
+            _log.warn("ProjectName is null!");
+            return null;
+        }
+        Prop prop = PROJECT_PROPERTIES.get(projectName);
+        if (prop == null) return null;
+        return prop.getP();
     }
 
     public Object getFromLocal(String projectName, String key) {
@@ -147,6 +159,11 @@ public class DynamicPropUtils {
     }
 
     public boolean sync(String projectName) {
+
+        if (curatorFramework == null) {
+            _log.error("Sync failed! Cause curatorFramework is null!");
+            return false;
+        }
 
         // (local + non_local) * (remote + non_monitor)
         if (projectName == null) {
@@ -186,7 +203,8 @@ public class DynamicPropUtils {
     private Boolean internalSync(String projectName, Prop localProp, boolean isRemote, boolean isLocal) {
         try {
             if (!isLocal && !isRemote) {
-                _log.warn("Sync failed! Cause: configuration about project[{}] is not on local and remote!", projectName);
+                _log.warn("Sync failed! Cause: configuration about project[{}] is not on local and remote!",
+                        projectName);
                 return false;
             } else if (isLocal && !isRemote) {
                 curatorFramework.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT)
