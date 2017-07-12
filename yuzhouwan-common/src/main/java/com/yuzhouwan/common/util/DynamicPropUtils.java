@@ -194,13 +194,12 @@ public class DynamicPropUtils {
             _log.debug("Configuration about project[{}] is on local.", projectName);
             isLocal = true;
         }
-        Boolean isSynced = internalSync(projectName, localProp, isRemote, isLocal);
-        if (isSynced != null) return isSynced;
-        _log.debug("Sync success!");
+        boolean isSynced = internalSync(projectName, localProp, isRemote, isLocal);
+        if (isSynced) _log.debug("Sync success!");
         return true;
     }
 
-    private Boolean internalSync(String projectName, Prop localProp, boolean isRemote, boolean isLocal) {
+    private boolean internalSync(String projectName, Prop localProp, boolean isRemote, boolean isLocal) {
         try {
             if (!isLocal && !isRemote) {
                 _log.warn("Sync failed! Cause: configuration about project[{}] is not on local and remote!",
@@ -211,7 +210,6 @@ public class DynamicPropUtils {
                         .forPath(ZNODE_PREFIX.concat(projectName));
                 _log.debug("Created ".concat(projectName));
                 setProp2Remote(projectName, localProp);
-                return true;
             } else if (!isLocal) {
                 Prop remoteProp = getPropFromRemote(projectName);
                 PROJECT_PROPERTIES.put(projectName, remoteProp);
@@ -229,7 +227,7 @@ public class DynamicPropUtils {
             _log.error("Sync failed!", e);
             return false;
         }
-        return null;
+        return true;
     }
 
     private void setProp2Remote(String projectName, Prop localProp) throws Exception {
