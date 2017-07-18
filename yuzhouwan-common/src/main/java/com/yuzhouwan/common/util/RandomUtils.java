@@ -1,6 +1,7 @@
 package com.yuzhouwan.common.util;
 
 import java.util.LinkedList;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Copyright @ 2017 yuzhouwan.com
@@ -113,5 +114,9 @@ public class RandomUtils {
     public static double getY(double x, double stdDeviation, double variance, double mean) {
         return Math.pow(Math.exp(-(((x - mean) * (x - mean)) / ((2 * variance)))),
                 1 / (stdDeviation * Math.sqrt(2 * Math.PI)));
+    }
+
+    public static long uuid() {
+        return System.nanoTime() + ThreadLocalRandom.current().nextLong();
     }
 }

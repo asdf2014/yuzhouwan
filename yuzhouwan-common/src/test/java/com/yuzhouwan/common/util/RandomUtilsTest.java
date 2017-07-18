@@ -5,9 +5,11 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 
 import static com.yuzhouwan.common.util.RandomUtils.perm;
+import static com.yuzhouwan.common.util.RandomUtils.uuid;
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
@@ -86,5 +88,30 @@ public class RandomUtilsTest {
         // 214,214,163,163,163,163,163,117,117,117,117,117,81,81,81,81,81,53,53,53,53,53,33,33,33,33,33
         // ],
         //total: 18695
+    }
+
+    /*
+    JVM: -ea -Xmx1024M -Xms1024M -Xmn256M -XX:+AlwaysPreTouch
+     */
+    @Test
+    public void testUUID() throws Exception {
+        int count = 0, len = 100, lost = 0;
+        HashSet<Long> set = new HashSet<>(len);
+        int size;
+        long time = 0;
+        long begin, end, uuid;
+        while (count < len) {
+            size = set.size();
+            begin = System.nanoTime();
+            uuid = uuid();
+            end = System.nanoTime();
+            time += (end - begin);
+            set.add(uuid);
+            if (set.size() == size) lost++;
+            count++;
+        }
+        assertEquals(0, lost);
+        // Count: 10000000, Time: 1141.535621 ms
+        _log.info("Count: {}, Time: {} ms", count, time / Math.pow(10, 6));
     }
 }

@@ -1,5 +1,6 @@
 package com.yuzhouwan.hacker.algorithms.collection;
 
+import com.yuzhouwan.common.util.ThreadUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.nio.ByteBuffer;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import static com.yuzhouwan.common.util.FileUtils.retryDelete;
@@ -252,6 +254,50 @@ public class CollectionStuffTest {
             int count = 3;
             retryDelete(file, count);
         }
+    }
+
+    private final Vector<Long> v = new Vector<>();
+
+    @Test
+    public void testVector() throws Exception {
+        long count = 0, size = 100, thread = 10;
+        ExecutorService es = ThreadUtils.buildExecutorService("testVector");
+        List<Long> list = new LinkedList<>();
+        long timeSync = 0, time = 0;
+        while (count < 1_0000) {
+            list.clear();
+            for (long i = 0; i < size; i++) {
+                v.add(i);
+            }
+            for (int i = 0; i < thread; i++) {
+                es.submit(() -> {
+                    v.add(size);
+                    v.remove(size);
+                });
+            }
+            long start, end;
+            long startSync = System.nanoTime();
+            synchronized (v) {
+                start = System.nanoTime();
+                list.addAll(v);
+                v.clear();
+                end = System.nanoTime();
+            }
+            long endSync = System.nanoTime();
+            timeSync += (endSync - startSync);
+            time += (end - start);
+            count++;
+        }
+        // Sync Time: 17.851833 ms, Time: 16.120418 ms, Subtract: 1.731415 ms, Count: 10000, Size: 100, Thread: 10
+        _log.info("Sync Time: {} ms, Time: {} ms, Subtract: {} ms, Count: {}, Size: {}, Thread: {}",
+                timeSync / Math.pow(10, 6), time / Math.pow(10, 6), (timeSync - time) / Math.pow(10, 6),
+                count, size, thread);
+        es.shutdown();
+        while (!es.isTerminated()) {
+            Thread.sleep(10);
+        }
+        assertEquals(0, v.size());
+        assertEquals(size, list.size());
     }
 
 }

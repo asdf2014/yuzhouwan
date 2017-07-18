@@ -114,9 +114,8 @@ public class GroupTry {
         String str = "2017-01-12 07:00:00,648 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem.audit: allowed=true ugi=aps (auth:SIMPLE) ip=/10.27.236.67 cmd=listStatus src=/user/aps/admds/priceTextRealtime/aa/bb dst=null perm=null";
         Pattern p = Pattern.compile("(?<=ugi=)(?<ugi>\\w+).*(?<= src=)(?<src>.*(?= dst))");
         Matcher m = p.matcher(str);
-        if (m.find()) {
-            assertEquals("aps", m.group(1));
-            assertEquals("/user/aps/admds/priceTextRealtime/aa/bb", m.group("src"));
-        }
+        assertEquals(true, m.find());
+        assertEquals("aps", m.group(1));
+        assertEquals("/user/aps/admds/priceTextRealtime/aa/bb", m.group("src"));
     }
 }
