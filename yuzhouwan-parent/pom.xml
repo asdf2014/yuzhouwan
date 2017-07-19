@@ -201,6 +201,9 @@
 
         <!-- hbase + hadoop -->
         <hbase.hadoop.compat.version>${hbase.server.version}</hbase.hadoop.compat.version>
+
+        <!-- redis client -->
+        <redis.client.version>2.9.0</redis.client.version>
     </properties>
 
     <build>

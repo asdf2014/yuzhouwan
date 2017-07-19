@@ -25,5 +25,6 @@
         <module>yuzhouwan-bigdata-flume</module>
         <module>yuzhouwan-bigdata-zookeeper</module>
         <module>yuzhouwan-bigdata-kafka</module>
+        <module>yuzhouwan-bigdata-redis</module>
     </modules>
 </project>

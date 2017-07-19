@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -81,5 +82,35 @@ public class PropUtils {
 
     public String getProperty(String key) {
         return getProperty(key, true);
+    }
+
+    public boolean addProperty(Properties properties) {
+        return addProperty(properties, true);
+    }
+
+    public boolean addProperty(Properties properties, boolean isCover) {
+        if (properties == null || properties.size() == 0) {
+            _log.error("Properties is empty!");
+            return false;
+        }
+        for (Map.Entry<Object, Object> entry : properties.entrySet()) {
+            Object key = entry.getKey();
+            if (!isCover) continue;
+            PropUtils.properties.put(key, properties.get(key));
+        }
+        return true;
+    }
+
+    public boolean addProperty(String key, String value) {
+        if (StrUtils.isEmpty(key)) {
+            _log.error("Params are invalid, key: {}, value: {}!", key, value);
+            return false;
+        }
+        properties.put(key, value);
+        return true;
+    }
+
+    public Properties getProperties() {
+        return properties;
     }
 }
