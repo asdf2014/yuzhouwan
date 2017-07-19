@@ -23,9 +23,9 @@ import java.util.Set;
 public class RedisClusterConnPool {
 
     private static final Logger _log = LoggerFactory.getLogger(RedisClusterConnPool.class);
-    public static final String PROJECT_NAME = "REDIS_STORE";
 
     private static JedisCluster pool;
+    public static final String PROJECT_NAME = "REDIS_CLUSTER";
 
     public RedisClusterConnPool() {
         init(DynamicPropUtils.getInstance());
@@ -36,14 +36,6 @@ public class RedisClusterConnPool {
     }
 
     private void init(DynamicPropUtils DP) {
-        JedisPoolConfig config = new JedisPoolConfig();
-        config.setMaxTotal(1000);
-        config.setMinIdle(50);
-        config.setMaxIdle(100);
-        config.setMaxWaitMillis(6 * 1000);
-        config.setTestOnBorrow(true);
-        Set<HostAndPort> jedisClusterNodes = new HashSet<>();
-
         Object clusterListObj = DP.get(PROJECT_NAME, "redis.cluster.list");
         String clusterList;
         if (clusterListObj == null || StrUtils.isEmpty(clusterList = clusterListObj.toString())) {
@@ -52,11 +44,18 @@ public class RedisClusterConnPool {
             throw new RuntimeException(error);
         }
         String[] hostAndPort;
+        Set<HostAndPort> jedisClusterNodes = new HashSet<>();
         for (String clusters : clusterList.split(",")) {
             hostAndPort = clusters.split(":");
             jedisClusterNodes.add(new HostAndPort(hostAndPort[0], Integer.valueOf(hostAndPort[1])));
         }
-        pool = new JedisCluster(jedisClusterNodes, 2000, 100, config);
+        JedisPoolConfig conf = new JedisPoolConfig();
+        conf.setMaxTotal(1000);
+        conf.setMinIdle(50);
+        conf.setMaxIdle(100);
+        conf.setMaxWaitMillis(6 * 1000);
+        conf.setTestOnBorrow(true);
+        pool = new JedisCluster(jedisClusterNodes, conf);
     }
 
     public String put(String key, String value) {
