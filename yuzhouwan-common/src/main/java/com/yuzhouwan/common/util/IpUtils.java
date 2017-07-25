@@ -27,8 +27,12 @@ public class IpUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(IpUtils.class);
 
-    private static final Pattern IP_ADDRESS_IS_VALID = Pattern.compile(
-            "^(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])$");
+    private static final Pattern IP_V4_ADDRESS_IS_VALID = Pattern.compile(
+            "(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])");
+    private static final Pattern IP_V4_ADDRESS_IS_VALID2 = Pattern.compile(
+            "(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)");
+    private static final Pattern IP_V6_ADDRESS_IS_VALID = Pattern.compile(
+            "(([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]+|::(ffff(:0{1,4})?:)?((25[0-5]|(2[0-4]|1?[0-9])?[0-9])\\\\.){3}(25[0-5]|(2[0-4]|1?[0-9])?[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1?[0-9])?[0-9])\\\\.){3}(25[0-5]|(2[0-4]|1?[0-9])?[0-9]))");
 
     private static final Pattern EXTRACT_DOMAIN_WITH_SUB_PATH = Pattern.compile("(?<=//).*?(?=/)");
     private static final Pattern EXTRACT_DOMAIN_SIMPLE = Pattern.compile("(?<=//).*");
@@ -42,13 +46,33 @@ public class IpUtils {
     private static List<String> currentHostIpAddress;
 
     /**
-     * 检查 IP地址是否是 合法的
+     * 检查 IP-v4地址是否是 合法的
      *
      * @param ip
      * @return
      */
     public static boolean checkValid(final String ip) {
-        return isNotEmpty(ip) && IP_ADDRESS_IS_VALID.matcher(ip).matches();
+        return isNotEmpty(ip) && IP_V4_ADDRESS_IS_VALID.matcher(ip).matches();
+    }
+
+    /**
+     * 检查 IP-v4地址是否是 合法的
+     *
+     * @param ip
+     * @return
+     */
+    public static boolean checkValid2(final String ip) {
+        return isNotEmpty(ip) && IP_V4_ADDRESS_IS_VALID2.matcher(ip).matches();
+    }
+
+    /**
+     * 检查 IP-v6地址是否是 合法的
+     *
+     * @param ip
+     * @return
+     */
+    public static boolean checkValidV6(final String ip) {
+        return isNotEmpty(ip) && IP_V6_ADDRESS_IS_VALID.matcher(ip).matches();
     }
 
     /**

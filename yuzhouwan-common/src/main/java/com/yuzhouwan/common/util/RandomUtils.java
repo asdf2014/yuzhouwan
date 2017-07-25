@@ -117,6 +117,6 @@ public class RandomUtils {
     }
 
     public static long uuid() {
-        return System.nanoTime() + ThreadLocalRandom.current().nextLong();
+        return System.nanoTime() - ThreadLocalRandom.current().nextLong();
     }
 }

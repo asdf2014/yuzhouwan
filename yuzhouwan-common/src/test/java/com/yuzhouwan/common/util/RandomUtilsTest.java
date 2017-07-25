@@ -111,7 +111,7 @@ public class RandomUtilsTest {
             count++;
         }
         assertEquals(0, lost);
-        // Count: 10000000, Time: 1141.535621 ms
+        // Count: 10000000, Time: 1131.016648 ms
         _log.info("Count: {}, Time: {} ms", count, time / Math.pow(10, 6));
     }
 }
