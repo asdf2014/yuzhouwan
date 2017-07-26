@@ -53,10 +53,11 @@ public class RedisNotification {
 
                 @Override
                 public void onPMessage(String pattern, String channel, String message) {
-                    _log.info("onPMessage: {}, Channel: {}, Message: {}", pattern, channel, message);
                     if ("__keyevent@0__:expired".equals(channel)) {
                         _log.info("onPMessage: {}, Channel: {}, Message: {}", pattern, channel, message);
+                        return;
                     }
+                    _log.info("onPMessage: {}, Channel: {}, Message: {}", pattern, channel, message);
                 }
             };
             jedis.psubscribe(jedisPubSub, /*"__keyevent@*__:expired"*/ /*"__key*__:*"*/ "*");

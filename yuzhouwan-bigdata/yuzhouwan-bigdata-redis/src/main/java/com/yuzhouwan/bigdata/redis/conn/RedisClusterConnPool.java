@@ -55,12 +55,13 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         conf.setMaxTotal(1000);
         conf.setMinIdle(50);
         conf.setMaxIdle(100);
-        conf.setMaxWaitMillis(6 * 1000);
+        // conf.setMaxWaitMillis(6 * 1000);
         conf.setTestOnCreate(true);
         conf.setTestOnBorrow(true);
         conf.setTestOnReturn(true);
         conf.setTestWhileIdle(true);
-        conf.setNumTestsPerEvictionRun(30);
+        // conf.setTimeBetweenEvictionRunsMillis(1);
+        conf.setNumTestsPerEvictionRun(3000);
         pool = new JedisCluster(jedisClusterNodes, conf);
     }
 
