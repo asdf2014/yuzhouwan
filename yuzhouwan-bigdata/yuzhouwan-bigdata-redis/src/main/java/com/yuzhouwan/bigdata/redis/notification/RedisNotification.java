@@ -50,12 +50,12 @@ public class RedisNotification {
 
                 @Override
                 public void onPSubscribe(String pattern, int subscribedChannels) {
-                    _log.info("onPSubscribe {} {}", pattern, subscribedChannels);
+                    _log.info("onPSubscribe Pattern: {}, SubscribedChannels: {}", pattern, subscribedChannels);
                 }
 
                 @Override
                 public void onPMessage(String pattern, String channel, String message) {
-                    _log.info("onPMessage: {}, Channel: {}, Message: {}", pattern, channel, message);
+                    _log.info("onPMessage Pattern: {}, Channel: {}, Message: {}", pattern, channel, message);
                 }
             };
             for (JedisPool j : jedis)
