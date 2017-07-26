@@ -5,8 +5,10 @@ import com.yuzhouwan.common.util.DynamicPropUtils;
 import com.yuzhouwan.common.util.PropUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import redis.clients.jedis.JedisCluster;
+import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPubSub;
+
+import java.util.List;
 
 import static com.yuzhouwan.bigdata.redis.conn.RedisClusterConnPool.PROJECT_NAME;
 
@@ -38,12 +40,12 @@ public class RedisNotification {
 
             SET yuzhouwan01 blog PX 3000 NX
             SET yuzhouwan02 blog
-            EXPIRE yuzhouwan01 3
+            EXPIRE yuzhouwan02 3
 
         $ redis-cli -h localhost -p 6380 --csv psubscribe '__keyevent@0__:expired'
         */
-        try (RedisClusterConnPool pool = new RedisClusterConnPool(dp)) {
-            JedisCluster jedis = pool.getPool();
+        try (RedisClusterConnPool pool = new RedisClusterConnPool(dp, true)) {
+            List<JedisPool> jedis = pool.getPools();
             JedisPubSub jedisPubSub = new JedisPubSub() {
 
                 @Override
@@ -53,14 +55,11 @@ public class RedisNotification {
 
                 @Override
                 public void onPMessage(String pattern, String channel, String message) {
-                    if ("__keyevent@0__:expired".equals(channel)) {
-                        _log.info("onPMessage: {}, Channel: {}, Message: {}", pattern, channel, message);
-                        return;
-                    }
                     _log.info("onPMessage: {}, Channel: {}, Message: {}", pattern, channel, message);
                 }
             };
-            jedis.psubscribe(jedisPubSub, /*"__keyevent@*__:expired"*/ /*"__key*__:*"*/ "*");
+            for (JedisPool j : jedis)
+                j.getResource().psubscribe(jedisPubSub, "__keyevent@*__:expired" /*"__key*__:*"*/ /*"*"*/);
         }
     }
 }

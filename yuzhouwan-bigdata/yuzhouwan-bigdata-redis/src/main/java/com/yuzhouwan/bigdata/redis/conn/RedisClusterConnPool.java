@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;
+import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 import java.io.IOException;
@@ -24,7 +25,8 @@ import java.util.*;
 public class RedisClusterConnPool implements AutoCloseable, Serializable {
 
     private static final Logger _log = LoggerFactory.getLogger(RedisClusterConnPool.class);
-    private static JedisCluster pool;
+    private JedisCluster cluster;
+    private List<JedisPool> pools;
 
     public static final String PROJECT_NAME = "REDIS_CLUSTER";
 
@@ -36,7 +38,39 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         init(DP);
     }
 
+    public RedisClusterConnPool(boolean pools) {
+        DynamicPropUtils DP = DynamicPropUtils.getInstance();
+        if (pools) initPools(DP);
+        else init(DP);
+    }
+
+    public RedisClusterConnPool(DynamicPropUtils DP, boolean pools) {
+        if (pools) initPools(DP);
+        else init(DP);
+    }
+
     private void init(DynamicPropUtils DP) {
+        String clusterList = getClusterList(DP);
+        String[] hostAndPort;
+        Set<HostAndPort> jedisClusterNodes = new HashSet<>();
+        for (String clusters : clusterList.split(",")) {
+            hostAndPort = clusters.split(":");
+            jedisClusterNodes.add(new HostAndPort(hostAndPort[0], Integer.valueOf(hostAndPort[1])));
+        }
+        cluster = new JedisCluster(jedisClusterNodes, buildConf());
+    }
+
+    private void initPools(DynamicPropUtils DP) {
+        String clusterList = getClusterList(DP);
+        pools = new LinkedList<>();
+        String[] hostAndPort;
+        for (String clusters : clusterList.split(",")) {
+            hostAndPort = clusters.split(":");
+            pools.add(new JedisPool(buildConf(), hostAndPort[0], Integer.valueOf(hostAndPort[1])));
+        }
+    }
+
+    private String getClusterList(DynamicPropUtils DP) {
         Object clusterListObj = DP.get(PROJECT_NAME, "redis.cluster.list");
         String clusterList;
         if (clusterListObj == null || StrUtils.isEmpty(clusterList = clusterListObj.toString())) {
@@ -44,12 +78,10 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
             _log.error(error);
             throw new RuntimeException(error);
         }
-        String[] hostAndPort;
-        Set<HostAndPort> jedisClusterNodes = new HashSet<>();
-        for (String clusters : clusterList.split(",")) {
-            hostAndPort = clusters.split(":");
-            jedisClusterNodes.add(new HostAndPort(hostAndPort[0], Integer.valueOf(hostAndPort[1])));
-        }
+        return clusterList;
+    }
+
+    private JedisPoolConfig buildConf() {
         // org.apache.commons.pool2.impl.BaseObjectPoolConfig
         JedisPoolConfig conf = new JedisPoolConfig();
         conf.setMaxTotal(1000);
@@ -61,14 +93,14 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         conf.setTestOnReturn(true);
         conf.setTestWhileIdle(true);
         // conf.setTimeBetweenEvictionRunsMillis(1);
-        conf.setNumTestsPerEvictionRun(3000);
-        pool = new JedisCluster(jedisClusterNodes, conf);
+        conf.setNumTestsPerEvictionRun(30);
+        return conf;
     }
 
     // k-v
     public String put(String key, String value) {
         try {
-            return pool.set(key, value);
+            return cluster.set(key, value);
         } catch (Exception e) {
             _log.error("", e);
             return null;
@@ -79,7 +111,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         try {
             // NX|XX, NX -- Only set the key if it does not already exist. XX -- Only set the key if it already exist.
             // EX|PX, expire time units: EX = seconds; PX = milliseconds
-            return pool.set(key, value, "NX", "PX", millisecond);
+            return cluster.set(key, value, "NX", "PX", millisecond);
         } catch (Exception e) {
             _log.error("", e);
             return null;
@@ -90,7 +122,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         try {
             // NX|XX, NX -- Only set the key if it does not already exist. XX -- Only set the key if it already exist.
             // EX|PX, expire time units: EX = seconds; PX = milliseconds
-            return pool.expire(key, second);
+            return cluster.expire(key, second);
         } catch (Exception e) {
             _log.error("", e);
             return null;
@@ -100,7 +132,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
 
     public String get(String key) {
         try {
-            return pool.get(key);
+            return cluster.get(key);
         } catch (Exception e) {
             _log.error("", e);
             return null;
@@ -109,7 +141,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
 
     public Long del(String key) {
         try {
-            return pool.del(key);
+            return cluster.del(key);
         } catch (Exception e) {
             _log.error("", e);
             return null;
@@ -123,7 +155,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
 
     public String setList(String key, long index, String value) {
         try {
-            return pool.lset(key, index, value);
+            return cluster.lset(key, index, value);
         } catch (Exception e) {
             _log.error("", e);
             return null;
@@ -132,7 +164,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
 
     public Long pushList(String key, String... value) {
         try {
-            return pool.lpush(key, value);
+            return cluster.lpush(key, value);
         } catch (Exception e) {
             _log.error("", e);
             return null;
@@ -141,7 +173,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
 
     public Long pushList(String key, Collection<String> values) {
         try {
-            for (String value : values) pool.lpush(key, value);
+            for (String value : values) cluster.lpush(key, value);
         } catch (Exception e) {
             _log.error("", e);
             return null;
@@ -158,7 +190,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
 
     public List<String> getListAll(String key) {
         try {
-            return pool.lrange(key, 0, -1);
+            return cluster.lrange(key, 0, -1);
         } catch (Exception e) {
             _log.error("", e);
             return null;
@@ -168,7 +200,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
     // set
     public Long putSet(String key, String... values) {
         try {
-            return pool.sadd(key, values);
+            return cluster.sadd(key, values);
         } catch (Exception e) {
             _log.error("", e);
             return null;
@@ -177,7 +209,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
 
     public Long putSet(String key, Collection<String> values) {
         try {
-            for (String value : values) pool.sadd(key, value);
+            for (String value : values) cluster.sadd(key, value);
         } catch (Exception e) {
             _log.error("", e);
             return null;
@@ -187,7 +219,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
 
     public Set<String> getSet(String key) {
         try {
-            return pool.smembers(key);
+            return cluster.smembers(key);
         } catch (Exception e) {
             _log.error("", e);
             return null;
@@ -199,11 +231,11 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
             /*
             No way to dispatch this command to Redis Cluster because keys have different slots.
              */
-            // return pool.smove(key, NULL_KEY, value);
+            // return cluster.smove(key, NULL_KEY, value);
             Set<String> members = getSet(key);
             if (members.contains(value)) {
                 members.remove(value);
-                pool.del(key);
+                cluster.del(key);
                 putSet(key, members);
             } else return 0L;
         } catch (Exception e) {
@@ -216,7 +248,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
     // hash
     public Long putHash(String key, String field, String value) {
         try {
-            return pool.hset(key, field, value);
+            return cluster.hset(key, field, value);
         } catch (Exception e) {
             _log.error("", e);
             return null;
@@ -225,7 +257,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
 
     public String getHash(String key, String field) {
         try {
-            return pool.hget(key, field);
+            return cluster.hget(key, field);
         } catch (Exception e) {
             _log.error("", e);
             return null;
@@ -234,7 +266,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
 
     public Map<String, String> getHashs(String key) {
         try {
-            return pool.hgetAll(key);
+            return cluster.hgetAll(key);
         } catch (Exception e) {
             _log.error("", e);
             return null;
@@ -243,7 +275,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
 
     public List<String> getHashValues(String key) {
         try {
-            return pool.hvals(key);
+            return cluster.hvals(key);
         } catch (Exception e) {
             _log.error("", e);
             return null;
@@ -252,7 +284,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
 
     public Long delHash(String key, String... fields) {
         try {
-            return pool.hdel(key, fields);
+            return cluster.hdel(key, fields);
         } catch (Exception e) {
             _log.error("", e);
             return null;
@@ -261,7 +293,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
 
     public Long delHashs(String key) {
         try {
-            for (String k : pool.hkeys(key)) pool.hdel(key, k);
+            for (String k : cluster.hkeys(key)) cluster.hdel(key, k);
         } catch (Exception e) {
             _log.error("", e);
             return null;
@@ -269,14 +301,18 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         return 0L;
     }
 
-    public JedisCluster getPool() {
-        return pool;
+    public JedisCluster getCluster() {
+        return cluster;
+    }
+
+    public List<JedisPool> getPools() {
+        return pools;
     }
 
     @Override
     public void close() {
         try {
-            if (pool != null) pool.close();
+            if (cluster != null) cluster.close();
         } catch (IOException e) {
             _log.error("", e);
         }
