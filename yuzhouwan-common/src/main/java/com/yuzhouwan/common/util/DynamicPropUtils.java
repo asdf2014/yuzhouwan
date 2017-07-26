@@ -10,12 +10,12 @@ import org.apache.zookeeper.data.Stat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.Closeable;
+import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
-
-import static com.yuzhouwan.common.util.StrUtils.isEmpty;
 
 /**
  * Copyright @ 2017 yuzhouwan.com
@@ -25,7 +25,7 @@ import static com.yuzhouwan.common.util.StrUtils.isEmpty;
  * @author Benedict Jin
  * @since 2017/6/28
  */
-public class DynamicPropUtils {
+public class DynamicPropUtils implements Serializable, Cloneable, Closeable {
 
     private static final Logger _log = LoggerFactory.getLogger(DynamicPropUtils.class);
     private static final String ZNODE_PREFIX = "/";
@@ -66,12 +66,21 @@ public class DynamicPropUtils {
 
     private static void initCurator() throws Exception {
         _log.debug("Begin init Curator...");
-        String zkPath = PropUtils.getInstance().getProperty("dynamic.prop.utils.zk.path");
-        if (isEmpty(zkPath))
-            throw new RuntimeException("Cannot get dynamic.prop.utils.zk.path form PropUtils.");
+        Object zkPath;
+
+        int count = 0;
+        while ((zkPath = PropUtils.getInstance().getProperty("dynamic.prop.utils.zk.path")) == null) {
+            if ((count++) >= TICK_THRESHOLD) {
+                instance.close();
+                System.exit(-1);
+            }
+            _log.warn("Cannot get dynamic.prop.utils.zk.path from Dynamic PropUtils! Times: {}", count);
+            _log.warn("PropUtils: {}", JSON.toJSONString(PropUtils.getInstance().getProperties()));
+            Thread.sleep(TICK_MILLIS);
+        }
         curatorFramework = CuratorFrameworkFactory
                 .builder()
-                .connectString(zkPath)
+                .connectString(zkPath.toString())
                 .connectionTimeoutMs(5000)
                 .sessionTimeoutMs(40000)
                 .retryPolicy(new ExponentialBackoffRetry(2000, 3))
@@ -88,8 +97,8 @@ public class DynamicPropUtils {
     public static DynamicPropUtils getInstance() {
         if (instance == null) synchronized (DynamicPropUtils.class) {
             if (instance == null) {
-                init();
                 instance = new DynamicPropUtils();
+                new Thread(DynamicPropUtils::init).start();
             }
         }
         return instance;
@@ -160,10 +169,7 @@ public class DynamicPropUtils {
 
     public boolean sync(String projectName) {
 
-        if (curatorFramework == null) {
-            _log.error("Sync failed! Cause curatorFramework is null!");
-            return false;
-        }
+        if (unInited()) return false;
 
         // (local + non_local) * (remote + non_monitor)
         if (projectName == null) {
@@ -196,7 +202,15 @@ public class DynamicPropUtils {
         }
         boolean isSynced = internalSync(projectName, localProp, isRemote, isLocal);
         if (isSynced) _log.debug("Sync success!");
-        return true;
+        return isSynced;
+    }
+
+    private boolean unInited() {
+        if (curatorFramework == null) {
+            _log.error("Sync failed! Cause curatorFramework is null!");
+            return true;
+        }
+        return false;
     }
 
     private boolean internalSync(String projectName, Prop localProp, boolean isRemote, boolean isLocal) {
@@ -212,9 +226,11 @@ public class DynamicPropUtils {
                 setProp2Remote(projectName, localProp);
             } else if (!isLocal) {
                 Prop remoteProp = getPropFromRemote(projectName);
+                if (remoteProp == null) return false;
                 PROJECT_PROPERTIES.put(projectName, remoteProp);
             } else {
                 Prop remoteProp = getPropFromRemote(projectName);
+                if (remoteProp == null) return false;
                 long remoteModifyDate = remoteProp.getModify();
                 long localModifyDate = localProp.getModify();
                 if (remoteModifyDate > localModifyDate) {
@@ -230,18 +246,22 @@ public class DynamicPropUtils {
         return true;
     }
 
-    private void setProp2Remote(String projectName, Prop localProp) throws Exception {
-        curatorFramework.setData()
-                .forPath(ZNODE_PREFIX.concat(projectName), JSON.toJSONString(localProp).getBytes(Charset.forName("UTF-8")));
+    private boolean setProp2Remote(String projectName, Prop localProp) throws Exception {
+        if (unInited()) return false;
+        curatorFramework.setData().forPath(ZNODE_PREFIX.concat(projectName),
+                JSON.toJSONString(localProp).getBytes(Charset.forName("UTF-8")));
         _log.debug("Set data to remote success!");
+        return true;
     }
 
     private Prop getPropFromRemote(String projectName) throws Exception {
+        if (unInited()) return null;
         String data = new String(curatorFramework.getData()
                 .forPath(ZNODE_PREFIX.concat(projectName)), Charset.forName("UTF-8"));
         return JSON.parseObject(data, Prop.class);
     }
 
+    @Override
     public void close() {
         KEEP_SYNCING = false;
         instance = null;
@@ -249,5 +269,10 @@ public class DynamicPropUtils {
             curatorFramework.close();
             curatorFramework = null;
         }
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

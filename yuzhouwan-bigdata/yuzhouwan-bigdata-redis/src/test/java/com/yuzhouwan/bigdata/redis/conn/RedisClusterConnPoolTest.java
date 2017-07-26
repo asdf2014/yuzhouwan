@@ -1,13 +1,10 @@
-package com.yuzhouwan.bigdata.redis;
+package com.yuzhouwan.bigdata.redis.conn;
 
 import com.alibaba.fastjson.JSON;
 import com.yuzhouwan.common.util.DynamicPropUtils;
 import com.yuzhouwan.common.util.PropUtils;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 
-import static com.yuzhouwan.bigdata.redis.RedisClusterConnPool.PROJECT_NAME;
+import static com.yuzhouwan.bigdata.redis.conn.RedisClusterConnPool.PROJECT_NAME;
 import static org.junit.Assert.assertEquals;
 
 
