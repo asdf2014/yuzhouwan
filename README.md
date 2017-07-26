@@ -23,7 +23,7 @@ __[http://www.yuzhouwan.com][0]__
 
 ## Technical Discussion Group
 
-BigData生态圈 253793003&ensp;&ensp;(__*2000*__人大群)
+**BigData生态圈** 253793003&ensp;&ensp;(__*2000*__人大群)
 
 本群创建于2015/3/1:<br/>
 &ensp;&ensp;讨论大数据生态圈的各种领域，<br/>
@@ -32,5 +32,17 @@ BigData生态圈 253793003&ensp;&ensp;(__*2000*__人大群)
 &ensp;&ensp;Scala / Python / Golang / Clojure / Ruby 各大流行语言、<br/>
 &ensp;&ensp;PostgreSQL / HBase / Hive / ElasticSearch / Redis / Druid 数据持久化策略、<br/>
 &ensp;&ensp;Data Mining / Machine Learning / Deep Learning / ANN / AI 数据分析领域 等等
+
+**人工智能** 1020982&ensp;&ensp;(__*1000*__人大群)
+
+&ensp;&ensp;本群创建于2003/7/24:  研究 AI 人工智能 相关领域，欢迎加入，互相学习，共同进步
+&ensp;&ensp;讨论包括，统计学、NLP、Data Mining、Deep Learning、Machine Learning、AI 人工智能 等相关领域
+
+&ensp;&ensp;从 深蓝到 AlaphGo，人工智能的智力水平、普适性、学习能力 正在以爆炸式地速度快速发展；
+&ensp;&ensp;从 棋类到 医学，人工智能开始在各类应用领域，都在大展身手；
+&ensp;&ensp;从 CPU/GPU 到 TPU，人工智能的计算能力正向着无法穷举的极限不断逼近…
+
+&ensp;&ensp;本群持续更新的一篇人工智能的博客：
+&ensp;&ensp;http://yuzhouwan.com/posts/42737/ 
 
 欢迎加入，一起交流学习 :D 
