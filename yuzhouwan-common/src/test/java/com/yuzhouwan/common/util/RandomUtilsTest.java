@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.UUID;
 
 import static com.yuzhouwan.common.util.RandomUtils.perm;
 import static com.yuzhouwan.common.util.RandomUtils.uuid;
@@ -111,7 +112,33 @@ public class RandomUtilsTest {
             count++;
         }
         assertEquals(0, lost);
-        // Count: 10000000, Time: 1131.016648 ms
+        // Count: 1000_0000, Time: 1131.016648 ms
+        _log.info("Count: {}, Time: {} ms", count, time / Math.pow(10, 6));
+    }
+
+    /*
+    JVM: -ea -Xmx1024M -Xms1024M -Xmn256M -XX:+AlwaysPreTouch
+     */
+    @Test
+    public void testNativeUUID() throws Exception {
+        int count = 0, len = 100, lost = 0;
+        HashSet<String> set = new HashSet<>(len);
+        int size;
+        long time = 0;
+        long begin, end;
+        String uuid;
+        while (count < len) {
+            size = set.size();
+            begin = System.nanoTime();
+            uuid = UUID.randomUUID().toString();
+            end = System.nanoTime();
+            time += (end - begin);
+            set.add(uuid);
+            if (set.size() == size) lost++;
+            count++;
+        }
+        assertEquals(0, lost);
+        // Count: 100_0000, Time: 1294.214348 ms
         _log.info("Count: {}, Time: {} ms", count, time / Math.pow(10, 6));
     }
 }
