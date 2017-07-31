@@ -7,10 +7,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.UUID;
 
-import static com.yuzhouwan.common.util.RandomUtils.perm;
-import static com.yuzhouwan.common.util.RandomUtils.uuid;
+import static com.yuzhouwan.common.util.RandomUtils.*;
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
@@ -130,7 +128,7 @@ public class RandomUtilsTest {
         while (count < len) {
             size = set.size();
             begin = System.nanoTime();
-            uuid = UUID.randomUUID().toString();
+            uuid = uuid2();
             end = System.nanoTime();
             time += (end - begin);
             set.add(uuid);

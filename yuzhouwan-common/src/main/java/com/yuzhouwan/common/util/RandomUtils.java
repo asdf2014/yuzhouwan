@@ -1,6 +1,7 @@
 package com.yuzhouwan.common.util;
 
 import java.util.LinkedList;
+import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -118,5 +119,9 @@ public class RandomUtils {
 
     public static long uuid() {
         return System.nanoTime() - ThreadLocalRandom.current().nextLong();
+    }
+
+    public static String uuid2() {
+        return UUID.randomUUID().toString();
     }
 }
