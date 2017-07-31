@@ -3,12 +3,14 @@ package com.yuzhouwan.bigdata.redis.notification;
 import com.yuzhouwan.bigdata.redis.conn.RedisClusterConnPool;
 import com.yuzhouwan.common.util.DynamicPropUtils;
 import com.yuzhouwan.common.util.PropUtils;
+import com.yuzhouwan.common.util.ThreadUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPubSub;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
 
 import static com.yuzhouwan.bigdata.redis.conn.RedisClusterConnPool.PROJECT_NAME;
 
@@ -44,6 +46,7 @@ public class RedisNotification {
 
         $ redis-cli -h localhost -p 6380 --csv psubscribe '__keyevent@0__:expired'
         */
+        ExecutorService es = ThreadUtils.buildExecutorService("redis-subscribe");
         try (RedisClusterConnPool pool = new RedisClusterConnPool(dp, true)) {
             List<JedisPool> jedis = pool.getPools();
             JedisPubSub jedisPubSub = new JedisPubSub() {
@@ -59,7 +62,12 @@ public class RedisNotification {
                 }
             };
             for (JedisPool j : jedis)
-                j.getResource().psubscribe(jedisPubSub, "__keyevent@*__:expired" /*"__key*__:*"*/ /*"*"*/);
+                es.submit(() ->
+                        j.getResource().psubscribe(jedisPubSub, "__keyevent@*__:expired" /*"__key*__:*"*/ /*"*"*/)
+                );
+            while (!es.isTerminated()) {
+                Thread.sleep(10_000);
+            }
         }
     }
 }
