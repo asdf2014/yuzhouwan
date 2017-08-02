@@ -1,6 +1,8 @@
 package com.yuzhouwan.hacker.algorithms.collection;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,6 +19,8 @@ import static org.junit.Assert.assertEquals;
  */
 public class StringTest {
 
+    private static final Logger _log = LoggerFactory.getLogger(StringTest.class);
+
     @Test
     public void testSplitNothing() {
 
@@ -31,21 +35,51 @@ public class StringTest {
         assertEquals("1", r1[0]);
     }
 
+    /*
+    JVM: -ea -Xmx512M -Xms512M -Xmn128M -XX:+AlwaysPreTouch
+
+    Time: 0.023948 ms
+    Time: 0.012752 ms
+      */
     @Test
     public void testStringBuilder() {
         Set<String> uniqAddr = new HashSet<>();
         StringBuilder addrs = new StringBuilder();
-        uniqAddr.add("a");
-        uniqAddr.add("b");
-        uniqAddr.add("c");
-        int count = 0, addrLen = uniqAddr.size();
-        for (String addr : uniqAddr) {
-            addrs.append(addr);
-            count++;
-            if (count != addrLen) {
-                addrs.append(", ");
+        long begin, performanceTime;
+        {
+            uniqAddr.add("a");
+            uniqAddr.add("b");
+            uniqAddr.add("c");
+            begin = System.nanoTime();
+            int count = 0, addrLen = uniqAddr.size();
+            for (String addr : uniqAddr) {
+                addrs.append(addr);
+                count++;
+                if (count != addrLen) {
+                    addrs.append(", ");
+                }
             }
+            String withoutTail = addrs.toString();
+            performanceTime = System.nanoTime() - begin;
+            _log.info("Time: {} ms", performanceTime * Math.pow(10, -6));
+            assertEquals("a, b, c", withoutTail);
         }
-        assertEquals("a, b, c", addrs.toString());
+        {
+            addrs = new StringBuilder();
+            uniqAddr.clear();
+            uniqAddr.add("a");
+            uniqAddr.add("b");
+            uniqAddr.add("c");
+            begin = System.nanoTime();
+            for (String addr : uniqAddr) {
+                addrs.append(addr).append(", ");
+            }
+            String withoutTail = uniqAddr.size() > 0 ? addrs.substring(0, addrs.length() - 2) : addrs.toString();
+            performanceTime = System.nanoTime() - begin;
+            _log.info("Time: {} ms", performanceTime * Math.pow(10, -6));
+            assertEquals("a, b, c", withoutTail);
+            assertEquals("a, b, c", uniqAddr.size() > 0 ?
+                    addrs.delete(addrs.length() - 2, addrs.length()).toString() : addrs.toString());
+        }
     }
 }
