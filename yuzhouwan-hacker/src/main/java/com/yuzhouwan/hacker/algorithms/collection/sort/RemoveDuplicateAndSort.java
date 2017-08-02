@@ -86,14 +86,14 @@ public class RemoveDuplicateAndSort {
 
     /**
      * @param companyIpResults
-     * @param num              : limition for topN
+     * @param num              : limitation for topN
      * @return
      */
     private List<Company> removeDuplicateUsers(List<Company> companyIpResults, int num) {
         Set<Company> s = new TreeSet<>(comparator4Equal);
         for (Company companyIpResult : companyIpResults) {
             s.add(companyIpResult);
-            /**
+            /*
              * 16:17:49.563 [main] DEBUG c.y.c.RemoveDuplicateAndSort - Company{city='UK', foundition=2.147477467E9}
              * 16:17:49.565 [main] DEBUG c.y.c.RemoveDuplicateAndSort - Company{city='Washington', foundition=2.147477037E9}
              */

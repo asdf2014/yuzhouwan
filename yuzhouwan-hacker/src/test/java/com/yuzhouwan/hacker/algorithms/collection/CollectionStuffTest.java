@@ -137,6 +137,13 @@ public class CollectionStuffTest {
         map.put(byteBufferA, "A");
         map.put(byteBufferB, "B");
         assertEquals(true, map.containsKey(byteBufferC));
+
+        HashMap<byte[], String> mapBytes = new HashMap<>();
+        mapBytes.put(bytesA, "A");
+        mapBytes.put(bytesB, "B");
+        assertEquals(true, mapBytes.containsKey(bytesA));
+        assertEquals(true, mapBytes.containsKey(bytesB));
+        assertEquals(false, mapBytes.containsKey(bytesC));
     }
 
     @Test
