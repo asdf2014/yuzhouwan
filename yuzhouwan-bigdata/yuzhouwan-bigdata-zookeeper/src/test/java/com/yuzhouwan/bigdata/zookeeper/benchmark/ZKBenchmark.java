@@ -6,6 +6,7 @@ import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.zookeeper.CreateMode;
 import org.junit.After;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -97,15 +98,15 @@ public class ZKBenchmark {
     }
 
     /*
-    JVM: -ea -Xmx512M -Xms512M -Xmn256M -XX:+AlwaysPreTouch
+    JVM: -ea -Xmx512M -Xms512M -Xmn128M -XX:+AlwaysPreTouch
 
-    [DataSize: 0.001kb, MaxTime: 9ms, MinTime: 1ms, AvgTime: 4ms]
-    [DataSize: 0.01kb, MaxTime: 43ms, MinTime: 2ms, AvgTime: 11ms]
-    [DataSize: 0.1kb, MaxTime: 4ms, MinTime: 2ms, AvgTime: 3ms]
-    [DataSize: 1.0kb, MaxTime: 5ms, MinTime: 2ms, AvgTime: 3ms]
-    [DataSize: 10.0kb, MaxTime: 11ms, MinTime: 3ms, AvgTime: 6ms]
-    [DataSize: 100.0kb, MaxTime: 284ms, MinTime: 13ms, AvgTime: 53ms]
-    [DataSize: 1000.0kb, MaxTime: 228ms, MinTime: 107ms, AvgTime: 161ms]
+    [DataSize: 0.001kb, MaxTime: 10ms, MinTime: 2ms, AvgTime: 4ms]
+    [DataSize: 0.01kb, MaxTime: 36ms, MinTime: 2ms, AvgTime: 9ms]
+    [DataSize: 0.1kb, MaxTime: 8ms, MinTime: 2ms, AvgTime: 4ms]
+    [DataSize: 1.0kb, MaxTime: 17ms, MinTime: 2ms, AvgTime: 5ms]
+    [DataSize: 10.0kb, MaxTime: 5ms, MinTime: 3ms, AvgTime: 4ms]
+    [DataSize: 100.0kb, MaxTime: 21ms, MinTime: 14ms, AvgTime: 20ms]
+    [DataSize: 1000.0kb, MaxTime: 143ms, MinTime: 104ms, AvgTime: 140ms]
      */
 //    @Test
     public void dataSizeTest() throws Exception {
