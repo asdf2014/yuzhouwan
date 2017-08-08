@@ -2,6 +2,7 @@ package com.yuzhouwan.bigdata.zookeeper.curator;
 
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
+import org.apache.curator.framework.recipes.cache.ChildData;
 import org.apache.curator.framework.recipes.cache.NodeCache;
 import org.apache.curator.retry.RetryNTimes;
 import org.apache.zookeeper.CreateMode;
@@ -28,10 +29,9 @@ public class CuratorNodeCache {
     }
 
     private void init() {
-
         curatorFramework = CuratorFrameworkFactory.
                 builder().
-                connectString("localhost:2181").
+                connectString("10.27.129.60:2181,10.27.129.60:2182,10.27.129.60:2183").
                 sessionTimeoutMs(5000).
                 connectionTimeoutMs(10000).
                 retryPolicy(new RetryNTimes(2, 2000)).
@@ -53,8 +53,11 @@ public class CuratorNodeCache {
                     .forPath(path);
         NodeCache nodeCache = new NodeCache(curatorFramework, path, false);
         nodeCache.start();
-        nodeCache.getListenable().addListener(() ->
-                _log.info("New Cache Data: {}", new String(nodeCache.getCurrentData().getData())));
+        nodeCache.getListenable().addListener(() -> {
+                    ChildData currentData = nodeCache.getCurrentData();
+                    _log.info("New Cache Data: {}", currentData == null ? "null" : new String(currentData.getData()));
+                }
+        );
     }
 
     public void setData(String path, byte[] data) throws Exception {
@@ -63,5 +66,10 @@ public class CuratorNodeCache {
 
     public String getData(String path) throws Exception {
         return new String(curatorFramework.getData().forPath(path));
+    }
+
+    public boolean delPath(String path) throws Exception {
+        curatorFramework.delete().forPath(path);
+        return curatorFramework.checkExists().forPath(path) == null;
     }
 }
