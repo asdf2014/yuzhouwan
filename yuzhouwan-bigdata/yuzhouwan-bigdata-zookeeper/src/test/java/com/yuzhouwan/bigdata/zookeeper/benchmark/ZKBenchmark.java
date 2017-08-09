@@ -146,7 +146,7 @@ public class ZKBenchmark {
         ZKBenchmark bench = new ZKBenchmark();
         int size = (int) dataSize;
         String znodePath = "/node" + size;
-        for (int i = 0; i < TEST_TIMES; i++) {
+        for (int i = 1; i <= TEST_TIMES; i++) {
             znodePath = znodePath + i;
             if (!existNode(znodePath)) bench.createNode(znodePath);
 
@@ -155,7 +155,7 @@ public class ZKBenchmark {
             assertEquals(size, bench.readNode(znodePath).length());
             bench.deleteNode(znodePath);
             time.add(usedTime);
-            Thread.sleep(1000);
+            Thread.sleep(100 * TEST_TIMES);
         }
 
         Collections.sort(time);
