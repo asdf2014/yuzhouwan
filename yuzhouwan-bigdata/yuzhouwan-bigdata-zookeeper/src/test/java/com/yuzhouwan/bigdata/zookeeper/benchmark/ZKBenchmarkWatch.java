@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
- * Function：Zookeeper Benchmark
+ * Function：Zookeeper Benchmark Watch
  *
  * @author Benedict Jin
  * @since 2017/6/1
