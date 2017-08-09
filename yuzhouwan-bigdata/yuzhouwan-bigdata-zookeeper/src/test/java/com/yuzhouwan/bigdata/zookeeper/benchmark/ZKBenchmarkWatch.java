@@ -48,6 +48,9 @@ public class ZKBenchmarkWatch {
     [Config]
         rpc type:     nio    netty
         init/sync:    5/2    10/4    20/8    30/16
+
+    [Tool]
+        JMH
     */
     public ZKBenchmarkWatch() {
         try {
