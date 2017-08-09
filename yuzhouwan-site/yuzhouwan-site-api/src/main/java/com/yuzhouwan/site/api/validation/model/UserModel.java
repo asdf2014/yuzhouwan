@@ -19,7 +19,7 @@ import java.util.Date;
         use = JsonTypeInfo.Id.NAME,         // Were binding by providing a name
         include = JsonTypeInfo.As.PROPERTY, // The name is provided in a property
         property = "type",                  // Property name is type
-        visible = true                      // Retain the value of type after deserialisation
+        visible = true                      // Retain the value of type after deserialization
 )
 @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class UserModel {
