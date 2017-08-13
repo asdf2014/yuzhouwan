@@ -69,13 +69,25 @@ public class HBaseUtilsTest {
 
     @Test
     public void extraTimestampTest() throws Exception {
-        String regionName = "hbase:acl,400309eb,1495941314418.4cc9912158f76cdabb253c7dbe9059c2.";
-        assertEquals("1495941314418", extractTimestamp4Region(regionName));
-        regionName = "hbase:acl,,1495941314418..";
-        assertEquals("1495941314418", extractTimestamp4Region(regionName));
-        regionName = ":,,1495941314418..";
-        assertEquals("1495941314418", extractTimestamp4Region(regionName));
-        regionName = ":,,..";
-        assertEquals("", extractTimestamp4Region(regionName));
+        {
+            String regionName = "hbase:acl,400309eb,1495941314418.4cc9912158f76cdabb253c7dbe9059c2.";
+            assertEquals("1495941314418", extractTimestamp4Region(regionName));
+            regionName = "hbase:acl,,1495941314418..";
+            assertEquals("1495941314418", extractTimestamp4Region(regionName));
+            regionName = ":,,1495941314418..";
+            assertEquals("1495941314418", extractTimestamp4Region(regionName));
+            regionName = ":,,..";
+            assertEquals("", extractTimestamp4Region(regionName));
+        }
+        {
+            String regionName = "hbase:acl,40030,9eb,1495941314418.4cc9912158f76cdabb253c7dbe9059c2.";
+            assertEquals("1495941314418", extractTimestamp4Region(regionName));
+            regionName = "hbase:acl,,1495941314418..";
+            assertEquals("1495941314418", extractTimestamp4Region(regionName));
+            regionName = ":,,1495941314418..";
+            assertEquals("1495941314418", extractTimestamp4Region(regionName));
+            regionName = ":,,..";
+            assertEquals("", extractTimestamp4Region(regionName));
+        }
     }
 }
