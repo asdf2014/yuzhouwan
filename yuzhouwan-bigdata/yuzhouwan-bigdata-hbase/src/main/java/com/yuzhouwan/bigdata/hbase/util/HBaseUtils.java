@@ -128,7 +128,7 @@ public class HBaseUtils {
 
     public static String extractTableName(String regionName) {
         String[] rn = regionName.split(",");
-        if (rn.length != 3) return null;
+        if (rn.length <= 1) return null;
         String[] t1 = rn[0].split(COLON);
         String namespace, tableName;
         if (t1.length == 2) {
@@ -155,8 +155,9 @@ public class HBaseUtils {
     public static String extractTimestamp4Region(String regionName) {
         if (!validRegionName(regionName)) return regionName;
         String[] infos = regionName.split(",");
-        if (infos.length != 3) return regionName;
-        return infos[2].substring(0, infos[2].indexOf("."));
+        int len = infos.length;
+        if (len < 3) return regionName;
+        return infos[len - 1].substring(0, infos[len - 1].indexOf("."));
     }
 
     private static boolean validRegionName(String regionName) {
