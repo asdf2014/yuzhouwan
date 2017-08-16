@@ -1,24 +1,42 @@
 #!/usr/bin/env bash
 
-# /home/zookeeper/datadir/version-2/snapshot.f034a7b20
-newest_snapshot=`ls -l ~/datadir/version-2/snapshot.* | awk 'END{print $9}'`
+#
+# bash /home/zookeeper/zk-monitor/count_znode.sh "/home/zookeeper/data/" "/home/zookeeper/software/zookeeper" "2015" "/"
+
+tmpPath="/home/zookeeper/zk-monitor/snapshot"
+dataDir="$1"
+zkHome="$2"
+clientPort="$3"
+znodeParentPath="$4"
+
+if [ -z "$dataDir" -o -z "$zkHome" -o -z "$clientPort"  -o -z "$znodeParentPath" ]; then
+    echo "bash /home/zookeeper/zk-monitor/count_znode.sh <dataDir> <zkHome> <clientPort> <znodeParentPath>"
+    echo 'bash /home/zookeeper/zk-monitor/count_znode.sh "/home/zookeeper/data/" "/home/zookeeper/software/zookeeper" "2015" "/"'
+    exit
+fi
+
+newest_snapshot=`ls -l "${dataDir}"/version-2/snapshot.* | awk 'END{print $9}'`
+# Newest snapshot: /home/zookeeper/data//version-2/snapshot.0
 echo "Newest snapshot: ${newest_snapshot}"
-cd ~/software/zookeeper
-tmp=snapshot.`date '+%Y%m%d%H%M%S'`
-echo "Tmp ${tmp}"
+
+cd ${zkHome}
+mkdir -p ${tmpPath}
+tmp=${tmpPath}/snapshot.`date '+%Y%m%d%H%M%S'`
+# Tmp: /home/zookeeper/zk-monitor/snapshot/snapshot.20170816142407
+echo "Tmp: ${tmp}"
 java -cp zookeeper-3.4.6.jar:lib/log4j-1.2.16.jar:lib/slf4j-log4j12-1.6.1.jar:lib/slf4j-api-1.6.1.jar org.apache.zookeeper.server.SnapshotFormatter ${newest_snapshot} > ${tmp}
 
-arr=`echo "ls /" | zkCli.sh -server localhost:2015 | grep zookeeper`
-# [dynamic, hbase-ha, read-write-lock-B, read-write-lock-A, spark1.4.0pre, ocep, druid_test, storm, rmstore, bigquery, hbase, hindex, leader, config, hbase-monitor, phoenix, flink, read-write-lock, spark1.4.0, druid_common, consumers, druid, spark1.5.2.1, yarn-leader-election, controller_epoch, yuzhouwan, dubbo, election, isr_change_notification, hadoop-ha, zookeeper, admin, controller, tranquility, brokers]
+arr=`echo "ls ${znodeParentPath}" | zkCli.sh -server localhost:${clientPort} | grep zookeeper`
+# [leader, election, zookeeper]
 echo -e "Origin:\n\t ${arr}\n"
 
 arr=`echo ${arr:1:${#arr}-2}`
-# dynamic, hbase-ha, read-write-lock-B, read-write-lock-A, spark1.4.0pre, ocep, druid_test, storm, rmstore, bigquery, hbase, hindex, leader, config, hbase-monitor, phoenix, flink, read-write-lock, spark1.4.0, druid_common, consumers, druid, spark1.5.2.1, yarn-leader-election, controller_epoch, yuzhouwan, dubbo, election, isr_change_notification, hadoop-ha, zookeeper, admin, controller, tranquility, brokers
+# leader, election, zookeeper
 echo -e "Cut head & tail:\n\t ${arr}\n"
 
 OLD_IFS="$IFS"
 IFS=$", "
-arr=($arr)
+arr=(${arr})
 echo "Split into array:"
 
 result=
@@ -27,6 +45,9 @@ for a in ${arr[@]}; do
     result=`echo -e "\t\t${result}\n${count}\t/${a}"`
 done
 
+# 0	/election
+# 0	/leader
+# 2	/zookeeper
 echo ${result} | sort -k1 -n
 
 IFS="$OLD_IFS"
