@@ -12,7 +12,7 @@ zkVersion="$6"
 
 if [ -z "$dataDir" -o -z "$zkHome" -o -z "$clientPort" -o -z "$znodeParentPath" -o -z "$topN" -o -z "$zkVersion" ]; then
     echo "bash /home/zookeeper/zk-monitor/count_znode.sh <dataDir> <zkHome> <clientPort> <znodeParentPath> <topN> <zkVersion>"
-    echo 'bash /home/zookeeper/zk-monitor/count_znode.sh "/home/zookeeper/data/" "/home/zookeeper/software/zookeeper" "2015" "/" "3" "3.4.6"'
+    echo 'bash /home/zookeeper/zk-monitor/count_znode.sh "/home/zookeeper/data/" "/home/zookeeper/software/zookeeper" "2181" "/" "3" "3.4.6"'
     exit
 fi
 
