@@ -36,14 +36,14 @@ __[http://www.yuzhouwan.com][0]__
 **人工智能** 1020982&ensp;&ensp;(__*1000*__人大群)
 
 本群创建于2003/7/24:  
-&ensp;&ensp;研究 AI 人工智能 相关领域，欢迎加入，互相学习，共同进步
-&ensp;&ensp;讨论包括，统计学、NLP、Data Mining、Deep Learning、Machine Learning、AI 人工智能 等相关领域
+&ensp;&ensp;研究 AI 人工智能 相关领域，欢迎加入，互相学习，共同进步<br/>
+&ensp;&ensp;讨论包括，统计学、NLP、Data Mining、Deep Learning、Machine Learning、AI 人工智能 等相关领域<br/>
 
-&ensp;&ensp;从 深蓝到 AlaphGo，人工智能的智力水平、普适性、学习能力 正在以爆炸式地速度快速发展；
-&ensp;&ensp;从 棋类到 医学，人工智能开始在各类应用领域，都在大展身手；
-&ensp;&ensp;从 CPU/GPU 到 TPU，人工智能的计算能力正向着无法穷举的极限不断逼近…
+&ensp;&ensp;从 深蓝到 AlaphGo，人工智能的智力水平、普适性、学习能力 正在以爆炸式地速度快速发展；<br/>
+&ensp;&ensp;从 棋类到 医学，人工智能开始在各类应用领域，都在大展身手；<br/>
+&ensp;&ensp;从 CPU/GPU 到 TPU，人工智能的计算能力正向着无法穷举的极限不断逼近…<br/>
 
-&ensp;&ensp;本群持续更新的一篇人工智能的博客：
+&ensp;&ensp;本群持续更新的一篇人工智能的博客：<br/>
 &ensp;&ensp;http://yuzhouwan.com/posts/42737/ 
 
 欢迎加入，一起交流学习 :D 
