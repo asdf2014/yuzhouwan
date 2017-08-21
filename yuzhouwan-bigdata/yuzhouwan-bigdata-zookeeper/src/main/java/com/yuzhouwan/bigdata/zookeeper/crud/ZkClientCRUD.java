@@ -83,28 +83,23 @@ public class ZkClientCRUD {
         String origin = "/origin";
         if (!zkClientCRUD.exist(origin))
             zkClientCRUD.create(origin, "", CreateMode.PERSISTENT);
-        String path1 = origin.concat("/1");
-        String path2 = origin.concat("/2");
-        String path3 = origin.concat("/3");
-        String path4 = origin.concat("/4");
-        zkClientCRUD.create(path1, "1", CreateMode.EPHEMERAL);
-        zkClientCRUD.create(path2, "2", CreateMode.EPHEMERAL);
-        zkClientCRUD.create(path3, "3", CreateMode.EPHEMERAL);
-        zkClientCRUD.create(path4, "4", CreateMode.EPHEMERAL);
+        int len = 4;
+        String[] paths = new String[len];
+        String path;
+        for (int i = 0; i < len; i++) {
+            path = origin.concat("/" + i);
+            paths[i] = path;
+            if (!zkClientCRUD.exist(path)) zkClientCRUD.create(path, "" + i, CreateMode.PERSISTENT);
+        }
 
-        System.out.println(zkClientCRUD.read(path1));
+        for (String s : paths) {
+            zkClientCRUD.watch(s);
+            System.out.println(zkClientCRUD.read(s));
+        }
 //        System.out.println(zkClientCRUD.read(origin.concat("/1,/2")));    // not support list
 //        System.out.println(zkClientCRUD.read(origin.concat("/*")));       // not support pattern
 
-        zkClientCRUD.watch(path1);
-        zkClientCRUD.watch(path2);
-        zkClientCRUD.watch(path3);
-        zkClientCRUD.watch(path4);
-
-        zkClientCRUD.delete(path1);
-        zkClientCRUD.delete(path2);
-        zkClientCRUD.delete(path3);
-        zkClientCRUD.delete(path4);
-        zkClientCRUD.delete(origin);
+        for (String p : paths) zkClientCRUD.delete(p);
+        System.out.println("Done.");
     }
 }

@@ -60,7 +60,7 @@ public class ZKBenchmarkRead {
     private void init() {
         curatorFramework = CuratorFrameworkFactory
                 .builder()
-                .connectString("10.27.129.60:2181,10.27.129.60:2182,10.27.129.60:2183")
+                .connectString("localhost:2181")
                 .connectionTimeoutMs(500)
                 .sessionTimeoutMs(1000)
                 .retryPolicy(new ExponentialBackoffRetry(100, 3))
