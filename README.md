@@ -10,7 +10,7 @@ __[http://www.yuzhouwan.com][0]__
 ## Code Library for Blog
 
 - Advance Maven Skill
-- BigData&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;(Hadoop **/** Storm **/** Spark **/** HBase **/** ElasticSearch **/** Druid **/** Kafka **/** Flume **/** Zookeeper)
+- BigData&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;(Hadoop **/** Storm **/** Spark **/** HBase **/** ElasticSearch **/** Druid **/** Kafka **/** Flume **/** Redis **/** Zookeeper)
 - Hack technology&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;(Algorithm **/** Leetcode **/** Code Generate **/** Effective Code **/** Multi Threads **/** Lambda **/** SNMP)
 - Languages&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;(Java for Most Logic **/** Scala Feature **/** Groovy for DSL **/** Python for SQL Parser **/** 
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Shell for JVM Monitor)
