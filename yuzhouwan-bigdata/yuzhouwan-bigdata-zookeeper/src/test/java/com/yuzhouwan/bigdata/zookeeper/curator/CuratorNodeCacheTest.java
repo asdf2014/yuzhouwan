@@ -8,7 +8,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Copyright @ 2017 suning.com
+ * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
  * Function：Curator Node Cache Test
  *
