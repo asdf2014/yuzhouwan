@@ -9,13 +9,13 @@ __[http://www.yuzhouwan.com][0]__
 
 ## Code Library for Blog
 
-- Advance Maven Skill
-- BigData&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;(Hadoop **/** Storm **/** Spark **/** HBase **/** ElasticSearch **/** Druid **/** Kafka **/** Flume **/** Redis **/** Zookeeper)
-- Hack technology&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;(Algorithm **/** Leetcode **/** Code Generate **/** Effective Code **/** Multi Threads **/** Lambda **/** SNMP)
-- Languages&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;(Java for Most Logic **/** Scala Feature **/** Groovy for DSL **/** Python for SQL Parser **/** 
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Shell for JVM Monitor)
-- WebSite&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;(RPC **/** NIO **/** Spring stuff **/** Swagger for Doc)
-- A lot of Commons Utils
+- Advance [Maven](http://yuzhouwan.com/posts/2254/) Skill
+- BigData&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;([Hadoop](http://yuzhouwan.com/posts/60504/) **/** [Storm](http://yuzhouwan.com/posts/25015/) **/** [Spark](http://yuzhouwan.com/posts/4735/) **/** [HBase](http://yuzhouwan.com/posts/45888/) **/** [ElasticSearch](http://yuzhouwan.com/posts/22654/) **/** [Druid](http://yuzhouwan.com/posts/5845/) **/** [Kafka](http://yuzhouwan.com/posts/26002/) **/** [Flume](http://yuzhouwan.com/posts/22654#%e6%95%b4%e5%90%88%e5%bc%80%e5%8f%91) **/** [Redis](http://yuzhouwan.com/posts/2129/) **/** [Zookeeper](http://yuzhouwan.com/posts/31915/))
+- Hack technology&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;([Algorithm](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-hacker/src/main/java/com/yuzhouwan/hacker/algorithms) **/** [Leetcode](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-hacker/src/main/java/com/yuzhouwan/hacker/algorithms/leetcode) **/** [Code Generate](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-hacker/src/main/java/com/yuzhouwan/hacker/codegen) **/** [Effective Code](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-hacker/src/main/java/com/yuzhouwan/hacker/effective) **/** [Multi Threads](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-hacker/src/main/java/com/yuzhouwan/hacker/algorithms/thread) **/** [Lambda](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-hacker/src/main/java/com/yuzhouwan/hacker/lambda) **/** [SNMP](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-hacker/src/main/java/com/yuzhouwan/hacker/snmp))
+- Languages&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;([Java](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-hacker/src/main/java/com/yuzhouwan/hacker) for Most Logic **/** [Scala](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-hacker/src/main/scala/com/yuzhouwan/hacker) Feature **/** [Groovy](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-hacker/src/main/groovy/com/yuzhouwan/hacker) for DSL **/** [Python](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-hacker/yuzhouwan-hacker-python) for SQL Parser **/** 
+  &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;[Shell](https://github.com/asdf2014/yuzhouwan/blob/master/yuzhouwan-common/src/main/resources/shell/gc_monitor2.sh) for [JVM](http://yuzhouwan.com/posts/27328/) Monitor)
+- [WebSite](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-site)&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;([RPC](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-site/yuzhouwan-site-service/src/test/java/com/yuzhouwan/site/service) **/** [NIO](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-site/yuzhouwan-site-service/src/main/java/com/yuzhouwan/site/service/nio) **/** [Spring](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-site/yuzhouwan-site-service/src/main/resources) stuff **/** [Swagger](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-site/yuzhouwan-site-service/src/main/webapp) for Doc)
+- A lot of Commons [Utils](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-common/src/main/java/com/yuzhouwan/common/util)
 
 [0]:http://www.yuzhouwan.com
 
@@ -35,7 +35,7 @@ __[http://www.yuzhouwan.com][0]__
 
 **人工智能** 1020982&ensp;&ensp;(__*1000*__人大群)
 
-本群创建于2003/7/24:  
+本群创建于2003/7/24: <br/>
 &ensp;&ensp;研究 AI 人工智能 相关领域，欢迎加入，互相学习，共同进步<br/>
 &ensp;&ensp;讨论包括，统计学、NLP、Data Mining、Deep Learning、Machine Learning、AI 人工智能 等相关领域<br/>
 
