@@ -48,25 +48,25 @@ public class AuthIPExample {
     @Test
     public void ipAcl() throws Exception {
         /*
-        $ zkCli.sh -server localhost:2015
-        [zk: localhost:2015(CONNECTED) 16] ls /
+        $ zkCli.sh -server localhost:2181
+        [zk: localhost:2181(CONNECTED) 16] ls /
         [leader, election, zookeeper, origin, ip, auth_test, benchmark]
 
-        [zk: localhost:2015(CONNECTED) 17] ls /ip
+        [zk: localhost:2181(CONNECTED) 17] ls /ip
         Authentication is not valid : /ip
 
-        [zk: localhost:2015(CONNECTED) 18] getAcl /ip
+        [zk: localhost:2181(CONNECTED) 18] getAcl /ip
           'ip,'10.24.40.178
           : cdrwa
           'ip,'127.0.0.1
           : cdrwa
 
 
-        $ zkCli.sh -server 127.0.0.1:2015
-        [zk: 127.0.0.1:2015(CONNECTED) 1] ls /ip
+        $ zkCli.sh -server 127.0.0.1:2181
+        [zk: 127.0.0.1:2181(CONNECTED) 1] ls /ip
           []
 
-        [zk: 127.0.0.1:2015(CONNECTED) 2] get /ip
+        [zk: 127.0.0.1:2181(CONNECTED) 2] get /ip
           ip
           cZxid = 0x10000c43b
           ctime = Tue Aug 22 16:50:37 CST 2017

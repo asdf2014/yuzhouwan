@@ -39,31 +39,35 @@ public class AuthDigestExample {
     @Test
     public void digestAcl() throws Exception {
         /*
+        $ zkCli.sh -server localhost:2181
         [zk: localhost:2181(CONNECTED) 5] ls /
-        [leader, auth_test, election, zookeeper, benchmark, origin]
+          [leader, auth_test, election, zookeeper, benchmark, origin]
+
         [zk: localhost:2181(CONNECTED) 6] ls /auth_test
-        Authentication is not valid : /auth_test
+          Authentication is not valid : /auth_test
+
         [zk: localhost:2181(CONNECTED) 7] get /auth_test
-        Authentication is not valid : /auth_test
-        [zk: localhost:2181(CONNECTED) 8]
+          Authentication is not valid : /auth_test
+
         [zk: localhost:2181(CONNECTED) 8] getAcl /auth_test
-        'digest,'yuzhouwan:h/j+/wDlblTtA48jnbq8snP1glA=
-        : cdrwa
+          'digest,'yuzhouwan:h/j+/wDlblTtA48jnbq8snP1glA=
+          : cdrwa
+
         [zk: localhost:2181(CONNECTED) 9] addauth digest yuzhouwan:true
-        [zk: localhost:2181(CONNECTED) 10]
+
         [zk: localhost:2181(CONNECTED) 10] get /auth_test
-        /auth_test
-        cZxid = 0x10000c31e
-        ctime = Tue Aug 22 15:26:27 CST 2017
-        mZxid = 0x10000c31e
-        mtime = Tue Aug 22 15:26:27 CST 2017
-        pZxid = 0x10000c31e
-        cversion = 0
-        dataVersion = 0
-        aclVersion = 0
-        ephemeralOwner = 0x0
-        dataLength = 10
-        numChildren = 0
+          /auth_test
+          cZxid = 0x10000c31e
+          ctime = Tue Aug 22 15:26:27 CST 2017
+          mZxid = 0x10000c31e
+          mtime = Tue Aug 22 15:26:27 CST 2017
+          pZxid = 0x10000c31e
+          cversion = 0
+          dataVersion = 0
+          aclVersion = 0
+          ephemeralOwner = 0x0
+          dataLength = 10
+          numChildren = 0
           */
         if (zoo.exists(AUTH_PATH_CHILD, null) != null) zoo.delete(AUTH_PATH_CHILD, -1);
         if (zoo.exists(AUTH_PATH, null) != null) zoo.delete(AUTH_PATH, -1);
