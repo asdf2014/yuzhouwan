@@ -1,5 +1,5 @@
 #!/bin/sh
-# */1 * * * * bash /home/yuzhouwan/keepalive.sh "yuzhouwan-1.0.0-jar-with-dependencies.jar" "nohup java -jar /home/yuzhouwan/yuzhouwan-1.0.0-jar-with-dependencies.jar >> /home/yuzhouwan/logs/nohup.log 2>&1 &"
+# */1 * * * * bash /home/yuzhouwan/keepalive.sh "yuzhouwan-1.0.1-jar-with-dependencies.jar" "nohup java -jar /home/yuzhouwan/yuzhouwan-1.0.1-jar-with-dependencies.jar >> /home/yuzhouwan/logs/nohup.log 2>&1 &"
 
 check="$1"
 alive="$2"
