@@ -26,7 +26,7 @@ build_wchc() {
     echo wchc | nc localhost ${clientPort} > ${tmp}
 }
 
-parse_newest_wchc() {
+parse_wchc() {
     arr=`echo "ls ${znodeParentPath}" | zkCli.sh -server localhost:${clientPort} | grep zookeeper`
     # [leader, election, zookeeper]
     echo -e "Origin:\n\t ${arr}\n"
@@ -57,4 +57,4 @@ parse_newest_wchc() {
 }
 
 build_wchc
-parse_newest_wchc
+parse_wchc
