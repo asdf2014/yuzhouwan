@@ -33,7 +33,9 @@ __[http://www.yuzhouwan.com][0]__
 &ensp;&ensp;PostgreSQL / HBase / Hive / ElasticSearch / Redis / Druid 数据持久化策略、<br/>
 &ensp;&ensp;Data Mining / Machine Learning / Deep Learning / ANN / AI 数据分析领域 等等
 
-**人工智能** 1020982&ensp;&ensp;(__*1000*__人大群)
+<br/>
+
+**人工智能** 1020982 (高级) | 1217710 (初级) &ensp;&ensp;(__*1000 + 2000*__人大群)
 
 本群创建于2003/7/24: <br/>
 &ensp;&ensp;研究 AI 人工智能 相关领域，欢迎加入，互相学习，共同进步<br/>
