@@ -1,0 +1,1 @@
+Put this directory into $ZOOKEEPER_HOME.

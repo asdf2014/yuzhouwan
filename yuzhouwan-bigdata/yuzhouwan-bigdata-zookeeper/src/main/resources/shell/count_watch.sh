@@ -1,33 +1,45 @@
 #!/usr/bin/env bash
 
-# bash /home/zookeeper/zk-monitor/count_watch.sh "2181" "/" "3"
+cd `dirname $0`
+source ~/.bashrc
 
-tmpPath="/home/zookeeper/zk-monitor/wchc"
-clientPort="$1"
-znodeParentPath="$2"
-topN="$3"
+tmpPath="/tmp/zookeeper/zk-monitor/wchc"
+clientPort=`cat ../conf/zoo.cfg | grep clientPort | sed 's/.*=//g'`
+znodeParentPath="$1"
+topN="$2"
 
-if [ -z "$clientPort" -o -z "$znodeParentPath" -o -z "$topN" ]; then
-    echo "bash /home/zookeeper/zk-monitor/count_watch.sh <clientPort> <znodeParentPath> <topN>"
-    echo 'bash /home/zookeeper/zk-monitor/count_watch.sh "2181" "/" "3"'
-    exit
+if [ -z "${clientPort}" ]; then
+    echo "Cannot get clientPort from '../conf/zoo.cfg'!"
+    exit 0
+fi
+
+if [ -z "$znodeParentPath" -o -z "$topN" ]; then
+    echo "Usage:"
+    echo -e "\t bash /home/zookeeper/software/zookeeper/tools/count_watch.sh <znodeParentPath> <topN>"
+    echo -e '\t bash /home/zookeeper/software/zookeeper/tools/count_watch.sh "/" "3"\n'
+    if [ -z "$znodeParentPath" ]; then
+        znodeParentPath="/"
+        echo "Default znodeParentPath is '/'."
+    fi
+    if [ -z "$topN" ]; then
+        topN="10"
+        echo "Default topN is 10."
+    fi
 fi
 
 command -v nc >/dev/null 2>&1 || {
-    echo >&2 "I require nc but it's not installed. Try install...";
-    yum install nc;
-    command -v nc >/dev/null 2>&1 || { echo >&2 "I require nc but it's still cannot be installed. Aborting..."; exit 1; }
+    echo >&2 "I require nc but it's not installed. Try install..." ; exit 1;
 }
 
 build_wchc() {
     mkdir -p ${tmpPath}
-    tmp=${tmpPath}/wchc.`date '+%Y%m%d%H%M%S'`
+    tmp=${tmpPath}/wchc.`date '+d%H%M'`
     echo "Tmp: ${tmp}"
     echo wchc | nc localhost ${clientPort} > ${tmp}
 }
 
 parse_wchc() {
-    arr=`echo "ls ${znodeParentPath}" | zkCli.sh -server localhost:${clientPort} | grep zookeeper`
+    arr=`echo "ls ${znodeParentPath}" | zkCli.sh -server localhost:${clientPort} |& grep -e "\[*\]" | grep -v CONNECT`
     # [leader, election, zookeeper]
     echo -e "Origin:\n\t ${arr}\n"
 
@@ -39,10 +51,13 @@ parse_wchc() {
     IFS=$", "
     arr=(${arr})
 
-    result=
+    if [ ${znodeParentPath} != "/" ]; then
+        znodeParentPath="${znodeParentPath}/"
+    fi
     for a in ${arr[@]}; do
-        count=`cat ${tmp} | grep "/${a}" | wc -l`
-        result=`echo -e "\t\t${result}\n${count}\t/${a}"`
+        # -t
+        count=`cat ${tmp} | grep "${znodeParentPath}${a}" | wc -l`
+        result=`echo -e "\t\t${result}\n${count}\t${znodeParentPath}${a}"`
     done
 
     # 0	/election
@@ -58,3 +73,4 @@ parse_wchc() {
 
 build_wchc
 parse_wchc
+exit 0

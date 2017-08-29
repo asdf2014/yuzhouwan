@@ -1,19 +1,30 @@
 #!/usr/bin/env bash
 
-# bash /home/zookeeper/zk-monitor/count_znode.sh "/home/zookeeper/data/" "/home/zookeeper/software/zookeeper" "2181" "/" "3" "3.4.6"
+cd `dirname $0`
+source ~/.bashrc
 
-tmpPath="/home/zookeeper/zk-monitor/snapshot"
-dataDir="$1"
-zkHome="$2"
-clientPort="$3"
-znodeParentPath="$4"
-topN="$5"
-zkVersion="$6"
+tmpPath="/tmp/zookeeper/zk-monitor/snapshot"
+# default
+# get variables form config file
+dataDir=`cat ../conf/zoo.cfg | grep dataDir | sed 's/.*=//g'`
+zkHome=`readlink -f ../../zookeeper`"/"
+clientPort=`cat ../conf/zoo.cfg | grep clientPort | sed 's/.*=//g'`
+zkVersion=`ls ../ | grep -e "^zookeeper-.*jar$"`
+znodeParentPath="$1"
+topN="$2"
 
-if [ -z "$dataDir" -o -z "$zkHome" -o -z "$clientPort" -o -z "$znodeParentPath" -o -z "$topN" -o -z "$zkVersion" ]; then
-    echo "bash /home/zookeeper/zk-monitor/count_znode.sh <dataDir> <zkHome> <clientPort> <znodeParentPath> <topN> <zkVersion>"
-    echo 'bash /home/zookeeper/zk-monitor/count_znode.sh "/home/zookeeper/data/" "/home/zookeeper/software/zookeeper" "2181" "/" "3" "3.4.6"'
-    exit
+if [ -z "$znodeParentPath" -o -z "$topN" ]; then
+    echo "Usage:"
+    echo -e "\t bash /home/zookeeper/software/zookeeper/tools/count_znode.sh <znodeParentPath> <topN>"
+    echo -e '\t bash /home/zookeeper/software/zookeeper/tools/count_znode.sh "/" "3"\n'
+    if [ -z "$znodeParentPath" ]; then
+        znodeParentPath="/"
+        echo "Default znodeParentPath is '/'."
+    fi
+    if [ -z "$topN" ]; then
+        topN="10"
+        echo "Default topN is 10."
+    fi
 fi
 
 build_newest_snapshot() {
@@ -23,14 +34,14 @@ build_newest_snapshot() {
 
     cd ${zkHome}
     mkdir -p ${tmpPath}
-    tmp=${tmpPath}/snapshot.`date '+%Y%m%d%H%M%S'`
+    tmp=${tmpPath}/snapshot.`date '+%H%M'`
     # Tmp: /home/zookeeper/zk-monitor/snapshot/snapshot.20170816142407
     echo "Tmp: ${tmp}"
-    java -cp zookeeper-${zkVersion}.jar:lib/* org.apache.zookeeper.server.SnapshotFormatter ${newest_snapshot} > ${tmp}
+    java -cp ${zkHome}${zkVersion}:${zkHome}lib/* org.apache.zookeeper.server.SnapshotFormatter ${newest_snapshot} > ${tmp}
 }
 
 parse_newest_snapshot() {
-    arr=`echo "ls ${znodeParentPath}" | zkCli.sh -server localhost:${clientPort} | grep zookeeper`
+    arr=`echo "ls ${znodeParentPath}" | zkCli.sh -server localhost:${clientPort} |& grep -e "\[*\]" | grep -v CONNECT`
     # [leader, election, zookeeper]
     echo -e "Origin:\n\t ${arr}\n"
 
@@ -42,10 +53,12 @@ parse_newest_snapshot() {
     IFS=$", "
     arr=(${arr})
 
-    result=
+    if [ ${znodeParentPath} != "/" ]; then
+        znodeParentPath="${znodeParentPath}/"
+    fi
     for a in ${arr[@]}; do
-        count=`cat ${tmp} | grep "/${a}" | wc -l`
-        result=`echo -e "\t\t${result}\n${count}\t/${a}"`
+        count=`cat ${tmp} | grep -e "^${znodeParentPath}${a}" | wc -l`
+        result=`echo -e "\t\t${result}\n${count}\t${znodeParentPath}${a}"`
     done
 
     # 0	/election
@@ -61,3 +74,4 @@ parse_newest_snapshot() {
 
 build_newest_snapshot
 parse_newest_snapshot
+exit 0
