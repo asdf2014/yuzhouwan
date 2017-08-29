@@ -101,33 +101,35 @@ public class ZKBenchmarkRead {
 
     @Setup
     public void initBench() throws Exception {
+        String threadName = Thread.currentThread().getName();
+
         int size = 1;
-        znodePath1B = "/node" + size;
+        znodePath1B = "/node" + size + threadName;
         byte[] jute1B = new byte[size];
         for (int i = 0; i < size; i++) jute1B[i] = FILL_CHAR;
 
         size = 10;
-        znodePath10B = "/node" + size;
+        znodePath10B = "/node" + size + threadName;
         byte[] jute10B = new byte[size];
         for (int i = 0; i < size; i++) jute10B[i] = FILL_CHAR;
 
         size = 100;
-        znodePath100B = "/node" + size;
+        znodePath100B = "/node" + size + threadName;
         byte[] jute100B = new byte[size];
         for (int i = 0; i < size; i++) jute100B[i] = FILL_CHAR;
 
         size = 1024;
-        znodePath1KB = "/node" + size;
+        znodePath1KB = "/node" + size + threadName;
         byte[] jute1KB = new byte[size];
         for (int i = 0; i < size; i++) jute1KB[i] = FILL_CHAR;
 
         size = 10 * 1024;
-        znodePath10KB = "/node" + size;
+        znodePath10KB = "/node" + size + threadName;
         byte[] jute10KB = new byte[size];
         for (int i = 0; i < size; i++) jute10KB[i] = FILL_CHAR;
 
         size = 100 * 1024;
-        znodePath100KB = "/node" + size;
+        znodePath100KB = "/node" + size + threadName;
         byte[] jute100KB = new byte[size];
         for (int i = 0; i < size; i++) jute100KB[i] = FILL_CHAR;
 

@@ -83,8 +83,8 @@ public class ZKBenchmarkWrite {
     private byte[] jute10KB;
     private String znodePath100KB;
     private byte[] jute100KB;
-    private String znodePath1000KB;
-    private byte[] jute1000KB;
+//    private String znodePath1000KB;
+//    private byte[] jute1000KB;
     private static ZKBenchmarkWrite bench;
 
     /*
@@ -110,40 +110,42 @@ public class ZKBenchmarkWrite {
 
     @Setup
     public void initBench() throws Exception {
+        String threadName = Thread.currentThread().getName();
+
         int size = 1;
-        znodePath1B = "/node" + size;
+        znodePath1B = "/node" + size + threadName;
         jute1B = new byte[size];
         for (int i = 0; i < size; i++) jute1B[i] = FILL_CHAR;
 
         size = 10;
-        znodePath10B = "/node" + size;
+        znodePath10B = "/node" + size + threadName;
         jute10B = new byte[size];
         for (int i = 0; i < size; i++) jute10B[i] = FILL_CHAR;
 
         size = 100;
-        znodePath100B = "/node" + size;
+        znodePath100B = "/node" + size + threadName;
         jute100B = new byte[size];
         for (int i = 0; i < size; i++) jute100B[i] = FILL_CHAR;
 
         size = 1024;
-        znodePath1KB = "/node" + size;
+        znodePath1KB = "/node" + size + threadName;
         jute1KB = new byte[size];
         for (int i = 0; i < size; i++) jute1KB[i] = FILL_CHAR;
 
         size = 10 * 1024;
-        znodePath10KB = "/node" + size;
+        znodePath10KB = "/node" + size + threadName;
         jute10KB = new byte[size];
         for (int i = 0; i < size; i++) jute10KB[i] = FILL_CHAR;
 
         size = 100 * 1024;
-        znodePath100KB = "/node" + size;
+        znodePath100KB = "/node" + size + threadName;
         jute100KB = new byte[size];
         for (int i = 0; i < size; i++) jute100KB[i] = FILL_CHAR;
 
-        size = 1000 * 1024;
-        znodePath1000KB = "/node" + size;
-        jute1000KB = new byte[size];
-        for (int i = 0; i < size; i++) jute1000KB[i] = FILL_CHAR;
+//        size = 1000 * 1024;
+//        znodePath1000KB = "/node" + size;
+//        jute1000KB = new byte[size];
+//        for (int i = 0; i < size; i++) jute1000KB[i] = FILL_CHAR;
 
         bench = new ZKBenchmarkWrite();
         if (existNode(znodePath1B)) bench.deleteNode(znodePath1B);
@@ -152,14 +154,14 @@ public class ZKBenchmarkWrite {
         if (existNode(znodePath1KB)) bench.deleteNode(znodePath1KB);
         if (existNode(znodePath10KB)) bench.deleteNode(znodePath10KB);
         if (existNode(znodePath100KB)) bench.deleteNode(znodePath100KB);
-        if (existNode(znodePath1000KB)) bench.deleteNode(znodePath1000KB);
+//        if (existNode(znodePath1000KB)) bench.deleteNode(znodePath1000KB);
         if (!existNode(znodePath1B)) bench.createNode(znodePath1B);
         if (!existNode(znodePath10B)) bench.createNode(znodePath10B);
         if (!existNode(znodePath100B)) bench.createNode(znodePath100B);
         if (!existNode(znodePath1KB)) bench.createNode(znodePath1KB);
         if (!existNode(znodePath10KB)) bench.createNode(znodePath10KB);
         if (!existNode(znodePath100KB)) bench.createNode(znodePath100KB);
-        if (!existNode(znodePath1000KB)) bench.createNode(znodePath1000KB);
+//        if (!existNode(znodePath1000KB)) bench.createNode(znodePath1000KB);
     }
 
     @Benchmark
@@ -194,9 +196,9 @@ public class ZKBenchmarkWrite {
 
     // Too dangerous!!
 //    @Benchmark
-    public void dataSize007WriteBenchmark1000KB() throws Exception {
-        bench.writeNode(znodePath1000KB, jute1000KB);
-    }
+//    public void dataSize007WriteBenchmark1000KB() throws Exception {
+//        bench.writeNode(znodePath1000KB, jute1000KB);
+//    }
 
     private boolean existNode(String path) throws Exception {
         return curatorFramework.checkExists().forPath(path) != null;
@@ -229,7 +231,8 @@ public class ZKBenchmarkWrite {
         bench.deleteNode(znodePath1KB);
         bench.deleteNode(znodePath10KB);
         bench.deleteNode(znodePath100KB);
-        bench.deleteNode(znodePath1000KB);
+//        bench.deleteNode(znodePath1000KB);
+        close();
         close();
     }
 
