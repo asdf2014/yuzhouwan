@@ -41,7 +41,7 @@ build_newest_snapshot() {
 }
 
 parse_newest_snapshot() {
-    arr=`echo "ls ${znodeParentPath}" | zkCli.sh -server localhost:${clientPort} |& grep -e "\[*\]" | grep -v CONNECT`
+    arr=`echo "ls ${znodeParentPath}" | zkCli.sh -server localhost:${clientPort} |& grep -e "\[*\]" | grep -v CONNECT | grep -v myid | grep -v ${clientPort}`
     # [leader, election, zookeeper]
     echo -e "Origin:\n\t ${arr}\n"
 
