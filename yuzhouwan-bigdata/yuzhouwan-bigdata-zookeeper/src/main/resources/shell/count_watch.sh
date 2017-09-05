@@ -10,7 +10,7 @@ topN="$2"
 
 if [ -z "${clientPort}" ]; then
     echo "Cannot get clientPort from '../conf/zoo.cfg'!"
-    exit 0
+    exit 1
 fi
 
 if [ -z "$znodeParentPath" -o -z "$topN" ]; then
@@ -28,7 +28,7 @@ if [ -z "$znodeParentPath" -o -z "$topN" ]; then
 fi
 
 command -v nc >/dev/null 2>&1 || {
-    echo >&2 "I require nc but it's not installed. Try install..." ; exit 1;
+    echo >&2 "I require nc but it's not installed. Try install..."; exit 1;
 }
 
 build_wchc() {
@@ -39,7 +39,7 @@ build_wchc() {
 }
 
 parse_wchc() {
-    arr=`echo "ls ${znodeParentPath}" | zkCli.sh -server localhost:${clientPort} |& grep -e "\[*\]" | grep -v CONNECT | grep -v myid | grep -v ${clientPort}`
+    arr=`echo "ls ${znodeParentPath}" | zkCli.sh -server localhost:${clientPort} |& grep -v CONNECT | grep -v myid | grep -e "\[*\]"`
     # [leader, election, zookeeper]
     echo -e "Origin:\n\t ${arr}\n"
 
@@ -55,7 +55,6 @@ parse_wchc() {
         znodeParentPath="${znodeParentPath}/"
     fi
     for a in ${arr[@]}; do
-        # -t
         count=`cat ${tmp} | grep "${znodeParentPath}${a}" | wc -l`
         result=`echo -e "\t\t${result}\n${count}\t${znodeParentPath}${a}"`
     done

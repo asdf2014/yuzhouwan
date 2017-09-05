@@ -7,11 +7,31 @@ tmpPath="/tmp/zookeeper/zk-monitor/snapshot"
 # default
 # get variables form config file
 dataDir=`cat ../conf/zoo.cfg | grep dataDir | sed 's/.*=//g'`
-zkHome=`readlink -f ../../zookeeper`"/"
 clientPort=`cat ../conf/zoo.cfg | grep clientPort | sed 's/.*=//g'`
+zkHome=`readlink -f ../../zookeeper`"/"
 zkVersion=`ls ../ | grep -e "^zookeeper-.*jar$"`
 znodeParentPath="$1"
 topN="$2"
+
+if [ -z "${dataDir}" ]; then
+    echo "Cannot get dataDir from '../conf/zoo.cfg'!"
+    exit 1
+fi
+
+if [ -z "${clientPort}" ]; then
+    echo "Cannot get clientPort from '../conf/zoo.cfg'!"
+    exit 1
+fi
+
+if [ -z "${zkHome}" ]; then
+    echo "Cannot get zkHome!"
+    exit 1
+fi
+
+if [ -z "${zkVersion}" ]; then
+    echo "Cannot get zkVersion!"
+    exit 1
+fi
 
 if [ -z "$znodeParentPath" -o -z "$topN" ]; then
     echo "Usage:"
@@ -35,13 +55,13 @@ build_newest_snapshot() {
     cd ${zkHome}
     mkdir -p ${tmpPath}
     tmp=${tmpPath}/snapshot.`date '+%H%M'`
-    # Tmp: /home/zookeeper/zk-monitor/snapshot/snapshot.20170816142407
+    # Tmp: /tmp/zookeeper/zk-monitor/snapshot/snapshot.20170816142407
     echo "Tmp: ${tmp}"
     java -cp ${zkHome}${zkVersion}:${zkHome}lib/* org.apache.zookeeper.server.SnapshotFormatter ${newest_snapshot} > ${tmp}
 }
 
 parse_newest_snapshot() {
-    arr=`echo "ls ${znodeParentPath}" | zkCli.sh -server localhost:${clientPort} |& grep -e "\[*\]" | grep -v CONNECT | grep -v myid | grep -v ${clientPort}`
+    arr=`echo "ls ${znodeParentPath}" | zkCli.sh -server localhost:${clientPort} |& grep -v CONNECT | grep -v myid | grep -e "\[*\]"`
     # [leader, election, zookeeper]
     echo -e "Origin:\n\t ${arr}\n"
 
