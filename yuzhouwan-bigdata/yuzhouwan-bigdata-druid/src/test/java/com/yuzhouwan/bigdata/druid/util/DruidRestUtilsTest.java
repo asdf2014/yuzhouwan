@@ -3,6 +3,8 @@ package com.yuzhouwan.bigdata.druid.util;
 import com.yuzhouwan.common.dir.DirUtils;
 import com.yuzhouwan.common.util.FileUtils;
 import com.yuzhouwan.common.util.StrUtils;
+import org.junit.Ignore;
+import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
@@ -16,7 +18,8 @@ import static org.junit.Assert.assertEquals;
  */
 public class DruidRestUtilsTest {
 
-    //    @Test
+    @Ignore
+    @Test
     public void testPost() throws Exception {
         String except = new String(FileUtils.readFile(DirUtils.TEST_RESOURCES_PATH.concat(
                 "rest/druid.query.result.json")));

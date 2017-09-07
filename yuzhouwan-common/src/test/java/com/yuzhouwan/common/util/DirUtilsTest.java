@@ -2,6 +2,7 @@ package com.yuzhouwan.common.util;
 
 import com.yuzhouwan.common.dir.DirUtils;
 import com.yuzhouwan.common.dir.WatchRunnable;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.File;
@@ -79,7 +80,8 @@ public class DirUtilsTest {
         DirUtils.findPath(DirUtils.getClassesPath(), "prop", ".properties", true).forEach(System.out::println);
     }
 
-//    @Test
+    @Ignore
+    @Test
     public void testBuildWatchService() throws Exception {
         WatchRunnable thread = DirUtils.buildWatchService("Z:/watch");
         assertEquals(null, thread);

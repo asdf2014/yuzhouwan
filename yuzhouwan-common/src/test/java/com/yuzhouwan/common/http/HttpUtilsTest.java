@@ -1,6 +1,8 @@
 package com.yuzhouwan.common.http;
 
 import com.alibaba.fastjson.JSON;
+import org.junit.Ignore;
+import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +19,9 @@ import static org.junit.Assert.assertEquals;
  */
 public class HttpUtilsTest {
 
-    //    @Test     //need run yuzhouwan-site before test
+    @Ignore
+    @Test
+    //need run yuzhouwan-site before test
     public void getPlainTestLocal() throws Exception {
         String urlD = "http://localhost:8080/full/delete";
         Map<String, Object> paramsD = new HashMap<>();
@@ -58,9 +62,9 @@ public class HttpUtilsTest {
         }
     }
 
-    //    @Test
+    @Ignore
+    @Test
     public void getPlainTestLocalUnNormal() throws Exception {
-
         String url = "http://localhost:8080/full/nothing";
         try {
             HttpUtils.getInstance().postPlain(url, new HashMap<>(), null);

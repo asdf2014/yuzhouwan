@@ -16,6 +16,8 @@ import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.common.unit.ByteSizeUnit;
 import org.elasticsearch.common.unit.ByteSizeValue;
 import org.elasticsearch.common.unit.TimeValue;
+import org.junit.Ignore;
+import org.junit.Test;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -59,7 +61,8 @@ public class ElasticNodeClient {
         }
     }
 
-    //    @Test
+    @Ignore
+    @Test
     public void testIndex() throws Exception {
 
         if (client == null)
@@ -84,7 +87,8 @@ public class ElasticNodeClient {
         System.out.println("IsCreated: " + response.isCreated());
     }
 
-    //    @Test
+    @Ignore
+    @Test
     public void testGet() throws Exception {
 
         if (client == null)
@@ -97,7 +101,8 @@ public class ElasticNodeClient {
 
     }
 
-    //    @Test
+    @Ignore
+    @Test
     public void testDelete() throws Exception {
 
         if (client == null)
@@ -108,7 +113,8 @@ public class ElasticNodeClient {
             System.out.println("Id: " + response.getId());
     }
 
-    //    @Test
+    @Ignore
+    @Test
     public void testUpdate() throws Exception {
 
         if (client == null)
@@ -123,7 +129,8 @@ public class ElasticNodeClient {
         }
     }
 
-    //    @Test
+    @Ignore
+    @Test
     public void testBulkProcess() throws Exception {
 
         if (client == null)

@@ -1,5 +1,6 @@
 package com.yuzhouwan.common.util;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -14,7 +15,8 @@ import static org.junit.Assert.assertEquals;
  */
 public class JarUtilsTest {
 
-//    @Test
+    @Ignore
+    @Test
     public void listDirWithinJarTest() throws Exception {
         assertEquals("yuzhouwan.com", JarUtils.getInstance().getProperty("site.domain"));
         assertEquals("asdf's blog", JarUtils.getInstance().getProperty("blog.name"));

@@ -1,6 +1,7 @@
 package com.yuzhouwan.bigdata.kafka.util;
 
 import com.yuzhouwan.common.util.PropUtils;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -15,7 +16,8 @@ import static org.junit.Assert.assertEquals;
  */
 public class KafkaConnPoolUtilsTest {
 
-    //    @Test
+    @Ignore
+    @Test
     public void getConnTest() throws Exception {
         for (int i = 0; i < 2 * Integer.parseInt(PropUtils.getInstance().getProperty("kafka.conn.pool.size")); i++) {
             KafkaConnPoolUtils.getInstance().getConn();

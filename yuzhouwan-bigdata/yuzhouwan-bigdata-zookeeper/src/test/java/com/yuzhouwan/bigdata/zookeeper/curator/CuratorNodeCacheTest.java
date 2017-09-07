@@ -3,6 +3,7 @@ package com.yuzhouwan.bigdata.zookeeper.curator;
 import com.yuzhouwan.common.util.TimeUtils;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -21,12 +22,14 @@ public class CuratorNodeCacheTest {
     private static final int millis = 100;
     private CuratorNodeCache cache;
 
+    @Ignore
     @Before
     public void before() throws Exception {
         cache = new CuratorNodeCache();
     }
 
-//    @Test
+    @Ignore
+    @Test
     public void testWatch() throws Exception {
         cache.addNodeCacheListener(path);
         String now = TimeUtils.nowStr();
@@ -40,6 +43,7 @@ public class CuratorNodeCacheTest {
         Thread.sleep(millis);
     }
 
+    @Ignore
     @After
     public void after() throws Exception {
         assertEquals(true, cache.delPath(path));

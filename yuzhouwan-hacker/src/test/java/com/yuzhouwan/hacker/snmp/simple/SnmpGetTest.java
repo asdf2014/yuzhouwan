@@ -1,5 +1,8 @@
 package com.yuzhouwan.hacker.snmp.simple;
 
+import org.junit.Ignore;
+import org.junit.Test;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,7 +16,8 @@ import java.util.List;
  */
 public class SnmpGetTest {
 
-    //    @Test
+    @Ignore
+    @Test
     public void testSnmpGet() {
 
         String ip = "192.168.1.201";
@@ -33,7 +37,8 @@ public class SnmpGetTest {
         SnmpSimpleGet.snmpGet(ip, community, oids);
     }
 
-    //    @Test
+    @Ignore
+    @Test
     public void testSnmpSyncGet() {
 
         String ip = "192.168.1.201";

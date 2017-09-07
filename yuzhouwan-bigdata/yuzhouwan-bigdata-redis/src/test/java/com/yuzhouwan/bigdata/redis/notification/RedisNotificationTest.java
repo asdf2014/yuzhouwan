@@ -3,6 +3,7 @@ package com.yuzhouwan.bigdata.redis.notification;
 import com.yuzhouwan.bigdata.redis.conn.RedisClusterConnPool;
 import com.yuzhouwan.common.util.DynamicPropUtils;
 import com.yuzhouwan.common.util.PropUtils;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static com.yuzhouwan.bigdata.redis.conn.RedisClusterConnPool.PROJECT_NAME;
@@ -18,7 +19,8 @@ import static org.junit.Assert.assertEquals;
  */
 public class RedisNotificationTest {
 
-//    @Test
+    @Ignore
+    @Test
     public void testExpire() throws Exception {
 
         DynamicPropUtils dp = DynamicPropUtils.getInstance();

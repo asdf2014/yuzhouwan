@@ -1,5 +1,6 @@
 package com.yuzhouwan.hacker.effective;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.concurrent.ExecutorService;
@@ -31,7 +32,8 @@ public class LongAdderExample {
 
     // -Xmx512M -Xms512M -Xmn256M -XX:+AlwaysPreTouch -ea
     // JIT: -server -XX:+UnlockDiagnosticVMOptions -XX:+TraceClassLoading  -XX:+PrintAssembly -XX:+LogCompilation -XX:LogFile=pressureLongAdder.log
-//    @Test
+    @Ignore
+    @Test
     public void pressureLongAdder() throws Exception {
         final LongAdder longAdder = new LongAdder();
         ExecutorService executorService = Executors.newCachedThreadPool();
@@ -72,7 +74,8 @@ public class LongAdderExample {
     }
 
     // -Xmx512M -Xms512M -Xmn256M -XX:+AlwaysPreTouch -ea
-//    @Test
+    @Ignore
+    @Test
     public void pressureAtomicLong() throws Exception {
         final AtomicLong atomicLong = new AtomicLong();
         ExecutorService executorService = Executors.newCachedThreadPool();

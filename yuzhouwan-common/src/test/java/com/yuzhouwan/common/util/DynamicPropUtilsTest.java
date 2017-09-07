@@ -1,5 +1,6 @@
 package com.yuzhouwan.common.util;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Properties;
@@ -16,7 +17,8 @@ import static org.junit.Assert.assertEquals;
  */
 public class DynamicPropUtilsTest {
 
-//    @Test
+    @Ignore
+    @Test
     public void syncTest() throws Exception {
         String projectName = "yuzhouwan", key = "site", value = "blog";
         DynamicPropUtils dp = DynamicPropUtils.getInstance();

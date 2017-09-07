@@ -11,6 +11,8 @@ import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
+import org.junit.Ignore;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -61,7 +63,8 @@ public class QueryTermWithAnalyzerTest {
         }
     }
 
-    //    @Test
+    @Ignore
+    @Test
     public void ignoreCaseAndLikeQuery() {
 
         BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
