@@ -33,16 +33,14 @@ public class StreamClose {
 
     private static void stream(int count) throws IOException {
         ByteBufferInputStream bb = new ByteBufferInputStream(Collections.singletonList(
-                byteArray2byteBuffer((count +
-                        "\"VM Thread\" os_prio=2 tid=0x00000000177bf000 nid=0x24f4 runnable"
+                byteArray2byteBuffer((count + "\"VM Thread\" os_prio=2 tid=0x00000000177bf000 nid=0x24f4 runnable"
                 ).getBytes())));
         bb.readBuffer(1000);
     }
 
     private static void streamRelease(int count) throws IOException {
         try (ByteBufferInputStream bb = new ByteBufferInputStream(Collections.singletonList(
-                byteArray2byteBuffer((count +
-                        "\"VM Thread\" os_prio=2 tid=0x00000000177bf000 nid=0x24f4 runnable"
+                byteArray2byteBuffer((count + "\"VM Thread\" os_prio=2 tid=0x00000000177bf000 nid=0x24f4 runnable"
                 ).getBytes())))) {
             bb.readBuffer(1000);
         }

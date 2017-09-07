@@ -15,7 +15,7 @@ import java.util.List;
 public class JsonUtils {
 
     /**
-     * example for JSON
+     * example for JSON.
      *
      * @return A 数组
      */

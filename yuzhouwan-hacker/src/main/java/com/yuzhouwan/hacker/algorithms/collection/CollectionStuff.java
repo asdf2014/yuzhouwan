@@ -11,6 +11,8 @@ import java.util.Map;
  * All right reserved.
  * Function: Collection Stuff
  *
+ * @param <C>
+ * @param <E>
  * @author Benedict Jin
  * @since 2015/11/30
  */

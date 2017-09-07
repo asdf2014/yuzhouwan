@@ -24,13 +24,14 @@
         <java.version>1.8</java.version>
 
         <!-- maven -->
-        <maven.test.resource.version>2.6</maven.test.resource.version>
+        <maven.resource.plugin.version>2.6</maven.resource.plugin.version>
         <maven.compiler.plugin.version>3.5.1</maven.compiler.plugin.version>
         <maven.compiler.jdk.version>${java.version}</maven.compiler.jdk.version>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
         <maven.release.plugin.version>2.4.1</maven.release.plugin.version>
         <maven.install.plugin.version>2.5.2</maven.install.plugin.version>
         <maven.eclipse.plugin.version>2.9</maven.eclipse.plugin.version>
+        <maven.checkstyle.version>2.17</maven.checkstyle.version>
 
         <!-- groovy -->
         <groovy.version>2.3.11</groovy.version>
@@ -212,11 +213,12 @@
         <defaultGoal>install</defaultGoal>
 
         <plugins>
-            <plugin>
+            <!-- Disable this plugin for security. -->
+            <!--<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>${maven.test.resource.version}</version>
-            </plugin>
+                <version>${maven.resource.plugin.version}</version>
+            </plugin>-->
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -233,6 +235,36 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
                 <version>${maven.release.plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${maven.checkstyle.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.yuzhouwan</groupId>
+                        <artifactId>yuzhouwan-checkstyle</artifactId>
+                        <version>${project.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <headerLocation>checkstyle/style.lic</headerLocation>
+                    <configLocation>checkstyle/style.xml</configLocation>
+                    <excludes>**/avro/**,**/salt/**,**/nativeio/**</excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>checkstyle</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <failOnViolation>true</failOnViolation>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

@@ -4,11 +4,22 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Copyright @ 2017 yuzhouwan.com
+ * All right reserved.
+ * Function: Double Array Trie Tree
+ *
+ * @author Benedict Jin
+ * @since 2016/8/23
+ */
 public class DoubleArrayTrieTree {
 
-    private final static int BUF_SIZE = 16384;
-    private final static int UNIT_SIZE = 8; // size of int + int
+    private static final int BUF_SIZE = 16384;
+    private static final int UNIT_SIZE = 8; // size of int + int
 
+    /**
+     * Node.
+     */
     private static class Node {
         int code;
         int depth;
@@ -16,16 +27,16 @@ public class DoubleArrayTrieTree {
         int right;
     }
 
-    private int check[];
-    private int base[];
+    private int[] check;
+    private int[] base;
 
-    private boolean used[];
+    private boolean[] used;
     private int size;
     private int allocSize;
     private List<String> key;
     private int keySize;
-    private int length[];
-    private int value[];
+    private int[] length;
+    private int[] value;
     private int progress;
     private int nextCheckPos;
     private int error_;
@@ -34,7 +45,7 @@ public class DoubleArrayTrieTree {
     private int resize(int newSize) {
         int[] base2 = new int[newSize];
         int[] check2 = new int[newSize];
-        boolean used2[] = new boolean[newSize];
+        boolean[] used2 = new boolean[newSize];
         if (allocSize > 0) {
             System.arraycopy(base, 0, base2, 0, allocSize);
             System.arraycopy(check, 0, check2, 0, allocSize);
@@ -207,13 +218,13 @@ public class DoubleArrayTrieTree {
         return build(key, null, null, key.size());
     }
 
-    public int build(List<String> _key, int _length[], int _value[], int _keySize) {
-        if (_keySize > _key.size()) return 0;
+    public int build(List<String> key, int[] length, int[] value, int keySize) {
+        if (keySize > key.size()) return 0;
 
-        key = _key;
-        length = _length;
-        keySize = _keySize;
-        value = _value;
+        this.key = key;
+        this.length = length;
+        this.keySize = keySize;
+        this.value = value;
         progress = 0;
 
         resize(65536 * 32);
@@ -223,7 +234,7 @@ public class DoubleArrayTrieTree {
 
         Node root_node = new Node();
         root_node.left = 0;
-        root_node.right = keySize;
+        root_node.right = this.keySize;
         root_node.depth = 0;
 
         List<Node> siblings = new ArrayList<>();
@@ -231,7 +242,7 @@ public class DoubleArrayTrieTree {
         insert(siblings);
 
         used = null;
-        key = null;
+        this.key = null;
 
         return error_;
     }

@@ -15,7 +15,10 @@ import java.util.Map;
  * @author Benedict Jin
  * @since 2016/3/30
  */
-public class CreditCardTopologyBuilder {
+public final class CreditCardTopologyBuilder {
+
+    private CreditCardTopologyBuilder() {
+    }
 
     public static StormTopology build() {
 

@@ -43,6 +43,9 @@ public class ThreadLocalExample {
         System.out.println(String.format("Main Thread from %s get %s", Thread.currentThread().getName(), x.get()));
     }
 
+    /**
+     * A.
+     */
     static class A {
         public void getData() {
             String name = threadScopeThreadLocal.get().getName();
@@ -53,6 +56,9 @@ public class ThreadLocalExample {
         }
     }
 
+    /**
+     * B.
+     */
     static class B {
         public void getData() {
             String name = threadScopeThreadLocal.get().getName();
@@ -62,10 +68,12 @@ public class ThreadLocalExample {
                     + ", get the data : " + data);
         }
     }
-
 }
 
-class ThreadScopeThreadLocal {
+/**
+ * ThreadScopeThreadLocal.
+ */
+final class ThreadScopeThreadLocal {
     private static ThreadLocal<ThreadScopeThreadLocal> map = new ThreadLocal<>();
     private String name;
     private int age;
@@ -98,7 +106,7 @@ class ThreadScopeThreadLocal {
         this.age = age;
     }
 
-    /**
+    /*
      * Thread-0 put the data is 1727979134
      * Thread-1 put the data is -472346049
      * A from Thread-0 get the name :  yuzhouwan 1727979134 get the data : 1727979134

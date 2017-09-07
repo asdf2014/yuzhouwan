@@ -13,7 +13,10 @@ import backtype.storm.utils.Utils;
  * @author Benedict Jin
  * @since 2016/3/30
  */
-public class LocalTopologyRunner {
+public final class LocalTopologyRunner {
+
+    private LocalTopologyRunner() {
+    }
 
     public static void main(String[] args) {
 

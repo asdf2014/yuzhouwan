@@ -31,7 +31,7 @@ public class SnmpSimpleGet {
     private static final int DEFAULT_RETRY = 3;
 
     /**
-     * Create communityTarget
+     * Create communityTarget.
      *
      * @param ip
      * @param community
@@ -144,7 +144,7 @@ public class SnmpSimpleGet {
                                     + vb.getVariable());
                         }
 
-                        System.out.println("SNMP Asyn GetList OID finished. ");
+                        System.out.println("SNMP Async GetList OID finished. ");
                         latch.countDown();
                     }
                 }
@@ -152,7 +152,7 @@ public class SnmpSimpleGet {
 
             pdu.setType(PDU.GET);
             snmp.send(pdu, target, null, listener);
-            System.out.println("asyn send pdu wait for response...");
+            System.out.println("async send pdu wait for response...");
 
             boolean wait = latch.await(5, TimeUnit.SECONDS);
             System.out.println("latch.await =:" + wait);

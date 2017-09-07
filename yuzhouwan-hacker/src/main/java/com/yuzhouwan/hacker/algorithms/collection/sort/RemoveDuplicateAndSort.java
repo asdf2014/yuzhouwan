@@ -62,7 +62,7 @@ public class RemoveDuplicateAndSort {
     }
 
     /**
-     * 100 0002, time:567 ms
+     * 100 0002, time:567 ms.
      */
     void performance() {
 
@@ -94,12 +94,13 @@ public class RemoveDuplicateAndSort {
         for (Company companyIpResult : companyIpResults) {
             s.add(companyIpResult);
             /*
-             * 16:17:49.563 [main] DEBUG c.y.c.RemoveDuplicateAndSort - Company{city='UK', foundition=2.147477467E9}
-             * 16:17:49.565 [main] DEBUG c.y.c.RemoveDuplicateAndSort - Company{city='Washington', foundition=2.147477037E9}
+             * 16:17:49.563 [main] DEBUG c.y.c.RemoveDuplicateAndSort -
+             * Company{city='UK', foundation=2.147477467E9}
+             *
+             * 16:17:49.565 [main] DEBUG c.y.c.RemoveDuplicateAndSort -
+             * Company{city='Washington', foundation=2.147477037E9}
              */
-            if (s.size() == num) {
-                break;
-            }
+            if (s.size() == num) break;
         }
         return new ArrayList<>(s);
     }

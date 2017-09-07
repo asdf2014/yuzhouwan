@@ -16,6 +16,7 @@ import java.nio.charset.Charset;
 public class HttpResponse implements Serializable {
 
     private static final String DEFAULT_CHARSET = "UTF-8";
+    private static final int HTTP_ERROR_CODE = 400;
 
     private byte[] bytes;
     private int code;
@@ -76,6 +77,6 @@ public class HttpResponse implements Serializable {
     }
 
     public boolean isError() {
-        return code >= 400;
+        return code >= HTTP_ERROR_CODE;
     }
 }

@@ -28,7 +28,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class SnmpH3C {
 
-    private static final Logger _log = LoggerFactory.getLogger(SnmpH3C.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SnmpH3C.class);
 
     private Snmp snmp;
 
@@ -44,7 +44,7 @@ public class SnmpH3C {
     }
 
     /**
-     * Send Request to H3C
+     * Send Request to H3C.
      *
      * @param oidList
      */
@@ -52,23 +52,23 @@ public class SnmpH3C {
 
         prepare();
 
-        _log.info("Adding oids into PDU...");
+        LOG.info("Adding oids into PDU...");
         addOIDs2PDU(oidList);
         try {
-            _log.info("Sending userTarget...");
+            LOG.info("Sending userTarget...");
             sendGetPDU(snmp, userTarget, pdu);
         } catch (Exception e) {
-            _log.error("Sending userTarget is failed");
+            LOG.error("Sending userTarget is failed");
         }
         try {
             snmp.close();
         } catch (IOException e) {
-            _log.error("Cannot close snmp");
+            LOG.error("Cannot close snmp");
         }
     }
 
     /**
-     * Do some prepared works
+     * Do some prepared works.
      */
     private void prepare() {
         createSNMP();
@@ -78,11 +78,11 @@ public class SnmpH3C {
     }
 
     /**
-     * Create SNMP
+     * Create SNMP.
      */
     private void createSNMP() {
 
-        _log.info("Creating SNMP...");
+        LOG.info("Creating SNMP...");
         try {
             TransportMapping transport = new DefaultUdpTransportMapping();
             transport.listen();
@@ -92,19 +92,19 @@ public class SnmpH3C {
             USM usm = new USM(SecurityProtocols.getInstance(), new OctetString(MPv3.createLocalEngineID()), 0);
             SecurityModels.getInstance().addSecurityModel(usm);
 
-            _log.debug("Snmp created.");
+            LOG.debug("Snmp created.");
             snmp.listen();
-            _log.debug("Snmp listening...");
+            LOG.debug("Snmp listening...");
         } catch (IOException e) {
             throw new RuntimeException("Cannot create snmp!!!", e);
         }
     }
 
     /**
-     * Create user by those informations from H3CInfos.H3CSnmpV3User
+     * Create user by those informations from H3CInfos.H3CSnmpV3User.
      */
     private void createUserByH3CInfos() {
-        _log.info("Creating snmp v3 USM user...");
+        LOG.info("Creating snmp v3 USM user...");
         H3CSnmpV3User h3CSnmpV3User = h3CInfos.getH3CSnmpV3User();
 
         String securityName = h3CSnmpV3User.getSecurityName();
@@ -113,7 +113,8 @@ public class SnmpH3C {
         PrivacyProtocol privacyProtocol = h3CSnmpV3User.getPrivacyProtocol();
         String privacyPassphrase = h3CSnmpV3User.getPrivacyPassphrase();
 
-        createUser(securityName, authenticationProtocol, authenticationPassphrase, privacyProtocol, privacyPassphrase);
+        createUser(securityName, authenticationProtocol, authenticationPassphrase,
+                privacyProtocol, privacyPassphrase);
     }
 
     /**
@@ -134,7 +135,7 @@ public class SnmpH3C {
     }
 
     /**
-     * Add user into SNMP's USM
+     * Add user into SNMP's USM.
      *
      * @param userName
      */
@@ -144,18 +145,18 @@ public class SnmpH3C {
             if (snmp != null) {
                 snmp.getUSM().addUser(new OctetString(userName), this.usmUser);
             } else {
-                _log.error("Please create a instance of SNMP firstly !!");
+                LOG.error("Please create a instance of SNMP firstly !!");
             }
         } else {
-            _log.error("Please create usmUser before add it into SNMP !!");
+            LOG.error("Please create usmUser before add it into SNMP !!");
         }
     }
 
     /**
-     * Create userTarget by those informations from H3CInfos.H3CUserTarget
+     * Create userTarget by those informations from H3CInfos.H3CUserTarget.
      */
     private void createUserTargetByH3CInfos() {
-        _log.info("Creating userTarget...");
+        LOG.info("Creating userTarget...");
         H3CUserTarget userTarget = h3CInfos.getH3CUserTarget();
 
         String address = userTarget.getAddress();
@@ -166,7 +167,8 @@ public class SnmpH3C {
         long timeout = userTarget.getTimeout();
         int version = userTarget.getVersion();
 
-        createUserTarget(address, securityName2, securityLevel, securityModel, /*int maxSizeRequestPDU,*/ retries, timeout, version);
+        createUserTarget(address, securityName2, securityLevel, securityModel,
+                /*int maxSizeRequestPDU,*/ retries, timeout, version);
     }
 
     /**
@@ -177,7 +179,8 @@ public class SnmpH3C {
      *                      //     * @param maxSizeRequestPDU The minimum PDU length is: 484; default: '\uffff'
      * @param version       default: 3
      */
-    private void createUserTarget(String address, String securityName, int securityLevel, int securityModel, /*int maxSizeRequestPDU,*/ int retries, long timeout, int version) {
+    private void createUserTarget(String address, String securityName, int securityLevel, int securityModel,
+                                  /*int maxSizeRequestPDU,*/ int retries, long timeout, int version) {
         userTarget = new UserTarget();
         userTarget.setAddress(GenericAddress.parse("udp:" + address + "/161"));
         userTarget.setSecurityName(new OctetString(securityName));
@@ -197,7 +200,7 @@ public class SnmpH3C {
     }
 
     /**
-     * Send PDU to H3C, then waiting response event will be caught by listener
+     * Send PDU to H3C, then waiting response event will be caught by listener.
      *
      * @param snmp
      * @param userTarget
@@ -205,7 +208,8 @@ public class SnmpH3C {
      * @throws IOException
      * @throws InterruptedException
      */
-    private void sendGetPDU(Snmp snmp, UserTarget userTarget, ScopedPDU pdu) throws IOException, InterruptedException {
+    private void sendGetPDU(Snmp snmp, UserTarget userTarget, ScopedPDU pdu)
+            throws IOException, InterruptedException {
 
         final CountDownLatch latch = new CountDownLatch(1);
         ResponseListener listener = new ResponseListener() {
@@ -215,33 +219,32 @@ public class SnmpH3C {
                 ((Snmp) event.getSource()).cancel(event.getRequest(), this);
                 PDU response = event.getResponse();
                 PDU request = event.getRequest();
-                _log.debug("[request]: {}", request);
+                LOG.debug("[request]: {}", request);
 
                 if (response == null) {
-                    _log.error("[ERROR]: response is null");
+                    LOG.error("[ERROR]: response is null");
 
                 } else if (response.getErrorStatus() != 0) {
-                    _log.error("[ERROR]: response status {}, Text: {}",
+                    LOG.error("[ERROR]: response status {}, Text: {}",
                             response.getErrorStatus(),
                             response.getErrorStatusText());
                 } else {
-                    _log.debug("Received response Success!");
+                    LOG.debug("Received response Success!");
                     for (int i = 0; i < response.size(); i++) {
                         VariableBinding vb = response.get(i);
-                        _log.info("{} = {}",
+                        LOG.info("{} = {}",
                                 vb.getOid(),
                                 vb.getVariable());
                     }
-                    _log.debug("SNMP Asyn GetList OID finished. ");
+                    LOG.debug("SNMP Async GetList OID finished. ");
                     latch.countDown();
                 }
             }
         };
         snmp.send(pdu, userTarget, null, listener);
-        _log.debug("asyn send pdu wait for response...");
+        LOG.debug("async send pdu wait for response...");
 
         boolean wait = latch.await(3, TimeUnit.SECONDS);
-        _log.debug("latch.await =:" + wait);
+        LOG.debug("latch.await =:" + wait);
     }
-
 }

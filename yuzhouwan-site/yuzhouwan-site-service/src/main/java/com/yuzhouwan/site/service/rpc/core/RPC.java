@@ -46,6 +46,9 @@ public class RPC {
         return (T) Proxy.newProxyInstance(RPC.class.getClassLoader(), new Class[]{clazz}, handler);
     }
 
+    /**
+     * RPCServer.
+     */
     public static class RPCServer implements Server {
 
         private int port = 20222;
@@ -65,10 +68,10 @@ public class RPC {
 
         //注册服务
         @Override
-        public void register(Class serviceInterface, Class ServiceImp) {
+        public void register(Class serviceInterface, Class serviceImp) {
             if (!serviceEntry.containsKey(serviceInterface.getName())) {
                 try {
-                    serviceEntry.put(serviceInterface.getName(), ServiceImp.newInstance());
+                    serviceEntry.put(serviceInterface.getName(), serviceImp.newInstance());
                 } catch (InstantiationException | IllegalAccessException e) {
                     throw new RuntimeException(e);
                 }

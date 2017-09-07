@@ -61,7 +61,7 @@ public class DynamicProp implements IDirUtils {
     }
 
     /**
-     * 监控文件夹，读取变更(like, Create + Modify + Delete) 的配置文件，并保存 k-v信息为 JSON格式
+     * 监控文件夹，读取变更(like, Create + Modify + Delete) 的配置文件，并保存 k-v信息为 JSON格式.
      *
      * @return <propFile's name>|<k-v JSON>
      */
@@ -70,7 +70,7 @@ public class DynamicProp implements IDirUtils {
     }
 
     /**
-     * 上传 JSON到 指定的ZK 路径下
+     * 上传 JSON到 指定的ZK 路径下.
      *
      * @param fileAndContent <propFile's name>|<k-v JSON>
      * @return isSuccess

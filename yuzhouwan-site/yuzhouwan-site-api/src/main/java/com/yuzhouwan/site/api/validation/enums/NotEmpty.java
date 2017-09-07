@@ -9,9 +9,21 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * Copyright @ 2017 yuzhouwan.com
+ * All right reserved.
+ * Function: NotEmpty Annotation
+ *
+ * @author Benedict Jin
+ * @since 2016/9/1
+ */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE,
-        ElementType.CONSTRUCTOR, ElementType.PARAMETER})
+@Target(
+        {ElementType.METHOD,
+                ElementType.FIELD,
+                ElementType.ANNOTATION_TYPE,
+                ElementType.CONSTRUCTOR,
+                ElementType.PARAMETER})
 @Constraint(validatedBy = {NotNullValidator.class})
 public @interface NotEmpty {
 
@@ -22,4 +34,4 @@ public @interface NotEmpty {
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
-}  
+}

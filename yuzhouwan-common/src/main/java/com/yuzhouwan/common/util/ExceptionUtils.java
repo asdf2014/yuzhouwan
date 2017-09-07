@@ -8,7 +8,10 @@ package com.yuzhouwan.common.util;
  * @author Benedict Jin
  * @since 2016/11/24
  */
-public class ExceptionUtils {
+public final class ExceptionUtils {
+
+    private ExceptionUtils() {
+    }
 
     public static String errorInfo(Exception e) {
         return errorInfo(e, null);

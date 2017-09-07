@@ -15,7 +15,7 @@ import org.apache.hadoop.mapreduce.Partitioner;
 public class PatentPartitioner extends Partitioner<Text, Text> {
 
     /**
-     * Partitioner 的核心方法
+     * Partitioner 的核心方法.
      *
      * @param key
      * @param value

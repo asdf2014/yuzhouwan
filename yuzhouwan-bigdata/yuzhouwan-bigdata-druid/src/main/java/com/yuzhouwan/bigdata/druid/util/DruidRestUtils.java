@@ -37,7 +37,7 @@ public class DruidRestUtils {
     }
 
     /**
-     * Query Druid with Post
+     * Query Druid with Post.
      *
      * @param url  <Broker>:<Port, default: 8082>
      * @param json query json
@@ -48,7 +48,7 @@ public class DruidRestUtils {
     }
 
     /**
-     * Query Druid with Post
+     * Query Druid with Post.
      *
      * @param url     <Broker>:<Port, default: 8082>
      * @param json    query json
@@ -60,7 +60,7 @@ public class DruidRestUtils {
     }
 
     /**
-     * Query Druid with Post
+     * Query Druid with Post.
      *
      * @param url     <Broker>:<Port, default: 8082>
      * @param json    query json

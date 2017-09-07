@@ -31,7 +31,7 @@ class EncryptClasses {
     static void encrypt(String... clazz) throws Exception {
         String keyFilename = clazz[0];
         SecureRandom sr = new SecureRandom();
-        byte rawKey[] = FileUtils.readFile(keyFilename);
+        byte[] rawKey = FileUtils.readFile(keyFilename);
         DESKeySpec dks = new DESKeySpec(rawKey);
         SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(algorithm);
         SecretKey key = keyFactory.generateSecret(dks);

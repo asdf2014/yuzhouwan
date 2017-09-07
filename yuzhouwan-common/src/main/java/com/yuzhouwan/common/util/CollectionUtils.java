@@ -15,19 +15,23 @@ import java.util.stream.Collectors;
  * @author Benedict Jin
  * @since 2016/6/12
  */
-public class CollectionUtils {
+public final class CollectionUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(CollectionUtils.class);
 
+    private CollectionUtils() {
+    }
+
     /**
-     * 按照 strWithSeparator 中包含的几个单词，模糊匹配 originList 内元素，并移除
+     * 按照 strWithSeparator 中包含的几个单词，模糊匹配 originList 内元素，并移除.
      *
      * @param originList
      * @param strWithSeparator
      * @param separator
      * @return
      */
-    public static List<String> removeAllByStrWithSeparator(List<String> originList, String strWithSeparator, String separator) {
+    public static List<String> removeAllByStrWithSeparator(List<String> originList,
+                                                           String strWithSeparator, String separator) {
         if (originList == null || originList.size() <= 0 || strWithSeparator == null || separator == null) return null;
         List<String> result = new LinkedList<>();
         boolean isContains;
@@ -41,7 +45,7 @@ public class CollectionUtils {
     }
 
     /**
-     * Remove Duplicate for Object[]
+     * Remove Duplicate for Object[].
      *
      * @param a
      * @param b
@@ -56,7 +60,7 @@ public class CollectionUtils {
     }
 
     /**
-     * Remove Duplicate for Collection
+     * Remove Duplicate for Collection.
      *
      * @param a
      * @param b
@@ -85,7 +89,8 @@ public class CollectionUtils {
      * @param <E>          the class type of elements in collection
      * @return the object which has same the value of fieldName in collection
      */
-    public static <E> Object getDuplicate(Collection<E> coll, E o, String fieldName, Class fieldClass, Class elementClass) {
+    public static <E> Object getDuplicate(Collection<E> coll, E o, String fieldName,
+                                          Class fieldClass, Class elementClass) {
 
         if (coll == null || coll.isEmpty() || o == null || StrUtils.isEmpty(fieldName) || fieldClass == null)
             return null;
@@ -98,8 +103,8 @@ public class CollectionUtils {
             Field f = o.getClass().getDeclaredField(fieldName);
             f.setAccessible(true);
             for (E e : coll) {
-                if (subClass && !elementClassName.equals(e.getClass().getName()) ||
-                        (collO = f.get(e)) == null || (aimO = f.get(o)) == null) continue;
+                if (subClass && !elementClassName.equals(e.getClass().getName())
+                        || (collO = f.get(e)) == null || (aimO = f.get(o)) == null) continue;
                 if (collO.equals(aimO) || fieldClass.cast(collO).equals(fieldClass.cast(aimO))) return (end = e);
             }
         } catch (Exception e) {
@@ -144,7 +149,8 @@ public class CollectionUtils {
      * @throws NoSuchFieldException
      * @throws IllegalAccessException
      */
-    private static <T> boolean canRemove(String field, T c, Object[] removes) throws NoSuchFieldException, IllegalAccessException {
+    private static <T> boolean canRemove(String field, T c, Object[] removes)
+            throws NoSuchFieldException, IllegalAccessException {
         Field f;
         Object tmp;
         for (Object remove : removes) {
@@ -179,7 +185,7 @@ public class CollectionUtils {
         return arr[n];
     }
 
-    private static void shuffle(int a[]) {
+    private static void shuffle(int[] a) {
         final Random random = new Random();
         for (int ind = 1; ind < a.length; ind++) {
             final int r = random.nextInt(ind + 1);

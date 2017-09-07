@@ -18,10 +18,13 @@ import java.util.Properties;
  * @author Benedict Jin
  * @since 2016/3/31
  */
-public class ConfUtil {
+public final class ConfUtil {
 
     //最大分区，即 结果文件的数量
     private static int max;
+
+    private ConfUtil() {
+    }
 
     static {
         //实例化
@@ -55,7 +58,7 @@ public class ConfUtil {
     }
 
     /**
-     * 返回最大分区的值
+     * 返回最大分区的值.
      *
      * @return
      */

@@ -23,7 +23,7 @@ import java.util.Iterator;
  */
 public class PatentMapper extends Mapper<LongWritable, Text, Text, Text> {
 
-    private static final Logger _log = LoggerFactory.getLogger(PatentMapper.class);
+    private static final Logger LOG = LoggerFactory.getLogger(PatentMapper.class);
 
     //分割出一行中 多个 patent的信息
     private static final String PATENT_SPLIT_TOKEN = "'\\),\\('";
@@ -41,7 +41,7 @@ public class PatentMapper extends Mapper<LongWritable, Text, Text, Text> {
     private Text writeValue = new Text();
 
     /**
-     * Mapper 的核心方法，用来处理 海量的输入数据
+     * Mapper 的核心方法，用来处理 海量的输入数据.
      *
      * @param key
      * @param value
@@ -74,7 +74,7 @@ public class PatentMapper extends Mapper<LongWritable, Text, Text, Text> {
     }
 
     /**
-     * 处理 原始数据，完成 Patents解析工作
+     * 处理 原始数据，完成 Patents解析工作.
      *
      * @param context
      * @param text
@@ -124,7 +124,7 @@ public class PatentMapper extends Mapper<LongWritable, Text, Text, Text> {
     }
 
     /**
-     * 将需要传输到 Hadoop上下文的 Key、Value设置好，并完成写入
+     * 将需要传输到 Hadoop上下文的 Key、Value设置好，并完成写入.
      *
      * @param context
      * @param type
@@ -140,12 +140,12 @@ public class PatentMapper extends Mapper<LongWritable, Text, Text, Text> {
             //写入到 Hadoop上下文中
             context.write(writeKey, writeValue);
         } catch (IOException | InterruptedException e) {
-            _log.error("error: {}", e.getMessage());
+            LOG.error("error: {}", e.getMessage());
         }
     }
 
     /**
-     * 针对最后一 patent，需要特殊处理一下（剔除字符： ');）
+     * 针对最后一 patent，需要特殊处理一下（剔除字符： ');）.
      *
      * @param patent
      * @param i
@@ -155,7 +155,7 @@ public class PatentMapper extends Mapper<LongWritable, Text, Text, Text> {
     }
 
     /**
-     * 依据 title 和 patent 的具体描述，提取出 Rank分值 最高的一个关键字
+     * 依据 title 和 patent 的具体描述，提取出 Rank分值 最高的一个关键字.
      * <p>
      * 接口相关文档：http://demo.nlpcn.org/demo#
      *

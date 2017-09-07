@@ -5,8 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
 import java.util.Properties;
@@ -21,7 +19,7 @@ import java.util.zip.ZipInputStream;
  * @author Benedict Jin
  * @since 2016/4/20
  */
-public class JarUtils {
+public final class JarUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(JarUtils.class);
 
@@ -70,8 +68,9 @@ public class JarUtils {
                 if ((jarPaths = DirUtils.findPath(LIB_PATH, "lib", ".jar", false)) != null && jarPaths.size() > 0)
                     for (String jarFile : jarPaths) {
                         //如果是 webApp，这里需要改为 WEB-INF; 否则是 target (supported by profile in maven)
-                        jarPaths = DirUtils.findPath(LIB_PATH, PropUtils.getInstance().getPropertyInternal("lib.path"), jarFile.substring(1), false
-                        );
+                        jarPaths = DirUtils.findPath(LIB_PATH,
+                                PropUtils.getInstance().getPropertyInternal("lib.path"),
+                                jarFile.substring(1), false);
                         if (jarPaths != null && jarPaths.size() > 0) scanDirWithinJar(jarPaths.get(0));
                     }
             }
@@ -86,16 +85,13 @@ public class JarUtils {
     }
 
     /**
-     * 从 Jar内部 遍历配置文件，并加载
-     *
-     * @throws IOException
-     * @throws URISyntaxException
+     * 从 Jar内部 遍历配置文件，并加载.
      */
     private static void scanDirWithinJar(String jarPath) throws Exception {
         //如果是 webApp，这里需要是改为 ".." + JAR_PATH；否则，直接用 JAR_PATH (supported by profile in maven)
         String prefix = PropUtils.getInstance().getPropertyInternal("prefix.path.for.scan.dir.with.jar");
-        String sourcePath = (StrUtils.isEmpty(StrUtils.isEmpty(prefix) ? "" : prefix) ?
-                DirUtils.PROJECT_BASE_PATH.concat("/") : "").concat(jarPath);
+        String sourcePath = (StrUtils.isEmpty(StrUtils.isEmpty(prefix) ? "" : prefix)
+                ? DirUtils.PROJECT_BASE_PATH.concat("/") : "").concat(jarPath);
         _log.debug("SourcePath: {}", sourcePath);
         URL sourceUrl = JarUtils.class.getClassLoader().getResource(sourcePath);
         if (sourceUrl == null && StrUtils.isEmpty(sourcePath)) {
@@ -144,7 +140,7 @@ public class JarUtils {
     }
 
     /**
-     * 判断某个 Class是否是 Project内的，还是外部依赖的 jar里的
+     * 判断某个 Class是否是 Project内的，还是外部依赖的 jar里的.
      *
      * @param clazz Class
      * @return isProjectJar
@@ -152,7 +148,8 @@ public class JarUtils {
     public static boolean isProjectJar(final Class<?> clazz) {
         if (clazz == null) return false;
         try {
-            return !new File(clazz.getProtectionDomain().getCodeSource().getLocation().toURI()).getName().endsWith(".jar");
+            return !new File(clazz.getProtectionDomain().getCodeSource().getLocation()
+                    .toURI()).getName().endsWith(".jar");
         } catch (Exception ignored) {
             _log.error(ExceptionUtils.errorInfo(ignored));
             return true;

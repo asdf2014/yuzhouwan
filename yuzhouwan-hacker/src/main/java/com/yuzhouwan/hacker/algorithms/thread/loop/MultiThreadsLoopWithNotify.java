@@ -10,7 +10,6 @@ package com.yuzhouwan.hacker.algorithms.thread.loop;
  */
 public class MultiThreadsLoopWithNotify {
 
-
     public static void main(String[] args) {
 
         LockHolder lockHolder = new LockHolder("go ahead");
@@ -26,6 +25,9 @@ public class MultiThreadsLoopWithNotify {
         t3.start();
     }
 
+    /**
+     * Leader.
+     */
     private static class Leader implements Runnable {
 
         private final LockHolder lockHolder;
@@ -44,7 +46,8 @@ public class MultiThreadsLoopWithNotify {
                     Thread.sleep(3000);
                     synchronized (lockHolder) {
                         lockHolder.notify();
-                        System.out.println("Thread: [".concat(threadName).concat("] sent the message is ").concat(lockHolder.getHolder()).concat("."));
+                        System.out.println("Thread: [".concat(threadName).concat("] sent the message is ")
+                                .concat(lockHolder.getHolder()).concat("."));
                     }
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
@@ -53,10 +56,12 @@ public class MultiThreadsLoopWithNotify {
         }
     }
 
+    /**
+     * Reporter.
+     */
     private static class Reporter implements Runnable {
 
         private final LockHolder lockHolder;
-
         Reporter(LockHolder lockHolder) {
             this.lockHolder = lockHolder;
         }
@@ -72,7 +77,8 @@ public class MultiThreadsLoopWithNotify {
                     synchronized (lockHolder) {
                         System.out.println("Thread: [".concat(threadName).concat("] is waiting the message..."));
                         lockHolder.wait();
-                        System.out.println("Thread: [".concat(threadName).concat("] got the message is ").concat(lockHolder.getHolder()).concat("."));
+                        System.out.println("Thread: [".concat(threadName).concat("] got the message is ")
+                                .concat(lockHolder.getHolder()).concat("."));
                     }
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
@@ -81,6 +87,9 @@ public class MultiThreadsLoopWithNotify {
         }
     }
 
+    /**
+     * LockHolder.
+     */
     private static class LockHolder {
         private String holder;
 
@@ -92,7 +101,4 @@ public class MultiThreadsLoopWithNotify {
             return holder;
         }
     }
-
 }
-
-

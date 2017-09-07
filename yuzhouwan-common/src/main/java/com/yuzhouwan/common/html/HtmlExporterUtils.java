@@ -23,12 +23,15 @@ import java.util.concurrent.TimeUnit;
  * @author Benedict Jin
  * @since 2016/6/20
  */
-public class HtmlExporterUtils {
+public final class HtmlExporterUtils {
 
-    private static final Logger _log = LoggerFactory.getLogger(HtmlExporterUtils.class);
+    private static final Logger LOG = LoggerFactory.getLogger(HtmlExporterUtils.class);
+
+    private HtmlExporterUtils() {
+    }
 
     /**
-     * 将 字符数组 转化为文件
+     * 将 字符数组 转化为文件.
      *
      * @param bytes 文件的 byte[]
      * @param file  文件
@@ -43,7 +46,7 @@ public class HtmlExporterUtils {
     }
 
     /**
-     * 将图片转换为 A4格式的 PDF
+     * 将图片转换为 A4格式的 PDF.
      *
      * @param image 图片的 byte[]
      * @return A4格式的 图片的 byte[]
@@ -53,10 +56,11 @@ public class HtmlExporterUtils {
     }
 
     /**
-     * 将图片转换为 PDF
+     * 将图片转换为 PDF.
      *
      * @param image
-     * @param pageSize     supported type will be found in com.itextpdf.text.PageSize, like A2, A3, A4, LETTER_LANDSCAPE etc.
+     * @param pageSize     supported type will be found in com.itextpdf.text.PageSize,
+     *                     like A2, A3, A4, LETTER_LANDSCAPE etc.
      * @param marginLeft   0f
      * @param marginRight  0f
      * @param marginTop    0f
@@ -84,7 +88,7 @@ public class HtmlExporterUtils {
     }
 
     /**
-     * 初始化配置 PhantomJS Driver
+     * 初始化配置 PhantomJS Driver.
      *
      * @param url         目标URL
      * @param addedCookie 添加 cookie
@@ -127,7 +131,7 @@ public class HtmlExporterUtils {
     }
 
     /**
-     * 获取 [文件]形式 的图片大小
+     * 获取 [文件]形式 的图片大小.
      *
      * @param image 图片文件
      * @return 图片大小
@@ -142,7 +146,7 @@ public class HtmlExporterUtils {
     }
 
     /**
-     * 获取 [InputStream]形式 的图片大小
+     * 获取 [InputStream]形式 的图片大小.
      *
      * @param inputStream 图片输入流
      * @return 图片大小
@@ -158,14 +162,14 @@ public class HtmlExporterUtils {
                 try {
                     inputStream.close();
                 } catch (IOException e) {
-                    _log.error("Cannot close inputStream, because: {}!", e.getMessage());
+                    LOG.error("Cannot close inputStream, because: {}!", e.getMessage());
                 }
             }
         }
     }
 
     /**
-     * 获取 [字符数组]形式 的图片大小
+     * 获取 [字符数组]形式 的图片大小.
      *
      * @param bytes 图片的 byte[]
      * @return 图片大小
@@ -180,7 +184,7 @@ public class HtmlExporterUtils {
     }
 
     /**
-     * 获取 [Base64]形式 的图片大小
+     * 获取 [Base64]形式 的图片大小.
      *
      * @param base64 base64 格式的图片
      * @return 图片大小

@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 public class SpringServiceImpl implements ISpringService {
 
     /**
-     * 实现了定义的DoSomethingService接口，并且交由Spring Ioc容器托管
+     * 实现了定义的DoSomethingService接口，并且交由Spring Ioc容器托管.
      */
     private static final Log _log = LogFactory.getLog(SpringServiceImpl.class);
 

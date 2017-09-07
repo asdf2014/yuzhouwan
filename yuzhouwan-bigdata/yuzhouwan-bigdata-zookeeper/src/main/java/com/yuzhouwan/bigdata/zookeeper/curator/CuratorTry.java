@@ -27,8 +27,8 @@ public class CuratorTry {
 
         RetryPolicy retrypolicy = new ExponentialBackoffRetry(3000, 60);
 
-        /**
-         * using fluent api
+        /*
+         * using fluent api.
          */
         curatorClient = CuratorFrameworkFactory.builder()
                 .connectString(zkHost)
@@ -41,7 +41,7 @@ public class CuratorTry {
     }
 
     /**
-     * create
+     * create.
      *
      * @param path
      * @throws Exception
@@ -63,7 +63,7 @@ public class CuratorTry {
     }
 
     /**
-     * delete
+     * delete.
      *
      * @param path
      */
@@ -84,7 +84,7 @@ public class CuratorTry {
     }
 
     /**
-     * update
+     * update.
      *
      * @param path
      * @throws Exception
@@ -98,7 +98,7 @@ public class CuratorTry {
     }
 
     /**
-     * read
+     * read.
      *
      * @param path
      * @return
@@ -113,5 +113,4 @@ public class CuratorTry {
 //        curatorClient.getData().forPath(path);
         throw new RuntimeException("Not support?");
     }
-
 }

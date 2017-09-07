@@ -12,12 +12,16 @@ import java.text.DecimalFormat;
  * @author Benedict Jin
  * @since 2016/5/9
  */
-public class DecimalUtils {
+public final class DecimalUtils {
 
     private static final DecimalFormat decimalFormat = new DecimalFormat("0");
+    private static final int HEX_LENGTH = 16;
+
+    private DecimalUtils() {
+    }
 
     public static int convert2Hex(int n) {
-        return Integer.valueOf(String.valueOf(n), 16);
+        return Integer.valueOf(String.valueOf(n), HEX_LENGTH);
     }
 
     public static BigInteger double2BigInt(double d) {

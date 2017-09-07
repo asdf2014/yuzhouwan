@@ -60,7 +60,8 @@ public class ReportConvertPdf {
         return new PDPageContentStream(doc, page, true, true, true);
     }
 
-    private static void finish(String pdfPath, PDDocument doc, PDPageContentStream content) throws IOException, COSVisitorException {
+    private static void finish(String pdfPath, PDDocument doc, PDPageContentStream content)
+            throws IOException, COSVisitorException {
         content.close();
         doc.save(pdfPath);
         doc.close();
@@ -70,7 +71,8 @@ public class ReportConvertPdf {
         return (PDPage) doc.getDocumentCatalog().getAllPages().get(pageIndex);
     }
 
-    private static void drawImageWithScale(PDDocument doc, PDPageContentStream content, String imgPath, int bufferedImageType, float scale) throws IOException {
+    private static void drawImageWithScale(PDDocument doc, PDPageContentStream content, String imgPath,
+                                           int bufferedImageType, float scale) throws IOException {
         BufferedImage bufferedImage = ImageIO.read(new File(imgPath));
         BufferedImage image = new BufferedImage(bufferedImage.getWidth(), bufferedImage.getHeight(), bufferedImageType);
         image.createGraphics().drawRenderedImage(bufferedImage, null);
@@ -80,12 +82,12 @@ public class ReportConvertPdf {
         content.drawXObject(xImage, 100, 100, xImage.getWidth() * scale, xImage.getHeight() * scale);
     }
 
-    private static void drawString(PDPageContentStream content, PDFont font, float fontSize, float x, float y, String text) throws IOException {
+    private static void drawString(PDPageContentStream content, PDFont font, float fontSize, float x,
+                                   float y, String text) throws IOException {
         content.beginText();
         content.setFont(font, fontSize);
         content.moveTextPositionByAmount(x, y);
         content.drawString(text);
         content.endText();
     }
-
 }

@@ -20,14 +20,15 @@ class MaximumDepthBinaryTreeSolution {
      *
      * Given a binary tree, find its maximum depth.
      *
-     * The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
+     * The maximum depth is the number of nodes along the longest path from the root node
+     * down to the farthest leaf node.
      */
     static int maxDepthFirstDepth(TreeNode root) {
         return root == null ? 0 : Math.max(maxDepthFirstDepth(root.left), maxDepthFirstDepth(root.right)) + 1;
     }
 
     /**
-     * 二叉树的非递归遍历
+     * 二叉树的非递归遍历.
      */
     static int maxDepthFirstBreadth(TreeNode root) {
         if (root == null)

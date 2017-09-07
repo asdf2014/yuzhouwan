@@ -5,12 +5,16 @@ package com.yuzhouwan.hacker.algorithms.array;
  * All right reserved.
  * Function：Circular Buffer
  *
+ * @param <T>
  * @author Benedict Jin
  * @since 2017/03/01
  */
 public class CircularBuffer<T> {
 
-    class __kfifo {
+    /**
+     * k-FIFO.
+     */
+    class Kfifo {
         int in;
         int out;
         int mask;
@@ -23,35 +27,36 @@ public class CircularBuffer<T> {
      * array is a part of the structure and the fifo type where the array is
      * outside of the fifo structure.
      */
-    public void __is_kfifo_ptr() {
+    public void isKfifoPtr() {
     }
 
     /**
-     * DECLARE_KFIFO_PTR - macro to declare a fifo pointer object
+     * declareKfifoPtr - macro to declare a fifo pointer object.
      *
      * @fifo: name of the declared fifo
      * @type: type of the fifo elements
      */
-    public void DECLARE_KFIFO_PTR() {
+    public void declareKfifoPtr() {
     }
 
     /**
-     * DECLARE_KFIFO - macro to declare a fifo object
+     * DECLARE_KFIFO - macro to declare a fifo object.
+     *
      * @fifo: name of the declared fifo
      * @type: type of the fifo elements
      * @size: the number of elements in the fifo, this must be a power of 2
      */
 
     /**
-     * INIT_KFIFO - Initialize a fifo declared by DECLARE_KFIFO
+     * initKfifo - Initialize a fifo declared by DECLARE_KFIFO.
      *
      * @fifo: name of the declared fifo datatype
      */
-    public void INIT_KFIFO() {
+    public void initKfifo() {
     }
 
     /**
-     * DEFINE_KFIFO - macro to define and initialize a fifo
+     * defineKfifo - macro to define and initialize a fifo.
      *
      * @fifo: name of the declared fifo datatype
      * @type: type of the fifo elements
@@ -59,56 +64,55 @@ public class CircularBuffer<T> {
      * <p>
      * Note: the macro can be used for global and local fifo data type variables.
      */
-    public void DEFINE_KFIFO() {
+    public void defineKfifo() {
     }
 
 
-    public void __kfifo_uint_must_check_helper() {
+    public void kfifoUintMustCheckHelper() {
     }
 
 
-    public void __kfifo_int_must_check_helper(int val) {
+    public void kfifoIntMustCheckHelper(int val) {
     }
 
     /**
-     * kfifo_initialized - Check if the fifo is initialized
+     * kfifoInitialized - Check if the fifo is initialized.
      *
      * @fifo: address of the fifo to check
      * <p>
      * Return %true if fifo is initialized, otherwise %false.
      * Assumes the fifo was 0 before.
      */
-    public void kfifo_initialized() {
-
+    public void kfifoInitialized() {
     }
 
     /**
-     * kfifo_esize - returns the size of the element managed by the fifo
+     * kfifoEsize - returns the size of the element managed by the fifo.
      *
      * @fifo: address of the fifo to be used
      */
-    public void kfifo_esize() {
+    public void kfifoEsize() {
 
     }
 
     /**
-     * kfifo_recsize - returns the size of the record length field
+     * kfifo_recsize - returns the size of the record length field.
      *
      * @fifo: address of the fifo to be used
      */
-    public void kfifo_recsize() {
+    public void kfifoRecsize() {
     }
 
     /**
-     * kfifo_size - returns the size of the fifo in elements
+     * kfifo_size - returns the size of the fifo in elements.
      *
      * @fifo: address of the fifo to be used
      */
-    public void kfifo_size() {
+    public void kfifoSize() {
     }
 
     /**
-     * kfifo_reset - removes the entire fifo content
+     * kfifo_reset - removes the entire fifo content.
      *
      * @fifo: address of the fifo to be used
      * <p>
@@ -116,11 +120,11 @@ public class CircularBuffer<T> {
      * fifo is exclusived locked or when it is secured that no other thread is
      * accessing the fifo.
      */
-    public void kfifo_reset() {
+    public void kfifoReset() {
     }
 
     /**
-     * kfifo_reset_out - skip fifo content
+     * kfifo_reset_out - skip fifo content.
      *
      * @fifo: address of the fifo to be used
      * <p>
@@ -128,63 +132,63 @@ public class CircularBuffer<T> {
      * from the reader thread and there is only one concurrent reader. Otherwise
      * it is dangerous and must be handled in the same way as kfifo_reset().
      */
-    public void kfifo_reset_out() {
+    public void kfifoResetOut() {
     }
 
     /**
-     * kfifo_len - returns the number of used elements in the fifo
+     * kfifo_len - returns the number of used elements in the fifo.
      *
      * @fifo: address of the fifo to be used
      */
-    public void kfifo_len() {
+    public void kfifoLen() {
     }
 
     /**
-     * kfifo_is_empty - returns true if the fifo is empty
+     * kfifo_is_empty - returns true if the fifo is empty.
      *
      * @fifo: address of the fifo to be used
      */
-    public void kfifo_is_empty() {
+    public void kfifoIsEmpty() {
     }
 
     /**
-     * kfifo_is_full - returns true if the fifo is full
+     * kfifo_is_full - returns true if the fifo is full.
      *
      * @fifo: address of the fifo to be used
      */
-    public void kfifo_is_full() {
+    public void kfifoIsFull() {
 
     }
 
     /**
-     * kfifo_avail - returns the number of unused elements in the fifo
+     * kfifo_avail - returns the number of unused elements in the fifo.
      *
      * @fifo: address of the fifo to be used
      */
-    public void kfifo_avail() {
+    public void kfifoAvail() {
 
     }
 
     /**
-     * kfifo_skip - skip output data
+     * kfifo_skip - skip output data.
      *
      * @fifo: address of the fifo to be used
      */
-    public void kfifo_skip() {
+    public void kfifoSkip() {
     }
 
     /**
-     * kfifo_peek_len - gets the size of the next fifo record
+     * kfifo_peek_len - gets the size of the next fifo record.
      *
      * @fifo: address of the fifo to be used
      * <p>
      * This function returns the size of the next fifo record in number of bytes.
      */
-    public void kfifo_peek_len() {
+    public void kfifoPeekLen() {
     }
 
     /**
-     * kfifo_alloc - dynamically allocates a new fifo buffer
+     * kfifo_alloc - dynamically allocates a new fifo buffer.
      *
      * @fifo: pointer to the fifo
      * @size: the number of elements in the fifo, this must be a power of 2
@@ -196,19 +200,19 @@ public class CircularBuffer<T> {
      * The fifo will be release with kfifo_free().
      * Return 0 if no error, otherwise an error code.
      */
-    public void kfifo_alloc() {
+    public void kfifoAlloc() {
     }
 
     /**
-     * kfifo_free - frees the fifo
+     * kfifo_free - frees the fifo.
      *
      * @fifo: the fifo to be freed
      */
-    public void kfifo_free() {
+    public void kfifoFree() {
     }
 
     /**
-     * kfifo_init - initialize a fifo using a preallocated buffer
+     * kfifo_init - initialize a fifo using a preallocated buffer.
      *
      * @fifo: the fifo to assign the buffer
      * @buffer: the preallocated buffer to be used
@@ -219,11 +223,11 @@ public class CircularBuffer<T> {
      * The numer of elements will be rounded-up to a power of 2.
      * Return 0 if no error, otherwise an error code.
      */
-    public void kfifo_init() {
+    public void kfifoInit() {
     }
 
     /**
-     * kfifo_put - put data into the fifo
+     * kfifo_put - put data into the fifo.
      *
      * @fifo: address of the fifo to be used
      * @val: the data to be added
@@ -235,11 +239,11 @@ public class CircularBuffer<T> {
      * Note that with only one concurrent reader and one concurrent
      * writer, you don't need extra locking to use these macro.
      */
-    public void kfifo_put() {
+    public void kfifoPut() {
     }
 
     /**
-     * kfifo_get - get data from the fifo
+     * kfifo_get - get data from the fifo.
      *
      * @fifo: address of the fifo to be used
      * @val: address where to store the data
@@ -251,11 +255,11 @@ public class CircularBuffer<T> {
      * Note that with only one concurrent reader and one concurrent
      * writer, you don't need extra locking to use these macro.
      */
-    public void kfifo_get() {
+    public void kfifoGet() {
     }
 
     /**
-     * kfifo_peek - get data from the fifo without removing
+     * kfifo_peek - get data from the fifo without removing.
      *
      * @fifo: address of the fifo to be used
      * @val: address where to store the data
@@ -267,11 +271,11 @@ public class CircularBuffer<T> {
      * Note that with only one concurrent reader and one concurrent
      * writer, you don't need extra locking to use these macro.
      */
-    public void kfifo_peek() {
+    public void kfifoPeek() {
     }
 
     /**
-     * kfifo_in - put data into the fifo
+     * kfifo_in - put data into the fifo.
      *
      * @fifo: address of the fifo to be used
      * @buf: the data to be added
@@ -283,11 +287,11 @@ public class CircularBuffer<T> {
      * Note that with only one concurrent reader and one concurrent
      * writer, you don't need extra locking to use these macro.
      */
-    public void kfifo_in() {
+    public void kfifoIn() {
     }
 
     /**
-     * kfifo_in_spinlocked - put data into the fifo using a spinlock for locking
+     * kfifo_in_spinlocked - put data into the fifo using a spinlock for locking.
      *
      * @fifo: address of the fifo to be used
      * @buf: the data to be added
@@ -298,12 +302,12 @@ public class CircularBuffer<T> {
      * number of copied elements.
      */
 
-    public void kfifo_in_spinlocked() {
+    public void kfifoInSpinlocked() {
 
     }
 
     /**
-     * kfifo_out - get data from the fifo
+     * kfifo_out - get data from the fifo.
      *
      * @fifo: address of the fifo to be used
      * @buf: pointer to the storage buffer
@@ -315,11 +319,11 @@ public class CircularBuffer<T> {
      * Note that with only one concurrent reader and one concurrent
      * writer, you don't need extra locking to use these macro.
      */
-    public void kfifo_out() {
+    public void kfifoOut() {
     }
 
     /**
-     * kfifo_out_spinlocked - get data from the fifo using a spinlock for locking
+     * kfifo_out_spinlocked - get data from the fifo using a spinlock for locking.
      *
      * @fifo: address of the fifo to be used
      * @buf: pointer to the storage buffer
@@ -329,12 +333,12 @@ public class CircularBuffer<T> {
      * This macro get the data from the fifo and return the numbers of elements
      * copied.
      */
-    public void kfifo_out_spinlocked() {
+    public void kfifoOutSpinlocked() {
 
     }
 
     /**
-     * kfifo_from_user - puts some data from user space into the fifo
+     * kfifo_from_user - puts some data from user space into the fifo.
      *
      * @fifo: address of the fifo to be used
      * @from: pointer to the data to be added
@@ -347,12 +351,12 @@ public class CircularBuffer<T> {
      * Note that with only one concurrent reader and one concurrent
      * writer, you don't need extra locking to use these macro.
      */
-    public void kfifo_from_user() {
+    public void kfifoFromUser() {
 
     }
 
     /**
-     * kfifo_to_user - copies data from the fifo into user space
+     * kfifo_to_user - copies data from the fifo into user space.
      *
      * @fifo: address of the fifo to be used
      * @to: where the data must be copied
@@ -365,11 +369,11 @@ public class CircularBuffer<T> {
      * Note that with only one concurrent reader and one concurrent
      * writer, you don't need extra locking to use these macro.
      */
-    public void kfifo_to_user() {
+    public void kfifoToUser() {
     }
 
     /**
-     * kfifo_dma_in_prepare - setup a scatterlist for DMA input
+     * kfifo_dma_in_prepare - setup a scatterlist for DMA input.
      *
      * @fifo: address of the fifo to be used
      * @sgl: pointer to the scatterlist array
@@ -382,11 +386,11 @@ public class CircularBuffer<T> {
      * Note that with only one concurrent reader and one concurrent
      * writer, you don't need extra locking to use these macros.
      */
-    public void kfifo_dma_in_prepare() {
+    public void kfifoDmaInPrepare() {
     }
 
     /**
-     * kfifo_dma_in_finish - finish a DMA IN operation
+     * kfifo_dma_in_finish - finish a DMA IN operation.
      *
      * @fifo: address of the fifo to be used
      * @len: number of bytes to received
@@ -397,12 +401,12 @@ public class CircularBuffer<T> {
      * Note that with only one concurrent reader and one concurrent
      * writer, you don't need extra locking to use these macros.
      */
-    public void kfifo_dma_in_finish() {
+    public void kfifoDmaInFinish() {
 
     }
 
     /**
-     * kfifo_dma_out_prepare - setup a scatterlist for DMA output
+     * kfifo_dma_out_prepare - setup a scatterlist for DMA output.
      *
      * @fifo: address of the fifo to be used
      * @sgl: pointer to the scatterlist array
@@ -417,11 +421,11 @@ public class CircularBuffer<T> {
      * Note that with only one concurrent reader and one concurrent
      * writer, you don't need extra locking to use these macros.
      */
-    public void kfifo_dma_out_prepare() {
+    public void kfifoDmaOutPrepare() {
     }
 
     /**
-     * kfifo_dma_out_finish - finish a DMA OUT operation
+     * kfifo_dma_out_finish - finish a DMA OUT operation.
      *
      * @fifo: address of the fifo to be used
      * @len: number of bytes transferred
@@ -432,11 +436,11 @@ public class CircularBuffer<T> {
      * Note that with only one concurrent reader and one concurrent
      * writer, you don't need extra locking to use these macros.
      */
-    public void kfifo_dma_out_finish() {
+    public void kfifoDmaOutFinish() {
     }
 
     /**
-     * kfifo_out_peek - gets some data from the fifo
+     * kfifo_out_peek - gets some data from the fifo.
      *
      * @fifo: address of the fifo to be used
      * @buf: pointer to the storage buffer
@@ -448,6 +452,6 @@ public class CircularBuffer<T> {
      * Note that with only one concurrent reader and one concurrent
      * writer, you don't need extra locking to use these macro.
      */
-    public void kfifo_out_peek() {
+    public void kfifoOutPeek() {
     }
 }

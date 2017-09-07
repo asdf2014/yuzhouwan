@@ -3,7 +3,7 @@ package com.yuzhouwan.hacker.algorithms.reverse.index;
 /**
  * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
- * Function: com.yuzhouwan.hacker.algorithms.reverse.index
+ * Function: Reverse Index Simple
  *
  * @author Benedict Jin
  * @since 2016/8/19
@@ -11,7 +11,7 @@ package com.yuzhouwan.hacker.algorithms.reverse.index;
 class ReverseIndexSimple {
 
     /**
-     * 两个倒排记录表的合并算法
+     * 两个倒排记录表的合并算法.
      *
      * @param p1 第一条倒排索引
      * @param p2 第二条倒排索引

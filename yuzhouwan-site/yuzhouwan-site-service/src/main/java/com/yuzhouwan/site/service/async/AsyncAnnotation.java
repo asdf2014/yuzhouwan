@@ -28,7 +28,7 @@ public class AsyncAnnotation {
     }
 
     /**
-     * not work, should with interface declare
+     * not work, should with interface declare.
      */
     @Async
     void longTimeOperationOrigin(long millisecond) {

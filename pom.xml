@@ -8,6 +8,7 @@
 
     <modules>
         <module>yuzhouwan-parent</module>
+        <module>yuzhouwan-checkstyle</module>
         <module>yuzhouwan-common</module>
         <module>yuzhouwan-hacker</module>
         <module>yuzhouwan-bigdata</module>

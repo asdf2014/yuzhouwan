@@ -45,12 +45,11 @@ import java.util.Map.Entry;
  * @author Benedict Jin
  * @since 2016/3/21
  */
-public class HttpUtils {
+public final class HttpUtils {
 
-    private static final Logger _log = LoggerFactory.getLogger(HttpUtils.class);
+    private static final Logger LOG = LoggerFactory.getLogger(HttpUtils.class);
 
     private static volatile HttpUtils helper;
-
     private static String userAgent;
 
     private CloseableHttpClient httpClient;
@@ -62,18 +61,23 @@ public class HttpUtils {
     private static int MAX_TOTAL;
     private static int MAX_RETRY;
     private static int MAX_ROUTE_TOTAL;
+    public static final int TIMEOUT_CONNECTION_DEFAULT = 60000;
+    public static final int TIMEOUT_SOCKET_DEFAULT = 60000;
+    public static final int MAX_TOTAL_DEFAULT = 200;
+    public static final int MAX_RETRY_DEFAULT = 5;
+    public static final int MAX_ROUTE_TOTAL_DEFAULT = 20;
 
     static {
         String timeOutConn = PropUtils.getInstance().getProperty("TIMEOUT_CONNECTION");
-        TIMEOUT_CONNECTION = StrUtils.isEmpty(timeOutConn) ? 60000 : Integer.valueOf(timeOutConn);
+        TIMEOUT_CONNECTION = StrUtils.isEmpty(timeOutConn) ? TIMEOUT_CONNECTION_DEFAULT : Integer.valueOf(timeOutConn);
         String timeSocket = PropUtils.getInstance().getProperty("TIMEOUT_SOCKET");
-        TIMEOUT_SOCKET = StrUtils.isEmpty(timeSocket) ? 60000 : Integer.valueOf(timeSocket);
+        TIMEOUT_SOCKET = StrUtils.isEmpty(timeSocket) ? TIMEOUT_SOCKET_DEFAULT : Integer.valueOf(timeSocket);
         String maxTotal = PropUtils.getInstance().getProperty("MAX_TOTAL");
-        MAX_TOTAL = StrUtils.isEmpty(maxTotal) ? 200 : Integer.valueOf(maxTotal);
+        MAX_TOTAL = StrUtils.isEmpty(maxTotal) ? MAX_TOTAL_DEFAULT : Integer.valueOf(maxTotal);
         String maxRetry = PropUtils.getInstance().getProperty("MAX_RETRY");
-        MAX_RETRY = StrUtils.isEmpty(maxRetry) ? 5 : Integer.valueOf(maxRetry);
+        MAX_RETRY = StrUtils.isEmpty(maxRetry) ? MAX_RETRY_DEFAULT : Integer.valueOf(maxRetry);
         String maxRouteTotal = PropUtils.getInstance().getProperty("MAX_ROUTE_TOTAL");
-        MAX_ROUTE_TOTAL = StrUtils.isEmpty(maxRouteTotal) ? 20 : Integer.valueOf(maxRouteTotal);
+        MAX_ROUTE_TOTAL = StrUtils.isEmpty(maxRouteTotal) ? MAX_ROUTE_TOTAL_DEFAULT : Integer.valueOf(maxRouteTotal);
     }
 
     private HttpUtils() {
@@ -118,7 +122,7 @@ public class HttpUtils {
     }
 
     /**
-     * 初始化 httpClient客户端
+     * 初始化 httpClient客户端.
      *
      * @param httpClientConnectionManager
      * @param defaultRequestConfig
@@ -126,14 +130,16 @@ public class HttpUtils {
      * @param retryHandler
      * @return
      */
-    private HttpClientBuilder initHttpClient(PoolingHttpClientConnectionManager httpClientConnectionManager, RequestConfig defaultRequestConfig, LaxRedirectStrategy redirectStrategy, HttpRequestRetryHandler retryHandler) {
+    private HttpClientBuilder initHttpClient(PoolingHttpClientConnectionManager httpClientConnectionManager,
+                                             RequestConfig defaultRequestConfig, LaxRedirectStrategy redirectStrategy,
+                                             HttpRequestRetryHandler retryHandler) {
         return HttpClients.custom()
                 .setConnectionManager(httpClientConnectionManager).setDefaultRequestConfig(defaultRequestConfig)
                 .setRedirectStrategy(redirectStrategy).setRetryHandler(retryHandler);
     }
 
     /**
-     * 覆盖证书检测过程 [用以非CA的https链接 (CA, Certificate Authority 数字证书)]
+     * 覆盖证书检测过程 [用以非CA的https链接 (CA, Certificate Authority 数字证书)].
      */
     private void coverCA() {
         trustManagers[0] = new X509TrustManager() {
@@ -153,7 +159,7 @@ public class HttpUtils {
     }
 
     /**
-     * httpClient上下文
+     * httpClient上下文.
      */
     private void httpClientContext() {
         httpClientContext = HttpClientContext.create();
@@ -167,14 +173,14 @@ public class HttpUtils {
             sslContext.init(new KeyManager[0], trustManagers, new SecureRandom());
             sslSocketFactory = new SSLConnectionSocketFactory(sslContext, new NoopHostnameVerifier());
         } catch (Exception e) {
-            _log.error(ExceptionUtils.errorInfo(e));
+            LOG.error(ExceptionUtils.errorInfo(e));
             throw new RuntimeException(e);
         }
         return sslSocketFactory;
     }
 
     /**
-     * 创建 httpClient连接池
+     * 创建 httpClient连接池.
      *
      * @param connectionConfig
      * @return
@@ -191,7 +197,7 @@ public class HttpUtils {
     }
 
     /**
-     * 默认请求配置
+     * 默认请求配置.
      *
      * @return
      */
@@ -203,7 +209,7 @@ public class HttpUtils {
     }
 
     /**
-     * 重试策略
+     * 重试策略.
      *
      * @return
      */
@@ -222,7 +228,7 @@ public class HttpUtils {
     }
 
     /**
-     * 设置重定向策略
+     * 设置重定向策略.
      *
      * @return
      */
@@ -234,7 +240,7 @@ public class HttpUtils {
         ContentType contentType = ContentType.TEXT_PLAIN.withCharset(Consts.UTF_8);
         MultipartEntityBuilder builder = MultipartEntityBuilder.create();
         if (params != null) {
-            _log.debug(params.toString());
+            LOG.debug(params.toString());
             Object value;
             for (Entry<String, Object> entry : params.entrySet()) {
                 value = entry.getValue();
@@ -249,7 +255,7 @@ public class HttpUtils {
     }
 
     /**
-     * POST with params
+     * POST with params.
      *
      * @param url
      * @param params
@@ -257,7 +263,8 @@ public class HttpUtils {
      * @return
      * @throws Exception
      */
-    public InputStream postStream(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
+    public InputStream postStream(String url, Map<String, Object> params,
+                                  Map<String, String> headers) throws Exception {
         return checkResponseStatus(post(url, params, headers)).getStream();
     }
 
@@ -266,7 +273,7 @@ public class HttpUtils {
     }
 
     public HttpResponse post(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
-        _log.debug(url);
+        LOG.debug(url);
         MultipartEntityBuilder builder = processBuilderParams(params);
         builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
         builder.setCharset(Consts.UTF_8);
@@ -277,7 +284,7 @@ public class HttpUtils {
     }
 
     /**
-     * POST with HttpEntity
+     * POST with HttpEntity.
      *
      * @param url
      * @param entityParam
@@ -295,14 +302,14 @@ public class HttpUtils {
 
     public HttpResponse post(String url, HttpEntity entity, Map<String, String> headers) throws Exception {
         HttpPost post = new HttpPost(url);
-        _log.debug(url);
+        LOG.debug(url);
         post.setEntity(entity);
         processHeader(post, headers);
         return internalProcess(post);
     }
 
     /**
-     * GET with params, except HttpEntity
+     * GET with params, except HttpEntity.
      *
      * @param url
      * @param params
@@ -319,14 +326,14 @@ public class HttpUtils {
     }
 
     public HttpResponse get(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
-        _log.debug(url);
+        LOG.debug(url);
         HttpGet get = new HttpGet(processURL(url, params));
         processHeader(get, headers);
         return internalProcess(get);
     }
 
     /**
-     * PUT with params
+     * PUT with params.
      *
      * @param url
      * @param params
@@ -343,14 +350,14 @@ public class HttpUtils {
     }
 
     public HttpResponse put(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
-        _log.debug(url);
+        LOG.debug(url);
         HttpPut put = new HttpPut(processURL(url, params));
         processHeader(put, headers);
         return internalProcess(put);
     }
 
     /**
-     * PUT with HttpEntity
+     * PUT with HttpEntity.
      *
      * @param url
      * @param entityParam
@@ -367,7 +374,7 @@ public class HttpUtils {
     }
 
     public HttpResponse put(String url, HttpEntity entity, Map<String, String> headers) throws Exception {
-        _log.debug(url);
+        LOG.debug(url);
         HttpPut put = new HttpPut(url);
         put.setEntity(entity);
         processHeader(put, headers);
@@ -375,7 +382,7 @@ public class HttpUtils {
     }
 
     /**
-     * DELETE with params, except HttpEntity
+     * DELETE with params, except HttpEntity.
      *
      * @param url
      * @param params
@@ -383,7 +390,8 @@ public class HttpUtils {
      * @return
      * @throws Exception
      */
-    public InputStream deleteStream(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
+    public InputStream deleteStream(String url, Map<String, Object> params,
+                                    Map<String, String> headers) throws Exception {
         return checkResponseStatus(delete(url, params, headers)).getStream();
     }
 
@@ -392,14 +400,14 @@ public class HttpUtils {
     }
 
     public HttpResponse delete(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
-        _log.debug("Url: {}", url);
+        LOG.debug("Url: {}", url);
         HttpDelete delete;
         processHeader((delete = new HttpDelete(processURL(url, params))), headers);
         return internalProcess(delete);
     }
 
     /**
-     * RESTful 内部操作
+     * RESTful 内部操作.
      *
      * @param rest
      * @return
@@ -413,14 +421,14 @@ public class HttpUtils {
             HttpResponse httpResponse = new HttpResponse();
             httpResponse.setCode(statusCode);
             if (httpResponse.isError())
-                _log.error("error response: status {}, method {} ", statusCode, rest.getMethod());
+                LOG.error("error response: status {}, method {} ", statusCode, rest.getMethod());
             httpResponse.setBytes(EntityUtils.toByteArray(response.getEntity()));
             Header header;
             if ((header = response.getEntity().getContentType()) != null)
                 httpResponse.setContentType(header.getValue());
             return httpResponse;
         } catch (Exception e) {
-            _log.error(ExceptionUtils.errorInfo(e));
+            LOG.error(ExceptionUtils.errorInfo(e));
             throw new RuntimeException(e);
         } finally {
             release(rest, response, response != null ? response.getEntity() : null);
@@ -428,7 +436,7 @@ public class HttpUtils {
     }
 
     /**
-     * 检查 HttpResponse's Code [装饰器模式]
+     * 检查 HttpResponse's Code [装饰器模式].
      *
      * @param response
      */
@@ -445,7 +453,7 @@ public class HttpUtils {
 
     private String processURL(String processUrl, Map<String, Object> params) {
         if (params == null) return processUrl;
-        _log.debug("{}", params.toString());
+        LOG.debug("{}", params.toString());
         StringBuilder url;
         if ((url = new StringBuilder(processUrl)).indexOf("?") < 0) url.append('?');
         for (String name : params.keySet())
@@ -460,12 +468,12 @@ public class HttpUtils {
             try {
                 if (entity != null) EntityUtils.consume(entity);
             } catch (IOException e) {
-                _log.error(ExceptionUtils.errorInfo(e));
+                LOG.error(ExceptionUtils.errorInfo(e));
             } finally {
                 try {
                     if (response != null) response.close();
                 } catch (IOException e) {
-                    _log.error(ExceptionUtils.errorInfo(e));
+                    LOG.error(ExceptionUtils.errorInfo(e));
                 }
             }
         }

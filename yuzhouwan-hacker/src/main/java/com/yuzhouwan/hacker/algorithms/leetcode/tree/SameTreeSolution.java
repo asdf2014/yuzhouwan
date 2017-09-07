@@ -37,6 +37,7 @@ class SameTreeSolution {
     }
 
     static boolean wisdom(TreeNode p, TreeNode q) {
-        return p == null && q == null || !(p == null || q == null) && p.val == q.val && wisdom(p.left, q.left) && wisdom(p.right, q.right);
+        return p == null && q == null || !(p == null || q == null)
+                && p.val == q.val && wisdom(p.left, q.left) && wisdom(p.right, q.right);
     }
 }

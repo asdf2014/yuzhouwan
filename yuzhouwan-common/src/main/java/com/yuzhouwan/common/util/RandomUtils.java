@@ -12,7 +12,10 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author Benedict Jin
  * @since 2016/8/23
  */
-public class RandomUtils {
+public final class RandomUtils {
+
+    private RandomUtils() {
+    }
 
     // return a real number uniformly between a and b
     public static double uniform(double a, double b) {
@@ -20,8 +23,8 @@ public class RandomUtils {
     }
 
     // return an integer uniformly between 0 and N-1
-    public static int uniform(int N) {
-        return (int) (Math.random() * N);
+    public static int uniform(int n) {
+        return (int) (Math.random() * n);
     }
 
     // return a boolean, which is true with prob p and false otherwise
@@ -63,11 +66,11 @@ public class RandomUtils {
 
 
     // Random permutation
-    public static int[] perm(int N) {
-        int[] a = new int[N];
-        for (int i = 0; i < N; i++) a[i] = i;
-        for (int i = 0; i < N; i++) {
-            int r = i + (int) (Math.random() * (N - i));   // between i and N-1
+    public static int[] perm(int n) {
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) a[i] = i;
+        for (int i = 0; i < n; i++) {
+            int r = i + (int) (Math.random() * (n - i));   // between i and N-1
             int temp = a[i];
             a[i] = a[r];
             a[r] = temp;

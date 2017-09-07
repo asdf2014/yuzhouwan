@@ -54,6 +54,9 @@ public class SyncExample {
     }
 }
 
+/**
+ * SyncObj.
+ */
 class SyncObj {
     public int getNum() {
         return 0;

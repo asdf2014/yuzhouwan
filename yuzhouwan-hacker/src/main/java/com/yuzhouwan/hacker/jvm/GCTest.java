@@ -6,6 +6,14 @@ import java.util.AbstractQueue;
 import java.util.Date;
 import java.util.concurrent.ArrayBlockingQueue;
 
+/**
+ * Copyright @ 2017 yuzhouwan.com
+ * All right reserved.
+ * Function：GC Test
+ *
+ * @author Benedict Jin
+ * @since 2017/3/16
+ */
 public class GCTest {
 
     private static int threadNum = 1;
@@ -15,7 +23,8 @@ public class GCTest {
     static int countDownSize = 1000 * 100;
     static int eachRemoveSize = 1000 * 50;  // remove # of elements each time.
 
-    // -Xmx512M -Xms256M -Xloggc:gc.log -XX:+UseG1GC -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps
+    // -Xmx512M -Xms256M -Xloggc:gc.log -XX:+UseG1GC -XX:+PrintGCApplicationStoppedTime
+    // -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps
     public static void main(String[] args) throws IOException {
         if (args.length > 0) {
             duration = Integer.parseInt(args[0]);
@@ -28,6 +37,9 @@ public class GCTest {
     }
 }
 
+/**
+ * LoadThread.
+ */
 class LoadThread extends Thread {
 
     private static long timeZero = System.currentTimeMillis();

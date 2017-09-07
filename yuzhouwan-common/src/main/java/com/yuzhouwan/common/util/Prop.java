@@ -2,6 +2,14 @@ package com.yuzhouwan.common.util;
 
 import java.util.Properties;
 
+/**
+ * Copyright @ 2017 yuzhouwan.com
+ * All right reserved.
+ * Function: Prop
+ *
+ * @author Benedict Jin
+ * @since 2016/4/8
+ */
 class Prop {
     private Properties p;
     private long modify;

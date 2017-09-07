@@ -18,10 +18,10 @@ import java.util.Iterator;
  */
 public class PatentReducer extends Reducer<Text, Text, Text, Text> {
 
-    private static final Logger _log = LoggerFactory.getLogger(PatentReducer.class);
+    private static final Logger LOG = LoggerFactory.getLogger(PatentReducer.class);
 
     /**
-     * Reducer 的核心方法，用来处理 海量的 Combiner端输入数据
+     * Reducer 的核心方法，用来处理 海量的 Combiner端输入数据.
      *
      * @param key
      * @param value
@@ -55,12 +55,12 @@ public class PatentReducer extends Reducer<Text, Text, Text, Text> {
                 throw new RuntimeException(e);
             }
         } catch (Exception e) {
-            _log.error("error: {}", e.getMessage());
+            LOG.error("error: {}", e.getMessage());
         }
     }
 
     /**
-     * 将相同的专利 keyword 的 信息[类型，公司，专利总数] 拼装起来
+     * 将相同的专利 keyword 的 信息[类型，公司，专利总数] 拼装起来.
      *
      * @param strBuffer
      * @param iterator

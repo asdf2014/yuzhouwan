@@ -22,7 +22,7 @@ public class FullRestMethod {
     private ConcurrentHashMap<String, String> chm = new ConcurrentHashMap<>();
 
     /**
-     * GET用来获取资源
+     * GET用来获取资源.
      *
      * @param key
      * @return
@@ -31,11 +31,12 @@ public class FullRestMethod {
     @ResponseBody
     public String getMsg(String key) {
         String result;
-        return StrUtils.isEmpty(key) ? "key can not be empty!" : (result = chm.get(key)) == null ? "nothing here" : result;
+        return StrUtils.isEmpty(key) ? "key can not be empty!"
+                : (result = chm.get(key)) == null ? "nothing here" : result;
     }
 
     /**
-     * POST用来新建资源（也可以用于更新资源）
+     * POST用来新建资源（也可以用于更新资源）.
      *
      * @param key
      * @param value
@@ -54,7 +55,7 @@ public class FullRestMethod {
     }
 
     /**
-     * PUT用来更新资源
+     * PUT用来更新资源.
      *
      * @param key
      * @param value
@@ -67,7 +68,7 @@ public class FullRestMethod {
     }
 
     /**
-     * DELETE用来删除资源
+     * DELETE用来删除资源.
      *
      * @param key
      * @return

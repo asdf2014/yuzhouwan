@@ -18,7 +18,8 @@ public class H3CUserTarget {
     private long timeout;
     private int version;
 
-    public H3CUserTarget(String address, String securityName2, int securityLevel, int securityModel, int retries, long timeout, int version) {
+    public H3CUserTarget(String address, String securityName2, int securityLevel,
+                         int securityModel, int retries, long timeout, int version) {
         this.address = address;
         this.securityName2 = securityName2;
         this.securityLevel = securityLevel;

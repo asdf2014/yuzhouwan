@@ -17,8 +17,8 @@ import org.springframework.stereotype.Component;
 public class InternalService implements IInternalService {
 
     /**
-     * interface + method level @async
-     * class level @async
+     * interface + method level @async.
+     * class level @async.
      */
     @Override
     public void longTimeOperationInternal(long seconds) {

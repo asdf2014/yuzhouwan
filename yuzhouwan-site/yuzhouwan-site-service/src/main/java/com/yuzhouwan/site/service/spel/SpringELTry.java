@@ -30,8 +30,10 @@ public class SpringELTry {
         /**
          * java.lang.IllegalStateException: Cannot handle (59) ';'
          */
-        String s = "Feb 23 11:09:17 2016 GX-NN-SR-1.D.S5820 %%10SSHS/6/SSHLOG: -DevIP=116.1.239.33; User lianghb logged out from 219.143.200.182 port 65164.";
-        String regular = "^\\w+ \\d+ \\d{2}:\\d{2}:\\d{2} \\d{4} \\b(?>(\\w+-){3}\\d\\.\\w\\.).{5}\\b %%10\\w+/\\d/\\w+:.+$";
+        String s = "Feb 23 11:09:17 2016 GX-NN-SR-1.D.S5820 %%10SSHS/6/SSHLOG:"
+                + " -DevIP=116.1.239.33; User lianghb logged out from 219.143.200.182 port 65164.";
+        String regular = "^\\w+ \\d+ \\d{2}:\\d{2}:\\d{2} \\d{4} "
+                + "\\b(?>(\\w+-){3}\\d\\.\\w\\.).{5}\\b %%10\\w+/\\d/\\w+:.+$";
         Expression expression = parser.parseExpression(String.format("'%s' matches '%s'", s, regular));
         return expression.getValue(Boolean.class);
     }

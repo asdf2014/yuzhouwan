@@ -19,17 +19,14 @@ public class TargetAOP {
     public void targetAfter() {
     }
 
-    public boolean targetAfterReturning(boolean _return) {
-        return _return;
+    public boolean targetAfterReturning(boolean ret) {
+        return ret;
     }
 
     public void targetAround() {
     }
 
-    public void targetAfterThrowing(Throwable _throw) throws Throwable {
-        if (_throw == null)
-            return;
-        else
-            throw _throw;
+    public void targetAfterThrowing(Throwable thr) throws Throwable {
+        if (thr != null) throw thr;
     }
 }

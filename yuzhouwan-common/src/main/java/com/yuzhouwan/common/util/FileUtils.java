@@ -16,9 +16,15 @@ import java.io.IOException;
  * @author Benedict Jin
  * @since 2016/8/20
  */
-public class FileUtils {
+public final class FileUtils {
 
-    private static final Logger _log = LoggerFactory.getLogger(FileUtils.class);
+    private static final Logger LOG = LoggerFactory.getLogger(FileUtils.class);
+
+    public static final int RETRY_DELETE_DEFAULT_TIMES = 3;
+    public static final int RETRY_DELETE_DEFAULT_INTERVAL_MS = 100;
+
+    private FileUtils() {
+    }
 
     public static byte[] readFile(String filename) throws IOException {
         if (StrUtils.isEmpty(filename)) return null;
@@ -34,7 +40,7 @@ public class FileUtils {
         }
     }
 
-    public static void writeFile(String filename, byte data[]) throws IOException {
+    public static void writeFile(String filename, byte[] data) throws IOException {
         try (FileOutputStream fos = new FileOutputStream(filename)) {
             fos.write(data);
         }
@@ -45,19 +51,19 @@ public class FileUtils {
     }
 
     public static void retryDelete(File file) {
-        retryDelete(file, 3, 100);
+        retryDelete(file, RETRY_DELETE_DEFAULT_TIMES, RETRY_DELETE_DEFAULT_INTERVAL_MS);
     }
 
     public static void retryDelete(File file, int count) {
-        retryDelete(file, count, 100);
+        retryDelete(file, count, RETRY_DELETE_DEFAULT_INTERVAL_MS);
     }
 
     public static void retryDelete(File file, int count, long millisecond) {
         int copyCount = count;
         while (checkExist(file) && count > 0) {
-            _log.debug("File Delete Try Count: {}", copyCount - count + 1);
+            LOG.debug("File Delete Try Count: {}", copyCount - count + 1);
             if (file.delete()) {
-                _log.debug("File Deleted!");
+                LOG.debug("File Deleted!");
                 return;
             }
             count--;

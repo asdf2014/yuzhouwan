@@ -10,7 +10,7 @@ package com.yuzhouwan.hacker.algorithms.sort;
  */
 class QuickSortExample {
 
-    static void quickSort(int n[], int left, int right) {
+    static void quickSort(int[] n, int left, int right) {
         int dp;
         if (left < right) {
             dp = partition(n, left, right);
@@ -19,7 +19,7 @@ class QuickSortExample {
         }
     }
 
-    private static int partition(int n[], int left, int right) {
+    private static int partition(int[] n, int left, int right) {
         int pivot = n[left];
         while (left < right) {
             while (left < right && n[right] >= pivot)

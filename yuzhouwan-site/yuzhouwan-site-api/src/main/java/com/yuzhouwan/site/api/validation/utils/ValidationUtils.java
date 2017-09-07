@@ -10,7 +10,10 @@ import org.springframework.validation.BindingResult;
  * @author Benedict Jin
  * @since 2016/9/7
  */
-public class ValidationUtils {
+public final class ValidationUtils {
+
+    private ValidationUtils() {
+    }
 
     public static String getErrorInfos(BindingResult result) {
         StringBuilder strBuilder = new StringBuilder();

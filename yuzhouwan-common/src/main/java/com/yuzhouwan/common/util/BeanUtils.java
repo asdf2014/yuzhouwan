@@ -20,11 +20,14 @@ import static com.yuzhouwan.common.util.CollectionUtils.remove;
  * @author Benedict Jin
  * @since 2016/12/1
  */
-public class BeanUtils {
+public final class BeanUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(BeanUtils.class);
     private static final String FIELD_NAME = "name", DRUID_METRICS = "metric", DRUID_VALUE = "value";
     private static final ConcurrentHashMap<String, Vector<Field>> FIELDS_CACHE = new ConcurrentHashMap<>();
+
+    private BeanUtils() {
+    }
 
     /**
      * Swap values into object's similar filed.
@@ -51,7 +54,7 @@ public class BeanUtils {
     }
 
     /**
-     * Value field
+     * Value field.
      *
      * @param o
      * @param key
@@ -75,9 +78,9 @@ public class BeanUtils {
     }
 
     /**
-     * [Object{Str a, Str b, int c, int d}, ...] -> ["{a, b, c}", "{a, b, d}", ...]
-     * <p>
      * The method is suit for (small head && long tail / large head && short tail).
+     * <p>
+     * [Object{Str a, Str b, int c, int d}, ...] -> ["{a, b, c}", "{a, b, d}", ...]
      *
      * @param objList    aim object list
      * @param fields     fields
@@ -89,14 +92,15 @@ public class BeanUtils {
      * @param <T>        generic type
      * @return rows
      */
-    public static <T> LinkedList<String> columns2Row(List<T> objList, String[] fields, boolean isLongTail, boolean forDruid, Object... ignores) {
+    public static <T> LinkedList<String> columns2Row(List<T> objList, String[] fields,
+                                                     boolean isLongTail, boolean forDruid, Object... ignores) {
         return columns2Row(objList, fields, null, isLongTail, forDruid, ignores);
     }
 
     /**
-     * [Object{Str a, Str b, int c, int d}, ...] -> ["{a, b, c}", "{a, b, d}", ...]
-     * <p>
      * The method is suit for (small head && long tail / large head && short tail).
+     * <p>
+     * [Object{Str a, Str b, int c, int d}, ...] -> ["{a, b, c}", "{a, b, d}", ...]
      *
      * @param objList     aim object list
      * @param fields      fields
@@ -109,16 +113,18 @@ public class BeanUtils {
      * @param <T>         generic type
      * @return rows
      */
-    public static <T> LinkedList<String> columns2Row(List<T> objList, String[] fields, Class parentClass, boolean isLongTail, boolean forDruid, Object... ignores) {
+    public static <T> LinkedList<String> columns2Row(List<T> objList, String[] fields,
+                                                     Class parentClass, boolean isLongTail,
+                                                     boolean forDruid, Object... ignores) {
         LinkedList<String> rows = new LinkedList<>();
         for (Object o : objList) rows.addAll(column2Row(o, fields, parentClass, isLongTail, forDruid, ignores));
         return rows;
     }
 
     /**
-     * [Object{Str a, Str b, int c, int d}, ...] -> ["{a, b, c}", "{a, b, d}", ...]
-     * <p>
      * The method is suit for (small head && long tail / large head && short tail).
+     * <p>
+     * [Object{Str a, Str b, int c, int d}, ...] -> ["{a, b, c}", "{a, b, d}", ...]
      *
      * @param obj        aim object
      * @param fields     fields
@@ -130,14 +136,15 @@ public class BeanUtils {
      * @param <T>        generic type
      * @return rows
      */
-    public static <T> LinkedList<String> column2Row(T obj, String[] fields, boolean isLongTail, boolean forDruid, Object... ignores) {
+    public static <T> LinkedList<String> column2Row(T obj, String[] fields, boolean isLongTail,
+                                                    boolean forDruid, Object... ignores) {
         return column2Row(obj, fields, null, isLongTail, forDruid, ignores);
     }
 
     /**
-     * Object{Str a, Str b, int c, int d} -> ["{a, b, c}", "{a, b, d}"]
-     * <p>
      * The method is suit for (small head && long tail / large head && short tail).
+     * <p>
+     * Object{Str a, Str b, int c, int d} -> ["{a, b, c}", "{a, b, d}"]
      *
      * @param obj         aim object
      * @param fields      fields
@@ -150,7 +157,8 @@ public class BeanUtils {
      * @param <T>         generic type
      * @return rows
      */
-    public static <T> LinkedList<String> column2Row(T obj, String[] fields, Class parentClass, boolean isLongTail, boolean forDruid, Object... ignores) {
+    public static <T> LinkedList<String> column2Row(T obj, String[] fields, Class parentClass,
+                                                    boolean isLongTail, boolean forDruid, Object... ignores) {
         if (obj == null || fields == null || fields.length == 0) return null;
         Class<?> clazz = obj.getClass();
         if (clazz == null) return null;
@@ -172,7 +180,8 @@ public class BeanUtils {
      * @param parentClass
      * @param isLongTail
      */
-    private static void initFields(Set<Field> head, Set<Field> tail, Class<?> clazz, String className, Class parentClass, boolean isLongTail) {
+    private static void initFields(Set<Field> head, Set<Field> tail, Class<?> clazz,
+                                   String className, Class parentClass, boolean isLongTail) {
         Vector<Field> fieldVector = getFields(clazz, className);
         if (isLongTail) tail.addAll(fieldVector);
         else head.addAll(fieldVector);
@@ -181,7 +190,7 @@ public class BeanUtils {
 
     /**
      * Remove fields.
-     * [note]: 1. tail/head: difference set; 2. removed: intersection in remove method
+     * [note]: 1. tail/head: difference set; 2. removed: intersection in remove method.
      *
      * @param head
      * @param tail
@@ -189,7 +198,8 @@ public class BeanUtils {
      * @param fields
      * @param ignores
      */
-    private static void removeFields(Set<Field> head, Set<Field> tail, boolean isLongTail, Object[] fields, Object[] ignores) {
+    private static void removeFields(Set<Field> head, Set<Field> tail, boolean isLongTail,
+                                     Object[] fields, Object[] ignores) {
         if (isLongTail) head.addAll(remove(tail, FIELD_NAME, fields));
         else tail.addAll(remove(head, FIELD_NAME, fields));
         if (ignores != null && ignores.length > 0) {
@@ -199,9 +209,9 @@ public class BeanUtils {
     }
 
     /**
-     * Object{Str a, Str b, int c, int d} -> ["{a, b, c}", "{a, b, d}"]
-     * <p>
      * The method is suit for small head/tail.
+     * <p>
+     * Object{Str a, Str b, int c, int d} -> ["{a, b, c}", "{a, b, d}"]
      *
      * @param objList  aim object list
      * @param head     head fields
@@ -211,16 +221,17 @@ public class BeanUtils {
      * @param <T>      generic type
      * @return rows
      */
-    public static <T> LinkedList<String> columns2Row(List<T> objList, Set<Field> head, Set<Field> tail, boolean forDruid) {
+    public static <T> LinkedList<String> columns2Row(List<T> objList, Set<Field> head,
+                                                     Set<Field> tail, boolean forDruid) {
         LinkedList<String> rows = new LinkedList<>();
         for (Object o : objList) rows.addAll(column2Row(o, head, tail, forDruid));
         return rows;
     }
 
     /**
-     * Object{Str a, Str b, int c, int d} -> ["{a, b, c}", "{a, b, d}"]
-     * <p>
      * The method is suit for small head/tail.
+     * <p>
+     * Object{Str a, Str b, int c, int d} -> ["{a, b, c}", "{a, b, d}"]
      *
      * @param obj      aim object
      * @param head     head fields
@@ -246,7 +257,7 @@ public class BeanUtils {
     }
 
     /**
-     * Deal with tail that will be format as {..., "xxx": yyy} normally
+     * Deal with tail that will be format as {..., "xxx": yyy} normally.
      *
      * @param obj
      * @param tail
@@ -269,7 +280,7 @@ public class BeanUtils {
     }
 
     /**
-     * Deal with tail that will be format as {..., "metric": "xxx", "value": yyy}
+     * Deal with tail that will be format as {..., "metric": "xxx", "value": yyy}.
      *
      * @param obj
      * @param tail
@@ -289,7 +300,8 @@ public class BeanUtils {
                 if (isFirst) isFirst = false;
                 jsonObject.put(DRUID_METRICS, t.getName());
 //                jsonObject.put("value_".concat(t.getType().getSimpleName()), t.get(obj));
-                jsonObject.put(DRUID_VALUE, t.get(obj));        // then should use double sum/max/min with Aggregation in Druid
+                // then should use double sum/max/min with Aggregation in Druid
+                jsonObject.put(DRUID_VALUE, t.get(obj));
                 rows.add(jsonObject.toJSONString());
             } catch (IllegalAccessException e) {
                 _log.error(ExceptionUtils.errorInfo(e));
@@ -297,7 +309,7 @@ public class BeanUtils {
     }
 
     /**
-     * Get fields with <code>FIELDS_CACHE</code>
+     * Get fields with <code>FIELDS_CACHE</code>.
      *
      * @param clazz     class
      * @param className the name of class as the key in FIELDS_CACHE
@@ -312,7 +324,7 @@ public class BeanUtils {
     }
 
     /**
-     * Return the set of fields declared at all level of class hierarchy
+     * Return the set of fields declared at all level of class hierarchy.
      *
      * @param clazz class
      * @return all fields in class and it's super classes

@@ -5,6 +5,7 @@ package com.yuzhouwan.hacker.redis;
  * All right reserved.
  * Function: ICache
  *
+ * @param <T>
  * @author Benedict Jin
  * @since 2016/8/31
  */

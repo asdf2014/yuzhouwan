@@ -1,5 +1,13 @@
 package com.yuzhouwan.hacker.algorithms.reverse.index;
 
+/**
+ * Copyright @ 2017 yuzhouwan.com
+ * All right reserved.
+ * Function: Doc Node List
+ *
+ * @author Benedict Jin
+ * @since 2016/8/19
+ */
 class DocNodeList {
 
     //指向下一个节点

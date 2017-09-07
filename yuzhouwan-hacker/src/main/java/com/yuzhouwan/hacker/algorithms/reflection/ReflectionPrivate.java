@@ -12,7 +12,8 @@ import java.lang.reflect.Field;
  */
 public class ReflectionPrivate {
 
-    public SimpleBean createSimpleBean(Integer i, Long l, String s) throws NoSuchFieldException, IllegalAccessException {
+    public SimpleBean createSimpleBean(Integer i, Long l, String s)
+            throws NoSuchFieldException, IllegalAccessException {
 
         SimpleBean simpleBean = new SimpleBean();
 

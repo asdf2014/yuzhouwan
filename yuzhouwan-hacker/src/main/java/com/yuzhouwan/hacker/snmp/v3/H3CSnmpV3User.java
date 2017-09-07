@@ -19,7 +19,8 @@ public class H3CSnmpV3User {
     private PrivacyProtocol privacyProtocol;
     private String privacyPassphrase;
 
-    public H3CSnmpV3User(String securityName, AuthGeneric authenticationProtocol, String authenticationPassphrase, PrivacyProtocol privacyProtocol, String privacyPassphrase) {
+    public H3CSnmpV3User(String securityName, AuthGeneric authenticationProtocol,
+                         String authenticationPassphrase, PrivacyProtocol privacyProtocol, String privacyPassphrase) {
         this.securityName = securityName;
         this.authenticationProtocol = authenticationProtocol;
         this.authenticationPassphrase = authenticationPassphrase;

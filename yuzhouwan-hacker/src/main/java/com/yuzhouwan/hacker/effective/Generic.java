@@ -5,6 +5,7 @@ package com.yuzhouwan.hacker.effective;
  * All right reserved.
  * Function：Generic
  *
+ * @param <Y>
  * @author Benedict Jin
  * @since 2015/10/9
  */

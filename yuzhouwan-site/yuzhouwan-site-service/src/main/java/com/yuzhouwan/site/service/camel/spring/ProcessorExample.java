@@ -21,7 +21,7 @@ public class ProcessorExample implements Processor {
 
     /**
      * 自定义的处理器，处理器本身交由Spring Ioc容器管理
-     * 并且其中注入了一个DoSomethingService接口的实现
+     * 并且其中注入了一个DoSomethingService接口的实现.
      */
     private static final Log _log = LogFactory.getLog(ProcessorExample.class);
 

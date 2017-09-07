@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
  */
 public class CuratorDistributedBarrier {
 
-    private final static Logger _log = LoggerFactory.getLogger(CuratorDistributedBarrier.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CuratorDistributedBarrier.class);
     private DistributedBarrier distributedBarrier;
     private DistributedDoubleBarrier distributedDoubleBarrier;
 
@@ -43,7 +43,8 @@ public class CuratorDistributedBarrier {
 //            if (stat != null)
 //                curatorFramework.delete().deletingChildrenIfNeeded().forPath("/double");
 //            else
-//                curatorFramework.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath("/double");
+//                curatorFramework.create().creatingParentsIfNeeded()
+//                      .withMode(CreateMode.PERSISTENT).forPath("/double");
 //        } catch (Exception e) {
 //            throw new RuntimeException("Cannot create path '/double' !!", e);
 //        }
@@ -90,10 +91,10 @@ public class CuratorDistributedBarrier {
                 @Override
                 public void run() {
                     try {
-                        _log.info("set {}...", finalCount);
+                        LOG.info("set {}...", finalCount);
                         distributedBarrier.setBarrier();
                         distributedBarrier.waitOnBarrier();
-                        _log.info("start {}...", finalCount);
+                        LOG.info("start {}...", finalCount);
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }

@@ -34,23 +34,23 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         init(DynamicPropUtils.getInstance());
     }
 
-    public RedisClusterConnPool(DynamicPropUtils DP) {
-        init(DP);
+    public RedisClusterConnPool(DynamicPropUtils dp) {
+        init(dp);
     }
 
     public RedisClusterConnPool(boolean pools) {
-        DynamicPropUtils DP = DynamicPropUtils.getInstance();
-        if (pools) initPools(DP);
-        else init(DP);
+        DynamicPropUtils dp = DynamicPropUtils.getInstance();
+        if (pools) initPools(dp);
+        else init(dp);
     }
 
-    public RedisClusterConnPool(DynamicPropUtils DP, boolean pools) {
-        if (pools) initPools(DP);
-        else init(DP);
+    public RedisClusterConnPool(DynamicPropUtils dp, boolean pools) {
+        if (pools) initPools(dp);
+        else init(dp);
     }
 
-    private void init(DynamicPropUtils DP) {
-        String clusterList = getClusterList(DP);
+    private void init(DynamicPropUtils dp) {
+        String clusterList = getClusterList(dp);
         String[] hostAndPort;
         Set<HostAndPort> jedisClusterNodes = new HashSet<>();
         for (String clusters : clusterList.split(",")) {
@@ -60,8 +60,8 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         cluster = new JedisCluster(jedisClusterNodes, buildConf());
     }
 
-    private void initPools(DynamicPropUtils DP) {
-        String clusterList = getClusterList(DP);
+    private void initPools(DynamicPropUtils dp) {
+        String clusterList = getClusterList(dp);
         pools = new LinkedList<>();
         String[] hostAndPort;
         for (String clusters : clusterList.split(",")) {
@@ -70,8 +70,8 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         }
     }
 
-    private String getClusterList(DynamicPropUtils DP) {
-        Object clusterListObj = DP.get(PROJECT_NAME, "redis.cluster.list");
+    private String getClusterList(DynamicPropUtils dp) {
+        Object clusterListObj = dp.get(PROJECT_NAME, "redis.cluster.list");
         String clusterList;
         if (clusterListObj == null || StrUtils.isEmpty(clusterList = clusterListObj.toString())) {
             String error = String.format("Cannot get [%s-redis.cluster.list] from Dynamic PropUtils!", PROJECT_NAME);

@@ -20,7 +20,7 @@ public class FixedThreadPoolTry {
     /**
      * ICONST_0
      * ISTORE 1
-     * IINC 1 1
+     * IINC 1 1.
      *
      * @param args
      */

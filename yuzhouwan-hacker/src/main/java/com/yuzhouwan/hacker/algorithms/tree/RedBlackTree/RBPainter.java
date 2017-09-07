@@ -93,7 +93,7 @@ public final class RBPainter implements ActionListener, MouseListener, MouseMoti
     }
 
     /**
-     * Set the window size to w-by-h pixels
+     * Set the window size to w-by-h pixels.
      *
      * @param w the width as a number of pixels
      * @param h the height as a number of pixels
@@ -166,21 +166,21 @@ public final class RBPainter implements ActionListener, MouseListener, MouseMoti
      *************************************************************************/
 
     /**
-     * Set the X scale to be the default
+     * Set the X scale to be the default.
      */
     private static void setXscale() {
         setXscale(DEFAULT_X_MIN, DEFAULT_X_MAX);
     }
 
     /**
-     * Set the Y scale to be the default
+     * Set the Y scale to be the default.
      */
     private static void setYscale() {
         setYscale(DEFAULT_Y_MIN, DEFAULT_Y_MAX);
     }
 
     /**
-     * Set the X scale (a border is added to the values)
+     * Set the X scale (a border is added to the values).
      *
      * @param min the minimum value of the X scale
      * @param max the maximum value of the X scale
@@ -192,7 +192,7 @@ public final class RBPainter implements ActionListener, MouseListener, MouseMoti
     }
 
     /**
-     * Set the Y scale (a border is added to the values)
+     * Set the Y scale (a border is added to the values).
      *
      * @param min the minimum value of the Y scale
      * @param max the maximum value of the Y scale
@@ -230,7 +230,7 @@ public final class RBPainter implements ActionListener, MouseListener, MouseMoti
 
 
     /**
-     * Clear the screen with the default color, white
+     * Clear the screen with the default color, white.
      */
     private static void clear() {
         clear(DEFAULT_CLEAR_COLOR);
@@ -249,14 +249,14 @@ public final class RBPainter implements ActionListener, MouseListener, MouseMoti
     }
 
     /**
-     * Set the pen size to the default
+     * Set the pen size to the default.
      */
     static void setPenRadius() {
         setPenRadius(DEFAULT_PEN_RADIUS);
     }
 
     /**
-     * Set the pen size to the given size
+     * Set the pen size to the given size.
      *
      * @param r the radius of the pen
      * @throws RuntimeException if r is negative
@@ -288,14 +288,14 @@ public final class RBPainter implements ActionListener, MouseListener, MouseMoti
     }
 
     /**
-     * Set the font to be the default for all string writing
+     * Set the font to be the default for all string writing.
      */
     static void setFont() {
         setFont(DEFAULT_FONT);
     }
 
     /**
-     * Set the font as given for all string writing
+     * Set the font as given for all string writing.
      *
      * @param f the font to make text
      */
@@ -309,7 +309,7 @@ public final class RBPainter implements ActionListener, MouseListener, MouseMoti
      *************************************************************************/
 
     /**
-     * Draw a line from (x0, y0) to (x1, y1)
+     * Draw a line from (x0, y0) to (x1, y1).
      *
      * @param x0 the x co-ord of the starting point
      * @param y0 the y co-ord of the starting point
@@ -322,7 +322,7 @@ public final class RBPainter implements ActionListener, MouseListener, MouseMoti
     }
 
     /**
-     * Draw one pixel at (x, y)
+     * Draw one pixel at (x, y).
      *
      * @param x the x co-ord of the pixel
      * @param y the y co-ord of the pixel
@@ -332,7 +332,7 @@ public final class RBPainter implements ActionListener, MouseListener, MouseMoti
     }
 
     /**
-     * Draw a point at (x, y)
+     * Draw a point at (x, y).
      *
      * @param x the x co-ord of the point
      * @param y the y co-ord of the point
@@ -350,7 +350,7 @@ public final class RBPainter implements ActionListener, MouseListener, MouseMoti
     }
 
     /**
-     * Draw circle of radius r, centered on (x, y); degenerate to pixel if small
+     * Draw circle of radius r, centered on (x, y); degenerate to pixel if small.
      *
      * @param x the x co-ord of the center of the circle
      * @param y the y co-ord of the center of the circle
@@ -369,7 +369,7 @@ public final class RBPainter implements ActionListener, MouseListener, MouseMoti
     }
 
     /**
-     * Draw filled circle of radius r, centered on (x, y); degenerate to pixel if small
+     * Draw filled circle of radius r, centered on (x, y); degenerate to pixel if small.
      *
      * @param x the x co-ord of the center of the circle
      * @param y the y co-ord of the center of the circle
@@ -411,7 +411,7 @@ public final class RBPainter implements ActionListener, MouseListener, MouseMoti
     }
 
     /**
-     * Draw squared of side length 2r, centered on (x, y); degenerate to pixel if small
+     * Draw squared of side length 2r, centered on (x, y); degenerate to pixel if small.
      *
      * @param x the x co-ord of the center of the square
      * @param y the y co-ord of the center of the square
@@ -430,7 +430,7 @@ public final class RBPainter implements ActionListener, MouseListener, MouseMoti
     }
 
     /**
-     * Draw a filled square of side length 2r, centered on (x, y); degenerate to pixel if small
+     * Draw a filled square of side length 2r, centered on (x, y); degenerate to pixel if small.
      *
      * @param x the x co-ord of the center of the square
      * @param y the y co-ord of the center of the square
@@ -449,7 +449,7 @@ public final class RBPainter implements ActionListener, MouseListener, MouseMoti
     }
 
     /**
-     * Draw a polygon with the given (x[i], y[i]) coordinates
+     * Draw a polygon with the given (x[i], y[i]) coordinates.
      *
      * @param x an array of all the x co-ordindates of the polygon
      * @param y an array of all the y co-ordindates of the polygon
@@ -466,7 +466,7 @@ public final class RBPainter implements ActionListener, MouseListener, MouseMoti
     }
 
     /**
-     * Draw a filled polygon with the given (x[i], y[i]) coordinates
+     * Draw a filled polygon with the given (x[i], y[i]) coordinates.
      *
      * @param x an array of all the x co-ordindates of the polygon
      * @param y an array of all the y co-ordindates of the polygon
@@ -487,7 +487,9 @@ public final class RBPainter implements ActionListener, MouseListener, MouseMoti
      * Drawing images.
      *************************************************************************/
 
-    // get an image from the given filename
+    /**
+     * Get an image from the given filename.
+     */
     private static Image getImage(String filename) {
 
         // to read from file
@@ -626,16 +628,14 @@ public final class RBPainter implements ActionListener, MouseListener, MouseMoti
         String suffix = filename.substring(filename.lastIndexOf('.') + 1);
 
         // png files
-        if (suffix.toLowerCase().equals("png")) {
+        if (suffix.toLowerCase().equals("png"))
             try {
                 ImageIO.write(offScreenImage, suffix, file);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-
-        // need to change from ARGB to RGB for jpeg
-        // reference: http://archives.java.sun.com/cgi-bin/wa?A2=ind0404&L=java2d-interest&D=0&P=2727
+            // need to change from ARGB to RGB for jpeg
+            // reference: http://archives.java.sun.com/cgi-bin/wa?A2=ind0404&L=java2d-interest&D=0&P=2727
         else if (suffix.toLowerCase().equals("jpg")) {
             WritableRaster raster = offScreenImage.getRaster();
             WritableRaster newRaster;
@@ -732,7 +732,7 @@ public final class RBPainter implements ActionListener, MouseListener, MouseMoti
     }
 
     /**
-     * @deprecated Open a save dialog when the user selects "Save As" from the menu
+     * Open a save dialog when the user selects "Save As" from the menu.
      */
     public void actionPerformed(ActionEvent e) {
         FileDialog chooser = new FileDialog(RBPainter.frame, "Use a .png or .jpg extension", FileDialog.SAVE);
@@ -786,5 +786,4 @@ public final class RBPainter implements ActionListener, MouseListener, MouseMoti
 
     public void keyReleased(KeyEvent e) {
     }
-
 }

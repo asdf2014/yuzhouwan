@@ -15,7 +15,7 @@ public class BitMap4GExample {
     private int base;
 
     /**
-     * 初始化 bitmap
+     * 初始化 bitmap.
      *
      * @param size  bitmap 的大小，即 bit 位的个数
      * @param start 起始值
@@ -33,7 +33,7 @@ public class BitMap4GExample {
     }
 
     /**
-     * 将值 index 的对应位设为 1
+     * 将值 index 的对应位设为 1.
      *
      * @param index 要设的值
      * @return 0：失败 1：成功
@@ -53,7 +53,7 @@ public class BitMap4GExample {
     }
 
     /**
-     * 取 bitmap 第 i 位的值
+     * 取 bitmap 第 i 位的值.
      *
      * @param i 待取位
      * @return -1：失败，否则返回对应位的值
@@ -73,7 +73,7 @@ public class BitMap4GExample {
     }
 
     /**
-     * 返回 index 位对应的值
+     * 返回 index 位对应的值.
      *
      * @param index
      * @return
@@ -83,7 +83,7 @@ public class BitMap4GExample {
     }
 
     /**
-     * 释放内存
+     * 释放内存.
      *
      * @return
      */

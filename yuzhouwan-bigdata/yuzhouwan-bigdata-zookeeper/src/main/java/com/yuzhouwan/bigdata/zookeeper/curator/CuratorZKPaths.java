@@ -16,10 +16,9 @@ import org.slf4j.LoggerFactory;
  */
 public class CuratorZKPaths {
 
-    private static final Logger _log = LoggerFactory.getLogger(CuratorZKPaths.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CuratorZKPaths.class);
 
     private CuratorFramework curatorFramework;
-
 
     public CuratorZKPaths() {
         init();
@@ -38,6 +37,5 @@ public class CuratorZKPaths {
     }
 
     public void zkPaths() {
-
     }
 }

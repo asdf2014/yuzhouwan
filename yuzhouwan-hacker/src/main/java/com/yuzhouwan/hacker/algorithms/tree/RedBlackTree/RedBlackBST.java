@@ -5,6 +5,8 @@ package com.yuzhouwan.hacker.algorithms.tree.RedBlackTree;
  * All right reserved.
  * Function: RedBlackBST
  *
+ * @param <Key>
+ * @param <Value>
  * @author Benedict Jin
  * @since 2016/8/23
  */
@@ -204,7 +206,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
     }
 
     /**
-     * Helper methods
+     * Helper methods.
      */
 
     private boolean less(Key a, Key b) {
@@ -216,8 +218,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
     }
 
     private boolean isRed(Node x) {
-        if (x == null) return false;
-        return (x.color == RED);
+        return x != null && (x.color == RED);
     }
 
     private void colorFlip(Node h) {
@@ -301,9 +302,8 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
     }
 
     /**
-     * Integrity checks
+     * Integrity checks.
      */
-
     public boolean check() {  // Is this tree a red-black tree?
         return isBST() && is234() && isBalanced();
     }
@@ -314,7 +314,8 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
 
     private boolean isBST(Node x, Key min, Key max) {  // Are all the values in the BST rooted at x between min and max,
         // and does the same property hold for both subtrees?
-        return x == null || !(less(x.key, min) || less(max, x.key)) && isBST(x.left, min, x.key) && isBST(x.right, x.key, max);
+        return x == null || !(less(x.key, min) || less(max, x.key))
+                && isBST(x.left, min, x.key) && isBST(x.right, x.key, max);
     }
 
     private boolean is234() {
@@ -350,9 +351,8 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
     }
 
     /**
-     * Methods for tree drawing
+     * Methods for tree drawing.
      */
-
     public void draw(double y, double lineWidth, double nodeSize) {
         k = 0;
         setCoords(root, y);
@@ -426,6 +426,9 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
         else return sizeRed(x.left) + sizeRed(x.right);
     }
 
+    /**
+     * Node.
+     */
     private class Node {
         Key key;                  // key
         Value value;              // associated data

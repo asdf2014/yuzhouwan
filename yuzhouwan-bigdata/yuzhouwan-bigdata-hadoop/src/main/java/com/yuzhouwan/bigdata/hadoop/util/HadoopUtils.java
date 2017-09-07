@@ -11,7 +11,10 @@ import com.yuzhouwan.common.util.StrUtils;
  * @author Benedict Jin
  * @since 2016/11/25
  */
-public class HadoopUtils {
+public final class HadoopUtils {
+
+    private HadoopUtils() {
+    }
 
     public static void setUpEnv() {
         PropUtils p = PropUtils.getInstance();

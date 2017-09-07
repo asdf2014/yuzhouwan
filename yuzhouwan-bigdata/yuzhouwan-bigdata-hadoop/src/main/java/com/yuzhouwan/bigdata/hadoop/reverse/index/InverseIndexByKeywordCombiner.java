@@ -17,7 +17,7 @@ import java.io.IOException;
  */
 public class InverseIndexByKeywordCombiner extends Reducer<Text, Text, Text, Text> {
 
-    private static final Logger _log = LoggerFactory.getLogger(InverseIndexByKeywordCombiner.class);
+    private static final Logger LOG = LoggerFactory.getLogger(InverseIndexByKeywordCombiner.class);
 
     //输出的 Text的 Key
     private Text writeKey = new Text();
@@ -25,7 +25,7 @@ public class InverseIndexByKeywordCombiner extends Reducer<Text, Text, Text, Tex
     private Text writeValue = new Text();
 
     /**
-     * Combiner 的核心方法，用来处理 海量的 Mapper端输入数据
+     * Combiner 的核心方法，用来处理 海量的 Mapper端输入数据.
      *
      * @param key
      * @param values
@@ -69,7 +69,7 @@ public class InverseIndexByKeywordCombiner extends Reducer<Text, Text, Text, Tex
             //写入到 Hadoop上下文中
             context.write(writeKey, writeValue);
         } catch (IOException | InterruptedException e) {
-            _log.error("error: {}", e.getMessage());
+            LOG.error("error: {}", e.getMessage());
         }
     }
 }

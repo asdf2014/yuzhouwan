@@ -14,7 +14,7 @@ import java.util.concurrent.*;
  * @author Benedict Jin
  * @since 2016/12/9
  */
-public class ThreadUtils {
+public final class ThreadUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(ThreadUtils.class);
     private static long MIN_PERIOD_MILLISECOND;
@@ -26,8 +26,11 @@ public class ThreadUtils {
         if (MIN_PERIOD_MILLISECOND < 0) MIN_PERIOD_MILLISECOND = 0L;
     }
 
+    private ThreadUtils() {
+    }
+
     /**
-     * CachedThreadPool
+     * CachedThreadPool.
      *
      * @param poolName
      * @return
@@ -37,7 +40,7 @@ public class ThreadUtils {
     }
 
     /**
-     * CachedThreadPool with isDaemon
+     * CachedThreadPool with isDaemon.
      *
      * @param poolName
      * @param isDaemon
@@ -48,7 +51,7 @@ public class ThreadUtils {
     }
 
     /**
-     * FixedThreadPool
+     * FixedThreadPool.
      *
      * @param poolName
      * @return
@@ -58,7 +61,7 @@ public class ThreadUtils {
     }
 
     /**
-     * FixedThreadPool with isDaemon
+     * FixedThreadPool with isDaemon.
      *
      * @param nThread
      * @param poolName
@@ -72,7 +75,7 @@ public class ThreadUtils {
     }
 
     /**
-     * ThreadPoolExecutor with LinkedBlockingQueue
+     * ThreadPoolExecutor with LinkedBlockingQueue.
      *
      * @param nThreadCore
      * @param nThreadMax
@@ -90,7 +93,7 @@ public class ThreadUtils {
     }
 
     /**
-     * CachedThreadPool / (ThreadPoolExecutor with ArrayBlockingQueue)
+     * CachedThreadPool / (ThreadPoolExecutor with ArrayBlockingQueue).
      *
      * @param jobThreadCorePoolSize
      * @param jobThreadMaximumPoolSize
@@ -111,7 +114,8 @@ public class ThreadUtils {
         else try {
             executorService = new ThreadPoolExecutor(jobThreadCorePoolSize, jobThreadMaximumPoolSize,
                     jobThreadKeepAliveSecond, TimeUnit.SECONDS,
-                    new ArrayBlockingQueue<>(jobArrayBlockingQueueSize), threadFactory);    // jdk7: new ArrayBlockingQueue<Runnable>
+                    // jdk7: new ArrayBlockingQueue<Runnable>
+                    new ArrayBlockingQueue<>(jobArrayBlockingQueueSize), threadFactory);
         } catch (Exception e) {
             _log.error(ExceptionUtils.errorInfo(e));
             executorService = Executors.newCachedThreadPool(threadFactory);

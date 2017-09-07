@@ -34,7 +34,7 @@ public class KafkaPartitioner implements Partitioner {
     }
 
     /**
-     * Load balancer
+     * Load balancer.
      *
      * @param key           the message that sending to kafka hold a key
      * @param numPartitions start with zero

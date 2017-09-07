@@ -31,7 +31,7 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
 
     public static final int DEFAULT = 0;
     public static final int WALK = 1;
-    private static Snmp _snmp = null;
+    private static Snmp snmp = null;
 
     static {
         if (System.getProperty("log4j.configuration") == null) {
@@ -40,15 +40,15 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
     }
 
     protected int _operation = DEFAULT;
-    private Target _target;
-    private Address _address;
+    private Target target;
+    private Address address;
     private OID _authProtocol;
     private OID _privProtocol;
     private OctetString _privPassphrase;
     private OctetString _authPassphrase;
     private OctetString _community = new OctetString("public");
-    private OctetString _contextEngineID;
-    private OctetString _contextName = new OctetString();
+    private OctetString contextEngineID;
+    private OctetString contextName = new OctetString();
     private OctetString _securityName = new OctetString();
     private int _numThreads = 1;
     private int _port = 0;
@@ -58,19 +58,19 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
     private TransportMapping _transport = null;
     private TimeTicks _sysUpTime = new TimeTicks(0);
     private OID _trapOID = new OID("1.3.6.1.4.1.2789.2005");
-    private int _version = 0;
-    private int _retries = 1;
-    private int _timeout = 1000;
-    private int _pduType = 0;
-    private Vector _vbs = new Vector();
+    private int version = 0;
+    private int retries = 1;
+    private int timeout = 1000;
+    private int pduType = 0;
+    private Vector vbs = new Vector();
 
     public SnmpUtil(String host, String varbind, boolean receiver, int type) {
-        _version = SnmpConstants.version2c;
+        version = SnmpConstants.version2c;
         _isReceiver = receiver;
         if (type == 2) {
-            _pduType = PDU.INFORM;
+            pduType = PDU.INFORM;
         } else if (type == 1) {
-            _pduType = PDU.TRAP;
+            pduType = PDU.TRAP;
         }
         setPort();
         if (!_isReceiver) {
@@ -84,7 +84,7 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
                     String authPasshrase, String privProtocol, String privPassphrase,
                     boolean receiver, int type) {
 
-        _version = SnmpConstants.version3;
+        version = SnmpConstants.version3;
         _isReceiver = receiver;
         _privPassphrase = new OctetString(privPassphrase);
         _authPassphrase = new OctetString(authPasshrase);
@@ -105,9 +105,9 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
             _privProtocol = PrivAES256.ID;
         }
         if (type == 2) {
-            _pduType = PDU.INFORM;
+            pduType = PDU.INFORM;
         } else if (type == 1) {
-            _pduType = PDU.TRAP;
+            pduType = PDU.TRAP;
         }
         setPort();
         if (!_isReceiver) {
@@ -159,8 +159,8 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
                     + oid.toString() + ").");
         }
 
-        System.out.println(" Current counter value is " +
-                vb.getVariable().toString() + ".");
+        System.out.println(" Current counter value is "
+                + vb.getVariable().toString() + ".");
     }
 
     private static PDU walk(Snmp snmp, PDU request, Target target)
@@ -173,7 +173,7 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
         long startTime = System.currentTimeMillis();
         do {
             requests++;
-            ResponseEvent responseEvent = _snmp.send(request, target);
+            ResponseEvent responseEvent = SnmpUtil.snmp.send(request, target);
             response = responseEvent.getResponse();
             if (response != null) {
                 objects += response.size();
@@ -184,8 +184,8 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
         System.out.println();
         System.out.println("Total requests sent:    " + requests);
         System.out.println("Total objects received: " + objects);
-        System.out.println("Total walk time:        " +
-                (System.currentTimeMillis() - startTime) + " milliseconds");
+        System.out.println("Total walk time:        "
+                + (System.currentTimeMillis() - startTime) + " milliseconds");
         return response;
     }
 
@@ -226,7 +226,7 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
     }
 
     public void setVersion(int version) {
-        _version = version;
+        this.version = version;
     }
 
     public int getOperation() {
@@ -236,35 +236,35 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
     public void setOperation(int operation) {
         _operation = operation;
         if (_operation == WALK) {
-            _pduType = PDU.GETNEXT;
+            pduType = PDU.GETNEXT;
         }
     }
 
     public int getPduType() {
-        return _pduType;
+        return pduType;
     }
 
     public void setPort() {
-        if (_pduType == PDU.INFORM || _pduType == PDU.TRAP ||
-                _isReceiver) {
+        if (pduType == PDU.INFORM || pduType == PDU.TRAP
+                || _isReceiver) {
             _port = 162;
         } else {
             _port = 161;
         }
     }
 
-    public void init(String host, String varbind) {
-        _vbs = getVariableBinding(varbind);
-        if (_pduType == PDU.INFORM || _pduType == PDU.TRAP) {
-            checkTrapVariables(_vbs);
+    public void init(String host, String varBind) {
+        vbs = getVariableBinding(varBind);
+        if (pduType == PDU.INFORM || pduType == PDU.TRAP) {
+            checkTrapVariables(vbs);
         }
-        _address = new UdpAddress(host + "/" + _port);
+        address = new UdpAddress(host + "/" + _port);
         LogFactory.setLogFactory(new Log4jLogFactory());
         BER.setCheckSequenceLength(false);
     }
 
     public Vector getVariableBindings() {
-        return _vbs;
+        return vbs;
     }
 
     private void addUsmUser(Snmp snmp) {
@@ -277,7 +277,7 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
 
     private Snmp createSnmpSession() throws IOException {
         AbstractTransportMapping transport;
-        if (_address instanceof TcpAddress) {
+        if (address instanceof TcpAddress) {
             transport = new DefaultTcpTransportMapping();
         } else {
             transport = new DefaultUdpTransportMapping();
@@ -286,7 +286,7 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
         // transport.setAsyncMsgProcessingSupported(false);
         Snmp snmp = new Snmp(transport);
 
-        if (_version == SnmpConstants.version3) {
+        if (version == SnmpConstants.version3) {
             USM usm = new USM(SecurityProtocols.getInstance(),
                     new OctetString(MPv3.createLocalEngineID()), 0);
             SecurityModels.getInstance().addSecurityModel(usm);
@@ -296,7 +296,7 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
     }
 
     private Target createTarget() {
-        if (_version == SnmpConstants.version3) {
+        if (version == SnmpConstants.version3) {
             UserTarget target = new UserTarget();
             if (_authPassphrase != null) {
                 if (_privPassphrase != null) {
@@ -317,66 +317,66 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
     }
 
     public PDU send() throws IOException {
-        _snmp = createSnmpSession();
-        this._target = createTarget();
-        _target.setVersion(_version);
-        _target.setAddress(_address);
-        _target.setRetries(_retries);
-        _target.setTimeout(_timeout);
-        _snmp.listen();
+        snmp = createSnmpSession();
+        this.target = createTarget();
+        target.setVersion(version);
+        target.setAddress(address);
+        target.setRetries(retries);
+        target.setTimeout(timeout);
+        snmp.listen();
 
-        PDU request = createPDU(_target);
-        for (int i = 0; i < _vbs.size(); i++) {
-            request.add((VariableBinding) _vbs.get(i));
+        PDU request = createPDU(target);
+        for (Object vb : vbs) {
+            request.add((VariableBinding) vb);
         }
 
         PDU response = null;
         if (_operation == WALK) {
-            response = walk(_snmp, request, _target);
+            response = walk(snmp, request, target);
         } else {
             ResponseEvent responseEvent;
             long startTime = System.currentTimeMillis();
-            responseEvent = _snmp.send(request, _target);
+            responseEvent = snmp.send(request, target);
             if (responseEvent != null) {
                 response = responseEvent.getResponse();
-                System.out.println("Received response after " +
-                        (System.currentTimeMillis() - startTime) + " millis");
+                System.out.println("Received response after "
+                        + (System.currentTimeMillis() - startTime) + " millis");
             }
         }
-        _snmp.close();
+        snmp.close();
         return response;
     }
 
     public PDU createPDU(Target target) {
         PDU request;
-        if (_target.getVersion() == SnmpConstants.version3) {
+        if (this.target.getVersion() == SnmpConstants.version3) {
             request = new ScopedPDU();
             ScopedPDU scopedPDU = (ScopedPDU) request;
-            if (_contextEngineID != null) {
-                scopedPDU.setContextEngineID(_contextEngineID);
+            if (contextEngineID != null) {
+                scopedPDU.setContextEngineID(contextEngineID);
             }
-            if (_contextName != null) {
-                scopedPDU.setContextName(_contextName);
+            if (contextName != null) {
+                scopedPDU.setContextName(contextName);
             }
         } else {
             request = new PDU();
         }
-        request.setType(_pduType);
+        request.setType(pduType);
         return request;
     }
 
-    private Vector getVariableBinding(String varbind) {
-        Vector v = new Vector(varbind.length());
+    private Vector getVariableBinding(String varBind) {
+        Vector v = new Vector(varBind.length());
         String oid = null;
         char type = 'i';
         String value = null;
-        int equal = varbind.indexOf("={");
+        int equal = varBind.indexOf("={");
         if (equal > 0) {
-            oid = varbind.substring(0, equal);
-            type = varbind.charAt(equal + 2);
-            value = varbind.substring(varbind.indexOf('}') + 1);
+            oid = varBind.substring(0, equal);
+            type = varBind.charAt(equal + 2);
+            value = varBind.substring(varBind.indexOf('}') + 1);
         } else {
-            v.add(new VariableBinding(new OID(varbind)));
+            v.add(new VariableBinding(new OID(varBind)));
             return v;
         }
 
@@ -415,8 +415,7 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
                     variable = new IpAddress(value);
                     break;
                 default:
-                    throw new IllegalArgumentException("Variable type " + type +
-                            " not supported");
+                    throw new IllegalArgumentException("Variable type " + type + " not supported");
             }
             vb.setVariable(variable);
         }
@@ -428,8 +427,8 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
         Address address = new UdpAddress(host + "/" + _port);
         try {
             _transport = new DefaultUdpTransportMapping((UdpAddress) address);
-        } catch (IOException ioex) {
-            System.out.println("Unable to bind to local IP and port: " + ioex);
+        } catch (IOException e) {
+            System.out.println("Unable to bind to local IP and port: " + e);
             System.exit(-1);
         }
 
@@ -445,44 +444,39 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
         // add all security protocols
         SecurityProtocols.getInstance().addDefaultProtocols();
 
-        _snmp = new Snmp(mtDispatcher, _transport);
-        if (_snmp != null) {
-            _snmp.addCommandResponder(this);
+        snmp = new Snmp(mtDispatcher, _transport);
+        if (snmp != null) {
+            snmp.addCommandResponder(this);
         } else {
             System.out.println("Unable to create Target object");
             System.exit(-1);
         }
 
-        if (_version == SnmpConstants.version3) {
+        if (version == SnmpConstants.version3) {
             mtDispatcher.addMessageProcessingModel(new MPv3());
+            MPv3 mpv3 = (MPv3) snmp.getMessageProcessingModel(MessageProcessingModel.MPv3);
 
-            MPv3 mpv3 =
-                    (MPv3) _snmp.getMessageProcessingModel(MessageProcessingModel.MPv3);
-
-            USM usm = new USM(SecurityProtocols.getInstance(),
-                    new OctetString(mpv3.createLocalEngineID()), 0);
+            USM usm = new USM(SecurityProtocols.getInstance(), new OctetString(mpv3.createLocalEngineID()), 0);
 
             SecurityModels.getInstance().addSecurityModel(usm);
-
             if (_authoritativeEngineID != null) {
-                _snmp.setLocalEngine(_authoritativeEngineID.getValue(), 0, 0);
+                snmp.setLocalEngine(_authoritativeEngineID.getValue(), 0, 0);
             }
-
-            this.addUsmUser(_snmp);
+            this.addUsmUser(snmp);
         }
     }
 
     public synchronized void listen() {
         try {
             _transport.listen();
-        } catch (IOException ioex) {
-            System.out.println("Unable to listen: " + ioex);
+        } catch (IOException e) {
+            System.out.println("Unable to listen: " + e);
             System.exit(-1);
         }
-
         System.out.println("Waiting for traps..");
         try {
-            this.wait();//Wait for traps to come in
+            // Wait for traps to come in.
+            this.wait();
         } catch (InterruptedException ex) {
             System.out.println("Interrupted while waiting for traps: " + ex);
             System.exit(-1);
@@ -493,10 +487,10 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
         PDU command = e.getPDU();
         if (command != null) {
             System.out.println(command.toString());
-            if ((command.getType() != PDU.TRAP) &&
-                    (command.getType() != PDU.V1TRAP) &&
-                    (command.getType() != PDU.REPORT) &&
-                    (command.getType() != PDU.RESPONSE)) {
+            if ((command.getType() != PDU.TRAP)
+                    && (command.getType() != PDU.V1TRAP)
+                    && (command.getType() != PDU.REPORT)
+                    && (command.getType() != PDU.RESPONSE)) {
                 command.setErrorIndex(0);
                 command.setErrorStatus(0);
                 command.setType(PDU.RESPONSE);
@@ -522,51 +516,46 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
     public void sendAndProcessResponse() {
         try {
             PDU response = this.send();
-            if ((getPduType() == PDU.TRAP) ||
-                    (getPduType() == PDU.REPORT) ||
-                    (getPduType() == PDU.V1TRAP) ||
-                    (getPduType() == PDU.RESPONSE)) {
-                System.out.println(PDU.getTypeString(getPduType()) +
-                        " sent successfully");
+            if ((getPduType() == PDU.TRAP)
+                    || (getPduType() == PDU.REPORT)
+                    || (getPduType() == PDU.V1TRAP)
+                    || (getPduType() == PDU.RESPONSE)) {
+                System.out.println(PDU.getTypeString(getPduType()) + " sent successfully");
             } else if (response == null) {
                 System.out.println("Request timed out.");
             } else if (response.getType() == PDU.REPORT) {
                 printReport(response);
             } else if (getOperation() == WALK) {
-                System.out.println("End of walked subtree '" +
-                        ((VariableBinding) getVariableBindings().get(0)).getOid() +
-                        "' reached at:");
+                System.out.println("End of walked subtree '"
+                        + ((VariableBinding) getVariableBindings().get(0)).getOid()
+                        + "' reached at:");
                 printVariableBindings(response);
             } else {
-                System.out.println("Received something strange: requestID=" +
-                        response.getRequestID() +
-                        ", errorIndex=" +
-                        response.getErrorIndex() + ", " +
-                        "errorStatus=" + response.getErrorStatusText() +
-                        "(" + response.getErrorStatus() + ")");
+                System.out.println("Received something strange: requestID="
+                        + response.getRequestID()
+                        + ", errorIndex="
+                        + response.getErrorIndex() + ", "
+                        + "errorStatus=" + response.getErrorStatusText()
+                        + "(" + response.getErrorStatus() + ")");
                 printVariableBindings(response);
             }
         } catch (IOException ex) {
-            System.err.println("Error while trying to send request: " +
-                    ex.getMessage());
+            System.err.println("Error while trying to send request: " + ex.getMessage());
             ex.printStackTrace();
         }
     }
 
     private void checkTrapVariables(Vector vbs) {
-        if ((_pduType == PDU.INFORM) || (_pduType == PDU.TRAP)) {
-            if ((vbs.size() == 0) ||
-                    ((vbs.size() > 1) &&
-                            (!((VariableBinding) vbs.get(0)).getOid().equals(SnmpConstants.
-                                    sysUpTime)))) {
+        if ((pduType == PDU.INFORM) || (pduType == PDU.TRAP)) {
+            if ((vbs.size() == 0)
+                    || ((vbs.size() > 1)
+                    && (!((VariableBinding) vbs.get(0)).getOid().equals(SnmpConstants.sysUpTime)))) {
                 vbs.add(0, new VariableBinding(SnmpConstants.sysUpTime, _sysUpTime));
             }
-            if ((vbs.size() == 1) || ((vbs.size() > 2) &&
-                    (!((VariableBinding) vbs.get(1)).getOid().equals(SnmpConstants.
-                            snmpTrapOID)))) {
+            if ((vbs.size() == 1) || ((vbs.size() > 2)
+                    && (!((VariableBinding) vbs.get(1)).getOid().equals(SnmpConstants.snmpTrapOID)))) {
                 vbs.add(1, new VariableBinding(SnmpConstants.snmpTrapOID, _trapOID));
             }
         }
     }
 }
-

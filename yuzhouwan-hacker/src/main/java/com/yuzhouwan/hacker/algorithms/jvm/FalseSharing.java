@@ -1,10 +1,18 @@
 package com.yuzhouwan.hacker.algorithms.jvm;
 
-// http://ifeve.com/falsesharing/
+/**
+ * Copyright @ 2017 yuzhouwan.com
+ * All right reserved.
+ * Function: False Sharing
+ * See <a href="http://ifeve.com/falsesharing/">http://ifeve.com/falsesharing/</a>
+ *
+ * @author Benedict Jin
+ * @since 2015/11/30
+ */
 public final class FalseSharing implements Runnable {
 
-    public final static int NUM_THREADS = 4; // change
-    public final static long ITERATIONS = 500L * 1000L * 1000L;
+    public static final int NUM_THREADS = 4; // change
+    public static final long ITERATIONS = 500L * 1000L * 1000L;
     private static VolatileLong[] longs = new VolatileLong[NUM_THREADS];
 
     static {
@@ -46,7 +54,10 @@ public final class FalseSharing implements Runnable {
         }
     }
 
-    public final static class VolatileLong {
+    /**
+     * Volatile Long.
+     */
+    public static final class VolatileLong {
         public volatile long value = 0L;
         public long p1, p2, p3, p4, p5, p6; // comment out
     }

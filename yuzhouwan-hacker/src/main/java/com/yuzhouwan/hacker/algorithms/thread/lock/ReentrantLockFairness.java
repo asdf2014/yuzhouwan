@@ -16,6 +16,9 @@ class ReentrantLockFairness {
     static Lock FAIR_LOCK = new ReentrantLock(true);
     static Lock UNFAIR_LOCK = new ReentrantLock();
 
+    /**
+     * Fairness.
+     */
     static class Fairness implements Runnable {
         private Lock lock;
 

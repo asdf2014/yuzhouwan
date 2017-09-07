@@ -29,7 +29,7 @@ public class WelcomePage {
 
     public static void main(String[] args) throws Exception {
 
-        /**
+        /*
          * <html>
          * <head>
          *     <title>Welcome!</title>
@@ -53,14 +53,15 @@ public class WelcomePage {
     }
 
     /**
-     * 获取模板 & 合并模板和数据模型
+     * 获取模板 & 合并模板和数据模型.
      *
      * @param cfg
      * @param root
      * @throws IOException
      * @throws TemplateException
      */
-    private void showUp(Configuration cfg, Map<String, Object> root, String ftlPath, String outPath) throws IOException, TemplateException {
+    private void showUp(Configuration cfg, Map<String, Object> root, String ftlPath, String outPath)
+            throws IOException, TemplateException {
         Template temp = cfg.getTemplate(ftlPath);
         Writer out = new OutputStreamWriter(System.out);
         temp.process(root, out);
@@ -70,7 +71,7 @@ public class WelcomePage {
     }
 
     /**
-     * 创建 Configuration 实例
+     * 创建 Configuration 实例.
      *
      * @return
      * @throws IOException
@@ -84,9 +85,7 @@ public class WelcomePage {
     }
 
     /**
-     * 创建数据模型
-     *
-     * @return
+     * 创建数据模型.
      */
     private Map<String, Object> dataModel() {
         // Create the root hash
@@ -106,5 +105,4 @@ public class WelcomePage {
 
         return root;
     }
-
 }

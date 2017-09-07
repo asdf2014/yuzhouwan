@@ -13,7 +13,7 @@ import java.util.LinkedList;
  * @author Benedict Jin
  * @since 2016/3/23
  */
-public class StrUtils {
+public final class StrUtils {
 
     public static final String ZERO = "0";
     public static final String HEX = "\\x";
@@ -24,8 +24,11 @@ public class StrUtils {
 
     public static final String UTF_8 = "UTF-8";
 
+    private StrUtils() {
+    }
+
     /**
-     * 用 "0" 填充 aim数值之前的 (num-((int)aim).length)个空位
+     * 用 "0" 填充 aim数值之前的 (num-((int)aim).length)个空位.
      *
      * @param aim
      * @param num
@@ -45,7 +48,7 @@ public class StrUtils {
     }
 
     /**
-     * 得到最主干的数值，处理类似：HEAD000001
+     * 得到最主干的数值，处理类似：HEAD000001.
      *
      * @param suppressCode
      * @param headIndex
@@ -82,7 +85,7 @@ public class StrUtils {
     }
 
     /**
-     * Cut Start String
+     * Cut Start String.
      *
      * @param origin
      * @param start
@@ -175,7 +178,7 @@ public class StrUtils {
     }
 
     /**
-     * Convert String form UTF-8 into Hex
+     * Convert String form UTF-8 into Hex.
      *
      * @param s
      * @return
@@ -190,7 +193,7 @@ public class StrUtils {
     }
 
     /**
-     * Convert String form Hex into UTF-8
+     * Convert String form Hex into UTF-8.
      *
      * @param s
      * @return
@@ -198,14 +201,14 @@ public class StrUtils {
      */
     public static String hex2Str(String s) throws UnsupportedEncodingException {
         if (StrUtils.isEmpty(s)) return s;
-        String strArr[] = s.split(DOUBLE_TRANSFER);
+        String[] strArr = s.split(DOUBLE_TRANSFER);
         byte[] byteArr = new byte[strArr.length - 1];
         for (int i = 1; i < strArr.length; i++) byteArr[i - 1] = Integer.decode(ZERO.concat(strArr[i])).byteValue();
         return new String(byteArr, UTF_8);
     }
 
     /**
-     * Compression String
+     * Compression String.
      *
      * @param s
      * @return

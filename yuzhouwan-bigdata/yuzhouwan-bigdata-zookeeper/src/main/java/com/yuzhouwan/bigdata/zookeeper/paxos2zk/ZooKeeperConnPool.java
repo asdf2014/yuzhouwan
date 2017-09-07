@@ -19,7 +19,7 @@ import java.util.concurrent.CountDownLatch;
  * @author Benedict Jin
  * @since 2015/12/8 0008
  */
-public class ZooKeeperConnPool {
+public final class ZooKeeperConnPool {
 
     private static final Logger _log = LoggerFactory.getLogger(ZooKeeperConnPool.class);
     // There need to be set bigger value into [MIN_CONN_IN_POOL], how about the one-third of [MAX_CONN_IN_POOL]
@@ -65,9 +65,9 @@ public class ZooKeeperConnPool {
             createNewConnIntoPool();
             count++;
             if (count > MIN_CONN_IN_POOL && pool.size() < MIN_CONN_IN_POOL)
-                throw new RuntimeException("Cannot init conn-pool[" +
-                        pool.size() + "/" + MAX_CONN_IN_POOL + "] not [" +
-                        MIN_CONN_IN_POOL + "/" + MAX_CONN_IN_POOL + "]");
+                throw new RuntimeException("Cannot init conn-pool["
+                        + pool.size() + "/" + MAX_CONN_IN_POOL + "] not ["
+                        + MIN_CONN_IN_POOL + "/" + MAX_CONN_IN_POOL + "]");
         }
     }
 
@@ -80,9 +80,7 @@ public class ZooKeeperConnPool {
             newZookeeper = new ZooKeeper(HOST.concat(":").concat(CLIENT_PORT + ""),
                     TIME_OUT_MILLISECOND,
                     new ZKEventWatch());
-            /**
-             * TODO{Benedict Jin}: timeout
-             */
+            // TODO{Benedict Jin}: timeout
             connectZKClientLatch.await();
             pool.add(newZookeeper);
 
@@ -174,9 +172,9 @@ public class ZooKeeperConnPool {
             closeConn();
             count++;
             if (count > (MAX_CONN_IN_POOL - MIN_CONN_IN_POOL) && pool.size() > MIN_CONN_IN_POOL)
-                throw new RuntimeException("Cannot init conn-pool[" +
-                        pool.size() + "/" + MAX_CONN_IN_POOL + "] not [" +
-                        MIN_CONN_IN_POOL + "/" + MAX_CONN_IN_POOL + "]");
+                throw new RuntimeException("Cannot init conn-pool["
+                        + pool.size() + "/" + MAX_CONN_IN_POOL + "] not ["
+                        + MIN_CONN_IN_POOL + "/" + MAX_CONN_IN_POOL + "]");
         }
     }
 

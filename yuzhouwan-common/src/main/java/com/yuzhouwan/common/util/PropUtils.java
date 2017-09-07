@@ -18,7 +18,7 @@ import java.util.Properties;
  * @author Benedict Jin
  * @since 2016/4/8
  */
-public class PropUtils {
+public final class PropUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(PropUtils.class);
     private static final Properties properties = new Properties();
@@ -71,7 +71,7 @@ public class PropUtils {
     }
 
     /**
-     * Avoid recursion in JarUtils' initializtion
+     * Avoid recursion in JarUtils' initializtion.
      *
      * @param key
      * @return

@@ -60,17 +60,20 @@ public class ReadWriteLockExample {
         executorService2.shutdown();
 
         for (; ; ) {
-            if (!executorService.awaitTermination(1000L, TimeUnit.MILLISECONDS) ||
-                    !executorService2.awaitTermination(1000L, TimeUnit.MILLISECONDS)) continue;
+            if (!executorService.awaitTermination(1000L, TimeUnit.MILLISECONDS)
+                    || !executorService2.awaitTermination(1000L, TimeUnit.MILLISECONDS)) continue;
             Business.getInstance().check();
             System.exit(0);
         }
     }
 
-    public static class Business implements Serializable {
+    /**
+     * Business.
+     */
+    public static final class Business implements Serializable {
 
         private static final String PREFIX = "yuzhouwan|";
-        private volatile static Business instance;
+        private static volatile Business instance;
         private Map<Integer, String> myData = new HashMap<>();
         private ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
 
@@ -108,39 +111,40 @@ public class ReadWriteLockExample {
                     writeLock.unlock();
                 }
             }
-            _log.debug("Thread: {}, count: {}, value: {}, isExist: {}", Thread.currentThread().getName(), key, value, isExist);
+            _log.debug("Thread: {}, count: {}, value: {}, isExist: {}",
+                    Thread.currentThread().getName(), key, value, isExist);
             return value;
         }
 
         /**
          * ReadWriteLock 默认非公平：
          * <p>
-         * 2016-07-27 17:14:29.688 | DEBUG | Thread: pool-1-thread-1, count: 1, value: yuzhouwan|1, isExist: false | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.isExist | ReadWriteLockExample.java:90
+         * Thread: pool-1-thread-1, count: 1, value: yuzhouwan|1, isExist: false
          * <p>
-         * 2016-07-27 17:14:29.737 | DEBUG | Thread: pool-2-thread-1, count: 1, value: yuzhouwan|1, isExist: true | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.isExist | ReadWriteLockExample.java:90
-         * 2016-07-27 17:14:29.737 | DEBUG | Thread: pool-2-thread-7, count: 7, value: yuzhouwan|7, isExist: false | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.isExist | ReadWriteLockExample.java:90
-         * 2016-07-27 17:14:29.737 | DEBUG | Thread: pool-2-thread-8, count: 8, value: yuzhouwan|8, isExist: false | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.isExist | ReadWriteLockExample.java:90
-         * 2016-07-27 17:14:29.737 | DEBUG | Thread: pool-2-thread-9, count: 9, value: yuzhouwan|9, isExist: false | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.isExist | ReadWriteLockExample.java:90
-         * 2016-07-27 17:14:29.737 | DEBUG | Thread: pool-2-thread-6, count: 6, value: yuzhouwan|6, isExist: false | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.isExist | ReadWriteLockExample.java:90
-         * 2016-07-27 17:14:29.737 | DEBUG | Thread: pool-2-thread-4, count: 4, value: yuzhouwan|4, isExist: false | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.isExist | ReadWriteLockExample.java:90
-         * 2016-07-27 17:14:29.737 | DEBUG | Thread: pool-2-thread-3, count: 3, value: yuzhouwan|3, isExist: false | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.isExist | ReadWriteLockExample.java:90
-         * 2016-07-27 17:14:29.737 | DEBUG | Thread: pool-2-thread-5, count: 5, value: yuzhouwan|5, isExist: false | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.isExist | ReadWriteLockExample.java:90
-         * 2016-07-27 17:14:29.737 | DEBUG | Thread: pool-2-thread-2, count: 2, value: yuzhouwan|2, isExist: false | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.isExist | ReadWriteLockExample.java:90
-         * 2016-07-27 17:14:29.737 | DEBUG | Thread: pool-2-thread-10, count: 10, value: yuzhouwan|10, isExist: false | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.isExist | ReadWriteLockExample.java:90
+         * Thread: pool-2-thread-1, count: 1, value: yuzhouwan|1, isExist: true
+         * Thread: pool-2-thread-7, count: 7, value: yuzhouwan|7, isExist: false
+         * Thread: pool-2-thread-8, count: 8, value: yuzhouwan|8, isExist: false
+         * Thread: pool-2-thread-9, count: 9, value: yuzhouwan|9, isExist: false
+         * Thread: pool-2-thread-6, count: 6, value: yuzhouwan|6, isExist: false
+         * Thread: pool-2-thread-4, count: 4, value: yuzhouwan|4, isExist: false
+         * Thread: pool-2-thread-3, count: 3, value: yuzhouwan|3, isExist: false
+         * Thread: pool-2-thread-5, count: 5, value: yuzhouwan|5, isExist: false
+         * Thread: pool-2-thread-2, count: 2, value: yuzhouwan|2, isExist: false
+         * Thread: pool-2-thread-10, count: 10, value: yuzhouwan|10, isExist: false
          * <p>
-         * 2016-07-27 17:14:29.743 | DEBUG | Thread: pool-1-thread-1, count: 2, value: yuzhouwan|2, isExist: true | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.isExist | ReadWriteLockExample.java:90
-         * 2016-07-27 17:14:29.793 | DEBUG | Thread: pool-1-thread-1, count: 3, value: yuzhouwan|3, isExist: true | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.isExist | ReadWriteLockExample.java:90
-         * 2016-07-27 17:14:29.844 | DEBUG | Thread: pool-1-thread-1, count: 4, value: yuzhouwan|4, isExist: true | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.isExist | ReadWriteLockExample.java:90
-         * 2016-07-27 17:14:29.894 | DEBUG | Thread: pool-1-thread-1, count: 5, value: yuzhouwan|5, isExist: true | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.isExist | ReadWriteLockExample.java:90
-         * 2016-07-27 17:14:29.944 | DEBUG | Thread: pool-1-thread-1, count: 6, value: yuzhouwan|6, isExist: true | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.isExist | ReadWriteLockExample.java:90
-         * 2016-07-27 17:14:29.994 | DEBUG | Thread: pool-1-thread-1, count: 7, value: yuzhouwan|7, isExist: true | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.isExist | ReadWriteLockExample.java:90
-         * 2016-07-27 17:14:30.044 | DEBUG | Thread: pool-1-thread-1, count: 8, value: yuzhouwan|8, isExist: true | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.isExist | ReadWriteLockExample.java:90
-         * 2016-07-27 17:14:30.094 | DEBUG | Thread: pool-1-thread-1, count: 9, value: yuzhouwan|9, isExist: true | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.isExist | ReadWriteLockExample.java:90
-         * 2016-07-27 17:14:30.144 | DEBUG | Thread: pool-1-thread-1, count: 10, value: yuzhouwan|10, isExist: true | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.isExist | ReadWriteLockExample.java:90
+         * Thread: pool-1-thread-1, count: 2, value: yuzhouwan|2, isExist: true
+         * Thread: pool-1-thread-1, count: 3, value: yuzhouwan|3, isExist: true
+         * Thread: pool-1-thread-1, count: 4, value: yuzhouwan|4, isExist: true
+         * Thread: pool-1-thread-1, count: 5, value: yuzhouwan|5, isExist: true
+         * Thread: pool-1-thread-1, count: 6, value: yuzhouwan|6, isExist: true
+         * Thread: pool-1-thread-1, count: 7, value: yuzhouwan|7, isExist: true
+         * Thread: pool-1-thread-1, count: 8, value: yuzhouwan|8, isExist: true
+         * Thread: pool-1-thread-1, count: 9, value: yuzhouwan|9, isExist: true
+         * Thread: pool-1-thread-1, count: 10, value: yuzhouwan|10, isExist: true
          * <p>
-         * 2016-07-27 17:14:30.195 | INFO | Please input a number... | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.check | ReadWriteLockExample.java:95
+         * Please input a number...
          * 10
-         * 2016-07-27 17:14:34.828 | DEBUG | Result: 10 - yuzhouwan|10 | com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample.check | ReadWriteLockExample.java:102
+         * Result: 10 - yuzhouwan|10
          * <p>
          * Process finished with exit code 0
          */
@@ -155,5 +159,4 @@ public class ReadWriteLockExample {
             _log.debug("Result: {} - {}", input, myData.get(input));
         }
     }
-
 }

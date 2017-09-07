@@ -27,8 +27,8 @@ public class DruidUtils {
     public static String genTranquilityMetricsSpec(Class... classList) {
         if (classList == null || classList.length <= 0) return "";
         String metricsSpecPrefix, metricsSpecMiddle;
-        if (StrUtils.isEmpty(metricsSpecPrefix = PropUtils.getInstance().getProperty("metrics.spec.prefix")) ||
-                StrUtils.isEmpty(metricsSpecMiddle = PropUtils.getInstance().getProperty("metrics.spec.middle")))
+        if (StrUtils.isEmpty(metricsSpecPrefix = PropUtils.getInstance().getProperty("metrics.spec.prefix"))
+                || StrUtils.isEmpty(metricsSpecMiddle = PropUtils.getInstance().getProperty("metrics.spec.middle")))
             throw new RuntimeException("Properties [metrics.spec.prefix/middle] is empty!");
         String fieldName;
         StringBuilder strBuilder = new StringBuilder(metricsSpecPrefix);
@@ -45,8 +45,8 @@ public class DruidUtils {
                                         String metricsSpecMiddle, LinkedHashSet<String> checkExists) {
         String simpleTypeName;
         checkExists.add(fieldName);
-        if ("string".equalsIgnoreCase(simpleTypeName = field.getType().getSimpleName()) ||
-                !"long".equalsIgnoreCase(simpleTypeName) && !"double".equalsIgnoreCase(simpleTypeName))
+        if ("string".equalsIgnoreCase(simpleTypeName = field.getType().getSimpleName())
+                || !"long".equalsIgnoreCase(simpleTypeName) && !"double".equalsIgnoreCase(simpleTypeName))
             return;
         strBuilder.append(String.format(metricsSpecMiddle, fieldName, fieldName, simpleTypeName,
                 fieldName, fieldName, simpleTypeName));

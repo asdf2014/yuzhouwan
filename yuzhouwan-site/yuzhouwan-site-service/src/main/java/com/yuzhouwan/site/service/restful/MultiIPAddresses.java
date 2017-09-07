@@ -27,7 +27,7 @@ public class MultiIPAddresses {
     @ResponseStatus(value = HttpStatus.OK)
     public void multiIps(@PathVariable("multiIps") String multiIps) {
 
-        /**
+        /*
          * TODO{Benedict Jin}: post
          */
         if (!"".equals(multiIps.trim())) {

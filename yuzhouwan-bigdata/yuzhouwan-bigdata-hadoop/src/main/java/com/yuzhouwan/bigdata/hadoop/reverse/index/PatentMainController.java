@@ -19,7 +19,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 public class PatentMainController {
 
     /**
-     * Main方法里面，设置了 Patent任务流程，Mapper ->Combiner ->Reducer ->Partitioner
+     * Main方法里面，设置了 Patent任务流程，Mapper ->Combiner ->Reducer ->Partitioner.
      *
      * @param args
      * @throws Exception

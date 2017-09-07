@@ -7,6 +7,14 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.validation.groups.Default;
 
+/**
+ * Copyright @ 2017 yuzhouwan.com
+ * All right reserved.
+ * Function: User
+ *
+ * @author Benedict Jin
+ * @since 2016/9/1
+ */
 public class User {
 
     @NotEmpty(message = "{firstName.may.be.empty}")

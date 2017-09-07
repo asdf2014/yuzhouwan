@@ -36,6 +36,9 @@ public class ArrayBlockingQueueExample {
         }
     }
 
+    /**
+     * MyArrayBlockingQueue.
+     */
     private static class MyArrayBlockingQueue {
 
         BlockingQueue<Integer> blockingQueue1;
@@ -73,27 +76,26 @@ public class ArrayBlockingQueueExample {
         /**
          * 队列为空时，blockingQueue会阻塞
          *
-         * 2016-07-28 11:07:20.472 | INFO | blockingQueue1 putted  Thread-0 | com.yuzhouwan.hacker.algorithms.thread.queue.ArrayBlockingQueueExample.queue1 | ArrayBlockingQueueExample.java:49
-         * 2016-07-28 11:07:20.479 | INFO | blockingQueue2 putted  main | com.yuzhouwan.hacker.algorithms.thread.queue.ArrayBlockingQueueExample.queue2 | ArrayBlockingQueueExample.java:59
-         * 2016-07-28 11:07:21.106 | INFO | blockingQueue1 putted  Thread-0 | com.yuzhouwan.hacker.algorithms.thread.queue.ArrayBlockingQueueExample.queue1 | ArrayBlockingQueueExample.java:49
-         * 2016-07-28 11:07:21.106 | INFO | blockingQueue2 putted  main | com.yuzhouwan.hacker.algorithms.thread.queue.ArrayBlockingQueueExample.queue2 | ArrayBlockingQueueExample.java:59
-         * 2016-07-28 11:07:21.128 | INFO | blockingQueue1 putted  Thread-0 | com.yuzhouwan.hacker.algorithms.thread.queue.ArrayBlockingQueueExample.queue1 | ArrayBlockingQueueExample.java:49
-         * 2016-07-28 11:07:21.128 | INFO | blockingQueue2 putted  main | com.yuzhouwan.hacker.algorithms.thread.queue.ArrayBlockingQueueExample.queue2 | ArrayBlockingQueueExample.java:59
-         * 2016-07-28 11:07:22.109 | INFO | blockingQueue1 putted  Thread-0 | com.yuzhouwan.hacker.algorithms.thread.queue.ArrayBlockingQueueExample.queue1 | ArrayBlockingQueueExample.java:49
-         * 2016-07-28 11:07:22.109 | INFO | blockingQueue2 putted  main | com.yuzhouwan.hacker.algorithms.thread.queue.ArrayBlockingQueueExample.queue2 | ArrayBlockingQueueExample.java:59
-         * 2016-07-28 11:07:22.419 | INFO | blockingQueue1 putted  Thread-0 | com.yuzhouwan.hacker.algorithms.thread.queue.ArrayBlockingQueueExample.queue1 | ArrayBlockingQueueExample.java:49
-         * 2016-07-28 11:07:22.419 | INFO | blockingQueue2 putted  main | com.yuzhouwan.hacker.algorithms.thread.queue.ArrayBlockingQueueExample.queue2 | ArrayBlockingQueueExample.java:59
-         * 2016-07-28 11:07:23.241 | INFO | blockingQueue1 putted  Thread-0 | com.yuzhouwan.hacker.algorithms.thread.queue.ArrayBlockingQueueExample.queue1 | ArrayBlockingQueueExample.java:49
-         * 2016-07-28 11:07:23.241 | INFO | blockingQueue2 putted  main | com.yuzhouwan.hacker.algorithms.thread.queue.ArrayBlockingQueueExample.queue2 | ArrayBlockingQueueExample.java:59
-         * 2016-07-28 11:07:23.392 | INFO | blockingQueue1 putted  Thread-0 | com.yuzhouwan.hacker.algorithms.thread.queue.ArrayBlockingQueueExample.queue1 | ArrayBlockingQueueExample.java:49
-         * 2016-07-28 11:07:23.392 | INFO | blockingQueue2 putted  main | com.yuzhouwan.hacker.algorithms.thread.queue.ArrayBlockingQueueExample.queue2 | ArrayBlockingQueueExample.java:59
-         * 2016-07-28 11:07:24.284 | INFO | blockingQueue1 putted  Thread-0 | com.yuzhouwan.hacker.algorithms.thread.queue.ArrayBlockingQueueExample.queue1 | ArrayBlockingQueueExample.java:49
-         * 2016-07-28 11:07:24.284 | INFO | blockingQueue2 putted  main | com.yuzhouwan.hacker.algorithms.thread.queue.ArrayBlockingQueueExample.queue2 | ArrayBlockingQueueExample.java:59
-         * 2016-07-28 11:07:24.918 | INFO | blockingQueue1 putted  Thread-0 | com.yuzhouwan.hacker.algorithms.thread.queue.ArrayBlockingQueueExample.queue1 | ArrayBlockingQueueExample.java:49
-         * 2016-07-28 11:07:24.918 | INFO | blockingQueue2 putted  main | com.yuzhouwan.hacker.algorithms.thread.queue.ArrayBlockingQueueExample.queue2 | ArrayBlockingQueueExample.java:59
-         * 2016-07-28 11:07:25.079 | INFO | blockingQueue1 putted  Thread-0 | com.yuzhouwan.hacker.algorithms.thread.queue.ArrayBlockingQueueExample.queue1 | ArrayBlockingQueueExample.java:49
-         * 2016-07-28 11:07:25.079 | INFO | blockingQueue2 putted  main | com.yuzhouwan.hacker.algorithms.thread.queue.ArrayBlockingQueueExample.queue2 | ArrayBlockingQueueExample.java:59
+         * blockingQueue1 putted  Thread-0
+         * blockingQueue2 putted  main
+         * blockingQueue1 putted  Thread-0
+         * blockingQueue2 putted  main
+         * blockingQueue1 putted  Thread-0
+         * blockingQueue2 putted  main
+         * blockingQueue1 putted  Thread-0
+         * blockingQueue2 putted  main
+         * blockingQueue1 putted  Thread-0
+         * blockingQueue2 putted  main
+         * blockingQueue1 putted  Thread-0
+         * blockingQueue2 putted  main
+         * blockingQueue1 putted  Thread-0
+         * blockingQueue2 putted  main
+         * blockingQueue1 putted  Thread-0
+         * blockingQueue2 putted  main
+         * blockingQueue1 putted  Thread-0
+         * blockingQueue2 putted  main
+         * blockingQueue1 putted  Thread-0
+         * blockingQueue2 putted  main
          */
     }
-
 }

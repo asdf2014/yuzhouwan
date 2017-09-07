@@ -16,9 +16,8 @@ import java.net.URL;
  */
 public class Log4jProperty {
 
-    private final static Logger _log = Logger.getLogger(Log4jProperty.class);
-
-    private final static String LOG4J_PROPERTIES_PATH_POSTFIX = "log4j.properties";
+    private static final Logger LOG = Logger.getLogger(Log4jProperty.class);
+    private static final String LOG4J_PROPERTIES_PATH_POSTFIX = "log4j.properties";
 
     public static void main(String[] args) throws MalformedURLException {
 
@@ -34,15 +33,14 @@ public class Log4jProperty {
          * java -jar $path/initToEs.jar
          */
         URL url = Log4jProperty.class.getResource("/");
-        _log.info(url);
+        LOG.info(url);
 
         String path = url.toString().concat(LOG4J_PROPERTIES_PATH_POSTFIX);
-        _log.info(path);
+        LOG.info(path);
 
         /**
          * Auto
          */
         PropertyConfigurator.configure(new URL(path));
     }
-
 }

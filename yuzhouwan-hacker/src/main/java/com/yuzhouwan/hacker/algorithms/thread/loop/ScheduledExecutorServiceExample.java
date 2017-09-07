@@ -26,7 +26,8 @@ public class ScheduledExecutorServiceExample {
     public static void main(String[] args) {
         int len = 25;
         final int[] count = new int[len];
-        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(ThreadUtils.availableProcessors() + 1);
+        ScheduledExecutorService executorService
+                = Executors.newScheduledThreadPool(ThreadUtils.availableProcessors() + 1);
 
         _log.info("Start...");
         for (int i = 0; i < len; i++) {

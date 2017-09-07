@@ -25,9 +25,11 @@ public class MultiThreadsLoopWithNotify2 {
         t2.start();
         t3.start();
     }
-
 }
 
+/**
+ * Reporter.
+ */
 class Reporter implements Runnable {
 
     private final LockHolder lockHolder;
@@ -63,6 +65,9 @@ class Reporter implements Runnable {
     }
 }
 
+/**
+ * LockHolder.
+ */
 class LockHolder {
     private volatile int holder;
 
@@ -78,6 +83,3 @@ class LockHolder {
         this.holder = holder;
     }
 }
-
-
-

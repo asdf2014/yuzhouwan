@@ -26,7 +26,7 @@ import java.util.Set;
 class NIOServer {
 
     /**
-     * 原理参考：《Netty权威指南, 2nd》第22章 高性能之道
+     * 原理参考：《Netty权威指南, 2nd》第22章 高性能之道.
      */
     private static final Logger _log = LoggerFactory.getLogger(NIOServer.class);
 
@@ -57,7 +57,9 @@ class NIOServer {
         new Thread(connectionBell).start();
     }
 
-    // Selector轮询线程类
+    /**
+     * Selector轮询线程类.
+     */
     private class SelectorLoop implements Runnable {
 
         private Selector selector;
@@ -113,7 +115,6 @@ class NIOServer {
                         }
                     }
                 }
-
             } else if (key.isReadable()) {
                 // 这是一个read事件, 并且这个事件是注册在socketChannel上的
                 SocketChannel sc = (SocketChannel) key.channel();

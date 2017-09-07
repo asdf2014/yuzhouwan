@@ -18,13 +18,19 @@ import java.util.TimeZone;
  * @author Benedict Jin
  * @since 2016/3/8
  */
-public class TimeUtils {
+public final class TimeUtils {
 
-    private static final Logger _log = LoggerFactory.getLogger(TimeUtils.class);
+    private static final Logger LOG = LoggerFactory.getLogger(TimeUtils.class);
 
-    private static final SimpleDateFormat SIMPLE_DATA_FORMAT_TIME_ZONE = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss SSS z");
-    private static final SimpleDateFormat SIMPLE_DATA_FORMAT_BASIC = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss SSS");
-    private static final SimpleDateFormat SIMPLE_DATE_FORMAT_WITH_TIME_ZONE = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+    private static final SimpleDateFormat SIMPLE_DATA_FORMAT_TIME_ZONE
+            = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss SSS z");
+    private static final SimpleDateFormat SIMPLE_DATA_FORMAT_BASIC
+            = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss SSS");
+    private static final SimpleDateFormat SIMPLE_DATE_FORMAT_WITH_TIME_ZONE
+            = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+
+    private TimeUtils() {
+    }
 
     public static String nowStr() {
         return SIMPLE_DATA_FORMAT_BASIC.format(System.currentTimeMillis());
@@ -39,7 +45,7 @@ public class TimeUtils {
     }
 
     /**
-     * 今天是几月份
+     * 今天是几月份.
      *
      * @return month
      */
@@ -91,7 +97,7 @@ public class TimeUtils {
     }
 
     /**
-     * 上个月的同一天，凌晨 0点
+     * 上个月的同一天，凌晨 0点.
      *
      * @return date
      */
@@ -101,7 +107,7 @@ public class TimeUtils {
     }
 
     /**
-     * 几天前，凌晨 00:00:00 000
+     * 几天前，凌晨 00:00:00 000.
      *
      * @return date
      */
@@ -111,7 +117,7 @@ public class TimeUtils {
     }
 
     /**
-     * 某天的最后一秒 23:59:59 999
+     * 某天的最后一秒 23:59:59 999.
      *
      * @param index -1：今天的最后一秒；0：昨天的最后一秒；1：前天最后一秒
      * @return date
@@ -122,7 +128,7 @@ public class TimeUtils {
     }
 
     /**
-     * n天前的 00:00:00 000
+     * n天前的 00:00:00 000.
      *
      * @param index n天
      * @return date
@@ -138,7 +144,7 @@ public class TimeUtils {
     }
 
     /**
-     * 某年某月 最后一时刻
+     * 某年某月 最后一时刻.
      *
      * @param year
      * @param month
@@ -149,7 +155,7 @@ public class TimeUtils {
     }
 
     /**
-     * 某年某月 最开始一时刻
+     * 某年某月 最开始一时刻.
      *
      * @param year  2016
      * @param month 7 (means August, index start with zero)
@@ -169,7 +175,7 @@ public class TimeUtils {
     }
 
     /**
-     * Change Local Date into UTC Date (like, +08:00 -> +00:00)
+     * Change Local Date into UTC Date (like, +08:00 -> +00:00).
      *
      * @param date
      * @return
@@ -179,7 +185,7 @@ public class TimeUtils {
         try {
             return SIMPLE_DATA_FORMAT_TIME_ZONE.parse(SIMPLE_DATA_FORMAT_TIME_ZONE.format(date));
         } catch (ParseException e) {
-            _log.error("Change TimeZone failed: {}!", e);
+            LOG.error("Change TimeZone failed: {}!", e);
         }
         return null;
     }

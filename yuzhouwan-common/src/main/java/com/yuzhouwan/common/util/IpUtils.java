@@ -23,7 +23,7 @@ import static com.yuzhouwan.common.util.StrUtils.isNotEmpty;
  * @author Benedict Jin
  * @since 2016/4/7
  */
-public class IpUtils {
+public final class IpUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(IpUtils.class);
 
@@ -32,7 +32,14 @@ public class IpUtils {
     private static final Pattern IP_V4_ADDRESS_IS_VALID2 = Pattern.compile(
             "(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)");
     private static final Pattern IP_V6_ADDRESS_IS_VALID = Pattern.compile(
-            "(([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]+|::(ffff(:0{1,4})?:)?((25[0-5]|(2[0-4]|1?[0-9])?[0-9])\\\\.){3}(25[0-5]|(2[0-4]|1?[0-9])?[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1?[0-9])?[0-9])\\\\.){3}(25[0-5]|(2[0-4]|1?[0-9])?[0-9]))");
+            "(([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:"
+                    + "[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:)"
+                    + "{1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|"
+                    + "([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]"
+                    + "{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]+|"
+                    + "::(ffff(:0{1,4})?:)?((25[0-5]|(2[0-4]|1?[0-9])?[0-9])\\\\.){3}"
+                    + "(25[0-5]|(2[0-4]|1?[0-9])?[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|"
+                    + "(2[0-4]|1?[0-9])?[0-9])\\\\.){3}(25[0-5]|(2[0-4]|1?[0-9])?[0-9]))");
 
     private static final Pattern EXTRACT_DOMAIN_WITH_SUB_PATH = Pattern.compile("(?<=//).*?(?=/)");
     private static final Pattern EXTRACT_DOMAIN_SIMPLE = Pattern.compile("(?<=//).*");
@@ -40,13 +47,18 @@ public class IpUtils {
 
     private static final String PING_PREFIX = "ping -c 1 ";
 
+    public static final int REMOVE_TAIL_LENGTH = 3;
+
     /**
      * The current host IP address is the IP address from the device.
      */
     private static List<String> currentHostIpAddress;
 
+    private IpUtils() {
+    }
+
     /**
-     * 检查 IP-v4地址是否是 合法的
+     * 检查 IP-v4地址是否是 合法的.
      *
      * @param ip
      * @return
@@ -56,7 +68,7 @@ public class IpUtils {
     }
 
     /**
-     * 检查 IP-v4地址是否是 合法的
+     * 检查 IP-v4地址是否是 合法的.
      *
      * @param ip
      * @return
@@ -66,7 +78,7 @@ public class IpUtils {
     }
 
     /**
-     * 检查 IP-v6地址是否是 合法的
+     * 检查 IP-v6地址是否是 合法的.
      *
      * @param ip
      * @return
@@ -76,17 +88,17 @@ public class IpUtils {
     }
 
     /**
-     * 移除 /32的尾巴
+     * 移除 /32的尾巴.
      *
      * @param ip
      * @return
      */
     public static String removeTail32(String ip) {
-        return isNotEmpty(ip) && ip.endsWith("/32") ? ip.substring(0, ip.length() - 3) : ip;
+        return isNotEmpty(ip) && ip.endsWith("/32") ? ip.substring(0, ip.length() - REMOVE_TAIL_LENGTH) : ip;
     }
 
     /**
-     * 抽取域名主干部分
+     * 抽取域名主干部分.
      *
      * @param url
      * @return
@@ -110,7 +122,7 @@ public class IpUtils {
     }
 
     /**
-     * 获得 url的子路径
+     * 获得 url的子路径.
      *
      * @param url
      * @return
@@ -121,7 +133,7 @@ public class IpUtils {
     }
 
     /**
-     * Convert IP Address into Long
+     * Convert IP Address into Long.
      *
      * @param ipAddress
      * @return
@@ -137,18 +149,18 @@ public class IpUtils {
     }
 
     /**
-     * Convert Long into IP Address
+     * Convert Long into IP Address.
      *
      * @param ipAddress
      * @return
      */
     public static String long2ip(Long ipAddress) {
-        return String.valueOf(ipAddress >>> 24) + "." + String.valueOf((ipAddress & 0x00FFFFFF) >>> 16) + "." +
-                String.valueOf((ipAddress & 0x0000FFFF) >>> 8) + "." + String.valueOf((ipAddress & 0x000000FF));
+        return String.valueOf(ipAddress >>> 24) + "." + String.valueOf((ipAddress & 0x00FFFFFF) >>> 16) + "."
+                + String.valueOf((ipAddress & 0x0000FFFF) >>> 8) + "." + String.valueOf((ipAddress & 0x000000FF));
     }
 
     /**
-     * Convert IP Address into Int
+     * Convert IP Address into Int.
      *
      * @param ipAddress
      * @return
@@ -166,7 +178,7 @@ public class IpUtils {
     }
 
     /**
-     * 检查 ipAddress 是否在 range 范围内
+     * 检查 ipAddress 是否在 range 范围内.
      *
      * @param ipAddress
      * @param range
@@ -212,7 +224,7 @@ public class IpUtils {
     }
 
     /**
-     * check ip is reachable
+     * Check ip is reachable.
      *
      * @param ipAddress
      * @return

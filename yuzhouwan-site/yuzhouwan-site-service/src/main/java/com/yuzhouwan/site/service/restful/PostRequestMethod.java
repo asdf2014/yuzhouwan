@@ -22,5 +22,4 @@ public class PostRequestMethod {
         System.out.println("Arrival msg:\t" + msg);
         return "[{\"rule\":\"is down\", \"groupId\":\"1\",\"mode\":\"WECHAT\", \"level\":\"1\"}]";
     }
-
 }

@@ -59,8 +59,8 @@ public class ZookeeperWatcher {
                         logger.error("Connection error, waiting...");
                         break;
                     default:
-                        logger.info("PathChildrenCache changed : {path:" + event.getData().getPath() + " data:" +
-                                new String(event.getData().getData()) + "}");
+                        logger.info("PathChildrenCache changed : {path:" + event.getData().getPath() + " data:"
+                                + new String(event.getData().getData()) + "}");
                 }
             }
         });

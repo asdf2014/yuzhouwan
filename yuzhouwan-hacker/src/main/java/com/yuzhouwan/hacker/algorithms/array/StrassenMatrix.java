@@ -31,7 +31,8 @@ public class StrassenMatrix {
         return matrixC;
     }
 
-    public double[][] strassen(double[][] matrixA, double[][] matrixB, double[][] matrixC, int rowLow, int rowHigh, int colLow, int colHigh) {
+    public double[][] strassen(double[][] matrixA, double[][] matrixB, double[][] matrixC,
+                               int rowLow, int rowHigh, int colLow, int colHigh) {
 
         int rowSizeA = matrixA.length;
         int colSizeA = matrixA[0].length;
@@ -46,7 +47,8 @@ public class StrassenMatrix {
 
         if ((rowHigh - rowLow) == 1 && (colHigh - colLow) == 1) {
 
-            double[][] matrixResult = minMatrixMultiply(matrixA, matrixB, rowLow, rowHigh, colLow, colHigh, rowSize, colSize);
+            double[][] matrixResult = minMatrixMultiply(matrixA, matrixB, rowLow, rowHigh,
+                    colLow, colHigh, rowSize, colSize);
             matrixA[rowLow][colLow] = matrixResult[0][0];
             matrixA[rowLow][colHigh] = matrixResult[0][1];
             matrixA[rowHigh][colLow] = matrixResult[1][0];
@@ -69,7 +71,8 @@ public class StrassenMatrix {
      * @param matrixB
      * @return
      */
-    public double[][] minMatrixAdd(double[][] matrixA, double[][] matrixB, int rowLow, int rowHigh, int colLow, int colHigh, int rowSize, int colSize) {
+    public double[][] minMatrixAdd(double[][] matrixA, double[][] matrixB, int rowLow, int rowHigh,
+                                   int colLow, int colHigh, int rowSize, int colSize) {
 
         int rowSizeA = matrixA.length;
         int colSizeA = matrixA[0].length;
@@ -88,20 +91,24 @@ public class StrassenMatrix {
         double a11 = rowLow < 0 || colLow < 0 ? 0 : matrixA[rowLow][colLow];
         double a12 = rowLow < 0 || colHigh > (colSizeA - 1) || colNeedExpand ? 0 : matrixA[rowLow][colHigh];
         double a21 = rowHigh > (rowSizeA - 1) || colLow < 0 || rowNeedExpand ? 0 : matrixA[rowHigh][colLow];
-        double a22 = rowHigh > (rowSizeA - 1) || colHigh > (colSizeA - 1) || colNeedExpand || rowNeedExpand ? 0 : matrixA[rowHigh][colHigh];
+        double a22 = rowHigh > (rowSizeA - 1) || colHigh > (colSizeA - 1) || colNeedExpand
+                || rowNeedExpand ? 0 : matrixA[rowHigh][colHigh];
 
         double b11 = rowLow < 0 || colLow < 0 ? 0 : matrixB[rowLow][colLow];
         double b12 = rowLow < 0 || colHigh > (colSizeB - 1) || colNeedExpand ? 0 : matrixB[rowLow][colHigh];
         double b21 = rowHigh > (rowSizeB - 1) || colLow < 0 || rowNeedExpand ? 0 : matrixB[rowHigh][colLow];
-        double b22 = rowHigh > (rowSizeB - 1) || colHigh > (colSizeB - 1) || colNeedExpand || rowNeedExpand ? 0 : matrixB[rowHigh][colHigh];
+        double b22 = rowHigh > (rowSizeB - 1) || colHigh > (colSizeB - 1) || colNeedExpand
+                || rowNeedExpand ? 0 : matrixB[rowHigh][colHigh];
 
-        double[][] matrixC = notSparseMatrixFromAdd(rowHigh, colHigh, rowSizeA, colSizeA, a11, a12, a21, a22, b11, b12, b21, b22);
+        double[][] matrixC = notSparseMatrixFromAdd(rowHigh, colHigh, rowSizeA, colSizeA, a11,
+                a12, a21, a22, b11, b12, b21, b22);
 //        double[][] matrixC = sparseMatrixFromAdd(a11, a12, a21, a22, b11, b12, b21, b22);
 
         return matrixC;
     }
 
-    private double[][] sparseMatrixFromAdd(double a11, double a12, double a21, double a22, double b11, double b12, double b21, double b22) {
+    private double[][] sparseMatrixFromAdd(double a11, double a12, double a21, double a22,
+                                           double b11, double b12, double b21, double b22) {
         double[][] matrixC = new double[2][2];
         matrixC[0][0] = a11 + b11;
         matrixC[0][1] = a12 + b12;
@@ -110,7 +117,9 @@ public class StrassenMatrix {
         return matrixC;
     }
 
-    private double[][] notSparseMatrixFromAdd(int rowHigh, int colHigh, int rowSizeA, int colSizeA, double a11, double a12, double a21, double a22, double b11, double b12, double b21, double b22) {
+    private double[][] notSparseMatrixFromAdd(int rowHigh, int colHigh, int rowSizeA,
+                                              int colSizeA, double a11, double a12, double a21,
+                                              double a22, double b11, double b12, double b21, double b22) {
         int rowSizeC = 2;
         int colSizeC = 2;
         if (rowHigh > (rowSizeA - 1)) {
@@ -146,7 +155,8 @@ public class StrassenMatrix {
      * @param colHigh
      * @return
      */
-    public double[][] minMatrixMultiply(double[][] matrixA, double[][] matrixB, int rowLow, int rowHigh, int colLow, int colHigh, int rowSize, int colSize) {
+    public double[][] minMatrixMultiply(double[][] matrixA, double[][] matrixB, int rowLow,
+                                        int rowHigh, int colLow, int colHigh, int rowSize, int colSize) {
 
         boolean rowNeedExpand = false;
         if (rowSize % 2 != 0) {
@@ -165,12 +175,14 @@ public class StrassenMatrix {
         double a11 = rowLow < 0 || colLow < 0 ? 0 : matrixA[rowLow][colLow];
         double a12 = rowLow < 0 || colHigh > (colSizeA - 1) || colNeedExpand ? 0 : matrixA[rowLow][colHigh];
         double a21 = rowHigh > (rowSizeA - 1) || colLow < 0 || rowNeedExpand ? 0 : matrixA[rowHigh][colLow];
-        double a22 = rowHigh > (rowSizeA - 1) || colHigh > (colSizeA - 1) || colNeedExpand || rowNeedExpand ? 0 : matrixA[rowHigh][colHigh];
+        double a22 = rowHigh > (rowSizeA - 1) || colHigh > (colSizeA - 1) || colNeedExpand
+                || rowNeedExpand ? 0 : matrixA[rowHigh][colHigh];
 
         double b11 = rowLow < 0 || colLow < 0 ? 0 : matrixB[rowLow][colLow];
         double b12 = rowLow < 0 || colHigh > (colSizeB - 1) || colNeedExpand ? 0 : matrixB[rowLow][colHigh];
         double b21 = rowHigh > (rowSizeB - 1) || colLow < 0 || rowNeedExpand ? 0 : matrixB[rowHigh][colLow];
-        double b22 = rowHigh > (rowSizeB - 1) || colHigh > (colSizeB - 1) || colNeedExpand || rowNeedExpand ? 0 : matrixB[rowHigh][colHigh];
+        double b22 = rowHigh > (rowSizeB - 1) || colHigh > (colSizeB - 1) || colNeedExpand
+                || rowNeedExpand ? 0 : matrixB[rowHigh][colHigh];
 
         double s1 = b12 - b22;
         double s2 = a11 + a12;
@@ -191,13 +203,15 @@ public class StrassenMatrix {
         double p6 = s7 * s8;
         double p7 = s9 * s10;
 
-        double[][] matrixC = notSparseMatrixFromMultipy(rowHigh, colHigh, rowSizeA, colSizeA, p1, p2, p3, p4, p5, p6, p7);
+        double[][] matrixC = notSparseMatrixFromMultipy(rowHigh, colHigh, rowSizeA, colSizeA, p1,
+                p2, p3, p4, p5, p6, p7);
 //        double[][] matrixC = sparseMatrixFromMultipy(p1, p2, p3, p4, p5, p6, p7);
 
         return matrixC;
     }
 
-    private double[][] sparseMatrixFromMultipy(double p1, double p2, double p3, double p4, double p5, double p6, double p7) {
+    private double[][] sparseMatrixFromMultipy(double p1, double p2, double p3, double p4, double p5,
+                                               double p6, double p7) {
         double[][] matrixC = new double[2][2];
         matrixC[0][0] = p5 + p4 - p2 + p6;
         matrixC[0][1] = p1 + p2;
@@ -222,7 +236,9 @@ public class StrassenMatrix {
      * @param p7
      * @return
      */
-    private double[][] notSparseMatrixFromMultipy(int rowHigh, int colHigh, int rowSizeA, int colSizeA, double p1, double p2, double p3, double p4, double p5, double p6, double p7) {
+    private double[][] notSparseMatrixFromMultipy(int rowHigh, int colHigh, int rowSizeA, int colSizeA,
+                                                  double p1, double p2, double p3, double p4, double p5,
+                                                  double p6, double p7) {
         int rowSizeC = 2;
         int colSizeC = 2;
 
@@ -247,5 +263,4 @@ public class StrassenMatrix {
         }
         return matrixC;
     }
-
 }

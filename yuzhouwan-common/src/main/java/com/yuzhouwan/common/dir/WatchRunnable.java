@@ -16,14 +16,14 @@ import java.nio.file.WatchService;
  */
 public class WatchRunnable implements Runnable {
 
-    private static final Logger _log = LoggerFactory.getLogger(WatchRunnable.class);
+    private static final Logger LOG = LoggerFactory.getLogger(WatchRunnable.class);
 
     private IDirUtils dealProcessor;
     private Long waitTime;
     private WatchService watchService;
 
     /**
-     * controller for thread stops safely
+     * Controller for thread stops safely.
      */
     private boolean isRunning = true;
 
@@ -43,7 +43,7 @@ public class WatchRunnable implements Runnable {
         try {
             key = watchService.take();
         } catch (InterruptedException e) {
-            _log.error("WatchService is error, because {}", e.getMessage());
+            LOG.error("WatchService is error, because {}", e.getMessage());
         }
         if (key == null) return;
         IDirUtils dirUtil = dealProcessor == null ? new DirUtils() : dealProcessor;
@@ -53,7 +53,7 @@ public class WatchRunnable implements Runnable {
                 try {
                     Thread.sleep(waitTime);
                 } catch (InterruptedException e) {
-                    _log.error("Thread sleep error, because {}", e.getMessage());
+                    LOG.error("Thread sleep error, because {}", e.getMessage());
                 }
             if (!key.reset()) break;
             key.pollEvents().forEach(dirUtil::dealWithEvent);

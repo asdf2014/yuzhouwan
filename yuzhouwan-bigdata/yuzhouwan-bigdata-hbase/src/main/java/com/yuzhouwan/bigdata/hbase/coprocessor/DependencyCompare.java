@@ -20,14 +20,14 @@ public class DependencyCompare {
 
     private static final Logger _log = LoggerFactory.getLogger(DependencyCompare.class);
     private static final String HBASE_DEPENDENCIES = DirUtils.PROJECT_BASE_PATH.concat(
-            "\\yuzhouwan-bigdata\\yuzhouwan-bigdata-hbase\\src\\main\\resources\\coprocessor\\" +
-                    "hbase-0.98.8-hadoop2.dependency");
+            "\\yuzhouwan-bigdata\\yuzhouwan-bigdata-hbase\\src\\main\\resources\\coprocessor\\"
+                    + "hbase-0.98.8-hadoop2.dependency");
 
     public static void main(String[] args) throws Exception {
         if (args == null || args.length != 1) {
             _log.error("Params [{}] wrong!", Arrays.toString(args));
-            _log.info("Usage: jar -jar com.yuzhouwan.bigdata.hbase.coprocessor.DependencyCompare " +
-                    "<Coprocessor's dependency path>");
+            _log.info("Usage: jar -jar com.yuzhouwan.bigdata.hbase.coprocessor.DependencyCompare "
+                    + "<Coprocessor's dependency path>");
             System.exit(-1);
         }
         String path = args[0];

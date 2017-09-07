@@ -84,7 +84,8 @@ public class DistributedQueue {
     private static void produce(ZooKeeper zk, int zNode) throws KeeperException, InterruptedException {
 
         System.out.println("Adding\t" + zNode + "\tinto queue [/distributedQueue] ...");
-        zk.create("/distributedQueue/" + zNode, (zNode + "").getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
+        zk.create("/distributedQueue/" + zNode, (zNode + "").getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE,
+                CreateMode.EPHEMERAL_SEQUENTIAL);
     }
 
     private static void consume(ZooKeeper zk) throws KeeperException, InterruptedException {
@@ -94,7 +95,8 @@ public class DistributedQueue {
 
             String subPath = list.get(0);
             String zNode = "/distributedQueue/" + subPath;
-            System.out.println("Get the data:\t" + new String(zk.getData(zNode, false, null), Charset.forName("UTF-8")) + "\tfrom " + zNode);
+            System.out.println("Get the data:\t" + new String(zk.getData(zNode, false, null),
+                    Charset.forName("UTF-8")) + "\tfrom " + zNode);
 
             zk.delete(zNode, 0);
         } else {

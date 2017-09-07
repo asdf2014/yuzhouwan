@@ -32,8 +32,11 @@ class InvertBinaryTreeSolution {
      *  / \   / \
      * 9   6 3   1
      *
-     * Google: 90% of our engineers use the software you wrote (Homebrew), but you can’t invert a binary tree on a whiteboard so fuck off.
+     * Google: 90% of our engineers use the software you wrote (Homebrew),
+     * but you can’t invert a binary tree on a whiteboard so fuck off.
      *
+     * 队列(Queue)：	offer入队(tail)      poll出队(first)
+     * 栈  (Deque)：	push 入栈(front)     pop 出栈(first)      peek查看栈顶.
      */
     /* 递归 */
     static TreeNode invertTreeRecursion(TreeNode root) {
@@ -92,8 +95,4 @@ class InvertBinaryTreeSolution {
         }
         return root;
     }
-    /**
-     * 队列(Queue)：	offer入队(tail)      poll出队(first)
-     * 栈  (Deque)：	push 入栈(front)     pop 出栈(first)      peek查看栈顶
-     */
 }

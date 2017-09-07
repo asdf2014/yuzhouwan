@@ -25,7 +25,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author Benedict Jin
  * @since 2017/6/28
  */
-public class DynamicPropUtils implements Serializable, Cloneable, Closeable {
+public final class DynamicPropUtils implements Serializable, Cloneable, Closeable {
 
     private static final Logger _log = LoggerFactory.getLogger(DynamicPropUtils.class);
     private static final String ZNODE_PREFIX = "/";
@@ -34,10 +34,15 @@ public class DynamicPropUtils implements Serializable, Cloneable, Closeable {
     private static CuratorFramework curatorFramework;
     private static final ConcurrentHashMap<String, Prop> PROJECT_PROPERTIES = new ConcurrentHashMap<>();
 
-    private volatile static long TICK;
+    public static final int CONNECTION_TIMEOUT_MS = 5000;
+    public static final int SESSION_TIMEOUT_MS = 40000;
+    public static final int RETRY_POLICY_INTERVAL = 2000;
+    public static final int RETRY_POLICY_TIMES = 3;
+
+    private static volatile long TICK;
     private static final long TICK_THRESHOLD = 30L;
     private static final long TICK_MILLIS = 1000L;
-    private volatile static boolean KEEP_SYNCING = true;
+    private static volatile boolean KEEP_SYNCING = true;
     private static final Thread TIMING_SYNC = new Thread(() -> {
         while (KEEP_SYNCING) {
             if (TICK >= TICK_THRESHOLD) {
@@ -81,9 +86,9 @@ public class DynamicPropUtils implements Serializable, Cloneable, Closeable {
         curatorFramework = CuratorFrameworkFactory
                 .builder()
                 .connectString(zkPath.toString())
-                .connectionTimeoutMs(5000)
-                .sessionTimeoutMs(40000)
-                .retryPolicy(new ExponentialBackoffRetry(2000, 3))
+                .connectionTimeoutMs(CONNECTION_TIMEOUT_MS)
+                .sessionTimeoutMs(SESSION_TIMEOUT_MS)
+                .retryPolicy(new ExponentialBackoffRetry(RETRY_POLICY_INTERVAL, RETRY_POLICY_TIMES))
                 .namespace("dynamic")
                 .build();
         _log.debug("Curator initialized.");

@@ -36,13 +36,13 @@ import static com.yuzhouwan.common.util.ExceptionUtils.errorInfo;
  * @author Benedict Jin
  * @since 2016/11/25
  */
-public class KafkaUtils {
+public final class KafkaUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(KafkaUtils.class);
     private static final PropUtils p = PropUtils.getInstance();
     private static final String PARTITIONER_CLASS_NAME = KafkaPartitioner.class.getName();
 
-    private volatile static KafkaUtils instance;
+    private static volatile KafkaUtils instance;
     private static final String KAFKA_TOPIC = p.getProperty("kafka.topic");
 
     private static final int RING_BUFFER_SIZE = Integer.parseInt(p.getProperty("ringbuffer.size"));
@@ -106,7 +106,8 @@ public class KafkaUtils {
             props.put("queue.buffering.max.ms", p.getProperty("kafka.queue.buffering.max.ms"));
             props.put("queue.buffering.max.messages", p.getProperty("kafka.queue.buffering.max.messages"));
             props.put("queue.enqueue.timeout.ms", p.getProperty("kafka.queue.enqueue.timeout.ms"));
-            props.put("batch.num.messages", p.getProperty("kafka.batch.num.messages"));     // 41,0000,0000 / 24 / 60 / 60 = 47454 / 24 = 1977
+            // 41,0000,0000 / 24 / 60 / 60 = 47454 / 24 = 1977
+            props.put("batch.num.messages", p.getProperty("kafka.batch.num.messages"));
             props.put("send.buffer.bytes", p.getProperty("kafka.send.buffer.bytes"));
 //            props.put("compression.type", "lz4");
         } catch (Exception e) {

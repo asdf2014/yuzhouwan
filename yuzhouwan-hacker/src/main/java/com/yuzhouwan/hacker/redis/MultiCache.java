@@ -14,12 +14,12 @@ import java.util.List;
 public class MultiCache implements ICache {
 
     /**
-     * 1-level cache
+     * 1-level cache.
      */
     private ICache<Object> cacheFirst;
 
     /**
-     * 2-level cache
+     * 2-level cache.
      */
     private ICache<Object> cacheSecond;
 

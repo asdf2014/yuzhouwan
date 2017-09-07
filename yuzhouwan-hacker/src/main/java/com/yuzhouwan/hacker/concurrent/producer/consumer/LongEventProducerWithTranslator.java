@@ -22,13 +22,7 @@ public class LongEventProducerWithTranslator {
     }
 
     private static final EventTranslatorOneArg<LongEvent, ByteBuffer> TRANSLATOR =
-
-            new EventTranslatorOneArg<LongEvent, ByteBuffer>() {
-                @Override
-                public void translateTo(LongEvent event, long sequence, ByteBuffer bb) {
-                    event.set(bb.getLong(0));
-                }
-            };
+            (event, sequence, bb) -> event.set(bb.getLong(0));
 
     public void product(ByteBuffer bb) {
         ringBuffer.publishEvent(TRANSLATOR, bb);

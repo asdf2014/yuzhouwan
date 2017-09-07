@@ -35,5 +35,4 @@ public class SpringCamelMainExample {
             SpringCamelMainExample.class.wait();
         }
     }
-
 }

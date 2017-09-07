@@ -29,12 +29,11 @@ import java.util.Set;
  * @since 2016/9/23
  */
 @SuppressWarnings("deprecation")
-public class TwoLevelIndexBuilder {
+public final class TwoLevelIndexBuilder {
 
     private Configuration conf;
 
     private TwoLevelIndexBuilder(String rootDir, String zkServer, String port) throws IOException {
-
         conf = HBaseConfiguration.create();
         conf.set("hbase.rootdir", rootDir);
         conf.set("hbase.zookeeper.quorum", zkServer);
@@ -43,6 +42,9 @@ public class TwoLevelIndexBuilder {
         HConnectionManager.createConnection(conf);
     }
 
+    /**
+     * TowLevelIndexMapper.
+     */
     private static class TowLevelIndexMapper extends TableMapper<ImmutableBytesWritable, Put> {
 
         //记录了要进行索引的列
@@ -99,7 +101,6 @@ public class TwoLevelIndexBuilder {
 
         }
     }
-
 
     public static void main(String[] args) throws Exception {
 

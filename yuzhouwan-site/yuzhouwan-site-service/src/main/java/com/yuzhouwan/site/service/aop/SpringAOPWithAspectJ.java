@@ -31,11 +31,11 @@ public class SpringAOPWithAspectJ {
 
     @AfterReturning(
             pointcut = "execution(* com.yuzhouwan.site.service.aop.TargetAOP.targetAfterReturning(..))",
-            returning = "_return")
-    public void afterReturnTarget(JoinPoint joinPoint, boolean _return) {
+            returning = "ret")
+    public void afterReturnTarget(JoinPoint joinPoint, boolean ret) {
 
         showClassMethod(joinPoint);
-        System.out.println("Return: " + _return);
+        System.out.println("Return: " + ret);
     }
 
     @Around("execution(* com.yuzhouwan.site.service.aop.TargetAOP.targetAround(..))")
@@ -62,6 +62,7 @@ public class SpringAOPWithAspectJ {
     }
 
     private void showClassMethod(JoinPoint joinPoint) {
-        System.out.println(joinPoint.getTarget().getClass().getSimpleName() + "\'s " + joinPoint.getSignature().getName() + "...");
+        System.out.println(joinPoint.getTarget().getClass().getSimpleName() + "\'s "
+                + joinPoint.getSignature().getName() + "...");
     }
 }

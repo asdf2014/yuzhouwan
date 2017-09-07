@@ -14,6 +14,14 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.Date;
 
+/**
+ * Copyright @ 2017 yuzhouwan.com
+ * All right reserved.
+ * Function: User Model
+ *
+ * @author Benedict Jin
+ * @since 2016/9/1
+ */
 @ApiModel(value = "UserModel")
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,         // Were binding by providing a name
@@ -95,4 +103,3 @@ public class UserModel {
         this.content = content;
     }
 }
-

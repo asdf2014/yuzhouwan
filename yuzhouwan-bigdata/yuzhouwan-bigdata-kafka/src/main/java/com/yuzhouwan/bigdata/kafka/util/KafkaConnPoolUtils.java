@@ -19,7 +19,7 @@ import static com.yuzhouwan.bigdata.kafka.util.KafkaUtils.createProducer;
  * @author Benedict Jin
  * @since 2016/12/30
  */
-public class KafkaConnPoolUtils {
+public final class KafkaConnPoolUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(KafkaConnPoolUtils.class);
 
@@ -30,8 +30,7 @@ public class KafkaConnPoolUtils {
 
     static {
         String connPoolSizeStr = PropUtils.getInstance().getProperty("kafka.conn.2.CONN_IN_POOL");
-        CONN_IN_POOL = StrUtils.isEmpty(connPoolSizeStr) ?
-                3 : Integer.parseInt(connPoolSizeStr);
+        CONN_IN_POOL = StrUtils.isEmpty(connPoolSizeStr) ? 3 : Integer.parseInt(connPoolSizeStr);
         if (CONN_IN_POOL <= 0 || CONN_IN_POOL > 1_000) CONN_IN_POOL = 3;
         getInstance();  // do not use lazy initialization
     }

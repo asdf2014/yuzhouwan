@@ -25,7 +25,7 @@ public class SnmpSimpleSet {
     private static final int DEFAULT_RETRY = 3;
 
     /**
-     * Create communityTarget
+     * Create communityTarget.
      *
      * @param ip
      * @param community

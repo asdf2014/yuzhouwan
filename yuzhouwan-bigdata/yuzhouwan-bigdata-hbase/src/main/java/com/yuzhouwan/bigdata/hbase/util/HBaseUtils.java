@@ -183,7 +183,7 @@ public class HBaseUtils {
     }
 
     /**
-     * [startKey, endKey)
+     * [startKey, endKey).
      *
      * @param startKey
      * @param endKey

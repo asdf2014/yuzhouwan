@@ -22,10 +22,9 @@ import static org.quartz.TriggerBuilder.newTrigger;
  */
 public class JobExecutorWithQuartz implements Job {
 
-    private final static Logger _log = LoggerFactory.getLogger(JobExecutorWithQuartz.class);
-    private final static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd/HH:mm:ss");
+    private static final Logger _log = LoggerFactory.getLogger(JobExecutorWithQuartz.class);
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd/HH:mm:ss");
     private static Scheduler scheduler;
-
 
     private static void init() {
 
@@ -71,10 +70,7 @@ public class JobExecutorWithQuartz implements Job {
         // Say Hello to the World and display the date/time
         _log.info("Hello World! - " + new Date());
 
-        /*
-         * asdf2014 in time:	2015-11-04/13:09:54
-         */
+        //asdf2014 in time:	2015-11-04/13:09:54
         System.out.println("asdf2014 in time:\t" + dateFormat.format(new Date()));
     }
-
 }

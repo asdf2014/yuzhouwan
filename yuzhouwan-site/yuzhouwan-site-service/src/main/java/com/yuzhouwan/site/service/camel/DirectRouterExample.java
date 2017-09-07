@@ -31,25 +31,33 @@ public class DirectRouterExample {
     }
 
     /**
-     * DirectRouteA 其中使用direct 连接到 DirectRouteB
+     * DirectRouteA 其中使用direct 连接到 DirectRouteB.
      */
     private class DirectRouteA extends RouteBuilder {
 
         /* (non-Javadoc)
          * @see org.apache.camel.builder.RouteBuilder#configure()
          *
-         * 2016-08-07 23:20:08.626 | INFO | Exchange[Id: ID-DESKTOP-P0UR2J5-52315-1470583152904-0-7, ExchangePattern: InOut, BodyType: org.apache.camel.converter.stream.InputStreamCache, Body: [Body is instance of org.apache.camel.StreamCache]] | DirectRouteB.log | CamelLogger.java:180
+         * 2016-08-07 23:20:08.626 | INFO | Exchange[Id: ID-DESKTOP-P0UR2J5-52315-1470583152904-0-7,
+         * ExchangePattern: InOut, BodyType: org.apache.camel.converter.stream.InputStreamCache, Body:
+         * [Body is instance of org.apache.camel.StreamCache]] | DirectRouteB.log | CamelLogger.java:180
          */
         @Override
         public void configure() throws Exception {
             from("jetty:http://0.0.0.0:8282/directCamel")
                     // 连接路由：DirectRouteB
                     .to("direct:directRouteB")
-                    //2016-08-07 23:20:08.628 | INFO | Exchange[Id: ID-DESKTOP-P0UR2J5-52315-1470583152904-0-7, ExchangePattern: InOut, BodyType: org.apache.camel.converter.stream.InputStreamCache, Body: [Body is instance of org.apache.camel.StreamCache]] | DirectRouteA.log | CamelLogger.java:180
+                    // 2016-08-07 23:20:08.628 | INFO | Exchange[Id: ID-DESKTOP-P0UR2J5-52315-1470583152904-0-7,
+                    // ExchangePattern: InOut, BodyType: org.apache.camel.converter.stream.InputStreamCache,
+                    // Body: [Body is instance of org.apache.camel.StreamCache]]
+                    // | DirectRouteA.log | CamelLogger.java:180
                     .to("log:DirectRouteA?showExchangeId=true");
         }
     }
 
+    /**
+     * DirectRouteB.
+     */
     private class DirectRouteB extends RouteBuilder {
 
         /* (non-Javadoc)

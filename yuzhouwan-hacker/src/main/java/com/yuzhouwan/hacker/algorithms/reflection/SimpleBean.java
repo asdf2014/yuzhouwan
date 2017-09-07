@@ -49,10 +49,6 @@ public class SimpleBean {
 
     @Override
     public String toString() {
-        return "SimpleBean{" +
-                "i=" + i +
-                ", l=" + l +
-                ", s='" + s + '\'' +
-                '}';
+        return "SimpleBean{" + "i=" + i + ", l=" + l + ", s='" + s + '\'' + '}';
     }
 }

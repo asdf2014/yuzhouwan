@@ -32,14 +32,14 @@ public class ApacheCamelExample extends RouteBuilder {
         // 将我们编排的一个完整消息路由过程，加入到上下文中
         camelContext.addRoutes(new ApacheCamelExample());
 
-        /* 
+        /*
          * ==========================
          * 为什么我们先启动一个Camel服务
          * 再使用addRoutes添加编排好的路由呢？
          * 这是为了告诉各位读者，Apache Camel支持 动态加载/卸载编排 的路由
          * 这很重要，因为后续设计的Broker需要依赖这种能力
          * ==========================
-         * */
+         */
 
         // 通用没有具体业务意义的代码，只是为了保证主线程不退出
         synchronized (ApacheCamelExample.class) {
@@ -53,12 +53,13 @@ public class ApacheCamelExample extends RouteBuilder {
         // http://127.0.0.1:8282/doHelloWorld
         from("jetty:http://0.0.0.0:8282/doHelloWorld")
                 .process(new HttpProcessor())
-                //ndPoint控制端点的URI描述（log:helloworld?showExchangeId=true）表明它是一个Log4j的实现，所以消息最终会以Log日志的方式输出到控制台上
+                // ndPoint控制端点的URI描述（log:helloworld?showExchangeId=true
+                // 表明它是一个Log4j的实现，所以消息最终会以Log日志的方式输出到控制台上
                 .to("log:helloworld?showExchangeId=true");
     }
 
     /**
-     * 这个处理器用来完成输入的json格式的转换
+     * 这个处理器用来完成输入的json格式的转换.
      */
     private class HttpProcessor implements Processor {
 
@@ -82,7 +83,7 @@ public class ApacheCamelExample extends RouteBuilder {
         }
 
         /**
-         * 从stream中分析字符串内容
+         * 从stream中分析字符串内容.
          *
          * @param bodyStream
          * @return

@@ -4,16 +4,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>yuzhouwan-site</artifactId>
-    <version>${project.version}</version>
-    <packaging>pom</packaging>
-
     <parent>
         <groupId>com.yuzhouwan</groupId>
         <artifactId>yuzhouwan-parent</artifactId>
         <version>${project.version}</version>
         <relativePath>../yuzhouwan-parent/pom.xml</relativePath>
     </parent>
+
+    <artifactId>yuzhouwan-site</artifactId>
+    <version>${project.version}</version>
+    <packaging>pom</packaging>
 
     <modules>
         <module>yuzhouwan-site-api</module>
