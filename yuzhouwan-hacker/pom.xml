@@ -12,7 +12,6 @@
     </parent>
 
     <artifactId>yuzhouwan-hacker</artifactId>
-    <version>${project.version}</version>
 
     <dependencies>
         <dependency>

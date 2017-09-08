@@ -11,7 +11,6 @@
     </parent>
 
     <artifactId>yuzhouwan-bigdata-zookeeper</artifactId>
-    <version>${project.version}</version>
 
     <dependencies>
 

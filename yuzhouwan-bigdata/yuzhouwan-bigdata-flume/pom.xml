@@ -11,6 +11,4 @@
     </parent>
 
     <artifactId>yuzhouwan-bigdata-flume</artifactId>
-    <version>${project.version}</version>
-
 </project>

@@ -11,7 +11,6 @@
     </parent>
 
     <artifactId>yuzhouwan-site-service</artifactId>
-    <version>${project.version}</version>
     <packaging>war</packaging>
 
     <dependencies>

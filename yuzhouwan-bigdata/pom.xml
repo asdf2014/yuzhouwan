@@ -12,7 +12,6 @@
     </parent>
 
     <artifactId>yuzhouwan-bigdata</artifactId>
-    <version>${project.version}</version>
     <packaging>pom</packaging>
 
     <modules>
