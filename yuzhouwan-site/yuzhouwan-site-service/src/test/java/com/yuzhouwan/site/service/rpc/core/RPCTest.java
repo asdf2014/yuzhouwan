@@ -23,6 +23,7 @@ public class RPCTest {
         Server server = new RPC.RPCServer();
         server.register(IRPCService.class, RPCServiceImpl.class);
         server.start();
+        Thread.sleep(100);
 
         IRPCService testServiceImpl = RPC.getProxy(IRPCService.class, "localhost", server.getPort());
         assertEquals("Hello, Benedict!", testServiceImpl.printHello("Benedict"));
