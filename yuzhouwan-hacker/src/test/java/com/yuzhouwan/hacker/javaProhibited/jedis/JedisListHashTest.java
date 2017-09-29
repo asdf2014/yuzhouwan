@@ -20,17 +20,13 @@ public class JedisListHashTest {
     }
 
     public static void main(String[] args) {
-
         JedisListHashTest jedisListHashTest = new JedisListHashTest();
-
         String[] list = {"a", "s", "d", "f"};
-
         jedisListHashTest.addList("asdf", list);
-
     }
 
     private void init() {
-        List<JedisShardInfo> shards = new ArrayList<JedisShardInfo>();
+        List<JedisShardInfo> shards = new ArrayList<>();
 
         JedisShardInfo si = new JedisShardInfo("localhost", 6379);
         si.setPassword("asdf");
@@ -44,12 +40,8 @@ public class JedisListHashTest {
     }
 
     public void addList(String key, String[] list) {
-
         ShardedJedis jedis = pool.getResource();
-
         jedis.lpush(key, list);
-
-        pool.returnResourceObject(jedis);
+        jedis.close();
     }
-
 }
