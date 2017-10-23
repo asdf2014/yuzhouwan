@@ -23,7 +23,7 @@ __[https://yuzhouwan.com][0]__
 
 ## Technical Discussion Group
 
-**[BigData生态圈](https://yuzhouwan.com/tags/)** 1670647&ensp;&ensp;(__*1000*__人大群)
+**[BigData生态圈](https://yuzhouwan.com/tags/)** 1670647&ensp;&ensp;(**1000**人大群)
 
 本群创建于2012/11/15:<br/>
 &ensp;&ensp;讨论大数据生态圈的各种领域，包括 <br/>
@@ -35,7 +35,7 @@ __[https://yuzhouwan.com][0]__
 
 <br/>
  
-**[人工智能](https://yuzhouwan.com/posts/42737/)** 1020982 (高级) | 1217710 (初级) &ensp;&ensp;(__*2000 + 2000*__人大群)
+**[人工智能](https://yuzhouwan.com/posts/42737/)** 1020982 (高级) | 1217710 (初级) &ensp;&ensp;(**2000 + 2000**人大群)
 
 本群创建于2003/7/24: <br/>
 &ensp;&ensp;研究 AI 人工智能 相关领域，欢迎加入，互相学习，共同进步<br/>
