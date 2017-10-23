@@ -37,7 +37,7 @@ public class WelcomePage {
          * <body>
          * <h1>Welcome asdf!</h1>
          * <p>Our latest product:
-         *     <a href="http://www.yuzhouwan.com">asdf2014</a>!
+         *     <a href="https://yuzhouwan.com">asdf2014</a>!
          * </body>
          * </html>
          */
@@ -97,7 +97,7 @@ public class WelcomePage {
         Map<String, Object> blog = new HashMap<>();
 
         // put ``url'' and ``name'' into latest
-        blog.put("url", "http://www.yuzhouwan.com");
+        blog.put("url", "https://yuzhouwan.com");
         blog.put("name", "Asdf's Blog");
 
         // and put it into the root

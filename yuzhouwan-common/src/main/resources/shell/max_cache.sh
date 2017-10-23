@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Doc: http://yuzhouwan.com/posts/15691#%e7%b3%bb%e7%bb%9f%e6%9e%b6%e6%9e%84
+# Doc: https://yuzhouwan.com/posts/15691#%e7%b3%bb%e7%bb%9f%e6%9e%b6%e6%9e%84
 
 command -v fincore >/dev/null 2>&1 || {
     echo >&2 "I require fincore but it's not installed. Try install..." ; exit 1;

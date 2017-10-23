@@ -111,9 +111,9 @@ public class IpUtilsTest {
 
     @Test
     public void extractDomainTest() throws Exception {
-        assertEquals("yuzhouwan.com", IpUtils.extractDomain("http://yuzhouwan.com"));
-        assertEquals("yuzhouwan.com", IpUtils.extractDomain("http://yuzhouwan.com/"));
-        assertEquals("yuzhouwan.com", IpUtils.extractDomain("http://yuzhouwan.com/subpath/welcome.html"));
+        assertEquals("yuzhouwan.com", IpUtils.extractDomain("https://yuzhouwan.com"));
+        assertEquals("yuzhouwan.com", IpUtils.extractDomain("https://yuzhouwan.com/"));
+        assertEquals("yuzhouwan.com", IpUtils.extractDomain("https://yuzhouwan.com/subpath/welcome.html"));
         assertEquals(null, IpUtils.extractDomain("http:/yuzhouwan.com"));
 
         assertEquals(null, IpUtils.extractDomain(""));

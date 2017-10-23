@@ -56,7 +56,7 @@ public class HttpUtilsTest {
             String url = "http://localhost:8080/full/put";
             Map<String, Object> params = new HashMap<>();
             params.put("key", "site");
-            params.put("value", "http://www.yuzhouwan.com");
+            params.put("value", "https://yuzhouwan.com");
             String response = HttpUtils.getInstance().putPlain(url, params, null);
             assertEquals("yuzhouwan.com", JSON.parseObject(response, String.class));
         }
