@@ -17,6 +17,11 @@ import java.util.LinkedHashSet;
  */
 public class DruidUtils {
 
+    private static final PropUtils p = PropUtils.getInstance();
+
+    private DruidUtils() {
+    }
+
     /**
      * Generate tranquility metricsSpec in Druid config file.
      * [Note]: if using <code>BeanUtils#columns2Row</code>, then could avoid this situation
@@ -27,8 +32,8 @@ public class DruidUtils {
     public static String genTranquilityMetricsSpec(Class... classList) {
         if (classList == null || classList.length <= 0) return "";
         String metricsSpecPrefix, metricsSpecMiddle;
-        if (StrUtils.isEmpty(metricsSpecPrefix = PropUtils.getInstance().getProperty("metrics.spec.prefix"))
-                || StrUtils.isEmpty(metricsSpecMiddle = PropUtils.getInstance().getProperty("metrics.spec.middle")))
+        if (StrUtils.isEmpty(metricsSpecPrefix = p.getProperty("metrics.spec.prefix"))
+                || StrUtils.isEmpty(metricsSpecMiddle = p.getProperty("metrics.spec.middle")))
             throw new RuntimeException("Properties [metrics.spec.prefix/middle] is empty!");
         String fieldName;
         StringBuilder strBuilder = new StringBuilder(metricsSpecPrefix);

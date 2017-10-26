@@ -19,7 +19,8 @@ public class KafkaConnPoolUtilsTest {
     @Ignore
     @Test
     public void getConnTest() throws Exception {
-        for (int i = 0; i < 2 * Integer.parseInt(PropUtils.getInstance().getProperty("kafka.conn.pool.size")); i++) {
+        int kafkaConnPoolSize = Integer.parseInt(PropUtils.getInstance().getProperty("kafka.conn.pool.size"));
+        for (int i = 0; i < 2 * kafkaConnPoolSize; i++) {
             KafkaConnPoolUtils.getInstance().getConn();
         }
     }

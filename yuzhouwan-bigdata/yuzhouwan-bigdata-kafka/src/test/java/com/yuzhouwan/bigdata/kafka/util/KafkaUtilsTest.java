@@ -9,6 +9,7 @@ import com.yuzhouwan.bigdata.kafka.util.pc.AvroEventFactory;
 import com.yuzhouwan.bigdata.kafka.util.pc.AvroEventProducer;
 import com.yuzhouwan.bigdata.kafka.util.pc.AvroEventWorkHandler;
 import com.yuzhouwan.common.util.DecimalUtils;
+import kafka.javaapi.producer.Producer;
 
 import java.nio.ByteBuffer;
 import java.util.concurrent.Executor;
@@ -24,18 +25,17 @@ import java.util.concurrent.Executors;
  */
 public class KafkaUtilsTest {
 
+    private static final int BUFFER_SIZE = 1024 * 1024 * 16;
+
     @SuppressWarnings("unchecked")
     public static void main(String[] args) throws Exception {
 
         Executor executor = Executors.newCachedThreadPool();
         AvroEventFactory factory = new AvroEventFactory();
-        int bufferSize = 1024 * 1024 * 16;
-        Disruptor<AvroEvent> disruptor = new Disruptor<>(factory,
-                bufferSize, executor,
-                ProducerType.MULTI,
-                new BlockingWaitStrategy());
-        disruptor.handleEventsWithWorkerPool(
-                new AvroEventWorkHandler(KafkaConnPoolUtils.getPool().iterator().next(), "topic", 1)/*,...*/);
+        Disruptor<AvroEvent> disruptor = new Disruptor<>(factory, BUFFER_SIZE, executor,
+                ProducerType.MULTI, new BlockingWaitStrategy());
+        Producer<String, byte[]> kafkaConn = KafkaConnPoolUtils.getPool().iterator().next();
+        disruptor.handleEventsWithWorkerPool(new AvroEventWorkHandler(kafkaConn, "topic", 1)/*,...*/);
         disruptor.start();
 
         RingBuffer<AvroEvent> ringBuffer = disruptor.getRingBuffer();

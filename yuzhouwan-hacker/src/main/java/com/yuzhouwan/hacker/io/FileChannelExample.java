@@ -1,10 +1,10 @@
 package com.yuzhouwan.hacker.io;
 
-import com.yuzhouwan.common.dir.DirUtils;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+
+import static com.yuzhouwan.common.dir.DirUtils.PROJECT_BASE_PATH;
 
 /**
  * Copyright @ 2017 yuzhouwan.com
@@ -17,7 +17,7 @@ import java.io.IOException;
 public class FileChannelExample {
 
     public static void main(String[] args) throws IOException {
-        String path = DirUtils.PROJECT_BASE_PATH.concat("\\yuzhouwan-hacker\\src\\main\\resources\\logback.xml");
+        String path = PROJECT_BASE_PATH.concat("\\yuzhouwan-hacker\\src\\main\\resources\\logback.xml");
         System.out.println(path);
         File file = new File(path);
         try (FileOutputStream fos = new FileOutputStream(file)) {

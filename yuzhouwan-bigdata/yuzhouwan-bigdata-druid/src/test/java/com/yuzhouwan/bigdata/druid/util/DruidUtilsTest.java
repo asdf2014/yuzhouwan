@@ -16,7 +16,6 @@ public class DruidUtilsTest {
 
     @Test
     public void genTranquilityMetricsSpec() {
-
         assertEquals("{\"metricsSpec\":[{\"name\":\"count\",\"type\":\"count\"}," +
                         "{\"fieldName\":\"b\",\"name\":\"b_min\",\"type\":\"longMin\"}," +
                         "{\"fieldName\":\"b\",\"name\":\"b_max\",\"type\":\"longMax\"}," +
