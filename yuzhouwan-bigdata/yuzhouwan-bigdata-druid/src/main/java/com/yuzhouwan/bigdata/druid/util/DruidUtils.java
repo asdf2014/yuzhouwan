@@ -15,7 +15,7 @@ import java.util.LinkedHashSet;
  * @author Benedict Jin
  * @since 2016/12/2
  */
-public class DruidUtils {
+public final class DruidUtils {
 
     private static final PropUtils p = PropUtils.getInstance();
 
