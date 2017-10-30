@@ -133,8 +133,7 @@ public class QueryEndpoint extends DataProtos.QueryDataService implements Coproc
                     }
                 }
             }
-            if (StrUtils.isEmpty(rowKey))
-                return;
+            if (StrUtils.isEmpty(rowKey)) return;
             Get get = new Get(Bytes.toBytes(rowKey));
             Result result = this.env.getRegion().get(get);
 

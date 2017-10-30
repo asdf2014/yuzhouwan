@@ -59,9 +59,6 @@ public final class IpUtils {
 
     /**
      * 检查 IP-v4地址是否是 合法的.
-     *
-     * @param ip
-     * @return
      */
     public static boolean checkValid(final String ip) {
         return isNotEmpty(ip) && IP_V4_ADDRESS_IS_VALID.matcher(ip).matches();
@@ -69,9 +66,6 @@ public final class IpUtils {
 
     /**
      * 检查 IP-v4地址是否是 合法的.
-     *
-     * @param ip
-     * @return
      */
     public static boolean checkValid2(final String ip) {
         return isNotEmpty(ip) && IP_V4_ADDRESS_IS_VALID2.matcher(ip).matches();
@@ -79,9 +73,6 @@ public final class IpUtils {
 
     /**
      * 检查 IP-v6地址是否是 合法的.
-     *
-     * @param ip
-     * @return
      */
     public static boolean checkValidV6(final String ip) {
         return isNotEmpty(ip) && IP_V6_ADDRESS_IS_VALID.matcher(ip).matches();
@@ -89,9 +80,6 @@ public final class IpUtils {
 
     /**
      * 移除 /32的尾巴.
-     *
-     * @param ip
-     * @return
      */
     public static String removeTail32(String ip) {
         return isNotEmpty(ip) && ip.endsWith("/32") ? ip.substring(0, ip.length() - REMOVE_TAIL_LENGTH) : ip;
@@ -99,9 +87,6 @@ public final class IpUtils {
 
     /**
      * 抽取域名主干部分.
-     *
-     * @param url
-     * @return
      */
     public static String extractDomain(String url) {
         if (isEmpty(url)) return null;
@@ -123,9 +108,6 @@ public final class IpUtils {
 
     /**
      * 获得 url的子路径.
-     *
-     * @param url
-     * @return
      */
     public static String getTailFromURL(String url) {
         String domain = extractDomain(url);
@@ -134,9 +116,6 @@ public final class IpUtils {
 
     /**
      * Convert IP Address into Long.
-     *
-     * @param ipAddress
-     * @return
      */
     public static long ip2long(String ipAddress) {
         long[] ip = new long[4];
@@ -150,9 +129,6 @@ public final class IpUtils {
 
     /**
      * Convert Long into IP Address.
-     *
-     * @param ipAddress
-     * @return
      */
     public static String long2ip(Long ipAddress) {
         return String.valueOf(ipAddress >>> 24) + "." + String.valueOf((ipAddress & 0x00FFFFFF) >>> 16) + "."
@@ -161,9 +137,6 @@ public final class IpUtils {
 
     /**
      * Convert IP Address into Int.
-     *
-     * @param ipAddress
-     * @return
      */
     public static Integer ip2int(String ipAddress) {
         Inet4Address a;
@@ -179,10 +152,6 @@ public final class IpUtils {
 
     /**
      * 检查 ipAddress 是否在 range 范围内.
-     *
-     * @param ipAddress
-     * @param range
-     * @return
      */
     public static Boolean checkIPRange(final String ipAddress, final String range) {
         if (isEmpty(range) || isEmpty(ipAddress) || !range.contains("/")) return null;
@@ -210,9 +179,6 @@ public final class IpUtils {
 
     /**
      * Get ip from url.
-     *
-     * @param url
-     * @return
      */
     public static String getIPFromURL(String url) {
         try {
@@ -225,9 +191,6 @@ public final class IpUtils {
 
     /**
      * Check ip is reachable.
-     *
-     * @param ipAddress
-     * @return
      */
     public static Boolean isReachable(final String ipAddress) {
         try {

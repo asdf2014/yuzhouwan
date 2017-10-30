@@ -29,13 +29,16 @@ import static com.yuzhouwan.common.util.StrUtils.*;
  * @author Benedict Jin
  * @since 2016/11/21
  */
-public class HBaseUtils {
+public final class HBaseUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(HBaseUtils.class);
     private static final String NAMESPACE_DEFAULT = "default";
 
     private static volatile HBaseUtils instance;
     private static Configuration configuration;
+
+    private HBaseUtils() {
+    }
 
     public static HBaseUtils getInstance() {
         if (instance == null) synchronized (HBaseUtils.class) {

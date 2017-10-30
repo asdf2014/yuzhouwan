@@ -87,7 +87,7 @@ public final class TwoLevelIndexBuilder {
                 ImmutableBytesWritable indexTableName = indexes.get(k);
 
                 //Result存放的是原始表的数据
-                //查找到内容             根据列族 和 列 得到原始表的值
+                //查找到内容  根据列族 和 列 得到原始表的值
                 byte[] val = value.getValue(Bytes.toBytes(familyName), k);
 
                 if (val != null) {

@@ -145,10 +145,6 @@ public final class TimeUtils {
 
     /**
      * 某年某月 最后一时刻.
-     *
-     * @param year
-     * @param month
-     * @return
      */
     public static Date endMonth(int year, int month) {
         return new Date(new DateTime(beginMonth(year, month)).plusMonths(1).toDate().getTime() - 1);
@@ -159,7 +155,6 @@ public final class TimeUtils {
      *
      * @param year  2016
      * @param month 7 (means August, index start with zero)
-     * @return
      */
     public static Date beginMonth(int year, int month) {
         if (month < 0 || month > 11) return null;
@@ -176,9 +171,6 @@ public final class TimeUtils {
 
     /**
      * Change Local Date into UTC Date (like, +08:00 -> +00:00).
-     *
-     * @param date
-     * @return
      */
     public static Date zeroTimeZone(Date date) {
         SIMPLE_DATA_FORMAT_TIME_ZONE.setTimeZone(TimeZone.getTimeZone("UTC"));

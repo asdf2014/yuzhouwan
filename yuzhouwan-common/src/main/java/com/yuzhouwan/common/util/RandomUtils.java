@@ -32,7 +32,7 @@ public final class RandomUtils {
         return Math.random() < p;
     }
 
-    // return a real number with a standard Gausian distribution
+    // return a real number with a standard Gaussian distribution
     public static double gaussian() {
         double r, x, y;
         do {

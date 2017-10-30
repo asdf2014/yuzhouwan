@@ -48,11 +48,10 @@ public class QueryExample {
                 }
             });
             List<DataProtos.DataQueryResponse.Row> results = new LinkedList<>();
-            for (Map.Entry<byte[], List<DataProtos.DataQueryResponse.Row>> entry : result.entrySet()) {
-                if (null != entry.getValue()) {
-                    results.addAll(entry.getValue());
-                }
-            }
+            result.entrySet()
+                    .stream()
+                    .filter(entry -> null != entry.getValue())
+                    .forEach(entry -> results.addAll(entry.getValue()));
             return results;
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -60,7 +59,6 @@ public class QueryExample {
     }
 
     public static void main(String[] args) throws Exception {
-
         List<DataProtos.DataQueryResponse.Row> rows = queryByStartRowAndStopRow("test", "00", "01", true, true);
         if (rows != null) {
             for (DataProtos.DataQueryResponse.Row row : rows) {
@@ -68,5 +66,4 @@ public class QueryExample {
             }
         }
     }
-
 }
