@@ -21,9 +21,9 @@ public class SafeApp {
 
     private static final Logger _log = LoggerFactory.getLogger(SafeApp.class);
 
-    private static final String keyFilename = "F:/如何成为 Java 高手/笔记/Soft Engineering/Git/"
+    private static final String KEY_FILENAME = "F:/如何成为 Java 高手/笔记/Soft Engineering/Git/"
             + "[code]/yuzhouwan/yuzhouwan-hacker/src/main/resources/security/key.data";
-    private static final String appName = "com.yuzhouwan.hacker.security.UnsafeApp";
+    private static final String APP_NAME = "com.yuzhouwan.hacker.security.UnsafeApp";
 
     /**
      * @param args F:/如何成为 Java 高手/笔记/Soft Engineering/Git/[code]/yuzhouwan/yuzhouwan-hacker/
@@ -32,6 +32,7 @@ public class SafeApp {
      *             arg0 arg1 arg2.
      * @throws Exception
      */
+    @SuppressWarnings("unchecked")
     public static void main(String[] args) throws Exception {
 
         String[] realArgs = new String[args.length - 2];
@@ -39,21 +40,22 @@ public class SafeApp {
 
         _log.error("[SecurityClassLoader: reading key]");
 
-        byte[] rawKey = FileUtils.readFile(keyFilename);
+        byte[] rawKey = FileUtils.readFile(KEY_FILENAME);
+        assert rawKey != null;
         DESKeySpec dks = new DESKeySpec(rawKey);
         SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(SecurityClassLoader.ALGORITHM);
         SecretKey key = keyFactory.generateSecret(dks);
 
         SecurityClassLoader dr = new SecurityClassLoader(key);
 
-        _log.error("[SecurityClassLoader: loading " + appName + "]");
-        Class clazz = dr.loadClass(appName);
+        _log.error("[SecurityClassLoader: loading " + APP_NAME + "]");
+        Class clazz = dr.loadClass(APP_NAME);
 
         Class[] mainArgs = {(new String[1]).getClass()};
         Method main = clazz.getMethod("main", mainArgs);
 
         Object[] argsArray = {realArgs};
-        _log.error("[SecurityClassLoader: running " + appName + ".main()]");
+        _log.error("[SecurityClassLoader: running " + APP_NAME + ".main()]");
 
         main.invoke(null, argsArray);
     }

@@ -18,7 +18,6 @@ class GenerateKey {
 
     /**
      * @param keyFileName key.data
-     * @throws Exception
      */
     static void generate(String keyFileName) throws Exception {
         SecureRandom sr = new SecureRandom();

@@ -10,6 +10,8 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 import java.security.SecureRandom;
 
+import static com.yuzhouwan.hacker.security.SecurityClassLoader.ALGORITHM;
+
 /**
  * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
@@ -22,21 +24,19 @@ class EncryptClasses {
 
     private static final Logger _log = LoggerFactory.getLogger(EncryptClasses.class);
 
-    private static final String algorithm = SecurityClassLoader.ALGORITHM;
-
     /**
      * @param clazz key.data UnsafeApp.class UnsafeClass.class
-     * @throws Exception
      */
     static void encrypt(String... clazz) throws Exception {
         String keyFilename = clazz[0];
         SecureRandom sr = new SecureRandom();
         byte[] rawKey = FileUtils.readFile(keyFilename);
+        assert rawKey != null;
         DESKeySpec dks = new DESKeySpec(rawKey);
-        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(algorithm);
+        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(ALGORITHM);
         SecretKey key = keyFactory.generateSecret(dks);
 
-        Cipher cipher = Cipher.getInstance(algorithm);
+        Cipher cipher = Cipher.getInstance(ALGORITHM);
         cipher.init(Cipher.ENCRYPT_MODE, key, sr);
 
         String filename;
@@ -45,6 +45,7 @@ class EncryptClasses {
             filename = clazz[i];
 
             classData = FileUtils.readFile(filename);
+            assert classData != null;
             encryptedClassData = cipher.doFinal(classData);
             FileUtils.writeFile(filename, encryptedClassData);
 

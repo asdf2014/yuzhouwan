@@ -13,7 +13,7 @@ import org.junit.Test;
  */
 public class EncryptClassesTest {
 
-    private static final String CLASSES_PATH = DirUtils.getClassesPath().concat("/com/yuzhouwan/hacker/security/");
+    private static final String CLASSES_PATH = DirUtils.getClassesPath() + "/com/yuzhouwan/hacker/security/";
 
     @Test
     public void encrypt() throws Exception {

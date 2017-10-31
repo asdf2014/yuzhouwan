@@ -8,7 +8,7 @@ package com.yuzhouwan.hacker.security;
  * @author Benedict Jin
  * @since 2016/8/20
  */
-public class UnsafeClass {
+class UnsafeClass {
 
     UnsafeClass() {
         System.out.println("UnsafeClass");
