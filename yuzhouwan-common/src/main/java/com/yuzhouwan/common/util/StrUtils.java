@@ -71,7 +71,7 @@ public final class StrUtils {
      * @return
      */
     public static boolean isEmpty(final String s) {
-        return s == null || s.length() == 0;
+        return s == null || s.isEmpty();
     }
 
     /**
@@ -82,6 +82,26 @@ public final class StrUtils {
      */
     public static boolean isNotEmpty(final String s) {
         return !isEmpty(s);
+    }
+
+    /**
+     * Parsing String is Blank.
+     *
+     * @param s
+     * @return
+     */
+    public static boolean isBlank(String s) {
+        return s == null || s.isEmpty() || s.trim().isEmpty();
+    }
+
+    /**
+     * Parsing String is not Blank.
+     *
+     * @param s
+     * @return
+     */
+    public static boolean isNotBlank(String s) {
+        return !isBlank(s);
     }
 
     /**
