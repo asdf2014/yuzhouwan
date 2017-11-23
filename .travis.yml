@@ -6,7 +6,6 @@ language:
 
 os:
   - windows
-  - linux
 
 jdk:
   - oraclejdk8
@@ -23,7 +22,7 @@ groovy:
 before_install: sudo echo "MAVEN_OPTS='-Xmx2048m -Xms1024m -Dorg.slf4j.simpleLogger.defaultLogLevel=error'" > ~/.mavenrc
 
 script:
-  - mvn clean install -B && mvn clean -B
+  - mvn clean install -T 1C -B && mvn clean -B
 
 env:
   global:
