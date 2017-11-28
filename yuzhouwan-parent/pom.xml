@@ -150,7 +150,7 @@
         <apache.pdfbox.version>1.8.11</apache.pdfbox.version>
 
         <!-- apache avro -->
-        <apache.avro.version>1.8.1</apache.avro.version>
+        <apache.avro.version>1.7.7</apache.avro.version>
 
         <!-- apache common cli -->
         <apache.common.cli>1.4</apache.common.cli>
@@ -172,7 +172,7 @@
         <apache.commons.io.version>2.4</apache.commons.io.version>
 
         <!-- npl ansj_seg -->
-        <npl.ansj.seg.version>3.7.6</npl.ansj.seg.version>
+        <nlp.ansj.seg.version>5.1.3</nlp.ansj.seg.version>
 
         <!-- apache hadoop -->
         <hadoop.version>2.7.3</hadoop.version>
