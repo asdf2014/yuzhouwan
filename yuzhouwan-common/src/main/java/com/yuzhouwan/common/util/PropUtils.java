@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import static com.yuzhouwan.common.util.StrUtils.isEmpty;
+
 /**
  * Copyright @ 2017 yuzhouwan.com
  * All right reserved.
@@ -29,7 +31,7 @@ public final class PropUtils {
         if (confPathList == null || confPathList.size() == 0) return;
         File confFile;
         for (String confPath : confPathList) {
-            if (StrUtils.isEmpty(confPath) || !(confFile = new File(confPath)).exists()) continue;
+            if (isEmpty(confPath) || !(confFile = new File(confPath)).exists()) continue;
             try (FileInputStream fis = new FileInputStream(confFile)) {
                 properties.load(fis);
             } catch (Exception e) {
@@ -60,12 +62,12 @@ public final class PropUtils {
      * @return
      */
     public String getProperty(String key, boolean withinJar) {
-        if (StrUtils.isEmpty(key)) return null;
+        if (isEmpty(key)) return null;
         if (properties == null) throw new RuntimeException("Properties is not valid!!");
         String value = properties.getProperty(key);
-        if (withinJar && StrUtils.isEmpty(value)) {
+        if (withinJar && isEmpty(value)) {
             String valueJar = JarUtils.getInstance().getProperty(key);
-            return StrUtils.isEmpty(valueJar) ? value : valueJar;
+            return isEmpty(valueJar) ? value : valueJar;
         }
         return value;
     }
@@ -82,6 +84,11 @@ public final class PropUtils {
 
     public String getProperty(String key) {
         return getProperty(key, true);
+    }
+
+    public String getProperty(String key, String defaultValue) {
+        String value = getProperty(key);
+        return isEmpty(value) ? defaultValue : value;
     }
 
     public boolean addProperty(Properties properties) {
@@ -102,7 +109,7 @@ public final class PropUtils {
     }
 
     public boolean addProperty(String key, String value) {
-        if (StrUtils.isEmpty(key)) {
+        if (isEmpty(key)) {
             _log.error("Params are invalid, key: {}, value: {}!", key, value);
             return false;
         }

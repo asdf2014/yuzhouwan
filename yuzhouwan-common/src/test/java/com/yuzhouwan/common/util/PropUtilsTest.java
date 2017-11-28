@@ -14,9 +14,23 @@ import static org.junit.Assert.assertEquals;
  */
 public class PropUtilsTest {
 
+    private static final PropUtils p = PropUtils.getInstance();
+
     @Test
-    public void getPropTester() throws Exception {
-        assertEquals("asdf's blog", PropUtils.getInstance().getProperty("blog.name"));
-        assertEquals("yuzhouwan.com", PropUtils.getInstance().getProperty("site.domain"));
+    public void getPropTest() throws Exception {
+        assertEquals("asdf's blog", p.getProperty("blog.name"));
+        assertEquals("yuzhouwan.com", p.getProperty("site.domain"));
+    }
+
+    @Test
+    public void getPropWithDefaultValueTest() throws Exception {
+        {
+            assertEquals("asdf's blog", p.getProperty("blog.name", "asdf's blog"));
+            assertEquals("yuzhouwan.com", p.getProperty("site.domain", ""));
+        }
+        {
+            assertEquals("Benedict Jin", p.getProperty("blog.short.name", "Benedict Jin"));
+            assertEquals("", p.getProperty("site.domain2", ""));
+        }
     }
 }

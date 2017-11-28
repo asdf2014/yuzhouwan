@@ -183,7 +183,7 @@ public final class DirUtils implements IDirUtils {
             getAllFiles(wholeFiles, currentDirFiles);
             return wholeFiles;
         } else {
-            LOG.error("{} is not exist!!", path);
+            LOG.warn("{} is not exist!!", path);
             return null;
         }
     }
