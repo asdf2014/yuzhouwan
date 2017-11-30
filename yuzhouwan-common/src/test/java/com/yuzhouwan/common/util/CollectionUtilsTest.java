@@ -1,6 +1,7 @@
 package com.yuzhouwan.common.util;
 
 import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Maps;
 import org.apache.avro.io.BinaryDecoder;
 import org.apache.avro.io.DecoderFactory;
 import org.apache.avro.util.ByteBufferInputStream;
@@ -207,5 +208,20 @@ public class CollectionUtilsTest {
         assertEquals(1, nth);
         double totalTime = endTime - startTime;
         _log.info("Array length:{}, Spend Time: {}ns = {}ms", len, totalTime, totalTime / Math.pow(10, 6));
+    }
+
+    @Test
+    public void exchangeKeysTest() throws Exception {
+        Map<String, Map<Long, String>> map = Maps.newHashMap();
+        Map<Long, String> internalMap = Maps.newHashMap();
+        internalMap.put(1L, "1L");
+        internalMap.put(2L, "2L");
+        Map<Long, String> internalMap2 = Maps.newHashMap();
+        internalMap2.put(2L, "2L");
+        internalMap2.put(3L, "3L");
+        map.put("1", internalMap);
+        map.put("2", internalMap2);
+        Map<Long, Map<String, String>> aim = CollectionUtils.exchangeKeys(map);
+        assertEquals("{1:{\"1\":\"1L\"},2:{\"1\":\"2L\",\"2\":\"2L\"},3:{\"2\":\"3L\"}}", JSON.toJSONString(aim));
     }
 }

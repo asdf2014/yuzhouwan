@@ -105,6 +105,7 @@
         <!-- common -->
         <commons.io.version>2.4</commons.io.version>
         <commons.codec.version>1.10</commons.codec.version>
+        <apache.common.lang3.verison>3.7</apache.common.lang3.verison>
 
         <!-- alipay-->
         <alipay.version>20161121110022</alipay.version>

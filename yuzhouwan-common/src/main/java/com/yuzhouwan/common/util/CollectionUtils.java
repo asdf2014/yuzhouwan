@@ -1,11 +1,14 @@
 package com.yuzhouwan.common.util;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.*;
 
 /**
  * Copyright @ 2017 yuzhouwan.com
@@ -217,5 +220,32 @@ public final class CollectionUtils {
 
     private static boolean less(int v, int w) {
         return v < w;
+    }
+
+    /**
+     * Exchange outside key and internal key in two level map.
+     * <code>
+     * 　　Map<X, Map<Y, Z>> -> Map<Y, Map<X, Z>>
+     * </code>
+     *
+     * @param map
+     * @param <X>
+     * @param <Y>
+     * @param <Z>
+     * @return
+     */
+    public static <X, Y, Z> Map<Y, Map<X, Z>> exchangeKeys(Map<X, Map<Y, Z>> map) {
+        return map.entrySet()
+                .stream()
+                .flatMap(xyz ->
+                        xyz.getValue()
+                                .entrySet()
+                                .stream()
+                                .map(yz ->
+                                        new ImmutablePair<>(yz.getKey(),
+                                                new ImmutablePair<>(xyz.getKey(), yz.getValue()))
+                                )
+                ).collect(groupingBy(ImmutablePair::getLeft,
+                        mapping(ImmutablePair::getRight, toMap(ImmutablePair::getLeft, ImmutablePair::getRight))));
     }
 }

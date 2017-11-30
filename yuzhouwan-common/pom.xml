@@ -333,5 +333,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!-- apache common lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${apache.common.lang3.verison}</version>
+        </dependency>
     </dependencies>
 </project>
