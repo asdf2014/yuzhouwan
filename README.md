@@ -41,7 +41,7 @@ __[https://yuzhouwan.com][0]__
 &ensp;&ensp;研究 AI 人工智能 相关领域，欢迎加入，互相学习，共同进步<br/>
 &ensp;&ensp;讨论包括，统计学、NLP、Data Mining、Deep Learning、Machine Learning、AI 人工智能 等相关领域<br/>
 
-&ensp;&ensp;从 深蓝到 AlaphGo，人工智能的智力水平、普适性、学习能力 正在以爆炸式地速度快速发展；<br/>
+&ensp;&ensp;从 深蓝到 AlaphZero，人工智能的智力水平、普适性、学习能力 正在以爆炸式地速度快速发展；<br/>
 &ensp;&ensp;从 棋类到 医学，人工智能开始在各类应用领域，都在大展身手；<br/>
 &ensp;&ensp;从 CPU/GPU 到 TPU，人工智能的计算能力正向着无法穷举的极限不断逼近…<br/>
 
