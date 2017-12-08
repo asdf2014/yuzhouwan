@@ -3,7 +3,7 @@
 ## My Blog
 __[https://yuzhouwan.com][0]__
 
-(Hexo + Github，利用 node.js的 NIO框架快速生成，配合 github静态页面托管，免费但可能部分地区加载缓慢)
+(Hexo + Coding，利用 Node.js 的 NIO 框架快速生成，配合 coding.net 静态页面托管，免费但可能海外地区加载缓慢)
 
 ---------------
 
@@ -35,7 +35,7 @@ __[https://yuzhouwan.com][0]__
 
 <br/>
  
-**[人工智能](https://yuzhouwan.com/posts/42737/)** 1020982 (高级) | 1217710 (初级) &ensp;&ensp;(**2000 + 2000**人大群)
+**[人工智能](https://yuzhouwan.com/posts/42737/)** 1020982 (高级) | 1217710 (进阶) &ensp;&ensp;(**2000 + 2000**人大群)
 
 本群创建于2003/7/24: <br/>
 &ensp;&ensp;研究 AI 人工智能 相关领域，欢迎加入，互相学习，共同进步<br/>
