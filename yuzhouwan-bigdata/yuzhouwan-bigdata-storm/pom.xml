@@ -11,9 +11,12 @@
     </parent>
 
     <artifactId>yuzhouwan-bigdata-storm</artifactId>
+    <properties>
+        <elasticsearch.version>2.2.0</elasticsearch.version>
+        <storm.elasticsearch.version>${elasticsearch.version}</storm.elasticsearch.version>
+    </properties>
 
     <dependencies>
-
         <dependency>
             <groupId>com.yuzhouwan</groupId>
             <artifactId>yuzhouwan-common</artifactId>

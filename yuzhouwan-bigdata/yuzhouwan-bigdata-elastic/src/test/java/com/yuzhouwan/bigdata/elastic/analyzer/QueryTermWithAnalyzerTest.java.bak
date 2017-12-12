@@ -11,6 +11,7 @@ import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -37,14 +38,13 @@ public class QueryTermWithAnalyzerTest {
     private static final String ES_TYPE = "attack_info";
     private QueryTermWithAnalyzer query = new QueryTermWithAnalyzer();
 
-    //    @Before
+    @Ignore
+    @Before
     public void init() throws Exception {
-
         if (query.getClient() == null) {
             synchronized (QueryTermWithAnalyzer.class) {
                 if (query.getClient() == null) {
                     try {
-
                         _log.info("ElasticSearch : Starting in Client Mode");
                         TransportClient c = TransportClient.builder().settings(query.loadSettings()).build();
                         //no need to connect with all node :D

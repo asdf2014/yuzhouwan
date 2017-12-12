@@ -1,0 +1,24 @@
+[
+  {
+    "path": "/home/hbase/logs/yuzhouwan.com.log",
+    "systemName": "BD",
+    "ip": "192.168.1.101",
+    "isSingle": false,
+    "patternId": 0,
+    "flumeId": 2,
+    "pattern": "FLUSH",
+    "groups": {
+      "entries": "387438",
+      "eventLevel": "INFO",
+      "regionName": "3239211f9b077132b79b0582d44fd2be",
+      "eventTime": "2017-08-04 10:31:01,552",
+      "logCacheFlushId": "1272903",
+      "memStoreFlusher": "[MemStoreFlusher.1]",
+      "filesize": "5.6 M",
+      "storeFile": "hdfs://yuzhouwan/hbase/data/ns_hbasemonitor/tb_jmx/3239211f9b077132b79b0582d44fd2be/cf1/84ce23f94e384d7caed45a1e84b59fb1"
+    },
+    "time": 1501813861945,
+    "message": "2017-08-04 10:31:01,552 INFO  [MemStoreFlusher.1] regionserver.HStore: Added hdfs://yuzhouwan/hbase/data/ns_hbasemonitor/tb_jmx/3239211f9b077132b79b0582d44fd2be/cf1/84ce23f94e384d7caed45a1e84b59fb1, entries=387438, sequenceid=1272903, filesize=5.6 M",
+    "uuid": "7dcaa4ff-58fd-4a0d-842f-843d108c1067"
+  }
+]

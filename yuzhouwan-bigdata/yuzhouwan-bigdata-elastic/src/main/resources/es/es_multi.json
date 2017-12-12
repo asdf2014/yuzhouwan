@@ -1,0 +1,29 @@
+// GET /yuzhouwan_log/_search
+{
+  "from": 0,
+  "size": 100,
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "range": {
+            "time": {
+              "gte": "1504627200000",
+              "lt": "1505232000000"
+            }
+          }
+        },
+        {
+          "match": {
+            "isSingle": true
+          }
+        },
+        {
+          "match": {
+            "pattern": "COULD_NOT_COMPLETE"
+          }
+        }
+      ]
+    }
+  }
+}
