@@ -32,9 +32,8 @@ public final class ESUtils {
     private static final Logger LOG = LoggerFactory.getLogger(ESUtils.class);
 
     public static final String ES_SEARCH = "/_search";
-
-    private static final PropUtils P = PropUtils.getInstance();
-    private static final String ES_HOSTS = P.getProperty("es.transport.addresses.list");
+    public static final String APPLICATION_JACKSON_SMILE = "application/x-jackson-smile";
+    public static final String ES_HOSTS = PropUtils.getInstance().getProperty("es.transport.addresses.list");
     public static final RestClientBuilder REST_CLIENT_BUILDER = getESHosts();
 
     public static final ObjectMapper SMILE_MAPPER;
@@ -64,11 +63,12 @@ public final class ESUtils {
         if ((len = hosts.length) <= 0)
             throw new RuntimeException("Cannot get elasticSearch hosts from config! "
                     + "Please check es.hosts config option.");
-        LinkedList<HttpHost> httpHosts = new LinkedList<>();
         String host;
+        String[] hostAndPort;
+        LinkedList<HttpHost> httpHosts = new LinkedList<>();
         for (int i = 0; i < len; i++) {
             host = hosts[i];
-            String[] hostAndPort = host.split(":");
+            hostAndPort = host.split(":");
             if (hostAndPort.length != 2) {
                 LOG.warn("Invalid es host: {}!", host);
                 continue;
@@ -119,12 +119,11 @@ public final class ESUtils {
 
     public static HttpEntity createEntity(String json) {
         try {
-            final Object o = SMILE_MAPPER.readValue(json, Object.class);
-            final byte[] bytes = SMILE_MAPPER.writeValueAsBytes(o);
-            return new NByteArrayEntity(bytes, ContentType.create("application/x-jackson-smile"));
+            byte[] bytes = SMILE_MAPPER.writeValueAsBytes(SMILE_MAPPER.readValue(json, Object.class));
+            return new NByteArrayEntity(bytes, ContentType.create(APPLICATION_JACKSON_SMILE));
         } catch (Exception e) {
-            LOG.error("Create entity throws exception：", e);
-            throw new RuntimeException("create entity throws exception：", e);
+            LOG.error("Cannot create entity, due to {}!", e);
+            throw new RuntimeException("Cannot create entity!", e);
         }
     }
 }
