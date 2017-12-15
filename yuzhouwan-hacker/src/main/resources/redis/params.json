@@ -14,16 +14,16 @@
     }
   },
   {
-    "id": "27-www.baidu.com-cc",
+    "id": "27-www.yuzhouwan.com-cc",
     "policy": {
       "cc_attack": {
         "attack_ip": "",
         "threads": 10000,
         "attack_time": 60,
         "dst_port": 9003,
-        "attack_url": "http://www.baidu.com/"
+        "attack_url": "http://www.yuzhouwan.com/"
       },
-      "id": "27-www.baidu.com-cc",
+      "id": "27-www.yuzhouwan.com-cc",
       "attack_type": "cc"
     }
   }

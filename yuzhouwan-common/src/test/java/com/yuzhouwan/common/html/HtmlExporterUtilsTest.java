@@ -48,9 +48,9 @@ public class HtmlExporterUtilsTest {
     @Test
     public void testTimeout() throws Exception {
         // 38s 451ms
-        String url = "http://echarts.baidu.com/echarts2/doc/doc.html";
+        String url = "https://yuzhouwan.com/";
         FileUtils.copyFile(new HtmlExporter2File().convert2Image(url),
-                new File(RESOURCES_PATH.concat(PREFIX_OUTPUT_PATH).concat("echarts.png")));
+                new File(RESOURCES_PATH.concat(PREFIX_OUTPUT_PATH).concat("yuzhouwan.png")));
     }
 
     /**

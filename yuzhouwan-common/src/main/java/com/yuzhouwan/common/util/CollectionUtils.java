@@ -197,15 +197,12 @@ public final class CollectionUtils {
     }
 
     private static int partition(int[] a, int lo, int hi) {
-
         int i = lo;
         int j = hi + 1;
         while (true) {
             while (i < hi && less(a[++i], a[lo])) ;
             while (j > lo && less(a[lo], a[--j])) ;
-            if (i >= j) {
-                break;
-            }
+            if (i >= j) break;
             exch(a, i, j);
         }
         exch(a, lo, j);
@@ -241,10 +238,8 @@ public final class CollectionUtils {
                         xyz.getValue()
                                 .entrySet()
                                 .stream()
-                                .map(yz ->
-                                        new ImmutablePair<>(yz.getKey(),
-                                                new ImmutablePair<>(xyz.getKey(), yz.getValue()))
-                                )
+                                .map(yz -> new ImmutablePair<>(yz.getKey(),
+                                        new ImmutablePair<>(xyz.getKey(), yz.getValue())))
                 ).collect(groupingBy(ImmutablePair::getLeft,
                         mapping(ImmutablePair::getRight, toMap(ImmutablePair::getLeft, ImmutablePair::getRight))));
     }

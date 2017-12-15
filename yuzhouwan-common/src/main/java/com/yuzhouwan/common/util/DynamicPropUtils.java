@@ -70,7 +70,7 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
     }
 
     private static void initCurator() throws Exception {
-        _log.debug("Begin init Curator...");
+        _log.debug("Curator initializing...");
         Object zkPath;
 
         int count = 0;
@@ -92,6 +92,7 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
                 .namespace("dynamic")
                 .build();
         _log.debug("Curator initialized.");
+        _log.debug("Curator starting...");
         curatorFramework.start();
         _log.debug("Curator started.");
     }
@@ -174,7 +175,7 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
 
     public boolean sync(String projectName) {
 
-        if (unInited()) return false;
+        if (uninitialized()) return false;
 
         // (local + non_local) * (remote + non_monitor)
         if (projectName == null) {
@@ -210,7 +211,7 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
         return isSynced;
     }
 
-    private boolean unInited() {
+    private boolean uninitialized() {
         if (curatorFramework == null) {
             _log.error("Sync failed! Cause curatorFramework is null!");
             return true;
@@ -252,7 +253,7 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
     }
 
     private boolean setProp2Remote(String projectName, Prop localProp) throws Exception {
-        if (unInited()) return false;
+        if (uninitialized()) return false;
         curatorFramework.setData().forPath(ZNODE_PREFIX.concat(projectName),
                 JSON.toJSONString(localProp).getBytes(Charset.forName("UTF-8")));
         _log.debug("Set data to remote success!");
@@ -260,7 +261,7 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
     }
 
     private Prop getPropFromRemote(String projectName) throws Exception {
-        if (unInited()) return null;
+        if (uninitialized()) return null;
         String data = new String(curatorFramework.getData()
                 .forPath(ZNODE_PREFIX.concat(projectName)), Charset.forName("UTF-8"));
         return JSON.parseObject(data, Prop.class);

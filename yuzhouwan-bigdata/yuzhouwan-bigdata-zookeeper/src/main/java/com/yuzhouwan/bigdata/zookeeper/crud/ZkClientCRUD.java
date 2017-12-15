@@ -66,6 +66,10 @@ public class ZkClientCRUD {
         zkClient.delete(path);
     }
 
+    public void rmr(String path) {
+        zkClient.deleteRecursive(path);
+    }
+
     public List<String> getChildren(String path) {
         return zkClient.getChildren(path);
     }
@@ -79,6 +83,36 @@ public class ZkClientCRUD {
     }
 
     public static void main(String[] args) throws Exception {
+        testRmrHugeChildZnodesList();
+    }
+
+    private static void testRmrHugeChildZnodesList() throws Exception {
+        ZkClientCRUD zkClientCRUD = new ZkClientCRUD();
+        String rmr = "/rmr";
+        if (!zkClientCRUD.exist(rmr))
+            zkClientCRUD.create(rmr, "", CreateMode.PERSISTENT);
+        int len = 1_0001;
+        String child;
+        long beginCreate = System.currentTimeMillis();
+        for (int i = 0; i < len; i++) {
+            child = rmr.concat("/") + i;
+            if (i % 100 == 0) System.out.println("Creating " + child + " ...");
+            /*if (!zkClientCRUD.exist(child)) */zkClientCRUD.create(child, "" + i, CreateMode.PERSISTENT);
+            if (i % 100 == 0) System.out.println("Created " + child + " .");
+        }
+        long endCreate = System.currentTimeMillis();
+        System.out.println("Deleting /rmr ...");
+        long beginDelete = System.currentTimeMillis();
+        zkClientCRUD.rmr(rmr);
+        long endDelete = System.currentTimeMillis();
+        if (zkClientCRUD.exist(rmr)) System.out.println("Delete /rmr failed!");
+        else System.out.println("Deleted /rmr .");
+        System.out.println(String.format("Create used %s ms, Delete used %s ms, Size %s.",
+                endCreate - beginCreate, endDelete - beginDelete, len - 1));
+        System.out.println("Done.");
+    }
+
+    private static void testWatch() throws Exception {
         ZkClientCRUD zkClientCRUD = new ZkClientCRUD();
         String origin = "/origin";
         if (!zkClientCRUD.exist(origin))
