@@ -25,6 +25,7 @@ import static com.yuzhouwan.bigdata.redis.conn.RedisClusterConnPool.PROJECT_NAME
 public class RedisNotification {
 
     private static final Logger _log = LoggerFactory.getLogger(RedisNotification.class);
+    private static final long CHECK_EXECUTOR_SERVICE_INTERVAL_MILLISECONDS = 1000 * 60 * 60 * 24;
 
     public static void main(String[] args) throws Exception {
 
@@ -65,9 +66,7 @@ public class RedisNotification {
                 es.submit(() ->
                         j.getResource().psubscribe(jedisPubSub, "__keyevent@*__:expired" /*"__key*__:*"*/ /*"*"*/)
                 );
-            while (!es.isTerminated()) {
-                Thread.sleep(10_000);
-            }
+            while (!es.isTerminated()) Thread.sleep(CHECK_EXECUTOR_SERVICE_INTERVAL_MILLISECONDS);
         }
     }
 }

@@ -129,7 +129,6 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         }
     }
 
-
     public String get(String key) {
         try {
             return cluster.get(key);

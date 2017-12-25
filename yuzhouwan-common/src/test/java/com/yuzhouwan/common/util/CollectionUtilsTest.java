@@ -5,6 +5,7 @@ import com.google.common.collect.Maps;
 import org.apache.avro.io.BinaryDecoder;
 import org.apache.avro.io.DecoderFactory;
 import org.apache.avro.util.ByteBufferInputStream;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,18 +30,17 @@ public class CollectionUtilsTest {
 
     @Test
     public void removeAllByStrWithSeparator() throws Exception {
-
-        assertEquals(Arrays.asList("bbb"),
+        assertEquals(Collections.singletonList("bbb"),
                 CollectionUtils.removeAllByStrWithSeparator(Arrays.asList("aaa", "abc", "bbb"), "a,c", ","));
-        assertEquals(Arrays.asList("bbb"),
+        assertEquals(Collections.singletonList("bbb"),
                 CollectionUtils.removeAllByStrWithSeparator(Arrays.asList("aaa", "abc", "bbb"), "a", ","));
         assertEquals(Arrays.asList("aaa", "bbb"),
                 CollectionUtils.removeAllByStrWithSeparator(Arrays.asList("aaa", "abc", "bbb"), "c", ","));
-        assertEquals(Arrays.asList(),
+        assertEquals(Collections.emptyList(),
                 CollectionUtils.removeAllByStrWithSeparator(Arrays.asList("aaa", "abc", "bbb"), "", ","));
 
-        assertEquals(Arrays.asList(""),
-                CollectionUtils.removeAllByStrWithSeparator(Arrays.asList(""), "a", ","));
+        assertEquals(Collections.singletonList(""),
+                CollectionUtils.removeAllByStrWithSeparator(Collections.singletonList(""), "a", ","));
     }
 
     @Test
@@ -75,7 +75,6 @@ public class CollectionUtilsTest {
 
     @Test
     public void getDuplicate() throws Exception {
-
         A _a = new A(1, "2", 3);
         A _b = new A(1, "a", 5);
         A _c = new A(4, "!", 3);
@@ -123,7 +122,6 @@ public class CollectionUtilsTest {
 
     @Test
     public void forTest() {
-
         LinkedList<String> l = new LinkedList<>();
         l.add("a");
         l.add("b");
@@ -174,25 +172,30 @@ public class CollectionUtilsTest {
     JVM: -ea -Xmx700M -Xms700M -Xmn256M -XX:+AlwaysPreTouch
     1_1111_1111 / 1024 / 1024 / 1024 = 0.1035G
 
-    Array length:10, Spend Time: 1048744.0ns = 1.048744ms
-    Array length:100, Spend Time: 37322.0ns = 0.037322ms
-    Array length:1000, Spend Time: 324078.0ns = 0.324078ms
-    Array length:10000, Spend Time: 2465421.0ns = 2.465421ms
-    Array length:100000, Spend Time: 7394085.0ns = 7.394085ms
-    Array length:1000000, Spend Time: 2.5203459E7ns = 25.203459ms
-    Array length:10000000, Spend Time: 6.91587931E8ns = 691.587931ms
-    Array length:100000000, Spend Time: 7.105568329E9ns = 7105.568329ms
+    Array length: 10, Spend Time: 1048744.0ns = 1.048744ms
+    Array length: 100, Spend Time: 37322.0ns = 0.037322ms
+    Array length: 1000, Spend Time: 324078.0ns = 0.324078ms
+    Array length: 10000, Spend Time: 2465421.0ns = 2.465421ms
+    Array length: 100000, Spend Time: 7394085.0ns = 7.394085ms
+    Array length: 1000000, Spend Time: 2.5203459E7ns = 25.203459ms
+    Array length: 10000000, Spend Time: 6.91587931E8ns = 691.587931ms
+    Array length: 100000000, Spend Time: 7.105568329E9ns = 7105.568329ms
      */
     @Test
     public void getNthNumberTest() throws Exception {
         internalNthTest(10, 1);
         internalNthTest(100, 10);
         internalNthTest(1000, 100);
-//        internalNthTest(1_0000, 1000);
-//        internalNthTest(10_0000, 10000);
-//        internalNthTest(100_0000, 10_0000);
-//        internalNthTest(1000_0000, 100_0000);
-//        internalNthTest(1_0000_0000, 1000_0000);
+    }
+
+    @Ignore
+    @Test
+    public void getNthNumberPerformanceTest() throws Exception {
+        internalNthTest(1_0000, 1000);
+        internalNthTest(10_0000, 10000);
+        internalNthTest(100_0000, 10_0000);
+        internalNthTest(1000_0000, 100_0000);
+        internalNthTest(1_0000_0000, 1000_0000);
     }
 
     private void internalNthTest(int len, int n) {
@@ -207,7 +210,7 @@ public class CollectionUtilsTest {
         long endTime = System.nanoTime();
         assertEquals(1, nth);
         double totalTime = endTime - startTime;
-        _log.info("Array length:{}, Spend Time: {}ns = {}ms", len, totalTime, totalTime / Math.pow(10, 6));
+        _log.info("Array length: {}, Spend Time: {}ns = {}ms", len, totalTime, totalTime / Math.pow(10, 6));
     }
 
     @Test
