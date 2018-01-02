@@ -6,7 +6,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Copyright @ 2017 yuzhouwan.com
+ * Copyright @ 2018 yuzhouwan.com
  * All right reserved.
  * Function: Exchanger Example
  *

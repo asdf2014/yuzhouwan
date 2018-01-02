@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import static junit.framework.TestCase.assertEquals;
 
 /**
- * Copyright @ 2017 yuzhouwan
+ * Copyright @ 2018 yuzhouwan.com
  * All right reserved.
  * Function：Test cases about Finally
  *

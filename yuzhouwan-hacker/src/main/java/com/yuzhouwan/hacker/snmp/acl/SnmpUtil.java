@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.Vector;
 
 /**
- * Copyright @ 2017 yuzhouwan.com
+ * Copyright @ 2018 yuzhouwan.com
  * All right reserved.
  * Function：SnmpUtil
  *

@@ -14,7 +14,7 @@ import java.nio.charset.Charset;
 import java.util.Iterator;
 
 /**
- * Copyright @ 2017 yuzhouwan.com
+ * Copyright @ 2018 yuzhouwan.com
  * All right reserved.
  * Function：NIO Client
  *

@@ -22,7 +22,7 @@ import java.util.LinkedList;
 import static com.yuzhouwan.common.util.StrUtils.*;
 
 /**
- * Copyright @ 2017 yuzhouwan.com
+ * Copyright @ 2018 yuzhouwan.com
  * All right reserved.
  * Function：HBase Utils
  *

@@ -3,7 +3,7 @@ package com.yuzhouwan.site.service.rpc.service;
 import com.yuzhouwan.site.api.rpc.service.IRPCService;
 
 /**
- * Copyright @ 2017 yuzhouwan.com
+ * Copyright @ 2018 yuzhouwan.com
  * All right reserved.
  * Function：RPCServiceImpl
  *

@@ -3,7 +3,7 @@ package com.yuzhouwan.hacker.concurrent.producer.consumer;
 import com.lmax.disruptor.EventFactory;
 
 /**
- * Copyright @ 2017 yuzhouwan.com
+ * Copyright @ 2018 yuzhouwan.com
  * All right reserved.
  * Function：Long Event Factory
  *

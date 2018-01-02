@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import static com.yuzhouwan.bigdata.kafka.util.KafkaUtils.createProducer;
 
 /**
- * Copyright @ 2017 yuzhouwan.com
+ * Copyright @ 2018 yuzhouwan.com
  * All right reserved.
  * Function：Kafka Connection Pool Utils
  *

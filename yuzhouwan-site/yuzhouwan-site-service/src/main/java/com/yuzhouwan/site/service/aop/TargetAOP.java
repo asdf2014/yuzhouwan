@@ -3,7 +3,7 @@ package com.yuzhouwan.site.service.aop;
 import org.springframework.stereotype.Component;
 
 /**
- * Copyright @ 2017 yuzhouwan.com
+ * Copyright @ 2018 yuzhouwan.com
  * All right reserved.
  * Function：Target AOP
  *

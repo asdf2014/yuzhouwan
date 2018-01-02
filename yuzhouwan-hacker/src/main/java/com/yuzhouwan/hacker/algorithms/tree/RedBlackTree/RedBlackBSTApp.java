@@ -3,7 +3,7 @@ package com.yuzhouwan.hacker.algorithms.tree.RedBlackTree;
 import com.yuzhouwan.common.util.RandomUtils;
 
 /**
- * Copyright @ 2017 yuzhouwan.com
+ * Copyright @ 2018 yuzhouwan.com
  * All right reserved.
  * Function: RedBlackBST Client
  *

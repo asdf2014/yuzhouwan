@@ -14,7 +14,7 @@ import static com.yuzhouwan.common.util.StrUtils.*;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Copyright @ 2017 yuzhouwan.com
+ * Copyright @ 2018 yuzhouwan.com
  * All right reserved.
  * Function: String Stuff Tester
  *

@@ -9,7 +9,7 @@ import static com.yuzhouwan.common.dir.DirUtils.TEST_RESOURCES_PATH;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Copyright @ 2017 yuzhouwan.com
+ * Copyright @ 2018 yuzhouwan.com
  * All right reserved.
  * Function：Druid Restful Utils Test
  *

@@ -3,7 +3,7 @@ package com.yuzhouwan.hacker.algorithms.reflection;
 import java.lang.reflect.Field;
 
 /**
- * Copyright @ 2017 yuzhouwan.com
+ * Copyright @ 2018 yuzhouwan.com
  * All right reserved.
  * Function：reflection
  *

@@ -13,7 +13,7 @@ import java.security.SecureRandom;
 import static com.yuzhouwan.hacker.security.SecurityClassLoader.ALGORITHM;
 
 /**
- * Copyright @ 2017 yuzhouwan.com
+ * Copyright @ 2018 yuzhouwan.com
  * All right reserved.
  * Function: EncryptClasses
  *

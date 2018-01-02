@@ -4,7 +4,7 @@ import org.snmp4j.security.AuthGeneric;
 import org.snmp4j.security.PrivacyProtocol;
 
 /**
- * Copyright @ 2017 yuzhouwan.com
+ * Copyright @ 2018 yuzhouwan.com
  * All right reserved.
  * Function：H3C Snmp V3 User
  *

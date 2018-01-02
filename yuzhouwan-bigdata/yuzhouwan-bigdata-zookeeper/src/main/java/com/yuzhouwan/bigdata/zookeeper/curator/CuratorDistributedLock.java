@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * Copyright @ 2017 yuzhouwan.com
+ * Copyright @ 2018 yuzhouwan.com
  * All right reserved.
  * Function：Distributed Lock with Curator
  *

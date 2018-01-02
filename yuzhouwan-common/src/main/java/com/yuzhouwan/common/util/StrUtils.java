@@ -6,7 +6,7 @@ import java.text.DecimalFormat;
 import java.util.LinkedList;
 
 /**
- * Copyright @ 2017 yuzhouwan.com
+ * Copyright @ 2018 yuzhouwan.com
  * All right reserved.
  * Function: String Utils
  *

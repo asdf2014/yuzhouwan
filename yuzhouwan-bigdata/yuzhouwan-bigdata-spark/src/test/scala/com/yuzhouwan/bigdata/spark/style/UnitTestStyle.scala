@@ -3,7 +3,7 @@ package com.yuzhouwan.bigdata.spark.style
 import org.scalatest._
 
 /**
-  * Copyright @ 2017 yuzhouwan.com
+  * Copyright @ 2018 yuzhouwan.com
   * All right reserved.
   * Function：Unit Test Style
   *

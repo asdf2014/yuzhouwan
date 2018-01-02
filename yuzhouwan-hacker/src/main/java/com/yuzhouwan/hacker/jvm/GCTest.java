@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.concurrent.ArrayBlockingQueue;
 
 /**
- * Copyright @ 2017 yuzhouwan.com
+ * Copyright @ 2018 yuzhouwan.com
  * All right reserved.
  * Function：GC Test
  *

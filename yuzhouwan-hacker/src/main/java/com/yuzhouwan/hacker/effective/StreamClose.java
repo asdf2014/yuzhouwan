@@ -8,7 +8,7 @@ import java.util.Collections;
 import static com.yuzhouwan.common.util.DecimalUtils.byteArray2byteBuffer;
 
 /**
- * Copyright @ 2017 yuzhouwan.com
+ * Copyright @ 2018 yuzhouwan.com
  * All right reserved.
  * Function：Stream Close
  *

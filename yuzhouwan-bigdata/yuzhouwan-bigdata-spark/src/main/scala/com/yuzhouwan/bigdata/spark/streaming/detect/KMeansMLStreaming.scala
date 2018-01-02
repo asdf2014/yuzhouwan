@@ -6,7 +6,7 @@ import org.apache.spark.storage.StorageLevel
 import org.apache.spark.streaming._
 
 /**
-  * Copyright @ 2017 yuzhouwan.com
+  * Copyright @ 2018 yuzhouwan.com
   * All right reserved.
   * Function: KMeans ML Streaming
   *

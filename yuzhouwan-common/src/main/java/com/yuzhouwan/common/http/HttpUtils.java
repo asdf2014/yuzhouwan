@@ -38,7 +38,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 /**
- * Copyright @ 2017 yuzhouwan.com
+ * Copyright @ 2018 yuzhouwan.com
  * All right reserved.
  * Function: HttpUtils
  *
@@ -47,7 +47,7 @@ import java.util.Map.Entry;
  */
 public final class HttpUtils {
 
-    private static final Logger LOG = LoggerFactory.getLogger(HttpUtils.class);
+    private static final Logger _log = LoggerFactory.getLogger(HttpUtils.class);
 
     private static volatile HttpUtils helper;
     private static String userAgent;
@@ -110,7 +110,7 @@ public final class HttpUtils {
     }
 
     private void initialize() {
-        // Connection配置
+        // Connection 配置
         ConnectionConfig connectionConfig = ConnectionConfig.custom().setMalformedInputAction(CodingErrorAction.IGNORE)
                 .setUnmappableInputAction(CodingErrorAction.IGNORE).setCharset(Consts.UTF_8).build();
         coverCA();
@@ -122,7 +122,7 @@ public final class HttpUtils {
     }
 
     /**
-     * 初始化 httpClient客户端.
+     * 初始化 httpClient 客户端.
      *
      * @param httpClientConnectionManager
      * @param defaultRequestConfig
@@ -139,7 +139,7 @@ public final class HttpUtils {
     }
 
     /**
-     * 覆盖证书检测过程 [用以非CA的https链接 (CA, Certificate Authority 数字证书)].
+     * 覆盖证书检测过程 [用以非 CA 的 https 链接 (CA, Certificate Authority 数字证书)].
      */
     private void coverCA() {
         trustManagers[0] = new X509TrustManager() {
@@ -159,7 +159,7 @@ public final class HttpUtils {
     }
 
     /**
-     * httpClient上下文.
+     * HttpClient 上下文.
      */
     private void httpClientContext() {
         httpClientContext = HttpClientContext.create();
@@ -173,14 +173,14 @@ public final class HttpUtils {
             sslContext.init(new KeyManager[0], trustManagers, new SecureRandom());
             sslSocketFactory = new SSLConnectionSocketFactory(sslContext, new NoopHostnameVerifier());
         } catch (Exception e) {
-            LOG.error(ExceptionUtils.errorInfo(e));
+            _log.error(ExceptionUtils.errorInfo(e));
             throw new RuntimeException(e);
         }
         return sslSocketFactory;
     }
 
     /**
-     * 创建 httpClient连接池.
+     * 创建 HttpClient 连接池.
      *
      * @param connectionConfig
      * @return
@@ -240,7 +240,7 @@ public final class HttpUtils {
         ContentType contentType = ContentType.TEXT_PLAIN.withCharset(Consts.UTF_8);
         MultipartEntityBuilder builder = MultipartEntityBuilder.create();
         if (params != null) {
-            LOG.debug(params.toString());
+            _log.debug(params.toString());
             Object value;
             for (Entry<String, Object> entry : params.entrySet()) {
                 value = entry.getValue();
@@ -273,7 +273,7 @@ public final class HttpUtils {
     }
 
     public HttpResponse post(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
-        LOG.debug(url);
+        _log.debug(url);
         MultipartEntityBuilder builder = processBuilderParams(params);
         builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
         builder.setCharset(Consts.UTF_8);
@@ -302,7 +302,7 @@ public final class HttpUtils {
 
     public HttpResponse post(String url, HttpEntity entity, Map<String, String> headers) throws Exception {
         HttpPost post = new HttpPost(url);
-        LOG.debug(url);
+        _log.debug(url);
         post.setEntity(entity);
         processHeader(post, headers);
         return internalProcess(post);
@@ -326,7 +326,7 @@ public final class HttpUtils {
     }
 
     public HttpResponse get(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
-        LOG.debug(url);
+        _log.debug(url);
         HttpGet get = new HttpGet(processURL(url, params));
         processHeader(get, headers);
         return internalProcess(get);
@@ -350,7 +350,7 @@ public final class HttpUtils {
     }
 
     public HttpResponse put(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
-        LOG.debug(url);
+        _log.debug(url);
         HttpPut put = new HttpPut(processURL(url, params));
         processHeader(put, headers);
         return internalProcess(put);
@@ -374,7 +374,7 @@ public final class HttpUtils {
     }
 
     public HttpResponse put(String url, HttpEntity entity, Map<String, String> headers) throws Exception {
-        LOG.debug(url);
+        _log.debug(url);
         HttpPut put = new HttpPut(url);
         put.setEntity(entity);
         processHeader(put, headers);
@@ -400,7 +400,7 @@ public final class HttpUtils {
     }
 
     public HttpResponse delete(String url, Map<String, Object> params, Map<String, String> headers) throws Exception {
-        LOG.debug("Url: {}", url);
+        _log.debug("Url: {}", url);
         HttpDelete delete;
         processHeader((delete = new HttpDelete(processURL(url, params))), headers);
         return internalProcess(delete);
@@ -421,14 +421,14 @@ public final class HttpUtils {
             HttpResponse httpResponse = new HttpResponse();
             httpResponse.setCode(statusCode);
             if (httpResponse.isError())
-                LOG.error("error response: status {}, method {} ", statusCode, rest.getMethod());
+                _log.error("error response: status {}, method {} ", statusCode, rest.getMethod());
             httpResponse.setBytes(EntityUtils.toByteArray(response.getEntity()));
             Header header;
             if ((header = response.getEntity().getContentType()) != null)
                 httpResponse.setContentType(header.getValue());
             return httpResponse;
         } catch (Exception e) {
-            LOG.error(ExceptionUtils.errorInfo(e));
+            _log.error(ExceptionUtils.errorInfo(e));
             throw new RuntimeException(e);
         } finally {
             release(rest, response, response != null ? response.getEntity() : null);
@@ -453,7 +453,7 @@ public final class HttpUtils {
 
     private String processURL(String processUrl, Map<String, Object> params) {
         if (params == null) return processUrl;
-        LOG.debug("{}", params.toString());
+        _log.debug("{}", params.toString());
         StringBuilder url;
         if ((url = new StringBuilder(processUrl)).indexOf("?") < 0) url.append('?');
         for (String name : params.keySet())
@@ -468,12 +468,12 @@ public final class HttpUtils {
             try {
                 if (entity != null) EntityUtils.consume(entity);
             } catch (IOException e) {
-                LOG.error(ExceptionUtils.errorInfo(e));
+                _log.error(ExceptionUtils.errorInfo(e));
             } finally {
                 try {
                     if (response != null) response.close();
                 } catch (IOException e) {
-                    LOG.error(ExceptionUtils.errorInfo(e));
+                    _log.error(ExceptionUtils.errorInfo(e));
                 }
             }
         }

@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.security;
 
 /**
- * Copyright @ 2017 yuzhouwan.com
+ * Copyright @ 2018 yuzhouwan.com
  * All right reserved.
  * Function: UnsafeClass
  *
