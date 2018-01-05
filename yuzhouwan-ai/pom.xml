@@ -16,6 +16,5 @@
     <modules>
         <module>yuzhouwan-ai-tensorflow</module>
         <module>yuzhouwan-ai-pytorch</module>
-        <module>yuzhouwan-ai-nupic</module>
     </modules>
 </project>
