@@ -11,6 +11,7 @@
         <module>yuzhouwan-checkstyle</module>
         <module>yuzhouwan-common</module>
         <module>yuzhouwan-hacker</module>
+        <module>yuzhouwan-ai</module>
         <module>yuzhouwan-bigdata</module>
         <module>yuzhouwan-site</module>
     </modules>
