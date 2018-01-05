@@ -6,9 +6,8 @@
 
     <parent>
         <groupId>com.yuzhouwan</groupId>
-        <artifactId>yuzhouwan-parent</artifactId>
-        <version>${project.version}</version>
-        <relativePath>../yuzhouwan-parent/pom.xml</relativePath>
+        <artifactId>yuzhouwan</artifactId>
+        <version>1.0.2</version>
     </parent>
 
     <artifactId>yuzhouwan-bigdata</artifactId>

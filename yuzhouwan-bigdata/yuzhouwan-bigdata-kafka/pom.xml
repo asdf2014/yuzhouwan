@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.yuzhouwan</groupId>
         <artifactId>yuzhouwan-bigdata</artifactId>
-        <version>${project.version}</version>
+        <version>1.0.2</version>
     </parent>
 
     <artifactId>yuzhouwan-bigdata-kafka</artifactId>
@@ -16,7 +16,7 @@
         <dependency>
             <groupId>com.yuzhouwan</groupId>
             <artifactId>yuzhouwan-common</artifactId>
-            <version>${project.version}</version>
+            <version>1.0.2</version>
         </dependency>
 
         <dependency>
