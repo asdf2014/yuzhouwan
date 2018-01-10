@@ -26,6 +26,7 @@ public class RedisNotification {
 
     private static final Logger _log = LoggerFactory.getLogger(RedisNotification.class);
     private static final long CHECK_EXECUTOR_SERVICE_INTERVAL_MILLISECONDS = 1000 * 60 * 60 * 24;
+    private static final String EXECUTOR_SERVICE_NAME = "redis-subscribe";
 
     public static void main(String[] args) throws Exception {
 
@@ -33,21 +34,21 @@ public class RedisNotification {
         dp.add(PROJECT_NAME, PropUtils.getInstance().getProperties());
 
         /*
-        https://redis.io/topics/notifications
-        https://raw.githubusercontent.com/antirez/redis/2.8/redis.conf
+          https://redis.io/topics/notifications
+          https://raw.githubusercontent.com/antirez/redis/2.8/redis.conf
 
-        $ redis-cli -h localhost -p 6380
-            CONFIG SET notify-keyspace-events AKE
-            PSUBSCRIBE '__key*__:*'
-            PUBLISH __keyevent@0__:expired yuzhouwan01
+          $ redis-cli -h localhost -p 6380
+              CONFIG SET notify-keyspace-events AKE
+              PSUBSCRIBE '__key*__:*'
+              PUBLISH __keyevent@0__:expired yuzhouwan01
 
-            SET yuzhouwan01 blog PX 3000 NX
-            SET yuzhouwan02 blog
-            EXPIRE yuzhouwan02 3
+              SET yuzhouwan01 blog PX 3000 NX
+              SET yuzhouwan02 blog
+              EXPIRE yuzhouwan02 3
 
-        $ redis-cli -h localhost -p 6380 --csv psubscribe '__keyevent@0__:expired'
+          $ redis-cli -h localhost -p 6380 --csv psubscribe '__keyevent@0__:expired'
         */
-        ExecutorService es = ThreadUtils.buildExecutorService("redis-subscribe");
+        ExecutorService es = ThreadUtils.buildExecutorService(EXECUTOR_SERVICE_NAME);
         try (RedisClusterConnPool pool = new RedisClusterConnPool(dp, true)) {
             List<JedisPool> jedis = pool.getPools();
             JedisPubSub jedisPubSub = new JedisPubSub() {
@@ -63,9 +64,8 @@ public class RedisNotification {
                 }
             };
             for (JedisPool j : jedis)
-                es.submit(() ->
-                        j.getResource().psubscribe(jedisPubSub, "__keyevent@*__:expired" /*"__key*__:*"*/ /*"*"*/)
-                );
+                es.submit(() -> j.getResource()
+                        .psubscribe(jedisPubSub, "__keyevent@*__:expired" /*"__key*__:*"*/ /*"*"*/));
             while (!es.isTerminated()) Thread.sleep(CHECK_EXECUTOR_SERVICE_INTERVAL_MILLISECONDS);
         }
     }
