@@ -3,20 +3,21 @@ package com.yuzhouwan.common.util;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.yuzhouwan.common.dir.DirUtils;
 import org.junit.Test;
 
 import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static com.yuzhouwan.common.dir.DirUtils.TEST_RESOURCES_PATH;
+import static com.yuzhouwan.common.util.FileUtils.readFile;
 import static com.yuzhouwan.common.util.StrUtils.*;
 import static org.junit.Assert.assertEquals;
 
 /**
  * Copyright @ 2018 yuzhouwan.com
  * All right reserved.
- * Function: String Stuff Tester
+ * Function: String Utils Tester
  *
  * @author Benedict Jin
  * @since 2016/3/23
@@ -24,30 +25,30 @@ import static org.junit.Assert.assertEquals;
 public class StrUtilsTest {
 
     @Test
-    public void fillTest() throws Exception {
-        assertEquals("00000010", StrUtils.fillWitchZero(10, 8));
-        assertEquals("00000010", StrUtils.fillWitchZero(10.0d, 8));
-        assertEquals("00000010", StrUtils.fillWitchZero(10.01d, 8));
+    public void fillTest() {
+        assertEquals("00000010", fillWitchZero(10, 8));
+        assertEquals("00000010", fillWitchZero(10.0d, 8));
+        assertEquals("00000010", fillWitchZero(10.01d, 8));
     }
 
     @Test
-    public void mainValueTest() throws Exception {
-        String mainValue = StrUtils.getMainValue("ATK000001", "ATK".length(), "0");
+    public void mainValueTest() {
+        String mainValue = getMainValue("ATK000001", "ATK".length(), "0");
         assertEquals(true, mainValue != null && 1 == Integer.parseInt(mainValue));
-        mainValue = StrUtils.getMainValue("ATK000040", "ATK".length(), "0");
+        mainValue = getMainValue("ATK000040", "ATK".length(), "0");
         assertEquals(true, mainValue != null && 40 == Integer.parseInt(mainValue));
     }
 
     @Test
-    public void cutStart() throws Exception {
-        assertEquals("yuzhouwan.com", StrUtils.cutStartStr("www.yuzhouwan.com", "www."));
+    public void cutStart() {
+        assertEquals("yuzhouwan.com", cutStartStr("www.yuzhouwan.com", "www."));
     }
 
     @Test
-    public void cutMiddle() throws Exception {
+    public void cutMiddle() {
         assertEquals(File.separator + "com" + File.separator + "yuzhouwan" + File.separator + "common" +
                         File.separator + "util" + File.separator + "StrUtilsTest.class",
-                StrUtils.cutMiddleStr("F:" + File.separator + "如何成为 Java 高手" + File.separator + "笔记" +
+                cutMiddleStr("F:" + File.separator + "如何成为 Java 高手" + File.separator + "笔记" +
                                 File.separator + "Soft Engineering" + File.separator + "Git" + File.separator +
                                 "[code]" + File.separator + "yuzhouwan" + File.separator + "yuzhouwan-common" +
                                 File.separator + "target" + File.separator + "test-classes" + File.separator + ".." +
@@ -58,11 +59,11 @@ public class StrUtilsTest {
     }
 
     @Test
-    public void cutTail() throws Exception {
+    public void cutTail() {
         assertEquals("F:" + File.separator + "如何成为 Java 高手" + File.separator + "笔记" + File.separator +
                         "Soft Engineering" + File.separator + "Git" + File.separator + "[code]" + File.separator +
                         "yuzhouwan" + File.separator + "yuzhouwan-common" + File.separator + "target" + File.separator,
-                StrUtils.cutTailStr("F:" + File.separator + "如何成为 Java 高手" + File.separator + "笔记" +
+                cutTailStr("F:" + File.separator + "如何成为 Java 高手" + File.separator + "笔记" +
                                 File.separator + "Soft Engineering" + File.separator + "Git" + File.separator +
                                 "[code]" + File.separator + "yuzhouwan" + File.separator + "yuzhouwan-common" +
                                 File.separator + "target" + File.separator + "test-classes" + File.separator + "",
@@ -70,7 +71,7 @@ public class StrUtilsTest {
     }
 
     @Test
-    public void holderTest() throws Exception {
+    public void holderTest() {
         assertEquals("a1b2c3", String.format("%s1b%Sc%d", "a", "2", 3));
         LinkedList<String> linkedList = new LinkedList<>();
         linkedList.add("a");
@@ -79,13 +80,13 @@ public class StrUtilsTest {
     }
 
     @Test
-    public void splitMulti() throws Exception {
+    public void splitMultiTest() {
         LinkedList<String> expect = new LinkedList<>();
         expect.add("ns_fac");
         expect.add("hb_scapaysettlereg_acc");
         expect.add("006b897c8c6b0cdc258566b81508efe5");
         expect.add("storeCount");
-        LinkedList<String> result = StrUtils.splitMulti(
+        LinkedList<String> result = splitMulti(
                 "namespace_ns_fac_table_hb_scapaysettlereg_acc_region_006b897c8c6b0cdc258566b81508efe5_metric_storeCount",
                 "namespace_", "_table_", "_region_", "_metric_");
         assert result != null;
@@ -97,17 +98,38 @@ public class StrUtilsTest {
     }
 
     @Test
-    public void isNumberTest() throws Exception {
-        assertEquals(true, StrUtils.isNumber("0"));
-        assertEquals(true, StrUtils.isNumber("1"));
-        assertEquals(true, StrUtils.isNumber("100"));
-        assertEquals(false, StrUtils.isNumber("-1"));
-        assertEquals(false, StrUtils.isNumber("1.1"));
-        assertEquals(false, StrUtils.isNumber("abc"));
+    public void isNumberTest() {
+        assertEquals(true, isNumber("0"));
+        assertEquals(true, isNumber("1"));
+        assertEquals(true, isNumber("100"));
+
+        assertEquals(true, isNumber("+1"));
+        assertEquals(true, isNumber("-1"));
+        assertEquals(false, isNumber("++1"));
+        assertEquals(false, isNumber("--1"));
+        assertEquals(false, isNumber("-+1"));
+        assertEquals(false, isNumber("-"));
+        assertEquals(false, isNumber("+"));
+        assertEquals(false, isNumber("+-"));
+
+        assertEquals(true, isNumber("1.1"));
+        assertEquals(true, isNumber("0.1"));
+        assertEquals(false, isNumber(".1"));
+        assertEquals(false, isNumber("1.1.0"));
+
+        assertEquals(true, isNumber("+0.1"));
+        assertEquals(true, isNumber("-0.1"));
+        assertEquals(false, isNumber("+0."));
+        assertEquals(false, isNumber("-0."));
+        assertEquals(false, isNumber("+.1"));
+        assertEquals(false, isNumber("-.1"));
+        assertEquals(false, isNumber("+."));
+
+        assertEquals(false, isNumber("abc"));
     }
 
     @Test
-    public void map2JsonTest() throws Exception {
+    public void map2JsonTest() {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("cluster", "test");
         jsonObject.put("table", "default");
@@ -128,16 +150,16 @@ public class StrUtilsTest {
 
     @Test
     public void compressionTest() throws Exception {
-        String mysqlKeywords = compression(new String(FileUtils.readFile(DirUtils.TEST_RESOURCES_PATH.concat("db/mysql_5.5_keywords.json"))));
+        String mysqlKeywords = compression(new String(Objects.requireNonNull(readFile(TEST_RESOURCES_PATH.concat("db/mysql_5.5_keywords.json")))));
         assertEquals("[\"ACCESSIBLE\",\"ADD\",\"ALL\",\"ALTER\",\"ANALYZE\",\"AND\",\"AS\",\"ASC\",\"ASENSITIVE\",\"BEFORE\",\"BETWEEN\",\"BIGINT\",\"BINARY\",\"BLOB\",\"BOTH\",\"BY\",\"CALL\",\"CASCADE\",\"CASE\",\"CHANGE\",\"CHAR\",\"CHARACTER\",\"CHECK\",\"COLLATE\",\"COLUMN\",\"CONDITION\",\"CONSTRAINT\",\"CONTINUE\",\"CONVERT\",\"CREATE\",\"CROSS\",\"CURRENT_DATE\",\"CURRENT_TIME\",\"CURRENT_TIMESTAMP\",\"CURRENT_USER\",\"CURSOR\",\"DATABASE\",\"DATABASES\",\"DAY_HOUR\",\"DAY_MICROSECOND\",\"DAY_MINUTE\",\"DAY_SECOND\",\"DEC\",\"DECIMAL\",\"DECLARE\",\"DEFAULT\",\"DELAYED\",\"DELETE\",\"DESC\",\"DESCRIBE\",\"DETERMINISTIC\",\"DISTINCT\",\"DISTINCTROW\",\"DIV\",\"DOUBLE\",\"DROP\",\"DUAL\",\"EACH\",\"ELSE\",\"ELSEIF\",\"ENCLOSED\",\"ESCAPED\",\"EXISTS\",\"EXIT\",\"EXPLAIN\",\"FALSE\",\"FETCH\",\"FLOAT\",\"FLOAT4\",\"FLOAT8\",\"FOR\",\"FORCE\",\"FOREIGN\",\"FROM\",\"FULLTEXT\",\"GRANT\",\"GROUP\",\"HAVING\",\"HIGH_PRIORITY\",\"HOUR_MICROSECOND\",\"HOUR_MINUTE\",\"HOUR_SECOND\",\"IF\",\"IGNORE\",\"IN\",\"INDEX\",\"INFILE\",\"INNER\",\"INOUT\",\"INSENSITIVE\",\"INSERT\",\"INT\",\"INT1\",\"INT2\",\"INT3\",\"INT4\",\"INT8\",\"INTEGER\",\"INTERVAL\",\"INTO\",\"IS\",\"ITERATE\",\"JOIN\",\"KEY\",\"KEYS\",\"KILL\",\"LEADING\",\"LEAVE\",\"LEFT\",\"LIKE\",\"LIMIT\",\"LINEAR\",\"LINES\",\"LOAD\",\"LOCALTIME\",\"LOCALTIMESTAMP\",\"LOCK\",\"LONG\",\"LONGBLOB\",\"LONGTEXT\",\"LOOP\",\"LOW_PRIORITY\",\"MASTER_SSL_VERIFY_SERVER_CERT\",\"MATCH\",\"MAXVALUE\",\"MEDIUMBLOB\",\"MEDIUMINT\",\"MEDIUMTEXT\",\"MIDDLEINT\",\"MINUTE_MICROSECOND\",\"MINUTE_SECOND\",\"MOD\",\"MODIFIES\",\"NATURAL\",\"NOT\",\"NO_WRITE_TO_BINLOG\",\"NULL\",\"NUMERIC\",\"ON\",\"OPTIMIZE\",\"OPTION\",\"OPTIONALLY\",\"OR\",\"ORDER\",\"OUT\",\"OUTER\",\"OUTFILE\",\"PRECISION\",\"PRIMARY\",\"PROCEDURE\",\"PURGE\",\"RANGE\",\"READ\",\"READS\",\"READ_WRITE\",\"REAL\",\"REFERENCES\",\"REGEXP\",\"RELEASE\",\"RENAME\",\"REPEAT\",\"REPLACE\",\"REQUIRE\",\"RESIGNAL\",\"RESTRICT\",\"RETURN\",\"REVOKE\",\"RIGHT\",\"RLIKE\",\"SCHEMA\",\"SCHEMAS\",\"SECOND_MICROSECOND\",\"SELECT\",\"SENSITIVE\",\"SEPARATOR\",\"SET\",\"SHOW\",\"SIGNAL\",\"SMALLINT\",\"SPATIAL\",\"SPECIFIC\",\"SQL\",\"SQLEXCEPTION\",\"SQLSTATE\",\"SQLWARNING\",\"SQL_BIG_RESULT\",\"SQL_CALC_FOUND_ROWS\",\"SQL_SMALL_RESULT\",\"SSL\",\"STARTING\",\"STRAIGHT_JOIN\",\"TABLE\",\"TERMINATED\",\"THEN\",\"TINYBLOB\",\"TINYINT\",\"TINYTEXT\",\"TO\",\"TRAILING\",\"TRIGGER\",\"TRUE\",\"UNDO\",\"UNION\",\"UNIQUE\",\"UNLOCK\",\"UNSIGNED\",\"UPDATE\",\"USAGE\",\"USE\",\"USING\",\"UTC_DATE\",\"UTC_TIME\",\"UTC_TIMESTAMP\",\"VALUES\",\"VARBINARY\",\"VARCHAR\",\"VARCHARACTER\",\"VARYING\",\"WHEN\",\"WHERE\",\"WHILE\",\"WITH\",\"WRITE\",\"XOR\",\"YEAR_MONTH\",\"ZEROFILL\",\"GENERAL\",\"IGNORE_SERVER_IDS\",\"MASTER_HEARTBEAT_PERIOD\",\"MAXVALUE\",\"RESIGNAL\",\"SIGNAL\",\"SLOW\"]",
                 mysqlKeywords);
-        String sqliteKeywords = compression(new String(FileUtils.readFile(DirUtils.TEST_RESOURCES_PATH.concat("db/sqlite_keywords.json"))));
+        String sqliteKeywords = compression(new String(Objects.requireNonNull(readFile(TEST_RESOURCES_PATH.concat("db/sqlite_keywords.json")))));
         assertEquals("[\"ABORT\",\"ADD\",\"AFTER\",\"ALL\",\"ALTER\",\"ANALYZE\",\"AND\",\"AS\",\"ASC\",\"ATTACH\",\"AUTOINCREMENT\",\"BEFORE\",\"BEGIN\",\"BETWEEN\",\"BY\",\"CASCADE\",\"CASE\",\"CAST\",\"CHECK\",\"COLLATE\",\"COMMIT\",\"CONFLICT\",\"CONSTRAINT\",\"CREATE\",\"CROSS\",\"CURRENT_DATE\",\"CURRENT_TIME\",\"CURRENT_TIMESTAMP\",\"DATABASE\",\"DEFAULT\",\"DEFERRABLE\",\"DEFERRED\",\"DELETE\",\"DESC\",\"DETACH\",\"DISTINCT\",\"DROP\",\"EACH\",\"ELSE\",\"END\",\"ESCAPE\",\"EXCEPT\",\"EXCLUSIVE\",\"EXPLAIN\",\"FAIL\",\"FOR\",\"FOREIGN\",\"FROM\",\"FULL\",\"GLOB\",\"GROUP\",\"HAVING\",\"IF\",\"IGNORE\",\"IMMEDIATE\",\"IN\",\"INDEX\",\"INITIALLY\",\"INNER\",\"INSERT\",\"INSTEAD\",\"INTERSECT\",\"INTO\",\"IS\",\"ISNULL\",\"JOIN\",\"KEY\",\"LEFT\",\"LIKE\",\"LIMIT\",\"MATCH\",\"NATURAL\",\"NOT\",\"NOTNULL\",\"NULL\",\"OF\",\"OFFSET\",\"ON\",\"OR\",\"ORDER\",\"OUTER\",\"PLAN\",\"PRAGMA\",\"PRIMARY\",\"QUERY\",\"RAISE\",\"REFERENCES\",\"REINDEX\",\"RENAME\",\"REPLACE\",\"RESTRICT\",\"RIGHT\",\"ROLLBACK\",\"ROW\",\"SELECT\",\"SET\",\"TABLE\",\"TEMP\",\"TEMPORARY\",\"THEN\",\"TO\",\"TRANSACTION\",\"TRIGGER\",\"UNION\",\"UNIQUE\",\"UPDATE\",\"USING\",\"VACUUM\",\"VALUES\",\"VIEW\",\"VIRTUAL\",\"WHEN\",\"WHERE\"]",
                 sqliteKeywords);
-        Collection<Object> mysqlArr = Arrays.asList(JSON.parseArray(mysqlKeywords).toArray());
+        Collection<Object> mysqlArr = Arrays.asList(Objects.requireNonNull(JSON.parseArray(mysqlKeywords)).toArray());
         Set<String> mysqlSet = mysqlArr.stream().map(Object::toString).collect(Collectors.toCollection(LinkedHashSet::new));
         JSONArray sqliteArr = JSON.parseArray(sqliteKeywords);
-        Set<String> sqliteSet = sqliteArr.stream().map(Object::toString).collect(Collectors.toCollection(LinkedHashSet::new));
+        Set<String> sqliteSet = Objects.requireNonNull(sqliteArr).stream().map(Object::toString).collect(Collectors.toCollection(LinkedHashSet::new));
         Collection<String> intersection = CollectionUtils.intersection(mysqlSet, sqliteSet);
         mysqlSet.removeAll(intersection);   // in mysql, and not in sqlite
         assertEquals("[\"ACCESSIBLE\",\"ASENSITIVE\",\"BIGINT\",\"BINARY\",\"BLOB\",\"BOTH\",\"CALL\",\"CHANGE\",\"CHAR\",\"CHARACTER\",\"COLUMN\",\"CONDITION\",\"CONTINUE\",\"CONVERT\",\"CURRENT_USER\",\"CURSOR\",\"DATABASES\",\"DAY_HOUR\",\"DAY_MICROSECOND\",\"DAY_MINUTE\",\"DAY_SECOND\",\"DEC\",\"DECIMAL\",\"DECLARE\",\"DELAYED\",\"DESCRIBE\",\"DETERMINISTIC\",\"DISTINCTROW\",\"DIV\",\"DOUBLE\",\"DUAL\",\"ELSEIF\",\"ENCLOSED\",\"ESCAPED\",\"EXISTS\",\"EXIT\",\"FALSE\",\"FETCH\",\"FLOAT\",\"FLOAT4\",\"FLOAT8\",\"FORCE\",\"FULLTEXT\",\"GRANT\",\"HIGH_PRIORITY\",\"HOUR_MICROSECOND\",\"HOUR_MINUTE\",\"HOUR_SECOND\",\"INFILE\",\"INOUT\",\"INSENSITIVE\",\"INT\",\"INT1\",\"INT2\",\"INT3\",\"INT4\",\"INT8\",\"INTEGER\",\"INTERVAL\",\"ITERATE\",\"KEYS\",\"KILL\",\"LEADING\",\"LEAVE\",\"LINEAR\",\"LINES\",\"LOAD\",\"LOCALTIME\",\"LOCALTIMESTAMP\",\"LOCK\",\"LONG\",\"LONGBLOB\",\"LONGTEXT\",\"LOOP\",\"LOW_PRIORITY\",\"MASTER_SSL_VERIFY_SERVER_CERT\",\"MAXVALUE\",\"MEDIUMBLOB\",\"MEDIUMINT\",\"MEDIUMTEXT\",\"MIDDLEINT\",\"MINUTE_MICROSECOND\",\"MINUTE_SECOND\",\"MOD\",\"MODIFIES\",\"NO_WRITE_TO_BINLOG\",\"NUMERIC\",\"OPTIMIZE\",\"OPTION\",\"OPTIONALLY\",\"OUT\",\"OUTFILE\",\"PRECISION\",\"PROCEDURE\",\"PURGE\",\"RANGE\",\"READ\",\"READS\",\"READ_WRITE\",\"REAL\",\"REGEXP\",\"RELEASE\",\"REPEAT\",\"REQUIRE\",\"RESIGNAL\",\"RETURN\",\"REVOKE\",\"RLIKE\",\"SCHEMA\",\"SCHEMAS\",\"SECOND_MICROSECOND\",\"SENSITIVE\",\"SEPARATOR\",\"SHOW\",\"SIGNAL\",\"SMALLINT\",\"SPATIAL\",\"SPECIFIC\",\"SQL\",\"SQLEXCEPTION\",\"SQLSTATE\",\"SQLWARNING\",\"SQL_BIG_RESULT\",\"SQL_CALC_FOUND_ROWS\",\"SQL_SMALL_RESULT\",\"SSL\",\"STARTING\",\"STRAIGHT_JOIN\",\"TERMINATED\",\"TINYBLOB\",\"TINYINT\",\"TINYTEXT\",\"TRAILING\",\"TRUE\",\"UNDO\",\"UNLOCK\",\"UNSIGNED\",\"USAGE\",\"USE\",\"UTC_DATE\",\"UTC_TIME\",\"UTC_TIMESTAMP\",\"VARBINARY\",\"VARCHAR\",\"VARCHARACTER\",\"VARYING\",\"WHILE\",\"WITH\",\"WRITE\",\"XOR\",\"YEAR_MONTH\",\"ZEROFILL\",\"GENERAL\",\"IGNORE_SERVER_IDS\",\"MASTER_HEARTBEAT_PERIOD\",\"SLOW\"]",
@@ -146,7 +168,7 @@ public class StrUtilsTest {
 
     @Test
     public void drop() throws Exception {
-        String schema = new String(FileUtils.readFile(DirUtils.TEST_RESOURCES_PATH.concat("db/superset.sql.schema.sql")));
+        String schema = new String(Objects.requireNonNull(readFile(TEST_RESOURCES_PATH.concat("db/superset.sql.schema.sql"))));
         LinkedList<String> drops = new LinkedList<>();
         for (String s : schema.split("\n")) {
             if (s.toLowerCase().startsWith("drop table if exists")) drops.add(s);
@@ -159,7 +181,7 @@ public class StrUtilsTest {
 
     @Test
     public void sqlData() throws Exception {
-        String dataTotal = new String(FileUtils.readFile(DirUtils.TEST_RESOURCES_PATH.concat("db/superset.sql.data.sql")));
+        String dataTotal = new String(Objects.requireNonNull(readFile(TEST_RESOURCES_PATH.concat("db/superset.sql.data.sql"))));
         StringBuilder stringBuilderPrimaryKey = new StringBuilder();
         StringBuilder stringBuilderNormal = new StringBuilder();
         String lowerData;
@@ -171,9 +193,9 @@ public class StrUtilsTest {
                     lowerData.contains("multiformat_time_series")) stringBuilderNormal.append(data).append(";");
             else stringBuilderPrimaryKey.append(lowerData).append(";");
         }
-        FileUtils.writeFile(DirUtils.TEST_RESOURCES_PATH.concat("db/superset.sql.data_primary.sql"),
+        FileUtils.writeFile(TEST_RESOURCES_PATH.concat("db/superset.sql.data_primary.sql"),
                 stringBuilderPrimaryKey.toString().replace(";;", ";").getBytes());
-        FileUtils.writeFile(DirUtils.TEST_RESOURCES_PATH.concat("db/superset.sql.data_normal.sql"),
+        FileUtils.writeFile(TEST_RESOURCES_PATH.concat("db/superset.sql.data_normal.sql"),
                 stringBuilderNormal.toString().replace(";;", ";").getBytes());
     }
 }

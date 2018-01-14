@@ -5,6 +5,8 @@ import java.math.BigInteger;
 import java.text.DecimalFormat;
 import java.util.LinkedList;
 
+import static java.lang.Character.isDigit;
+
 /**
  * Copyright @ 2018 yuzhouwan.com
  * All right reserved.
@@ -22,13 +24,17 @@ public final class StrUtils {
     public static final String COMMA = ",";
     public static final String DOUBLE_TRANSFER = "\\\\";
 
+    public static final String PLUS = "+";
+    public static final String MINUS = "-";
+    public static final char POINT = '.';
+
     public static final String UTF_8 = "UTF-8";
 
     private StrUtils() {
     }
 
     /**
-     * 用 "0" 填充 aim数值之前的 (num-((int)aim).length)个空位.
+     * 用 "0" 填充 aim 数值之前的 (num-((int)aim).length) 个空位.
      *
      * @param aim
      * @param num
@@ -57,7 +63,7 @@ public final class StrUtils {
     public static String getMainValue(String suppressCode, int headIndex, String needRemoved) {
         if (!StrUtils.isEmpty(suppressCode)) {
             String tail = suppressCode.substring(headIndex, suppressCode.length());
-            while (tail.length() >= 0)
+            while (true)
                 if (tail.startsWith(needRemoved)) tail = tail.substring(1);
                 else return tail;
         }
@@ -192,8 +198,24 @@ public final class StrUtils {
      * @return isNumber
      */
     public static boolean isNumber(final String s) {
-        if (isEmpty(s)) return false;
-        for (int i = 0; i < s.length(); i++) if (!Character.isDigit(s.charAt(i))) return false;
+        if (isBlank(s)) return false;
+        char c;
+        boolean pointExist = false;
+        int start = s.startsWith(PLUS) || s.startsWith(MINUS) ? 1 : 0;
+        int len = s.length();
+        int len_minus_one = len - 1;
+        if (start == len) return false;
+        for (int i = start; i < len; i++) {
+            c = s.charAt(i);
+            if (c == POINT) {
+                if (i == start || i == len_minus_one || pointExist) return false;
+                else {
+                    pointExist = true;
+                    continue;
+                }
+            }
+            if (!isDigit(c)) return false;
+        }
         return true;
     }
 
