@@ -180,11 +180,10 @@ public class IpUtilsTest {
     @Ignore
     @Test
     public void getIPFromURLTest() throws Exception {
-
         assertEquals(null, getIPFromURL("yuzhouwan.com"));
         assertEquals(null, getIPFromURL("www.yuzhouwan.com"));
-        System.out.println(getIPFromURL("http://www.yuzhouwan.com/"));
-        System.out.println(getIPFromURL("https://www.yuzhouwan.com/"));
+        System.out.println(getIPFromURL("http://yuzhouwan.com/"));
+        System.out.println(getIPFromURL("https://yuzhouwan.com/"));
 
         System.out.println(getIPFromURL("http://180.97.33.107"));
         System.out.println(getIPFromURL("ftp://11.22.33.44"));
@@ -194,11 +193,10 @@ public class IpUtilsTest {
     @Ignore
     @Test
     public void isReachableTest() throws Exception {
-
         assertEquals(true, isReachable("127.0.0.1"));
         //stop following test for performance
-//        System.out.println(isReachable("192.168.1.101"));
-//        System.out.println(isReachable(getIPFromURL("https://www.yuzhouwan.com")));
+        System.out.println(isReachable("192.168.1.101"));
+        System.out.println(isReachable(getIPFromURL("https://yuzhouwan.com")));
     }
 
     @Ignore

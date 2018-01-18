@@ -72,11 +72,17 @@ public class StrUtilsTest {
 
     @Test
     public void holderTest() {
-        assertEquals("a1b2c3", String.format("%s1b%Sc%d", "a", "2", 3));
-        LinkedList<String> linkedList = new LinkedList<>();
-        linkedList.add("a");
-        linkedList.add("b");
-        assertEquals("a b", String.format("%s %s", linkedList.toArray()));
+        {
+            assertEquals("a1b2c3", String.format("%s1b%Sc%d", "a", "2", 3));
+            LinkedList<String> linkedList = new LinkedList<>();
+            linkedList.add("a");
+            linkedList.add("b");
+            assertEquals("a b", String.format("%s %s", linkedList.toArray()));
+        }
+        {
+            assertEquals("/a/b/c", String.format("/%s/%s/%s", "a", "b", "c"));
+            assertEquals("/null/null/null", String.format("/%s/%s/%s", null, null, null));
+        }
     }
 
     @Test

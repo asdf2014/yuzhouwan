@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.*;
+import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
@@ -52,34 +52,34 @@ public final class IpUtils {
     /**
      * The current host IP address is the IP address from the device.
      */
-    private static List<String> currentHostIpAddress;
+    private static volatile List<String> CURRENT_HOST_IP_ADDRESS;
 
     private IpUtils() {
     }
 
     /**
-     * 检查 IP-v4地址是否是 合法的.
+     * 检查 IP-v4 地址是否是 合法的.
      */
     public static boolean checkValid(final String ip) {
         return isNotEmpty(ip) && IP_V4_ADDRESS_IS_VALID.matcher(ip).matches();
     }
 
     /**
-     * 检查 IP-v4地址是否是 合法的.
+     * 检查 IP-v4 地址是否是 合法的.
      */
     public static boolean checkValid2(final String ip) {
         return isNotEmpty(ip) && IP_V4_ADDRESS_IS_VALID2.matcher(ip).matches();
     }
 
     /**
-     * 检查 IP-v6地址是否是 合法的.
+     * 检查 IP-v6 地址是否是 合法的.
      */
     public static boolean checkValidV6(final String ip) {
         return isNotEmpty(ip) && IP_V6_ADDRESS_IS_VALID.matcher(ip).matches();
     }
 
     /**
-     * 移除 /32的尾巴.
+     * 移除 /32 的尾巴.
      */
     public static String removeTail32(String ip) {
         return isNotEmpty(ip) && ip.endsWith("/32") ? ip.substring(0, ip.length() - REMOVE_TAIL_LENGTH) : ip;
@@ -107,7 +107,7 @@ public final class IpUtils {
     }
 
     /**
-     * 获得 url的子路径.
+     * 获得 url 的子路径.
      */
     public static String getTailFromURL(String url) {
         String domain = extractDomain(url);
@@ -236,32 +236,33 @@ public final class IpUtils {
      *  </pre>
      */
     public static List<String> getCurrentEnvironmentNetworkIp() {
-        if (currentHostIpAddress == null || currentHostIpAddress.isEmpty()) {
-            currentHostIpAddress = new LinkedList<>();
+        if (CURRENT_HOST_IP_ADDRESS != null && !CURRENT_HOST_IP_ADDRESS.isEmpty()) return CURRENT_HOST_IP_ADDRESS;
+        synchronized (IpUtils.class) {
+            if (CURRENT_HOST_IP_ADDRESS == null) CURRENT_HOST_IP_ADDRESS = new ArrayList<>();
             try {
                 Enumeration<NetworkInterface> netInterfaces = NetworkInterface.getNetworkInterfaces();
                 NetworkInterface ni;
                 byte[] hardware;
                 Enumeration<InetAddress> address;
+                InetAddress inetAddress;
                 while (netInterfaces.hasMoreElements()) {
                     ni = netInterfaces.nextElement();
                     if (!ni.isUp() || ni.isVirtual()) continue;
                     hardware = ni.getHardwareAddress();
                     if (hardware == null || hardware.length == 0) continue;
                     address = ni.getInetAddresses();
-                    InetAddress inetAddress;
                     while (address.hasMoreElements()) {
                         inetAddress = address.nextElement();
                         if (!inetAddress.isLoopbackAddress() && inetAddress.isSiteLocalAddress()
                                 && !inetAddress.getHostAddress().contains(":"))
-                            currentHostIpAddress.add(inetAddress.getHostAddress());
+                            CURRENT_HOST_IP_ADDRESS.add(inetAddress.getHostAddress());
                     }
                 }
-            } catch (SocketException e) {
-                _log.error(ExceptionUtils.errorInfo(e));
-                throw new RuntimeException(e);
+            } catch (SocketException se) {
+                _log.error(ExceptionUtils.errorInfo(se));
+                throw new RuntimeException(se);
             }
         }
-        return currentHostIpAddress;
+        return CURRENT_HOST_IP_ADDRESS;
     }
 }
