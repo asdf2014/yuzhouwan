@@ -21,7 +21,7 @@ public class HtmlExporter2BASE64 implements IHtmlExporter {
     }
 
     /**
-     * 将带有 chart、map等动态图表的 html转换为 图片.
+     * 将带有 chart、map 等动态图表的 html 转换为 图片.
      *
      * @param url 目标URL
      * @return
@@ -39,11 +39,11 @@ public class HtmlExporter2BASE64 implements IHtmlExporter {
     }
 
     /**
-     * 将带有 chart、map等动态图表的 html转换为 图片 (可以额外配置 cookie的权限控制).
+     * 将带有 chart、map 等动态图表的 html 转换为 图片（可以额外配置 cookie 的权限控制）.
      *
-     * @param url         目标URL
+     * @param url         目标 URL
      * @param addedCookie 添加 cookie
-     * @return
+     * @return 图片 string 字符串
      */
     @SuppressWarnings(value = {"unchecked"})
     @Override

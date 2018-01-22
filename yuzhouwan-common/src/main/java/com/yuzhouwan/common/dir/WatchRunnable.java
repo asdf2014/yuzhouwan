@@ -9,7 +9,7 @@ import java.nio.file.WatchService;
 /**
  * Copyright @ 2018 yuzhouwan.com
  * All right reserved.
- * Function: 监控线程 (主要为了多线程，能安全地 stop)
+ * Function: 监控线程（主要为了多线程，能安全地 stop）
  *
  * @author Benedict Jin
  * @since 2016/4/7

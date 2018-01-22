@@ -208,7 +208,7 @@ public class IpUtilsTest {
     @Ignore
     @Test
     public void getCurrentEnvironmentNetworkIpTest() throws Exception {
-        List<String> ips = getCurrentEnvironmentNetworkIp();
+        List<String> ips = getCurrentEnvironmentNetworkIps();
         for (String ip : ips) {
             System.out.println(ip);
             System.out.println(isReachable(ip));

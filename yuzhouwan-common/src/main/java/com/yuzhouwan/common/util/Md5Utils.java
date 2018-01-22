@@ -3,6 +3,7 @@ package com.yuzhouwan.common.util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.math.BigInteger;
 import java.security.MessageDigest;
 
 /**
@@ -31,7 +32,7 @@ public final class Md5Utils {
             MessageDigest digest = MessageDigest.getInstance(MD5);
             byte[] bytes = s.getBytes("UTF-8");
             digest.update(bytes, 0, bytes.length);
-            return new java.math.BigInteger(1, digest.digest()).toString(16);
+            return new BigInteger(1, digest.digest()).toString(16);
         } catch (Exception e) {
             LOG.error("Cannot process md5 method, will return the origin string: {}!", s, e);
             return s;

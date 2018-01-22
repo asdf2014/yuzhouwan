@@ -96,7 +96,7 @@ public final class IpUtils {
             _log.error("URL[{}] is invalid!", url);
             return null;
         } else if (len > 3) {
-            //这里必须先 find，才能 group取到值
+            // 这里必须先 find，才能 group 取到值
             if ((m = EXTRACT_DOMAIN_WITH_SUB_PATH.matcher(url)).find()) return m.group(0);
         } else {
             if (!url.endsWith("/")) m = EXTRACT_DOMAIN_SIMPLE.matcher(url);
@@ -203,7 +203,7 @@ public final class IpUtils {
 
     public static boolean ping(final String ipAddress) {
         try {
-            return Runtime.getRuntime().exec(PING_PREFIX.concat(ipAddress)).waitFor(10000, TimeUnit.MICROSECONDS);
+            return Runtime.getRuntime().exec(PING_PREFIX.concat(ipAddress)).waitFor(5, TimeUnit.SECONDS);
         } catch (Exception e) {
             _log.error(ExceptionUtils.errorInfo(e));
             return false;
@@ -235,33 +235,33 @@ public final class IpUtils {
      *         isIPV6: false
      *  </pre>
      */
-    public static List<String> getCurrentEnvironmentNetworkIp() {
-        if (CURRENT_HOST_IP_ADDRESS != null && !CURRENT_HOST_IP_ADDRESS.isEmpty()) return CURRENT_HOST_IP_ADDRESS;
-        synchronized (IpUtils.class) {
-            if (CURRENT_HOST_IP_ADDRESS == null) CURRENT_HOST_IP_ADDRESS = new ArrayList<>();
-            try {
-                Enumeration<NetworkInterface> netInterfaces = NetworkInterface.getNetworkInterfaces();
-                NetworkInterface ni;
-                byte[] hardware;
-                Enumeration<InetAddress> address;
-                InetAddress inetAddress;
-                while (netInterfaces.hasMoreElements()) {
-                    ni = netInterfaces.nextElement();
-                    if (!ni.isUp() || ni.isVirtual()) continue;
-                    hardware = ni.getHardwareAddress();
-                    if (hardware == null || hardware.length == 0) continue;
-                    address = ni.getInetAddresses();
-                    while (address.hasMoreElements()) {
-                        inetAddress = address.nextElement();
-                        if (!inetAddress.isLoopbackAddress() && inetAddress.isSiteLocalAddress()
-                                && !inetAddress.getHostAddress().contains(":"))
-                            CURRENT_HOST_IP_ADDRESS.add(inetAddress.getHostAddress());
+    public static List<String> getCurrentEnvironmentNetworkIps() {
+        if (CURRENT_HOST_IP_ADDRESS == null || CURRENT_HOST_IP_ADDRESS.isEmpty()) synchronized (IpUtils.class) {
+            if (CURRENT_HOST_IP_ADDRESS == null || CURRENT_HOST_IP_ADDRESS.isEmpty())
+                try {
+                    Enumeration<NetworkInterface> netInterfaces = NetworkInterface.getNetworkInterfaces();
+                    NetworkInterface ni;
+                    byte[] hardware;
+                    Enumeration<InetAddress> address;
+                    InetAddress inetAddress;
+                    CURRENT_HOST_IP_ADDRESS = new ArrayList<>();
+                    while (netInterfaces.hasMoreElements()) {
+                        ni = netInterfaces.nextElement();
+                        if (!ni.isUp() || ni.isVirtual()) continue;
+                        hardware = ni.getHardwareAddress();
+                        if (hardware == null || hardware.length == 0) continue;
+                        address = ni.getInetAddresses();
+                        while (address.hasMoreElements()) {
+                            inetAddress = address.nextElement();
+                            if (!inetAddress.isLoopbackAddress() && inetAddress.isSiteLocalAddress()
+                                    && !inetAddress.getHostAddress().contains(":"))
+                                CURRENT_HOST_IP_ADDRESS.add(inetAddress.getHostAddress());
+                        }
                     }
+                } catch (SocketException se) {
+                    _log.error(ExceptionUtils.errorInfo(se));
+                    throw new RuntimeException(se);
                 }
-            } catch (SocketException se) {
-                _log.error(ExceptionUtils.errorInfo(se));
-                throw new RuntimeException(se);
-            }
         }
         return CURRENT_HOST_IP_ADDRESS;
     }

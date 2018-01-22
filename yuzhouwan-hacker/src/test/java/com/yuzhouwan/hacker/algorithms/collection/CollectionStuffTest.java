@@ -248,7 +248,7 @@ public class CollectionStuffTest {
 
             try (FileReader fr = new FileReader(file)) {
                 char[] chars = new char[3];
-                fr.read(chars);
+                assertEquals(3, fr.read(chars));
                 assertEquals(1, chars[0]);
                 assertEquals(2, chars[1]);
                 assertEquals(3, chars[2]);
@@ -258,8 +258,7 @@ public class CollectionStuffTest {
                 assertEquals(true, lbq.remove() == 3);
             }
         } finally {
-            int count = 3;
-            retryDelete(file, count);
+            retryDelete(file, 3);
         }
     }
 
@@ -273,9 +272,7 @@ public class CollectionStuffTest {
         long timeSync = 0, time = 0;
         while (count < 1_0000) {
             list.clear();
-            for (long i = 0; i < size; i++) {
-                v.add(i);
-            }
+            for (long i = 0; i < size; i++) v.add(i);
             for (int i = 0; i < thread; i++) {
                 es.submit(() -> {
                     v.add(size);
@@ -300,11 +297,8 @@ public class CollectionStuffTest {
                 timeSync / Math.pow(10, 6), time / Math.pow(10, 6), (timeSync - time) / Math.pow(10, 6),
                 count, size, thread);
         es.shutdown();
-        while (!es.isTerminated()) {
-            Thread.sleep(10);
-        }
+        while (!es.isTerminated()) Thread.sleep(10);
         assertEquals(0, v.size());
         assertEquals(size, list.size());
     }
-
 }

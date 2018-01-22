@@ -28,11 +28,11 @@ public class DecimalUtilsTest {
     public void BooleanTest() throws Exception {
         Boolean ifCase = null;
         if (ifCase != null && ifCase) {
-            System.out.println(ifCase);
+            System.out.println("null: " + ifCase);
         }
         ifCase = new Boolean(true);
         if (ifCase != null && ifCase) {
-            System.out.println(ifCase);
+            System.out.println("Boolean(true): " + ifCase);
         }
     }
 

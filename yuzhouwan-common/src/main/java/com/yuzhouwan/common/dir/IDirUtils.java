@@ -15,7 +15,7 @@ public interface IDirUtils {
     /**
      * 监控到文件夹事件，进行处理的流程.
      *
-     * @param event watchService监控到的 event
+     * @param event watchService 监控到的 event
      */
     void dealWithEvent(WatchEvent<?> event);
 }

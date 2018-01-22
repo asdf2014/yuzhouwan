@@ -203,12 +203,12 @@ public final class StrUtils {
         boolean pointExist = false;
         int start = s.startsWith(PLUS) || s.startsWith(MINUS) ? 1 : 0;
         int len = s.length();
-        int len_minus_one = len - 1;
+        int lenMinusOne = len - 1;
         if (start == len) return false;
         for (int i = start; i < len; i++) {
             c = s.charAt(i);
             if (c == POINT) {
-                if (i == start || i == len_minus_one || pointExist) return false;
+                if (i == start || i == lenMinusOne || pointExist) return false;
                 else {
                     pointExist = true;
                     continue;

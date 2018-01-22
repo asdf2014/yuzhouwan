@@ -71,8 +71,7 @@ public final class CollectionUtils {
      */
     public static <T> Collection<T> intersection(Collection<T> a, Collection<T> b) {
         if (a == null || b == null || a.size() == 0 || b.size() == 0) return null;
-        LinkedHashSet<T> set = new LinkedHashSet<>();
-        set.addAll(a);
+        LinkedHashSet<T> set = new LinkedHashSet<>(a);
         return b.stream().filter(set::contains).collect(Collectors.toSet());
     }
 

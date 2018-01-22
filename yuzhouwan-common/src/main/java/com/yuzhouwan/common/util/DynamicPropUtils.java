@@ -16,6 +16,7 @@ import java.nio.charset.Charset;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.LongAdder;
 
 /**
  * Copyright @ 2018 yuzhouwan.com
@@ -39,18 +40,18 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
     public static final int RETRY_POLICY_INTERVAL = 2000;
     public static final int RETRY_POLICY_TIMES = 3;
 
-    private static volatile long TICK;
+    private static LongAdder TICK = new LongAdder();
     private static final long TICK_THRESHOLD = 30L;
     private static final long TICK_MILLIS = 1000L;
     private static volatile boolean KEEP_SYNCING = true;
     private static final Thread TIMING_SYNC = new Thread(() -> {
         while (KEEP_SYNCING) {
-            if (TICK >= TICK_THRESHOLD) {
+            if (TICK.sum() >= TICK_THRESHOLD) {
                 for (Map.Entry<String, Prop> entry : PROJECT_PROPERTIES.entrySet()) {
                     getInstance().sync(entry.getKey());
                 }
-                TICK = 0;
-            } else TICK++;
+                TICK.reset();
+            } else TICK.increment();
             try {
                 Thread.sleep(TICK_MILLIS);
             } catch (InterruptedException e) {

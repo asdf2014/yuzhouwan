@@ -46,10 +46,10 @@ public final class HtmlExporterUtils {
     }
 
     /**
-     * 将图片转换为 A4格式的 PDF.
+     * 将图片转换为 A4 格式的 PDF.
      *
      * @param image 图片的 byte[]
-     * @return A4格式的 图片的 byte[]
+     * @return A4 格式的 图片的 byte[]
      */
     public static byte[] image2pdfA4(byte[] image) {
         return image2pdf(image, null, null, null, null, null);
@@ -65,7 +65,7 @@ public final class HtmlExporterUtils {
      * @param marginRight  0f
      * @param marginTop    0f
      * @param marginBottom 0f
-     * @return PDF格式的 byte[]
+     * @return PDF 格式的 byte[]
      */
     public static byte[] image2pdf(byte[] image, Rectangle pageSize, Float marginLeft, Float marginRight,
                                    Float marginTop, Float marginBottom) {
@@ -74,14 +74,14 @@ public final class HtmlExporterUtils {
                 marginLeft == null ? 0f : marginLeft, marginRight == null ? 0f : marginRight,
                 marginTop == null ? 0f : marginTop, marginBottom == null ? 0f : marginBottom);
         PdfWriter pdfWriter;
-        try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
-            pdfWriter = PdfWriter.getInstance(document, byteArrayOutputStream);
+        try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+            pdfWriter = PdfWriter.getInstance(document, baos);
             document.open();
             document.add(Image.getInstance(image, true));
             // need close document and pdfWriter before convert byte array!
             document.close();
             pdfWriter.close();
-            return byteArrayOutputStream.toByteArray();
+            return baos.toByteArray();
         } catch (DocumentException | IOException e) {
             throw new RuntimeException(e);
         }
@@ -90,7 +90,7 @@ public final class HtmlExporterUtils {
     /**
      * 初始化配置 PhantomJS Driver.
      *
-     * @param url         目标URL
+     * @param url         目标 URL
      * @param addedCookie 添加 cookie
      * @return 初始化过的 PhantomJS Driver
      */
@@ -103,16 +103,17 @@ public final class HtmlExporterUtils {
 
         DesiredCapabilities phantomCaps = DesiredCapabilities.chrome();
         phantomCaps.setJavascriptEnabled(true);
+        PropUtils p = PropUtils.getInstance();
         phantomCaps.setCapability("phantomjs.page.settings.userAgent",
-                PropUtils.getInstance().getProperty("html.exporter.user.agent"));
+                p.getProperty("html.exporter.user.agent"));
 
         PhantomJSDriver driver = new PhantomJSDriver(phantomCaps);
-        driver.manage().timeouts().implicitlyWait(Integer.valueOf(PropUtils.getInstance()
-                .getProperty("html.exporter.driver.timeouts.implicitly.seconds")), TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(Integer.valueOf(PropUtils.getInstance()
-                .getProperty("html.exporter.driver.timeouts.page.load.seconds")), TimeUnit.SECONDS);
-        driver.manage().timeouts().setScriptTimeout(Integer.valueOf(PropUtils.getInstance()
-                .getProperty("html.exporter.driver.timeouts.script.seconds")), TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Integer.valueOf(
+                p.getProperty("html.exporter.driver.timeouts.implicitly.seconds")), TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(Integer.valueOf(
+                p.getProperty("html.exporter.driver.timeouts.page.load.seconds")), TimeUnit.SECONDS);
+        driver.manage().timeouts().setScriptTimeout(Integer.valueOf(
+                p.getProperty("html.exporter.driver.timeouts.script.seconds")), TimeUnit.SECONDS);
 
         if (width == null || height == null) driver.manage().window().maximize();
         else driver.manage().window().setSize(new Dimension(width, height));
@@ -131,7 +132,7 @@ public final class HtmlExporterUtils {
     }
 
     /**
-     * 获取 [文件]形式 的图片大小.
+     * 获取 [文件] 形式 的图片大小.
      *
      * @param image 图片文件
      * @return 图片大小
@@ -146,7 +147,7 @@ public final class HtmlExporterUtils {
     }
 
     /**
-     * 获取 [InputStream]形式 的图片大小.
+     * 获取 [InputStream] 形式 的图片大小.
      *
      * @param inputStream 图片输入流
      * @return 图片大小
@@ -169,7 +170,7 @@ public final class HtmlExporterUtils {
     }
 
     /**
-     * 获取 [字符数组]形式 的图片大小.
+     * 获取 [字符数组] 形式 的图片大小.
      *
      * @param bytes 图片的 byte[]
      * @return 图片大小
@@ -184,7 +185,7 @@ public final class HtmlExporterUtils {
     }
 
     /**
-     * 获取 [Base64]形式 的图片大小.
+     * 获取 [Base64] 形式 的图片大小.
      *
      * @param base64 base64 格式的图片
      * @return 图片大小

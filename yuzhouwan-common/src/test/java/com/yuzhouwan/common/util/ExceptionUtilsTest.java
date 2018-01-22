@@ -1,8 +1,6 @@
 package com.yuzhouwan.common.util;
 
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import static org.junit.Assert.assertEquals;
 
@@ -15,8 +13,6 @@ import static org.junit.Assert.assertEquals;
  * @since 2016/11/24
  */
 public class ExceptionUtilsTest {
-
-    private static final Logger _log = LoggerFactory.getLogger(ExceptionUtilsTest.class);
 
     @Test
     public void errorInfo() throws Exception {

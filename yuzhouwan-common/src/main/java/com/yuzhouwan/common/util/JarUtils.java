@@ -85,7 +85,7 @@ public final class JarUtils {
     }
 
     /**
-     * 从 Jar内部 遍历配置文件，并加载.
+     * 从 Jar 内部 遍历配置文件，并加载.
      */
     private static void scanDirWithinJar(String jarPath) throws Exception {
         //如果是 webApp，这里需要是改为 ".." + JAR_PATH；否则，直接用 JAR_PATH (supported by profile in maven)
@@ -140,7 +140,7 @@ public final class JarUtils {
     }
 
     /**
-     * 判断某个 Class是否是 Project内的，还是外部依赖的 jar里的.
+     * 判断某个 Class 是否是 Project 内的，还是外部依赖的 jar 里的.
      *
      * @param clazz Class
      * @return isProjectJar
@@ -148,8 +148,8 @@ public final class JarUtils {
     public static boolean isProjectJar(final Class<?> clazz) {
         if (clazz == null) return false;
         try {
-            return !new File(clazz.getProtectionDomain().getCodeSource().getLocation()
-                    .toURI()).getName().endsWith(".jar");
+            return !new File(clazz.getProtectionDomain().getCodeSource().getLocation().toURI())
+                    .getName().endsWith(".jar");
         } catch (Exception ignored) {
             _log.error(ExceptionUtils.errorInfo(ignored));
             return true;

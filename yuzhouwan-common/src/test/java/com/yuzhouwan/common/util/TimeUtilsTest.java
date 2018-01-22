@@ -58,13 +58,11 @@ public class TimeUtilsTest {
 
     @Test
     public void testYesterdayBegin() {
-
         System.out.println(sdf.format(TimeUtils.yesterdayBegin()));
     }
 
     @Test
     public void testYesterdayEnd() {
-
         System.out.println(sdf.format(TimeUtils.yesterdayEnd()));
     }
 
@@ -184,6 +182,7 @@ public class TimeUtilsTest {
     public void timeZone() throws Exception {
         Date now = new Date();
         Date past = TimeUtils.zeroTimeZone(now);
+        assert past != null;
         assertEquals(0, now.getTime() - past.getTime());
 
         // 2016-11-25T07:01:23.000Z

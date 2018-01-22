@@ -97,7 +97,7 @@ public final class TimeUtils {
     }
 
     /**
-     * 上个月的同一天，凌晨 0点.
+     * 上个月的同一天，凌晨 0 点.
      *
      * @return date
      */
@@ -128,9 +128,9 @@ public final class TimeUtils {
     }
 
     /**
-     * n天前的 00:00:00 000.
+     * n 天前的 00:00:00 000.
      *
-     * @param index n天
+     * @param index 第 n 天
      * @return date
      */
     public static Date fewDaysAgoBegin(int index) {

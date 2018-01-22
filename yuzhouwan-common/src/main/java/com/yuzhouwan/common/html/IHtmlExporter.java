@@ -16,26 +16,26 @@ import org.openqa.selenium.Cookie;
 public interface IHtmlExporter {
 
     /**
-     * 将带有 chart、map等动态图表的 html转换为 图片.
+     * 将带有 chart、map 等动态图表的 html 转换为 图片.
      *
-     * @param url 目标URL
+     * @param url 目标 URL
      * @return 未知类型的图片
      */
     <OT> OT convert2Image(String url);
 
     /**
-     * 将带有 chart、map等动态图表的 html转换为 图片.
+     * 将带有 chart、map 等动态图表的 html 转换为 图片.
      *
-     * @param url 目标URL
+     * @param url 目标 URL
      * @return 未知类型的图片
      */
     <OT> OT convert2Image(String url, Integer width, Integer height);
 
     /**
-     * 将带有 chart、map等动态图表的 html转换为 图片 (可以额外配置 cookie的权限控制).
+     * 将带有 chart、map 等动态图表的 html 转换为 图片（可以额外配置 cookie 的权限控制）.
      * 默认原始页面大小，作为图片的大小.
      *
-     * @param url         目标URL
+     * @param url         目标 URL
      * @param addedCookie 添加 cookie
      * @return 未知类型的图片
      */
@@ -43,9 +43,9 @@ public interface IHtmlExporter {
 
 
     /**
-     * 将带有 chart、map等动态图表的 html转换为 图片 (可以额外配置 cookie的权限控制).
+     * 将带有 chart、map 等动态图表的 html 转换为 图片（可以额外配置 cookie 的权限控制）.
      *
-     * @param url         目标URL
+     * @param url         目标 URL
      * @param addedCookie 添加 cookie
      * @return 未知类型的图片
      */

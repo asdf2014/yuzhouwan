@@ -61,8 +61,8 @@ public final class HttpUtils {
     private static int MAX_TOTAL;
     private static int MAX_RETRY;
     private static int MAX_ROUTE_TOTAL;
-    public static final int TIMEOUT_CONNECTION_DEFAULT = 60000;
-    public static final int TIMEOUT_SOCKET_DEFAULT = 60000;
+    public static final int TIMEOUT_CONNECTION_DEFAULT = 6_0000;
+    public static final int TIMEOUT_SOCKET_DEFAULT = 6_0000;
     public static final int MAX_TOTAL_DEFAULT = 200;
     public static final int MAX_RETRY_DEFAULT = 5;
     public static final int MAX_ROUTE_TOTAL_DEFAULT = 20;
@@ -139,7 +139,7 @@ public final class HttpUtils {
     }
 
     /**
-     * 覆盖证书检测过程 [用以非 CA 的 https 链接 (CA, Certificate Authority 数字证书)].
+     * 覆盖证书检测过程 [用以非 CA 的 https 链接（CA, Certificate Authority 数字证书）].
      */
     private void coverCA() {
         trustManagers[0] = new X509TrustManager() {
@@ -244,9 +244,8 @@ public final class HttpUtils {
             Object value;
             for (Entry<String, Object> entry : params.entrySet()) {
                 value = entry.getValue();
-                if (value instanceof File) {
-                    builder.addBinaryBody(entry.getKey(), (File) value);
-                } else if (value instanceof CharSequence) {
+                if (value instanceof File) builder.addBinaryBody(entry.getKey(), (File) value);
+                else if (value instanceof CharSequence) {
                     builder.addTextBody(entry.getKey(), value.toString(), contentType);
                 } else builder.addTextBody(entry.getKey(), JSON.toJSONString(value), contentType);
             }
@@ -442,7 +441,7 @@ public final class HttpUtils {
      */
     private HttpResponse checkResponseStatus(HttpResponse response) {
         if (response.isError())
-            throw new RuntimeException(String.format("Response is error, code: %s", response.getCode()));
+            throw new RuntimeException(String.format("Response is error, code: %s!", response.getCode()));
         return response;
     }
 

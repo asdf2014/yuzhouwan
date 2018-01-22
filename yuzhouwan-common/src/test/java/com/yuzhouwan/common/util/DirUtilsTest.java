@@ -54,8 +54,8 @@ public class DirUtilsTest {
     @Test
     public void testDirScan() throws Exception {
         List<String> absolutePath;
-        assertNotEquals(null, absolutePath =
-                DirUtils.findAbsolutePath(DirUtils.getTestClassesPath(), "DirUtilsTest.class"));
+        assertNotEquals(null, absolutePath = DirUtils.findAbsolutePath(DirUtils.getTestClassesPath(),
+                "DirUtilsTest.class"));
         assertEquals(true, absolutePath.get(0).endsWith("test-classes" + File.separator + "com" + File.separator +
                 "yuzhouwan" + File.separator + "common" + File.separator + "util" + File.separator +
                 "DirUtilsTest.class"));
@@ -101,8 +101,7 @@ public class DirUtilsTest {
 
         new File("E:/watch").deleteOnExit();
 
-        thread.setRunning(false);
+        if (thread != null) thread.setRunning(false);
         t.join();
     }
-
 }
