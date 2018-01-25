@@ -29,7 +29,7 @@ class SecurityClassLoader extends ClassLoader {
 
     private Cipher cipher;
 
-    SecurityClassLoader(SecretKey key) throws GeneralSecurityException, IOException {
+    SecurityClassLoader(SecretKey key) throws GeneralSecurityException {
         _log.error("[SecurityClassLoader: creating cipher]");
         cipher = Cipher.getInstance(ALGORITHM);
         cipher.init(Cipher.DECRYPT_MODE, key, new SecureRandom());

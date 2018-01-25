@@ -18,7 +18,7 @@ public class UnsafeApp {
     /**
      * @param args arg0 arg1 arg2
      */
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         _log.debug("This is your application.");
         _log.debug("Args: ");
         for (String arg : args) _log.debug(arg + " ");

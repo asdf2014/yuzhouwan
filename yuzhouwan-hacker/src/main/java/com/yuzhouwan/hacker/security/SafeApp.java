@@ -30,7 +30,6 @@ public class SafeApp {
      *             src/main/resources/security/key.data F:/如何成为 Java 高手/笔记/Soft Engineering/Git/
      *             [code]/yuzhouwan/yuzhouwan-hacker/target/classes/com/yuzhouwan/hacker/security/SafeApp
      *             arg0 arg1 arg2.
-     * @throws Exception
      */
     @SuppressWarnings("unchecked")
     public static void main(String[] args) throws Exception {
