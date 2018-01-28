@@ -29,15 +29,14 @@ public class ClassLoaderTest {
                 if (is == null) return super.loadClass(name);
                 try {
                     byte[] bytes = new byte[is.available()];
-                    int len = is.read(bytes);
-                    return defineClass(name, bytes, 0, len);
+                    return defineClass(name, bytes, 0, is.read(bytes));
                 } catch (IOException e) {
                     throw new ClassNotFoundException(name, e);
                 }
             }
         };
         Object obj = mineClassLoader.loadClass(CLASS_LOADER_TEST_CLASS_NAME).newInstance();
-        assertEquals("class ".concat(CLASS_LOADER_TEST_CLASS_NAME), obj.getClass().toString());
+        assertEquals(CLASS_LOADER_TEST_CLASS_NAME, obj.getClass().getName());
         assertEquals(false, obj instanceof ClassLoaderTest);
     }
 }
