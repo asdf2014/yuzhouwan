@@ -15,7 +15,7 @@ public class ExecutorV2 extends AbstractExecutor {
         return this.handle(new Handler() {
             @Override
             public String handle() {
-                return "V2:" + name;
+                return "V2:".concat(name);
             }
         });
     }

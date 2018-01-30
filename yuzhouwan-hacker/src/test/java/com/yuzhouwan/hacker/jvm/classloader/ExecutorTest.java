@@ -14,15 +14,45 @@ import static org.junit.Assert.assertEquals;
  */
 public class ExecutorTest {
 
+    /*
+    V1 Executor
+        Loading class: com.yuzhouwan.hacker.jvm.classloader.ExecutorV1
+        Loading class: com.yuzhouwan.hacker.jvm.classloader.AbstractExecutor
+        Loading class: com.yuzhouwan.hacker.jvm.classloader.Executor
+        Loading class: java.lang.Object
+        Loading class: com.yuzhouwan.hacker.jvm.classloader.Handler
+        Loading class: com.yuzhouwan.hacker.jvm.classloader.AbstractExecutor$1
+        Loading class: com.yuzhouwan.hacker.jvm.classloader.ExecutorV1$1
+        Loading class: java.lang.String
+        Loading class: java.lang.Thread
+        Loading class: java.lang.Class
+        Loading class: java.lang.StringBuilder
+
+    V2 Executor
+        Loading class: com.yuzhouwan.hacker.jvm.classloader.ExecutorV2
+        Loading class: com.yuzhouwan.hacker.jvm.classloader.AbstractExecutor
+        Loading class: com.yuzhouwan.hacker.jvm.classloader.Executor
+        Loading class: java.lang.Object
+        Loading class: com.yuzhouwan.hacker.jvm.classloader.Handler
+        Loading class: com.yuzhouwan.hacker.jvm.classloader.AbstractExecutor$1
+        Loading class: com.yuzhouwan.hacker.jvm.classloader.ExecutorV2$1
+        Loading class: java.lang.String
+        Loading class: java.lang.Thread
+        Loading class: java.lang.Class
+        Loading class: java.lang.StringBuilder
+     */
     @Test
     public void testExecuteV1() {
-        ExecutorProxy executor = new ExecutorProxy("v1");
-        assertEquals("V1:BenedictJin", executor.execute("BenedictJin"));
-    }
-
-    @Test
-    public void testExecuteV2() {
-        ExecutorProxy executor = new ExecutorProxy("v2");
-        assertEquals("V2:BenedictJin", executor.execute("BenedictJin"));
+        String name = "BenedictJin";
+        {
+            Executor executor = new ExecutorProxy("v1");
+            System.out.println("V1 Executor");
+            assertEquals("V1:".concat(name), executor.execute(name));
+        }
+        {
+            Executor executor = new ExecutorProxy("v2");
+            System.out.println("V2 Executor");
+            assertEquals("V2:".concat(name), executor.execute(name));
+        }
     }
 }

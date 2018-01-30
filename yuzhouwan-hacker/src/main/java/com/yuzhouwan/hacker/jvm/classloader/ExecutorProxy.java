@@ -10,25 +10,24 @@ import java.lang.reflect.Method;
  * @author Benedict Jin
  * @since 2018/1/26
  */
-public class ExecutorProxy {
+public class ExecutorProxy implements Executor {
 
     private String version;
     private StandardExecutorClassLoader classLoader;
 
-    public ExecutorProxy(String version) {
+    ExecutorProxy(String version) {
         this.version = version;
         this.classLoader = new StandardExecutorClassLoader(version);
     }
 
+    @Override
     public String execute(String name) {
         try {
             // Load ExecutorProxy class
-            Class<?> executorClazz = classLoader.loadClass("com.yuzhouwan.hacker.jvm.classloader.Executor"
-                    + version.toUpperCase());
-
-            Object executorInstance = executorClazz.newInstance();
-            Method method = executorClazz.getMethod("execute", String.class);
-
+            Class<?> executorClass = classLoader.loadClass(
+                    "com.yuzhouwan.hacker.jvm.classloader.Executor".concat(version.toUpperCase()));
+            Object executorInstance = executorClass.newInstance();
+            Method method = executorClass.getMethod("execute", String.class);
             Object obj = method.invoke(executorInstance, name);
             return obj == null ? "" : obj.toString();
         } catch (Exception e) {

@@ -1,7 +1,6 @@
 package com.yuzhouwan.hacker.jvm.classloader;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.Objects;
@@ -16,18 +15,19 @@ import java.util.Objects;
  */
 public class StandardExecutorClassLoader extends URLClassLoader {
 
-    private static final String BASE_DIR = System.getProperty("user.dir") + File.separator + "ext" + File.separator;
+    private static final String JAR_POSTFIX = ".jar";
+    private static final String URL_PROTOCOL_FILE = "file";
+    private static final String BASE_PATH = System.getProperty("user.dir");
+    private static final String EXTENSION_PATH = BASE_PATH.concat(File.separator).concat("ext").concat(File.separator);
 
     public StandardExecutorClassLoader(String version) {
-        // 将 Parent 设置为 null.
-        super(new URL[]{}, null);
+        super(new URL[]{}, null);   // set parent classLoader as null.
         loadResource(version);
     }
 
     @Override
     public Class<?> loadClass(String name) throws ClassNotFoundException {
-        // 测试时可打印看一下.
-        System.out.println("Class loader: " + name);
+        System.out.println("Loading class: " + name);
         return super.loadClass(name);
     }
 
@@ -41,31 +41,25 @@ public class StandardExecutorClassLoader extends URLClassLoader {
     }
 
     private void loadResource(String version) {
-        String jarPath = BASE_DIR + version;
-
-        // 加载对应版本目录下的 Jar 包.
-        tryLoadJarInDir(jarPath);
-        // 加载对应版本目录下的 lib 目录下的 Jar 包.
-        tryLoadJarInDir(jarPath + File.separator + "lib");
+        String jarPath = EXTENSION_PATH + version;
+        loadJar(jarPath);
+        loadJar(jarPath.concat(File.separator).concat("lib"));
     }
 
-    private void tryLoadJarInDir(String dirPath) {
+    private void loadJar(String dirPath) {
         File dir = new File(dirPath);
-        // 自动加载目录下的 Jar 包.
-        if (dir.exists() && dir.isDirectory()) {
-            for (File file : Objects.requireNonNull(dir.listFiles())) {
-                if (file.isFile() && file.getName().endsWith(".jar")) {
-                    this.addURL(file);
-                }
-            }
+        if (!dir.exists() || !dir.isDirectory()) return;
+        for (File file : Objects.requireNonNull(dir.listFiles())) {
+            if (file == null || !file.isFile() || !file.getName().endsWith(JAR_POSTFIX)) continue;
+            this.addURL(file);
         }
     }
 
     private void addURL(File file) {
         try {
-            super.addURL(new URL("file", null, file.getCanonicalPath()));
-        } catch (IOException e) {
-            e.printStackTrace();
+            super.addURL(new URL(URL_PROTOCOL_FILE, null, file.getCanonicalPath()));
+        } catch (Exception e) {
+            throw new RuntimeException(String.format("Cannot add url [%s]!", file.getAbsolutePath()), e);
         }
     }
 }
