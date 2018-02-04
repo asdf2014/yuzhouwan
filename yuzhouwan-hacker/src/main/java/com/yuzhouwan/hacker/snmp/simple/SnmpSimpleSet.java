@@ -8,6 +8,8 @@ import org.snmp4j.mp.SnmpConstants;
 import org.snmp4j.smi.*;
 import org.snmp4j.transport.DefaultUdpTransportMapping;
 
+import static com.yuzhouwan.common.util.StrUtils.NEXT_LINE;
+
 /**
  * Copyright @ 2018 yuzhouwan.com
  * All right reserved.
@@ -67,7 +69,7 @@ public class SnmpSimpleSet {
             PDU response = event.getResponse();
 
             if (response == null) {
-                System.out.print("response is null, request time out\r\n");
+                System.out.print("response is null, request time out" + NEXT_LINE);
 
             } else {
                 System.out.println("response pdu size is " + response.size());

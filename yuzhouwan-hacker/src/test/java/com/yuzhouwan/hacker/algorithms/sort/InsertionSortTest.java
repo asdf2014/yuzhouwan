@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static com.yuzhouwan.common.util.StrUtils.NEXT_LINE;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -79,13 +80,13 @@ public class InsertionSortTest {
             begin = System.currentTimeMillis();
             insertionSort.insertionSort(sorted);
             end = System.currentTimeMillis();
-            _log.debug("Max: " + sorted[ARRAY_SIZE - 1] + ", and finished in " + (end - begin) + " millisecond\r\n");
+            _log.debug("Max: " + sorted[ARRAY_SIZE - 1] + ", and finished in " + (end - begin) + " millisecond");
         }
         {
             begin = System.currentTimeMillis();
             insertionSort.insertionSort(reversed);
             end = System.currentTimeMillis();
-            _log.debug("Max: " + sorted[ARRAY_SIZE - 1] + ", and finished in " + (end - begin) + " millisecond\r\n");
+            _log.debug("Max: " + sorted[ARRAY_SIZE - 1] + ", and finished in " + (end - begin) + " millisecond");
         }
     }
 }

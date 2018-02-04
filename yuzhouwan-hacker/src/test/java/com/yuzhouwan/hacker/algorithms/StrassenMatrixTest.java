@@ -6,6 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.yuzhouwan.common.util.StrUtils.NEXT_LINE;
+
 /**
  * StrassenMatrix Tester.
  *
@@ -37,7 +39,7 @@ public class StrassenMatrixTest {
                 for (double col : row) {
                     System.out.print(col + "\t");
                 }
-                System.out.print("\r\n");
+                System.out.print(NEXT_LINE);
             }
         }
         System.out.println("-----------------------------");
@@ -48,7 +50,7 @@ public class StrassenMatrixTest {
                 for (double col : row) {
                     System.out.print(col + "\t");
                 }
-                System.out.print("\r\n");
+                System.out.print(NEXT_LINE);
             }
         }
         System.out.println("-----------------------------");
@@ -59,7 +61,7 @@ public class StrassenMatrixTest {
                 for (double col : row) {
                     System.out.print(col + "\t");
                 }
-                System.out.print("\r\n");
+                System.out.print(NEXT_LINE);
             }
         }
     }
@@ -73,7 +75,7 @@ public class StrassenMatrixTest {
                 for (double col : row) {
                     System.out.print(col + "\t");
                 }
-                System.out.print("\r\n");
+                System.out.print(NEXT_LINE);
             }
         }
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
@@ -84,7 +86,7 @@ public class StrassenMatrixTest {
                 for (double col : row) {
                     System.out.print(col + "\t");
                 }
-                System.out.print("\r\n");
+                System.out.print(NEXT_LINE);
             }
         }
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
@@ -95,7 +97,7 @@ public class StrassenMatrixTest {
                 for (double col : row) {
                     System.out.print(col + "\t");
                 }
-                System.out.print("\r\n");
+                System.out.print(NEXT_LINE);
             }
         }
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
@@ -106,7 +108,7 @@ public class StrassenMatrixTest {
                 for (double col : row) {
                     System.out.print(col + "\t");
                 }
-                System.out.print("\r\n");
+                System.out.print(NEXT_LINE);
             }
         }
     }
@@ -147,7 +149,7 @@ public class StrassenMatrixTest {
 //            for (int element : line) {
 //                System.out.print(element + "\t");
 //            }
-//            System.out.print("\r\n");
+//            System.out.print(NEXT_LINE);
 //        }
     }
 
@@ -186,7 +188,7 @@ public class StrassenMatrixTest {
 //            for (int element : line) {
 //                System.out.print(element + "\t");
 //            }
-//            System.out.print("\r\n");
+//            System.out.print(NEXT_LINE);
 //        }
     }
 
@@ -211,5 +213,4 @@ public class StrassenMatrixTest {
         System.out.println("Violent:\tfinished in " + (end - begin) + " millisecond");
         System.out.println("Strassen:\tfinished in " + (end2 - begin2) + " millisecond");
     }
-
-} 
+}

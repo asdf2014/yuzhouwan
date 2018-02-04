@@ -84,7 +84,7 @@ public class MergeSortTest {
         int max = mergeSort.findMaximum(transferred, 0, 9999);
         long end = System.currentTimeMillis();
 
-        System.out.print("Result: " + max + ", and finished in " + (end - begin) + " millisecond\r\n");
+        System.out.print("Result: " + max + ", and finished in " + (end - begin) + " millisecond");
         assertEquals(50005000, max);
     }
 

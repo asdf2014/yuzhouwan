@@ -8,6 +8,7 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.yuzhouwan.common.util.StrUtils.NEXT_LINE;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -42,7 +43,7 @@ public class GroupTry {
         Pattern p = Pattern.compile("(?<time>(\\S+ +){4})(?<device>\\S+ )(?<operator>\\S+):(?<body>.*)");
         Matcher m = p.matcher(expression);
         if (m.find()) {
-            System.out.println("Group's Count:\t" + m.groupCount() + "\r\n");
+            System.out.println("Group's Count:\t" + m.groupCount() + NEXT_LINE);
             System.out.println("Time:\t" + m.group("time").trim());
             System.out.println("Device:\t" + m.group("device").trim());
             System.out.println("Oper:\t" + m.group("operator").trim());

@@ -13,6 +13,7 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.yuzhouwan.common.util.StrUtils.NEXT_LINE;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -61,7 +62,7 @@ public class SpringELTryTest {
         if (!parts.find()) {
             _log.error("Cannot catch four parts in switch log!");
         }
-        _log.info("Group's Count:\t" + parts.groupCount() + "\r\n");
+        _log.info("Group's Count:\t" + parts.groupCount() + NEXT_LINE);
 
         String timePart = parts.group("time").trim();
         if (StrUtils.isEmpty(timePart)) {
