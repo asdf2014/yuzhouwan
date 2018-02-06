@@ -1,4 +1,4 @@
-package com.yuzhouwan.hacker.javaProhibited.serializable;
+package com.yuzhouwan.hacker.javaProhibited.serializable.converter;
 
 import java.io.*;
 
@@ -7,7 +7,7 @@ import static java.lang.System.out;
 /**
  * Copyright @ 2018 yuzhouwan.com
  * All right reserved.
- * Function: Serialization Demonstrator
+ * Function: Serialization Converter
  *
  * @author Benedict Jin
  * @since 2015/8/4
@@ -71,4 +71,4 @@ public class SerializationConverter {
         }
         return objectOut;
     }
-}  
+}

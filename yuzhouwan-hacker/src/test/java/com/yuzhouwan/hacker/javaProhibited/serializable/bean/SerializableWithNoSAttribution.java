@@ -1,4 +1,4 @@
-package com.yuzhouwan.hacker.javaProhibited.serializable;
+package com.yuzhouwan.hacker.javaProhibited.serializable.bean;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -16,7 +16,7 @@ import java.io.Serializable;
 public class SerializableWithNoSAttribution implements Serializable {
 
     private String id;
-    private String name;
+    private transient String name;
     private int age;
 
     private Infos infos;
@@ -68,13 +68,14 @@ public class SerializableWithNoSAttribution implements Serializable {
         out.writeUTF(this.name);
         out.writeInt(this.age);
         out.writeUTF(this.infos.getTel());
+        out.writeUTF(this.infos.getBlog());
     }
 
     private void readObject(final ObjectInputStream in) throws IOException, ClassNotFoundException {
         this.id = in.readUTF();
         this.name = in.readUTF();
         this.age = in.readInt();
-        this.infos = new Infos(in.readUTF());
+        this.infos = new Infos(in.readUTF(), in.readUTF());
     }
 
 
@@ -87,48 +88,4 @@ public class SerializableWithNoSAttribution implements Serializable {
                 ", infos=" + infos +
                 '}';
     }
-}
-
-class Infos {
-
-    private String tel;
-
-    public Infos() {
-    }
-
-    public Infos(String tel) {
-        this.tel = tel;
-    }
-
-    public String getTel() {
-        return tel;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel;
-    }
-
-    @Override
-    public String toString() {
-        return "Infos{" +
-                "tel='" + tel + '\'' +
-                '}';
-    }
-}
-
-class MainThread {
-
-    public static void main(String... args) {
-
-        /**
-         * Serialization of Object SerializableWithNoSAttribution{id='ASDF2014', name='asdf', age=20, infos=Infos{tel='123456'}} completed.
-         * Deserialization of Object SerializableWithNoSAttribution{id='ASDF2014', name='asdf', age=20, infos=Infos{tel='123456'}} is completed.
-         */
-        Infos infos = new Infos("123456");
-        SerializableWithNoSAttribution s = new SerializableWithNoSAttribution("ASDF2014", "asdf", 20, infos);
-
-        SerializationConverter.serialize(s, "asdf");
-        SerializableWithNoSAttribution sDe = SerializationConverter.deserialize("asdf", SerializableWithNoSAttribution.class);
-    }
-
 }
