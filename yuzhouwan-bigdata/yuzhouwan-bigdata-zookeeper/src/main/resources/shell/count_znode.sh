@@ -7,8 +7,8 @@ tmpPath="/tmp/zookeeper/zk-monitor/snapshot"
 # default
 # get variables form config file
 dataDir=`cat ../conf/zoo.cfg | grep dataDir | sed 's/.*=//g'`
-clientPort=`cat ../conf/zoo.cfg | grep clientPort | sed 's/.*=//g'`
 zkHome=`readlink -f ../../zookeeper`"/"
+clientPort=`cat ../conf/zoo.cfg | grep clientPort | sed 's/.*=//g'`
 zkVersion=`ls ../ | grep -e "^zookeeper-.*jar$"`
 znodeParentPath="$1"
 topN="$2"
@@ -55,7 +55,7 @@ build_newest_snapshot() {
     cd ${zkHome}
     mkdir -p ${tmpPath}
     tmp=${tmpPath}/snapshot.`date '+%H%M'`
-    # Tmp: /tmp/zookeeper/zk-monitor/snapshot/snapshot.20170816142407
+    # Tmp: /home/zookeeper/zk-monitor/snapshot/snapshot.20170816142407
     echo "Tmp: ${tmp}"
     java -cp ${zkHome}${zkVersion}:${zkHome}lib/* org.apache.zookeeper.server.SnapshotFormatter ${newest_snapshot} > ${tmp}
 }
@@ -77,8 +77,8 @@ parse_newest_snapshot() {
         znodeParentPath="${znodeParentPath}/"
     fi
     for a in ${arr[@]}; do
-        count=`cat ${tmp} | grep -e "^${znodeParentPath}${a}" | wc -l`
-        result=`echo -e "\t\t${result}\n${count}\t${znodeParentPath}${a}"`
+        count=`cat ${tmp} | grep -e "^${znodeParentPath}${a}/" | wc -l`
+        result=`echo -e "\t\t${result}\n${count}\t${znodeParentPath}${a}/"`
     done
 
     # 0	/election

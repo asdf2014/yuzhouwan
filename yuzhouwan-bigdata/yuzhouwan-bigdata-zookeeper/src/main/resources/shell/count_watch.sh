@@ -55,8 +55,8 @@ parse_wchc() {
         znodeParentPath="${znodeParentPath}/"
     fi
     for a in ${arr[@]}; do
-        count=`cat ${tmp} | grep "${znodeParentPath}${a}" | wc -l`
-        result=`echo -e "\t\t${result}\n${count}\t${znodeParentPath}${a}"`
+        count=`cat ${tmp} | grep -E "${znodeParentPath}${a}/" | wc -l`
+        result=`echo -e "\t\t${result}\n${count}\t${znodeParentPath}${a}/"`
     done
 
     # 0	/election
