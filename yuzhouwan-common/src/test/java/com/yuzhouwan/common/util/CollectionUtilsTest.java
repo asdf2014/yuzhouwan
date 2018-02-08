@@ -29,7 +29,7 @@ public class CollectionUtilsTest {
     private static final Logger _log = LoggerFactory.getLogger(CollectionUtilsTest.class);
 
     @Test
-    public void removeAllByStrWithSeparator() throws Exception {
+    public void removeAllByStrWithSeparator() {
         assertEquals(Collections.singletonList("bbb"),
                 CollectionUtils.removeAllByStrWithSeparator(Arrays.asList("aaa", "abc", "bbb"), "a,c", ","));
         assertEquals(Collections.singletonList("bbb"),
@@ -44,6 +44,7 @@ public class CollectionUtilsTest {
     }
 
     @Test
+    @SuppressWarnings("all")
     public void duplicate() throws Exception {
         {
             Integer[] a = new Integer[]{1, 2, 3};
@@ -74,7 +75,7 @@ public class CollectionUtilsTest {
     }
 
     @Test
-    public void getDuplicate() throws Exception {
+    public void getDuplicate() {
         A _a = new A(1, "2", 3);
         A _b = new A(1, "a", 5);
         A _c = new A(4, "!", 3);
@@ -101,7 +102,7 @@ public class CollectionUtilsTest {
     }
 
     @Test
-    public void removeCollTest() throws Exception {
+    public void removeCollTest() {
         A _a = new A(1, "2", 3);
         A _b = new A(1, "a", 3);
         A _c = new A(1, "!", 3);
@@ -149,7 +150,7 @@ public class CollectionUtilsTest {
     }
 
     @Test
-    public void singletonListTest() throws Exception {
+    public void singletonListTest() {
         ByteBuffer bb = DecimalUtils.byteArray2byteBuffer("yuzhouwan".getBytes());
         List<ByteBuffer> bytes = Collections.singletonList(bb);
         ByteBufferInputStream inputStream = new ByteBufferInputStream(bytes);
@@ -159,7 +160,8 @@ public class CollectionUtilsTest {
     }
 
     @Test
-    public void collectionReferenceTest() throws Exception {
+    @SuppressWarnings("all")
+    public void collectionReferenceTest() {
         LinkedList<Long> oldList = new LinkedList<>();
         oldList.add(0L);
         LinkedList<Long> newList = oldList;
@@ -182,7 +184,7 @@ public class CollectionUtilsTest {
     Array length: 100000000, Spend Time: 7.105568329E9ns = 7105.568329ms
      */
     @Test
-    public void getNthNumberTest() throws Exception {
+    public void getNthNumberTest() {
         internalNthTest(10, 1);
         internalNthTest(100, 10);
         internalNthTest(1000, 100);
@@ -190,7 +192,7 @@ public class CollectionUtilsTest {
 
     @Ignore
     @Test
-    public void getNthNumberPerformanceTest() throws Exception {
+    public void getNthNumberPerformanceTest() {
         internalNthTest(1_0000, 1000);
         internalNthTest(10_0000, 10000);
         internalNthTest(100_0000, 10_0000);
@@ -214,7 +216,7 @@ public class CollectionUtilsTest {
     }
 
     @Test
-    public void exchangeKeysTest() throws Exception {
+    public void exchangeKeysTest() {
         Map<String, Map<Long, String>> map = Maps.newHashMap();
         Map<Long, String> internalMap = Maps.newHashMap();
         internalMap.put(1L, "1L");
@@ -226,5 +228,22 @@ public class CollectionUtilsTest {
         map.put("2", internalMap2);
         Map<Long, Map<String, String>> aim = CollectionUtils.exchangeKeys(map);
         assertEquals("{1:{\"1\":\"1L\"},2:{\"1\":\"2L\",\"2\":\"2L\"},3:{\"2\":\"3L\"}}", JSON.toJSONString(aim));
+    }
+
+    @Test
+    public void joinTest() {
+        {
+            String[] arr = {"a", "b", "c"};
+            assertEquals("a-b-c", CollectionUtils.join(arr, "-"));
+        }
+        {
+            List<Integer> list = new LinkedList<>();
+            assertEquals("", CollectionUtils.join(list, ", "));
+            list.add(1);
+            list.add(2);
+            list.add(3);
+            assertEquals("1, 2, 3", CollectionUtils.join(list, ", "));
+            assertEquals("1null2null3", CollectionUtils.join(list, null));
+        }
     }
 }

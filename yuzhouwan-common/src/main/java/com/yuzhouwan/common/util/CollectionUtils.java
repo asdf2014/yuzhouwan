@@ -27,11 +27,6 @@ public final class CollectionUtils {
 
     /**
      * 按照 strWithSeparator 中包含的几个单词，模糊匹配 originList 内元素，并移除.
-     *
-     * @param originList
-     * @param strWithSeparator
-     * @param separator
-     * @return
      */
     public static List<String> removeAllByStrWithSeparator(List<String> originList,
                                                            String strWithSeparator, String separator) {
@@ -49,10 +44,6 @@ public final class CollectionUtils {
 
     /**
      * Remove Duplicate for Object[].
-     *
-     * @param a
-     * @param b
-     * @return
      */
     public static Object[] intersection(Object[] a, Object[] b) {
         if (a == null || b == null || a.length == 0 || b.length == 0) return null;
@@ -64,10 +55,6 @@ public final class CollectionUtils {
 
     /**
      * Remove Duplicate for Collection.
-     *
-     * @param a
-     * @param b
-     * @return
      */
     public static <T> Collection<T> intersection(Collection<T> a, Collection<T> b) {
         if (a == null || b == null || a.size() == 0 || b.size() == 0) return null;
@@ -142,14 +129,6 @@ public final class CollectionUtils {
 
     /**
      * Check the object could be removed.
-     *
-     * @param field
-     * @param c
-     * @param removes
-     * @param <T>
-     * @return
-     * @throws NoSuchFieldException
-     * @throws IllegalAccessException
      */
     private static <T> boolean canRemove(String field, T c, Object[] removes)
             throws NoSuchFieldException, IllegalAccessException {
@@ -223,12 +202,6 @@ public final class CollectionUtils {
      * <code>
      * 　　Map<X, Map<Y, Z>> -> Map<Y, Map<X, Z>>
      * </code>
-     *
-     * @param map
-     * @param <X>
-     * @param <Y>
-     * @param <Z>
-     * @return
      */
     public static <X, Y, Z> Map<Y, Map<X, Z>> exchangeKeys(Map<X, Map<Y, Z>> map) {
         return map.entrySet()
@@ -241,5 +214,26 @@ public final class CollectionUtils {
                                         new ImmutablePair<>(xyz.getKey(), yz.getValue())))
                 ).collect(groupingBy(ImmutablePair::getLeft,
                         mapping(ImmutablePair::getRight, toMap(ImmutablePair::getLeft, ImmutablePair::getRight))));
+    }
+
+    /**
+     * [1, 2, 3] + ", " = "1, 2, 3".
+     */
+    public static <T> String join(T[] arr, String separator) {
+        return join(Arrays.asList(arr), separator);
+    }
+
+    /**
+     * @see #join(Object[], String)
+     */
+    public static <T> String join(Collection<T> list, String separator) {
+        if (list == null || list.size() == 0) return "";
+        StringBuilder sb = new StringBuilder();
+        Iterator<T> iter = list.iterator();
+        while (iter.hasNext()) {
+            sb.append(iter.next());
+            if (iter.hasNext()) sb.append(separator);
+        }
+        return sb.toString();
     }
 }
