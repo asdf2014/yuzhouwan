@@ -35,6 +35,8 @@
         <maven.install.plugin.version>2.5.2</maven.install.plugin.version>
         <maven.eclipse.plugin.version>2.9</maven.eclipse.plugin.version>
         <maven.checkstyle.version>2.17</maven.checkstyle.version>
+        <maven.jacoco-maven-plugin.version>0.7.9</maven.jacoco-maven-plugin.version>
+        <maven.coveralls-maven-plugin.version>4.3.0</maven.coveralls-maven-plugin.version>
 
         <!-- groovy -->
         <groovy.version>2.3.11</groovy.version>
@@ -276,6 +278,18 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+
+            <!-- For coverage -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${maven.jacoco-maven-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.eluder.coveralls</groupId>
+                <artifactId>coveralls-maven-plugin</artifactId>
+                <version>${maven.coveralls-maven-plugin.version}</version>
             </plugin>
         </plugins>
     </build>

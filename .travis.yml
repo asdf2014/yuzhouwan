@@ -32,4 +32,13 @@ sudo: required
 
 cache:
   directories:
-      - $HOME/.m2
+    - $HOME/.m2
+
+after_success:
+  - mvn clean test
+  - mvn jacoco:report
+  - mvn coveralls:report -DrepoToken="BenedictJin"
+
+env:
+  global:
+    - secure: "x2XMX3TNfXHt0ugz9m0VBDZ7gHvpNuML1ngun"
