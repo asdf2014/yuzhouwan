@@ -19,18 +19,21 @@ public class RPCTest {
 
     @Test
     public void rpc() throws Exception {
+        Server server = null;
+        try {
+            server = new RPC.RPCServer();
+            server.register(IRPCService.class, RPCServiceImpl.class);
+            server.start();
 
-        Server server = new RPC.RPCServer();
-        server.register(IRPCService.class, RPCServiceImpl.class);
-        server.start();
-
-        int count = 0, max = 5;
-        while (!server.isRunning() && count < max) {
-            Thread.sleep(10);
-            count++;
+            int count = 0, max = 20;
+            while (!server.isRunning() && count < max) {
+                Thread.sleep(5);
+                count++;
+            }
+            IRPCService testServiceImpl = RPC.getProxy(IRPCService.class, "localhost", server.getPort());
+            assertEquals("Hello, Benedict!", testServiceImpl.printHello("Benedict"));
+        } finally {
+            if (server != null) server.stop();  // System.exit(0);
         }
-        IRPCService testServiceImpl = RPC.getProxy(IRPCService.class, "localhost", server.getPort());
-        assertEquals("Hello, Benedict!", testServiceImpl.printHello("Benedict"));
-        server.stop();  // System.exit(0);
     }
 }
