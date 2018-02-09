@@ -42,7 +42,7 @@ public class ExecutorTest {
         Loading class: java.lang.StringBuilder
      */
     @Test
-    public void testExecuteV1() {
+    public void testExecute() {
         String name = "BenedictJin";
         {
             Executor executor = new ExecutorProxy("v1");

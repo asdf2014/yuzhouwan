@@ -19,7 +19,7 @@ public class DynamicPropUtilsTest {
 
     @Ignore
     @Test
-    public void syncTest() throws Exception {
+    public void syncTest() {
         String projectName = "yuzhouwan", key = "site", value = "blog";
         DynamicPropUtils dp = DynamicPropUtils.getInstance();
         Properties p = new Properties();
@@ -29,5 +29,34 @@ public class DynamicPropUtilsTest {
         dp.sync(projectName);
         assertEquals(value, dp.getFromRemote(projectName, key));
         dp.close();
+    }
+
+    @Test
+    public void countTest() {
+        int count = 0, max = 1;
+        {
+            boolean interWhileLoop = false;
+            while (count++ > max) interWhileLoop = true;
+            assertEquals(false, interWhileLoop);
+            count = 0;
+            while (++count > max) interWhileLoop = true;
+            assertEquals(false, interWhileLoop);
+            count = 0;
+            while (count++ >= max) interWhileLoop = true;
+            assertEquals(false, interWhileLoop);
+            count = 0;
+            while (++count >= max) interWhileLoop = true;
+            assertEquals(true, interWhileLoop);
+        }
+        {
+            count = 0;
+            int x = ++count;
+            assertEquals(1, x);
+            assertEquals(1, count);
+            count = 0;
+            int y = count++;
+            assertEquals(0, y);
+            assertEquals(1, count);
+        }
     }
 }

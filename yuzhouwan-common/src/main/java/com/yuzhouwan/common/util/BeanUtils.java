@@ -49,7 +49,7 @@ public final class BeanUtils {
             if (field == null) continue;
             if (valueField(o, key, value, field, ignores)) return;
         }
-        _log.debug("[Warn] Cannot be swapped, object: {}, key: {}, value: {}, ignores: {}.",
+        _log.debug("[Warn] Cannot be swapped! object: {}, key: {}, value: {}, ignores: {}",
                 o, key, value, JSON.toJSONString(ignores));
     }
 

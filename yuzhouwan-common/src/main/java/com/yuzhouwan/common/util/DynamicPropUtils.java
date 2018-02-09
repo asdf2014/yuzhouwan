@@ -30,16 +30,19 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
 
     private static final Logger _log = LoggerFactory.getLogger(DynamicPropUtils.class);
     private static final String ZNODE_PREFIX = "/";
+    private static Charset CHARSET_UTF8 = Charset.forName("UTF-8");
 
-    private static DynamicPropUtils instance;
+    private static volatile DynamicPropUtils instance;
     private static CuratorFramework curatorFramework;
     private static final ConcurrentHashMap<String, Prop> PROJECT_PROPERTIES = new ConcurrentHashMap<>();
 
-    public static final int CONNECTION_TIMEOUT_MS = 5000;
-    public static final int SESSION_TIMEOUT_MS = 40000;
-    public static final int RETRY_POLICY_INTERVAL = 2000;
-    public static final int RETRY_POLICY_TIMES = 3;
+    // curator configs
+    private static final int CONNECTION_TIMEOUT_MS = 5000;
+    private static final int SESSION_TIMEOUT_MS = 40000;
+    private static final int RETRY_POLICY_INTERVAL = 2000;
+    private static final int RETRY_POLICY_TIMES = 3;
 
+    // tick for sync
     private static LongAdder TICK = new LongAdder();
     private static final long TICK_THRESHOLD = 30L;
     private static final long TICK_MILLIS = 1000L;
@@ -47,9 +50,8 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
     private static final Thread TIMING_SYNC = new Thread(() -> {
         while (KEEP_SYNCING) {
             if (TICK.sum() >= TICK_THRESHOLD) {
-                for (Map.Entry<String, Prop> entry : PROJECT_PROPERTIES.entrySet()) {
-                    getInstance().sync(entry.getKey());
-                }
+                DynamicPropUtils instance = getInstance();
+                for (Map.Entry<String, Prop> entry : PROJECT_PROPERTIES.entrySet()) instance.sync(entry.getKey());
                 TICK.reset();
             } else TICK.increment();
             try {
@@ -72,11 +74,11 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
 
     private static void initCurator() throws Exception {
         _log.debug("Curator initializing...");
-        Object zkPath;
 
+        Object zkPath;
         int count = 0;
         while ((zkPath = PropUtils.getInstance().getProperty("dynamic.prop.utils.zk.path")) == null) {
-            if ((count++) >= TICK_THRESHOLD) {
+            if (++count >= TICK_THRESHOLD) {
                 instance.close();
                 System.exit(-1);
             }
@@ -117,9 +119,8 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
             return false;
         }
         Prop prop = PROJECT_PROPERTIES.get(projectName);
-        if (prop == null) {
-            prop = new Prop(p, System.currentTimeMillis());
-        } else {
+        if (prop == null) prop = new Prop(p, System.currentTimeMillis());
+        else {
             Properties properties = prop.getP();
             Object key;
             for (Map.Entry<Object, Object> entry : p.entrySet()) {
@@ -223,11 +224,13 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
     private boolean internalSync(String projectName, Prop localProp, boolean isRemote, boolean isLocal) {
         try {
             if (!isLocal && !isRemote) {
-                _log.warn("Sync failed! Cause: configuration about project[{}] is not on local and remote!",
-                        projectName);
+                _log.warn("Sync failed! Cause: config about project[{}] is not on local and remote!", projectName);
                 return false;
             } else if (isLocal && !isRemote) {
-                curatorFramework.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT)
+                curatorFramework
+                        .create()
+                        .creatingParentsIfNeeded()
+                        .withMode(CreateMode.PERSISTENT)
                         .forPath(ZNODE_PREFIX.concat(projectName));
                 _log.debug("Created ".concat(projectName));
                 setProp2Remote(projectName, localProp);
@@ -240,11 +243,8 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
                 if (remoteProp == null) return false;
                 long remoteModifyDate = remoteProp.getModify();
                 long localModifyDate = localProp.getModify();
-                if (remoteModifyDate > localModifyDate) {
-                    PROJECT_PROPERTIES.put(projectName, remoteProp);
-                } else {
-                    setProp2Remote(projectName, localProp);
-                }
+                if (remoteModifyDate > localModifyDate) PROJECT_PROPERTIES.put(projectName, remoteProp);
+                else setProp2Remote(projectName, localProp);
             }
         } catch (Exception e) {
             _log.error("Sync failed!", e);
@@ -255,16 +255,15 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
 
     private boolean setProp2Remote(String projectName, Prop localProp) throws Exception {
         if (uninitialized()) return false;
-        curatorFramework.setData().forPath(ZNODE_PREFIX.concat(projectName),
-                JSON.toJSONString(localProp).getBytes(Charset.forName("UTF-8")));
+        curatorFramework.setData()
+                .forPath(ZNODE_PREFIX.concat(projectName), JSON.toJSONString(localProp).getBytes(CHARSET_UTF8));
         _log.debug("Set data to remote success!");
         return true;
     }
 
     private Prop getPropFromRemote(String projectName) throws Exception {
         if (uninitialized()) return null;
-        String data = new String(curatorFramework.getData()
-                .forPath(ZNODE_PREFIX.concat(projectName)), Charset.forName("UTF-8"));
+        String data = new String(curatorFramework.getData().forPath(ZNODE_PREFIX.concat(projectName)), CHARSET_UTF8);
         return JSON.parseObject(data, Prop.class);
     }
 
