@@ -37,7 +37,7 @@ cache:
 after_success:
   - mvn clean test
   - mvn jacoco:report
-  - mvn coveralls:report -DrepoToken="BenedictJin"
+  - mvn coveralls:report -DrepoToken="Cq073Q6Lqyuk19IsLoHZa4gFD84FE7rkp"
 
 env:
   global:
