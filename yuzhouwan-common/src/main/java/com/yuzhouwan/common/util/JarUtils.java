@@ -23,6 +23,8 @@ public final class JarUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(JarUtils.class);
 
+    private static final String SUFFIX_JAR = ".jar";
+
     private static final String PROP_PATH = PropUtils.getInstance().getPropertyInternal("prop.path");
     private static final String LIB_PATH = DirUtils.getLibPathInWebApp();
     private static final String CLASSES_PATH = DirUtils.getTestClassesPath();
@@ -49,13 +51,14 @@ public final class JarUtils {
         try {
             // $PROJECT_BASE_PATH/*.jar
             String projectJarPath = PropUtils.getInstance().getPropertyInternal("project.jar.path");
-            if (!StrUtils.isEmpty(projectJarPath) && projectJarPath.endsWith(".jar"))
+            if (!StrUtils.isEmpty(projectJarPath) && projectJarPath.endsWith(SUFFIX_JAR))
                 loadPropsWithinJar(projectJarPath);
 
             // /classes/lib/*.jar
             _log.debug("CLASSES_PATH is {}", CLASSES_PATH);
             if (!StrUtils.isEmpty(CLASSES_PATH)) {
-                if ((jarPaths = DirUtils.findPath(CLASSES_PATH, "lib", ".jar", false)) != null && jarPaths.size() > 0)
+                if ((jarPaths = DirUtils.findPath(CLASSES_PATH, "lib", SUFFIX_JAR, false)) != null
+                        && jarPaths.size() > 0)
                     for (String jarFile : jarPaths) {
                         jarPaths = DirUtils.findPath(CLASSES_PATH, "classes", jarFile.substring(1), false);
                         if (jarPaths != null && jarPaths.size() > 0) scanDirWithinJar(jarPaths.get(0));
@@ -65,7 +68,7 @@ public final class JarUtils {
             // /lib/*.jar
             _log.debug("LIB_PATH is {}", LIB_PATH);
             if (!StrUtils.isEmpty(LIB_PATH)) {
-                if ((jarPaths = DirUtils.findPath(LIB_PATH, "lib", ".jar", false)) != null && jarPaths.size() > 0)
+                if ((jarPaths = DirUtils.findPath(LIB_PATH, "lib", SUFFIX_JAR, false)) != null && jarPaths.size() > 0)
                     for (String jarFile : jarPaths) {
                         //如果是 webApp，这里需要改为 WEB-INF; 否则是 target (supported by profile in maven)
                         jarPaths = DirUtils.findPath(LIB_PATH,
@@ -149,7 +152,7 @@ public final class JarUtils {
         if (clazz == null) return false;
         try {
             return !new File(clazz.getProtectionDomain().getCodeSource().getLocation().toURI())
-                    .getName().endsWith(".jar");
+                    .getName().endsWith(SUFFIX_JAR);
         } catch (Exception ignored) {
             _log.error(ExceptionUtils.errorInfo(ignored));
             return true;
