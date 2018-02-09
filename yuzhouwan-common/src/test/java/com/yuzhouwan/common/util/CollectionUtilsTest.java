@@ -246,4 +246,17 @@ public class CollectionUtilsTest {
             assertEquals("1null2null3", CollectionUtils.join(list, null));
         }
     }
+
+    @Test
+    @SuppressWarnings("unchecked")
+    public void convertTypeTest() {
+        List<Object> objectList = new LinkedList<>();
+        objectList.add(1);
+        objectList.add(2);
+        objectList.add(3);
+        List<Integer> integerList = (List<Integer>) (List<?>) objectList;
+        int count = 0;
+        for (Integer integer : integerList) count += integer;
+        assertEquals(6, count);
+    }
 }
