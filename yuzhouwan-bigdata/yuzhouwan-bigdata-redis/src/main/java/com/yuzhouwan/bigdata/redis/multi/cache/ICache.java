@@ -1,11 +1,11 @@
-package com.yuzhouwan.hacker.redis;
+package com.yuzhouwan.bigdata.redis.multi.cache;
 
 /**
  * Copyright @ 2018 yuzhouwan.com
  * All right reserved.
  * Function: ICache
  *
- * @param <T>
+ * @param <T> the type of value object
  * @author Benedict Jin
  * @since 2016/8/31
  */

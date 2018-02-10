@@ -1,4 +1,4 @@
-package com.yuzhouwan.hacker.redis;
+package com.yuzhouwan.bigdata.redis.multi.cache;
 
 /**
  * Copyright @ 2018 yuzhouwan.com
