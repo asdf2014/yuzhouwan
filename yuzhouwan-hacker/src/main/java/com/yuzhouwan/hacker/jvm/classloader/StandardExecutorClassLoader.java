@@ -41,7 +41,7 @@ public class StandardExecutorClassLoader extends URLClassLoader {
     }
 
     private void loadResource(String version) {
-        String jarPath = EXTENSION_PATH + version;
+        String jarPath = EXTENSION_PATH.concat(version);
         loadJar(jarPath);
         loadJar(jarPath.concat(File.separator).concat("lib"));
     }
@@ -51,7 +51,11 @@ public class StandardExecutorClassLoader extends URLClassLoader {
         if (!dir.exists() || !dir.isDirectory()) return;
         for (File file : Objects.requireNonNull(dir.listFiles())) {
             if (file == null || !file.isFile() || !file.getName().endsWith(JAR_POSTFIX)) continue;
-            this.addURL(file);
+            try {
+                this.addURL(file);
+            } catch (Exception e) {
+                e.printStackTrace();    // skip failed url.
+            }
         }
     }
 

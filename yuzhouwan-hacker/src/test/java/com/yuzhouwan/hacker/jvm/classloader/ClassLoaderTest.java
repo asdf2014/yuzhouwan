@@ -24,7 +24,7 @@ public class ClassLoaderTest {
         ClassLoader mineClassLoader = new ClassLoader() {
             @Override
             public Class<?> loadClass(String name) throws ClassNotFoundException {
-                String classFileName = name.substring(name.lastIndexOf(".") + 1) + ".class";
+                String classFileName = name.substring(name.lastIndexOf(".") + 1).concat(".class");
                 InputStream is = getClass().getResourceAsStream(classFileName);
                 if (is == null) return super.loadClass(name);
                 try {
