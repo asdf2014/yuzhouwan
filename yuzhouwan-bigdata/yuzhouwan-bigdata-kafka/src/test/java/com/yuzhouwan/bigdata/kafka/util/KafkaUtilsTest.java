@@ -28,7 +28,7 @@ public class KafkaUtilsTest {
     private static final int BUFFER_SIZE = 1024 * 1024 * 16;
 
     @SuppressWarnings("unchecked")
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
         Executor executor = Executors.newCachedThreadPool();
         AvroEventFactory factory = new AvroEventFactory();

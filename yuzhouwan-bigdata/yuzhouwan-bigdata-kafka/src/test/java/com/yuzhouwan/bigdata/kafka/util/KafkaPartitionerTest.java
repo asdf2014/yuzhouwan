@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class KafkaPartitionerTest {
 
     @Test
-    public void testSendMessage() throws Exception {
+    public void testSendMessage() {
         assertEquals(0, KafkaPartitioner.getPartition(null, 0));
         assertEquals(0, KafkaPartitioner.getPartition(null, 1));
         assertEquals(true, KafkaPartitioner.getPartition(null, 2) < 2);
