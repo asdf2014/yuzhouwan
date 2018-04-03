@@ -1,4 +1,4 @@
-package com.yuzhouwan.jit
+package com.yuzhouwan.hacker.jit
 
 /**
   * Copyright @ 2018 yuzhouwan.com

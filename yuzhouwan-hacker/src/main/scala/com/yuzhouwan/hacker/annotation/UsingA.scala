@@ -1,4 +1,4 @@
-package com.yuzhouwan.annotation
+package com.yuzhouwan.hacker.annotation
 
 import java.io.{BufferedReader, FileNotFoundException, FileReader, IOException}
 
@@ -16,25 +16,24 @@ class UsingA(fileName: String) {
 
   @throws(classOf[FileNotFoundException])
   @throws(classOf[IOException])
-  def read() = in.read()
-
+  def read(): Int = in.read()
 }
 
 object UsingA {
 
   def main(args: Array[String]) {
 
-    readSomething
-    readNothing
+    readSomething()
+    readNothing()
   }
 
-  def readSomething: Unit = {
+  def readSomething(): Unit = {
     val usingA = new UsingA("C:\\Users\\asdf2014\\Desktop\\李庆远在他２５０岁这年，写了一篇《养生自述》.txt")
     val len = usingA.read()
     println(len)
   }
 
-  def readNothing: Unit = {
+  def readNothing(): Unit = {
     val usingB = new UsingA("C:\\nothing")
     val lenB = usingB.read()
     println(lenB)

@@ -1,4 +1,4 @@
-package com.yuzhouwan.knowledge
+package com.yuzhouwan.hacker.knowledge
 
 import scala.collection.immutable.HashMap
 import scala.collection.mutable
@@ -7,7 +7,6 @@ import scala.collection.mutable
   * Created by Benedict Jin on 2015/9/14.
   */
 class Mutable {
-
 }
 
 object Mutable {
@@ -30,7 +29,5 @@ object Mutable {
     map += ("b" -> 2)
     map += ("c" -> 3)
     printf("c -> %d", map("c"))
-
   }
-
 }

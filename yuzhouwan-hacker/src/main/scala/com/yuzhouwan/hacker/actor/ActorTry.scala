@@ -1,4 +1,4 @@
-package com.yuzhouwan.actor
+package com.yuzhouwan.hacker.actor
 
 import scala.actors.Actor
 import scala.actors.Actor._
@@ -25,11 +25,11 @@ object ActorTry {
 
     NameResolver.start()
 
-    NameResolver !("www.yuzhouwan.com", self)
+    NameResolver ! ("www.yuzhouwan.com", self)
     Thread.sleep(1000)
     self.receiveWithin(0) { case x => println(x) }
 
-    NameResolver !("wwww.yuzhouwan.com", self)
+    NameResolver ! ("wwww.yuzhouwan.com", self)
     Thread.sleep(1000)
     self.receiveWithin(0) { case x => println(x) }
 
@@ -49,7 +49,7 @@ object ActorTry {
 
   def fiveQuestions(): Unit = {
     actor {
-      for (i <- 1 to 5)
+      for (_ <- 1 to 5)
         println("Question...")
       Thread.sleep(200)
     }
@@ -59,7 +59,7 @@ object ActorTry {
 
 object SillyActor extends Actor {
   def act() {
-    for (i <- 1 to 5) {
+    for (_ <- 1 to 5) {
       println("I'm acting!")
       Thread.sleep(1000)
     }
@@ -68,7 +68,7 @@ object SillyActor extends Actor {
 
 object SeriousActor extends Actor {
   def act() {
-    for (i <- 1 to 5) {
+    for (_ <- 1 to 5) {
       println("To be or not to be.")
       Thread.sleep(1000)
     }

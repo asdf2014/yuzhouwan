@@ -17,7 +17,7 @@ val a = "a"
 //error: arr, type not match
 a match {
   case "a" => print(a)
-  case _ => print(_)
+  case _ => print _
 }
 
 /* func as param */

@@ -1,4 +1,4 @@
-package com.yuzhouwan.breeze
+package com.yuzhouwan.hacker.breeze
 
 import breeze.linalg.{*, DenseMatrix, DenseVector}
 import breeze.stats.mean
@@ -8,7 +8,7 @@ import breeze.stats.mean
   */
 object BreezeQuickStart {
 
-  def singleRow: Unit = {
+  def singleRow(): Unit = {
 
     val x = DenseVector.zeros[Double](5)
 
@@ -43,18 +43,15 @@ object BreezeQuickStart {
     m(3, ::) := DenseVector(1, 2, 3, 4, 5).t
     printf(s"$m\r\n\r\n")
 
-
     m(0 to 1, 0 to 1) := DenseMatrix((3, -3), (-3, 3))
     printf(s"$m\r\n")
-
   }
 
   def main(args: Array[String]): Unit = {
 
-    //    singleRow
-    //    multiRowMatrix
-    broadCasting
-
+    // singleRow
+    // multiRowMatrix
+    broadCasting()
   }
 
   def broadCasting(): Unit = {
@@ -77,6 +74,4 @@ object BreezeQuickStart {
     println(mean(dm(*, ::)))
     println(mean(dm(::, *)))
   }
-
-
 }

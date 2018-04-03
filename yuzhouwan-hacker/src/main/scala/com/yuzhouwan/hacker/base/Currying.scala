@@ -9,12 +9,11 @@ package com.yuzhouwan.hacker.base
   * @since 2016/8/8
   */
 class Currying {
-
 }
 
 object Currying {
 
-  val addTwoNumbers = (x: Int, y: Int) => println(x + " + " + y + " = " + (x + y))
+  val addTwoNumbers: (Int, Int) => Unit = (x: Int, y: Int) => println(x + " + " + y + " = " + (x + y))
 
   def main(args: Array[String]) {
 
@@ -37,8 +36,6 @@ object Currying {
   }
 
   def addCurry(x: Int)(y: Int): Int = {
-
     x + y
   }
-
 }

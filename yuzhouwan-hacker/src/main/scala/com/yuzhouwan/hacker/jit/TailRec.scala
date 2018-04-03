@@ -1,4 +1,4 @@
-package com.yuzhouwan.jit
+package com.yuzhouwan.hacker.jit
 
 import scala.annotation.tailrec
 

@@ -5,6 +5,9 @@ for (i <- 0 to 10) {
   println(i)
 }
 val array = new Array[Int](2)
+def a(a: Int*) {
+  println(a)
+}
 a(1, 2)
 val m0 = Map(1 -> "a")
 array(0) = 1
@@ -45,18 +48,15 @@ Array(1, 2, 3, 4).foreach {
 //  }
 //}
 
+def fun2(x: Double): Double = {
+  3 * x
+}
+
 "abc".map(_.toInt)
 val fun4 = (x: Double) => 3 * x
 println(fun2(1))
 val fun = ceil _
 
-def a(a: Int*) {
-  println(a)
-}
-
-def fun2(x: Double): Double = {
-  3 * x
-}
 fun3(1)
 fun4(1)
 fun5(fun3)
