@@ -12,9 +12,9 @@ object BreezeQuickStart {
 
     val x = DenseVector.zeros[Double](5)
 
-    /**
-      * DenseVector(0.0, 0.0, 0.0, 0.0, 0.0)
-      */
+    /*
+     * DenseVector(0.0, 0.0, 0.0, 0.0, 0.0)
+     */
     printf(s"$x\r\n")
 
     val firstE = x(0)
@@ -23,9 +23,9 @@ object BreezeQuickStart {
     x(1) = 2
     printf(s"$x\r\n")
 
-    /**
-      * slicing
-      */
+    /*
+     * slicing
+     */
     x(3 to 4) := .5
     printf(s"$x\r\n\r\n")
   }

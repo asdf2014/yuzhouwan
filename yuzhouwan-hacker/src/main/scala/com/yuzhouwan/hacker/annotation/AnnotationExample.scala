@@ -10,7 +10,7 @@ import java.io.{BufferedReader, FileNotFoundException, FileReader, IOException}
   * @author Benedict Jin
   * @since 2015/11/20 0020
   */
-class UsingA(fileName: String) {
+class AnnotationExample(fileName: String) {
 
   private val in = new BufferedReader(new FileReader(fileName))
 
@@ -19,7 +19,7 @@ class UsingA(fileName: String) {
   def read(): Int = in.read()
 }
 
-object UsingA {
+object AnnotationExample {
 
   def main(args: Array[String]) {
 
@@ -28,13 +28,14 @@ object UsingA {
   }
 
   def readSomething(): Unit = {
-    val usingA = new UsingA("C:\\Users\\asdf2014\\Desktop\\李庆远在他２５０岁这年，写了一篇《养生自述》.txt")
+    val usingA = new AnnotationExample(
+      "C:\\Users\\asdf2014\\Desktop\\李庆远在他２５０岁这年，写了一篇《养生自述》.txt")
     val len = usingA.read()
     println(len)
   }
 
   def readNothing(): Unit = {
-    val usingB = new UsingA("C:\\nothing")
+    val usingB = new AnnotationExample("C:\\nothing")
     val lenB = usingB.read()
     println(lenB)
   }

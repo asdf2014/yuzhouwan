@@ -8,10 +8,7 @@ package com.yuzhouwan.hacker.base
   * @author Benedict Jin
   * @since 2016/8/8
   */
-class Currying {
-}
-
-object Currying {
+object CurryingExample {
 
   val addTwoNumbers: (Int, Int) => Unit = (x: Int, y: Int) => println(x + " + " + y + " = " + (x + y))
 

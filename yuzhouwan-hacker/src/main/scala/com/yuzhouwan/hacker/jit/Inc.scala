@@ -3,7 +3,7 @@ package com.yuzhouwan.hacker.jit
 /**
   * Copyright @ 2018 yuzhouwan.com
   * All right reserved.
-  * 功能描述：jit
+  * 功能描述：Inc
   *
   * @author Benedict Jin
   * @since 2015/11/3
@@ -30,7 +30,7 @@ object Inc {
 
   def using(): Int = {
     var i: Int = 0
-    for (j <- 1 to 1000000000) {
+    for (_ <- 1 to 1000000000) {
       // Scala!, Y U No Project Coin? ;)
       i = inc(i)
     }

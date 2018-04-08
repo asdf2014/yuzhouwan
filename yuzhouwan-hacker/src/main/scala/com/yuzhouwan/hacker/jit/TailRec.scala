@@ -5,7 +5,7 @@ import scala.annotation.tailrec
 /**
   * Copyright @ 2018 yuzhouwan.com
   * All right reserved.
-  * 功能描述：jit
+  * 功能描述：TailRec
   *
   * @author Benedict Jin
   * @since 2015/11/3

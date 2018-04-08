@@ -3,7 +3,7 @@ package com.yuzhouwan.hacker.jit
 /**
   * Copyright @ 2018 yuzhouwan.com
   * All right reserved.
-  * Function: jit
+  * Function: Rec
   *
   * @author Benedict Jin
   * @since 2016/7/16

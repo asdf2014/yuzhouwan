@@ -1,4 +1,4 @@
-package com.yuzhouwan.hacker.base
+package com.yuzhouwan.hacker.collections
 
 /**
   * Copyright @ 2018 yuzhouwan.com
@@ -8,7 +8,7 @@ package com.yuzhouwan.hacker.base
   * @author Benedict Jin
   * @since 2016/3/28
   */
-object DealWithZip {
+object DealWithZipListExample {
 
   def main(args: Array[String]) {
 
@@ -18,6 +18,10 @@ object DealWithZip {
     // for (i <- 0 to zip.length - 1)
     for (i <- zip.indices)
       if (i == 0 || i == 2)
+      /*
+       (1,10)
+       (3,30)
+       */
         println(zip(i))
   }
 }

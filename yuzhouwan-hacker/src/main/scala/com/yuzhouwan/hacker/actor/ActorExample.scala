@@ -6,7 +6,7 @@ import scala.actors.Actor._
 /**
   * Copyright @ 2018 yuzhouwan.com
   * All right reserved.
-  * Function：Actor Try
+  * Function：Actor Example
   *
   * @author Benedict Jin
   * @since 2016/1/13 0013
@@ -29,7 +29,7 @@ object ActorTry {
     Thread.sleep(1000)
     self.receiveWithin(0) { case x => println(x) }
 
-    NameResolver ! ("wwww.yuzhouwan.com", self)
+    NameResolver ! ("yuzhouwan.com", self)
     Thread.sleep(1000)
     self.receiveWithin(0) { case x => println(x) }
 
