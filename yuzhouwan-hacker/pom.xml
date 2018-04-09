@@ -244,8 +244,9 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
+                <version>${org.codehaus.mojo.build-helper-maven-plugin}</version>
                 <executions>
-                    <!-- http://docs.scala-lang.org/tutorials/scala-with-maven.html -->
+                    <!-- https://docs.scala-lang.org/tutorials/scala-with-maven.html -->
                     <execution>
                         <id>add-source</id>
                         <phase>generate-sources</phase>

@@ -37,6 +37,7 @@
         <maven.checkstyle.version>2.17</maven.checkstyle.version>
         <maven.jacoco-maven-plugin.version>0.7.9</maven.jacoco-maven-plugin.version>
         <maven.coveralls-maven-plugin.version>4.3.0</maven.coveralls-maven-plugin.version>
+        <org.codehaus.mojo.build-helper-maven-plugin>3.0.0</org.codehaus.mojo.build-helper-maven-plugin>
 
         <!-- groovy -->
         <groovy.version>2.3.11</groovy.version>
@@ -258,7 +259,7 @@
                     <dependency>
                         <groupId>com.yuzhouwan</groupId>
                         <artifactId>yuzhouwan-checkstyle</artifactId>
-                        <version>1.0.2</version>
+                        <version>${project.version}</version>
                     </dependency>
                 </dependencies>
                 <configuration>
