@@ -227,12 +227,14 @@
         <defaultGoal>install</defaultGoal>
 
         <plugins>
-            <!-- Disable this plugin for security. -->
-            <!--<plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>${maven.resource.plugin.version}</version>
-            </plugin>-->
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -266,6 +268,7 @@
                     <headerLocation>checkstyle/style.lic</headerLocation>
                     <configLocation>checkstyle/style.xml</configLocation>
                     <excludes>**/avro/**,**/salt/**,**/nativeio/**</excludes>
+                    <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
                 <executions>
                     <execution>
