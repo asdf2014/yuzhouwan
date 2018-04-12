@@ -25,7 +25,7 @@ public class RPCTest {
             server.register(IRPCService.class, RPCServiceImpl.class);
             server.start();
 
-            int count = 0, max = 20;
+            int count = 0, max = 200;
             while (!server.isRunning() && count < max) {
                 Thread.sleep(5);
                 count++;
