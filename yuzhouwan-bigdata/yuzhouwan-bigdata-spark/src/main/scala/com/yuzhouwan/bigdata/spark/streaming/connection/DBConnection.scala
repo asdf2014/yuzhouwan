@@ -26,7 +26,7 @@ class PooledSocketStreamPublisher[T](host: String, port: Int) extends Serializab
   /**
     * Publish the stream to a socket.
     */
-  def publish(stream: DStream[T], callback: (T) => String) =
+  def publish(stream: DStream[T], callback: (T) => String): Unit =
 
     stream foreachRDD (rdd =>
 
@@ -43,7 +43,7 @@ class PooledSocketStreamPublisher[T](host: String, port: Int) extends Serializab
 }
 
 class ManagedPrintStream(private val pool: ObjectPool[PrintStream], val printStream: PrintStream) {
-  def release() = pool.returnObject(printStream)
+  def release(): Unit = pool.returnObject(printStream)
 }
 
 object PrintStreamPool {
@@ -71,9 +71,9 @@ class SocketStreamFactory(host: String, port: Int) extends BasePooledObjectFacto
 
   override def wrap(stream: PrintStream) = new DefaultPooledObject[PrintStream](stream)
 
-  override def validateObject(po: PooledObject[PrintStream]) = !po.getObject.checkError()
+  override def validateObject(po: PooledObject[PrintStream]): Boolean = !po.getObject.checkError()
 
-  override def destroyObject(po: PooledObject[PrintStream]) = po.getObject.close()
+  override def destroyObject(po: PooledObject[PrintStream]): Unit = po.getObject.close()
 
-  override def passivateObject(po: PooledObject[PrintStream]) = po.getObject.flush()
+  override def passivateObject(po: PooledObject[PrintStream]): Unit = po.getObject.flush()
 }

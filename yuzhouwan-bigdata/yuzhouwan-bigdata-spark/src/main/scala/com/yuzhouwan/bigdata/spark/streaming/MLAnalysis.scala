@@ -68,5 +68,4 @@ object MLAnalysis {
     ssc.start()
     ssc.awaitTermination()
   }
-
 }

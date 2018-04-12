@@ -37,7 +37,7 @@ object SendNetflow {
 
       new Thread() {
 
-        override def run() = {
+        override def run(): Unit = {
 
           println("Got client connected from: " + socket.getInetAddress)
 

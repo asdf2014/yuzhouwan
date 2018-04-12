@@ -24,7 +24,7 @@ object Clustering {
     val sc = new SparkContext(conf)
     sc.getConf.getAll
 
-    //download from http://kdd.ics.uci.edu/databases/kddcup99/kddcup99.html
+    // Download full data from http://kdd.ics.uci.edu/databases/kddcup99/kddcup99.html
     val data = sc.textFile("field/src/main/resources/detect/kddcup.data.txt")
     //    val data = sc.textFile("/F:\\kddcup.data.txt")
 
@@ -40,5 +40,4 @@ object Clustering {
     val distinct = label.distinct()
     println(distinct)
   }
-
 }

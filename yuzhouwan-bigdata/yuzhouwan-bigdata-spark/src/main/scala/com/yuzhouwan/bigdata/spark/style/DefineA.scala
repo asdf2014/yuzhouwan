@@ -18,6 +18,6 @@ object DefineA {
 
   @DefineAnnotation
   def bigMistake(): Unit = {
-    println("bigMistake...")
+    println("Making a big mistake...")
   }
 }

@@ -25,5 +25,4 @@ class SendNetflowTest extends UnitTestStyle {
       SendNetflow.clean(emptyS)
     }
   }
-
 }

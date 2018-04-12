@@ -16,10 +16,11 @@ import breeze.linalg._
   */
 object SendMessage {
 
+  val MaxEvents = 100
+  val NumFeatures = 100
+
   def main(args: Array[String]): Unit = {
 
-    val MaxEvents = 100
-    val NumFeatures = 100
     val random = new Random()
 
     def generateRandomArray(n: Int) = Array.tabulate(n)(_ => random.nextGaussian())
@@ -50,9 +51,9 @@ object SendMessage {
 
       new Thread() {
 
-        override def run() = {
+        override def run(): Unit = {
 
-          println("Got client connected from: " + socket.getInetAddress)
+          println(s"Got client connected from: ${socket.getInetAddress} ...")
 
           val out = new PrintWriter(socket.getOutputStream, true)
           while (true) {
