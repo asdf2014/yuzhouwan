@@ -1,5 +1,6 @@
 package com.yuzhouwan.bigdata.spark.style
 
+import com.yuzhouwan.bigdata.spark.UnitTestStyle
 import com.yuzhouwan.bigdata.spark.streaming.detect.SendNetflow
 
 /**

@@ -1,4 +1,4 @@
-package com.yuzhouwan.bigdata.spark.style
+package com.yuzhouwan.hacker
 
 import org.scalatest._
 
