@@ -48,35 +48,6 @@
         </profile>
     </profiles>
 
-    <build>
-        <finalName>yuzhouwan-common</finalName>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>**/*.properties</include>
-                    <include>**/*.xml</include>
-                    <include>MANIFEST.MF</include>
-                </includes>
-                <excludes>
-                    <exclude>prop/${jar.util.lib.path}.jar.util.properties</exclude>
-                    <exclude>prop/system.${jar.util.lib.path}.properties</exclude>
-                </excludes>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>${maven.compiler.jdk.version}</source>
-                    <target>${maven.compiler.jdk.version}</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
     <dependencies>
         <!-- junit -->
         <dependency>
@@ -340,4 +311,37 @@
             <version>${apache.common.lang3.verison}</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <finalName>yuzhouwan-common</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                    <include>MANIFEST.MF</include>
+                </includes>
+                <excludes>
+                    <exclude>prop/${jar.util.lib.path}.jar.util.properties</exclude>
+                    <exclude>prop/system.${jar.util.lib.path}.properties</exclude>
+                </excludes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${maven.compiler.jdk.version}</source>
+                    <target>${maven.compiler.jdk.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>
