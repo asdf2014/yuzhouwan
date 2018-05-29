@@ -2,7 +2,6 @@ package com.yuzhouwan.common.util;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Maps;
-import org.apache.avro.io.BinaryDecoder;
 import org.apache.avro.io.DecoderFactory;
 import org.apache.avro.util.ByteBufferInputStream;
 import org.junit.Ignore;
@@ -154,7 +153,8 @@ public class CollectionUtilsTest {
         ByteBuffer bb = DecimalUtils.byteArray2byteBuffer("yuzhouwan".getBytes());
         List<ByteBuffer> bytes = Collections.singletonList(bb);
         ByteBufferInputStream inputStream = new ByteBufferInputStream(bytes);
-        BinaryDecoder bd = DecoderFactory.get().binaryDecoder(inputStream, null);
+        /*BinaryDecoder bd = */
+        DecoderFactory.get().binaryDecoder(inputStream, null);
 //        System.out.println(new String(DecimalUtils.byteBuffer2byteArray(
 //                DecoderFactory.get().binaryDecoder(inputStream, null).readBytes(bb))));
     }
@@ -258,5 +258,31 @@ public class CollectionUtilsTest {
         int count = 0;
         for (Integer integer : integerList) count += integer;
         assertEquals(6, count);
+    }
+
+    @Test
+    public void mapPutIfAbsentTest() {
+        LinkedHashMap<String, Integer> lhm = new LinkedHashMap<>();
+        Integer old = lhm.putIfAbsent("a", 1);
+        assertEquals(old == null, true);
+        old = lhm.putIfAbsent("a", 1);
+        assertEquals(old == 1, true);
+        old = lhm.putIfAbsent("a", 1);
+        assertEquals(old == 1, true);
+        old = lhm.putIfAbsent("b", 2);
+        assertEquals(old == null, true);
+
+        old = putIfAbsent(lhm, "c", 3);
+        assertEquals(old == null, true);
+        old = putIfAbsent(lhm, "c", 3);
+        assertEquals(old == 3, true);
+        old = putIfAbsent(lhm, "d", 4);
+        assertEquals(old == null, true);
+    }
+
+    private static Integer putIfAbsent(LinkedHashMap<String, Integer> lhm, String key, Integer value) {
+        Integer oldValue = lhm.get(key);
+        if (oldValue == null) oldValue = lhm.put(key, value);
+        return oldValue;
     }
 }
