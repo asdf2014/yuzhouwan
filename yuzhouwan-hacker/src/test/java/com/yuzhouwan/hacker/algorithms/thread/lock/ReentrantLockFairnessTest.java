@@ -7,13 +7,14 @@ import org.junit.Test;
  * All right reserved.
  * Function: ReentrantLockFairness Tester
  *
+ * @link https://yuzhouwan.com/posts/27328/
  * @author Benedict Jin
  * @since 2016/9/5
  */
 public class ReentrantLockFairnessTest {
 
     /**
-     * 很少会连续获取到锁
+     * 公平锁，很少会连续获取到锁
      *
      * 0 0 0 0 0 1 2 4 3 1 2 4 3 1 2 4 3 1 2 4 3 1 2 4 3
      * 0 1 0 1 0 1 0 1 4 0 1 4 4 4 4 2 2 2 2 2 3 3 3 3 3

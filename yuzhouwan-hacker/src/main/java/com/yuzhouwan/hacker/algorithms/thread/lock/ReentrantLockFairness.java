@@ -8,6 +8,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * All right reserved.
  * Function: ReentrantLockFairness
  *
+ * @link https://yuzhouwan.com/posts/27328/
  * @author Benedict Jin
  * @since 2016/9/5
  */
