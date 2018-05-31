@@ -26,9 +26,9 @@ public class StrUtilsTest {
 
     @Test
     public void fillTest() {
-        assertEquals("00000010", fillWitchZero(10, 8));
-        assertEquals("00000010", fillWitchZero(10.0d, 8));
-        assertEquals("00000010", fillWitchZero(10.01d, 8));
+        assertEquals("00000010", fillWithZero(10, 8));
+        assertEquals("00000010", fillWithZero(10.0d, 8));
+        assertEquals("00000010", fillWithZero(10.01d, 8));
     }
 
     @Test

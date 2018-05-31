@@ -42,7 +42,7 @@ public final class StrUtils {
      * @param num
      * @return
      */
-    public static String fillWitchZero(Number aim, int num) {
+    public static String fillWithZero(Number aim, int num) {
         String zeros = "";
         if (num > 0) {
             int count = 0;
