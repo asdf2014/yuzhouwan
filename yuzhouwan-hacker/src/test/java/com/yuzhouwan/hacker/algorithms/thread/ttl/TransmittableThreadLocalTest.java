@@ -17,14 +17,20 @@ public class TransmittableThreadLocalTest {
 
     @Test
     public void parentChildThread() {
-        ThreadLocal<String> tl = new ThreadLocal<>();
-        tl.set("tl");
-        TransmittableThreadLocal<String> ttl = new TransmittableThreadLocal<>();
-        ttl.set("ttl");
+        String tlMsg = "tl";
+        String ttlMsg = "ttl";
+
+        final ThreadLocal<String> tl = new ThreadLocal<>();
+        tl.set(tlMsg);
+        final TransmittableThreadLocal<String> ttl = new TransmittableThreadLocal<>();
+        ttl.set(ttlMsg);
+
+        assertEquals(tl.get(), tlMsg);
+        assertEquals(ttl.get(), ttlMsg);
 
         new Thread(() -> {
             assertEquals(tl.get(), null);
-            assertEquals(ttl.get(), "ttl");
+            assertEquals(ttl.get(), ttlMsg);
         }).start();
     }
 }
