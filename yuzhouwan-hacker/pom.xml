@@ -238,6 +238,13 @@
             <artifactId>commons-cli</artifactId>
             <version>${apache.common.cli}</version>
         </dependency>
+
+        <!-- TransmittableTreadLocal -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>transmittable-thread-local</artifactId>
+            <version>${transmittable.thread.local.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

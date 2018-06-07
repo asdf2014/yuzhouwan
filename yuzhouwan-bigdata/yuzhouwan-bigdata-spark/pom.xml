@@ -98,7 +98,7 @@
                 </exclusion>
                 <exclusion>
                     <groupId>org.scalatest</groupId>
-                    <artifactId>scalatest_2.11</artifactId>
+                    <artifactId>scalatest_${scala.short.version}</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.slf4j</groupId>
