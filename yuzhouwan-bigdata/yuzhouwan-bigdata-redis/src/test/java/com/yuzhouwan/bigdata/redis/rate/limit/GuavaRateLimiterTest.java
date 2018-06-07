@@ -18,6 +18,7 @@ public class GuavaRateLimiterTest {
     private static final int PERMITS_PER_SECOND = 2;
     private static final int PERMITS_NEEDS_PER_OPERATION = 1;
     private static final int SHOULD_WAIT_MILLISECONDS = 1000;
+    private static final int FOR_FAULT_TOLERANT_MILLISECONDS = 200;
 
     @Test
     public void normal() {
@@ -31,7 +32,7 @@ public class GuavaRateLimiterTest {
         System.out.println("Operation 3.");
         long usedTime = System.currentTimeMillis() - startTime;
         System.out.println(usedTime + " ms");
-        assertEquals(true, usedTime >= SHOULD_WAIT_MILLISECONDS);
+        assertEquals(true, usedTime + FOR_FAULT_TOLERANT_MILLISECONDS >= SHOULD_WAIT_MILLISECONDS);
         System.out.println(String.format("%s >= %s" + " ms", usedTime, SHOULD_WAIT_MILLISECONDS));
     }
 }
