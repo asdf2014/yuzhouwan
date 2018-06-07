@@ -25,12 +25,13 @@ public class RPCTest {
             server.register(IRPCService.class, RPCServiceImpl.class);
             server.start();
 
-            int count = 0, max = 200;
+            int count = 0, max = 1000;
             while (!server.isRunning() && count < max) {
                 Thread.sleep(5);
                 count++;
             }
             IRPCService testServiceImpl = RPC.getProxy(IRPCService.class, "localhost", server.getPort());
+            Thread.sleep(50);
             assertEquals("Hello, Benedict!", testServiceImpl.printHello("Benedict"));
         } finally {
             if (server != null) server.stop();  // System.exit(0);
