@@ -4,6 +4,7 @@ import com.alibaba.ttl.TransmittableThreadLocal;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * Copyright @ 2018 yuzhouwan.com
@@ -29,7 +30,7 @@ public class TransmittableThreadLocalTest {
         assertEquals(ttl.get(), ttlMsg);
 
         new Thread(() -> {
-            assertEquals(tl.get(), null);
+            assertNull(tl.get());
             assertEquals(ttl.get(), ttlMsg);
         }).start();
     }

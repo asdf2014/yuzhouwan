@@ -26,6 +26,10 @@ public class ExceptionCatchTest {
     }
 
     // 受检异常后又捕捉非受捡异常会出现什么问题? fail to figure out..
+    /*
+    Catch 2: RuntimeException
+    finally
+     */
     @Test
     public void catchE() {
         String err = "";
@@ -33,10 +37,13 @@ public class ExceptionCatchTest {
             e();
         } catch (FileNotFoundException e) {
             err = "Catch 1: " + e.getMessage();
+            System.out.println(err);
         } catch (RuntimeException e) {
             err = "Catch 2: " + e.getMessage();
+            System.out.println(err);
+        } finally {
+            System.out.println("finally");
         }
         assertEquals("Catch 2: RuntimeException", err);
     }
-
 }
