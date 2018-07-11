@@ -16,6 +16,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import static com.yuzhouwan.common.util.FileUtils.retryDelete;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Copyright @ 2018 yuzhouwan.com
@@ -300,5 +301,23 @@ public class CollectionStuffTest {
         while (!es.isTerminated()) Thread.sleep(10);
         assertEquals(0, v.size());
         assertEquals(size, list.size());
+    }
+
+    @Test
+    @SuppressWarnings("all")
+    public void testSingletonList() {
+        boolean failed = false;
+        try {
+            List<Boolean[]> booleans = Arrays.asList((Boolean[]) Collections.singletonList(Boolean.FALSE).toArray(),
+                    (Boolean[]) Collections.singletonList(Boolean.TRUE).toArray());
+            booleans.forEach(System.out::print);
+        } catch (Exception e) {
+            failed = true;
+            assertEquals("ClassCastException", e.getClass().getSimpleName());
+        }
+        assertTrue(failed);
+        List<Boolean[]> booleans = Arrays.asList((Boolean[]) Arrays.asList(Boolean.FALSE).toArray(),
+                (Boolean[]) Arrays.asList(Boolean.TRUE).toArray());
+        booleans.forEach(System.out::print);
     }
 }
