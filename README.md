@@ -1,11 +1,35 @@
 [![Build Status](https://travis-ci.org/asdf2014/yuzhouwan.svg?branch=master)](https://travis-ci.org/asdf2014/yuzhouwan)
 
 ## My Blog
-__[https://yuzhouwan.com][0]__
+__[https://yuzhouwan.com](https://yuzhouwan.com)__
 
 (Hexo + Coding，利用 Node.js 的 NIO 框架快速生成，配合 coding.net 静态页面托管，免费但可能海外地区加载缓慢)
 
 ---------------
+## Welcome
+
+　**Welcome to My Blog!**
+
+
+## 博客介绍
+
+　吾生有涯而学无涯，以有涯而逐无涯（有点断章取义，不过追寻知识的热情是必要的）
+
+
+## 大事件纪实
+
+| 标题            | 内容                                                         | 日期       |
+| --------------- | ------------------------------------------------------------ | ---------- |
+| 混沌初开        | 建站第一天                                                   | 2014-11-01 |
+| 模糊的记忆      | Hexo 框架 / next 主题 / 七牛图床 / Gulp 压缩 / 静态资源 CDN / 支持 MathJax | 2014~2016  |
+| 多说关闭        | 评论系统切换为 Disqus                                        | 2017-04-10 |
+| Order by Update | 文章以**最后更新时间**倒排展示（避免养成隔一段时间水一篇的坏习惯） | 2017-04-22 |
+| Aliyun 备案     | 苏 ICP                                                       | 2017-05-25 |
+| 全站 HTTPS      | TrustAsia 域名证书                                           | 2017-10-10 |
+| Coding.net      | 静态页面从 github.io 切换为 coding.net（香港服务器）         | 2017-11-15 |
+| 不蒜子 502      | 页面统计切换为 Lean Cloud，之前的 PV / UV 统计无奈清零       | 2017-11-19 |
+| DDoS 攻击解除   | 回归不蒜子                                                   | 2017-11-20 |
+| Gitment         | 延迟加载 Gitment                                             | 2018-05-29 |
 
 ## Code Library for Blog
 
@@ -17,7 +41,6 @@ __[https://yuzhouwan.com][0]__
 - [WebSite](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-site)&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;([RPC](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-site/yuzhouwan-site-service/src/test/java/com/yuzhouwan/site/service) **/** [NIO](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-site/yuzhouwan-site-service/src/main/java/com/yuzhouwan/site/service/nio) **/** [Spring](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-site/yuzhouwan-site-service/src/main/resources) stuff **/** [Swagger](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-site/yuzhouwan-site-service/src/main/webapp) for Doc)
 - A lot of Commons [Utils](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-common/src/main/java/com/yuzhouwan/common/util)
 
-[0]:https://yuzhouwan.com
 
 ---------------
 
@@ -49,3 +72,13 @@ __[https://yuzhouwan.com][0]__
 &ensp;&ensp;https://yuzhouwan.com/posts/42737/ 
 
 欢迎加入，一起交流学习 :D 
+
+
+
+## 搜索引擎收录
+
+　Just Google it :D
+
+![Google Yuzhouwan.com](https://image.yuzhouwan.com/google_yuzhouwan.png?imageslim)
+
+
