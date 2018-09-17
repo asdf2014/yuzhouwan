@@ -1,11 +1,6 @@
-language:
-  - java
-  - scala
-  - python
-  - groovy
+language: java
 
-os:
-  - windows
+os: linux
 
 jdk:
   - oraclejdk8
@@ -19,26 +14,11 @@ python:
 groovy:
   - 2.3.11
 
+sudo: required
 before_install: sudo echo "MAVEN_OPTS='-Xmx2048m -Xms2048m -XX:+AlwaysPreTouch -Dorg.slf4j.simpleLogger.defaultLogLevel=error'" > ~/.mavenrc
 
-script:
-  - mvn clean install -T 1C -B && mvn clean -B
-
-env:
-  global:
-    - MAVEN_OPTS: "-Xmx2048m -Xms1024m -Dorg.slf4j.simpleLogger.defaultLogLevel=error"
-
-sudo: required
+script: mvn clean install -T 1C -B && mvn clean -B
 
 cache:
   directories:
     - $HOME/.m2
-
-after_success:
-  - mvn clean test
-  - mvn jacoco:report
-  - mvn coveralls:report -DrepoToken="Cq073Q6Lqyuk19IsLoHZa4gFD84FE7rkp"
-
-env:
-  global:
-    - secure: "x2XMX3TNfXHt0ugz9m0VBDZ7gHvpNuML1ngun"

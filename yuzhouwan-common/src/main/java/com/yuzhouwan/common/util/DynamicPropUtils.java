@@ -47,7 +47,7 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
     private static final long TICK_THRESHOLD = 30L;
     private static final long TICK_MILLIS = 1000L;
     private static volatile boolean KEEP_SYNCING = true;
-    private static final Thread TIMING_SYNC = new Thread(() -> {
+    private static final Runnable TIMING_SYNC = () -> {
         while (KEEP_SYNCING) {
             if (TICK.sum() >= TICK_THRESHOLD) {
                 DynamicPropUtils instance = getInstance();
@@ -60,7 +60,7 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
                 _log.error("", e);
             }
         }
-    });
+    };
 
     private static void init() {
         try {
@@ -69,7 +69,8 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
             _log.error("Cannot init curator in Dynamic PropUtils!", e);
             throw new RuntimeException(e);
         }
-        TIMING_SYNC.start();
+        KEEP_SYNCING = true;
+        new Thread(TIMING_SYNC).start();
     }
 
     private static void initCurator() throws Exception {

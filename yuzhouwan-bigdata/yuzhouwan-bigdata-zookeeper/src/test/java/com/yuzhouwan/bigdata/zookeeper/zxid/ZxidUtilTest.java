@@ -4,7 +4,6 @@ import org.apache.zookeeper.client.StaticHostProvider;
 import org.junit.Test;
 
 import java.net.InetSocketAddress;
-import java.net.UnknownHostException;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Random;

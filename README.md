@@ -79,6 +79,6 @@ __[https://yuzhouwan.com](https://yuzhouwan.com)__
 
 　Just Google it :D
 
-![Google Yuzhouwan.com](https://image.yuzhouwan.com/google_yuzhouwan.png?imageslim)
+![Google yuzhouwan.com](https://picture.yuzhouwan.com/google_yuzhouwan.png?imageslim)
 
 
