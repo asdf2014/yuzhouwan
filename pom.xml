@@ -65,6 +65,7 @@
 
         <!-- test -->
         <junit.version>4.12</junit.version>
+        <powermock.version>1.7.4</powermock.version>
         <mockito.version>1.9.5</mockito.version>
         <securemock.version>1.2</securemock.version>
         <hamcrest.version>1.3</hamcrest.version>

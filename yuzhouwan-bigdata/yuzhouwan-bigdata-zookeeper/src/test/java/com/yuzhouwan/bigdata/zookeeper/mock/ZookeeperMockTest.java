@@ -10,6 +10,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestRule;
 import org.junit.rules.Timeout;
+import org.junit.runner.RunWith;
+import org.powermock.core.classloader.annotations.PowerMockIgnore;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -24,6 +27,8 @@ import static org.junit.Assert.assertArrayEquals;
  * @author Benedict Jin
  * @since 2018/11/13
  */
+@RunWith(PowerMockRunner.class)
+@PowerMockIgnore({"javax.net.ssl.*", "javax.management.*", "javax.security.*", "javax.crypto.*"})
 public class ZookeeperMockTest {
 
     private TestingServer server;
