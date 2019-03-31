@@ -2,14 +2,14 @@ package com.yuzhouwan.hacker.lambda;
 
 import com.alibaba.fastjson.JSON;
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Copyright @ 2019 yuzhouwan.com

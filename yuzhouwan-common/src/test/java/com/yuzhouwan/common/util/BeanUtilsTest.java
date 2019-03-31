@@ -1,15 +1,16 @@
 package com.yuzhouwan.common.util;
 
 import com.alibaba.fastjson.JSON;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.TreeSet;
 
 import static com.yuzhouwan.common.util.CollectionUtils.remove;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Copyright @ 2019 yuzhouwan.com

@@ -1,14 +1,14 @@
 package com.yuzhouwan.common.http;
 
 import com.alibaba.fastjson.JSON;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.AfterClass;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Copyright @ 2019 yuzhouwan.com
@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 public class HttpUtilsTest {
 
-    @Disabled
+    @Ignore
     @Test
     //need run yuzhouwan-site before test
     public void getPlainTestLocal() throws Exception {
@@ -63,7 +63,7 @@ public class HttpUtilsTest {
         }
     }
 
-    @Disabled
+    @Ignore
     @Test
     public void getPlainTestLocalUnNormal() throws Exception {
         String url = "http://localhost:8080/full/nothing";
@@ -74,7 +74,7 @@ public class HttpUtilsTest {
         }
     }
 
-    @AfterAll
+    @AfterClass
     public static void teardown() {
         HttpUtils.destroy();
     }

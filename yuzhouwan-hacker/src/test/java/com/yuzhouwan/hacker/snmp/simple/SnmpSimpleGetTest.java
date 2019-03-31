@@ -1,8 +1,8 @@
 package com.yuzhouwan.hacker.snmp.simple;
 
 import com.yuzhouwan.hacker.snmp.acl.SnmpSet;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.Ignore;
+import org.junit.Test;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -53,7 +53,7 @@ public class SnmpSimpleGetTest {
     /**
      * Method: snmpSyncSetList(String ip, String community, List<String> oidList)
      */
-    @Disabled
+    @Ignore
     @Test
     public void testSnmpSyncGetList() {
 

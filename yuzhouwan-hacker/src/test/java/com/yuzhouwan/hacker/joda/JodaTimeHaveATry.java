@@ -2,14 +2,14 @@ package com.yuzhouwan.hacker.joda;
 
 import org.joda.time.DateTime;
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Copyright @ 2019 yuzhouwan.com

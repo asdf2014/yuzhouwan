@@ -12,8 +12,32 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.junit.Before;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+
+import static org.junit.Assert.assertNotEquals;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+
+import static org.junit.Assert.assertNotEquals;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,7 +62,7 @@ public class QueryTermWithAnalyzerTest {
     private static final String ES_TYPE = "attack_info";
     private QueryTermWithAnalyzer query = new QueryTermWithAnalyzer();
 
-    @Disabled
+    @Ignore
     @Before
     public void init() throws Exception {
         if (query.getClient() == null) {
@@ -63,7 +87,7 @@ public class QueryTermWithAnalyzerTest {
         }
     }
 
-    @Disabled
+    @Ignore
     @Test
     public void ignoreCaseAndLikeQuery() {
 

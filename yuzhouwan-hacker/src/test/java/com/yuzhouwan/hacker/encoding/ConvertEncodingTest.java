@@ -2,7 +2,7 @@ package com.yuzhouwan.hacker.encoding;
 
 import com.yuzhouwan.hacker.effective.encoding.ConvertEncoding;
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.nio.charset.StandardCharsets;
 

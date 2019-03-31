@@ -3,8 +3,6 @@ package com.yuzhouwan.bigdata.zookeeper.curator;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.RetryNTimes;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Copyright @ 2019 yuzhouwan.com

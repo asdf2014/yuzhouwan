@@ -1,7 +1,8 @@
 package com.yuzhouwan.common.util;
 
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.Ignore;
+import org.junit.Test;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
@@ -9,7 +10,7 @@ import org.springframework.util.Assert;
 import java.util.List;
 
 import static com.yuzhouwan.common.util.IpUtils.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 /**
  * Copyright @ 2019 yuzhouwan.com
@@ -177,7 +178,7 @@ public class IpUtilsTest {
         assertTrue(result);
     }
 
-    @Disabled
+    @Ignore
     @Test
     public void getIPFromURLTest() {
         assertNull(getIPFromURL("yuzhouwan.com"));
@@ -190,7 +191,7 @@ public class IpUtilsTest {
         System.out.println(getIPFromURL("http://www.yuzhouwan.com"));
     }
 
-    @Disabled
+    @Ignore
     @Test
     public void isReachableTest() {
         assertEquals(true, isReachable("127.0.0.1"));
@@ -199,13 +200,13 @@ public class IpUtilsTest {
         System.out.println(isReachable(getIPFromURL("https://yuzhouwan.com")));
     }
 
-    @Disabled
+    @Ignore
     @Test
     public void pingTest() {
         System.out.println(ping("127.0.0.1"));
     }
 
-    @Disabled
+    @Ignore
     @Test
     public void getCurrentEnvironmentNetworkIpTest() {
         List<String> ips = getCurrentEnvironmentNetworkIps();

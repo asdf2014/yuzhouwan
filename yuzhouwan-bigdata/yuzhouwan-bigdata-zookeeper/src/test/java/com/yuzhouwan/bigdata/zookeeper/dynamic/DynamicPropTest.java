@@ -2,7 +2,7 @@ package com.yuzhouwan.bigdata.zookeeper.dynamic;
 
 import com.yuzhouwan.bigdata.zookeeper.prop.DynamicProp;
 import com.yuzhouwan.common.dir.DirUtils;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.io.File;
 

@@ -2,15 +2,15 @@ package com.yuzhouwan.common.util;
 
 import com.yuzhouwan.common.dir.DirUtils;
 import com.yuzhouwan.common.dir.WatchRunnable;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.Ignore;
+import org.junit.Test;
 
 import java.io.File;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 /**
  * Copyright @ 2019 yuzhouwan.com
@@ -79,7 +79,7 @@ public class DirUtilsTest {
         DirUtils.findPath(DirUtils.getClassesPath(), "prop", ".properties", true).forEach(System.out::println);
     }
 
-    @Disabled
+    @Ignore
     @Test
     public void testBuildWatchService() throws Exception {
         WatchRunnable thread = DirUtils.buildWatchService("Z:/watch");

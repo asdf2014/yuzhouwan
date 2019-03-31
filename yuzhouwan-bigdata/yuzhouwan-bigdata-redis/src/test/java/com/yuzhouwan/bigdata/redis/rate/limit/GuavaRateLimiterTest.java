@@ -1,9 +1,9 @@
 package com.yuzhouwan.bigdata.redis.rate.limit;
 
 import com.google.common.util.concurrent.RateLimiter;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Copyright @ 2019 yuzhouwan.com

@@ -3,7 +3,7 @@ package com.yuzhouwan.hacker.algorithms;
 import com.circuitwall.ml.algorithm.evolution.EvolutionAlgorithm;
 import com.circuitwall.ml.algorithm.util.RandomUtil;
 import com.circuitwall.ml.platform.monolithic.evolution.LocalExecutor;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.stream.Stream;

@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.security;
 
 import com.yuzhouwan.common.dir.DirUtils;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * Copyright @ 2019 yuzhouwan.com

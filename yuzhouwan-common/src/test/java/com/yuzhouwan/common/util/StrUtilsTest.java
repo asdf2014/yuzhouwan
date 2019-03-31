@@ -3,7 +3,7 @@ package com.yuzhouwan.common.util;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.io.File;
 import java.util.*;
@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import static com.yuzhouwan.common.dir.DirUtils.TEST_RESOURCES_PATH;
 import static com.yuzhouwan.common.util.FileUtils.readFile;
 import static com.yuzhouwan.common.util.StrUtils.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 /**
  * Copyright @ 2019 yuzhouwan.com

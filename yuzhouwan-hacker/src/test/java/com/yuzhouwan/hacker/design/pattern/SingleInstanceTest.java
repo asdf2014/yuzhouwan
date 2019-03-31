@@ -2,15 +2,16 @@ package com.yuzhouwan.hacker.design.pattern;
 
 import com.yuzhouwan.common.dir.DirUtils;
 import com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
+import static org.junit.Assert.assertFalse;
+
+import static org.junit.Assert.assertTrue;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Copyright @ 2019 yuzhouwan.com

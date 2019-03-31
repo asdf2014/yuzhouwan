@@ -1,7 +1,7 @@
 package com.yuzhouwan.bigdata.zookeeper.zxid;
 
 import org.apache.zookeeper.client.StaticHostProvider;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.net.InetSocketAddress;
 import java.util.Collections;

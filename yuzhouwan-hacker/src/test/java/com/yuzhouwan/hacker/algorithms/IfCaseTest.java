@@ -1,6 +1,6 @@
 package com.yuzhouwan.hacker.algorithms;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * IfCase Tester.

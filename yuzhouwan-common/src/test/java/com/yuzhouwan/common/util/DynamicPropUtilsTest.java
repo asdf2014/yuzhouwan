@@ -1,13 +1,13 @@
 package com.yuzhouwan.common.util;
 
 import org.apache.curator.test.TestingServer;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.Properties;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 /**
  * Copyright @ 2019 yuzhouwan.com
@@ -22,7 +22,7 @@ public class DynamicPropUtilsTest {
     private TestingServer server;
     private DynamicPropUtils dp;
 
-    @BeforeAll
+    @Before
     public void setup() throws Exception {
         server = new TestingServer(2181, true);
         dp = DynamicPropUtils.getInstance();
@@ -69,7 +69,7 @@ public class DynamicPropUtilsTest {
         }
     }
 
-    @AfterAll
+    @After
     public void teardown() throws Exception {
         if (dp != null) dp.close();
         if (server != null) server.close();

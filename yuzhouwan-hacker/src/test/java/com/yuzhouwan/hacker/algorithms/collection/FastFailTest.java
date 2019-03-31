@@ -1,13 +1,13 @@
 package com.yuzhouwan.hacker.algorithms.collection;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Copyright @ 2019 yuzhouwan.com

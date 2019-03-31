@@ -5,11 +5,11 @@ import com.yuzhouwan.hacker.javaProhibited.serializable.bean.Country;
 import com.yuzhouwan.hacker.javaProhibited.serializable.bean.Infos;
 import com.yuzhouwan.hacker.javaProhibited.serializable.bean.SerializableWithNoSAttribution;
 import com.yuzhouwan.hacker.javaProhibited.serializable.converter.SerializationConverter;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 import java.io.*;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Copyright @ 2019 yuzhouwan.com

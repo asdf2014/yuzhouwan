@@ -4,7 +4,7 @@ import com.yuzhouwan.hacker.algorithms.array.StrassenMatrix;
 import org.apache.commons.math3.exception.MathArithmeticException;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import static com.yuzhouwan.common.util.StrUtils.NEXT_LINE;
 

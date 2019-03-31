@@ -1,9 +1,10 @@
 package com.yuzhouwan.hacker.algorithms.leetcode;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.Assert.assertNull;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Copyright @ 2019 yuzhouwan.com

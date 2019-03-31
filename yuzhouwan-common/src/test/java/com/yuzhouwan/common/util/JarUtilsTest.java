@@ -1,10 +1,10 @@
 package com.yuzhouwan.common.util;
 
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.Ignore;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Copyright @ 2019 yuzhouwan.com
@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class JarUtilsTest {
 
-    @Disabled
+    @Ignore
     @Test
     public void listDirWithinJarTest() {
         assertEquals("yuzhouwan.com", JarUtils.getInstance().getProperty("site.domain"));

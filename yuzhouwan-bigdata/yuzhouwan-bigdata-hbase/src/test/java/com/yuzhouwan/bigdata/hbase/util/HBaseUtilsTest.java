@@ -1,7 +1,9 @@
 package com.yuzhouwan.bigdata.hbase.util;
 
 import com.alibaba.fastjson.JSON;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,7 +11,6 @@ import java.util.Arrays;
 
 import static com.yuzhouwan.bigdata.hbase.util.HBaseUtils.extractTimestamp4Region;
 import static com.yuzhouwan.bigdata.hbase.util.HBaseUtils.removeEndKey;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Copyright @ 2019 yuzhouwan.com

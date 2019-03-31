@@ -1,8 +1,8 @@
 package com.yuzhouwan.hacker.jvm.classloader;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Copyright @ 2019 yuzhouwan.com

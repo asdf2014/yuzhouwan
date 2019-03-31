@@ -4,6 +4,7 @@ import com.yuzhouwan.site.api.validation.model.UserModel;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;

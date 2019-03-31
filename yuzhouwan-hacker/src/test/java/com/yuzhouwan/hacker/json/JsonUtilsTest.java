@@ -4,12 +4,12 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Copyright @ 2019 yuzhouwan.com

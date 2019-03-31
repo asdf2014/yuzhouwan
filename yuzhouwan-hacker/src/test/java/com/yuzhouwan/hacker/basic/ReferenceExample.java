@@ -1,11 +1,12 @@
 package com.yuzhouwan.hacker.basic;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
+import static org.junit.Assert.assertFalse;
+
+import static org.junit.Assert.assertTrue;
 
 import java.util.LinkedList;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Copyright @ 2019 yuzhouwan.com

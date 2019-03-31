@@ -1,11 +1,11 @@
 package com.yuzhouwan.common.util;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Copyright @ 2019 yuzhouwan.com

@@ -7,8 +7,9 @@ import com.yuzhouwan.common.util.PropUtils;
 import org.apache.http.HttpEntity;
 import org.elasticsearch.client.Response;
 import org.elasticsearch.client.RestClient;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.Ignore;
+import org.junit.Test;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,7 +39,7 @@ public class ESUtilsTest extends ElasticSearchClientBaseTestCase {
         return query;
     }
 
-    @Disabled
+    @Ignore
     @Test
     public void test() {
         try (RestClient esClient = REST_CLIENT_BUILDER.build()) {

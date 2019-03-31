@@ -1,11 +1,11 @@
 package com.yuzhouwan.hacker.async;
 
 import com.stumbleupon.async.Deferred;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.LinkedList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 /**
  * Copyright @ 2019 yuzhouwan.com

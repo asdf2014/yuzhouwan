@@ -2,7 +2,8 @@ package com.yuzhouwan.hacker.snmp.v3;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
 import org.snmp4j.mp.SnmpConstants;
 import org.snmp4j.security.*;
 

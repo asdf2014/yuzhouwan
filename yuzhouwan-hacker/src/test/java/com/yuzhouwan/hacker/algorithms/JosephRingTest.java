@@ -1,12 +1,12 @@
 package com.yuzhouwan.hacker.algorithms;
 
 import com.yuzhouwan.hacker.algorithms.array.JosephRing;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Copyright @ 2019 yuzhouwan.com

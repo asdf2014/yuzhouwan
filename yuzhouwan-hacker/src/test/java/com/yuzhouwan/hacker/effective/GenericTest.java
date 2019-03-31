@@ -2,13 +2,13 @@ package com.yuzhouwan.hacker.effective;
 
 import com.yuzhouwan.hacker.algorithms.collection.sort.Company;
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Copyright @ 2019 yuzhouwan.com

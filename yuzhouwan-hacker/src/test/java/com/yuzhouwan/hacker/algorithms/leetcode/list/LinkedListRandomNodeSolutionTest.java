@@ -1,8 +1,8 @@
 package com.yuzhouwan.hacker.algorithms.leetcode.list;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.Assert.assertNotEquals;
 
 /**
  * Copyright @ 2019 yuzhouwan.com

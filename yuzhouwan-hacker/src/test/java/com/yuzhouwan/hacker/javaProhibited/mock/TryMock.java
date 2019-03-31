@@ -1,6 +1,6 @@
 package com.yuzhouwan.hacker.javaProhibited.mock;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

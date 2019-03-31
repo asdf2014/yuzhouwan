@@ -1,6 +1,9 @@
 package com.yuzhouwan.hacker.regular;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,8 +12,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static com.yuzhouwan.common.util.StrUtils.NEXT_LINE;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Copyright @ 2019 yuzhouwan.com

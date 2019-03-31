@@ -1,12 +1,12 @@
 package com.yuzhouwan.hacker.algorithms.number;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.text.DecimalFormat;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Copyright @ 2019 yuzhouwan.com

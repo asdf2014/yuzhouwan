@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.algorithms.array;
 
 import com.alibaba.fastjson.JSON;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
 

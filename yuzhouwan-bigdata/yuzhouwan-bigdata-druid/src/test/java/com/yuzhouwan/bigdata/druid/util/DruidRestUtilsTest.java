@@ -2,11 +2,11 @@ package com.yuzhouwan.bigdata.druid.util;
 
 import com.yuzhouwan.common.util.FileUtils;
 import com.yuzhouwan.common.util.StrUtils;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.Ignore;
+import org.junit.Test;
 
 import static com.yuzhouwan.common.dir.DirUtils.TEST_RESOURCES_PATH;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Copyright @ 2019 yuzhouwan.com
@@ -22,7 +22,7 @@ public class DruidRestUtilsTest {
     private static final String QUERY = TEST_RESOURCES_PATH.concat("rest/druid.query.json");
     private static final String QUERY_URL = "http://yuzhouwan:8082/druid/v2/?pretty";
 
-    @Disabled
+    @Ignore
     @Test
     public void testPost() throws Exception {
         byte[] queryResult = FileUtils.readFile(QUERY_RESULT);

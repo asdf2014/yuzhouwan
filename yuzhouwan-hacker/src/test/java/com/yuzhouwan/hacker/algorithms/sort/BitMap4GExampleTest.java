@@ -1,6 +1,6 @@
 package com.yuzhouwan.hacker.algorithms.sort;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * Copyright @ 2019 yuzhouwan.com

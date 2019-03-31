@@ -2,7 +2,7 @@ package com.yuzhouwan.hacker.algorithms.thread.interrupt;
 
 import com.yuzhouwan.common.dir.DirUtils;
 import com.yuzhouwan.common.util.ExceptionUtils;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.io.File;
 import java.util.concurrent.atomic.LongAdder;

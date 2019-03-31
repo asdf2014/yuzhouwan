@@ -1,8 +1,9 @@
 package com.yuzhouwan.common.html;
 
 import org.apache.commons.io.FileUtils;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.Ignore;
+import org.junit.Test;
+
 import org.openqa.selenium.Cookie;
 
 import java.io.ByteArrayInputStream;
@@ -35,7 +36,7 @@ public class HtmlExporterUtilsTest {
             //"http://192.168.112.189:8100/#/report?instanceId=22&customerId=5";
             "http://portal.cloudguarder.com:81/#/index/defend_monitor";
 
-    @Disabled
+    @Ignore
     @Test
     public void simpleTest() throws Exception {
         // 7s 306
@@ -44,7 +45,7 @@ public class HtmlExporterUtilsTest {
                 new File(RESOURCES_PATH.concat(PREFIX_OUTPUT_PATH).concat("login.png")));
     }
 
-    @Disabled
+    @Ignore
     @Test
     public void testTimeout() throws Exception {
         // 38s 451ms
@@ -56,7 +57,7 @@ public class HtmlExporterUtilsTest {
     /**
      * 如果 需要在 web工程中使用 phantomJS 的 render功能，可以尝试用 redis鉴权 替代cookie
      */
-    @Disabled
+    @Ignore
     @Test
     public void convert2ImageTest() throws Exception {
         Cookie cookie = new Cookie(name, value, domain, path, expiry, isSecure, isHttpOnly);
@@ -67,7 +68,7 @@ public class HtmlExporterUtilsTest {
         }
     }
 
-    @Disabled
+    @Ignore
     @Test
     public void image2pdfTest() {
         String url = "http://portal.cloudguarder.com:81";
@@ -80,7 +81,7 @@ public class HtmlExporterUtilsTest {
                 new File(RESOURCES_PATH.concat(PREFIX_OUTPUT_PATH).concat("login.pdf")));
     }
 
-    @Disabled
+    @Ignore
     @Test
     public void convert2PdfTest() {
         Cookie cookie = new Cookie(name, value, domain, path, expiry, isSecure, isHttpOnly);

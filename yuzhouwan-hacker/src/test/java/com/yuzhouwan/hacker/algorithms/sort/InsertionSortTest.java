@@ -2,11 +2,11 @@ package com.yuzhouwan.hacker.algorithms.sort;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Copyright @ 2019 yuzhouwan.com

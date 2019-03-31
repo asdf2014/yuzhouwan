@@ -2,12 +2,12 @@ package com.yuzhouwan.bigdata.hadoop.io;
 
 import org.apache.commons.io.input.ReaderInputStream;
 import org.apache.hadoop.io.IOUtils;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.*;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Copyright @ 2019 yuzhouwan.com

@@ -3,11 +3,11 @@ package com.yuzhouwan.bigdata.zookeeper.curator;
 import com.yuzhouwan.common.util.TimeUtils;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.Ignore;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Copyright @ 2019 yuzhouwan.com
@@ -23,13 +23,13 @@ public class CuratorNodeCacheTest {
     private static final int millis = 100;
     private CuratorNodeCache cache;
 
-    @Disabled
+    @Ignore
     @Before
     public void before() {
         cache = new CuratorNodeCache();
     }
 
-    @Disabled
+    @Ignore
     @Test
     public void testWatch() throws Exception {
         cache.addNodeCacheListener(path);
@@ -44,7 +44,7 @@ public class CuratorNodeCacheTest {
         Thread.sleep(millis);
     }
 
-    @Disabled
+    @Ignore
     @After
     public void after() throws Exception {
         assertTrue(cache.delPath(path));

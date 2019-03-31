@@ -3,11 +3,11 @@ package com.yuzhouwan.bigdata.redis.notification;
 import com.yuzhouwan.bigdata.redis.conn.RedisClusterConnPool;
 import com.yuzhouwan.common.util.DynamicPropUtils;
 import com.yuzhouwan.common.util.PropUtils;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.Ignore;
+import org.junit.Test;
 
 import static com.yuzhouwan.bigdata.redis.conn.RedisClusterConnPool.PROJECT_NAME;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 /**
  * Copyright @ 2019 yuzhouwan.com
@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class RedisNotificationTest {
 
-    @Disabled
+    @Ignore
     @Test
     public void testExpire() throws Exception {
 

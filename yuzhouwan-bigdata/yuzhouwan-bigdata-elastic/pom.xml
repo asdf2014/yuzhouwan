@@ -48,9 +48,9 @@
 
         <!-- junit -->
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>${junit5.version}</version>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit4.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

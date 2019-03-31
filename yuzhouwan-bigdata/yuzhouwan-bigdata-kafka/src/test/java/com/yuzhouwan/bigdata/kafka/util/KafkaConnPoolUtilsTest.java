@@ -3,10 +3,10 @@ package com.yuzhouwan.bigdata.kafka.util;
 import com.yuzhouwan.common.util.PropUtils;
 import kafka.javaapi.producer.Producer;
 import kafka.producer.KeyedMessage;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.Ignore;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Copyright @ 2019 yuzhouwan.com
@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 public class KafkaConnPoolUtilsTest {
 
-    @Disabled
+    @Ignore
     @Test
     public void getConnTest() throws Exception {
         PropUtils p = PropUtils.getInstance();

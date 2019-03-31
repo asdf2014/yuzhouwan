@@ -1,12 +1,13 @@
 package com.yuzhouwan.hacker.jvm.classloader;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
+import static org.junit.Assert.assertFalse;
+
+import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 import java.io.InputStream;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /**
  * Copyright @ 2019 yuzhouwan.com

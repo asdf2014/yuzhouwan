@@ -1,7 +1,10 @@
 package com.yuzhouwan.common.util;
 
 import com.alibaba.fastjson.JSON;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
+import static org.junit.Assert.assertTrue;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,8 +13,7 @@ import java.util.LinkedList;
 
 import static com.yuzhouwan.common.util.RandomUtils.*;
 import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.Assert.assertNotEquals;
 
 /**
  * Copyright @ 2019 yuzhouwan.com

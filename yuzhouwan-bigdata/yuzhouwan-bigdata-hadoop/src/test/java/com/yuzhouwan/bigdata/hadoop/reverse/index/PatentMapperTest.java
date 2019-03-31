@@ -2,7 +2,7 @@ package com.yuzhouwan.bigdata.hadoop.reverse.index;
 
 import org.ansj.app.keyword.KeyWordComputer;
 import org.ansj.app.keyword.Keyword;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.Collection;
 import java.util.Iterator;

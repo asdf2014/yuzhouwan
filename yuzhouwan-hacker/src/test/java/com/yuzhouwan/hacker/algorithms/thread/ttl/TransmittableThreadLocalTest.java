@@ -1,10 +1,10 @@
 package com.yuzhouwan.hacker.algorithms.thread.ttl;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * Copyright @ 2019 yuzhouwan.com

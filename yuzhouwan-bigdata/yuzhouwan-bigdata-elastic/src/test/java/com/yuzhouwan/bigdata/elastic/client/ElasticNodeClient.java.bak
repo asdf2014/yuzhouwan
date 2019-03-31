@@ -17,8 +17,32 @@ import org.elasticsearch.common.unit.ByteSizeUnit;
 import org.elasticsearch.common.unit.ByteSizeValue;
 import org.elasticsearch.common.unit.TimeValue;
 import org.junit.Before;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+
+import static org.junit.Assert.assertNotEquals;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+
+import static org.junit.Assert.assertNotEquals;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -39,7 +63,7 @@ public class ElasticNodeClient {
 
     private volatile Client client;
 
-    @Disabled
+    @Ignore
     @Before
     public void init() throws Exception {
 
@@ -63,7 +87,7 @@ public class ElasticNodeClient {
         }
     }
 
-    @Disabled
+    @Ignore
     @Test
     public void testIndex() throws Exception {
 
@@ -89,7 +113,7 @@ public class ElasticNodeClient {
         System.out.println("IsCreated: " + response.isCreated());
     }
 
-    @Disabled
+    @Ignore
     @Test
     public void testGet() throws Exception {
 
@@ -103,7 +127,7 @@ public class ElasticNodeClient {
 
     }
 
-    @Disabled
+    @Ignore
     @Test
     public void testDelete() throws Exception {
 
@@ -115,7 +139,7 @@ public class ElasticNodeClient {
             System.out.println("Id: " + response.getId());
     }
 
-    @Disabled
+    @Ignore
     @Test
     public void testUpdate() throws Exception {
 
@@ -131,7 +155,7 @@ public class ElasticNodeClient {
         }
     }
 
-    @Disabled
+    @Ignore
     @Test
     public void testBulkProcess() throws Exception {
 

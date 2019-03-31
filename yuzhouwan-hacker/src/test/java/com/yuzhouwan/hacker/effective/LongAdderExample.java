@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.effective;
 
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.Ignore;
+import org.junit.Test;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -32,7 +32,7 @@ public class LongAdderExample {
 
     // -Xmx512M -Xms512M -Xmn256M -XX:+AlwaysPreTouch -ea
     // JIT: -server -XX:+UnlockDiagnosticVMOptions -XX:+TraceClassLoading  -XX:+PrintAssembly -XX:+LogCompilation -XX:LogFile=pressureLongAdder.log
-    @Disabled
+    @Ignore
     @Test
     public void pressureLongAdder() throws Exception {
         final LongAdder longAdder = new LongAdder();
@@ -74,7 +74,7 @@ public class LongAdderExample {
     }
 
     // -Xmx512M -Xms512M -Xmn256M -XX:+AlwaysPreTouch -ea
-    @Disabled
+    @Ignore
     @Test
     public void pressureAtomicLong() throws Exception {
         final AtomicLong atomicLong = new AtomicLong();
