@@ -7,7 +7,7 @@ import org.apache.curator.test.TestingServer;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.rules.TestRule;
 import org.junit.rules.Timeout;
 import org.junit.runner.RunWith;
@@ -17,10 +17,10 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Zookeeper Mock Test
  *
@@ -31,11 +31,10 @@ import static org.junit.Assert.assertArrayEquals;
 @PowerMockIgnore({"javax.net.ssl.*", "javax.management.*", "javax.security.*", "javax.crypto.*"})
 public class ZookeeperMockTest {
 
-    private TestingServer server;
-    private CuratorFramework client;
-
     @Rule
     public final TestRule timeout = new Timeout(60, TimeUnit.SECONDS);
+    private TestingServer server;
+    private CuratorFramework client;
 
     @Before
     public void setup() throws Exception {

@@ -1,11 +1,12 @@
 package com.yuzhouwan.hacker.algorithms.leetcode;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Counting Bits Solution Tester
  *
@@ -17,9 +18,9 @@ public class CountingBitsSolutionTest {
     private static final int SUPPRESS_TEST_LIMITATION = 10_1000;
 
     @Test
-    public void countingBits() throws Exception {
+    public void countingBits() {
 
-        assertEquals(null, CountingBitsSolution.countBits(-1));
+        assertNull(CountingBitsSolution.countBits(-1));
         assertEquals(0, CountingBitsSolution.countBits(0)[0]);
 
         int[] result = CountingBitsSolution.countBits(5);
@@ -34,9 +35,9 @@ public class CountingBitsSolutionTest {
     }
 
     @Test
-    public void countingBitsWisdom() throws Exception {
+    public void countingBitsWisdom() {
 
-        assertEquals(null, CountingBitsSolution.countBitsWisdom(-1));
+        assertNull(CountingBitsSolution.countBitsWisdom(-1));
         assertEquals(0, CountingBitsSolution.countBitsWisdom(0)[0]);
 
         int[] result = CountingBitsSolution.countBitsWisdom(5);

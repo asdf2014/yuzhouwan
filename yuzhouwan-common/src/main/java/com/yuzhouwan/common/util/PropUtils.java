@@ -13,7 +13,7 @@ import java.util.Properties;
 import static com.yuzhouwan.common.util.StrUtils.isEmpty;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Properties Utils
  *
@@ -73,7 +73,7 @@ public final class PropUtils {
     }
 
     /**
-     * Avoid recursion in JarUtils' initializtion.
+     * Avoid recursion in JarUtils' initialization.
      *
      * @param key
      * @return
@@ -110,7 +110,7 @@ public final class PropUtils {
 
     public boolean addProperty(String key, String value) {
         if (isEmpty(key)) {
-            _log.error("Params are invalid, key: {}, value: {}!", key, value);
+            _log.error(String.format("Params are invalid, key: %s, value: %s!", key, value));
             return false;
         }
         properties.put(key, value);

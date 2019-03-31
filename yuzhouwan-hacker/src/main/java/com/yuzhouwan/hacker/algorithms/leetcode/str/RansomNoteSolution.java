@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.algorithms.leetcode.str;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Ransom Note Solution
  *
@@ -12,15 +12,15 @@ class RansomNoteSolution {
 
     /**
      * https://leetcode.com/problems/ransom-note
-     *
+     * <p>
      * 383. Ransom Note
-     *
+     * <p>
      * Given  an  arbitrary  ransom  note  string  and  another
-     * string  containing  letters from  all  the  magazines, 
+     * string  containing  letters from  all  the  magazines,
      * write  a  function  that  will  return  true  if  the  ransom
      * note  can  be  constructed  from  the  magazines;
      * otherwise,  it  will  return  false.
-     *
+     * <p>
      * Each  letter  in  the  magazine  string  can  only  be  used  once  in  your  ransom  note.
      */
     static boolean canConstruct(String ransomNote, String magazine) {

@@ -1,10 +1,7 @@
 package com.yuzhouwan.bigdata.spark.style
 
-import com.yuzhouwan.bigdata.spark.UnitTestStyle
-import com.yuzhouwan.bigdata.spark.streaming.detect.SendNetflow
-
 /**
-  * Copyright @ 2018 yuzhouwan.com
+  * Copyright @ 2019 yuzhouwan.com
   * All right reserved.
   * Function：Send Netflow Test
   *

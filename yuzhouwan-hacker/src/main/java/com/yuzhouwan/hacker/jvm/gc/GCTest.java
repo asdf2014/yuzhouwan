@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.jvm.gc;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：GC Test
  *
@@ -10,12 +10,11 @@ package com.yuzhouwan.hacker.jvm.gc;
  */
 public class GCTest {
 
-    private static int threadNum = 1;
     static int duration = 30;               // seconds;  Program will exit after Duration of seconds.
-
     static int referenceSize = 512;         // 1024 * 10;  // each reference object size;
     static int countDownSize = 1000 * 100;
     static int eachRemoveSize = 1000 * 50;  // remove # of elements each time.
+    private static int threadNum = 1;
 
     // -Xmx512M -Xms256M -Xloggc:gc.log -XX:+UseG1GC -XX:+PrintGCApplicationStoppedTime
     // -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps

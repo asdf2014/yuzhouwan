@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSON;
 import java.util.List;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Make some simple example for fastJSON
  *

@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import java.net.InetAddress;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：ES Client Example
  *
@@ -43,7 +43,7 @@ public class ESClientExample {
                     .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(""), 9300));
             requestBuilder = (client).prepareBulk();
         } catch (Exception e) {
-            _log.error("{}", e);
+            _log.error("", e);
         }
     }
 }

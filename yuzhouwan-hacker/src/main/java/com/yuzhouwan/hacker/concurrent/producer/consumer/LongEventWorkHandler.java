@@ -3,7 +3,7 @@ package com.yuzhouwan.hacker.concurrent.producer.consumer;
 import com.lmax.disruptor.WorkHandler;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Long Event Work Handler
  *
@@ -19,7 +19,7 @@ public class LongEventWorkHandler implements WorkHandler<LongEvent> {
     }
 
     @Override
-    public void onEvent(LongEvent event) throws Exception {
+    public void onEvent(LongEvent event) {
 //        System.out.println(workerName + " handle event:" + event);
     }
 }

@@ -1,14 +1,15 @@
 package com.yuzhouwan.hacker.jvm.classloader;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：ClassLoader Test
  *
@@ -37,6 +38,6 @@ public class ClassLoaderTest {
         };
         Object obj = mineClassLoader.loadClass(CLASS_LOADER_TEST_CLASS_NAME).newInstance();
         assertEquals(CLASS_LOADER_TEST_CLASS_NAME, obj.getClass().getName());
-        assertEquals(false, obj instanceof ClassLoaderTest);
+        assertFalse(obj instanceof ClassLoaderTest);
     }
 }

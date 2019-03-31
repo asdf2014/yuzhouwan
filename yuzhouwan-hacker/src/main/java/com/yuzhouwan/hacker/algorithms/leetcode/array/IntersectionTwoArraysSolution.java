@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Intersection of Two Arrays Solution
  *
@@ -16,14 +16,14 @@ class IntersectionTwoArraysSolution {
 
     /**
      * https://leetcode.com/problems/intersection-of-two-arrays/
-     *
+     * <p>
      * 349. Intersection of Two Arrays
-     *
+     * <p>
      * Given two arrays, write a function to compute their intersection.
-     *
+     * <p>
      * Example:
      * Given nums1 = [1, 2, 2, 1], nums2 = [2, 2], return [2].
-     *
+     * <p>
      * Note:
      * Each element in the result must be unique.
      * The result can be in any order.

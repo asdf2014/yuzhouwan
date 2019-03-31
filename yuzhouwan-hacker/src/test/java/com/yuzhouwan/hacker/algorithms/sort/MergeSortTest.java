@@ -2,12 +2,12 @@ package com.yuzhouwan.hacker.algorithms.sort;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: MergeSort Tester
  *
@@ -19,12 +19,12 @@ public class MergeSortTest {
     private MergeSort mergeSort;
 
     @Before
-    public void before() throws Exception {
+    public void before() {
         mergeSort = new MergeSort();
     }
 
     @After
-    public void after() throws Exception {
+    public void after() {
         mergeSort = null;
     }
 
@@ -32,7 +32,7 @@ public class MergeSortTest {
      * Method: transfer(int[] benefits)
      */
     @Test
-    public void testTransfer() throws Exception {
+    public void testTransfer() {
 
         int[] recoder = {100, 113, 110, 85, 105, 102, 86, 63, 81, 101, 94, 106, 101, 79, 94, 90, 97};
         int[] transferred = mergeSort.transfer(recoder);
@@ -46,7 +46,7 @@ public class MergeSortTest {
      * Method: maxBenefit(int[] benefits, int low, int mid, int high)
      */
     @Test
-    public void testMaxBenefit() throws Exception {
+    public void testMaxBenefit() {
 
         // [7 - 10] day: [18, 20, -7, 12] benefit
         int[] transferred = {13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7};
@@ -59,7 +59,7 @@ public class MergeSortTest {
      * Method: findMaximum(int[] benefits, int low, int high)
      */
     @Test
-    public void testFindMaximum() throws Exception {
+    public void testFindMaximum() {
 
         // [7 - 10] day: [18, 20, -7, 12] benefit
         int[] transferred = {13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7};
@@ -70,7 +70,7 @@ public class MergeSortTest {
     }
 
     @Test
-    public void pressureTest() throws Exception {
+    public void pressureTest() {
 
         int[] transferred = new int[10000];
         int len = 10000;

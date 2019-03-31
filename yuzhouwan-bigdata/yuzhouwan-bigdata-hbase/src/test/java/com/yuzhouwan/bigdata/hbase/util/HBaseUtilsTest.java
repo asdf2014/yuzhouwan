@@ -1,7 +1,7 @@
 package com.yuzhouwan.bigdata.hbase.util;
 
 import com.alibaba.fastjson.JSON;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,10 +9,10 @@ import java.util.Arrays;
 
 import static com.yuzhouwan.bigdata.hbase.util.HBaseUtils.extractTimestamp4Region;
 import static com.yuzhouwan.bigdata.hbase.util.HBaseUtils.removeEndKey;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：HBase Utils Test
  *
@@ -28,7 +28,7 @@ public class HBaseUtilsTest {
     private Logger _log = LoggerFactory.getLogger(HBaseUtilsTest.class);
 
     @Test
-    public void generateSplitKeysTest() throws Exception {
+    public void generateSplitKeysTest() {
 
         assertEquals("SPLITS => ['-128', '-112', '-96', '-80', '-64', '-48', '-32', '-16', '0', " +
                         "'16', '32', '48', '64', '80', '96', '112', '128']",
@@ -46,7 +46,7 @@ public class HBaseUtilsTest {
     }
 
     @Test
-    public void getHexSplitsTest() throws Exception {
+    public void getHexSplitsTest() {
 //        byte[][] splits = HBaseUtils.getHexSplits("0000000000", "ffffffffffffffffffffffffffffffffffffffff", 400_0000);
         byte[][] splits = HBaseUtils.getHexSplits("0", "f", 16);
         _log.debug("Splits size: {}", splits.length);
@@ -56,7 +56,7 @@ public class HBaseUtilsTest {
     }
 
     @Test
-    public void removeEndKeyTest() throws Exception {
+    public void removeEndKeyTest() {
         String regionName = "hbase:meta,,1..";
         assertEquals("hbase:meta,", removeEndKey(regionName));
         regionName = "hbase:meta,0,1..";
@@ -68,7 +68,7 @@ public class HBaseUtilsTest {
     }
 
     @Test
-    public void extraTimestampTest() throws Exception {
+    public void extraTimestampTest() {
         {
             String regionName = "hbase:acl,400309eb,1495941314418.4cc9912158f76cdabb253c7dbe9059c2.";
             assertEquals("1495941314418", extractTimestamp4Region(regionName));

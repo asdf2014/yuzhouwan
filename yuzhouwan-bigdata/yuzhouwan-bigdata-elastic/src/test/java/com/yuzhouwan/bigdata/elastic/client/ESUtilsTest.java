@@ -7,8 +7,8 @@ import com.yuzhouwan.common.util.PropUtils;
 import org.apache.http.HttpEntity;
 import org.elasticsearch.client.Response;
 import org.elasticsearch.client.RestClient;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,7 +20,7 @@ import static com.yuzhouwan.common.util.StrUtils.isBlank;
 import static com.yuzhouwan.common.util.StrUtils.isNotBlank;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：ElasticSearch Utils Test
  *
@@ -32,9 +32,15 @@ public class ESUtilsTest extends ElasticSearchClientBaseTestCase {
     private static final Logger LOG = LoggerFactory.getLogger(ESUtilsTest.class);
     private static final String ES_INDEX = PropUtils.getInstance().getProperty("es.index.name").concat(ES_SEARCH);
 
-    @Ignore
+    public static String buildQuery(Long timestampStart, Long timestampEnd, String uuid) {
+        String query = buildTimestampQuery(timestampStart, timestampEnd) + buildFieldQuery("uuid", uuid);
+        if (isNotBlank(query) && query.endsWith("},\n")) query = query.substring(0, query.length() - 4).concat("}\n");
+        return query;
+    }
+
+    @Disabled
     @Test
-    public void test() throws Exception {
+    public void test() {
         try (RestClient esClient = REST_CLIENT_BUILDER.build()) {
             final ObjectMapper smileMapper = new ObjectMapper(SMILE_FACTORY);
             final HttpEntity entity = createEntity("{\n"
@@ -70,11 +76,5 @@ public class ESUtilsTest extends ElasticSearchClientBaseTestCase {
         } catch (Exception e) {
             throw new RuntimeException("Cannot query events from es!", e);
         }
-    }
-
-    public static String buildQuery(Long timestampStart, Long timestampEnd, String uuid) {
-        String query = buildTimestampQuery(timestampStart, timestampEnd) + buildFieldQuery("uuid", uuid);
-        if (isNotBlank(query) && query.endsWith("},\n")) query = query.substring(0, query.length() - 4).concat("}\n");
-        return query;
     }
 }

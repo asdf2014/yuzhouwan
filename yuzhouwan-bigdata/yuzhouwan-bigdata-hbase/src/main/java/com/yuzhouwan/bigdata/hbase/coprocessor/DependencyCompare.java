@@ -9,7 +9,7 @@ import java.io.File;
 import java.util.Arrays;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：DependencyCompare
  *
@@ -25,7 +25,7 @@ public class DependencyCompare {
 
     public static void main(String[] args) throws Exception {
         if (args == null || args.length != 1) {
-            _log.error("Params [{}] wrong!", Arrays.toString(args));
+            _log.error(String.format("Params [%s] wrong!", Arrays.toString(args)));
             _log.info("Usage: jar -jar com.yuzhouwan.bigdata.hbase.coprocessor.DependencyCompare "
                     + "<Coprocessor's dependency path>");
             System.exit(-1);
@@ -33,7 +33,7 @@ public class DependencyCompare {
         String path = args[0];
         File coprocessorFile;
         if (!FileUtils.checkExist(coprocessorFile = new File(path))) {
-            _log.error("{} not exist!", path);
+            _log.error(String.format("Path [%s] not exist!", path));
             System.exit(-2);
         }
         String[] coprocessorDependencies = coprocessorFile.list();
@@ -43,7 +43,7 @@ public class DependencyCompare {
         }
         byte[] hbaseDependenciesBytes = FileUtils.readFile(HBASE_DEPENDENCIES);
         if (hbaseDependenciesBytes == null || hbaseDependenciesBytes.length == 0) {
-            _log.error("Cannot get those dependencies from {}", HBASE_DEPENDENCIES);
+            _log.error(String.format("Cannot get those dependencies from %s!", HBASE_DEPENDENCIES));
             System.exit(-3);
         }
         String[] hbaseDependenciesStrs = new String(hbaseDependenciesBytes).split("\n");

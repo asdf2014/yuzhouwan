@@ -8,11 +8,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Distributed Queue with Zookeeper
  *
@@ -96,7 +96,7 @@ public class DistributedQueue {
             String subPath = list.get(0);
             String zNode = "/distributedQueue/" + subPath;
             System.out.println("Get the data:\t" + new String(zk.getData(zNode, false, null),
-                    Charset.forName("UTF-8")) + "\tfrom " + zNode);
+                    StandardCharsets.UTF_8) + "\tfrom " + zNode);
 
             zk.delete(zNode, 0);
         } else {

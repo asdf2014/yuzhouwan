@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: ZkTopology
  *
@@ -67,7 +67,7 @@ public final class ZkTopology {
             try {
                 StormSubmitter.submitTopology("storm-kafka-example", config, builder.createTopology());
             } catch (Exception e) {
-                LOG.error("error: {}", e.getMessage());
+                LOG.error("", e.getMessage());
             }
         } else {
             LocalCluster cluster = new LocalCluster();

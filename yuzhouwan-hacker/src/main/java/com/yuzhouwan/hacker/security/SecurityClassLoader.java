@@ -12,7 +12,7 @@ import java.security.GeneralSecurityException;
 import java.security.SecureRandom;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: SecurityClassLoader
  *
@@ -21,9 +21,8 @@ import java.security.SecureRandom;
  */
 class SecurityClassLoader extends ClassLoader {
 
-    private static final Logger _log = LoggerFactory.getLogger(SecurityClassLoader.class);
-
     static final String ALGORITHM = "DES";
+    private static final Logger _log = LoggerFactory.getLogger(SecurityClassLoader.class);
     private static final String CLASSES_PATH = "F:/如何成为 Java 高手/笔记/Soft Engineering/Git/[code]/"
             + "yuzhouwan/yuzhouwan-hacker/target/classes/com/yuzhouwan/hacker/security/";
 

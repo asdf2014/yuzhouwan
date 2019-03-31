@@ -8,7 +8,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: ArrayBlockingQueue Example
  *
@@ -26,7 +26,7 @@ public class ArrayBlockingQueueExample {
                 try {
                     Thread.sleep(new Random().nextInt(1000));
                 } catch (InterruptedException e) {
-                    _log.error("error: {}", e.getMessage());
+                    _log.error("", e);
                 }
                 myArrayBlockingQueue.queue1();
             }
@@ -50,7 +50,7 @@ public class ArrayBlockingQueueExample {
             try {
                 blockingQueue2.put(1);
             } catch (InterruptedException e) {
-                _log.error("error: {}", e.getMessage());
+                _log.error("", e);
             }
         }
 
@@ -60,7 +60,7 @@ public class ArrayBlockingQueueExample {
                 _log.info("blockingQueue1 putted  {}", Thread.currentThread().getName());
                 blockingQueue2.take();
             } catch (InterruptedException e) {
-                _log.error("error: {}", e.getMessage());
+                _log.error("", e);
             }
         }
 
@@ -70,7 +70,7 @@ public class ArrayBlockingQueueExample {
                 _log.info("blockingQueue2 putted  {}", Thread.currentThread().getName());
                 blockingQueue1.take();
             } catch (InterruptedException e) {
-                _log.error("error: {}", e.getMessage());
+                _log.error("", e);
             }
         }
         /**

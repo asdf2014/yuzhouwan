@@ -4,7 +4,7 @@ import java.util.Queue;
 import java.util.concurrent.LinkedBlockingDeque;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Maximum Depth of Binary Tree Solution
  *
@@ -15,11 +15,11 @@ class MaximumDepthBinaryTreeSolution {
 
     /**
      * https://leetcode.com/problems/maximum-depth-of-binary-tree/
-     *
+     * <p>
      * 104. Maximum Depth of Binary Tree
-     *
+     * <p>
      * Given a binary tree, find its maximum depth.
-     *
+     * <p>
      * The maximum depth is the number of nodes along the longest path from the root node
      * down to the farthest leaf node.
      */

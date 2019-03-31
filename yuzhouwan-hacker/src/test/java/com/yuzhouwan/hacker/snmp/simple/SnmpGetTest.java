@@ -1,13 +1,13 @@
 package com.yuzhouwan.hacker.snmp.simple;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：SnmpSimpleGet Tester.
  *
@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class SnmpGetTest {
 
-    @Ignore
+    @Disabled
     @Test
     public void testSnmpGet() {
 
@@ -37,7 +37,7 @@ public class SnmpGetTest {
         SnmpSimpleGet.snmpGet(ip, community, oids);
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void testSnmpSyncGet() {
 

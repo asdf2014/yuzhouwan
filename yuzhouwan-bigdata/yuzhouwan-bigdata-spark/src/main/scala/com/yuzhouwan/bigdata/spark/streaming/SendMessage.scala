@@ -7,7 +7,7 @@ import java.util.Random
 import breeze.linalg._
 
 /**
-  * Copyright @ 2018 yuzhouwan.com
+  * Copyright @ 2019 yuzhouwan.com
   * All right reserved.
   * Function: Send Message
   *

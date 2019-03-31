@@ -4,10 +4,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Md5 Utils
  *
@@ -17,8 +18,7 @@ import java.security.MessageDigest;
 public final class Md5Utils {
 
     private static final Logger LOG = LoggerFactory.getLogger(Md5Utils.class);
-
-    public static final String MD5 = "MD5";
+    private static final String MD5 = "MD5";
 
     private Md5Utils() {
     }
@@ -30,11 +30,11 @@ public final class Md5Utils {
         }
         try {
             MessageDigest digest = MessageDigest.getInstance(MD5);
-            byte[] bytes = s.getBytes("UTF-8");
+            byte[] bytes = s.getBytes(StandardCharsets.UTF_8);
             digest.update(bytes, 0, bytes.length);
             return new BigInteger(1, digest.digest()).toString(16);
         } catch (Exception e) {
-            LOG.error("Cannot process md5 method, will return the origin string: {}!", s, e);
+            LOG.error(String.format("Cannot process md5 method, will return the origin string: %s!", s), e);
             return s;
         }
     }

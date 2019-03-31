@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.enums
 
 /**
-  * Copyright @ 2018 yuzhouwan.com
+  * Copyright @ 2019 yuzhouwan.com
   * All right reserved.
   * Function：Enums
   *
@@ -11,6 +11,13 @@ package com.yuzhouwan.hacker.enums
 object Enums extends Enumeration {
   type enums = Value
   val E, N, U, M, OTHER = Value
+
+  def main(args: Array[String]): Unit = {
+    assert(convert2Enums("E").getOrElse(Enums.OTHER).equals(Enums.E))
+    assert(convert2Enums2("N").getOrElse(Enums.OTHER).equals(Enums.N))
+    assert(convert2Enums3("U").getOrElse(Enums.OTHER).equals(Enums.U))
+    assert(convert2Enums4("M").getOrElse(Enums.OTHER).equals(Enums.M))
+  }
 
   // normal
   // equals 方法检查的是：值是否相等
@@ -32,12 +39,5 @@ object Enums extends Enumeration {
   // eq 和 == 检查的是：引用是否相同
   def convert2Enums4(enums: String): Option[enums] = {
     Enums.values.find(_.toString == enums)
-  }
-
-  def main(args: Array[String]): Unit = {
-    assert(convert2Enums("E").getOrElse(Enums.OTHER).equals(Enums.E))
-    assert(convert2Enums2("N").getOrElse(Enums.OTHER).equals(Enums.N))
-    assert(convert2Enums3("U").getOrElse(Enums.OTHER).equals(Enums.U))
-    assert(convert2Enums4("M").getOrElse(Enums.OTHER).equals(Enums.M))
   }
 }

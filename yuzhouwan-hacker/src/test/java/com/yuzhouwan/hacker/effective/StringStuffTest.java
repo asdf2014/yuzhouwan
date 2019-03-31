@@ -1,11 +1,11 @@
 package com.yuzhouwan.hacker.effective;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：String Stuff Test
  *
@@ -15,20 +15,20 @@ import static org.junit.Assert.assertEquals;
 public class StringStuffTest {
 
     @Test
-    public void equalsNullPointException() throws Exception {
+    public void equalsNullPointException() {
         String normal = "yuzhouwan.com", unmoral = null;
         try {
             if (normal.equals("yuzhouwan.com") && unmoral.equals("")) {     // bad habit
             }
         } catch (Exception e) {
             System.out.println("Will throw NullPointException!");
-            assertEquals(true, e instanceof NullPointerException);
+            assertTrue(e instanceof NullPointerException);
         }
 
         boolean equals = false;
         if ("yuzhouwan.com".equals(normal) || "".equals(unmoral)) {         // good habit
             equals = true;
         }
-        assertEquals(true, equals);
+        assertTrue(equals);
     }
 }

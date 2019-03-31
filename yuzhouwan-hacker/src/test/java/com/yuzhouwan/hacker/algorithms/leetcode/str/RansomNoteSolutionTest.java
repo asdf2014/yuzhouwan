@@ -1,11 +1,12 @@
 package com.yuzhouwan.hacker.algorithms.leetcode.str;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: com.yuzhouwan.hacker.algorithms.leetcode.str
  *
@@ -15,11 +16,11 @@ import static org.junit.Assert.assertEquals;
 public class RansomNoteSolutionTest {
 
     @Test
-    public void canConstruct() throws Exception {
+    public void canConstruct() {
 
-        assertEquals(false, RansomNoteSolution.canConstruct("a", "b"));
-        assertEquals(false, RansomNoteSolution.canConstruct("aa", "ab"));
-        assertEquals(true, RansomNoteSolution.canConstruct("aa", "aba"));
-        assertEquals(true, RansomNoteSolution.canConstruct("aa", "aab"));
+        assertFalse(RansomNoteSolution.canConstruct("a", "b"));
+        assertFalse(RansomNoteSolution.canConstruct("aa", "ab"));
+        assertTrue(RansomNoteSolution.canConstruct("aa", "aba"));
+        assertTrue(RansomNoteSolution.canConstruct("aa", "aab"));
     }
 }

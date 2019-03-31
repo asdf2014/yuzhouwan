@@ -4,7 +4,7 @@
     <groupId>com.yuzhouwan</groupId>
     <artifactId>yuzhouwan</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.2</version>
+    <version>1.1.0</version>
 
     <modules>
         <module>yuzhouwan-checkstyle</module>
@@ -23,19 +23,19 @@
         <!-- project -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <project.version>1.0.2</project.version>
+        <project.version>1.0.3</project.version>
         <java.version>1.8</java.version>
 
         <!-- maven -->
         <maven.resource.plugin.version>2.6</maven.resource.plugin.version>
-        <maven.compiler.plugin.version>3.5.1</maven.compiler.plugin.version>
+        <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
         <maven.compiler.jdk.version>${java.version}</maven.compiler.jdk.version>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
-        <maven.release.plugin.version>2.4.1</maven.release.plugin.version>
+        <maven.release.plugin.version>2.5.3</maven.release.plugin.version>
         <maven.install.plugin.version>2.5.2</maven.install.plugin.version>
         <maven.eclipse.plugin.version>2.9</maven.eclipse.plugin.version>
-        <maven.checkstyle.version>3.0.0</maven.checkstyle.version>
-        <maven.assembly.plugin.version>2.5.5</maven.assembly.plugin.version>
+        <maven.checkstyle.plugin.version>3.0.0</maven.checkstyle.plugin.version>
+        <maven.assembly.plugin.version>3.1.1</maven.assembly.plugin.version>
         <org.codehaus.mojo.build-helper-maven-plugin>3.0.0</org.codehaus.mojo.build-helper-maven-plugin>
         <scala.maven.plugin.version>3.2.2</scala.maven.plugin.version>
 
@@ -46,43 +46,40 @@
         <!-- scala -->
         <!--<scala.version>2.10.4</scala.version>-->
         <scala.short.version>2.11</scala.short.version>
-        <scala.version>${scala.short.version}.8</scala.version>
+        <scala.version>${scala.short.version}.12</scala.version>
         <scala.unittest.version>3.0.5</scala.unittest.version>
         <scala.sepcs.version>3.3.1</scala.sepcs.version>
         <!--<spark.version>1.2.2</spark.version>-->
-        <spark.version>2.0.0</spark.version>
+        <spark.version>2.3.2</spark.version>
         <spark.scala.version>${scala.short.version}</spark.scala.version>
         <breeze.version>0.10</breeze.version>
 
         <!-- time -->
-        <joda.time.version>2.8.2</joda.time.version>
+        <joda.time.version>2.10.1</joda.time.version>
 
         <!-- json -->
-        <jackson.version>2.9.6</jackson.version>
-
-        <!-- thread -->
-        <transmittable.thread.local.version>2.4.0</transmittable.thread.local.version>
-
-        <!-- test -->
-        <junit.version>4.12</junit.version>
-        <powermock.version>1.7.4</powermock.version>
-        <mockito.version>1.9.5</mockito.version>
-        <securemock.version>1.2</securemock.version>
-        <hamcrest.version>1.3</hamcrest.version>
-        <jmh.version>1.19</jmh.version>
-        <randomizedtesting-runner.version>2.5.0</randomizedtesting-runner.version>
-
-        <spring.test.version>4.2.2.RELEASE</spring.test.version>
+        <jackson.version>2.9.8</jackson.version>
         <json.path.version>0.8.1</json.path.version>
         <json.path.assert.version>0.8.1</json.path.assert.version>
-        <eclipse.jetty.webapp.version>9.2.10.v20150310</eclipse.jetty.webapp.version>
+
+        <!-- thread -->
+        <transmittable.thread.local.version>2.5.1</transmittable.thread.local.version>
+
+        <!-- test -->
+        <junit4.version>4.12</junit4.version>
+        <junit5.version>5.3.2</junit5.version>
+        <powermock.version>1.7.4</powermock.version>
+        <mockito.version>2.23.4</mockito.version>
+        <securemock.version>1.2</securemock.version>
+        <hamcrest.version>1.3</hamcrest.version>
+        <jmh.version>1.21</jmh.version>
+        <randomizedtesting-runner.version>2.7.2</randomizedtesting-runner.version>
 
         <!-- algorithm -->
-        <circuitwall.ml.version>1.1.1</circuitwall.ml.version>
+        <circuitwall.ml.version>1.2.0</circuitwall.ml.version>
 
         <!-- redis -->
-        <redis.version>2.7.3</redis.version>
-        <apache.commons.pool2.version>2.3</apache.commons.pool2.version>
+        <jedis.version>2.7.3</jedis.version>
 
         <!-- zookeeper -->
         <apache.zookeeper.version>3.4.6</apache.zookeeper.version>
@@ -104,10 +101,10 @@
         <jstl.version>1.2</jstl.version>
         <file.upload.version>1.3.1</file.upload.version>
         <hibernate.validator.version>5.2.4.Final</hibernate.validator.version>
+        <spring.test.version>4.2.2.RELEASE</spring.test.version>
 
         <!-- mybatis -->
         <mybatis.version>3.2.6</mybatis.version>
-        <apache.common.dbcp.version>1.2.2</apache.common.dbcp.version>
 
         <!-- mysql -->
         <mysql.jdbc.connection.version>5.1.38</mysql.jdbc.connection.version>
@@ -122,6 +119,8 @@
         <commons.io.version>2.4</commons.io.version>
         <commons.codec.version>1.10</commons.codec.version>
         <apache.common.lang3.verison>3.7</apache.common.lang3.verison>
+        <apache.common.dbcp.version>1.2.2</apache.common.dbcp.version>
+        <apache.commons.pool2.version>2.3</apache.commons.pool2.version>
 
         <!-- alipay-->
         <alipay.version>20161121110022</alipay.version>
@@ -187,6 +186,9 @@
         <!-- netty -->
         <netty.version>4.0.52.Final</netty.version>
 
+        <!-- jetty -->
+        <eclipse.jetty.webapp.version>9.2.10.v20150310</eclipse.jetty.webapp.version>
+
         <!-- collection -->
         <apache.collections.version>3.2.1</apache.collections.version>
         <apache.commons.io.version>2.4</apache.commons.io.version>
@@ -242,7 +244,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-checkstyle-plugin</artifactId>
-                    <version>${maven.checkstyle.version}</version>
+                    <version>${maven.checkstyle.plugin.version}</version>
                     <dependencies>
                         <dependency>
                             <groupId>com.yuzhouwan</groupId>

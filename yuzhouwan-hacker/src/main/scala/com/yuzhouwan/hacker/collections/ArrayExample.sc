@@ -26,9 +26,6 @@ val arr2 = Array[Integer](1, 2, 3)
 def equals(query: Integer) =
   matching(query, (x, y) => x.compareTo(y) == 0)
 
-def more(query: Integer) =
-  matching(query, (x, y) => x.compareTo(y) == 1)
-
 def matching(aim: Integer,
              matcher: (Integer, Integer) => Boolean): Boolean = {
   var isExist = false
@@ -39,6 +36,9 @@ def matching(aim: Integer,
   )
   isExist
 }
+
+def more(query: Integer) =
+  matching(query, (x, y) => x.compareTo(y) == 1)
 
 def less(query: Integer) =
   matching(query, (x, y) => x.compareTo(y) == -1)

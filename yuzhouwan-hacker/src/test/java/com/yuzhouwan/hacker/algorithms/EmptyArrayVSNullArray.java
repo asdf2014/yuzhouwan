@@ -1,11 +1,11 @@
 package com.yuzhouwan.hacker.algorithms;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Empty array vs. Null array
  *
@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class EmptyArrayVSNullArray {
 
     @Test
-    public void test() throws Throwable {
+    public void test() {
         Object[] os = new Object[0];
         /**
          * [Ljava.lang.Object;@75bd9247

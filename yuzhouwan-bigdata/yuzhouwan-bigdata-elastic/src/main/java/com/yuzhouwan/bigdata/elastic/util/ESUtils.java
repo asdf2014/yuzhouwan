@@ -20,7 +20,7 @@ import java.util.LinkedList;
 import static com.yuzhouwan.common.util.StrUtils.isBlank;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：ElasticSearch Utils
  *
@@ -34,10 +34,9 @@ public final class ESUtils {
     public static final String ES_SEARCH = "/_search";
     public static final String APPLICATION_JACKSON_SMILE = "application/x-jackson-smile";
     public static final String ES_HOSTS = PropUtils.getInstance().getProperty("es.transport.addresses.list");
-    public static final RestClientBuilder REST_CLIENT_BUILDER = getESHosts();
-
     public static final ObjectMapper SMILE_MAPPER;
     public static final SmileFactory SMILE_FACTORY;
+    public static final RestClientBuilder REST_CLIENT_BUILDER = getESHosts();
 
     static {
         SMILE_FACTORY = new SmileFactory();
@@ -122,7 +121,7 @@ public final class ESUtils {
             byte[] bytes = SMILE_MAPPER.writeValueAsBytes(SMILE_MAPPER.readValue(json, Object.class));
             return new NByteArrayEntity(bytes, ContentType.create(APPLICATION_JACKSON_SMILE));
         } catch (Exception e) {
-            LOG.error("Cannot create entity, due to {}!", e);
+            LOG.error("Cannot create entity!", e);
             throw new RuntimeException("Cannot create entity!", e);
         }
     }

@@ -6,11 +6,12 @@ import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：动态地将数据，填充到 freemarker模板中
  *
@@ -79,7 +80,7 @@ public class WelcomePage {
     private Configuration config(String ftlDir) throws IOException {
         Configuration cfg = new Configuration(Configuration.VERSION_2_3_22);
         cfg.setDirectoryForTemplateLoading(new File(ftlDir));
-        cfg.setDefaultEncoding("UTF-8");
+        cfg.setDefaultEncoding(StandardCharsets.UTF_8.name());
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
         return cfg;
     }

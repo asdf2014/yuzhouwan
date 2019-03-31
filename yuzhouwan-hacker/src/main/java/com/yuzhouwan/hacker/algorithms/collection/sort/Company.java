@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.algorithms.collection.sort;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Company
  *
@@ -22,8 +22,16 @@ public class Company implements Comparable<Company> {
         return city;
     }
 
+    public void setCity(String city) {
+        this.city = city;
+    }
+
     public double getFoundation() {
         return foundation;
+    }
+
+    public void setFoundation(double foundation) {
+        this.foundation = foundation;
     }
 
     public int compareTo(Company o) {
@@ -36,14 +44,6 @@ public class Company implements Comparable<Company> {
         } else {
             return 0;
         }
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public void setFoundation(double foundation) {
-        this.foundation = foundation;
     }
 
     @Override

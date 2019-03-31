@@ -1,9 +1,7 @@
 package com.yuzhouwan.bigdata.spark
 
-import org.scalatest._
-
 /**
-  * Copyright @ 2018 yuzhouwan.com
+  * Copyright @ 2019 yuzhouwan.com
   * All right reserved.
   * Function：Unit Test Style
   *

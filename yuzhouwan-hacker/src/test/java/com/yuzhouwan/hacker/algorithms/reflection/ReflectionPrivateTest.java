@@ -3,14 +3,14 @@ package com.yuzhouwan.hacker.algorithms.reflection;
 import com.yuzhouwan.hacker.json.A;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：ReflectionPrivate Tester.
  *
@@ -22,12 +22,12 @@ public class ReflectionPrivateTest {
     private ReflectionPrivate reflectionPrivate;
 
     @Before
-    public void before() throws Exception {
+    public void before() {
         reflectionPrivate = new ReflectionPrivate();
     }
 
     @After
-    public void after() throws Exception {
+    public void after() {
         reflectionPrivate = null;
     }
 

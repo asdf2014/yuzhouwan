@@ -1,11 +1,11 @@
 package com.yuzhouwan.hacker.annotation;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：VisibleForTesting Test
  *
@@ -16,6 +16,6 @@ public class VisibleForTestingTest {
 
     @Test
     public void testVisibleForTesting() {
-        assertEquals(true, new VisibleForTestingExample().visibleForTesting());
+        assertTrue(new VisibleForTestingExample().visibleForTesting());
     }
 }

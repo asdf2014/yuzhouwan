@@ -6,7 +6,7 @@ import com.fasterxml.jackson.module.scala.experimental.ScalaObjectMapper
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
-  * Copyright @ 2018 yuzhouwan.com
+  * Copyright @ 2019 yuzhouwan.com
   * All right reserved.
   * Function：Convert txt into json.
   *

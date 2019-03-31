@@ -9,7 +9,7 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Benchmark Simple
  *
@@ -20,11 +20,6 @@ import java.util.concurrent.TimeUnit;
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @State(Scope.Thread)
 public class BenchmarkSimple {
-
-    @Benchmark
-    public void bench() {
-        add(1, 1);
-    }
 
     private static int add(int a, int b) {
         return a + b;
@@ -43,5 +38,10 @@ public class BenchmarkSimple {
                 .threads(10)
                 .build();
         new Runner(opt).run();
+    }
+
+    @Benchmark
+    public void bench() {
+        add(1, 1);
     }
 }

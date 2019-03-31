@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.algorithms.leetcode;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Add Digits Solution
  *
@@ -12,18 +12,17 @@ class AddDigitsSolution {
 
     /**
      * https://leetcode.com/problems/add-digits/
-     *
+     * <p>
      * 258. Add Digits
-     *
+     * <p>
      * Given a non-negative integer num, repeatedly add all its digits until the result has only one digit.
-     *
+     * <p>
      * For example:
-     *
+     * <p>
      * Given num = 38, the process is like: 3 + 8 = 11, 1 + 1 = 2. Since 2 has only one digit, return it.
-     *
+     * <p>
      * Follow up:
      * Could you do it without any loop/recursion in O(1) runtime?
-     *
      */
     static int addDigits(int num) {
         if (num < 10) return num;

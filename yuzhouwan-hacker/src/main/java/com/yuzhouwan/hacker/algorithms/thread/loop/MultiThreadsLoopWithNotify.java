@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.algorithms.thread.loop;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：thread
  *
@@ -62,6 +62,7 @@ public class MultiThreadsLoopWithNotify {
     private static class Reporter implements Runnable {
 
         private final LockHolder lockHolder;
+
         Reporter(LockHolder lockHolder) {
             this.lockHolder = lockHolder;
         }

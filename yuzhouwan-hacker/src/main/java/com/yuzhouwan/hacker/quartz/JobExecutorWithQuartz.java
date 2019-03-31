@@ -13,7 +13,7 @@ import static org.quartz.JobBuilder.newJob;
 import static org.quartz.TriggerBuilder.newTrigger;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * 功能描述：quartz
  *
@@ -65,7 +65,7 @@ public class JobExecutorWithQuartz implements Job {
     }
 
     @Override
-    public void execute(JobExecutionContext context) throws JobExecutionException {
+    public void execute(JobExecutionContext context) {
 
         // Say Hello to the World and display the date/time
         _log.info("Hello World! - " + new Date());

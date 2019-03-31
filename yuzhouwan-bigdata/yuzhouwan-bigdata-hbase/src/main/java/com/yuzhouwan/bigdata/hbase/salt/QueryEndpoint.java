@@ -177,7 +177,7 @@ public class QueryEndpoint extends DataProtos.QueryDataService implements Coproc
     }
 
     @Override
-    public void stop(CoprocessorEnvironment env) throws IOException {
+    public void stop(CoprocessorEnvironment env) {
         //nothing to do
     }
 }

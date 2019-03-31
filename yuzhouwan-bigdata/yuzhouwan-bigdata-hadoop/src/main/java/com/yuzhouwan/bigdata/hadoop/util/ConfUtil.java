@@ -11,7 +11,7 @@ import java.net.URISyntaxException;
 import java.util.Properties;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：针对不同任务，利用配置定制化处理流程
  *
@@ -22,9 +22,6 @@ public final class ConfUtil {
 
     //最大分区，即 结果文件的数量
     private static int max;
-
-    private ConfUtil() {
-    }
 
     static {
         //实例化
@@ -55,6 +52,9 @@ public final class ConfUtil {
         }
         //获取配置，如果没有，则给默认最大分区为 10
         max = Integer.parseInt(p.getProperty("max", "10"));
+    }
+
+    private ConfUtil() {
     }
 
     /**

@@ -12,7 +12,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import java.net.InetSocketAddress;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Echo Client
  *
@@ -27,6 +27,10 @@ public class EchoClient {
     private EchoClient(String hostIp, int port) {
         this.hostIp = hostIp;
         this.port = port;
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        new EchoClient("localhost", 16666).start();
     }
 
     public void start() throws InterruptedException {
@@ -54,9 +58,5 @@ public class EchoClient {
         } finally {
             group.shutdownGracefully().sync();
         }
-    }
-
-    public static void main(String[] args) throws InterruptedException {
-        new EchoClient("localhost", 16666).start();
     }
 }

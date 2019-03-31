@@ -3,7 +3,7 @@ package com.yuzhouwan.bigdata.elastic.analyzer;
 import java.util.Date;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Attack Report
  *

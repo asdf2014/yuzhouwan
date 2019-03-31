@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import java.util.concurrent.*;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Thread Utils
  *
@@ -31,9 +31,6 @@ public final class ThreadUtils {
 
     /**
      * CachedThreadPool.
-     *
-     * @param poolName
-     * @return
      */
     public static ExecutorService buildExecutorService(String poolName) {
         return buildExecutorService(null, poolName, null);
@@ -41,10 +38,6 @@ public final class ThreadUtils {
 
     /**
      * CachedThreadPool with isDaemon.
-     *
-     * @param poolName
-     * @param isDaemon
-     * @return
      */
     public static ExecutorService buildExecutorService(String poolName, Boolean isDaemon) {
         return buildExecutorService(null, poolName, isDaemon);
@@ -52,9 +45,6 @@ public final class ThreadUtils {
 
     /**
      * FixedThreadPool.
-     *
-     * @param poolName
-     * @return
      */
     public static ExecutorService buildExecutorService(Integer nThread, String poolName) {
         return buildExecutorService(nThread, poolName, null);
@@ -62,11 +52,6 @@ public final class ThreadUtils {
 
     /**
      * FixedThreadPool with isDaemon.
-     *
-     * @param nThread
-     * @param poolName
-     * @param isDaemon
-     * @return
      */
     public static ExecutorService buildExecutorService(Integer nThread, String poolName, Boolean isDaemon) {
         if (nThread != null && nThread >= 0)
@@ -76,12 +61,6 @@ public final class ThreadUtils {
 
     /**
      * ThreadPoolExecutor with LinkedBlockingQueue.
-     *
-     * @param nThreadCore
-     * @param nThreadMax
-     * @param poolName
-     * @param isDaemon
-     * @return
      */
     public static ExecutorService buildExecutorService(Integer nThreadCore, Integer nThreadMax, Long ttlMillisecond,
                                                        String poolName, Boolean isDaemon) {
@@ -94,14 +73,6 @@ public final class ThreadUtils {
 
     /**
      * CachedThreadPool / (ThreadPoolExecutor with ArrayBlockingQueue).
-     *
-     * @param jobThreadCorePoolSize
-     * @param jobThreadMaximumPoolSize
-     * @param jobThreadKeepAliveSecond
-     * @param jobArrayBlockingQueueSize
-     * @param poolName
-     * @param isDaemon
-     * @return
      */
     public static ExecutorService buildExecutorService(Integer jobThreadCorePoolSize, Integer jobThreadMaximumPoolSize,
                                                        Long jobThreadKeepAliveSecond, Integer jobArrayBlockingQueueSize,
@@ -132,6 +103,14 @@ public final class ThreadUtils {
 
     public static int availableProcessors() {
         return Runtime.getRuntime().availableProcessors();
+    }
+
+    public static int availableProcessors4IO() {
+        return availableProcessors() * 2;
+    }
+
+    public static int availableProcessors4Computing() {
+        return availableProcessors() + 1;
     }
 
     public static void wait4Period(long passedPeriod, long aimPeriod) {

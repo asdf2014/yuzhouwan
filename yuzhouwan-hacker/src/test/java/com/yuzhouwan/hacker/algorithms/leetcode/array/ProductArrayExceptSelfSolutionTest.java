@@ -1,11 +1,11 @@
 package com.yuzhouwan.hacker.algorithms.leetcode.array;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Product of Array Except Self Solution Tester
  *
@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class ProductArrayExceptSelfSolutionTest {
 
     @Test
-    public void productExceptSelf() throws Exception {
+    public void productExceptSelf() {
 
         int[] origin = {1, 2, 3, 4};
         int[] aim = {24, 12, 8, 6};

@@ -22,7 +22,7 @@ import java.util.LinkedList;
 import static com.yuzhouwan.common.util.StrUtils.*;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：HBase Utils
  *
@@ -90,25 +90,13 @@ public final class HBaseUtils {
         try {
             admin.createTable(table, splits);
         } catch (TableExistsException e) {
-            _log.error("Table {} already exists!", table.getNameAsString());
+            _log.error(String.format("Table %s already exists!", table.getNameAsString()));
             return false;
         } catch (Exception e) {
             _log.error(ExceptionUtils.errorInfo(e));
             throw new RuntimeException(e);
         }
         return true;
-    }
-
-    public Date getClusterStartTime() {
-        try {
-            return new Date(new HBaseAdmin(configuration).getClusterStatus().getMaster().getStartcode());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public String getClusterStartTimeStr() {
-        return TimeUtils.date2Str(getClusterStartTime());
     }
 
     public static String getNameSpace(RegionLoad region) {
@@ -211,5 +199,17 @@ public final class HBaseUtils {
             splits[i] = String.format("%016x", lowestKey.add(
                     regionIncrement.multiply(BigInteger.valueOf(i)))).getBytes();
         return splits;
+    }
+
+    public Date getClusterStartTime() {
+        try {
+            return new Date(new HBaseAdmin(configuration).getClusterStatus().getMaster().getStartcode());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String getClusterStartTimeStr() {
+        return TimeUtils.date2Str(getClusterStartTime());
     }
 }

@@ -1,11 +1,11 @@
 package com.yuzhouwan.hacker.algorithms.leetcode;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Excel Sheet Column Number Solution Tester
  *
@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class ExcelSheetColumnNumberSolutionTester {
 
     @Test
-    public void titleToNumberTest() throws Exception {
+    public void titleToNumberTest() {
         assertEquals(1, ExcelSheetColumnNumberSolution.titleToNumber("A"));
         assertEquals(2, ExcelSheetColumnNumberSolution.titleToNumber("B"));
         assertEquals(3, ExcelSheetColumnNumberSolution.titleToNumber("C"));
@@ -26,7 +26,7 @@ public class ExcelSheetColumnNumberSolutionTester {
     }
 
     @Test
-    public void simpleTest() throws Exception {
+    public void simpleTest() {
         assertEquals(1, ExcelSheetColumnNumberSolution.simple("A"));
         assertEquals(2, ExcelSheetColumnNumberSolution.simple("B"));
         assertEquals(3, ExcelSheetColumnNumberSolution.simple("C"));

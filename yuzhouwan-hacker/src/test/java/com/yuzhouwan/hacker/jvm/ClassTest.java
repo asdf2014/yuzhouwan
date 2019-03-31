@@ -1,11 +1,15 @@
 package com.yuzhouwan.hacker.jvm;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+interface A {
+}
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Class Test
  *
@@ -19,11 +23,11 @@ public class ClassTest {
         {
             // If those classes were hold by different classloaders will got the `false` result,
             // Then we can solve that by serializing.
-            assertEquals(true, A.class.isAssignableFrom(B.class));
-            assertEquals(true, B.class.isAssignableFrom(C.class));
-            assertEquals(true, A.class.isAssignableFrom(C.class));
-            assertEquals(true, A.class.getClassLoader().equals(B.class.getClassLoader()));
-            assertEquals(true, B.class.getClassLoader().equals(C.class.getClassLoader()));
+            assertTrue(A.class.isAssignableFrom(B.class));
+            assertTrue(B.class.isAssignableFrom(C.class));
+            assertTrue(A.class.isAssignableFrom(C.class));
+            assertTrue(A.class.getClassLoader().equals(B.class.getClassLoader()));
+            assertTrue(B.class.getClassLoader().equals(C.class.getClassLoader()));
         }
         {
             Class<? extends Class> aClass = A.class.getClass();
@@ -39,18 +43,15 @@ public class ClassTest {
         } catch (Exception e) {
             failed = true;
         }
-        assertEquals(false, failed);
+        assertFalse(failed);
         failed = false;
         try {
             C c = (C) B.class.newInstance();
         } catch (Exception e) {
             failed = true;
         }
-        assertEquals(true, failed);
+        assertTrue(failed);
     }
-}
-
-interface A {
 }
 
 abstract class B implements A {

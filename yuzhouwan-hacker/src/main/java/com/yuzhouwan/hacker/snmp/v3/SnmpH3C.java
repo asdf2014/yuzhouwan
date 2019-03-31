@@ -19,7 +19,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Snmp H3C
  *
@@ -180,7 +180,7 @@ public class SnmpH3C {
      * @param version       default: 3
      */
     private void createUserTarget(String address, String securityName, int securityLevel, int securityModel,
-                                  /*int maxSizeRequestPDU,*/ int retries, long timeout, int version) {
+            /*int maxSizeRequestPDU,*/ int retries, long timeout, int version) {
         userTarget = new UserTarget();
         userTarget.setAddress(GenericAddress.parse("udp:" + address + "/161"));
         userTarget.setSecurityName(new OctetString(securityName));
@@ -225,9 +225,9 @@ public class SnmpH3C {
                     LOG.error("[ERROR]: response is null");
 
                 } else if (response.getErrorStatus() != 0) {
-                    LOG.error("[ERROR]: response status {}, Text: {}",
+                    LOG.error(String.format("[ERROR]: response status %s, Text: %s",
                             response.getErrorStatus(),
-                            response.getErrorStatusText());
+                            response.getErrorStatusText()));
                 } else {
                     LOG.debug("Received response Success!");
                     for (int i = 0; i < response.size(); i++) {

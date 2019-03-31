@@ -1,14 +1,14 @@
 package com.yuzhouwan.common.util;
 
-import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.util.LinkedList;
 
 import static java.lang.Character.isDigit;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: String Utils
  *
@@ -28,8 +28,6 @@ public final class StrUtils {
     public static final String MINUS = "-";
     public static final char POINT = '.';
 
-    public static final String UTF_8 = "UTF-8";
-
     public static final String NEXT_LINE = System.lineSeparator();
 
     private StrUtils() {
@@ -37,10 +35,6 @@ public final class StrUtils {
 
     /**
      * 用 "0" 填充 aim 数值之前的 (num-((int)aim).length) 个空位.
-     *
-     * @param aim
-     * @param num
-     * @return
      */
     public static String fillWithZero(Number aim, int num) {
         String zeros = "";
@@ -58,13 +52,11 @@ public final class StrUtils {
     /**
      * 得到最主干的数值，处理类似：HEAD000001.
      *
-     * @param suppressCode
-     * @param headIndex
      * @return 1
      */
     public static String getMainValue(String suppressCode, int headIndex, String needRemoved) {
         if (!StrUtils.isEmpty(suppressCode)) {
-            String tail = suppressCode.substring(headIndex, suppressCode.length());
+            String tail = suppressCode.substring(headIndex);
             while (true)
                 if (tail.startsWith(needRemoved)) tail = tail.substring(1);
                 else return tail;
@@ -74,9 +66,6 @@ public final class StrUtils {
 
     /**
      * Parsing String is Empty.
-     *
-     * @param s
-     * @return
      */
     public static boolean isEmpty(final String s) {
         return s == null || s.isEmpty();
@@ -84,9 +73,6 @@ public final class StrUtils {
 
     /**
      * Parsing String is not Empty.
-     *
-     * @param s
-     * @return
      */
     public static boolean isNotEmpty(final String s) {
         return !isEmpty(s);
@@ -94,9 +80,6 @@ public final class StrUtils {
 
     /**
      * Parsing String is Blank.
-     *
-     * @param s
-     * @return
      */
     public static boolean isBlank(String s) {
         return s == null || s.isEmpty() || s.trim().isEmpty();
@@ -104,9 +87,6 @@ public final class StrUtils {
 
     /**
      * Parsing String is not Blank.
-     *
-     * @param s
-     * @return
      */
     public static boolean isNotBlank(String s) {
         return !isBlank(s);
@@ -114,21 +94,13 @@ public final class StrUtils {
 
     /**
      * Cut Start String.
-     *
-     * @param origin
-     * @param start
-     * @return
      */
     public static String cutStartStr(String origin, String start) {
-        return origin.substring(start.length(), origin.length());
+        return origin.substring(start.length());
     }
 
     /**
      * Cut Middle String, and Save the tail.
-     *
-     * @param origin
-     * @param middle
-     * @return
      */
     public static String cutMiddleStr(String origin, String middle) {
         String[] strs;
@@ -137,10 +109,6 @@ public final class StrUtils {
 
     /**
      * Cut the tail of string.
-     *
-     * @param origin
-     * @param tail
-     * @return
      */
     public static String cutTailStr(String origin, String tail) {
         return origin.substring(0, origin.length() - tail.length());
@@ -151,7 +119,6 @@ public final class StrUtils {
      *
      * @param origin     origin String
      * @param separators separator array
-     * @return
      */
     public static LinkedList<String> splitMulti(String origin, final String... separators) {
         int len;
@@ -179,7 +146,6 @@ public final class StrUtils {
      * @param origin  origin string
      * @param aim     aim string
      * @param ignores characters to ignores
-     * @return
      */
     public static boolean isLike(final String origin, final String aim, final String... ignores) {
         if (StrUtils.isEmpty(origin) || StrUtils.isEmpty(aim)) return false;
@@ -223,14 +189,10 @@ public final class StrUtils {
 
     /**
      * Convert String form UTF-8 into Hex.
-     *
-     * @param s
-     * @return
-     * @throws UnsupportedEncodingException
      */
-    public static String str2Hex(String s) throws UnsupportedEncodingException {
+    public static String str2Hex(String s) {
         if (StrUtils.isEmpty(s)) return s;
-        char[] hexRawArr = String.format("%x", new BigInteger(1, s.getBytes(UTF_8))).toCharArray();
+        char[] hexRawArr = String.format("%x", new BigInteger(1, s.getBytes(StandardCharsets.UTF_8))).toCharArray();
         StringBuilder hexFmtStr = new StringBuilder();
         for (int i = 0; i < hexRawArr.length; i++) hexFmtStr.append(HEX).append(hexRawArr[i]).append(hexRawArr[++i]);
         return hexFmtStr.toString();
@@ -238,24 +200,17 @@ public final class StrUtils {
 
     /**
      * Convert String form Hex into UTF-8.
-     *
-     * @param s
-     * @return
-     * @throws UnsupportedEncodingException
      */
-    public static String hex2Str(String s) throws UnsupportedEncodingException {
+    public static String hex2Str(String s) {
         if (StrUtils.isEmpty(s)) return s;
         String[] strArr = s.split(DOUBLE_TRANSFER);
         byte[] byteArr = new byte[strArr.length - 1];
         for (int i = 1; i < strArr.length; i++) byteArr[i - 1] = Integer.decode(ZERO.concat(strArr[i])).byteValue();
-        return new String(byteArr, UTF_8);
+        return new String(byteArr, StandardCharsets.UTF_8);
     }
 
     /**
      * Compression String.
-     *
-     * @param s
-     * @return
      */
     public static String compression(String s) {
         if (isEmpty(s)) return null;

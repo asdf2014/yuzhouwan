@@ -5,14 +5,14 @@ import com.yuzhouwan.hacker.javaProhibited.serializable.bean.Country;
 import com.yuzhouwan.hacker.javaProhibited.serializable.bean.Infos;
 import com.yuzhouwan.hacker.javaProhibited.serializable.bean.SerializableWithNoSAttribution;
 import com.yuzhouwan.hacker.javaProhibited.serializable.converter.SerializationConverter;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.*;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Serializable Test
  *

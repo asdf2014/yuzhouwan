@@ -1,10 +1,10 @@
 package com.yuzhouwan.hacker.security;
 
 import com.yuzhouwan.common.dir.DirUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: EncryptClasses Tester
  *

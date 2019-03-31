@@ -11,7 +11,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：thread
  *
@@ -27,7 +27,7 @@ public class ScheduledExecutorServiceExample {
         int len = 25;
         final int[] count = new int[len];
         ScheduledExecutorService executorService
-                = Executors.newScheduledThreadPool(ThreadUtils.availableProcessors() + 1);
+                = Executors.newScheduledThreadPool(ThreadUtils.availableProcessors4Computing());
 
         _log.info("Start...");
         for (int i = 0; i < len; i++) {

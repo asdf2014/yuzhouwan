@@ -16,7 +16,7 @@ import static com.yuzhouwan.common.util.StrUtils.isEmpty;
 import static com.yuzhouwan.common.util.StrUtils.isNotEmpty;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Ip Utils
  *
@@ -25,8 +25,8 @@ import static com.yuzhouwan.common.util.StrUtils.isNotEmpty;
  */
 public final class IpUtils {
 
+    private static final int REMOVE_TAIL_LENGTH = 3;
     private static final Logger _log = LoggerFactory.getLogger(IpUtils.class);
-
     private static final Pattern IP_V4_ADDRESS_IS_VALID = Pattern.compile(
             "(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])");
     private static final Pattern IP_V4_ADDRESS_IS_VALID2 = Pattern.compile(
@@ -40,15 +40,10 @@ public final class IpUtils {
                     + "::(ffff(:0{1,4})?:)?((25[0-5]|(2[0-4]|1?[0-9])?[0-9])\\\\.){3}"
                     + "(25[0-5]|(2[0-4]|1?[0-9])?[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|"
                     + "(2[0-4]|1?[0-9])?[0-9])\\\\.){3}(25[0-5]|(2[0-4]|1?[0-9])?[0-9]))");
-
     private static final Pattern EXTRACT_DOMAIN_WITH_SUB_PATH = Pattern.compile("(?<=//).*?(?=/)");
     private static final Pattern EXTRACT_DOMAIN_SIMPLE = Pattern.compile("(?<=//).*");
     private static final Pattern EXTRACT_DOMAIN_SIMPLE_END_WITH_TAIL = Pattern.compile("(?<=//).*(?=/)");
-
     private static final String PING_PREFIX = "ping -c 1 ";
-
-    public static final int REMOVE_TAIL_LENGTH = 3;
-
     /**
      * The current host IP address is the IP address from the device.
      */
@@ -93,7 +88,7 @@ public final class IpUtils {
         int len = url.split("/").length;
         Matcher m;
         if (len < 3) {
-            _log.error("URL[{}] is invalid!", url);
+            _log.error(String.format("URL[%s] is invalid!", url));
             return null;
         } else if (len > 3) {
             // 这里必须先 find，才能 group 取到值
@@ -131,8 +126,8 @@ public final class IpUtils {
      * Convert Long into IP Address.
      */
     public static String long2ip(Long ipAddress) {
-        return String.valueOf(ipAddress >>> 24) + "." + String.valueOf((ipAddress & 0x00FFFFFF) >>> 16) + "."
-                + String.valueOf((ipAddress & 0x0000FFFF) >>> 8) + "." + String.valueOf((ipAddress & 0x000000FF));
+        return (ipAddress >>> 24) + "." + ((ipAddress & 0x00FFFFFF) >>> 16) + "."
+                + ((ipAddress & 0x0000FFFF) >>> 8) + "." + (ipAddress & 0x000000FF);
     }
 
     /**

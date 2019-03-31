@@ -1,9 +1,9 @@
 package com.yuzhouwan.hacker.algorithms.sort;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: BitMap4G Example Tester
  *
@@ -13,7 +13,7 @@ import org.junit.Test;
 public class BitMap4GExampleTest {
 
     @Test
-    public void test() throws Exception {
+    public void test() {
 
         BitMap4GExample bitMap4GExample = new BitMap4GExample();
 

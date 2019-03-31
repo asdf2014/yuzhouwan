@@ -3,7 +3,7 @@ package com.yuzhouwan.hacker.algorithms.tree.RedBlackTree;
 import com.yuzhouwan.common.util.RandomUtils;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: RedBlackBST Client
  *
@@ -12,7 +12,7 @@ import com.yuzhouwan.common.util.RandomUtils;
  */
 public class RedBlackBSTApp {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
         int N = 11;
         RedBlackBST<Integer, Integer> st = new RedBlackBST<>(1);

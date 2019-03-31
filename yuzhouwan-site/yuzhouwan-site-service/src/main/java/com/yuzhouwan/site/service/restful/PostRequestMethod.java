@@ -4,9 +4,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * Copyright @ yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
- * Function: Stuff about Post in RESTful
+ * Function: Few stuff about POST query in RESTful style
  *
  * @author Benedict Jin
  * @since 2016/3/18

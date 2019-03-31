@@ -3,17 +3,17 @@ package com.yuzhouwan.common.html;
 import org.openqa.selenium.Cookie;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Html Exporter Interface
  * <p>
  * Should install the newest PhantomJS, and set into PATH.
- * @see <a href="http://phantomjs.org/download.html">http://phantomjs.org/download.html</a>
  *
  * @author Benedict Jin
+ * @see <a href="http://phantomjs.org/download.html">http://phantomjs.org/download.html</a>
  * @since 2016/6/22
  */
-public interface IHtmlExporter {
+public interface IHtmlExporter<T> {
 
     /**
      * 将带有 chart、map 等动态图表的 html 转换为 图片.
@@ -21,7 +21,7 @@ public interface IHtmlExporter {
      * @param url 目标 URL
      * @return 未知类型的图片
      */
-    <OT> OT convert2Image(String url);
+    T convert2Image(String url);
 
     /**
      * 将带有 chart、map 等动态图表的 html 转换为 图片.
@@ -29,7 +29,7 @@ public interface IHtmlExporter {
      * @param url 目标 URL
      * @return 未知类型的图片
      */
-    <OT> OT convert2Image(String url, Integer width, Integer height);
+    T convert2Image(String url, Integer width, Integer height);
 
     /**
      * 将带有 chart、map 等动态图表的 html 转换为 图片（可以额外配置 cookie 的权限控制）.
@@ -39,7 +39,7 @@ public interface IHtmlExporter {
      * @param addedCookie 添加 cookie
      * @return 未知类型的图片
      */
-    <OT> OT convert2Image(String url, Cookie addedCookie);
+    T convert2Image(String url, Cookie addedCookie);
 
 
     /**
@@ -49,5 +49,5 @@ public interface IHtmlExporter {
      * @param addedCookie 添加 cookie
      * @return 未知类型的图片
      */
-    <OT> OT convert2Image(String url, Cookie addedCookie, Integer width, Integer height);
+    T convert2Image(String url, Cookie addedCookie, Integer width, Integer height);
 }

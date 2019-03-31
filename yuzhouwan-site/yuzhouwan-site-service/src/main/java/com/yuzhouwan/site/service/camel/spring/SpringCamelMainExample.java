@@ -8,7 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Spring + Camel Example
  *
@@ -22,8 +22,7 @@ public class SpringCamelMainExample {
     public static void main(String[] args) throws Exception {
 
         /*
-         * 这里是测试代码
-         * 作为架构师，您应该知道在应用程序中如何进行Spring的加载、如果在Web程序中进行加载、如何在OSGI中间件中进行加载
+         * 需要了解在应用程序中如何进行Spring的加载、如果在Web程序中进行加载、如何在OSGI中间件中进行加载
          *
          * Camel会以SpringCamelContext类作为Camel上下文对象
          */

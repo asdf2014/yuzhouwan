@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Example Controller
  *
@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class ExampleController {
 
-    private static final Logger log = Logger.getLogger(ExampleController.class);
+    private static final Logger LOG = Logger.getLogger(ExampleController.class);
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
     @Cacheable("calculateResult")
     public String calculateResult() {
-        log.debug("Performing expensive calculation...");
+        LOG.debug("Performing expensive calculation...");
         // perform computationally expensive calculation
         return "result";
     }

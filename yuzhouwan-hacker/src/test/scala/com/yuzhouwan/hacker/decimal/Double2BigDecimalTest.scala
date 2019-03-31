@@ -6,7 +6,7 @@ import com.yuzhouwan.hacker.UnitTestStyle
 import org.apache.avro.{Conversions, LogicalTypes, Schema}
 
 /**
-  * Copyright @ 2018 yuzhouwan.com
+  * Copyright @ 2019 yuzhouwan.com
   * All right reserved.
   * Function：Double 2 BigDecimal Test
   *

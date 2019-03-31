@@ -1,9 +1,9 @@
 package com.yuzhouwan.hacker.algorithms.thread.sync;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：String Buffer Test
  *

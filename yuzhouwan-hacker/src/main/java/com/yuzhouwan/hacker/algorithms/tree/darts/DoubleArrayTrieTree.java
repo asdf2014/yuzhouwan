@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Double Array Trie Tree
  *
@@ -16,20 +16,8 @@ public class DoubleArrayTrieTree {
 
     private static final int BUF_SIZE = 16384;
     private static final int UNIT_SIZE = 8; // size of int + int
-
-    /**
-     * Node.
-     */
-    private static class Node {
-        int code;
-        int depth;
-        int left;
-        int right;
-    }
-
     private int[] check;
     private int[] base;
-
     private boolean[] used;
     private int size;
     private int allocSize;
@@ -40,6 +28,15 @@ public class DoubleArrayTrieTree {
     private int progress;
     private int nextCheckPos;
     private int error_;
+
+    public DoubleArrayTrieTree() {
+        check = null;
+        base = null;
+        used = null;
+        size = 0;
+        allocSize = 0;
+        error_ = 0;
+    }
 
     // inline _resize expanded
     private int resize(int newSize) {
@@ -170,13 +167,12 @@ public class DoubleArrayTrieTree {
         return begin;
     }
 
-    public DoubleArrayTrieTree() {
+    void clear() {
         check = null;
         base = null;
         used = null;
-        size = 0;
         allocSize = 0;
-        error_ = 0;
+        size = 0;
     }
 
     // no deconstructor
@@ -187,14 +183,6 @@ public class DoubleArrayTrieTree {
 
     // set_array omitted
     // array omitted
-
-    void clear() {
-        check = null;
-        base = null;
-        used = null;
-        allocSize = 0;
-        size = 0;
-    }
 
     public int getUnitSize() {
         return UNIT_SIZE;
@@ -347,5 +335,15 @@ public class DoubleArrayTrieTree {
         for (int i = 0; i < size; i++) {
             System.err.println("i: " + i + " [" + base[i] + ", " + check[i] + "]");
         }
+    }
+
+    /**
+     * Node.
+     */
+    private static class Node {
+        int code;
+        int depth;
+        int left;
+        int right;
     }
 }

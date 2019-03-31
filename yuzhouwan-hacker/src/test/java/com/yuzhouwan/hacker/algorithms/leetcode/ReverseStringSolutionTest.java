@@ -1,11 +1,12 @@
 package com.yuzhouwan.hacker.algorithms.leetcode;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Reverse String Solution Tester
  *
@@ -17,9 +18,9 @@ public class ReverseStringSolutionTest {
     private static final int SUPPRESS_TEST_LIMITATION = 10_1000;
 
     @Test
-    public void solution() throws Exception {
+    public void solution() {
 
-        assertEquals(null, ReverseStringSolution.reverseString(null));
+        assertNull(ReverseStringSolution.reverseString(null));
         assertEquals("", ReverseStringSolution.reverseString(""));
         assertEquals("a", ReverseStringSolution.reverseString("a"));
         assertEquals("olleh", ReverseStringSolution.reverseString("hello"));
@@ -35,9 +36,9 @@ public class ReverseStringSolutionTest {
     }
 
     @Test
-    public void solutionLitterSpace() throws Exception {
+    public void solutionLitterSpace() {
 
-        assertEquals(null, ReverseStringSolution.reverseStringLitterSpace(null));
+        assertNull(ReverseStringSolution.reverseStringLitterSpace(null));
         assertEquals("", ReverseStringSolution.reverseStringLitterSpace(""));
         assertEquals("a", ReverseStringSolution.reverseStringLitterSpace("a"));
         assertEquals("olleh", ReverseStringSolution.reverseStringLitterSpace("hello"));
@@ -54,9 +55,9 @@ public class ReverseStringSolutionTest {
     }
 
     @Test
-    public void solutionRecursion() throws Exception {
+    public void solutionRecursion() {
 
-        assertEquals(null, ReverseStringSolution.reverseStringRecursion(null));
+        assertNull(ReverseStringSolution.reverseStringRecursion(null));
         assertEquals("", ReverseStringSolution.reverseStringRecursion(""));
         assertEquals("a", ReverseStringSolution.reverseStringRecursion("a"));
         assertEquals("olleh", ReverseStringSolution.reverseStringRecursion("hello"));
@@ -73,9 +74,9 @@ public class ReverseStringSolutionTest {
     }
 
     @Test
-    public void solutionSimplest() throws Exception {
+    public void solutionSimplest() {
 
-        assertEquals(null, ReverseStringSolution.reverseStringSimplest(null));
+        assertNull(ReverseStringSolution.reverseStringSimplest(null));
         assertEquals("", ReverseStringSolution.reverseStringSimplest(""));
         assertEquals("a", ReverseStringSolution.reverseStringSimplest("a"));
         assertEquals("olleh", ReverseStringSolution.reverseStringSimplest("hello"));

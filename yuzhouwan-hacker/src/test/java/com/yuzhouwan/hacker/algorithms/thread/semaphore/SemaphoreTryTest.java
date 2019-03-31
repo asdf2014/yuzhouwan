@@ -1,9 +1,9 @@
 package com.yuzhouwan.hacker.algorithms.thread.semaphore;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Semaphore Try Tester
  *
@@ -13,7 +13,7 @@ import org.junit.Test;
 public class SemaphoreTryTest {
 
     @Test
-    public void semaphore() throws Exception {
+    public void semaphore() {
 
         /**
          * pool-1-thread-1 get the semaphore  now have 2 running...

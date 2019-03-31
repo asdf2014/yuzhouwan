@@ -8,7 +8,7 @@ import org.apache.zookeeper.CreateMode;
 import java.util.List;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：ZkClient CRUD
  *
@@ -26,11 +26,67 @@ public class ZkClientCRUD {
 
     private ZkSerializer zkSerializer;
 
-    public ZkClientCRUD() throws Exception {
+    public ZkClientCRUD() {
         init();
     }
 
-    private void init() throws Exception {
+    public static void main(String[] args) throws Exception {
+        testRmrHugeChildZnodesList();
+    }
+
+    private static void testRmrHugeChildZnodesList() {
+        ZkClientCRUD zkClientCRUD = new ZkClientCRUD();
+        String rmr = "/rmr";
+        if (!zkClientCRUD.exist(rmr))
+            zkClientCRUD.create(rmr, "", CreateMode.PERSISTENT);
+        int len = 1_0001;
+        String child;
+        long beginCreate = System.currentTimeMillis();
+        for (int i = 0; i < len; i++) {
+            child = rmr.concat("/") + i;
+            if (i % 100 == 0) System.out.println("Creating " + child + " ...");
+            /*if (!zkClientCRUD.exist(child)) */
+            zkClientCRUD.create(child, "" + i, CreateMode.PERSISTENT);
+            if (i % 100 == 0) System.out.println("Created " + child + " .");
+        }
+        long endCreate = System.currentTimeMillis();
+        System.out.println("Deleting /rmr ...");
+        long beginDelete = System.currentTimeMillis();
+        zkClientCRUD.rmr(rmr);
+        long endDelete = System.currentTimeMillis();
+        if (zkClientCRUD.exist(rmr)) System.out.println("Delete /rmr failed!");
+        else System.out.println("Deleted /rmr .");
+        System.out.println(String.format("Create used %s ms, Delete used %s ms, Size %s.",
+                endCreate - beginCreate, endDelete - beginDelete, len - 1));
+        System.out.println("Done.");
+    }
+
+    private static void testWatch() {
+        ZkClientCRUD zkClientCRUD = new ZkClientCRUD();
+        String origin = "/origin";
+        if (!zkClientCRUD.exist(origin))
+            zkClientCRUD.create(origin, "", CreateMode.PERSISTENT);
+        int len = 4;
+        String[] paths = new String[len];
+        String path;
+        for (int i = 0; i < len; i++) {
+            path = origin.concat("/" + i);
+            paths[i] = path;
+            if (!zkClientCRUD.exist(path)) zkClientCRUD.create(path, "" + i, CreateMode.PERSISTENT);
+        }
+
+        for (String s : paths) {
+            zkClientCRUD.watch(s);
+            System.out.println(zkClientCRUD.read(s));
+        }
+//        System.out.println(zkClientCRUD.read(origin.concat("/1,/2")));    // not support list
+//        System.out.println(zkClientCRUD.read(origin.concat("/*")));       // not support pattern
+
+        for (String p : paths) zkClientCRUD.delete(p);
+        System.out.println("Done.");
+    }
+
+    private void init() {
         zkClient = new ZkClient(HOST.concat(":" + CLIENT_PORT), TIME_OUT_MILLISECOND);
 
         zkSerializer = new ZkSerializer() {
@@ -80,60 +136,5 @@ public class ZkClientCRUD {
 
     public void watch(String path) {
         zkClient.watchForData(path);
-    }
-
-    public static void main(String[] args) throws Exception {
-        testRmrHugeChildZnodesList();
-    }
-
-    private static void testRmrHugeChildZnodesList() throws Exception {
-        ZkClientCRUD zkClientCRUD = new ZkClientCRUD();
-        String rmr = "/rmr";
-        if (!zkClientCRUD.exist(rmr))
-            zkClientCRUD.create(rmr, "", CreateMode.PERSISTENT);
-        int len = 1_0001;
-        String child;
-        long beginCreate = System.currentTimeMillis();
-        for (int i = 0; i < len; i++) {
-            child = rmr.concat("/") + i;
-            if (i % 100 == 0) System.out.println("Creating " + child + " ...");
-            /*if (!zkClientCRUD.exist(child)) */zkClientCRUD.create(child, "" + i, CreateMode.PERSISTENT);
-            if (i % 100 == 0) System.out.println("Created " + child + " .");
-        }
-        long endCreate = System.currentTimeMillis();
-        System.out.println("Deleting /rmr ...");
-        long beginDelete = System.currentTimeMillis();
-        zkClientCRUD.rmr(rmr);
-        long endDelete = System.currentTimeMillis();
-        if (zkClientCRUD.exist(rmr)) System.out.println("Delete /rmr failed!");
-        else System.out.println("Deleted /rmr .");
-        System.out.println(String.format("Create used %s ms, Delete used %s ms, Size %s.",
-                endCreate - beginCreate, endDelete - beginDelete, len - 1));
-        System.out.println("Done.");
-    }
-
-    private static void testWatch() throws Exception {
-        ZkClientCRUD zkClientCRUD = new ZkClientCRUD();
-        String origin = "/origin";
-        if (!zkClientCRUD.exist(origin))
-            zkClientCRUD.create(origin, "", CreateMode.PERSISTENT);
-        int len = 4;
-        String[] paths = new String[len];
-        String path;
-        for (int i = 0; i < len; i++) {
-            path = origin.concat("/" + i);
-            paths[i] = path;
-            if (!zkClientCRUD.exist(path)) zkClientCRUD.create(path, "" + i, CreateMode.PERSISTENT);
-        }
-
-        for (String s : paths) {
-            zkClientCRUD.watch(s);
-            System.out.println(zkClientCRUD.read(s));
-        }
-//        System.out.println(zkClientCRUD.read(origin.concat("/1,/2")));    // not support list
-//        System.out.println(zkClientCRUD.read(origin.concat("/*")));       // not support pattern
-
-        for (String p : paths) zkClientCRUD.delete(p);
-        System.out.println("Done.");
     }
 }

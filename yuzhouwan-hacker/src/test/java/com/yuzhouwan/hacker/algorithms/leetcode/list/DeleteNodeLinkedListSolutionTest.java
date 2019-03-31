@@ -1,11 +1,11 @@
 package com.yuzhouwan.hacker.algorithms.leetcode.list;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Delete Node in a Linked List Solution Tester
  *
@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class DeleteNodeLinkedListSolutionTest {
 
     @Test
-    public void delete() throws Exception {
+    public void delete() {
 
         ListNode listNode0 = new ListNode(0);
         ListNode listNode1 = new ListNode(1);
@@ -23,6 +23,6 @@ public class DeleteNodeLinkedListSolutionTest {
         listNode0.next = listNode1;
         listNode1.next = listNode2;
         DeleteNodeLinkedListSolution.deleteNode(listNode1);
-        assertEquals(true, listNode0.next.val == 2);
+        assertTrue(listNode0.next.val == 2);
     }
 }

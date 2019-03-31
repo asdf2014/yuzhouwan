@@ -2,17 +2,18 @@ package com.yuzhouwan.hacker.design.pattern;
 
 import com.yuzhouwan.common.dir.DirUtils;
 import com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: SingleInstance Tester
  *
@@ -38,12 +39,12 @@ public class SingleInstanceTest {
             ReadWriteLockExample.Business businessSerialized = ((ReadWriteLockExample.Business) ois1.readObject());
 
             //Enum版的 single instance 保证了安全性
-            assertEquals(true, 3 == instanceSerialized.getPoint());
-            assertEquals(true, 0 == instance.compareTo(instanceSerialized));
-            assertEquals(true, instance.equals(instanceSerialized));
+            assertTrue(3 == instanceSerialized.getPoint());
+            assertTrue(0 == instance.compareTo(instanceSerialized));
+            assertTrue(instance.equals(instanceSerialized));
 
             //序列化、反序列化 破坏了 "single instance + double check"的唯一性
-            assertEquals(false, business.equals(businessSerialized));
+            assertFalse(business.equals(businessSerialized));
         }
     }
 }

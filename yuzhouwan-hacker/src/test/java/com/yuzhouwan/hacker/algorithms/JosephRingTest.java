@@ -1,15 +1,15 @@
 package com.yuzhouwan.hacker.algorithms;
 
 import com.yuzhouwan.hacker.algorithms.array.JosephRing;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Joseph Ring Tester
  *
@@ -19,7 +19,7 @@ import static org.junit.Assert.assertEquals;
 public class JosephRingTest {
 
     @Test
-    public void joseph() throws Exception {
+    public void joseph() {
         List<Integer> origin = new ArrayList<>();
         for (int i = 1; i <= 10; i++) {
             origin.add(i);

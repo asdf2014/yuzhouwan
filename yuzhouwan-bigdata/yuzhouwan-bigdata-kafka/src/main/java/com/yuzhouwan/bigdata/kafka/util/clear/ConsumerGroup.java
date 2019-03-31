@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 import static kafka.consumer.Consumer.createJavaConsumerConnector;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Consumer Group
  *
@@ -27,9 +27,8 @@ import static kafka.consumer.Consumer.createJavaConsumerConnector;
  */
 public class ConsumerGroup {
 
-    private static Logger _log = LoggerFactory.getLogger(ConsumerGroup.class);
     private static final PropUtils p = PropUtils.getInstance();
-
+    private static Logger _log = LoggerFactory.getLogger(ConsumerGroup.class);
     private final ConsumerConnector consumer;
     private final String topic;
     private ExecutorService executor;

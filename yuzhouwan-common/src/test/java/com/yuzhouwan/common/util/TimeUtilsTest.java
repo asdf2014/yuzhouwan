@@ -4,7 +4,7 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,10 +14,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：TimeUtils Test
  *
@@ -30,7 +30,7 @@ public class TimeUtilsTest {
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
 
     @Test
-    public void nowStrTest() throws Exception {
+    public void nowStrTest() {
         // 2016-11-24 09:41:52 511
         System.out.println(TimeUtils.nowStr());
     }
@@ -179,7 +179,7 @@ public class TimeUtilsTest {
     }
 
     @Test
-    public void timeZone() throws Exception {
+    public void timeZone() {
         Date now = new Date();
         Date past = TimeUtils.zeroTimeZone(now);
         assert past != null;

@@ -1,6 +1,6 @@
 package com.yuzhouwan.hacker.regular;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,10 +9,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static com.yuzhouwan.common.util.StrUtils.NEXT_LINE;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Group in Regular
  *
@@ -115,7 +116,7 @@ public class GroupTry {
         String str = "2017-01-12 07:00:00,648 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem.audit: allowed=true ugi=aps (auth:SIMPLE) ip=/10.27.236.67 cmd=listStatus src=/user/aps/admds/priceTextRealtime/aa/bb dst=null perm=null";
         Pattern p = Pattern.compile("(?<=ugi=)(?<ugi>\\w+).*(?<= src=)(?<src>.*(?= dst))");
         Matcher m = p.matcher(str);
-        assertEquals(true, m.find());
+        assertTrue(m.find());
         assertEquals("aps", m.group(1));
         assertEquals("/user/aps/admds/priceTextRealtime/aa/bb", m.group("src"));
     }

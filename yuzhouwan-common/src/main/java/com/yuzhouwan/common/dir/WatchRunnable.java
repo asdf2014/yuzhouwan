@@ -7,9 +7,9 @@ import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
- * Function: 监控线程（主要为了多线程，能安全地 stop）
+ * Function: 监控线程
  *
  * @author Benedict Jin
  * @since 2016/4/7
@@ -43,17 +43,16 @@ public class WatchRunnable implements Runnable {
         try {
             key = watchService.take();
         } catch (InterruptedException e) {
-            LOG.error("WatchService is error, because {}", e.getMessage());
+            LOG.error("WatchService is error!", e);
         }
         if (key == null) return;
         IDirUtils dirUtil = dealProcessor == null ? new DirUtils() : dealProcessor;
-        while (true) {
-            if (!isRunning) return;
+        while (isRunning) {
             if (waitTime != null && waitTime > 0)
                 try {
                     Thread.sleep(waitTime);
                 } catch (InterruptedException e) {
-                    LOG.error("Thread sleep error, because {}", e.getMessage());
+                    LOG.error("Thread sleep error!", e);
                 }
             if (!key.reset()) break;
             key.pollEvents().forEach(dirUtil::dealWithEvent);

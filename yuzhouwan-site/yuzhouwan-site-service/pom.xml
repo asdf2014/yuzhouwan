@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>com.yuzhouwan</groupId>
         <artifactId>yuzhouwan-site</artifactId>
-        <version>1.0.2</version>
+        <version>1.1.0</version>
     </parent>
 
     <artifactId>yuzhouwan-site-service</artifactId>
@@ -18,7 +18,7 @@
         <dependency>
             <groupId>com.yuzhouwan</groupId>
             <artifactId>yuzhouwan-common</artifactId>
-            <version>1.0.2</version>
+            <version>1.1.0</version>
             <exclusions>
                 <exclusion>
                     <artifactId>commons-codec</artifactId>
@@ -31,7 +31,7 @@
         <dependency>
             <groupId>com.yuzhouwan</groupId>
             <artifactId>yuzhouwan-site-api</artifactId>
-            <version>1.0.2</version>
+            <version>1.1.0</version>
         </dependency>
 
         <!-- Apache Commons Pool2 -->
@@ -176,7 +176,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
+            <version>${junit4.version}</version>
             <scope>test</scope>
             <exclusions>
                 <exclusion>
@@ -260,7 +260,7 @@
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
-            <version>${redis.version}</version>
+            <version>${jedis.version}</version>
         </dependency>
         <dependency>
             <groupId>cglib</groupId>

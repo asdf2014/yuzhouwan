@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.algorithms.leetcode.number;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Single Number III Solution
  *
@@ -12,14 +12,14 @@ class SingleNumberIIISolution {
 
     /**
      * https://leetcode.com/problems/single-number-iii/
-     *
+     * <p>
      * 260. Single Number III
-     *
+     * <p>
      * Given an array of numbers nums, in which exactly two elements appear only once
      * and all the other elements appear exactly twice. Find the two elements that appear only once.
-     *
+     * <p>
      * For example:
-     *
+     * <p>
      * Given nums = [1, 2, 1, 3, 2, 5], return [3, 5].
      */
     static int[] singleNumber(int[] nums) {

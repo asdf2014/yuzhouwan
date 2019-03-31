@@ -2,16 +2,17 @@ package com.yuzhouwan.hacker.lambda;
 
 import com.alibaba.fastjson.JSON;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Lambda Test
  *
@@ -50,7 +51,7 @@ public class LambdaTest {
         Apple a = hugeRedApples.get(0);
         assertEquals("A", a.getName());
         assertEquals("red", a.getColor());
-        assertEquals(true, a.getWeight() == 10d);
+        assertTrue(a.getWeight() == 10d);
     }
 
     @Test

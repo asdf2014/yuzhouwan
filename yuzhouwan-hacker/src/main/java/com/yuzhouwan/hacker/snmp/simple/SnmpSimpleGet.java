@@ -15,7 +15,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：SnmpSimpleGet
  *
@@ -91,7 +91,6 @@ public class SnmpSimpleGet {
                 try {
                     snmp.close();
                 } catch (IOException ex1) {
-                    snmp = null;
                 }
             }
         }

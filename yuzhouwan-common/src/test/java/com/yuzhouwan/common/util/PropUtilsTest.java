@@ -1,11 +1,11 @@
 package com.yuzhouwan.common.util;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Properties Util Tester
  *
@@ -17,13 +17,13 @@ public class PropUtilsTest {
     private static final PropUtils p = PropUtils.getInstance();
 
     @Test
-    public void getPropTest() throws Exception {
+    public void getPropTest() {
         assertEquals("asdf's blog", p.getProperty("blog.name"));
         assertEquals("yuzhouwan.com", p.getProperty("site.domain"));
     }
 
     @Test
-    public void getPropWithDefaultValueTest() throws Exception {
+    public void getPropWithDefaultValueTest() {
         {
             assertEquals("asdf's blog", p.getProperty("blog.name", "asdf's blog"));
             assertEquals("yuzhouwan.com", p.getProperty("site.domain", ""));

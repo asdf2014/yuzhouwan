@@ -3,7 +3,7 @@ package com.yuzhouwan.common.util;
 import java.util.Properties;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Prop
  *
@@ -29,6 +29,7 @@ class Prop {
 
     public void setP(Properties p) {
         this.p = p;
+        updateModify();
     }
 
     public long getModify() {
@@ -37,5 +38,9 @@ class Prop {
 
     public void setModify(long modify) {
         this.modify = modify;
+    }
+
+    public void updateModify() {
+        this.modify = System.nanoTime();
     }
 }

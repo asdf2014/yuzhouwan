@@ -12,14 +12,15 @@ import org.slf4j.LoggerFactory;
 
 import java.io.Closeable;
 import java.io.Serializable;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.LongAdder;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Dynamic PropUtils
  *
@@ -30,22 +31,18 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
 
     private static final Logger _log = LoggerFactory.getLogger(DynamicPropUtils.class);
     private static final String ZNODE_PREFIX = "/";
-    private static Charset CHARSET_UTF8 = Charset.forName("UTF-8");
-
-    private static volatile DynamicPropUtils instance;
-    private static CuratorFramework curatorFramework;
     private static final ConcurrentHashMap<String, Prop> PROJECT_PROPERTIES = new ConcurrentHashMap<>();
-
     // curator configs
     private static final int CONNECTION_TIMEOUT_MS = 5000;
     private static final int SESSION_TIMEOUT_MS = 40000;
     private static final int RETRY_POLICY_INTERVAL = 2000;
     private static final int RETRY_POLICY_TIMES = 3;
-
+    private static final long TICK_THRESHOLD = 30L;
+    private static final long TICK_MILLIS = TimeUnit.SECONDS.toMillis(1);
+    private static volatile DynamicPropUtils instance;
+    private static CuratorFramework curatorFramework;
     // tick for sync
     private static LongAdder TICK = new LongAdder();
-    private static final long TICK_THRESHOLD = 30L;
-    private static final long TICK_MILLIS = 1000L;
     private static volatile boolean KEEP_SYNCING = true;
     private static final Runnable TIMING_SYNC = () -> {
         while (KEEP_SYNCING) {
@@ -61,6 +58,10 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
             }
         }
     };
+
+    private DynamicPropUtils() {
+        init();
+    }
 
     private static void init() {
         try {
@@ -101,14 +102,10 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
         _log.debug("Curator started.");
     }
 
-    private DynamicPropUtils() {
-    }
-
     public static DynamicPropUtils getInstance() {
         if (instance == null) synchronized (DynamicPropUtils.class) {
             if (instance == null) {
                 instance = new DynamicPropUtils();
-                new Thread(DynamicPropUtils::init).start();
             }
         }
         return instance;
@@ -120,7 +117,7 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
             return false;
         }
         Prop prop = PROJECT_PROPERTIES.get(projectName);
-        if (prop == null) prop = new Prop(p, System.currentTimeMillis());
+        if (prop == null) prop = new Prop(p, System.nanoTime());
         else {
             Properties properties = prop.getP();
             Object key;
@@ -190,7 +187,7 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
         try {
             stat = existsBuilder.forPath(ZNODE_PREFIX.concat(projectName));
         } catch (Exception e) {
-            _log.error("Sync failed! Cause: {}", e.getMessage());
+            _log.error("Sync failed!", e);
             return false;
         }
         Prop localProp = PROJECT_PROPERTIES.get(projectName);
@@ -234,7 +231,7 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
                         .withMode(CreateMode.PERSISTENT)
                         .forPath(ZNODE_PREFIX.concat(projectName));
                 _log.debug("Created ".concat(projectName));
-                setProp2Remote(projectName, localProp);
+                return setProp2Remote(projectName, localProp);
             } else if (!isLocal) {
                 Prop remoteProp = getPropFromRemote(projectName);
                 if (remoteProp == null) return false;
@@ -244,8 +241,9 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
                 if (remoteProp == null) return false;
                 long remoteModifyDate = remoteProp.getModify();
                 long localModifyDate = localProp.getModify();
-                if (remoteModifyDate > localModifyDate) PROJECT_PROPERTIES.put(projectName, remoteProp);
-                else setProp2Remote(projectName, localProp);
+                if (remoteModifyDate == localModifyDate) return true;
+                else if (remoteModifyDate > localModifyDate) PROJECT_PROPERTIES.put(projectName, remoteProp);
+                else return setProp2Remote(projectName, localProp);
             }
         } catch (Exception e) {
             _log.error("Sync failed!", e);
@@ -257,14 +255,16 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
     private boolean setProp2Remote(String projectName, Prop localProp) throws Exception {
         if (uninitialized()) return false;
         curatorFramework.setData()
-                .forPath(ZNODE_PREFIX.concat(projectName), JSON.toJSONString(localProp).getBytes(CHARSET_UTF8));
+                .forPath(ZNODE_PREFIX.concat(projectName),
+                        JSON.toJSONString(localProp).getBytes(StandardCharsets.UTF_8));
         _log.debug("Set data to remote success!");
         return true;
     }
 
     private Prop getPropFromRemote(String projectName) throws Exception {
         if (uninitialized()) return null;
-        String data = new String(curatorFramework.getData().forPath(ZNODE_PREFIX.concat(projectName)), CHARSET_UTF8);
+        String data = new String(curatorFramework.getData()
+                .forPath(ZNODE_PREFIX.concat(projectName)), StandardCharsets.UTF_8);
         return JSON.parseObject(data, Prop.class);
     }
 

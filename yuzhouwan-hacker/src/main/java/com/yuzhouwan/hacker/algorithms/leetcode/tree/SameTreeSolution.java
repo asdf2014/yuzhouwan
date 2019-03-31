@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.algorithms.leetcode.tree;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Same Tree Solution
  *
@@ -12,11 +12,11 @@ class SameTreeSolution {
 
     /**
      * https://leetcode.com/problems/same-tree/
-     *
+     * <p>
      * 100. Same Tree
-     *
+     * <p>
      * Given two binary trees, write a function to check if they are equal or not.
-     *
+     * <p>
      * Two binary trees are considered equal if they are structurally identical and the nodes have the same value.
      */
     static boolean isSameTree(TreeNode p, TreeNode q) {

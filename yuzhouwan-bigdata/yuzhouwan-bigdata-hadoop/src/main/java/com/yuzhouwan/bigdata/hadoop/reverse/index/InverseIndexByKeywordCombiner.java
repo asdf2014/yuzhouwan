@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：倒排索引的 Combiner组件
  *
@@ -69,7 +69,7 @@ public class InverseIndexByKeywordCombiner extends Reducer<Text, Text, Text, Tex
             //写入到 Hadoop上下文中
             context.write(writeKey, writeValue);
         } catch (IOException | InterruptedException e) {
-            LOG.error("error: {}", e.getMessage());
+            LOG.error("", e.getMessage());
         }
     }
 }

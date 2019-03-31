@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Distributed Barrier with Curator
  *
@@ -22,11 +22,11 @@ public class CuratorDistributedBarrier {
     private DistributedBarrier distributedBarrier;
     private DistributedDoubleBarrier distributedDoubleBarrier;
 
-    public CuratorDistributedBarrier() throws Exception {
+    public CuratorDistributedBarrier() {
         init();
     }
 
-    private void init() throws Exception {
+    private void init() {
         CuratorFramework curatorFramework = CuratorFrameworkFactory
                 .builder()
                 .connectString("localhost:2181")

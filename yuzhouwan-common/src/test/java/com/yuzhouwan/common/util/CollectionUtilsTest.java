@@ -4,8 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Maps;
 import org.apache.avro.io.DecoderFactory;
 import org.apache.avro.util.ByteBufferInputStream;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,10 +13,10 @@ import java.nio.ByteBuffer;
 import java.util.*;
 
 import static com.yuzhouwan.common.util.CollectionUtils.intersection;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Collection Util Tester
  *
@@ -26,6 +26,12 @@ import static org.junit.Assert.assertEquals;
 public class CollectionUtilsTest {
 
     private static final Logger _log = LoggerFactory.getLogger(CollectionUtilsTest.class);
+
+    private static Integer putIfAbsent(LinkedHashMap<String, Integer> lhm, String key, Integer value) {
+        Integer oldValue = lhm.get(key);
+        if (oldValue == null) oldValue = lhm.put(key, value);
+        return oldValue;
+    }
 
     @Test
     public void removeAllByStrWithSeparator() {
@@ -86,18 +92,18 @@ public class CollectionUtilsTest {
         aList.add(_b);
         aList.add(_c);
         assertEquals(_a, CollectionUtils.getDuplicate(aList, _d, "b", String.class));
-        assertEquals(true, 2 == aList.size());
+        assertTrue(2 == aList.size());
         assertEquals(_c, CollectionUtils.getDuplicate(aList, _d, "a", Integer.class));
-        assertEquals(true, 1 == aList.size());
+        assertTrue(1 == aList.size());
         assertEquals(_b, CollectionUtils.getDuplicate(aList, _d, "c", Object.class));
-        assertEquals(true, 0 == aList.size());
-        assertEquals(null, CollectionUtils.getDuplicate(aList, _d, "d", Object.class));
-        assertEquals(true, 0 == aList.size());
+        assertTrue(0 == aList.size());
+        assertNull(CollectionUtils.getDuplicate(aList, _d, "d", Object.class));
+        assertTrue(0 == aList.size());
         aList.add(_a);
         aList.add(_b);
         aList.add(_c);
-        assertEquals(null, CollectionUtils.getDuplicate(aList, _d, "d", Object.class));
-        assertEquals(true, 3 == aList.size());
+        assertNull(CollectionUtils.getDuplicate(aList, _d, "d", Object.class));
+        assertTrue(3 == aList.size());
     }
 
     @Test
@@ -114,9 +120,9 @@ public class CollectionUtilsTest {
             aList.remove(0);
             aList.remove(2);
             aList.remove(1);
-            assertEquals(true, aList.size() == 0);
+            assertTrue(aList.size() == 0);
         } catch (Exception e) {
-            assertEquals(true, e instanceof IndexOutOfBoundsException);
+            assertTrue(e instanceof IndexOutOfBoundsException);
         }
     }
 
@@ -134,18 +140,6 @@ public class CollectionUtilsTest {
             if ("a [1/3]".equals(s) || "b [2/3]".equals(s) || "c [3/3]".equals(s)) count++;
         }
         assertEquals(3, count);
-    }
-
-    private class A {
-        int a;
-        String b;
-        Object c;
-
-        A(int a, String b, Object c) {
-            this.a = a;
-            this.b = b;
-            this.c = c;
-        }
     }
 
     @Test
@@ -190,7 +184,7 @@ public class CollectionUtilsTest {
         internalNthTest(1000, 100);
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void getNthNumberPerformanceTest() {
         internalNthTest(1_0000, 1000);
@@ -264,25 +258,31 @@ public class CollectionUtilsTest {
     public void mapPutIfAbsentTest() {
         LinkedHashMap<String, Integer> lhm = new LinkedHashMap<>();
         Integer old = lhm.putIfAbsent("a", 1);
-        assertEquals(old == null, true);
+        assertTrue(old == null);
         old = lhm.putIfAbsent("a", 1);
-        assertEquals(old == 1, true);
+        assertTrue(old == 1);
         old = lhm.putIfAbsent("a", 1);
-        assertEquals(old == 1, true);
+        assertTrue(old == 1);
         old = lhm.putIfAbsent("b", 2);
-        assertEquals(old == null, true);
+        assertTrue(old == null);
 
         old = putIfAbsent(lhm, "c", 3);
-        assertEquals(old == null, true);
+        assertTrue(old == null);
         old = putIfAbsent(lhm, "c", 3);
-        assertEquals(old == 3, true);
+        assertTrue(old == 3);
         old = putIfAbsent(lhm, "d", 4);
-        assertEquals(old == null, true);
+        assertTrue(old == null);
     }
 
-    private static Integer putIfAbsent(LinkedHashMap<String, Integer> lhm, String key, Integer value) {
-        Integer oldValue = lhm.get(key);
-        if (oldValue == null) oldValue = lhm.put(key, value);
-        return oldValue;
+    private class A {
+        int a;
+        String b;
+        Object c;
+
+        A(int a, String b, Object c) {
+            this.a = a;
+            this.b = b;
+            this.c = c;
+        }
     }
 }

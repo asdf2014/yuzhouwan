@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：ZookeeperWatcher
  *
@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
  */
 public class ZookeeperWatcher {
 
-    private static final Logger logger = LoggerFactory.getLogger(ZookeeperWatcher.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ZookeeperWatcher.class);
 
     private static final String yuzhouwan4 = "yuzhouwan04:2181";
     private static final String zNode = "/yuzhouwan";
@@ -56,10 +56,10 @@ public class ZookeeperWatcher {
                         break;
                     case CONNECTION_SUSPENDED:
                     case CONNECTION_LOST:
-                        logger.error("Connection error, waiting...");
+                        LOG.error("Connection error, waiting...");
                         break;
                     default:
-                        logger.info("PathChildrenCache changed : {path:" + event.getData().getPath() + " data:"
+                        LOG.info("PathChildrenCache changed : {path:" + event.getData().getPath() + " data:"
                                 + new String(event.getData().getData()) + "}");
                 }
             }
@@ -67,7 +67,7 @@ public class ZookeeperWatcher {
         try {
             cached.start();
         } catch (Exception e) {
-            logger.error("Can not start PathChildrenCache!!");
+            LOG.error("Can not start PathChildrenCache!!");
             throw new RuntimeException(e);
         }
     }

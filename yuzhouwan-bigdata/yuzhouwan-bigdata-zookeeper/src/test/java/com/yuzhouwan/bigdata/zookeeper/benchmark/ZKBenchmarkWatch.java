@@ -15,7 +15,7 @@ import java.util.LinkedList;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Zookeeper Benchmark Watch
  *
@@ -31,7 +31,11 @@ public class ZKBenchmarkWatch {
     private final static String NAMESPACE = "benchmark";
     private final static String WATCH_PREFIX = "/watch";
     private final static char FILL_CHAR = '0';
+    private static ZKBenchmarkWatch bench;
     private CuratorFramework curatorFramework;
+    private String znodePath10KB;
+    private LinkedList<String> znodeWatchNodes = new LinkedList<>();
+    private byte[] jute10KB;
 
     /*
     [Client]
@@ -58,25 +62,6 @@ public class ZKBenchmarkWatch {
         } catch (Exception ignored) {
         }
     }
-
-    private void init() {
-        curatorFramework = CuratorFrameworkFactory
-                .builder()
-                .connectString("localhost:2181")
-                .connectionTimeoutMs(500)
-                .sessionTimeoutMs(1000)
-                .retryPolicy(new ExponentialBackoffRetry(100, 3))
-                .namespace(NAMESPACE)
-                .build();
-        _log.debug("Initialized.");
-        curatorFramework.start();
-        _log.debug("Started.");
-    }
-
-    private String znodePath10KB;
-    private LinkedList<String> znodeWatchNodes = new LinkedList<>();
-    private byte[] jute10KB;
-    private static ZKBenchmarkWatch bench;
 
     /*
     Benchmark                                             Mode  Cnt    Score      Error  Units
@@ -114,6 +99,20 @@ public class ZKBenchmarkWatch {
                 .threads(1)
                 .build();
         new Runner(opt).run();
+    }
+
+    private void init() {
+        curatorFramework = CuratorFrameworkFactory
+                .builder()
+                .connectString("localhost:2181")
+                .connectionTimeoutMs(500)
+                .sessionTimeoutMs(1000)
+                .retryPolicy(new ExponentialBackoffRetry(100, 3))
+                .namespace(NAMESPACE)
+                .build();
+        _log.debug("Initialized.");
+        curatorFramework.start();
+        _log.debug("Started.");
     }
 
     @Setup
@@ -184,7 +183,7 @@ public class ZKBenchmarkWatch {
         close();
     }
 
-    private void close() throws Exception {
+    private void close() {
         if (curatorFramework != null) curatorFramework.close();
         _log.info("Closed.");
     }

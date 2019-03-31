@@ -1,11 +1,11 @@
 package com.yuzhouwan.hacker.algorithms.sort;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Quick Sort Example Tester
  *
@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class QuickSortExampleTest {
 
     @Test
-    public void quickSort() throws Exception {
+    public void quickSort() {
 
         int[] unSort = new int[]{2, 3, 1};
         QuickSortExample.quickSort(unSort, 0, 2);

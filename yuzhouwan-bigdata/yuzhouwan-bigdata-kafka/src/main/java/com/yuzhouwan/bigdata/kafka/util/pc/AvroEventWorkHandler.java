@@ -5,7 +5,7 @@ import kafka.javaapi.producer.Producer;
 import kafka.producer.KeyedMessage;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Avro Event Work Handler
  *
@@ -25,7 +25,7 @@ public class AvroEventWorkHandler implements WorkHandler<AvroEvent> {
     }
 
     @Override
-    public void onEvent(AvroEvent event) throws Exception {
+    public void onEvent(AvroEvent event) {
         producer.send(new KeyedMessage<>(topic, partition, event.getValue()));
     }
 }

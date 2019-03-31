@@ -15,7 +15,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Curator In Background
  *
@@ -66,7 +66,7 @@ public class CuratorInBackground {
                 .withMode(CreateMode.PERSISTENT)
                 .inBackground(new BackgroundCallback() {
                     @Override
-                    public void processResult(CuratorFramework client, CuratorEvent event) throws Exception {
+                    public void processResult(CuratorFramework client, CuratorEvent event) {
 
                         LOG.info("event's result code: {}, type: {}", event.getResultCode(), event.getType());
 

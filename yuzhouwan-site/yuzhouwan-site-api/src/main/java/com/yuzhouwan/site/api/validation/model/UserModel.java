@@ -15,7 +15,7 @@ import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: User Model
  *
@@ -25,7 +25,6 @@ import java.util.Date;
 @ApiModel(value = "UserModel")
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,         // Were binding by providing a name
-        include = JsonTypeInfo.As.PROPERTY, // The name is provided in a property
         property = "type",                  // Property name is type
         visible = true                      // Retain the value of type after deserialization
 )

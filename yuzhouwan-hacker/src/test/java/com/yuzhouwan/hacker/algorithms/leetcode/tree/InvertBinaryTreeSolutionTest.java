@@ -1,11 +1,11 @@
 package com.yuzhouwan.hacker.algorithms.leetcode.tree;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Invert Binary Tree Solution Tester
  *
@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class InvertBinaryTreeSolutionTest {
 
     @Test
-    public void invertTree() throws Exception {
+    public void invertTree() {
 
         TreeNode root0 = new TreeNode(0);
         TreeNode left1 = new TreeNode(1);
@@ -38,7 +38,7 @@ public class InvertBinaryTreeSolutionTest {
     }
 
     @Test
-    public void invertTreeDFS() throws Exception {
+    public void invertTreeDFS() {
 
         TreeNode root0 = new TreeNode(0);
         TreeNode left1 = new TreeNode(1);
@@ -61,7 +61,7 @@ public class InvertBinaryTreeSolutionTest {
     }
 
     @Test
-    public void invertTreeBFS() throws Exception {
+    public void invertTreeBFS() {
 
         TreeNode root0 = new TreeNode(0);
         TreeNode left1 = new TreeNode(1);

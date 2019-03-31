@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Zookeeper Benchmark Write
  *
@@ -29,7 +29,22 @@ public class ZKBenchmarkWrite {
     private final static Logger _log = LoggerFactory.getLogger(ZKBenchmarkWrite.class);
     private final static String NAMESPACE = "benchmark";
     private final static char FILL_CHAR = '0';
+    //    private String znodePath1000KB;
+//    private byte[] jute1000KB;
+    private static ZKBenchmarkWrite bench;
     private CuratorFramework curatorFramework;
+    private String znodePath1B;
+    private byte[] jute1B;
+    private String znodePath10B;
+    private byte[] jute10B;
+    private String znodePath100B;
+    private byte[] jute100B;
+    private String znodePath1KB;
+    private byte[] jute1KB;
+    private String znodePath10KB;
+    private byte[] jute10KB;
+    private String znodePath100KB;
+    private byte[] jute100KB;
 
     /*
     [Client]
@@ -57,36 +72,6 @@ public class ZKBenchmarkWrite {
         }
     }
 
-    private void init() {
-        curatorFramework = CuratorFrameworkFactory
-                .builder()
-                .connectString("localhost:2181")
-                .connectionTimeoutMs(500)
-                .sessionTimeoutMs(1000)
-                .retryPolicy(new ExponentialBackoffRetry(100, 3))
-                .namespace(NAMESPACE)
-                .build();
-        _log.debug("Initialized.");
-        curatorFramework.start();
-        _log.debug("Started.");
-    }
-
-    private String znodePath1B;
-    private byte[] jute1B;
-    private String znodePath10B;
-    private byte[] jute10B;
-    private String znodePath100B;
-    private byte[] jute100B;
-    private String znodePath1KB;
-    private byte[] jute1KB;
-    private String znodePath10KB;
-    private byte[] jute10KB;
-    private String znodePath100KB;
-    private byte[] jute100KB;
-//    private String znodePath1000KB;
-//    private byte[] jute1000KB;
-    private static ZKBenchmarkWrite bench;
-
     /*
     Benchmark                                 Mode  Cnt    Score      Error  Units
     ZKBenchmark.dataSizeBenchmark1B          thrpt    3  313.585 ±  822.907  ops/s
@@ -106,6 +91,20 @@ public class ZKBenchmarkWrite {
                 .threads(1)
                 .build();
         new Runner(opt).run();
+    }
+
+    private void init() {
+        curatorFramework = CuratorFrameworkFactory
+                .builder()
+                .connectString("localhost:2181")
+                .connectionTimeoutMs(500)
+                .sessionTimeoutMs(1000)
+                .retryPolicy(new ExponentialBackoffRetry(100, 3))
+                .namespace(NAMESPACE)
+                .build();
+        _log.debug("Initialized.");
+        curatorFramework.start();
+        _log.debug("Started.");
     }
 
     @Setup
@@ -236,7 +235,7 @@ public class ZKBenchmarkWrite {
         close();
     }
 
-    private void close() throws Exception {
+    private void close() {
         if (curatorFramework != null) curatorFramework.close();
         _log.info("Closed.");
     }

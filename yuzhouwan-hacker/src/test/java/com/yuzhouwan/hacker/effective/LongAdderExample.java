@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.effective;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.LongAdder;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：LongAdder Example
  *
@@ -19,20 +19,20 @@ import java.util.concurrent.atomic.LongAdder;
 public class LongAdderExample {
 
     @Test
-    public void longAdder() throws Exception {
+    public void longAdder() {
         LongAdder longAdder = new LongAdder();
         longAdder.increment();
         longAdder.increment();
     }
 
     @Test
-    public void atomicLong() throws Exception {
+    public void atomicLong() {
         new AtomicLong().incrementAndGet();
     }
 
     // -Xmx512M -Xms512M -Xmn256M -XX:+AlwaysPreTouch -ea
     // JIT: -server -XX:+UnlockDiagnosticVMOptions -XX:+TraceClassLoading  -XX:+PrintAssembly -XX:+LogCompilation -XX:LogFile=pressureLongAdder.log
-    @Ignore
+    @Disabled
     @Test
     public void pressureLongAdder() throws Exception {
         final LongAdder longAdder = new LongAdder();
@@ -74,7 +74,7 @@ public class LongAdderExample {
     }
 
     // -Xmx512M -Xms512M -Xmn256M -XX:+AlwaysPreTouch -ea
-    @Ignore
+    @Disabled
     @Test
     public void pressureAtomicLong() throws Exception {
         final AtomicLong atomicLong = new AtomicLong();

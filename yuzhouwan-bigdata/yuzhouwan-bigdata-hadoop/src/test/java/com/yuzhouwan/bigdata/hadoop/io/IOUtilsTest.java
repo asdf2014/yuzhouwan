@@ -2,14 +2,15 @@ package com.yuzhouwan.bigdata.hadoop.io;
 
 import org.apache.commons.io.input.ReaderInputStream;
 import org.apache.hadoop.io.IOUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.*;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: IOUtils Tester
  *
@@ -45,7 +46,7 @@ public class IOUtilsTest {
     @Test
     public void test() throws Exception {
         File f = new File(FILE_PATH);
-        assertEquals(true, f.delete());
+        assertTrue(f.delete());
         String msg = "yuzhouwan";
 
         System.setIn(new ReaderInputStream(new StringReader(msg)));

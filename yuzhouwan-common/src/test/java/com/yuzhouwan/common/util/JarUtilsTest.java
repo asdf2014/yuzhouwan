@@ -1,12 +1,13 @@
 package com.yuzhouwan.common.util;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Jar Util Tester
  *
@@ -15,9 +16,9 @@ import static org.junit.Assert.assertEquals;
  */
 public class JarUtilsTest {
 
-    @Ignore
+    @Disabled
     @Test
-    public void listDirWithinJarTest() throws Exception {
+    public void listDirWithinJarTest() {
         assertEquals("yuzhouwan.com", JarUtils.getInstance().getProperty("site.domain"));
         assertEquals("asdf's blog", JarUtils.getInstance().getProperty("blog.name"));
 
@@ -25,7 +26,7 @@ public class JarUtilsTest {
     }
 
     @Test
-    public void locationTest() throws Exception {
-        assertEquals(true, JarUtils.isProjectJar(JarUtilsTest.class));
+    public void locationTest() {
+        assertTrue(JarUtils.isProjectJar(JarUtilsTest.class));
     }
 }

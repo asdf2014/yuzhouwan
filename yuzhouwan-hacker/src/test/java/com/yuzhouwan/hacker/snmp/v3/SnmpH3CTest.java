@@ -2,7 +2,7 @@ package com.yuzhouwan.hacker.snmp.v3;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.snmp4j.mp.SnmpConstants;
 import org.snmp4j.security.*;
 
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：SnmpH3C Tester
  *
@@ -22,7 +22,7 @@ public class SnmpH3CTest {
     private SnmpH3C snmpH3C;
 
     @Before
-    public void before() throws Exception {
+    public void before() {
 
         /**
          * snmp-agent target-host trap address udp-domain 192.168.112.155 udp-port 5000 params securityname yuzhouwan
@@ -45,7 +45,7 @@ public class SnmpH3CTest {
         String securityName2 = "yuzhouwan2"; //"managev3group"; //"yuzhouwan"; //"yuzhouwan";
         int securityLevel = SecurityLevel.AUTH_PRIV;
         int securityModel = 3;
-         /*int maxSizeRequestPDU = '\uffff';*/
+        /*int maxSizeRequestPDU = '\uffff';*/
         int retries = 3;
         long timeout = 1000 * 10;
         int version = SnmpConstants.version3;
@@ -61,7 +61,7 @@ public class SnmpH3CTest {
     }
 
     @After
-    public void after() throws Exception {
+    public void after() {
         snmpH3C = null;
     }
 
@@ -69,7 +69,7 @@ public class SnmpH3CTest {
      * Method: sendRequest()
      */
     @Test
-    public void testSendRequest() throws Exception {
+    public void testSendRequest() {
         List<String> oidList = new ArrayList<>();
         oidList.add("1.3.6.1.2.1.1.5.0");       //device type: h3c
 //        oidList.add("1.3.6");       // example in "http://www.snmp4j.org/doc/org/snmp4j/Snmp.html"

@@ -1,11 +1,11 @@
 package com.yuzhouwan.hacker.algorithms.leetcode.list;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Linked List Random Node Solution Tester
  *
@@ -20,7 +20,7 @@ public class LinkedListRandomNodeSolutionTest {
      * int param_1 = obj.getRandom();
      */
     @Test
-    public void getRandomTest() throws Exception {
+    public void getRandomTest() {
 
         ListNode head = new ListNode(1);
         head.next = new ListNode(2);

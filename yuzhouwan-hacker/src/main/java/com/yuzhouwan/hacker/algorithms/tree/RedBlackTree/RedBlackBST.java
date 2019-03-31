@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.algorithms.tree.RedBlackTree;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: RedBlackBST
  *

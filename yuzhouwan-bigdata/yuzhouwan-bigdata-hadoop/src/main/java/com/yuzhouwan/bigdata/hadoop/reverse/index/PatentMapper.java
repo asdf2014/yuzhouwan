@@ -14,7 +14,7 @@ import java.util.Collection;
 import java.util.Iterator;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：处理 原始 Patent 数据的 Mapper组件
  *
@@ -46,13 +46,10 @@ public class PatentMapper extends Mapper<LongWritable, Text, Text, Text> {
      * @param key
      * @param value
      * @param context
-     * @throws IOException
-     * @throws InterruptedException
      */
     @Override
     protected void map(LongWritable key, Text value,
-                       Mapper<LongWritable, Text, Text, Text>.Context context)
-            throws IOException, InterruptedException {
+                       Mapper<LongWritable, Text, Text, Text>.Context context) {
 
         //从 input文件夹中将 海量的数据 按行读入 Mapper组件
         String text = value.toString();
@@ -140,7 +137,7 @@ public class PatentMapper extends Mapper<LongWritable, Text, Text, Text> {
             //写入到 Hadoop上下文中
             context.write(writeKey, writeValue);
         } catch (IOException | InterruptedException e) {
-            LOG.error("error: {}", e.getMessage());
+            LOG.error("", e.getMessage());
         }
     }
 

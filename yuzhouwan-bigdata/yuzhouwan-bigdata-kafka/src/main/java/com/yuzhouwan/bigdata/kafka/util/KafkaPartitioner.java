@@ -3,14 +3,13 @@ package com.yuzhouwan.bigdata.kafka.util;
 import com.yuzhouwan.common.util.ExceptionUtils;
 import com.yuzhouwan.common.util.StrUtils;
 import kafka.producer.Partitioner;
-import kafka.utils.VerifiableProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Random;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Kafka Partitioner
  *
@@ -25,12 +24,7 @@ public class KafkaPartitioner implements Partitioner {
     /**
      * [Note]: the construction is necessary.
      */
-    public KafkaPartitioner(VerifiableProperties vp) {
-    }
-
-    @Override
-    public int partition(Object key, int numPartitions) {
-        return getPartition(key, numPartitions);
+    public KafkaPartitioner() {
     }
 
     /**
@@ -51,5 +45,10 @@ public class KafkaPartitioner implements Partitioner {
             _log.error(ExceptionUtils.errorInfo(e));
         }
         return Math.abs(key.hashCode() % numPartitions);
+    }
+
+    @Override
+    public int partition(Object key, int numPartitions) {
+        return getPartition(key, numPartitions);
     }
 }

@@ -1,11 +1,12 @@
 package com.yuzhouwan.hacker.algorithms.leetcode.tree;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Same Tree Solution Tester
  *
@@ -15,24 +16,24 @@ import static org.junit.Assert.assertEquals;
 public class SameTreeSolutionTest {
 
     @Test
-    public void isSameTree() throws Exception {
+    public void isSameTree() {
 
         TreeNode t0 = new TreeNode(0);
-        assertEquals(false, SameTreeSolution.isSameTree(t0, new TreeNode(1)));
+        assertFalse(SameTreeSolution.isSameTree(t0, new TreeNode(1)));
         TreeNode n0 = new TreeNode(0);
-        assertEquals(true, SameTreeSolution.isSameTree(t0, n0));
+        assertTrue(SameTreeSolution.isSameTree(t0, n0));
         TreeNode t11 = new TreeNode(11);
         TreeNode t12 = new TreeNode(12);
         t0.left = t11;
         t0.right = t12;
-        assertEquals(true, SameTreeSolution.isSameTree(t0, t0));
+        assertTrue(SameTreeSolution.isSameTree(t0, t0));
         TreeNode n11 = new TreeNode(11);
         TreeNode n12 = new TreeNode(12);
         TreeNode n21 = new TreeNode(21);
         n0.left = n11;
         n0.right = n12;
         n11.left = n21;
-        assertEquals(false, SameTreeSolution.isSameTree(t0, n0));
+        assertFalse(SameTreeSolution.isSameTree(t0, n0));
         TreeNode m0 = new TreeNode(0);
         TreeNode m11 = new TreeNode(11);
         TreeNode m12 = new TreeNode(12);
@@ -40,33 +41,33 @@ public class SameTreeSolutionTest {
         m0.left = m11;
         m0.right = m12;
         m11.right = m22;
-        assertEquals(false, SameTreeSolution.isSameTree(t0, m0));
+        assertFalse(SameTreeSolution.isSameTree(t0, m0));
         TreeNode t21 = new TreeNode(21);
         TreeNode t23 = new TreeNode(23);
         t11.left = t21;
         t12.left = t23;
         n12.left = new TreeNode(23);
-        assertEquals(true, SameTreeSolution.isSameTree(t0, n0));
+        assertTrue(SameTreeSolution.isSameTree(t0, n0));
     }
 
     @Test
-    public void wisdom() throws Exception {
+    public void wisdom() {
         TreeNode t0 = new TreeNode(0);
-        assertEquals(false, SameTreeSolution.wisdom(t0, new TreeNode(1)));
+        assertFalse(SameTreeSolution.wisdom(t0, new TreeNode(1)));
         TreeNode n0 = new TreeNode(0);
-        assertEquals(true, SameTreeSolution.wisdom(t0, n0));
+        assertTrue(SameTreeSolution.wisdom(t0, n0));
         TreeNode t11 = new TreeNode(11);
         TreeNode t12 = new TreeNode(12);
         t0.left = t11;
         t0.right = t12;
-        assertEquals(true, SameTreeSolution.wisdom(t0, t0));
+        assertTrue(SameTreeSolution.wisdom(t0, t0));
         TreeNode n11 = new TreeNode(11);
         TreeNode n12 = new TreeNode(12);
         TreeNode n21 = new TreeNode(21);
         n0.left = n11;
         n0.right = n12;
         n11.left = n21;
-        assertEquals(false, SameTreeSolution.wisdom(t0, n0));
+        assertFalse(SameTreeSolution.wisdom(t0, n0));
         TreeNode m0 = new TreeNode(0);
         TreeNode m11 = new TreeNode(11);
         TreeNode m12 = new TreeNode(12);
@@ -74,12 +75,12 @@ public class SameTreeSolutionTest {
         m0.left = m11;
         m0.right = m12;
         m11.right = m22;
-        assertEquals(false, SameTreeSolution.wisdom(t0, m0));
+        assertFalse(SameTreeSolution.wisdom(t0, m0));
         TreeNode t21 = new TreeNode(21);
         TreeNode t23 = new TreeNode(23);
         t11.left = t21;
         t12.left = t23;
         n12.left = new TreeNode(23);
-        assertEquals(true, SameTreeSolution.wisdom(t0, n0));
+        assertTrue(SameTreeSolution.wisdom(t0, n0));
     }
 }

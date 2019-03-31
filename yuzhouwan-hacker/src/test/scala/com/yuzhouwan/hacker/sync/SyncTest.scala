@@ -5,7 +5,7 @@ import java.util.concurrent.Executors
 import com.yuzhouwan.hacker.UnitTestStyle
 
 /**
-  * Copyright @ 2018 yuzhouwan.com
+  * Copyright @ 2019 yuzhouwan.com
   * All right reserved.
   * Function：Sync Test
   *
@@ -14,23 +14,21 @@ import com.yuzhouwan.hacker.UnitTestStyle
   */
 class SyncTest extends UnitTestStyle {
 
+  val ints: Array[Int] = new Array[Int](1)
   var count: Int = 0
+  var obj: Object = new Object()
+  ints(0) = 0
 
   def sync(): Unit = synchronized {
     count += 1
     println(s"sync: $count")
   }
 
-  val ints: Array[Int] = new Array[Int](1)
-  ints(0) = 0
-
   def sync2(): Unit = synchronized(ints) {
     ints(0) = ints(0) + 1
     println(s"sync2: ${ints(0)}")
     return
   }
-
-  var obj: Object = new Object()
 
   def sync3(): Unit = obj.synchronized {
     println(s"sync3: $obj")

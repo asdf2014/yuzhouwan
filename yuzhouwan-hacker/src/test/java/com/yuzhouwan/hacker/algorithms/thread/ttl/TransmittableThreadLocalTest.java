@@ -1,13 +1,13 @@
 package com.yuzhouwan.hacker.algorithms.thread.ttl;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Transmittable ThreadLocal Test
  *

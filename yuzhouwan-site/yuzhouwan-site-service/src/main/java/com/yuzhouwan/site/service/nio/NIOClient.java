@@ -11,10 +11,11 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：NIO Client
  *
@@ -24,16 +25,14 @@ import java.util.Iterator;
 class NIOClient implements Runnable {
 
     private static final Logger _log = LoggerFactory.getLogger(NIOClient.class);
-
+    private static final int SOCKET_PORT = 6603;
+    private static final ByteBuffer temp = ByteBuffer.allocate(1024);
+    private static final Charset CHARSET = StandardCharsets.UTF_8;
+    private static final String msg = "Yuzhouwan";
     // 空闲计数器, 如果空闲超过10次, 将检测server是否中断连接
     private static int idleCounter;
     private Selector selector;
     private SocketChannel socketChannel;
-
-    private static final int SOCKET_PORT = 6603;
-    private static final ByteBuffer temp = ByteBuffer.allocate(1024);
-    private static final Charset CHARSET = Charset.forName("UTF-8");
-    private static final String msg = "Yuzhouwan";
 
     NIOClient() throws IOException {
         // 同样的, 注册选择器
@@ -42,7 +41,7 @@ class NIOClient implements Runnable {
         // 连接远程server
         socketChannel = SocketChannel.open();
         // 如果快速的建立了连接, 返回true. 如果没有建立, 则返回false, 并在连接后出发Connect事件
-        Boolean isConnected = socketChannel.connect(new InetSocketAddress("localhost", SOCKET_PORT));
+        boolean isConnected = socketChannel.connect(new InetSocketAddress("localhost", SOCKET_PORT));
         socketChannel.configureBlocking(false);
         SelectionKey key = socketChannel.register(selector, SelectionKey.OP_READ);
 
@@ -55,7 +54,7 @@ class NIOClient implements Runnable {
     }
 
     private void sendFirstMsg() throws IOException {
-        socketChannel.write(ByteBuffer.wrap(msg.getBytes(Charset.forName("UTF-8"))));
+        socketChannel.write(ByteBuffer.wrap(msg.getBytes(StandardCharsets.UTF_8)));
     }
 
     @Override

@@ -1,17 +1,18 @@
 package com.yuzhouwan.common.util;
 
 import com.alibaba.fastjson.JSON;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.TreeSet;
 
 import static com.yuzhouwan.common.util.CollectionUtils.remove;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Bean Utils Test
  *
@@ -41,7 +42,7 @@ public class BeanUtilsTest {
             head.add("c");
             head.add("d");
             remove(head, null, "b", "c");
-            assertEquals(true, head.size() == 2);
+            assertTrue(head.size() == 2);
             assertEquals("a", head.get(0));
             assertEquals("d", head.get(1));
         }
@@ -56,13 +57,13 @@ public class BeanUtilsTest {
             head.add(bean1);
             head.add(bean2);
             remove(head, "bB", 4L);
-            assertEquals(true, head.size() == 1);
+            assertTrue(head.size() == 1);
             assertEquals(1, head.get(0).getaA());
         }
     }
 
     @Test
-    public void treeSetTest() throws Exception {
+    public void treeSetTest() {
         TreeSet<Integer> t = new TreeSet<>();
         t.add(3);
         t.add(1);
@@ -74,7 +75,7 @@ public class BeanUtilsTest {
     }
 
     @Test
-    public void testColumn2Row() throws Exception {
+    public void testColumn2Row() {
         BeanA bean1 = new BeanA();
         BeanUtils.swapper(bean1, "aA", 1, "");
         BeanUtils.swapper(bean1, "bB", 2L, "_");
@@ -90,16 +91,16 @@ public class BeanUtilsTest {
         beans.add(bean2);
         String[] fields = {"aA"};
         LinkedList<String> rows = BeanUtils.columns2Row(beans, fields, true, false, "d_D", "this$0");
-        assertEquals(true, rows.size() == 4);
+        assertTrue(rows.size() == 4);
         int count = 0;
         for (String row : rows)
             if (row.equals("{\"aA\":1,\"bB\":2}") || row.equals("{\"aA\":1,\"cC\":3.0}")
                     || row.equals("{\"aA\":4,\"bB\":5}") || row.equals("{\"aA\":4,\"cC\":6.0}")) count++;
-        assertEquals(true, count == 4);
+        assertTrue(count == 4);
     }
 
     @Test
-    public void getAllFieldsTest() throws Exception {
+    public void getAllFieldsTest() {
         assertEquals(5, BeanUtils.getFields(BeanB.class, BeanB.class.getName()).size());
         assertEquals(5, BeanUtils.getAllFields(BeanB.class).size());
     }
@@ -109,8 +110,8 @@ public class BeanUtilsTest {
     }
 
     private class BeanA {
-        private int aA;
         public long bB;
+        private int aA;
         private Double cC;
         private Object d_D;
 

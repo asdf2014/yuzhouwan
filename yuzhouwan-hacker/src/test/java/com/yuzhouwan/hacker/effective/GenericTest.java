@@ -2,16 +2,16 @@ package com.yuzhouwan.hacker.effective;
 
 import com.yuzhouwan.hacker.algorithms.collection.sort.Company;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Generic Tester
  *
@@ -77,7 +77,7 @@ public class GenericTest {
             company.setFoundation(4);
         }
         for (Company company : companies) {
-            assertEquals(true, company.getFoundation() == 4);
+            assertEquals(4, company.getFoundation(), 0.0);
         }
     }
 }

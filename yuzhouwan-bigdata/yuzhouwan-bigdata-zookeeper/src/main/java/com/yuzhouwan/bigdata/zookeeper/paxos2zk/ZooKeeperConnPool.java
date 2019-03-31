@@ -12,7 +12,7 @@ import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Zookeeper Alive Connection Pool
  *

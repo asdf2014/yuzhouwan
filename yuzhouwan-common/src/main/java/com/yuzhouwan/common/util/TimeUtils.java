@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.TimeZone;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Time Utils
  *
@@ -177,7 +177,7 @@ public final class TimeUtils {
         try {
             return SIMPLE_DATA_FORMAT_TIME_ZONE.parse(SIMPLE_DATA_FORMAT_TIME_ZONE.format(date));
         } catch (ParseException e) {
-            LOG.error("Change TimeZone failed: {}!", e);
+            LOG.error("Change TimeZone failed!", e);
         }
         return null;
     }

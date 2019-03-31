@@ -16,7 +16,7 @@ import java.io.*;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Html Exporter Utils
  *
@@ -163,7 +163,7 @@ public final class HtmlExporterUtils {
                 try {
                     inputStream.close();
                 } catch (IOException e) {
-                    LOG.error("Cannot close inputStream, because: {}!", e.getMessage());
+                    LOG.error("Cannot close inputStream!", e);
                 }
             }
         }

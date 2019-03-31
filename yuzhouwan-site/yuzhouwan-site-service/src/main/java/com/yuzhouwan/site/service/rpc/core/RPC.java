@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：RPC
  *
@@ -26,10 +26,10 @@ public class RPC {
     private static final Logger _log = LoggerFactory.getLogger(RPC.class);
 
     /**
-     * @param clazz 提供服务的接口，便于服务端检验是否提供了此服务
-     * @param host  服务端host
-     * @param port  服务端port
-     * @return 代理对象
+     * @param clazz Provide an interface for the service, so that the server can check if the service is provided
+     * @param host  The host of server
+     * @param port  The port of server
+     * @return The proxy object
      **/
     @SuppressWarnings("unchecked")
     public static <T> T getProxy(final Class<T> clazz, String host, int port) {
@@ -41,19 +41,21 @@ public class RPC {
             call.setParams(args);
             call.setParameterTypes(method.getParameterTypes());
             client.invokeCall(call);
-            return call.getResult(); //返回计算结果
+            return call.getResult();
         };
         return (T) Proxy.newProxyInstance(RPC.class.getClassLoader(), new Class[]{clazz}, handler);
     }
 
     /**
+     * GenericTest
      * RPCServer.
      */
     public static class RPCServer implements Server {
 
-        private int port = 20222;
-        Map<String, Object> serviceEntry = new HashMap<>(); //键是服务，值是具体实现
+        // The key is the service, the value is the concrete implementation
+        Map<String, Object> serviceEntry = new HashMap<>();
         boolean isRunning = false;
+        private int port = 20222;
 
         @Override
         public void start() {
@@ -66,7 +68,7 @@ public class RPC {
             this.isRunning = false;
         }
 
-        //注册服务
+        // register service
         @Override
         public void register(Class serviceInterface, Class serviceImp) {
             if (!serviceEntry.containsKey(serviceInterface.getName())) {
@@ -78,7 +80,7 @@ public class RPC {
             }
         }
 
-        //调用服务端的具体实现
+        // Call the specific implementation of the server
         @Override
         public void call(Call call) {
             String interfaceName = call.getInterfaces().getName();

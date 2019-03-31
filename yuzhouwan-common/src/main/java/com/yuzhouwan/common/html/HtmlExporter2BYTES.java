@@ -5,14 +5,14 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Html Exporter
  *
  * @author Benedict Jin
  * @since 2016/6/20
  */
-public class HtmlExporter2BYTES implements IHtmlExporter {
+public class HtmlExporter2BYTES implements IHtmlExporter<byte[]> {
 
     @Override
     public byte[] convert2Image(String url) {
@@ -42,7 +42,6 @@ public class HtmlExporter2BYTES implements IHtmlExporter {
      * @param addedCookie 添加 cookie
      * @return 图片 byte 数组
      */
-    @SuppressWarnings(value = {"unchecked"})
     @Override
     public byte[] convert2Image(String url, Cookie addedCookie, Integer width, Integer height) {
         PhantomJSDriver driver = null;

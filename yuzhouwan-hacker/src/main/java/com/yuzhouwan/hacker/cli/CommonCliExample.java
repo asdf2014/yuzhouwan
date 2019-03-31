@@ -5,7 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Common Cli Example
  *
@@ -48,7 +48,7 @@ public class CommonCliExample {
                 hf.printHelp("May Options", opts);
             }
         } catch (ParseException e) {
-            _log.error("{}", e);
+            _log.error("", e);
         }
     }
 }

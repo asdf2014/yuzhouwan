@@ -3,7 +3,7 @@ package com.yuzhouwan.hacker.algorithms.thread.communication;
 import java.util.Random;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: ThreadLocal Example
  *
@@ -15,7 +15,7 @@ public class ThreadLocalExample {
     private static ThreadLocal<Integer> x = new ThreadLocal<>();
     private static ThreadLocal<ThreadScopeThreadLocal> threadScopeThreadLocal = new ThreadLocal<>();
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
         for (int i = 0; i < 2; i++) {
             new Thread(() -> {

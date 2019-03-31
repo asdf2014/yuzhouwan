@@ -17,8 +17,8 @@ import org.elasticsearch.common.unit.ByteSizeUnit;
 import org.elasticsearch.common.unit.ByteSizeValue;
 import org.elasticsearch.common.unit.TimeValue;
 import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -28,7 +28,7 @@ import java.util.concurrent.TimeUnit;
 import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Elastic Node Client
  *
@@ -39,7 +39,7 @@ public class ElasticNodeClient {
 
     private volatile Client client;
 
-    @Ignore
+    @Disabled
     @Before
     public void init() throws Exception {
 
@@ -63,7 +63,7 @@ public class ElasticNodeClient {
         }
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void testIndex() throws Exception {
 
@@ -89,7 +89,7 @@ public class ElasticNodeClient {
         System.out.println("IsCreated: " + response.isCreated());
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void testGet() throws Exception {
 
@@ -103,7 +103,7 @@ public class ElasticNodeClient {
 
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void testDelete() throws Exception {
 
@@ -115,7 +115,7 @@ public class ElasticNodeClient {
             System.out.println("Id: " + response.getId());
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void testUpdate() throws Exception {
 
@@ -131,7 +131,7 @@ public class ElasticNodeClient {
         }
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void testBulkProcess() throws Exception {
 

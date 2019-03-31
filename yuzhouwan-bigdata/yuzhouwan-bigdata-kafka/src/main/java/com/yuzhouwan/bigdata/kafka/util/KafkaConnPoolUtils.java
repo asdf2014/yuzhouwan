@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import static com.yuzhouwan.bigdata.kafka.util.KafkaUtils.createProducer;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Kafka Connection Pool Utils
  *
@@ -35,6 +35,10 @@ public final class KafkaConnPoolUtils {
         getInstance();  // do not use lazy initialization
     }
 
+    private KafkaConnPoolUtils() {
+        init();
+    }
+
     /**
      * Single instance.
      *
@@ -48,17 +52,6 @@ public final class KafkaConnPoolUtils {
             }
         }
         return instance;
-    }
-
-    private KafkaConnPoolUtils() {
-        init();
-    }
-
-    /**
-     * Make a initialization.
-     */
-    private void init() {
-        pool = new ConcurrentHashMap<>();
     }
 
     /**
@@ -85,6 +78,17 @@ public final class KafkaConnPoolUtils {
         _log.debug("Storage: [{}/{}]", pool.size(), CONN_IN_POOL);
     }
 
+    public static Collection<Producer<String, byte[]>> getPool() {
+        return pool.values();
+    }
+
+    /**
+     * Make a initialization.
+     */
+    private void init() {
+        pool = new ConcurrentHashMap<>();
+    }
+
     /**
      * Get a alive connection from pool.
      *
@@ -95,9 +99,5 @@ public final class KafkaConnPoolUtils {
         CONN_INDEX++;
         _log.debug("Get Kafka Connection from pool, index: [{} in {}] ...", index + 1, CONN_IN_POOL);
         return pool.get(index + "");
-    }
-
-    public static Collection<Producer<String, byte[]>> getPool() {
-        return pool.values();
     }
 }

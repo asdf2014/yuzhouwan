@@ -1,14 +1,14 @@
 package com.yuzhouwan.hacker.async;
 
 import com.stumbleupon.async.Deferred;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：AsyncTest
  *

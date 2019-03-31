@@ -7,7 +7,7 @@ import org.apache.spark.storage.StorageLevel
 import org.apache.spark.streaming._
 
 /**
-  * Copyright @ 2018 yuzhouwan.com
+  * Copyright @ 2019 yuzhouwan.com
   * All right reserved.
   * Function: ML Analysis
   *

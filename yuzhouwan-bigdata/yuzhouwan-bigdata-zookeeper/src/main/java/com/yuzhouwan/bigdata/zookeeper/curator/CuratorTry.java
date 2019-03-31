@@ -7,7 +7,7 @@ import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.zookeeper.CreateMode;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: zookeeper.curator
  *
@@ -42,9 +42,6 @@ public class CuratorTry {
 
     /**
      * create.
-     *
-     * @param path
-     * @throws Exception
      */
     public void create(String path) throws Exception {
         curatorClient.create().forPath(path);
@@ -64,8 +61,6 @@ public class CuratorTry {
 
     /**
      * delete.
-     *
-     * @param path
      */
     public void delete(String path) throws Exception {
         curatorClient.delete().forPath(path);
@@ -85,9 +80,6 @@ public class CuratorTry {
 
     /**
      * update.
-     *
-     * @param path
-     * @throws Exception
      */
     public void update(String path) throws Exception {
         curatorClient.setData().forPath(path);
@@ -99,17 +91,13 @@ public class CuratorTry {
 
     /**
      * read.
-     *
-     * @param path
-     * @return
-     * @throws Exception
      */
     public String read(String path) throws Exception {
         byte[] data = curatorClient.getData().forPath(path);
         return new String(data);
     }
 
-    public String readWithVersion(String path, int version) throws Exception {
+    public String readWithVersion() {
 //        curatorClient.getData().forPath(path);
         throw new RuntimeException("Not support?");
     }

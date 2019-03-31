@@ -5,7 +5,7 @@ import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinTask;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Fork Join Example
  *
@@ -19,6 +19,11 @@ public class ForkJoinExample {
         ForkJoinPool.commonPool().getParallelism();
         ForkJoinPool pool = new ForkJoinPool();
         new Thread() {
+            {
+                this.setName("printHelloWorld");
+                this.start();
+            }
+
             @Override
             public void run() {
                 pool.submit(() -> System.out.println("Hello,world first"));
@@ -31,11 +36,6 @@ public class ForkJoinExample {
                     e.printStackTrace();
                 }
             }
-
-            {
-                this.setName("printHelloWorld");
-                this.start();
-            }
         };
         /*try {
             Thread.sleep(1000);
@@ -43,14 +43,14 @@ public class ForkJoinExample {
             e.printStackTrace();
         }*/
         new Thread() {
-            @Override
-            public void run() {
-                pool.shutdown();
-            }
-
             {
                 this.setName("shutdownPool");
                 this.start();
+            }
+
+            @Override
+            public void run() {
+                pool.shutdown();
             }
         };
     }

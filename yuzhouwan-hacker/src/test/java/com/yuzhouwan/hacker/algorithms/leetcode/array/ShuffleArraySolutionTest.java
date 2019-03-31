@@ -1,11 +1,11 @@
 package com.yuzhouwan.hacker.algorithms.leetcode.array;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: com.yuzhouwan.hacker.algorithms.leetcode.array
  *
@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class ShuffleArraySolutionTest {
 
     @Test
-    public void operate() throws Exception {
+    public void operate() {
 
         int[] nums = new int[]{1, 2, 3};
         ShuffleArraySolution shuffleArraySolution = new ShuffleArraySolution(nums);

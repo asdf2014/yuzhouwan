@@ -4,7 +4,7 @@ import scala.actors.Actor
 import scala.actors.Actor._
 
 /**
-  * Copyright @ 2018 yuzhouwan.com
+  * Copyright @ 2019 yuzhouwan.com
   * All right reserved.
   * Function：Actor Example
   *

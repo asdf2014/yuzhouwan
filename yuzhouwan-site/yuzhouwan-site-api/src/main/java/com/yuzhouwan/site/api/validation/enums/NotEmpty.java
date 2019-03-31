@@ -10,7 +10,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: NotEmpty Annotation
  *
@@ -18,12 +18,11 @@ import java.lang.annotation.Target;
  * @since 2016/9/1
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(
-        {ElementType.METHOD,
-                ElementType.FIELD,
-                ElementType.ANNOTATION_TYPE,
-                ElementType.CONSTRUCTOR,
-                ElementType.PARAMETER})
+@Target({ElementType.METHOD,
+        ElementType.FIELD,
+        ElementType.ANNOTATION_TYPE,
+        ElementType.CONSTRUCTOR,
+        ElementType.PARAMETER})
 @Constraint(validatedBy = {NotNullValidator.class})
 public @interface NotEmpty {
 

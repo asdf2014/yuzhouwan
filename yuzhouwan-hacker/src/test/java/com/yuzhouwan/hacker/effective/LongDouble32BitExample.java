@@ -1,9 +1,9 @@
 package com.yuzhouwan.hacker.effective;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Long/Double 32Bit
  *
@@ -14,7 +14,7 @@ public class LongDouble32BitExample {
 
     // -server -XX:+UnlockDiagnosticVMOptions -XX:+TraceClassLoading  -XX:+PrintAssembly -XX:+LogCompilation -XX:LogFile=longdouble32bit.log
     @Test
-    public void value() throws Exception {
+    public void value() {
         /*
         0: lconst_1
         1: lstore_1

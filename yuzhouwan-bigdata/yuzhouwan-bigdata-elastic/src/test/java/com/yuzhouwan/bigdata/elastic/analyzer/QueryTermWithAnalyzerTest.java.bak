@@ -12,8 +12,8 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Query Term with Analyzer Tester
  *
@@ -38,7 +38,7 @@ public class QueryTermWithAnalyzerTest {
     private static final String ES_TYPE = "attack_info";
     private QueryTermWithAnalyzer query = new QueryTermWithAnalyzer();
 
-    @Ignore
+    @Disabled
     @Before
     public void init() throws Exception {
         if (query.getClient() == null) {
@@ -63,7 +63,7 @@ public class QueryTermWithAnalyzerTest {
         }
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void ignoreCaseAndLikeQuery() {
 

@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.Iterator;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：处理 Mapper端传输过来的 Reducer组件
  *
@@ -26,13 +26,10 @@ public class PatentReducer extends Reducer<Text, Text, Text, Text> {
      * @param key
      * @param value
      * @param context
-     * @throws IOException
-     * @throws InterruptedException
      */
     @Override
     protected void reduce(Text key, Iterable<Text> value,
-                          Reducer<Text, Text, Text, Text>.Context context)
-            throws IOException, InterruptedException {
+                          Reducer<Text, Text, Text, Text>.Context context) {
 
         try {
             //手机 - 类型，公司
@@ -55,7 +52,7 @@ public class PatentReducer extends Reducer<Text, Text, Text, Text> {
                 throw new RuntimeException(e);
             }
         } catch (Exception e) {
-            LOG.error("error: {}", e.getMessage());
+            LOG.error("", e.getMessage());
         }
     }
 

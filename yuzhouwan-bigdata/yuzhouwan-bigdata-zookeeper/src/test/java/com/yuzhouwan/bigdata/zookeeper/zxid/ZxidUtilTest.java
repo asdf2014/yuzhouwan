@@ -1,7 +1,7 @@
 package com.yuzhouwan.bigdata.zookeeper.zxid;
 
 import org.apache.zookeeper.client.StaticHostProvider;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.net.InetSocketAddress;
 import java.util.Collections;
@@ -11,7 +11,7 @@ import java.util.Random;
 import static org.apache.zookeeper.server.util.ZxidUtils.makeZxid;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：ZxidUtil Test
  *
@@ -40,7 +40,7 @@ public class ZxidUtilTest {
         System.out.println((makeZxid(1, 1) & 0xffffffffL) == (makeZxid(1, 1) & 0x00000000ffffffffL));  // true
 
         char[] chars = Long.toBinaryString(Long.valueOf("FFFFFFFF", 16)).toCharArray();
-        Long counter = 0L;
+        long counter = 0L;
         for (int i = 0; i < chars.length; i++) {
             counter += chars[i] == '1' ? (long) Math.pow(2, i) : 0;
         }

@@ -1,11 +1,11 @@
 package com.yuzhouwan.hacker.algorithms;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.yuzhouwan.common.util.StrUtils.isBlank;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：WKC Monkey
  *
@@ -18,6 +18,21 @@ public class WKCMonkey {
     private static final int MAX_COUNT = 10;
     private static final String HIGH_SPLITTER = ",";
     private static final String LOW_SPLITTER = " ";
+
+    private static StringBuffer theBest(int n, int m, int start, StringBuffer path, StringBuffer result) {
+        if (n == 0) result.append(path).append(HIGH_SPLITTER);
+        if (start <= n && m == 1) {
+            path.append(n);
+            result.append(path).append(HIGH_SPLITTER);
+            path.setLength(path.length() - 1);
+            return result;
+        }
+        for (int i = start; i <= n - 1; i++) {
+            theBest(n - i, m - 1, i, path.append(i).append(LOW_SPLITTER), result);
+            path.setLength(path.length() - 2);
+        }
+        return result;
+    }
 
     /*
         max: 0.99984, maxCount: 4.0, sum: 0.99984, count: 4.0
@@ -44,7 +59,7 @@ public class WKCMonkey {
         int pointBefore, maxPointBefore = 0;
         double pointAfter;
         String monkeyIdStr = feed + "";
-        String monkeyIdPointAfterStr = monkeyIdStr.substring(1, monkeyIdStr.length());
+        String monkeyIdPointAfterStr = monkeyIdStr.substring(1);
         while (sum < MAX_FEED) {
             count++;
             if (count > MAX_COUNT || (sum += feed) > MAX_FEED) break;
@@ -68,20 +83,5 @@ public class WKCMonkey {
             System.out.println();
         }
         System.out.println("\n\n");
-    }
-
-    private static StringBuffer theBest(int n, int m, int start, StringBuffer path, StringBuffer result) {
-        if (n == 0) result.append(path).append(HIGH_SPLITTER);
-        if (start <= n && m == 1) {
-            path.append(n);
-            result.append(path).append(HIGH_SPLITTER);
-            path.setLength(path.length() - 1);
-            return result;
-        }
-        for (int i = start; i <= n - 1; i++) {
-            theBest(n - i, m - 1, i, path.append(i).append(LOW_SPLITTER), result);
-            path.setLength(path.length() - 2);
-        }
-        return result;
     }
 }

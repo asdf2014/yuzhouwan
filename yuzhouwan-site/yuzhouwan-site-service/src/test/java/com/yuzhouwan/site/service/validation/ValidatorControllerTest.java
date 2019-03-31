@@ -19,7 +19,7 @@ import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Validator Controller Tester
  *
@@ -108,5 +108,4 @@ public class ValidatorControllerTest {
     public void after() throws Exception {
         mockMvc = null;
     }
-
 }

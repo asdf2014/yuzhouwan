@@ -1,12 +1,12 @@
 package com.yuzhouwan.bigdata.redis.rate.limit;
 
 import com.google.common.util.concurrent.RateLimiter;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Guava Rate Limiter Test
  *
@@ -32,7 +32,7 @@ public class GuavaRateLimiterTest {
         System.out.println("Operation 3.");
         long usedTime = System.currentTimeMillis() - startTime;
         System.out.println(usedTime + " ms");
-        assertEquals(true, usedTime + FOR_FAULT_TOLERANT_MILLISECONDS >= SHOULD_WAIT_MILLISECONDS);
+        assertTrue(usedTime + FOR_FAULT_TOLERANT_MILLISECONDS >= SHOULD_WAIT_MILLISECONDS);
         System.out.println(String.format("%s >= %s" + " ms", usedTime, SHOULD_WAIT_MILLISECONDS));
     }
 }

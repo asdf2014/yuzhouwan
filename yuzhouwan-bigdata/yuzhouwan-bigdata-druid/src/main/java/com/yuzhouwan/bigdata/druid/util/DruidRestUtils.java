@@ -4,17 +4,17 @@ import com.ning.http.client.AsyncHttpClient;
 import com.ning.http.client.Response;
 import com.yuzhouwan.common.util.ExceptionUtils;
 import com.yuzhouwan.common.util.PropUtils;
-import com.yuzhouwan.common.util.StrUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 import static com.yuzhouwan.common.util.StrUtils.isEmpty;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Druid Restful Utils
  *
@@ -24,9 +24,8 @@ import static com.yuzhouwan.common.util.StrUtils.isEmpty;
 public class DruidRestUtils {
 
     private static final Logger _log = LoggerFactory.getLogger(DruidRestUtils.class);
-
-    private static long DEFEAT_TIMEOUT;
     private static final TimeUnit DEFEAT_UNIT = TimeUnit.MILLISECONDS;
+    private static long DEFEAT_TIMEOUT;
 
     static {
         String timeOut = PropUtils.getInstance().getProperty("http.timeout.default.second");
@@ -44,7 +43,7 @@ public class DruidRestUtils {
      * @return the result of query
      */
     public static String post(String url, String json) {
-        return post(url, json, null, null, null);
+        return post(url, json, null);
     }
 
     /**
@@ -72,10 +71,10 @@ public class DruidRestUtils {
         Future<Response> f = null;
         try (AsyncHttpClient asyncHttpClient = new AsyncHttpClient()) {
             AsyncHttpClient.BoundRequestBuilder builder = asyncHttpClient.preparePost(url);
-            builder.setBodyEncoding(StrUtils.UTF_8).setBody(json);
+            builder.setBodyEncoding(StandardCharsets.UTF_8.name()).setBody(json);
             return (f = builder.execute()).get(timeOut == null ? DEFEAT_TIMEOUT : timeOut,
                     timeUnit == null ? DEFEAT_UNIT : timeUnit)
-                    .getResponseBody(charset == null ? StrUtils.UTF_8 : charset);
+                    .getResponseBody(charset == null ? StandardCharsets.UTF_8.name() : charset);
         } catch (Exception e) {
             _log.error(ExceptionUtils.errorInfo(e));
             throw new RuntimeException(e);

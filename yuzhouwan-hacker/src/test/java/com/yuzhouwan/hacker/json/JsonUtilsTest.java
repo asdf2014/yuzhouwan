@@ -4,15 +4,15 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: JsonUtils Tester
  *
@@ -29,7 +29,7 @@ public class JsonUtilsTest {
     }
 
     @Test
-    public void testSimple() throws Exception {
+    public void testSimple() {
         assertEquals("1", jsonUtils.simpleParse().get(0).getGroupId());
     }
 

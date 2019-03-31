@@ -3,7 +3,7 @@ package com.yuzhouwan.hacker.algorithms;
 import com.circuitwall.ml.algorithm.evolution.EvolutionAlgorithm;
 import com.circuitwall.ml.algorithm.util.RandomUtil;
 import com.circuitwall.ml.platform.monolithic.evolution.LocalExecutor;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.stream.Stream;
@@ -64,8 +64,8 @@ public class EvolutionAlgorithmTest implements EvolutionAlgorithm {
     }
 
     @Test
-    public void test(){
+    public void test() {
         EvolutionAlgorithmTest simulator = new EvolutionAlgorithmTest();
-        new LocalExecutor().execute(simulator,1000, 5000, 100, 5D);
+        new LocalExecutor().execute(simulator, 1000, 5000, 100, 5D);
     }
 }

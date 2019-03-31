@@ -2,7 +2,7 @@ package com.yuzhouwan.hacker.algorithms.collection;
 
 import com.yuzhouwan.common.util.ThreadUtils;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,15 +11,15 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.nio.ByteBuffer;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import static com.yuzhouwan.common.util.FileUtils.retryDelete;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：CollectionStuff Tester
  *
@@ -29,7 +29,7 @@ import static org.junit.Assert.assertTrue;
 public class CollectionStuffTest {
 
     private static final Logger _log = LoggerFactory.getLogger(CollectionStuffTest.class);
-
+    private final Vector<Long> v = new Vector<>();
     private List<ComplexClass> cs;
 
     @Before
@@ -49,70 +49,18 @@ public class CollectionStuffTest {
         cs.add(c);
     }
 
-
     /**
      * Method: listReduplication(C c, int fieldIndex, boolean isDeclared)
      */
     @Test
-    public void testListReduplication() throws Exception {
+    public void testListReduplication() {
         CollectionStuff<List<ComplexClass>, ComplexClass> collectionStuff = new CollectionStuff<>();
         Collection<ComplexClass> collection = collectionStuff.listReduplication(cs, 1, true);
         collection.forEach(System.out::println);
     }
 
-    private class ComplexClass {
-        private Integer i;
-        private String s;
-        private Object o;
-
-        @Override
-        public boolean equals(Object o1) {
-            if (this == o1) return true;
-            if (!(o1 instanceof ComplexClass)) return false;
-
-            ComplexClass that = (ComplexClass) o1;
-
-            if (!getI().equals(that.getI())) return false;
-            if (!getS().equals(that.getS())) return false;
-            return getO().equals(that.getO());
-
-        }
-
-        @Override
-        public int hashCode() {
-            int result = getI().hashCode();
-            result = 31 * result + getS().hashCode();
-            result = 31 * result + getO().hashCode();
-            return result;
-        }
-
-        public Integer getI() {
-            return i;
-        }
-
-        public void setI(Integer i) {
-            this.i = i;
-        }
-
-        public String getS() {
-            return s;
-        }
-
-        public void setS(String s) {
-            this.s = s;
-        }
-
-        public Object getO() {
-            return o;
-        }
-
-        public void setO(Object o) {
-            this.o = o;
-        }
-    }
-
     @Test
-    public void testFastFail() throws Exception {
+    public void testFastFail() {
         LinkedList<Integer> list = new LinkedList<>();
         list.add(1);
         list.add(2);
@@ -124,7 +72,7 @@ public class CollectionStuffTest {
     }
 
     @Test
-    public void testByteBufferMap() throws Exception {
+    public void testByteBufferMap() {
 
         byte[] bytesA = {1, 2};
         byte[] bytesB = {2, 3};
@@ -137,18 +85,18 @@ public class CollectionStuffTest {
         HashMap<ByteBuffer, String> map = new HashMap<>();
         map.put(byteBufferA, "A");
         map.put(byteBufferB, "B");
-        assertEquals(true, map.containsKey(byteBufferC));
+        assertTrue(map.containsKey(byteBufferC));
 
         HashMap<byte[], String> mapBytes = new HashMap<>();
         mapBytes.put(bytesA, "A");
         mapBytes.put(bytesB, "B");
-        assertEquals(true, mapBytes.containsKey(bytesA));
-        assertEquals(true, mapBytes.containsKey(bytesB));
-        assertEquals(false, mapBytes.containsKey(bytesC));
+        assertTrue(mapBytes.containsKey(bytesA));
+        assertTrue(mapBytes.containsKey(bytesB));
+        assertFalse(mapBytes.containsKey(bytesC));
     }
 
     @Test
-    public void testBoxMap() throws Exception {
+    public void testBoxMap() {
 
         HashMap<Long, String> map = new HashMap<>();
         map.put(1L, "1L");
@@ -162,7 +110,7 @@ public class CollectionStuffTest {
         }
         A a = new A();
         a.a = 4;
-        assertEquals(null, map.get(1));
+        assertNull(map.get(1));
         assertEquals("2L", map.get(key));
         assertEquals("3L", map.get(3L));
         assertEquals("4L", map.get(a.a));
@@ -176,7 +124,7 @@ public class CollectionStuffTest {
         map.put("c", 3);
         assertEquals("c", map.keySet().toArray(new String[0])[2]);
         assertEquals("c", map.keySet().toArray(new String[3])[2]);
-        assertEquals(null, map.keySet().toArray(new String[4])[3]);
+        assertNull(map.keySet().toArray(new String[4])[3]);
         assertEquals("c", map.keySet().toArray()[2]);
     }
 
@@ -228,14 +176,14 @@ public class CollectionStuffTest {
         lbq.add(Byte.valueOf("1"));
         lbq.add(Byte.valueOf("2"));
         lbq.add(Byte.valueOf("3"));
-        assertEquals(true, lbq.peek() == 1);
-        assertEquals(true, lbq.peek() == 1);
-        assertEquals(true, lbq.peek() == 1);
+        assertTrue(lbq.peek() == 1);
+        assertTrue(lbq.peek() == 1);
+        assertTrue(lbq.peek() == 1);
 
         Byte[] bufferList = new Byte[lbq.size()];
         Byte[] lbqList = lbq.toArray(bufferList);
-        assertEquals(true, Arrays.equals(bufferList, lbqList));
-        assertEquals(true, bufferList == lbqList);
+        assertTrue(Arrays.equals(bufferList, lbqList));
+        assertTrue(bufferList == lbqList);
 
         File file = new File("queue.txt");
         try (FileOutputStream fileChannel = new FileOutputStream(file)) {
@@ -254,16 +202,14 @@ public class CollectionStuffTest {
                 assertEquals(2, chars[1]);
                 assertEquals(3, chars[2]);
 
-                assertEquals(true, lbq.remove() == 1);
-                assertEquals(true, lbq.remove() == 2);
-                assertEquals(true, lbq.remove() == 3);
+                assertTrue(lbq.remove() == 1);
+                assertTrue(lbq.remove() == 2);
+                assertTrue(lbq.remove() == 3);
             }
         } finally {
             retryDelete(file, 3);
         }
     }
-
-    private final Vector<Long> v = new Vector<>();
 
     @Test
     public void testVector() throws Exception {
@@ -319,5 +265,98 @@ public class CollectionStuffTest {
         List<Boolean[]> booleans = Arrays.asList((Boolean[]) Arrays.asList(Boolean.FALSE).toArray(),
                 (Boolean[]) Arrays.asList(Boolean.TRUE).toArray());
         booleans.forEach(System.out::print);
+    }
+
+    @Test
+    public void testCME() {
+        {
+            Properties p = new Properties();
+
+            p.put("1", "1");
+            p.put("2", "2");
+            p.put("3", "3");
+            p.put("4", "4");
+            p.put("5", "5");
+
+            boolean hasCME = false;
+            try {
+                p.forEach((k, v) -> {
+                    if ("3".equals(k)) p.clear();
+                });
+            } catch (ConcurrentModificationException cme) {
+                hasCME = true;
+            }
+            assertTrue(hasCME);
+        }
+        {
+            ConcurrentHashMap<String, Object> map = new ConcurrentHashMap<>();
+
+            map.put("1", "1");
+            map.put("2", "2");
+            map.put("3", "3");
+            map.put("4", "4");
+            map.put("5", "5");
+
+            boolean hasCME = false;
+            try {
+                map.forEach((k, v) -> {
+                    if ("3".equals(k)) map.remove(k);
+                });
+            } catch (ConcurrentModificationException cme) {
+                hasCME = true;
+            }
+            assertFalse(hasCME);
+        }
+    }
+
+    private class ComplexClass {
+        private Integer i;
+        private String s;
+        private Object o;
+
+        @Override
+        public boolean equals(Object o1) {
+            if (this == o1) return true;
+            if (!(o1 instanceof ComplexClass)) return false;
+
+            ComplexClass that = (ComplexClass) o1;
+
+            if (!getI().equals(that.getI())) return false;
+            if (!getS().equals(that.getS())) return false;
+            return getO().equals(that.getO());
+
+        }
+
+        @Override
+        public int hashCode() {
+            int result = getI().hashCode();
+            result = 31 * result + getS().hashCode();
+            result = 31 * result + getO().hashCode();
+            return result;
+        }
+
+        public Integer getI() {
+            return i;
+        }
+
+        public void setI(Integer i) {
+            this.i = i;
+        }
+
+        public String getS() {
+            return s;
+        }
+
+        public void setS(String s) {
+            this.s = s;
+        }
+
+        public Object getO() {
+            return o;
+        }
+
+        public void setO(Object o) {
+            this.o = o;
+        }
     }
 }

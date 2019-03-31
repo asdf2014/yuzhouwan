@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Watch children changes with curator
  *
@@ -25,93 +25,8 @@ public class CuratorChildrenCache {
     private static final Logger LOG = LoggerFactory.getLogger(CuratorChildrenCache.class);
     private CuratorFramework curatorFramework;
 
-    public CuratorChildrenCache() throws Exception {
+    public CuratorChildrenCache() {
         init();
-    }
-
-    private void init() throws Exception {
-        curatorFramework = CuratorFrameworkFactory
-                .builder()
-                .connectString("localhost:2181")
-                .connectionTimeoutMs(5000)
-                .sessionTimeoutMs(3000)
-                .retryPolicy(new ExponentialBackoffRetry(2000, 3))
-                .namespace("children")
-                .build();
-        curatorFramework.start();
-    }
-
-    public void addChildrenListener(String path) throws Exception {
-
-        Stat existStat = curatorFramework.checkExists().forPath(path);
-        if (existStat == null)
-            curatorFramework
-                    .create()
-                    .creatingParentsIfNeeded()
-                    .withMode(CreateMode.PERSISTENT)
-                    .forPath(path);
-        final PathChildrenCache pathChildrenCache = new PathChildrenCache(curatorFramework, path, false);
-        pathChildrenCache.start(PathChildrenCache.StartMode.NORMAL);
-        pathChildrenCache
-                .getListenable()
-                .addListener(
-                        (CuratorFramework client, PathChildrenCacheEvent event) -> {
-                            PathChildrenCacheEvent.Type type = event.getType();
-                            LOG.info("Event type: {}", type);
-                            switch (type) {
-                                case CONNECTION_RECONNECTED:
-                                    LOG.info("Reconnected...");
-                                    break;
-                                case CONNECTION_LOST:
-                                    LOG.info("Connection lost...");
-                                    pathChildrenCache.rebuild();
-                                    LOG.info("Rebuild pathChildrenCache...");
-                                    break;
-                                case CONNECTION_SUSPENDED:
-                                    LOG.info("Connection suspended...");
-                                    break;
-                                case CHILD_ADDED:
-                                    LOG.info("Add new child: {}", event.getData().getPath());
-                                    break;
-                                case CHILD_UPDATED:
-                                    LOG.info("Updated child: {}", event.getData().getPath());
-                                    break;
-                                case CHILD_REMOVED:
-                                    LOG.info("Removed child: {}", event.getData().getPath());
-                                    break;
-                                default:
-                                    LOG.error("Something was not excepted: {}", type);
-                                    break;
-                            }
-                        }
-                );
-    }
-
-    public void createNode(String path) throws Exception {
-        curatorFramework
-                .create()
-                .creatingParentsIfNeeded()
-                .withMode(CreateMode.EPHEMERAL)
-                .forPath(path);
-    }
-
-    public String readNode(String path) throws Exception {
-        return new String(curatorFramework
-                .getData()
-                .forPath(path));
-    }
-
-    public void deleteNode(String path) throws Exception {
-        curatorFramework
-                .delete()
-                .deletingChildrenIfNeeded()
-                .forPath(path);
-    }
-
-    public void updateNode(String path, byte[] data) throws Exception {
-        curatorFramework
-                .setData()
-                .forPath(path, data);
     }
 
     public static void main(String[] args) throws Exception {
@@ -169,5 +84,90 @@ public class CuratorChildrenCache {
         ccc.updateNode(jutePath, jute);
         System.out.println("Updated ".concat(jutePath));
         System.out.println(ccc.readNode(jutePath));
+    }
+
+    private void init() {
+        curatorFramework = CuratorFrameworkFactory
+                .builder()
+                .connectString("localhost:2181")
+                .connectionTimeoutMs(5000)
+                .sessionTimeoutMs(3000)
+                .retryPolicy(new ExponentialBackoffRetry(2000, 3))
+                .namespace("children")
+                .build();
+        curatorFramework.start();
+    }
+
+    public void addChildrenListener(String path) throws Exception {
+
+        Stat existStat = curatorFramework.checkExists().forPath(path);
+        if (existStat == null)
+            curatorFramework
+                    .create()
+                    .creatingParentsIfNeeded()
+                    .withMode(CreateMode.PERSISTENT)
+                    .forPath(path);
+        final PathChildrenCache pathChildrenCache = new PathChildrenCache(curatorFramework, path, false);
+        pathChildrenCache.start(PathChildrenCache.StartMode.NORMAL);
+        pathChildrenCache
+                .getListenable()
+                .addListener(
+                        (CuratorFramework client, PathChildrenCacheEvent event) -> {
+                            PathChildrenCacheEvent.Type type = event.getType();
+                            LOG.info("Event type: {}", type);
+                            switch (type) {
+                                case CONNECTION_RECONNECTED:
+                                    LOG.info("Reconnected...");
+                                    break;
+                                case CONNECTION_LOST:
+                                    LOG.info("Connection lost...");
+                                    pathChildrenCache.rebuild();
+                                    LOG.info("Rebuild pathChildrenCache...");
+                                    break;
+                                case CONNECTION_SUSPENDED:
+                                    LOG.info("Connection suspended...");
+                                    break;
+                                case CHILD_ADDED:
+                                    LOG.info("Add new child: {}", event.getData().getPath());
+                                    break;
+                                case CHILD_UPDATED:
+                                    LOG.info("Updated child: {}", event.getData().getPath());
+                                    break;
+                                case CHILD_REMOVED:
+                                    LOG.info("Removed child: {}", event.getData().getPath());
+                                    break;
+                                default:
+                                    LOG.error(String.format("Something was not excepted: %s", type));
+                                    break;
+                            }
+                        }
+                );
+    }
+
+    public void createNode(String path) throws Exception {
+        curatorFramework
+                .create()
+                .creatingParentsIfNeeded()
+                .withMode(CreateMode.EPHEMERAL)
+                .forPath(path);
+    }
+
+    public String readNode(String path) throws Exception {
+        return new String(curatorFramework
+                .getData()
+                .forPath(path));
+    }
+
+    public void deleteNode(String path) throws Exception {
+        curatorFramework
+                .delete()
+                .deletingChildrenIfNeeded()
+                .forPath(path);
+    }
+
+    public void updateNode(String path, byte[] data) throws Exception {
+        curatorFramework
+                .setData()
+                .forPath(path, data);
     }
 }

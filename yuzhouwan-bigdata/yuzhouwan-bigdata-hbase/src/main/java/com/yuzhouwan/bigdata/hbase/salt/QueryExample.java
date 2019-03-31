@@ -58,7 +58,7 @@ public class QueryExample {
         }
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         List<DataProtos.DataQueryResponse.Row> rows = queryByStartRowAndStopRow("test", "00", "01", true, true);
         if (rows != null) {
             for (DataProtos.DataQueryResponse.Row row : rows) {

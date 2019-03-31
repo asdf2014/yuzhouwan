@@ -6,8 +6,10 @@ import kafka.message.MessageAndMetadata;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.nio.charset.StandardCharsets;
+
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Consumer Worker
  *
@@ -35,11 +37,11 @@ public class ConsumerWorker implements Runnable {
         while (iter.hasNext()) {
             try {
                 msg = iter.next();
-                _log.info("Thread {}: {}", threadNum, new String(msg.message(), "utf-8"));
+                _log.info("Thread {}: {}", threadNum, new String(msg.message(), StandardCharsets.UTF_8));
                 _log.info("partition: {}, offset: {}", msg.partition(), msg.offset());
                 success++;
             } catch (Exception e) {
-                _log.error("{}", e);
+                _log.error("", e);
                 fail++;
             }
             _log.info("Count [fail/success/total]: [{}/{}/{}], Time: {}s", fail, success, ++total,

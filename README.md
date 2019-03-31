@@ -41,12 +41,11 @@ __[https://yuzhouwan.com](https://yuzhouwan.com)__
 - [WebSite](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-site)&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;([RPC](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-site/yuzhouwan-site-service/src/test/java/com/yuzhouwan/site/service) **/** [NIO](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-site/yuzhouwan-site-service/src/main/java/com/yuzhouwan/site/service/nio) **/** [Spring](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-site/yuzhouwan-site-service/src/main/resources) stuff **/** [Swagger](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-site/yuzhouwan-site-service/src/main/webapp) for Doc)
 - A lot of Commons [Utils](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-common/src/main/java/com/yuzhouwan/common/util)
 
-
 ---------------
 
 ## Technical Discussion Group
 
-**[BigData 生态圈](https://yuzhouwan.com/tags/)**　[![1670647](https://img.shields.io/badge/QQ%E7%BE%A4-1670647-blue.svg)](https://shang.qq.com/wpa/qunwpa?idkey=f86b3c8de20da1658a3bb42df17a2fc4eee0d75c4a130a63585fdd257e3565ed)　（**1000** 人大群）
+**[BigData 生态圈](https://yuzhouwan.com/tags/)**　[![1670647](https://img.shields.io/badge/QQ%E7%BE%A4-1670647-blue.svg)](https://shang.qq.com/wpa/qunwpa?idkey=f86b3c8de20da1658a3bb42df17a2fc4eee0d75c4a130a63585fdd257e3565ed)
 
 本群创建于2012/11/15:<br/>
 &ensp;&ensp;讨论大数据生态圈的各种领域，包括 <br/>
@@ -57,8 +56,8 @@ __[https://yuzhouwan.com](https://yuzhouwan.com)__
 &ensp;&ensp;△ Data Mining / Machine Learning / Deep Learning / AI 数据分析领域 等等
 
 <br/>
- 
-**[人工智能](https://yuzhouwan.com/posts/42737/)**　[![1020982](https://img.shields.io/badge/QQ%E7%BE%A4-1020982-blue.svg)](https://shang.qq.com/wpa/qunwpa?idkey=71c6bd3fb0ff01d93abca654140387d99d3be752f92a53c1fbfd27f2dd4b4247)（高级）| [![1217710](https://img.shields.io/badge/QQ%E7%BE%A4-1217710-blue.svg)](https://shang.qq.com/wpa/qunwpa?idkey=deb268f65589a1a0a1dbaf7b72c849ed45298697805bef81e0c613dea40cd05e)（进阶）　（**2000 + 2000** 人大群）
+
+**[人工智能](https://yuzhouwan.com/posts/42737/)**　[![1020982](https://img.shields.io/badge/QQ%E7%BE%A4-1020982-blue.svg)](https://shang.qq.com/wpa/qunwpa?idkey=71c6bd3fb0ff01d93abca654140387d99d3be752f92a53c1fbfd27f2dd4b4247)（高级）| [![1217710](https://img.shields.io/badge/QQ%E7%BE%A4-1217710-blue.svg)](https://shang.qq.com/wpa/qunwpa?idkey=deb268f65589a1a0a1dbaf7b72c849ed45298697805bef81e0c613dea40cd05e)（进阶）
 
 本群创建于2003/7/24: <br/>
 &ensp;&ensp;研究 AI 人工智能 相关领域，欢迎加入，互相学习，共同进步<br/>
@@ -77,7 +76,7 @@ __[https://yuzhouwan.com](https://yuzhouwan.com)__
 
 ## 搜索引擎收录
 
-　Just Google it :D
+　Just [Google](https://www.google.com/search?q=宇宙湾) it :D
 
 ![Google yuzhouwan.com](https://picture.yuzhouwan.com/google_yuzhouwan.png?imageslim)
 

@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: RBPainter
  *

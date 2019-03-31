@@ -7,16 +7,15 @@ import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import java.io.File;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Html Exporter
  *
  * @author Benedict Jin
  * @since 2016/6/20
  */
-public class HtmlExporter2File implements IHtmlExporter {
+public class HtmlExporter2File implements IHtmlExporter<File> {
 
-    @SuppressWarnings(value = {"unchecked"})
     @Override
     public File convert2Image(String url) {
         return convert2Image(url, null);
@@ -28,13 +27,11 @@ public class HtmlExporter2File implements IHtmlExporter {
      * @param url 目标URL
      * @return 图片文件
      */
-    @SuppressWarnings(value = {"unchecked"})
     @Override
     public File convert2Image(String url, Integer width, Integer height) {
         return convert2Image(url, null, width, height);
     }
 
-    @SuppressWarnings(value = {"unchecked"})
     @Override
     public File convert2Image(String url, Cookie addedCookie) {
         return convert2Image(url, addedCookie, null, null);
@@ -47,7 +44,6 @@ public class HtmlExporter2File implements IHtmlExporter {
      * @param addedCookie 添加 cookie
      * @return 图片文件
      */
-    @SuppressWarnings(value = {"unchecked"})
     @Override
     public File convert2Image(String url, Cookie addedCookie, Integer width, Integer height) {
         PhantomJSDriver driver = null;

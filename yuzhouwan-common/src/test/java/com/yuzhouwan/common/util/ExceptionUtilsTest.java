@@ -1,11 +1,11 @@
 package com.yuzhouwan.common.util;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Exception Utils Test
  *
@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class ExceptionUtilsTest {
 
     @Test
-    public void errorInfo() throws Exception {
+    public void errorInfo() {
         assertEquals("RuntimeException: Connection is closed!",
                 ExceptionUtils.errorInfo(new RuntimeException("Connection is closed!")));
 
@@ -27,11 +27,10 @@ public class ExceptionUtilsTest {
     }
 
     @Test
-    public void errorPrint() throws Exception {
+    public void errorPrint() {
         try {
             throw new RuntimeException("Runtime Exception...");
         } catch (Exception e) {
-//            _log.error("{}", e);    // will print whole exception stack trace
             assertEquals("Runtime Exception...", e.getMessage());
         }
     }

@@ -1,11 +1,12 @@
 package com.yuzhouwan.bigdata.kafka.util;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Kafka Partitioner Test
  *
@@ -18,8 +19,8 @@ public class KafkaPartitionerTest {
     public void testSendMessage() {
         assertEquals(0, KafkaPartitioner.getPartition(null, 0));
         assertEquals(0, KafkaPartitioner.getPartition(null, 1));
-        assertEquals(true, KafkaPartitioner.getPartition(null, 2) < 2);
-        assertEquals(true, KafkaPartitioner.getPartition("1", 2) < 2);
+        assertTrue(KafkaPartitioner.getPartition(null, 2) < 2);
+        assertTrue(KafkaPartitioner.getPartition("1", 2) < 2);
         assertEquals(11, KafkaPartitioner.getPartition("11", 24));
         assertEquals(0, KafkaPartitioner.getPartition("24", 24));
     }

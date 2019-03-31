@@ -1,8 +1,8 @@
 package com.yuzhouwan.common.html;
 
 import org.apache.commons.io.FileUtils;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Cookie;
 
 import java.io.ByteArrayInputStream;
@@ -12,7 +12,7 @@ import java.util.Date;
 import static com.yuzhouwan.common.dir.DirUtils.RESOURCES_PATH;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Html Exporter Tester
  *
@@ -35,7 +35,7 @@ public class HtmlExporterUtilsTest {
             //"http://192.168.112.189:8100/#/report?instanceId=22&customerId=5";
             "http://portal.cloudguarder.com:81/#/index/defend_monitor";
 
-    @Ignore
+    @Disabled
     @Test
     public void simpleTest() throws Exception {
         // 7s 306
@@ -44,7 +44,7 @@ public class HtmlExporterUtilsTest {
                 new File(RESOURCES_PATH.concat(PREFIX_OUTPUT_PATH).concat("login.png")));
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void testTimeout() throws Exception {
         // 38s 451ms
@@ -55,13 +55,10 @@ public class HtmlExporterUtilsTest {
 
     /**
      * 如果 需要在 web工程中使用 phantomJS 的 render功能，可以尝试用 redis鉴权 替代cookie
-     *
-     * @throws Exception
      */
-    @Ignore
+    @Disabled
     @Test
     public void convert2ImageTest() throws Exception {
-
         Cookie cookie = new Cookie(name, value, domain, path, expiry, isSecure, isHttpOnly);
 
         File image = new HtmlExporter2File().convert2Image(url, cookie);
@@ -70,9 +67,9 @@ public class HtmlExporterUtilsTest {
         }
     }
 
-    @Ignore
+    @Disabled
     @Test
-    public void image2pdfTest() throws Exception {
+    public void image2pdfTest() {
         String url = "http://portal.cloudguarder.com:81";
         HtmlExporter2BYTES htmlExporter2BYTES = new HtmlExporter2BYTES();
         byte[] bytes = htmlExporter2BYTES.convert2Image(url, null, null);
@@ -83,10 +80,9 @@ public class HtmlExporterUtilsTest {
                 new File(RESOURCES_PATH.concat(PREFIX_OUTPUT_PATH).concat("login.pdf")));
     }
 
-    @Ignore
+    @Disabled
     @Test
-    public void convert2PdfTest() throws Exception {
-
+    public void convert2PdfTest() {
         Cookie cookie = new Cookie(name, value, domain, path, expiry, isSecure, isHttpOnly);
 
         HtmlExporter2BYTES htmlExporter2BYTES = new HtmlExporter2BYTES();

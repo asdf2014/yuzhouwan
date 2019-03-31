@@ -1,11 +1,11 @@
 package com.yuzhouwan.hacker.algorithms.leetcode;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Add Digits Solution Tester
  *
@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class AddDigitsSolutionTest {
 
     @Test
-    public void addDigitsTest() throws Exception {
+    public void addDigitsTest() {
 
         assertEquals(-1, AddDigitsSolution.addDigits(-1));
         assertEquals(0, AddDigitsSolution.addDigits(0));
@@ -25,7 +25,7 @@ public class AddDigitsSolutionTest {
     }
 
     @Test
-    public void addDigitsWisdomTest() throws Exception {
+    public void addDigitsWisdomTest() {
 
         assertEquals(-1, AddDigitsSolution.addDigitsWisdom(-1));
         assertEquals(0, AddDigitsSolution.addDigitsWisdom(0));

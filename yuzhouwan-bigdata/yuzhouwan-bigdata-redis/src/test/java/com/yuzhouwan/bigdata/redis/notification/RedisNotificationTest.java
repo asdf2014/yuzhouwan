@@ -3,14 +3,14 @@ package com.yuzhouwan.bigdata.redis.notification;
 import com.yuzhouwan.bigdata.redis.conn.RedisClusterConnPool;
 import com.yuzhouwan.common.util.DynamicPropUtils;
 import com.yuzhouwan.common.util.PropUtils;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import static com.yuzhouwan.bigdata.redis.conn.RedisClusterConnPool.PROJECT_NAME;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Redis Notification Test
  *
@@ -19,7 +19,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class RedisNotificationTest {
 
-    @Ignore
+    @Disabled
     @Test
     public void testExpire() throws Exception {
 
@@ -38,18 +38,18 @@ public class RedisNotificationTest {
 
             Thread.sleep(1100);
             assertEquals("blog01", pool.get("yuzhouwan01"));
-            assertEquals(null, pool.get("yuzhouwan02"));
+            assertNull(pool.get("yuzhouwan02"));
             assertEquals("blog03", pool.get("yuzhouwan03"));
 
             Thread.sleep(1000);
-            assertEquals(null, pool.get("yuzhouwan01"));
-            assertEquals(null, pool.get("yuzhouwan02"));
+            assertNull(pool.get("yuzhouwan01"));
+            assertNull(pool.get("yuzhouwan02"));
             assertEquals("blog03", pool.get("yuzhouwan03"));
 
-            assertEquals(true, 1 == pool.del("yuzhouwan03"));
-            assertEquals(null, pool.get("yuzhouwan01"));
-            assertEquals(null, pool.get("yuzhouwan02"));
-            assertEquals(null, pool.get("yuzhouwan03"));
+            assertTrue(1 == pool.del("yuzhouwan03"));
+            assertNull(pool.get("yuzhouwan01"));
+            assertNull(pool.get("yuzhouwan02"));
+            assertNull(pool.get("yuzhouwan03"));
         }
     }
 }

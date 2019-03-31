@@ -1,7 +1,7 @@
 package com.yuzhouwan.common.util
 
 /**
-  * Copyright @ 2018 yuzhouwan.com
+  * Copyright @ 2019 yuzhouwan.com
   * All right reserved.
   * Function：String Utils for Scala
   *
@@ -9,10 +9,6 @@ package com.yuzhouwan.common.util
   * @since 2018/5/30
   */
 object StrUtils4Scala {
-
-  def countSubString(str: String, sub: String): Int = str.sliding(sub.length).count(slide => slide == sub)
-
-  def patchSubString(str: String, sub: String): String = str.patch(str.lastIndexOf(sub), "", sub.length)
 
   def superFormat(str: String, detail: String*): String = {
     val holderSize: Int = countSubString(str, "%s")
@@ -26,4 +22,8 @@ object StrUtils4Scala {
     }
     result.format(detail: _*)
   }
+
+  def countSubString(str: String, sub: String): Int = str.sliding(sub.length).count(slide => slide == sub)
+
+  def patchSubString(str: String, sub: String): String = str.patch(str.lastIndexOf(sub), "", sub.length)
 }

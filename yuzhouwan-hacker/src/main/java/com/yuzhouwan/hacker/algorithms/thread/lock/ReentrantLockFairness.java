@@ -4,12 +4,12 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: ReentrantLockFairness
  *
- * @link https://yuzhouwan.com/posts/27328/
  * @author Benedict Jin
+ * @link https://yuzhouwan.com/posts/27328/
  * @since 2016/9/5
  */
 class ReentrantLockFairness {

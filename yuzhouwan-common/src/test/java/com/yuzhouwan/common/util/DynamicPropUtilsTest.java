@@ -1,14 +1,16 @@
 package com.yuzhouwan.common.util;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.apache.curator.test.TestingServer;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.util.Properties;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Dynamic PropUtils Test
  *
@@ -17,11 +19,18 @@ import static org.junit.Assert.assertEquals;
  */
 public class DynamicPropUtilsTest {
 
-    @Ignore
+    private TestingServer server;
+    private DynamicPropUtils dp;
+
+    @BeforeAll
+    public void setup() throws Exception {
+        server = new TestingServer(2181, true);
+        dp = DynamicPropUtils.getInstance();
+    }
+
     @Test
     public void syncTest() {
         String projectName = "yuzhouwan", key = "site", value = "blog";
-        DynamicPropUtils dp = DynamicPropUtils.getInstance();
         Properties p = new Properties();
         p.put(key, value);
         dp.add(projectName, p);
@@ -37,16 +46,16 @@ public class DynamicPropUtilsTest {
         {
             boolean interWhileLoop = false;
             while (count++ > max) interWhileLoop = true;
-            assertEquals(false, interWhileLoop);
+            assertFalse(interWhileLoop);
             count = 0;
             while (++count > max) interWhileLoop = true;
-            assertEquals(false, interWhileLoop);
+            assertFalse(interWhileLoop);
             count = 0;
             while (count++ >= max) interWhileLoop = true;
-            assertEquals(false, interWhileLoop);
+            assertFalse(interWhileLoop);
             count = 0;
             while (++count >= max) interWhileLoop = true;
-            assertEquals(true, interWhileLoop);
+            assertTrue(interWhileLoop);
         }
         {
             count = 0;
@@ -58,5 +67,11 @@ public class DynamicPropUtilsTest {
             assertEquals(0, y);
             assertEquals(1, count);
         }
+    }
+
+    @AfterAll
+    public void teardown() throws Exception {
+        if (dp != null) dp.close();
+        if (server != null) server.close();
     }
 }

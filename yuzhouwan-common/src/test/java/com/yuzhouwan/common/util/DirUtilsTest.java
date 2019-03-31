@@ -2,19 +2,18 @@ package com.yuzhouwan.common.util;
 
 import com.yuzhouwan.common.dir.DirUtils;
 import com.yuzhouwan.common.dir.WatchRunnable;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Directory Util Tester
  *
@@ -24,7 +23,7 @@ import static org.junit.Assert.assertNotEquals;
 public class DirUtilsTest {
 
     public static void main(String[] args) {
-        DirUtils.createOutDir();
+        System.out.println(DirUtils.createOutDir());
     }
 
     @Test
@@ -52,17 +51,17 @@ public class DirUtilsTest {
     }
 
     @Test
-    public void testDirScan() throws Exception {
+    public void testDirScan() {
         List<String> absolutePath;
         assertNotEquals(null, absolutePath = DirUtils.findAbsolutePath(DirUtils.getTestClassesPath(),
                 "DirUtilsTest.class"));
-        assertEquals(true, absolutePath.get(0).endsWith("test-classes" + File.separator + "com" + File.separator +
+        assertTrue(absolutePath.get(0).endsWith("test-classes" + File.separator + "com" + File.separator +
                 "yuzhouwan" + File.separator + "common" + File.separator + "util" + File.separator +
                 "DirUtilsTest.class"));
     }
 
     @Test
-    public void testDirScanAbsolute() throws Exception {
+    public void testDirScanAbsolute() {
         assertEquals(File.separator + "com" + File.separator + "yuzhouwan" + File.separator + "common" +
                 File.separator + "util" + File.separator + "DirUtilsTest.class", DirUtils.findPath(
                 DirUtils.getTestClassesPath(), "test-classes", "DirUtilsTest.class", false)
@@ -70,21 +69,21 @@ public class DirUtilsTest {
     }
 
     @Test
-    public void testJarPath() throws Exception {
+    public void testJarPath() {
         assertEquals(new LinkedList<>(Collections.singletonList(File.separator + "yuzhouwan-common.jar")),
                 DirUtils.findPath(DirUtils.getTestClassesPath(), "lib", ".jar", false));
     }
 
     @Test
-    public void testPropertiesPath() throws Exception {
+    public void testPropertiesPath() {
         DirUtils.findPath(DirUtils.getClassesPath(), "prop", ".properties", true).forEach(System.out::println);
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void testBuildWatchService() throws Exception {
         WatchRunnable thread = DirUtils.buildWatchService("Z:/watch");
-        assertEquals(null, thread);
+        assertNull(thread);
 
         // 2 ms is lowest limitation for me ;)
         thread = DirUtils.buildWatchService("E:/watch", null, 2L);
@@ -95,9 +94,9 @@ public class DirUtilsTest {
         DirUtils.makeSureExist("E:/watch/b/", false);
         DirUtils.makeSureExist("E:/watch/c.txt", true);
 
-        new File("E:/watch/a").delete();
-        new File("E:/watch/b/").delete();
-        new File("E:/watch/c.txt").delete();
+        assertTrue(new File("E:/watch/a").delete());
+        assertTrue(new File("E:/watch/b/").delete());
+        assertTrue(new File("E:/watch/c.txt").delete());
 
         new File("E:/watch").deleteOnExit();
 

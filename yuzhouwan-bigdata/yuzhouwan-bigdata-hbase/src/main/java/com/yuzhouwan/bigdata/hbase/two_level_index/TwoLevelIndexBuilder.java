@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Tow-Level Index Builder
  *
@@ -42,6 +42,49 @@ public final class TwoLevelIndexBuilder {
         HConnectionManager.createConnection(conf);
     }
 
+    public static void main(String[] args) throws Exception {
+
+        String rootDir = "hdfs://hadoop1:8020/hbase";
+        String zkServer = "hadoop1";
+        String port = "2181";
+
+        TwoLevelIndexBuilder conn = new TwoLevelIndexBuilder(rootDir, zkServer, port);
+
+        Configuration conf = conn.conf;
+        String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
+
+        //TwoLevelIndexBuilder: TableName, ColumnFamily, Qualifier
+        if (otherArgs.length < 3) {
+            System.exit(-1);
+        }
+        //表名
+        String tableName = otherArgs[0];
+        //列族
+        String columnFamily = otherArgs[1];
+
+        conf.set("tableName", tableName);
+        conf.set("columnFamily", columnFamily);
+
+        //列 (可能存在多个列)
+        String[] qualifiers = new String[otherArgs.length - 2];
+        System.arraycopy(otherArgs, 2, qualifiers, 0, qualifiers.length);
+
+        //设置列
+        conf.setStrings("qualifiers", qualifiers);
+
+        Job job = new Job(conf, tableName);
+
+        job.setJarByClass(TwoLevelIndexBuilder.class);
+        job.setMapperClass(TowLevelIndexMapper.class);
+        job.setNumReduceTasks(0);       //由于不需要执行 reduce阶段
+        job.setInputFormatClass(TableInputFormat.class);
+        job.setOutputFormatClass(MultiTableOutputFormat.class);
+        TableMapReduceUtil.initTableMapperJob(tableName, new Scan(),
+                TowLevelIndexMapper.class, ImmutableBytesWritable.class, Put.class, job);
+
+        job.waitForCompletion(true);
+    }
+
     /**
      * TowLevelIndexMapper.
      */
@@ -53,7 +96,7 @@ public final class TwoLevelIndexBuilder {
 
         //真正运行Map之前执行一些处理。
         @Override
-        protected void setup(Context context) throws IOException, InterruptedException {
+        protected void setup(Context context) {
             //通过上下文得到配置
             Configuration conf = context.getConfiguration();
 
@@ -100,48 +143,5 @@ public final class TwoLevelIndexBuilder {
             }
 
         }
-    }
-
-    public static void main(String[] args) throws Exception {
-
-        String rootDir = "hdfs://hadoop1:8020/hbase";
-        String zkServer = "hadoop1";
-        String port = "2181";
-
-        TwoLevelIndexBuilder conn = new TwoLevelIndexBuilder(rootDir, zkServer, port);
-
-        Configuration conf = conn.conf;
-        String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
-
-        //TwoLevelIndexBuilder: TableName, ColumnFamily, Qualifier
-        if (otherArgs.length < 3) {
-            System.exit(-1);
-        }
-        //表名
-        String tableName = otherArgs[0];
-        //列族
-        String columnFamily = otherArgs[1];
-
-        conf.set("tableName", tableName);
-        conf.set("columnFamily", columnFamily);
-
-        //列 (可能存在多个列)
-        String[] qualifiers = new String[otherArgs.length - 2];
-        System.arraycopy(otherArgs, 2, qualifiers, 0, qualifiers.length);
-
-        //设置列
-        conf.setStrings("qualifiers", qualifiers);
-
-        Job job = new Job(conf, tableName);
-
-        job.setJarByClass(TwoLevelIndexBuilder.class);
-        job.setMapperClass(TowLevelIndexMapper.class);
-        job.setNumReduceTasks(0);       //由于不需要执行 reduce阶段
-        job.setInputFormatClass(TableInputFormat.class);
-        job.setOutputFormatClass(MultiTableOutputFormat.class);
-        TableMapReduceUtil.initTableMapperJob(tableName, new Scan(),
-                TowLevelIndexMapper.class, ImmutableBytesWritable.class, Put.class, job);
-
-        job.waitForCompletion(true);
     }
 }

@@ -1,11 +1,11 @@
 package com.yuzhouwan.hacker.algorithms.leetcode.array;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Move Zeroes Solution Tester
  *
@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class MoveZeroesSolutionTest {
 
     @Test
-    public void moveZeroes() throws Exception {
+    public void moveZeroes() {
 
         int[] nums = {0, 1, 0, 3, 12};
         int[] result = {1, 3, 12, 0, 0};
@@ -26,7 +26,7 @@ public class MoveZeroesSolutionTest {
     }
 
     @Test
-    public void moveZeroesShift() throws Exception {
+    public void moveZeroesShift() {
 
         int[] nums = {0, 5, 66, 0, 12};
         int[] result = {5, 66, 12, 0, 0};

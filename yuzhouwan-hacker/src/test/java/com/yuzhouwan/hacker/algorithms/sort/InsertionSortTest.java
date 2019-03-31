@@ -2,14 +2,14 @@ package com.yuzhouwan.hacker.algorithms.sort;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：InsertionSort Tester
  *
@@ -23,12 +23,12 @@ public class InsertionSortTest {
     private InsertionSort insertionSort;
 
     @Before
-    public void before() throws Exception {
+    public void before() {
         insertionSort = new InsertionSort();
     }
 
     @After
-    public void after() throws Exception {
+    public void after() {
         insertionSort = null;
     }
 
@@ -36,7 +36,7 @@ public class InsertionSortTest {
      * Method: insertionSort(int[] unSort)
      */
     @Test
-    public void testInsertionSort() throws Exception {
+    public void testInsertionSort() {
         StringBuilder strBuilder;
         {
             int[] unSort = {3, 2, 1};

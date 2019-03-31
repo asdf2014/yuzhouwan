@@ -17,7 +17,7 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: ReadWriteLock Example
  *
@@ -38,7 +38,7 @@ public class ReadWriteLockExample {
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException e) {
-                    _log.error("error: {}", e.getMessage());
+                    _log.error("", e);
                 }
                 if (count == 10) return;
             }
@@ -52,7 +52,7 @@ public class ReadWriteLockExample {
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException e) {
-                    _log.error("error: {}", e.getMessage());
+                    _log.error("", e);
                 }
                 Business.getInstance().isExist(task + 1);
             });
@@ -154,7 +154,7 @@ public class ReadWriteLockExample {
             try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
                 input = Integer.parseInt(br.readLine());
             } catch (NumberFormatException | IOException e) {
-                _log.error("error: {}", e.getMessage());
+                _log.error("", e);
             }
             _log.debug("Result: {} - {}", input, myData.get(input));
         }

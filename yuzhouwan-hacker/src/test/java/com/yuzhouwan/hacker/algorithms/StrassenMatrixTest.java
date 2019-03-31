@@ -4,7 +4,7 @@ import com.yuzhouwan.hacker.algorithms.array.StrassenMatrix;
 import org.apache.commons.math3.exception.MathArithmeticException;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.yuzhouwan.common.util.StrUtils.NEXT_LINE;
 
@@ -20,12 +20,12 @@ public class StrassenMatrixTest {
     private static StrassenMatrix sm;
 
     @Before
-    public void before() throws Exception {
+    public void before() {
         sm = new StrassenMatrix();
     }
 
     @After
-    public void after() throws Exception {
+    public void after() {
         sm = null;
     }
 

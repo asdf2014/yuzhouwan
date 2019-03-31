@@ -3,7 +3,7 @@ package com.yuzhouwan.hacker.algorithms.leetcode.list;
 import java.util.Random;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Linked List Random Node Solution
  *
@@ -14,12 +14,12 @@ class LinkedListRandomNodeSolution {
 
     /**
      * https://leetcode.com/problems/linked-list-random-node/
-     *
+     * <p>
      * 382. Linked List Random Node
-     *
+     * <p>
      * Given a singly linked list, return a random node's value from the linked list.
      * Each node must have the same probability of being chosen.
-     *
+     * <p>
      * Follow up:
      * What if the linked list is extremely large and its length is unknown to you?
      * Could you solve this efficiently without using extra space?

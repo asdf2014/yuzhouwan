@@ -11,7 +11,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import java.net.InetSocketAddress;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Echo Server
  *
@@ -21,6 +21,10 @@ import java.net.InetSocketAddress;
 public class EchoServer {
 
     private final static int port = 16666;
+
+    public static void main(String[] args) throws InterruptedException {
+        new EchoServer().start();
+    }
 
     public void start() throws InterruptedException {
         ServerBootstrap bootstrap = new ServerBootstrap(); // 引导辅助程序
@@ -43,9 +47,5 @@ public class EchoServer {
         } finally {
             group.shutdownGracefully().sync();
         }
-    }
-
-    public static void main(String[] args) throws InterruptedException {
-        new EchoServer().start();
     }
 }

@@ -2,9 +2,9 @@ package com.yuzhouwan.hacker.encoding;
 
 import com.yuzhouwan.hacker.effective.encoding.ConvertEncoding;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Copyright @ yuzhouwan.com
@@ -16,16 +16,16 @@ import java.nio.charset.Charset;
  */
 public class ConvertEncodingTest {
 
-    private static final String utf8 = new String("阿斯多夫".getBytes(), Charset.forName("UTF-8"));
+    private static final String utf8 = new String("阿斯多夫".getBytes(), StandardCharsets.UTF_8);
     private ConvertEncoding convertEncoding;
 
     @Before
-    public void before() throws Exception {
+    public void before() {
         convertEncoding = new ConvertEncoding();
     }
 
     @Before
-    public void after() throws Exception {
+    public void after() {
 
     }
 
@@ -33,7 +33,7 @@ public class ConvertEncodingTest {
      * Method: showUtf8InGB2312(String utf8)
      */
     @Test
-    public void testShowUtf8InGB2312() throws Exception {
+    public void testShowUtf8InGB2312() {
 
         convertEncoding.showUtf8InGB2312(utf8);
     }
@@ -42,7 +42,7 @@ public class ConvertEncodingTest {
      * Method: showUtf8InGBK(String utf8)
      */
     @Test
-    public void testShowUtf8InGBK() throws Exception {
+    public void testShowUtf8InGBK() {
 
         convertEncoding.showUtf8InGBK(utf8);
     }

@@ -8,7 +8,7 @@ import java.util.Random;
 import java.util.concurrent.*;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: CallableFuture Example
  *
@@ -33,7 +33,7 @@ public class CallableFutureExample {
             try {
                 _log.debug(future.get());
             } catch (InterruptedException | ExecutionException e) {
-                _log.error("error: {}", e.getMessage());
+                _log.error("", e);
             }
         }
 
@@ -52,7 +52,7 @@ public class CallableFutureExample {
             try {
                 _log.debug("{}", completionService.take().get());
             } catch (InterruptedException | ExecutionException e) {
-                _log.error("error: {}", e.getMessage());
+                _log.error("", e);
             }
         }
         executorService.shutdown();

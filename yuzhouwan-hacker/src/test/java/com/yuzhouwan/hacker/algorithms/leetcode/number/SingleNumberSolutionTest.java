@@ -1,11 +1,11 @@
 package com.yuzhouwan.hacker.algorithms.leetcode.number;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Single Number Solution Tester
  *
@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class SingleNumberSolutionTest {
 
     @Test
-    public void singleNumber() throws Exception {
+    public void singleNumber() {
 
         assertEquals(-1, SingleNumberSolution.singleNumber(null));
         assertEquals(0, SingleNumberSolution.singleNumber(new int[]{}));

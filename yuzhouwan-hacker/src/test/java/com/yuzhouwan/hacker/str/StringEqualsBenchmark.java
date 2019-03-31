@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：String Equals Benchmark
  *
@@ -23,6 +23,24 @@ public class StringEqualsBenchmark {
 
     private String blankStr;
     private String nonBlankStr;
+
+    /*
+    Benchmark                                   Mode  Cnt  Score   Error  Units
+    StringEqualsBenchmark.equalsBlankString     avgt    8  0.977 ± 0.207  ns/op
+    StringEqualsBenchmark.equalsNonBlankString  avgt    8  0.946 ± 0.024  ns/op
+    StringEqualsBenchmark.sizeBlankString       avgt    8  1.186 ± 0.041  ns/op
+    StringEqualsBenchmark.sizeNonBlankString    avgt    8  1.159 ± 0.044  ns/op
+     */
+    public static void main(String[] args) throws Exception {
+        Options opt = new OptionsBuilder()
+                .include(StringEqualsBenchmark.class.getSimpleName())
+                .forks(1)
+                .warmupIterations(1)
+                .measurementIterations(8)
+                .threads(2)
+                .build();
+        new Runner(opt).run();
+    }
 
     @Setup
     public void set() {
@@ -50,23 +68,5 @@ public class StringEqualsBenchmark {
     @Benchmark
     public void sizeNonBlankString() {
         boolean b = nonBlankStr.length() == 0;
-    }
-
-    /*
-    Benchmark                                   Mode  Cnt  Score   Error  Units
-    StringEqualsBenchmark.equalsBlankString     avgt    8  0.977 ± 0.207  ns/op
-    StringEqualsBenchmark.equalsNonBlankString  avgt    8  0.946 ± 0.024  ns/op
-    StringEqualsBenchmark.sizeBlankString       avgt    8  1.186 ± 0.041  ns/op
-    StringEqualsBenchmark.sizeNonBlankString    avgt    8  1.159 ± 0.044  ns/op
-     */
-    public static void main(String[] args) throws Exception {
-        Options opt = new OptionsBuilder()
-                .include(StringEqualsBenchmark.class.getSimpleName())
-                .forks(1)
-                .warmupIterations(1)
-                .measurementIterations(8)
-                .threads(2)
-                .build();
-        new Runner(opt).run();
     }
 }

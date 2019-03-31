@@ -4,9 +4,10 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: HttpResponse
  *
@@ -15,7 +16,7 @@ import java.nio.charset.Charset;
  */
 public class HttpResponse implements Serializable {
 
-    private static final String DEFAULT_CHARSET = "UTF-8";
+    private static final String DEFAULT_CHARSET = StandardCharsets.UTF_8.name();
     private static final int HTTP_ERROR_CODE = 400;
 
     private byte[] bytes;

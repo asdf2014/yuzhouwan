@@ -3,13 +3,13 @@ package com.yuzhouwan.bigdata.kafka.util;
 import com.yuzhouwan.common.util.PropUtils;
 import kafka.javaapi.producer.Producer;
 import kafka.producer.KeyedMessage;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：KafkaConnPool Utils Test
  *
@@ -18,7 +18,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class KafkaConnPoolUtilsTest {
 
-    @Ignore
+    @Disabled
     @Test
     public void getConnTest() throws Exception {
         PropUtils p = PropUtils.getInstance();
@@ -48,7 +48,7 @@ public class KafkaConnPoolUtilsTest {
         {
             int CONN_INDEX = 0;
             int CONN_IN_POOL = 3;
-            long index = (CONN_INDEX += CONN_INDEX %= CONN_IN_POOL);
+            long index = (CONN_INDEX += CONN_INDEX % CONN_IN_POOL);
             assertEquals(0, CONN_INDEX);
             assertEquals(0, index);
         }

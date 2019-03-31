@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.algorithms.leetcode;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Excel Sheet Column Number Solution
  *
@@ -12,22 +12,22 @@ class ExcelSheetColumnNumberSolution {
 
     /**
      * https://leetcode.com/problems/excel-sheet-column-number/
-     *
+     * <p>
      * 171. Excel Sheet Column Number
-     *
-     *      Related to question Excel Sheet Column Title
-     *
-     *      Given a column title as appear in an Excel sheet, return its corresponding column number.
-     *
+     * <p>
+     * Related to question Excel Sheet Column Title
+     * <p>
+     * Given a column title as appear in an Excel sheet, return its corresponding column number.
+     * <p>
      * For example:
-     *
-     *      A -> 1
-     *      B -> 2
-     *      C -> 3
-     *      ...
-     *      Z -> 26
-     *      AA -> 27
-     *      AB -> 28
+     * <p>
+     * A -> 1
+     * B -> 2
+     * C -> 3
+     * ...
+     * Z -> 26
+     * AA -> 27
+     * AB -> 28
      */
     static int titleToNumber(String s) {
 

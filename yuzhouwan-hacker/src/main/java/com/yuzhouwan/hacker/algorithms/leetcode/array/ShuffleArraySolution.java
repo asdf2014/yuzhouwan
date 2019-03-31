@@ -3,7 +3,7 @@ package com.yuzhouwan.hacker.algorithms.leetcode.array;
 import java.util.Random;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Shuffle Array Solution
  *
@@ -17,9 +17,9 @@ class ShuffleArraySolution {
 
     /**
      * https://leetcode.com/problems/shuffle-an-array
-     *
+     * <p>
      * 384. Shuffle an Array
-     *
+     * <p>
      * Shuffle a set of numbers without duplicates.
      */
     ShuffleArraySolution(int[] nums) {

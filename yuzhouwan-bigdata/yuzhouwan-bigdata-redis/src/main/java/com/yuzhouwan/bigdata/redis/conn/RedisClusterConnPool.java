@@ -15,7 +15,7 @@ import java.io.Serializable;
 import java.util.*;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Redis Cluster Conn Pool
  *
@@ -24,11 +24,10 @@ import java.util.*;
  */
 public class RedisClusterConnPool implements AutoCloseable, Serializable {
 
+    public static final String PROJECT_NAME = "REDIS_CLUSTER";
     private static final Logger _log = LoggerFactory.getLogger(RedisClusterConnPool.class);
     private JedisCluster cluster;
     private List<JedisPool> pools;
-
-    public static final String PROJECT_NAME = "REDIS_CLUSTER";
 
     public RedisClusterConnPool() {
         init(DynamicPropUtils.getInstance());

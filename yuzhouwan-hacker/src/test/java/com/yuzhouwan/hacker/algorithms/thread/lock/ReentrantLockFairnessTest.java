@@ -1,21 +1,21 @@
 package com.yuzhouwan.hacker.algorithms.thread.lock;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: ReentrantLockFairness Tester
  *
- * @link https://yuzhouwan.com/posts/27328/
  * @author Benedict Jin
+ * @link https://yuzhouwan.com/posts/27328/
  * @since 2016/9/5
  */
 public class ReentrantLockFairnessTest {
 
     /**
      * 公平锁，很少会连续获取到锁
-     *
+     * <p>
      * 0 0 0 0 0 1 2 4 3 1 2 4 3 1 2 4 3 1 2 4 3 1 2 4 3
      * 0 1 0 1 0 1 0 1 4 0 1 4 4 4 4 2 2 2 2 2 3 3 3 3 3
      * 1 0 2 4 3 1 0 2 4 3 1 0 2 4 3 1 0 2 4 3 1 0 2 4 3
@@ -33,7 +33,7 @@ public class ReentrantLockFairnessTest {
 
     /**
      * 相比公平锁，非公平锁 能经常性地连续获取到锁
-     *
+     * <p>
      * 0 0 0 0 0 3 3 3 3 3 1 1 1 1 1 2 2 2 2 2 4 4 4 4 4
      * 0 0 2 2 2 2 2 4 4 4 4 4 1 1 1 1 1 0 0 0 3 3 3 3 3
      * 1 1 1 1 1 4 4 4 4 4 0 0 0 0 0 2 2 2 2 2 3 3 3 3 3

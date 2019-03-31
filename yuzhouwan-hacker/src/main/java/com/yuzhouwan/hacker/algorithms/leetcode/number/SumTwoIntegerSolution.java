@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.algorithms.leetcode.number;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Sum of Two Integers Solution
  *
@@ -12,13 +12,13 @@ class SumTwoIntegerSolution {
 
     /**
      * 371. Sum of Two Integers
-     *
+     * <p>
      * https://leetcode.com/problems/sum-of-two-integers/
-     *
+     * <p>
      * Calculate the sum of two integers a and b, but you are not allowed to use the operator + and -.
-     *
+     * <p>
      * Example:
-     *      Given a = 1 and b = 2, return 3.
+     * Given a = 1 and b = 2, return 3.
      */
     // 1 + 3 = 0001 + 0011 => &: 0001, ^: 0011, &<<1: 0010 => &: 0010,
     // ^: 0011, &<<1: 0100 => &: 0000, ^: 0111, &<<1: 0000 = 4

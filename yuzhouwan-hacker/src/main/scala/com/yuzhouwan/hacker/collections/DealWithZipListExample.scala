@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.collections
 
 /**
-  * Copyright @ 2018 yuzhouwan.com
+  * Copyright @ 2019 yuzhouwan.com
   * All right reserved.
   * Function: Zip
   *

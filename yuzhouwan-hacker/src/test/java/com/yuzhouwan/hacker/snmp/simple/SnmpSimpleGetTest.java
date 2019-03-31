@@ -1,8 +1,8 @@
 package com.yuzhouwan.hacker.snmp.simple;
 
 import com.yuzhouwan.hacker.snmp.acl.SnmpSet;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -53,9 +53,9 @@ public class SnmpSimpleGetTest {
     /**
      * Method: snmpSyncSetList(String ip, String community, List<String> oidList)
      */
-    @Ignore
+    @Disabled
     @Test
-    public void testSnmpSyncGetList() throws Exception {
+    public void testSnmpSyncGetList() {
 
         /**
          * TODO{Benedict Jin}: make sure snmp.acl is invisible for user

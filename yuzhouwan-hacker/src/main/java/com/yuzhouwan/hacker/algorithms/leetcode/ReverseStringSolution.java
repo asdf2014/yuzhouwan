@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.algorithms.leetcode;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Reverse String Solution
  *
@@ -12,11 +12,11 @@ class ReverseStringSolution {
 
     /**
      * https://leetcode.com/problems/reverse-string/
-     *
+     * <p>
      * 344. Reverse String
-     *
+     * <p>
      * Write a function that takes a string as input and returns the string reversed.
-     *
+     * <p>
      * Example:
      * Given s = "hello", return "olleh".
      */

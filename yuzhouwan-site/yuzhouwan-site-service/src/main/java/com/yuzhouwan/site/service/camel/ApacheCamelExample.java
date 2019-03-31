@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Apache Camel Example
  *
@@ -25,7 +25,7 @@ public class ApacheCamelExample extends RouteBuilder {
 
     public static void main(String... args) throws Exception {
 
-        // 这是camel上下文对象，整个路由的驱动全靠它了。
+        // 这是camel上下文对象，用来驱动所有路由
         ModelCamelContext camelContext = new DefaultCamelContext();
         // 启动route
         camelContext.start();

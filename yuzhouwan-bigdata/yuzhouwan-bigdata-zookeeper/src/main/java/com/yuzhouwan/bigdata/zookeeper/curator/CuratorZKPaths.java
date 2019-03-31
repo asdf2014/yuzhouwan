@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: ZKPaths in Curator
  *
@@ -15,8 +15,6 @@ import org.slf4j.LoggerFactory;
  * @since 2015/12/31 0031
  */
 public class CuratorZKPaths {
-
-    private static final Logger LOG = LoggerFactory.getLogger(CuratorZKPaths.class);
 
     private CuratorFramework curatorFramework;
 

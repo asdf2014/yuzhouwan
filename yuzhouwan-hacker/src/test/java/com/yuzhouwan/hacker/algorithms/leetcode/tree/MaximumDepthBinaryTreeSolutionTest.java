@@ -1,11 +1,11 @@
 package com.yuzhouwan.hacker.algorithms.leetcode.tree;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Maximum Depth of Binary Tree Solution Tester
  *
@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class MaximumDepthBinaryTreeSolutionTest {
 
     @Test
-    public void maxDepthFirstDepth() throws Exception {
+    public void maxDepthFirstDepth() {
 
         assertEquals(0, MaximumDepthBinaryTreeSolution.maxDepthFirstDepth(null));
         TreeNode root0 = new TreeNode(0);
@@ -27,7 +27,7 @@ public class MaximumDepthBinaryTreeSolutionTest {
     }
 
     @Test
-    public void maxDepthFirstBreadth() throws Exception {
+    public void maxDepthFirstBreadth() {
 
         assertEquals(0, MaximumDepthBinaryTreeSolution.maxDepthFirstBreadth(null));
         TreeNode root0 = new TreeNode(0);

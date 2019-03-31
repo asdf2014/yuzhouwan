@@ -1,7 +1,7 @@
 package com.yuzhouwan.common.util;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
@@ -9,10 +9,10 @@ import org.springframework.util.Assert;
 import java.util.List;
 
 import static com.yuzhouwan.common.util.IpUtils.*;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Ip Util Tester
  *
@@ -32,7 +32,7 @@ public class IpUtilsTest {
     [IpUtils.checkValid] Count: 1000000, Time: 875.6801019999999 ms
     */
     @Test
-    public void checkValidTest() throws Exception {
+    public void checkValidTest() {
         int base = 0, refactor = 1;
         while (base < refactor) {
             ipValidTest((long) Math.pow(10, base));
@@ -49,9 +49,9 @@ public class IpUtilsTest {
             actual2 = checkValid("113.12.83.4");
             actual3 = checkValid("313.12.83.4");
             end = System.nanoTime();
-            assertEquals(true, actual);
-            assertEquals(true, actual2);
-            assertEquals(false, actual3);
+            assertTrue(actual);
+            assertTrue(actual2);
+            assertFalse(actual3);
             total += (end - begin);
             count++;
         }
@@ -67,7 +67,7 @@ public class IpUtilsTest {
     [checkValid2] Count: 1000000, Time: 867.07715 ms
     */
     @Test
-    public void checkValidTest2() throws Exception {
+    public void checkValidTest2() {
         int base = 0, refactor = 1;
         while (base < refactor) {
             ipValidTest2((long) Math.pow(10, base));
@@ -76,7 +76,7 @@ public class IpUtilsTest {
     }
 
     private void ipValidTest2(long len) {
-        long begin, end, count = 0, total = 0;
+        long begin, end, count, total;
         boolean actual, actual2, actual3;
         count = total = 0;
         while (count < len) {
@@ -85,9 +85,9 @@ public class IpUtilsTest {
             actual2 = checkValid2("113.12.83.4");
             actual3 = checkValid2("313.12.83.4");
             end = System.nanoTime();
-            assertEquals(true, actual);
-            assertEquals(true, actual2);
-            assertEquals(false, actual3);
+            assertTrue(actual);
+            assertTrue(actual2);
+            assertFalse(actual3);
             total += (end - begin);
             count++;
         }
@@ -95,40 +95,40 @@ public class IpUtilsTest {
     }
 
     @Test
-    public void checkValidTestV6() throws Exception {
-        assertEquals(true, checkValidV6("2001:0db8:0000:0000:0000:ff00:0042:8329"));
-        assertEquals(true, checkValidV6("2001:db8:0:0:0:ff00:42:8329"));
-        assertEquals(true, checkValidV6("0000:0000:0000:0000:0000:0000:0000:0001"));
-        assertEquals(true, checkValidV6("::1"));
-        assertEquals(false, checkValidV6("2001:0db8:0000:0000:0000:ff00:0042:83299"));
-        assertEquals(false, checkValidV6("::11111"));
+    public void checkValidTestV6() {
+        assertTrue(checkValidV6("2001:0db8:0000:0000:0000:ff00:0042:8329"));
+        assertTrue(checkValidV6("2001:db8:0:0:0:ff00:42:8329"));
+        assertTrue(checkValidV6("0000:0000:0000:0000:0000:0000:0000:0001"));
+        assertTrue(checkValidV6("::1"));
+        assertFalse(checkValidV6("2001:0db8:0000:0000:0000:ff00:0042:83299"));
+        assertFalse(checkValidV6("::11111"));
     }
 
     @Test
-    public void removeTail32Test() throws Exception {
+    public void removeTail32Test() {
         assertEquals("1.1.1.1", removeTail32("1.1.1.1/32"));
         assertEquals("113.12.83.4", removeTail32("113.12.83.4/32"));
     }
 
     @Test
-    public void extractDomainTest() throws Exception {
+    public void extractDomainTest() {
         assertEquals("yuzhouwan.com", extractDomain("https://yuzhouwan.com"));
         assertEquals("yuzhouwan.com", extractDomain("https://yuzhouwan.com/"));
         assertEquals("yuzhouwan.com", extractDomain("https://yuzhouwan.com/subpath/welcome.html"));
-        assertEquals(null, extractDomain("http:/yuzhouwan.com"));
+        assertNull(extractDomain("http:/yuzhouwan.com"));
 
-        assertEquals(null, extractDomain(""));
-        assertEquals(null, extractDomain(null));
+        assertNull(extractDomain(""));
+        assertNull(extractDomain(null));
     }
 
     @Test
-    public void getTailFromURLTest() throws Exception {
+    public void getTailFromURLTest() {
         assertEquals("group1/M00/00/00/oYYBAFd06DSAQ5gwAAIIUQRZ1_c574.pdf",
                 getTailFromURL("http://192.168.112.171:9090/group1/M00/00/00/oYYBAFd06DSAQ5gwAAIIUQRZ1_c574.pdf"));
     }
 
     @Test
-    public void testLongAndIp() throws Exception {
+    public void testLongAndIp() {
         String ipAddressStr = "192.168.5.11";
         Long ipAddressLong = 3232236811L;
         assertEquals(ipAddressStr, long2ip(ip2long(ipAddressStr)));
@@ -139,7 +139,7 @@ public class IpUtilsTest {
     }
 
     @Test
-    public void checkIP2IntTest() throws Exception {
+    public void checkIP2IntTest() {
         Integer ip2int = ip2int("10.1.1.0");
         Assert.notNull(ip2int);
         int ip = ip2int;
@@ -148,13 +148,13 @@ public class IpUtilsTest {
     }
 
     @Test
-    public void checkIPRangeTest() throws Exception {
-        assertEquals(null, checkIPRange("", ""));
-        assertEquals(null, checkIPRange("", "10.1.1.0/24"));
-        assertEquals(null, checkIPRange("10.1.1.1", "10.1.1.0/"));
-        assertEquals(null, checkIPRange("10.1.1.1", "/24"));
+    public void checkIPRangeTest() {
+        assertNull(checkIPRange("", ""));
+        assertNull(checkIPRange("", "10.1.1.0/24"));
+        assertNull(checkIPRange("10.1.1.1", "10.1.1.0/"));
+        assertNull(checkIPRange("10.1.1.1", "/24"));
 
-        assertEquals(null, checkIPRange("9999.1.1.1", "10.1.1.0/24"));
+        assertNull(checkIPRange("9999.1.1.1", "10.1.1.0/24"));
 
         assertEquals(true, checkIPRange("10.1.1.1", "10.1.1.0/24"));
         assertEquals(false, checkIPRange("10.1.2.1", "10.1.1.0/24"));
@@ -174,14 +174,14 @@ public class IpUtilsTest {
                 }
             }
         }
-        assertEquals(true, result);
+        assertTrue(result);
     }
 
-    @Ignore
+    @Disabled
     @Test
-    public void getIPFromURLTest() throws Exception {
-        assertEquals(null, getIPFromURL("yuzhouwan.com"));
-        assertEquals(null, getIPFromURL("www.yuzhouwan.com"));
+    public void getIPFromURLTest() {
+        assertNull(getIPFromURL("yuzhouwan.com"));
+        assertNull(getIPFromURL("www.yuzhouwan.com"));
         System.out.println(getIPFromURL("http://yuzhouwan.com/"));
         System.out.println(getIPFromURL("https://yuzhouwan.com/"));
 
@@ -190,24 +190,24 @@ public class IpUtilsTest {
         System.out.println(getIPFromURL("http://www.yuzhouwan.com"));
     }
 
-    @Ignore
+    @Disabled
     @Test
-    public void isReachableTest() throws Exception {
+    public void isReachableTest() {
         assertEquals(true, isReachable("127.0.0.1"));
         //stop following test for performance
         System.out.println(isReachable("192.168.1.101"));
         System.out.println(isReachable(getIPFromURL("https://yuzhouwan.com")));
     }
 
-    @Ignore
+    @Disabled
     @Test
-    public void pingTest() throws Exception {
+    public void pingTest() {
         System.out.println(ping("127.0.0.1"));
     }
 
-    @Ignore
+    @Disabled
     @Test
-    public void getCurrentEnvironmentNetworkIpTest() throws Exception {
+    public void getCurrentEnvironmentNetworkIpTest() {
         List<String> ips = getCurrentEnvironmentNetworkIps();
         for (String ip : ips) {
             System.out.println(ip);

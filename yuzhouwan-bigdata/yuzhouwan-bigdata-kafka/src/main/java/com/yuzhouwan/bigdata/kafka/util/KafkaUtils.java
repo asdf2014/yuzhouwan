@@ -29,7 +29,7 @@ import static com.yuzhouwan.bigdata.kafka.util.KafkaConnPoolUtils.getPool;
 import static com.yuzhouwan.common.util.ExceptionUtils.errorInfo;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Kafka Utils
  *
@@ -41,16 +41,13 @@ public final class KafkaUtils {
     private static final Logger _log = LoggerFactory.getLogger(KafkaUtils.class);
     private static final PropUtils p = PropUtils.getInstance();
     private static final String PARTITIONER_CLASS_NAME = KafkaPartitioner.class.getName();
-
-    private static volatile KafkaUtils instance;
     private static final String KAFKA_TOPIC = p.getProperty("kafka.topic");
-
     private static final int RING_BUFFER_SIZE = Integer.parseInt(p.getProperty("ringbuffer.size"));
-    private static volatile AvroEventProducer avroProducer;
-
-    private static HashMap<Class, DatumWriter> datumWriterPool = new HashMap<>();
     private static final ByteArrayOutputStream os = new ByteArrayOutputStream();
     private static final Encoder encoder = EncoderFactory.get().binaryEncoder(os, null);
+    private static volatile KafkaUtils instance;
+    private static volatile AvroEventProducer avroProducer;
+    private static HashMap<Class, DatumWriter> datumWriterPool = new HashMap<>();
 
     private KafkaUtils() {
     }
@@ -111,7 +108,7 @@ public final class KafkaUtils {
             props.put("send.buffer.bytes", p.getProperty("kafka.send.buffer.bytes"));
 //            props.put("compression.type", "lz4");
         } catch (Exception e) {
-            _log.error("Connect with kafka failed, error: {}!", e.getMessage());
+            _log.error("Connect with kafka failed!", e.getMessage());
             throw new RuntimeException(e);
         }
         _log.info("Connect with kafka successfully!");

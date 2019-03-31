@@ -6,7 +6,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Serializable with No Serializable Attribution
  *
@@ -71,7 +71,7 @@ public class SerializableWithNoSAttribution implements Serializable {
         out.writeUTF(this.infos.getBlog());
     }
 
-    private void readObject(final ObjectInputStream in) throws IOException, ClassNotFoundException {
+    private void readObject(final ObjectInputStream in) throws IOException {
         this.id = in.readUTF();
         this.name = in.readUTF();
         this.age = in.readInt();

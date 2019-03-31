@@ -1,14 +1,14 @@
 package com.yuzhouwan.common.util;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Decimal Utils Tester
  *
@@ -18,14 +18,14 @@ import static org.junit.Assert.assertEquals;
 public class DecimalUtilsTest {
 
     @Test
-    public void convertInto16() throws Exception {
+    public void convertInto16() {
         assertEquals(1, DecimalUtils.convert2Hex(1));
         assertEquals(22, DecimalUtils.convert2Hex(16));
         assertEquals(23, DecimalUtils.convert2Hex(17));
     }
 
     @Test
-    public void BooleanTest() throws Exception {
+    public void BooleanTest() {
         Boolean ifCase = null;
         if (ifCase != null && ifCase) {
             System.out.println("null: " + ifCase);
@@ -37,19 +37,19 @@ public class DecimalUtilsTest {
     }
 
     @Test
-    public void double2BigIntTest() throws Exception {
+    public void double2BigIntTest() {
         assertEquals(new BigInteger("2"), DecimalUtils.double2BigInt(2d));
         assertEquals(new BigInteger("2"), DecimalUtils.double2BigInt(2.1d));
         assertEquals(new BigInteger("0"), DecimalUtils.double2BigInt(0.1d));
     }
 
     @Test
-    public void charTest() throws Exception {
+    public void charTest() {
         assertEquals(65, 'A');
     }
 
     @Test
-    public void savePointTest() throws Exception {
+    public void savePointTest() {
         assertEquals("0.23", DecimalUtils.saveTwoPoint(0.23456d));
         assertEquals("1.23", DecimalUtils.saveTwoPoint(1.23456d));
         assertEquals("11.23", DecimalUtils.saveTwoPoint(11.23456d));
@@ -62,7 +62,7 @@ public class DecimalUtilsTest {
     }
 
     @Test
-    public void byteBuffer2byteArrayTest() throws Exception {
+    public void byteBuffer2byteArrayTest() {
         String s = "yuzhouwan.com";
         byte[] bytes = s.getBytes();
         ByteBuffer bb = ByteBuffer.allocate(bytes.length);

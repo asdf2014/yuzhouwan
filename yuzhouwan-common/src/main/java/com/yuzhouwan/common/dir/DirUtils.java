@@ -14,7 +14,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Directory Util
  *
@@ -28,9 +28,8 @@ public final class DirUtils implements IDirUtils {
     public static final String PROJECT_BASE_PATH = System.getProperty("user.dir");
     public static final String RESOURCES_PATH = PROJECT_BASE_PATH.concat("/src/main/resources/");
     public static final String TEST_RESOURCES_PATH = PROJECT_BASE_PATH.concat("/src/test/resources/");
-
-    public static final int BASIC_PATH_SUB_FILE_LENGTH = 6;
-    public static final int BASIC_PATH_SUB_DIRECTORY_LENGTH = 6;
+    private static final int BASIC_PATH_SUB_FILE_LENGTH = 6;
+    private static final int BASIC_PATH_SUB_DIRECTORY_LENGTH = 6;
 
     /**
      * Create $PROJECT_BASE_PATH/out directory.
@@ -44,14 +43,12 @@ public final class DirUtils implements IDirUtils {
         boolean isCreated = true;
         if (!outDir.exists()) isCreated = outDir.mkdir();
         if (isCreated) LOG.debug("OutDir:{} was created success.", outDirPath);
-        else LOG.error("OutDir:{} was created failed!", outDirPath);
+        else LOG.error(String.format("OutDir [%s] was created failed!", outDirPath));
         return isCreated;
     }
 
     /**
      * 获得 WEB-INF 中 lib 目录的绝对路径.
-     *
-     * @return
      */
     public static String getLibPathInWebApp() {
         String classesPath = getTestClassesPath();
@@ -61,8 +58,6 @@ public final class DirUtils implements IDirUtils {
 
     /**
      * 获得 target 目录的 classes 绝对路径.
-     *
-     * @return
      */
     public static String getClassesPath() {
         String basicPath;
@@ -76,8 +71,6 @@ public final class DirUtils implements IDirUtils {
 
     /**
      * 获得 target 目录的 test-classes 绝对路径.
-     *
-     * @return
      */
     public static String getTestClassesPath() {
         String basicPath = getBasicPath();
@@ -87,8 +80,6 @@ public final class DirUtils implements IDirUtils {
 
     /**
      * 获得 target 目录的基本 绝对路径.
-     *
-     * @return
      */
     public static String getBasicPath() {
         String path;
@@ -120,11 +111,6 @@ public final class DirUtils implements IDirUtils {
 
     /**
      * 可以设置为 相对路径.
-     *
-     * @param path
-     * @param fileName
-     * @param isAbsolute
-     * @return
      */
     public static List<String> findPath(String path, String basePath, String fileName, boolean isAbsolute) {
         List<String> foundPath = findAbsolutePath(path, basePath, fileName);
@@ -140,9 +126,6 @@ public final class DirUtils implements IDirUtils {
 
     /**
      * 遍历指定文件夹.
-     *
-     * @param path
-     * @return
      */
     public static List<String> scanDir(String path) {
         if (path == null) return null;
@@ -185,10 +168,6 @@ public final class DirUtils implements IDirUtils {
 
     /**
      * 扫描文件夹，返回指定文件名的绝对路径.
-     *
-     * @param path
-     * @param fileName
-     * @return
      */
     public static List<String> findAbsolutePath(String path, String basePath, String fileName) {
         if (StrUtils.isEmpty(path) || StrUtils.isEmpty(fileName)) return null;
@@ -211,10 +190,6 @@ public final class DirUtils implements IDirUtils {
 
     /**
      * 对子文件进行处理，如果是子文件夹，则递归遍历下去，直到拿到所有文件的绝对路径.
-     *
-     * @param result
-     * @param list
-     * @param files
      */
     private static void dealWithSubFiles(List<String> result, LinkedList<File> list, File[] files) {
         if (files == null || files.length == 0) return;
@@ -231,8 +206,6 @@ public final class DirUtils implements IDirUtils {
      * 返回一个目录变更的默认监控器（不间断，持续监控，只打印信息）.
      *
      * @param watchedPath the path that be watched
-     * @return
-     * @throws Exception
      */
     public static WatchRunnable buildWatchService(String watchedPath) throws Exception {
         return buildWatchService(watchedPath, null, null);
@@ -243,8 +216,6 @@ public final class DirUtils implements IDirUtils {
      *
      * @param watchedPath   be watched path
      * @param dealProcessor deal processor
-     * @return
-     * @throws Exception
      */
     public static WatchRunnable buildWatchService(String watchedPath, IDirUtils dealProcessor) throws Exception {
         return buildWatchService(watchedPath, dealProcessor, null);
@@ -256,12 +227,11 @@ public final class DirUtils implements IDirUtils {
      * @param watchedPath          be watched path
      * @param waitTimeMilliseconds 监控时间间隙（ms）
      * @return WatchRunnable
-     * @throws Exception
      */
     public static WatchRunnable buildWatchService(String watchedPath, IDirUtils dealProcessor,
                                                   final Long waitTimeMilliseconds) throws Exception {
         if (StrUtils.isEmpty(watchedPath) || !makeSureExist(watchedPath, false)) {
-            LOG.error("Path '{}' is a invalid path!", watchedPath);
+            LOG.error(String.format("Path [%s] is a invalid path!", watchedPath));
             return null;
         }
         LOG.debug("Starting build watch service...");
@@ -290,7 +260,7 @@ public final class DirUtils implements IDirUtils {
                 try {
                     return file.createNewFile();
                 } catch (IOException e) {
-                    LOG.error("Cannot create new file, because {}", e.getMessage());
+                    LOG.error("Cannot create new file!", e);
                     return false;
                 }
             } else return file.mkdir();
@@ -300,8 +270,6 @@ public final class DirUtils implements IDirUtils {
 
     /**
      * 处理 监控文件夹 的事件.
-     *
-     * @param event
      */
     public void dealWithEvent(WatchEvent<?> event) {
         // could expand more processes here

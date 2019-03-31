@@ -10,7 +10,7 @@ import java.nio.ByteBuffer;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：ByteBuffer Benchmark Test
  *
@@ -27,26 +27,6 @@ public class ByteBufferBenchmarkTest {
 
     private ByteBuffer allocate;
     private ByteBuffer allocateDirect;
-
-    @Benchmark
-    public void allocate() {
-        allocate = ByteBuffer.allocate(n);
-    }
-
-    @Benchmark
-    public void allocateDirect() {
-        allocateDirect = ByteBuffer.allocateDirect(n);
-    }
-
-    @TearDown
-    public void teardown() {
-        if (allocate != null) {
-            allocate.clear();
-        }
-        if (allocateDirect != null) {
-            allocateDirect.clear();
-        }
-    }
 
     /*
     Benchmark                                  (n)   Mode  Cnt      Score        Error   Units
@@ -72,5 +52,25 @@ public class ByteBufferBenchmarkTest {
                 .threads(1)
                 .build();
         new Runner(opt).run();
+    }
+
+    @Benchmark
+    public void allocate() {
+        allocate = ByteBuffer.allocate(n);
+    }
+
+    @Benchmark
+    public void allocateDirect() {
+        allocateDirect = ByteBuffer.allocateDirect(n);
+    }
+
+    @TearDown
+    public void teardown() {
+        if (allocate != null) {
+            allocate.clear();
+        }
+        if (allocateDirect != null) {
+            allocateDirect.clear();
+        }
     }
 }

@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import java.nio.file.WatchEvent;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Dynamic Prop
  *
@@ -41,7 +41,7 @@ public class DynamicProp implements IDirUtils {
             runnable = DirUtils.buildWatchService(path, this, waitTime);
             thread = new Thread(runnable);
         } catch (Exception e) {
-            _log.error("Dynamic Properties initialization failed, because {}", e.getMessage());
+            _log.error("Dynamic Properties initialization failed!", e);
             throw new RuntimeException(e);
         }
     }
@@ -55,7 +55,7 @@ public class DynamicProp implements IDirUtils {
         try {
             thread.join();
         } catch (InterruptedException e) {
-            _log.error("Dynamic Properties safely stopping failed, because {}", e.getMessage());
+            _log.error("Dynamic Properties safely stopping failed!", e);
             throw new RuntimeException(e);
         }
     }
@@ -72,10 +72,9 @@ public class DynamicProp implements IDirUtils {
     /**
      * 上传 JSON到 指定的ZK 路径下.
      *
-     * @param fileAndContent <propFile's name>|<k-v JSON>
      * @return isSuccess
      */
-    public boolean uploadProp2ZK(String fileAndContent) {
+    public boolean uploadProp2ZK() {
         return true;
     }
 
@@ -87,7 +86,7 @@ public class DynamicProp implements IDirUtils {
         String dynamicPolicy = PropUtils.getInstance().getProperty("dynamic.prop.changed");
         _log.debug("DynamicPolicy is {}", dynamicPolicy);
         if (!StrUtils.isEmpty(dynamicPolicy) && DYNAMIC_PROP_UPLOAD.equals(dynamicPolicy)) {
-            uploadProp2ZK(readProp2JSON());
+            uploadProp2ZK();
         }
     }
 }

@@ -2,12 +2,12 @@ package com.yuzhouwan.bigdata.zookeeper.dynamic;
 
 import com.yuzhouwan.bigdata.zookeeper.prop.DynamicProp;
 import com.yuzhouwan.common.dir.DirUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Dynamic Prop Test
  *

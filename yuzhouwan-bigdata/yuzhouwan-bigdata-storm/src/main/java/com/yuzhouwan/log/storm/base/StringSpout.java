@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Map;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: StringSpout
  *
@@ -41,7 +41,7 @@ public class StringSpout extends BaseRichSpout {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            _log.error("error: {}", e.getMessage());
+            _log.error("", e.getMessage());
         }
     }
 

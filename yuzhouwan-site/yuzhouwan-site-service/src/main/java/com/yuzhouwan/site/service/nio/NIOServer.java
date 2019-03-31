@@ -12,11 +12,12 @@ import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 import java.util.Set;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：NIO Server
  *
@@ -31,7 +32,7 @@ class NIOServer {
     private static final Logger _log = LoggerFactory.getLogger(NIOServer.class);
 
     private static final int SOCKET_PORT = 6603;
-    private static final Charset CHARSET = Charset.forName("UTF-8");
+    private static final Charset CHARSET = StandardCharsets.UTF_8;
 
     private static SelectorLoop readBell;
     private boolean isReadBellRunning;

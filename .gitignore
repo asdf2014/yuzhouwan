@@ -11,33 +11,35 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+
 # Project Files
 **/*.iml
 .idea/*
 .classpath
 .project
 
+
 # Maven
 **/target/
+
 
 # Build
 **/out/
 **/out/**
-**/classes
 
 
 # JIT log files
-*.log
-/logs
 **/logs
-**/logs/**
 
-# sorry for copyright
+
+# Sorry for copyright
 /yuzhouwan-log/yuzhouwan-log-elastic/src/main/resources/es/web/
 /yuzhouwan-log/yuzhouwan-log-elastic/src/main/resources/api/suppress.json
 /yuzhouwan-common/src/main/resources/html/month_report.png
 /yuzhouwan-common/src/main/resources/html/month_report.pdf
 /yuzhouwan-bigdata/yuzhouwan-bigdata-hbase/src/main/python/acl/acl.txt
 
-# too large file size
+
+# Too large file size
 /yuzhouwan-hacker/src/main/avro/avro-tools-1.8.1.jar
+/yuzhouwan-bigdata/yuzhouwan-bigdata-hbase/E:/

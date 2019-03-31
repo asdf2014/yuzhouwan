@@ -5,16 +5,15 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Html Exporter
  *
  * @author Benedict Jin
  * @since 2016/6/20
  */
-public class HtmlExporter2BASE64 implements IHtmlExporter {
+public class HtmlExporter2BASE64 implements IHtmlExporter<String> {
 
-    @SuppressWarnings(value = {"unchecked"})
     @Override
     public String convert2Image(String url) {
         return convert2Image(url, null, null);
@@ -24,15 +23,12 @@ public class HtmlExporter2BASE64 implements IHtmlExporter {
      * 将带有 chart、map 等动态图表的 html 转换为 图片.
      *
      * @param url 目标URL
-     * @return
      */
-    @SuppressWarnings(value = {"unchecked"})
     @Override
     public String convert2Image(String url, Integer width, Integer height) {
         return convert2Image(url, null, width, height);
     }
 
-    @SuppressWarnings(value = {"unchecked"})
     @Override
     public String convert2Image(String url, Cookie addedCookie) {
         return convert2Image(url, addedCookie, null, null);
@@ -45,7 +41,6 @@ public class HtmlExporter2BASE64 implements IHtmlExporter {
      * @param addedCookie 添加 cookie
      * @return 图片 string 字符串
      */
-    @SuppressWarnings(value = {"unchecked"})
     @Override
     public String convert2Image(String url, Cookie addedCookie, Integer width, Integer height) {
         PhantomJSDriver driver = null;

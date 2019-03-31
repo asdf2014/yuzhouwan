@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.jvm.security;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：SecurityManager Example
  *
@@ -9,11 +9,6 @@ package com.yuzhouwan.hacker.jvm.security;
  * @since 2018/2/7
  */
 public class SecurityManagerExample extends SecurityManager {
-
-    @Override
-    public void checkExit(int status) {
-        System.out.println("Exit " + status);
-    }
 
     /*
     System securityManager: null
@@ -26,5 +21,10 @@ public class SecurityManagerExample extends SecurityManager {
         System.setSecurityManager(sme);
         System.out.println("System securityManager: " + System.getSecurityManager());
         System.exit(0);
+    }
+
+    @Override
+    public void checkExit(int status) {
+        System.out.println("Exit " + status);
     }
 }

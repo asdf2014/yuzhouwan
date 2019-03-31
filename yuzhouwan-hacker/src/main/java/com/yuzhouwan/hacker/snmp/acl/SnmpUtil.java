@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.Vector;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：SnmpUtil
  *
@@ -53,12 +53,12 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
     private int _numThreads = 1;
     private int _port = 0;
     private ThreadPool _threadPool = null;
-    private boolean _isReceiver = false;
+    private boolean _isReceiver;
     private OctetString _authoritativeEngineID = new OctetString("1234567");
     private TransportMapping _transport = null;
     private TimeTicks _sysUpTime = new TimeTicks(0);
     private OID _trapOID = new OID("1.3.6.1.4.1.2789.2005");
-    private int version = 0;
+    private int version;
     private int retries = 1;
     private int timeout = 1000;
     private int pduType = 0;
@@ -163,11 +163,11 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
                 + vb.getVariable().toString() + ".");
     }
 
-    private static PDU walk(Snmp snmp, PDU request, Target target)
+    private static PDU walk(PDU request, Target target)
             throws IOException {
         request.setNonRepeaters(0);
         OID rootOID = request.get(0).getOid();
-        PDU response = null;
+        PDU response;
         int objects = 0;
         int requests = 0;
         long startTime = System.currentTimeMillis();
@@ -332,7 +332,7 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
 
         PDU response = null;
         if (_operation == WALK) {
-            response = walk(snmp, request, target);
+            response = walk(request, target);
         } else {
             ResponseEvent responseEvent;
             long startTime = System.currentTimeMillis();
@@ -367,9 +367,9 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
 
     private Vector getVariableBinding(String varBind) {
         Vector v = new Vector(varBind.length());
-        String oid = null;
-        char type = 'i';
-        String value = null;
+        String oid;
+        char type;
+        String value;
         int equal = varBind.indexOf("={");
         if (equal > 0) {
             oid = varBind.substring(0, equal);

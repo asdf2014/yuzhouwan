@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Invert Binary Tree Solution
  *
@@ -16,25 +16,25 @@ class InvertBinaryTreeSolution {
 
     /**
      * https://leetcode.com/problems/invert-binary-tree/
-     *
+     * <p>
      * 226. Invert a binary tree.
-     *
-     *      4
-     *    /   \
-     *   2     7
-     *  / \   / \
+     * <p>
+     * 4
+     * /   \
+     * 2     7
+     * / \   / \
      * 1   3 6   9
-     *
+     * <p>
      * to
-     *      4
-     *    /   \
-     *   7     2
-     *  / \   / \
+     * 4
+     * /   \
+     * 7     2
+     * / \   / \
      * 9   6 3   1
-     *
+     * <p>
      * Google: 90% of our engineers use the software you wrote (Homebrew),
      * but you can’t invert a binary tree on a whiteboard so fuck off.
-     *
+     * <p>
      * 队列(Queue)：	offer入队(tail)      poll出队(first)
      * 栈  (Deque)：	push 入栈(front)     pop 出栈(first)      peek查看栈顶.
      */

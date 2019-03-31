@@ -1,11 +1,11 @@
 package com.yuzhouwan.hacker.algorithms.leetcode.number;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Sum of Two Integers Solution Tester
  *
@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class SumTwoIntegerSolutionTest {
 
     @Test
-    public void sum() throws Exception {
+    public void sum() {
 
         assertEquals(0, SumTwoIntegerSolution.sum(0, 0));
         assertEquals(1, SumTwoIntegerSolution.sum(1, 0));

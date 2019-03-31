@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：toArray Benchmark
  *
@@ -23,39 +23,10 @@ import java.util.concurrent.TimeUnit;
 @BenchmarkMode(Mode.AverageTime)
 public class ToArrayBenchmark {
 
-    @Param({"1", "100", "1000", "5000", "10000", "100000"})
-    private int n;
-
     private final List<Object> objList = new ArrayList<>();
     private final List<Integer> intList = new ArrayList<>();
-
-    @Setup
-    public void setup() {
-        for (int i = 0; i < n; i++) {
-            objList.add(0);
-            intList.add(0);
-        }
-    }
-
-    @Benchmark
-    public Object[] preSizeObj() {
-        return objList.toArray(new Object[n]);
-    }
-
-    @Benchmark
-    public Object[] resizeObj() {
-        return objList.toArray(new Object[0]);
-    }
-
-    @Benchmark
-    public Object[] preSizeInt() {
-        return intList.toArray(new Object[n]);
-    }
-
-    @Benchmark
-    public Object[] resizeInt() {
-        return intList.toArray(new Object[0]);
-    }
+    @Param({"1", "100", "1000", "5000", "10000", "100000"})
+    private int n;
 
     /*
     Benchmark                       (n)  Mode  Cnt      Score      Error  Units
@@ -93,5 +64,33 @@ public class ToArrayBenchmark {
                 .threads(1)
                 .build();
         new Runner(opt).run();
+    }
+
+    @Setup
+    public void setup() {
+        for (int i = 0; i < n; i++) {
+            objList.add(0);
+            intList.add(0);
+        }
+    }
+
+    @Benchmark
+    public Object[] preSizeObj() {
+        return objList.toArray(new Object[n]);
+    }
+
+    @Benchmark
+    public Object[] resizeObj() {
+        return objList.toArray(new Object[0]);
+    }
+
+    @Benchmark
+    public Object[] preSizeInt() {
+        return intList.toArray(new Object[n]);
+    }
+
+    @Benchmark
+    public Object[] resizeInt() {
+        return intList.toArray(new Object[0]);
     }
 }

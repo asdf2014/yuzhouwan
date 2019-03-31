@@ -2,16 +2,17 @@ package com.yuzhouwan.hacker.joda;
 
 import org.joda.time.DateTime;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Joda Time Have a Try
  *
@@ -64,8 +65,7 @@ public class JodaTimeHaveATry {
         DateTime afterOneMinter = new DateTime(Long.valueOf("1495941314418")).plusMillis(Integer.valueOf(60000L + ""));
         assertEquals("2017-05-28T11:16:14.418+08:00",
                 afterOneMinter.toString());
-        assertEquals(true,
-                new DateTime(Long.valueOf("1496384856085")).plusMillis(Integer.valueOf(60000L + ""))
-                        .isAfter(new DateTime(Long.valueOf("1496384820000"))));
+        assertTrue(new DateTime(Long.valueOf("1496384856085")).plusMillis(Integer.valueOf(60000L + ""))
+                .isAfter(new DateTime(Long.valueOf("1496384820000"))));
     }
 }

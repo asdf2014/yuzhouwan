@@ -16,7 +16,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Kafka Utils Test
  *
@@ -27,7 +27,6 @@ public class KafkaUtilsTest {
 
     private static final int BUFFER_SIZE = 1024 * 1024 * 16;
 
-    @SuppressWarnings("unchecked")
     public static void main(String[] args) {
 
         Executor executor = Executors.newCachedThreadPool();

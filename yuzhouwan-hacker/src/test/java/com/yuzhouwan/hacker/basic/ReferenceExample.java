@@ -1,13 +1,14 @@
 package com.yuzhouwan.hacker.basic;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Reference Example
  *
@@ -32,29 +33,29 @@ public class ReferenceExample {
         a.a = 0L;
         A b = a;
         b.a = 1L;
-        assertEquals(false, a.a == 0L);
-        assertEquals(true, b.a == 1L);
+        assertFalse(a.a == 0L);
+        assertTrue(b.a == 1L);
 
         A c = new A();
         c.a = 2L;
         A d = (A) c.clone();
         d.a = 3L;
-        assertEquals(true, c.a == 2L);
-        assertEquals(true, d.a == 3L);
+        assertTrue(c.a == 2L);
+        assertTrue(d.a == 3L);
 
         {
             LinkedList<A> listA = new LinkedList<>();
             LinkedList<A> listB = new LinkedList<>();
             listA.add(a);
             listA.add(b);
-            assertEquals(true, listA.size() == 2);
+            assertTrue(listA.size() == 2);
             listB.addAll(listA);
-            assertEquals(true, listA.size() == 2);
-            assertEquals(true, listB.size() == 2);
+            assertTrue(listA.size() == 2);
+            assertTrue(listB.size() == 2);
             listA.add(c);
             listA.add(d);
-            assertEquals(true, listA.size() == 4);
-            assertEquals(true, listB.size() == 2);
+            assertTrue(listA.size() == 4);
+            assertTrue(listB.size() == 2);
         }
     }
 }

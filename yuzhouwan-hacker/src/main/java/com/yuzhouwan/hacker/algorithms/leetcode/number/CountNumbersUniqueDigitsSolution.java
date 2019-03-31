@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.algorithms.leetcode.number;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Count Numbers with Unique Digits Solution
  *
@@ -12,15 +12,15 @@ class CountNumbersUniqueDigitsSolution {
 
     /**
      * https://leetcode.com/problems/count-numbers-with-unique-digits/
-     *
+     * <p>
      * 357. Count Numbers with Unique Digits
-     *
+     * <p>
      * Given a non-negative integer n, count all numbers with unique digits, x, where 0 ≤ x < 10^n.
-     *
+     * <p>
      * Example:
      * Given n = 2, return 91. (The answer should be the total numbers in the range of 0 ≤ x < 100,
      * excluding [11,22,33,44,55,66,77,88,99])
-     *
+     * <p>
      * Explain:
      * f(0) = 1
      * f(1) = 10

@@ -1,14 +1,14 @@
 package com.yuzhouwan.hacker.snmp.simple;
 
 import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: SnmpSimpleSet Tester.
  *
@@ -31,7 +31,7 @@ public class SnmpSimpleSetTest {
 
     private List<String> oids;
 
-    @Ignore
+    @Disabled
     @Before
     public void init() {
 
@@ -49,9 +49,9 @@ public class SnmpSimpleSetTest {
     /**
      * Method: snmpSyncSetList(String ip, String community, List<String> oidList)
      */
-    @Ignore
+    @Disabled
     @Test
-    public void testSnmpSyncSetList() throws Exception {
+    public void testSnmpSyncSetList() {
 
         SnmpSimpleSet.snmpSyncSetList(ip, "public", errorCount);
         SnmpSimpleGet.snmpSyncGetList(ip, "public", oids);

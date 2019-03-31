@@ -12,7 +12,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Jar Utils
  *
@@ -24,13 +24,11 @@ public final class JarUtils {
     private static final Logger _log = LoggerFactory.getLogger(JarUtils.class);
 
     private static final String SUFFIX_JAR = ".jar";
-
-    private static final String PROP_PATH = PropUtils.getInstance().getPropertyInternal("prop.path");
     private static final String LIB_PATH = DirUtils.getLibPathInWebApp();
     private static final String CLASSES_PATH = DirUtils.getTestClassesPath();
     private static Properties p = new Properties();
-
     private static volatile JarUtils instance;
+    private static final String PROP_PATH = PropUtils.getInstance().getPropertyInternal("prop.path");
 
     private JarUtils() {
     }
@@ -124,8 +122,7 @@ public final class JarUtils {
                 throw new RuntimeException(sourceUrl.getPath().concat(" is not exist or cannot be available!!"));
             ZipEntry e;
             String name;
-            while (true) {
-                if ((e = zip.getNextEntry()) == null) break;
+            while ((e = zip.getNextEntry()) != null) {
                 if (!StrUtils.isEmpty(name = e.getName()) && name.startsWith(PROP_PATH)) {
                     if (StrUtils.isEmpty(StrUtils.cutStartStr(name, PROP_PATH))) continue;
                     p.load(JarUtils.class.getResourceAsStream("/".concat(name)));
@@ -135,11 +132,6 @@ public final class JarUtils {
                 _log.debug("Properties File name is {}", name);
             }
         }
-    }
-
-    public String getProperty(String key) {
-        if (p == null) return null;
-        return p.getProperty(key);
     }
 
     /**
@@ -153,9 +145,14 @@ public final class JarUtils {
         try {
             return !new File(clazz.getProtectionDomain().getCodeSource().getLocation().toURI())
                     .getName().endsWith(SUFFIX_JAR);
-        } catch (Exception ignored) {
-            _log.error(ExceptionUtils.errorInfo(ignored));
+        } catch (Exception e) {
+            _log.error(ExceptionUtils.errorInfo(e));
             return true;
         }
+    }
+
+    public String getProperty(String key) {
+        if (p == null) return null;
+        return p.getProperty(key);
     }
 }

@@ -3,7 +3,7 @@ package com.yuzhouwan.common.util;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.util.*;
@@ -12,10 +12,10 @@ import java.util.stream.Collectors;
 import static com.yuzhouwan.common.dir.DirUtils.TEST_RESOURCES_PATH;
 import static com.yuzhouwan.common.util.FileUtils.readFile;
 import static com.yuzhouwan.common.util.StrUtils.*;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: String Utils Tester
  *
@@ -34,9 +34,9 @@ public class StrUtilsTest {
     @Test
     public void mainValueTest() {
         String mainValue = getMainValue("ATK000001", "ATK".length(), "0");
-        assertEquals(true, mainValue != null && 1 == Integer.parseInt(mainValue));
+        assertTrue(mainValue != null && 1 == Integer.parseInt(mainValue));
         mainValue = getMainValue("ATK000040", "ATK".length(), "0");
-        assertEquals(true, mainValue != null && 40 == Integer.parseInt(mainValue));
+        assertTrue(mainValue != null && 40 == Integer.parseInt(mainValue));
     }
 
     @Test
@@ -97,7 +97,7 @@ public class StrUtilsTest {
                 "namespace_", "_table_", "_region_", "_metric_");
         assert result != null;
         int size = result.size();
-        assertEquals(true, expect.size() == size);
+        assertTrue(expect.size() == size);
         for (int i = 0; i < size; i++) {
             assertEquals(expect.get(i), result.get(i));
         }
@@ -105,33 +105,33 @@ public class StrUtilsTest {
 
     @Test
     public void isNumberTest() {
-        assertEquals(true, isNumber("0"));
-        assertEquals(true, isNumber("1"));
-        assertEquals(true, isNumber("100"));
+        assertTrue(isNumber("0"));
+        assertTrue(isNumber("1"));
+        assertTrue(isNumber("100"));
 
-        assertEquals(true, isNumber("+1"));
-        assertEquals(true, isNumber("-1"));
-        assertEquals(false, isNumber("++1"));
-        assertEquals(false, isNumber("--1"));
-        assertEquals(false, isNumber("-+1"));
-        assertEquals(false, isNumber("-"));
-        assertEquals(false, isNumber("+"));
-        assertEquals(false, isNumber("+-"));
+        assertTrue(isNumber("+1"));
+        assertTrue(isNumber("-1"));
+        assertFalse(isNumber("++1"));
+        assertFalse(isNumber("--1"));
+        assertFalse(isNumber("-+1"));
+        assertFalse(isNumber("-"));
+        assertFalse(isNumber("+"));
+        assertFalse(isNumber("+-"));
 
-        assertEquals(true, isNumber("1.1"));
-        assertEquals(true, isNumber("0.1"));
-        assertEquals(false, isNumber(".1"));
-        assertEquals(false, isNumber("1.1.0"));
+        assertTrue(isNumber("1.1"));
+        assertTrue(isNumber("0.1"));
+        assertFalse(isNumber(".1"));
+        assertFalse(isNumber("1.1.0"));
 
-        assertEquals(true, isNumber("+0.1"));
-        assertEquals(true, isNumber("-0.1"));
-        assertEquals(false, isNumber("+0."));
-        assertEquals(false, isNumber("-0."));
-        assertEquals(false, isNumber("+.1"));
-        assertEquals(false, isNumber("-.1"));
-        assertEquals(false, isNumber("+."));
+        assertTrue(isNumber("+0.1"));
+        assertTrue(isNumber("-0.1"));
+        assertFalse(isNumber("+0."));
+        assertFalse(isNumber("-0."));
+        assertFalse(isNumber("+.1"));
+        assertFalse(isNumber("-.1"));
+        assertFalse(isNumber("+."));
 
-        assertEquals(false, isNumber("abc"));
+        assertFalse(isNumber("abc"));
     }
 
     @Test
@@ -149,7 +149,7 @@ public class StrUtilsTest {
     }
 
     @Test
-    public void hexTest() throws Exception {
+    public void hexTest() {
         String yuzhouwan = "宇宙湾yuzhouwan123";
         assertEquals(yuzhouwan, hex2Str(str2Hex(yuzhouwan)));
     }

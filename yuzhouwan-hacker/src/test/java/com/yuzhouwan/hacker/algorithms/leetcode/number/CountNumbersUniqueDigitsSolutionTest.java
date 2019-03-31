@@ -1,11 +1,11 @@
 package com.yuzhouwan.hacker.algorithms.leetcode.number;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function: Count Numbers with Unique Digits Solution Tester
  *
@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class CountNumbersUniqueDigitsSolutionTest {
 
     @Test
-    public void countNumbersWithUniqueDigits() throws Exception {
+    public void countNumbersWithUniqueDigits() {
 
         assertEquals(91, CountNumbersUniqueDigitsSolution.countNumbersWithUniqueDigits(2));
     }

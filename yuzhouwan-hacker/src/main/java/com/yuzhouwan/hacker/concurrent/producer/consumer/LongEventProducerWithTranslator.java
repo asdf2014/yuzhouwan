@@ -6,7 +6,7 @@ import com.lmax.disruptor.RingBuffer;
 import java.nio.ByteBuffer;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Long Event Producer with Translator
  *
@@ -15,14 +15,13 @@ import java.nio.ByteBuffer;
  */
 public class LongEventProducerWithTranslator {
 
+    private static final EventTranslatorOneArg<LongEvent, ByteBuffer> TRANSLATOR =
+            (event, sequence, bb) -> event.set(bb.getLong(0));
     private final RingBuffer<LongEvent> ringBuffer;
 
     public LongEventProducerWithTranslator(RingBuffer<LongEvent> ringBuffer) {
         this.ringBuffer = ringBuffer;
     }
-
-    private static final EventTranslatorOneArg<LongEvent, ByteBuffer> TRANSLATOR =
-            (event, sequence, bb) -> event.set(bb.getLong(0));
 
     public void product(ByteBuffer bb) {
         ringBuffer.publishEvent(TRANSLATOR, bb);

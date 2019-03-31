@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.algorithms.array;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：Circular Buffer
  *
@@ -10,17 +10,6 @@ package com.yuzhouwan.hacker.algorithms.array;
  * @since 2017/03/01
  */
 public class CircularBuffer<T> {
-
-    /**
-     * k-FIFO.
-     */
-    class Kfifo {
-        int in;
-        int out;
-        int mask;
-        int esize;
-        T data;
-    }
 
     /*
      * helper macro to distinguish between real in place fifo where the fifo
@@ -40,20 +29,20 @@ public class CircularBuffer<T> {
     }
 
     /**
-     * DECLARE_KFIFO - macro to declare a fifo object.
-     *
-     * @fifo: name of the declared fifo
-     * @type: type of the fifo elements
-     * @size: the number of elements in the fifo, this must be a power of 2
-     */
-
-    /**
      * initKfifo - Initialize a fifo declared by DECLARE_KFIFO.
      *
      * @fifo: name of the declared fifo datatype
      */
     public void initKfifo() {
     }
+
+    /**
+     * DECLARE_KFIFO - macro to declare a fifo object.
+     *
+     * @fifo: name of the declared fifo
+     * @type: type of the fifo elements
+     * @size: the number of elements in the fifo, this must be a power of 2
+     */
 
     /**
      * defineKfifo - macro to define and initialize a fifo.
@@ -67,12 +56,10 @@ public class CircularBuffer<T> {
     public void defineKfifo() {
     }
 
-
     public void kfifoUintMustCheckHelper() {
     }
 
-
-    public void kfifoIntMustCheckHelper(int val) {
+    public void kfifoIntMustCheckHelper() {
     }
 
     /**
@@ -453,5 +440,16 @@ public class CircularBuffer<T> {
      * writer, you don't need extra locking to use these macro.
      */
     public void kfifoOutPeek() {
+    }
+
+    /**
+     * k-FIFO.
+     */
+    class Kfifo {
+        int in;
+        int out;
+        int mask;
+        int esize;
+        T data;
     }
 }

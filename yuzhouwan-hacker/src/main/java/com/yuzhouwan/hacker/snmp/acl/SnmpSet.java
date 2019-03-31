@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.snmp.acl;
 
 /**
- * Copyright @ 2018 yuzhouwan.com
+ * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
  * Function：SnmpSet
  *
@@ -10,7 +10,7 @@ package com.yuzhouwan.hacker.snmp.acl;
  */
 public class SnmpSet {
 
-    private SnmpUtil _util = null;
+    private SnmpUtil _util;
 
     public SnmpSet(String host, String varbind) {
         _util = new SnmpUtil(host, varbind, false, 0);
