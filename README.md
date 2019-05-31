@@ -3,7 +3,7 @@
 ## My Blog
 __[https://yuzhouwan.com](https://yuzhouwan.com)__
 
-(Hexo + Coding，利用 Node.js 的 NIO 框架快速生成，配合 coding.net 静态页面托管，免费但可能海外地区加载缓慢)
+(Hexo + Github Page，利用 Node.js 的 NIO 框架快速生成，配合 Github 静态页面托管)
 
 ---------------
 ## Welcome
