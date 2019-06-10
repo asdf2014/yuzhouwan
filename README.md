@@ -57,7 +57,6 @@ __[https://yuzhouwan.com](https://yuzhouwan.com)__
 
 **[BigData 生态圈](https://yuzhouwan.com/tags/)**　[![1670647](https://img.shields.io/badge/QQ%E7%BE%A4-1670647-blue.svg)](https://shang.qq.com/wpa/qunwpa?idkey=f86b3c8de20da1658a3bb42df17a2fc4eee0d75c4a130a63585fdd257e3565ed)
 
-本群创建于2012/11/15:<br/>
 &ensp;&ensp;讨论大数据生态圈的各种领域，包括 <br/>
 &ensp;&ensp;△ Spark / Storm / Hadoop / Flink / Heron / Cassandra / Docker 主流框架、<br/>
 &ensp;&ensp;△ Paxos / Raft / Gossip / Consistent Hashing / Chubby / Zookeeper 分布式算法与架构、<br/>
@@ -69,7 +68,6 @@ __[https://yuzhouwan.com](https://yuzhouwan.com)__
 
 **[人工智能](https://yuzhouwan.com/posts/42737/)**　[![1020982](https://img.shields.io/badge/QQ%E7%BE%A4-1020982-blue.svg)](https://shang.qq.com/wpa/qunwpa?idkey=71c6bd3fb0ff01d93abca654140387d99d3be752f92a53c1fbfd27f2dd4b4247)（高级）| [![1217710](https://img.shields.io/badge/QQ%E7%BE%A4-1217710-blue.svg)](https://shang.qq.com/wpa/qunwpa?idkey=deb268f65589a1a0a1dbaf7b72c849ed45298697805bef81e0c613dea40cd05e)（进阶）
 
-本群创建于2003/7/24: <br/>
 &ensp;&ensp;研究 AI 人工智能 相关领域，欢迎加入，互相学习，共同进步<br/>
 &ensp;&ensp;讨论包括，统计学、NLP、Data Mining、Deep Learning、Machine Learning、AI 人工智能 等相关领域<br/>
 
@@ -79,6 +77,21 @@ __[https://yuzhouwan.com](https://yuzhouwan.com)__
 
 &ensp;&ensp;本群持续更新的一篇人工智能的博客：<br/>
 &ensp;&ensp;https://yuzhouwan.com/posts/42737/ 
+
+<br/>
+
+**[算法](https://yuzhouwan.com/posts/666/)**　[![](https://img.shields.io/badge/QQ%E7%BE%A4-5366753-blue.svg)](https://shang.qq.com/wpa/qunwpa?idkey=bfbcf1453371a0810fd6be235ace47147f6fb9d262fb768b497c861f50af0af4)　（**1000** 人大群）
+
+&ensp;&ensp;讨论“算法”的各种领域<br/>
+
+&ensp;&ensp;• 从底层常用 Algorithm，到分布式算法、框架，再到高可用系统架构<br/>
+&ensp;&ensp;• 从原始的模式匹配，到机器学习、深度学习、神经网络，再到人工智能<br/>
+&ensp;&ensp;• 从网络路由算法，到数据库 B+Tree、香农信息论，再到 Linux 内核算法<br/>
+
+&ensp;&ensp;汲取世界的方方面面，不断充实技术树，踏踏实实地点亮每一片枝叶<br/>
+
+&ensp;&ensp;本群长期进行 [“LeetCode 组队刷题活动”](https://yuzhouwan.com/posts/666/)<br/>
+
 
 欢迎加入，一起交流学习 :D 
 
