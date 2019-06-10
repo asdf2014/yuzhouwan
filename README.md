@@ -80,7 +80,7 @@ __[https://yuzhouwan.com](https://yuzhouwan.com)__
 
 <br/>
 
-**[算法](https://yuzhouwan.com/posts/666/)**　[![](https://img.shields.io/badge/QQ%E7%BE%A4-5366753-blue.svg)](https://shang.qq.com/wpa/qunwpa?idkey=bfbcf1453371a0810fd6be235ace47147f6fb9d262fb768b497c861f50af0af4)　（**1000** 人大群）
+**[算法](https://yuzhouwan.com/posts/666/)**　[![](https://img.shields.io/badge/QQ%E7%BE%A4-5366753-blue.svg)](https://shang.qq.com/wpa/qunwpa?idkey=bfbcf1453371a0810fd6be235ace47147f6fb9d262fb768b497c861f50af0af4)
 
 &ensp;&ensp;讨论“算法”的各种领域<br/>
 
