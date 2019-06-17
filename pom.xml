@@ -41,7 +41,7 @@
 
         <!-- groovy -->
         <groovy.version>2.3.11</groovy.version>
-        <groovy.gmaven.version>1.4</groovy.gmaven.version>
+        <groovy.gmaven.version>1.5</groovy.gmaven.version>
 
         <!-- scala -->
         <!--<scala.version>2.10.4</scala.version>-->
