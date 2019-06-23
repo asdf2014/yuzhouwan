@@ -3,6 +3,7 @@ package com.yuzhouwan.hacker.algorithms;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 /**
  * Copyright @ 2019 yuzhouwan.com
@@ -13,6 +14,14 @@ import static org.junit.Assert.assertEquals;
  * @since 2018/6/27
  */
 public class DoubleTest {
+
+    @Test
+    public void testAssertDouble() {
+        assertEquals(0.1, Double.parseDouble("0.1"), 0.1);
+        assertEquals(0.02, Double.parseDouble("0.01"), 0.1);
+        assertNotEquals(0.02, Double.parseDouble("0.01"), 0.001);
+        assertEquals(0.002, Double.parseDouble("0.001"), 0.001);
+    }
 
     @Test
     public void count2One() {
