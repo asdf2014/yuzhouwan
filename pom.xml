@@ -163,7 +163,7 @@
         <apache.tika.version>1.11</apache.tika.version>
 
         <!-- apache pdfbox -->
-        <apache.pdfbox.version>1.8.11</apache.pdfbox.version>
+        <apache.pdfbox.version>1.8.16</apache.pdfbox.version>
 
         <!-- apache avro -->
         <apache.avro.version>1.8.2</apache.avro.version>
