@@ -166,7 +166,7 @@
         <apache.pdfbox.version>1.8.16</apache.pdfbox.version>
 
         <!-- apache avro -->
-        <apache.avro.version>1.8.2</apache.avro.version>
+        <apache.avro.version>1.9.0</apache.avro.version>
 
         <!-- apache common cli -->
         <apache.common.cli>1.4</apache.common.cli>
