@@ -223,7 +223,7 @@
 
         <!-- ## integration ## -->
         <!-- storm + kafka -->
-        <storm.kafka.version>${apache.storm.version}</storm.kafka.version>
+        <storm.kafka.version>0.10.2</storm.kafka.version>
 
         <!-- storm + elasticsearch-->
         <storm.elasticsearch.version>${elasticsearch.version}</storm.elasticsearch.version>
