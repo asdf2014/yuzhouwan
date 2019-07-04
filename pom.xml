@@ -190,7 +190,7 @@
         <eclipse.jetty.webapp.version>9.2.10.v20150310</eclipse.jetty.webapp.version>
 
         <!-- collection -->
-        <apache.collections.version>3.2.1</apache.collections.version>
+        <apache.collections.version>3.2.2</apache.collections.version>
         <apache.commons.io.version>2.6</apache.commons.io.version>
 
         <!-- npl ansj_seg -->
