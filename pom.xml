@@ -175,7 +175,7 @@
         <phantom.js.version>1.4.4</phantom.js.version>
 
         <!-- freemarker -->
-        <freemarker.version>2.3.23</freemarker.version>
+        <freemarker.version>2.3.28</freemarker.version>
 
         <!-- http -->
         <apache.http.version>4.5.1</apache.http.version>
