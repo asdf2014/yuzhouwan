@@ -59,7 +59,7 @@
 
         <!-- json -->
         <jackson.version>2.9.8</jackson.version>
-        <json.path.version>0.8.1</json.path.version>
+        <json.path.version>2.4.0</json.path.version>
         <json.path.assert.version>2.4.0</json.path.assert.version>
 
         <!-- thread -->
