@@ -118,7 +118,7 @@
         <!-- common -->
         <commons.io.version>2.6</commons.io.version>
         <commons.codec.version>1.10</commons.codec.version>
-        <apache.common.lang3.verison>3.7</apache.common.lang3.verison>
+        <apache.common.lang3.verison>3.8.1</apache.common.lang3.verison>
         <apache.common.dbcp.version>1.4</apache.common.dbcp.version>
         <apache.commons.pool2.version>2.6.2</apache.commons.pool2.version>
 
