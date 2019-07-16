@@ -110,7 +110,7 @@
         <mysql.jdbc.connection.version>8.0.16</mysql.jdbc.connection.version>
 
         <!-- spring+mybatis -->
-        <spring.mybatis.version>2.0.1</spring.mybatis.version>
+        <spring.mybatis.version>2.0.2</spring.mybatis.version>
 
         <!-- spring+camel-->
         <apache.camel.spring.version>2.23.3</apache.camel.spring.version>
