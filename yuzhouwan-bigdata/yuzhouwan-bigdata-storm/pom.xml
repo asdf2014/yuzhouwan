@@ -12,7 +12,7 @@
 
     <artifactId>yuzhouwan-bigdata-storm</artifactId>
     <properties>
-        <elasticsearch.version>2.2.0</elasticsearch.version>
+        <elasticsearch.version>6.8.1</elasticsearch.version>
         <storm.elasticsearch.version>${elasticsearch.version}</storm.elasticsearch.version>
     </properties>
 
