@@ -79,7 +79,7 @@
         <circuitwall.ml.version>1.2.0</circuitwall.ml.version>
 
         <!-- redis -->
-        <jedis.version>2.10.2</jedis.version>
+        <jedis.version>3.1.0</jedis.version>
 
         <!-- zookeeper -->
         <apache.zookeeper.version>3.4.6</apache.zookeeper.version>
@@ -232,7 +232,7 @@
         <hbase.hadoop.compat.version>${hbase.server.version}</hbase.hadoop.compat.version>
 
         <!-- redis client -->
-        <redis.client.version>2.10.2</redis.client.version>
+        <redis.client.version>3.1.0</redis.client.version>
     </properties>
 
     <build>
