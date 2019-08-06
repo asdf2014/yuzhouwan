@@ -202,7 +202,7 @@
         <!-- apache hbase -->
         <hbase.version>1.4.10</hbase.version>
         <hbase.server.version>${hbase.version}</hbase.server.version>
-        <protobuf.java.version>3.9.0</protobuf.java.version>
+        <protobuf.java.version>3.9.1</protobuf.java.version>
 
         <!-- apache storm -->
         <apache.storm.version>0.10.0</apache.storm.version>
