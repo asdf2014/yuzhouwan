@@ -19,7 +19,8 @@ public class DynamicPropTest {
     private static final String PROP_PATH = DirUtils.RESOURCES_PATH.concat("prop/");
 
     @Test
-    public void dynamic() throws Exception {
+    @SuppressWarnings("ResultOfMethodCallIgnored")
+    public void dynamic() {
 
         DynamicProp dynamicProp = new DynamicProp(PROP_PATH);
         try {
@@ -32,11 +33,9 @@ public class DynamicPropTest {
             new File(PROP_PATH.concat("a")).delete();
             new File(PROP_PATH.concat("b/")).delete();
             new File(PROP_PATH.concat("c.txt")).delete();
-
-            new File(PROP_PATH).deleteOnExit();
         } finally {
-            Thread.sleep(50);
-            dynamicProp.stopWatch();
+            dynamicProp.stopWatch(500L);
+            new File(PROP_PATH).deleteOnExit();
         }
     }
 }

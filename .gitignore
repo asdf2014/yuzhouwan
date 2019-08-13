@@ -43,3 +43,8 @@ hs_err_pid*
 # Too large file size
 /yuzhouwan-hacker/src/main/avro/avro-tools-1.8.1.jar
 /yuzhouwan-bigdata/yuzhouwan-bigdata-hbase/E:/
+
+
+# Temporary files
+/yuzhouwan-hacker/src/main/resources/security/key.data
+/yuzhouwan-hacker/src/main/resources/avro/users.avro

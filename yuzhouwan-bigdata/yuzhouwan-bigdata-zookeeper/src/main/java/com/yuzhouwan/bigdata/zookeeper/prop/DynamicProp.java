@@ -50,10 +50,10 @@ public class DynamicProp implements IDirUtils {
         thread.start();
     }
 
-    public void stopWatch() {
+    public void stopWatch(long timeout) {
         runnable.setRunning(false);
         try {
-            thread.join();
+            thread.join(timeout);
         } catch (InterruptedException e) {
             _log.error("Dynamic Properties safely stopping failed!", e);
             throw new RuntimeException(e);
