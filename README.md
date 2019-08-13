@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/asdf2014/yuzhouwan.svg?branch=master)](https://travis-ci.org/asdf2014/yuzhouwan)
 [![Codecov](https://codecov.io/gh/asdf2014/yuzhouwan/branch/master/graph/badge.svg)](https://codecov.io/gh/asdf2014/yuzhouwan)
+[![License](https://img.shields.io/github/license/asdf2014/yuzhouwan)](https://yuzhouwan.com/)
 
 ## My Blog
 __[https://yuzhouwan.com](https://yuzhouwan.com)__
