@@ -3,6 +3,8 @@ package com.yuzhouwan.hacker.security;
 import com.yuzhouwan.common.dir.DirUtils;
 import org.junit.Test;
 
+import java.io.File;
+
 /**
  * Copyright @ 2019 yuzhouwan.com
  * All right reserved.
@@ -15,6 +17,8 @@ public class GenerateKeyTest {
 
     @Test
     public void generate() throws Exception {
-        GenerateKey.generate(DirUtils.RESOURCES_PATH.concat("security/key.data"));
+        final String keyFile = DirUtils.RESOURCES_PATH.concat("security/key.data");
+        GenerateKey.generate(keyFile);
+        new File(keyFile).deleteOnExit();
     }
 }

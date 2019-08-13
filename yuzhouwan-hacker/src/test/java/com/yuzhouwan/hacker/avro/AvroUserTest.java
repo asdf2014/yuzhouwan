@@ -68,5 +68,6 @@ public class AvroUserTest {
                 count++;
         }
         assertEquals(3, count);
+        file.deleteOnExit();
     }
 }
