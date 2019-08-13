@@ -24,4 +24,4 @@ cache:
     - $HOME/.m2
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -sSfL https://codecov.io/bash) || echo 'Codecov failed to upload'

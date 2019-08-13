@@ -1,6 +1,7 @@
 [<img align="right" width="30%" height="30%" src="https://user-images.githubusercontent.com/8108788/58363706-18c4d080-7edb-11e9-947a-cf7233c8e2cc.png">](https://yuzhouwan.com/)
 
 [![Build Status](https://travis-ci.org/asdf2014/yuzhouwan.svg?branch=master)](https://travis-ci.org/asdf2014/yuzhouwan)
+[![Codecov](https://codecov.io/gh/asdf2014/yuzhouwan/branch/master/graph/badge.svg)](https://codecov.io/gh/asdf2014/yuzhouwan)
 
 ## My Blog
 __[https://yuzhouwan.com](https://yuzhouwan.com)__
