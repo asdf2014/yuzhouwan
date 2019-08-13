@@ -17,7 +17,7 @@ groovy:
 sudo: required
 before_install: sudo echo "MAVEN_OPTS='-Xmx2048m -Xms2048m -XX:+AlwaysPreTouch -Dorg.slf4j.simpleLogger.defaultLogLevel=error'" > ~/.mavenrc
 
-script: mvn clean -B && mvn clean install -T 1C -B && mvn cobertura:cobertura -DskipTests -B
+script: mvn clean -B && mvn cobertura:cobertura -T 1C -B
 
 cache:
   directories:
