@@ -4,14 +4,12 @@ import com.yuzhouwan.common.dir.DirUtils;
 import com.yuzhouwan.hacker.algorithms.thread.lock.ReadWriteLockExample;
 import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
-
-import static org.junit.Assert.assertTrue;
-
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+
+import static org.junit.Assert.*;
 
 /**
  * Copyright @ 2019 yuzhouwan.com
@@ -40,12 +38,12 @@ public class SingleInstanceTest {
             ReadWriteLockExample.Business businessSerialized = ((ReadWriteLockExample.Business) ois1.readObject());
 
             //Enum版的 single instance 保证了安全性
-            assertTrue(3 == instanceSerialized.getPoint());
-            assertTrue(0 == instance.compareTo(instanceSerialized));
-            assertTrue(instance.equals(instanceSerialized));
+            assertEquals(3, (int) instanceSerialized.getPoint());
+            assertEquals(0, instance.compareTo(instanceSerialized));
+            assertEquals(instance, instanceSerialized);
 
             //序列化、反序列化 破坏了 "single instance + double check"的唯一性
-            assertFalse(business.equals(businessSerialized));
+            assertNotEquals(business, businessSerialized);
         }
     }
 }

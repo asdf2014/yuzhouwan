@@ -16,7 +16,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.text.SimpleDateFormat;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 /**
@@ -69,18 +69,18 @@ public class ValidatorControllerTest {
 //                .param("future", JSON.toJSONString(new Date(future)))
                 .param("future", future + ""))
                 .andReturn().getResponse().getContentAsString();
-        assertEquals(true, response.contains(ERROR_CONTENT));
-        assertEquals(true, response.contains(ACCOUNT_MAX));
-        assertEquals(true, response.contains(USER_NAME_FORMAT));
+        assertTrue(response.contains(ERROR_CONTENT));
+        assertTrue(response.contains(ACCOUNT_MAX));
+        assertTrue(response.contains(USER_NAME_FORMAT));
     }
 
     @Test
     public void update() throws Exception {
         String response = mockMvc.perform(post("/validator/update").param("userName", "yuzhouwan"))
                 .andReturn().getResponse().getContentAsString();
-        assertEquals(false, response.contains(ERROR_ID));
-        assertEquals(false, response.contains(ERROR_USER_NAME));
-        assertEquals(true, response.contains(ERROR_CONTENT));
+        assertFalse(response.contains(ERROR_ID));
+        assertFalse(response.contains(ERROR_USER_NAME));
+        assertTrue(response.contains(ERROR_CONTENT));
     }
 
     @Test
@@ -90,8 +90,8 @@ public class ValidatorControllerTest {
                 .param("lastName", "Jin")
                 .param("country", "Earth"))
                 .andReturn().getResponse().getContentAsString();
-        assertEquals(true, response.contains(ERROR_PASSWORD_EMPTY));
-        assertEquals(true, response.contains(ERROR_MIDDLE_NAME_EMPTY));
+        assertTrue(response.contains(ERROR_PASSWORD_EMPTY));
+        assertTrue(response.contains(ERROR_MIDDLE_NAME_EMPTY));
     }
 
     @Test
@@ -101,8 +101,8 @@ public class ValidatorControllerTest {
                 .param("lastName", "Jin")
                 .param("country", "Earth"))
                 .andReturn().getResponse().getContentAsString();
-        assertEquals(true, response.contains(ERROR_PASSWORD_EMPTY));
-        assertEquals(true, response.contains(ERROR_MIDDLE_NAME_EMPTY));
+        assertTrue(response.contains(ERROR_PASSWORD_EMPTY));
+        assertTrue(response.contains(ERROR_MIDDLE_NAME_EMPTY));
     }
 
     @After

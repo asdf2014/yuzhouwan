@@ -177,14 +177,14 @@ public class CollectionStuffTest {
         lbq.add(Byte.valueOf("1"));
         lbq.add(Byte.valueOf("2"));
         lbq.add(Byte.valueOf("3"));
-        assertTrue(lbq.peek() == 1);
-        assertTrue(lbq.peek() == 1);
-        assertTrue(lbq.peek() == 1);
+        assertEquals(1, (byte) lbq.peek());
+        assertEquals(1, (byte) lbq.peek());
+        assertEquals(1, (byte) lbq.peek());
 
         Byte[] bufferList = new Byte[lbq.size()];
         Byte[] lbqList = lbq.toArray(bufferList);
-        assertTrue(Arrays.equals(bufferList, lbqList));
-        assertTrue(bufferList == lbqList);
+        assertArrayEquals(bufferList, lbqList);
+        assertSame(bufferList, lbqList);
 
         File file = new File("queue.txt");
         try (FileOutputStream fileChannel = new FileOutputStream(file)) {
@@ -203,9 +203,9 @@ public class CollectionStuffTest {
                 assertEquals(2, chars[1]);
                 assertEquals(3, chars[2]);
 
-                assertTrue(lbq.remove() == 1);
-                assertTrue(lbq.remove() == 2);
-                assertTrue(lbq.remove() == 3);
+                assertEquals(1, (byte) lbq.remove());
+                assertEquals(2, (byte) lbq.remove());
+                assertEquals(3, (byte) lbq.remove());
             }
         } finally {
             retryDelete(file, 3);

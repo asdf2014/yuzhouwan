@@ -93,18 +93,18 @@ public class CollectionUtilsTest {
         aList.add(_b);
         aList.add(_c);
         assertEquals(_a, CollectionUtils.getDuplicate(aList, _d, "b", String.class));
-        assertTrue(2 == aList.size());
+        assertEquals(2, aList.size());
         assertEquals(_c, CollectionUtils.getDuplicate(aList, _d, "a", Integer.class));
-        assertTrue(1 == aList.size());
+        assertEquals(1, aList.size());
         assertEquals(_b, CollectionUtils.getDuplicate(aList, _d, "c", Object.class));
-        assertTrue(0 == aList.size());
+        assertEquals(0, aList.size());
         assertNull(CollectionUtils.getDuplicate(aList, _d, "d", Object.class));
-        assertTrue(0 == aList.size());
+        assertEquals(0, aList.size());
         aList.add(_a);
         aList.add(_b);
         aList.add(_c);
         assertNull(CollectionUtils.getDuplicate(aList, _d, "d", Object.class));
-        assertTrue(3 == aList.size());
+        assertEquals(3, aList.size());
     }
 
     @Test
@@ -121,7 +121,7 @@ public class CollectionUtilsTest {
             aList.remove(0);
             aList.remove(2);
             aList.remove(1);
-            assertTrue(aList.size() == 0);
+            assertEquals(0, aList.size());
         } catch (Exception e) {
             assertTrue(e instanceof IndexOutOfBoundsException);
         }
@@ -259,20 +259,20 @@ public class CollectionUtilsTest {
     public void mapPutIfAbsentTest() {
         LinkedHashMap<String, Integer> lhm = new LinkedHashMap<>();
         Integer old = lhm.putIfAbsent("a", 1);
-        assertTrue(old == null);
+        assertNull(old);
         old = lhm.putIfAbsent("a", 1);
-        assertTrue(old == 1);
+        assertEquals(1, (int) old);
         old = lhm.putIfAbsent("a", 1);
-        assertTrue(old == 1);
+        assertEquals(1, (int) old);
         old = lhm.putIfAbsent("b", 2);
-        assertTrue(old == null);
+        assertNull(old);
 
         old = putIfAbsent(lhm, "c", 3);
-        assertTrue(old == null);
+        assertNull(old);
         old = putIfAbsent(lhm, "c", 3);
-        assertTrue(old == 3);
+        assertEquals(3, (int) old);
         old = putIfAbsent(lhm, "d", 4);
-        assertTrue(old == null);
+        assertNull(old);
     }
 
     private class A {

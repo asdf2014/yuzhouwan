@@ -2,11 +2,9 @@ package com.yuzhouwan.hacker.basic;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
-
-import static org.junit.Assert.assertTrue;
-
 import java.util.LinkedList;
+
+import static org.junit.Assert.*;
 
 /**
  * Copyright @ 2019 yuzhouwan.com
@@ -34,29 +32,29 @@ public class ReferenceExample {
         a.a = 0L;
         A b = a;
         b.a = 1L;
-        assertFalse(a.a == 0L);
-        assertTrue(b.a == 1L);
+        assertNotEquals(0L, (long) a.a);
+        assertEquals(1L, (long) b.a);
 
         A c = new A();
         c.a = 2L;
         A d = (A) c.clone();
         d.a = 3L;
-        assertTrue(c.a == 2L);
-        assertTrue(d.a == 3L);
+        assertEquals(2L, (long) c.a);
+        assertEquals(3L, (long) d.a);
 
         {
             LinkedList<A> listA = new LinkedList<>();
             LinkedList<A> listB = new LinkedList<>();
             listA.add(a);
             listA.add(b);
-            assertTrue(listA.size() == 2);
+            assertEquals(2, listA.size());
             listB.addAll(listA);
-            assertTrue(listA.size() == 2);
-            assertTrue(listB.size() == 2);
+            assertEquals(2, listA.size());
+            assertEquals(2, listB.size());
             listA.add(c);
             listA.add(d);
-            assertTrue(listA.size() == 4);
-            assertTrue(listB.size() == 2);
+            assertEquals(4, listA.size());
+            assertEquals(2, listB.size());
         }
     }
 }

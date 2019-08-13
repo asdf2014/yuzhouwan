@@ -1,9 +1,8 @@
 package com.yuzhouwan.common.util;
 
 import com.alibaba.fastjson.JSON;
+import org.junit.Assert;
 import org.junit.Test;
-
-import static org.junit.Assert.assertTrue;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,7 +45,7 @@ public class RandomUtilsTest {
         _log.info("Param: {}/{}/{}, Total: {}", 0, 15, 15, total);
         _log.info(JSON.toJSONString(gaussian));
         assertEquals("[62,461,1919,4512,6000,4512,1919,461,62,4,0,0,0,0,0]", JSON.toJSONString(gaussian));
-        assertTrue(total == 19912);
+        Assert.assertEquals(19912, total);
 
         gaussian = RandomUtils.getGaussian(0, 9, 9, factor, stdDeviation, variance, mean);
         total = 0;
@@ -54,7 +53,7 @@ public class RandomUtilsTest {
         _log.info("Param: {}/{}/{}, Total: {}", 0, 9, 9, total);
         _log.info(JSON.toJSONString(gaussian));
         assertEquals("[62,461,1919,4512,6000,4512,1919,461,62]", JSON.toJSONString(gaussian));
-        assertTrue(total == 19908);
+        Assert.assertEquals(19908, total);
 
         gaussian = RandomUtils.getGaussian(0, 15, 71, factor, stdDeviation, variance, mean);
         total = 0;
@@ -63,7 +62,7 @@ public class RandomUtilsTest {
         _log.info(JSON.toJSONString(gaussian));
         assertEquals("[12,12,12,12,12,92,92,92,92,92,383,383,383,383,383,902,902,902,902,902,1200,1200,1200,1200,1200,902,902,902,902,902,383,383,383,383,383,92,92,92,92,92,12,12,12,12,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
                 JSON.toJSONString(gaussian));
-        assertTrue(total == 19890);
+        Assert.assertEquals(19890, total);
 
         factor = 2500;
         stdDeviation = 8;

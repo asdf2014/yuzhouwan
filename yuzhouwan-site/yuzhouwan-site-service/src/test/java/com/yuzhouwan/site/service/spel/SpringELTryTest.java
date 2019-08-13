@@ -16,6 +16,7 @@ import java.util.regex.Pattern;
 
 import static com.yuzhouwan.common.util.StrUtils.NEXT_LINE;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Copyright @ 2019 yuzhouwan.com
@@ -43,12 +44,12 @@ public class SpringELTryTest {
 
     @Test
     public void testRegular() throws Exception {
-        assertEquals(true, springELTry.matchExpression());
+        assertTrue(springELTry.matchExpression());
     }
 
     @Test
     public void testRegular2() throws Exception {
-        assertEquals(true, springELTry.matchExpression2());
+        assertTrue(springELTry.matchExpression2());
     }
 
     @Test

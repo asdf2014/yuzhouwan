@@ -46,7 +46,7 @@ public class RedisNotificationTest {
             assertNull(pool.get("yuzhouwan02"));
             assertEquals("blog03", pool.get("yuzhouwan03"));
 
-            assertTrue(1 == pool.del("yuzhouwan03"));
+            assertEquals(1, (long) pool.del("yuzhouwan03"));
             assertNull(pool.get("yuzhouwan01"));
             assertNull(pool.get("yuzhouwan02"));
             assertNull(pool.get("yuzhouwan03"));

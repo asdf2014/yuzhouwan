@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 
 import java.util.LinkedList;
@@ -51,7 +50,7 @@ public class LambdaTest {
         Apple a = hugeRedApples.get(0);
         assertEquals("A", a.getName());
         assertEquals("red", a.getColor());
-        assertTrue(a.getWeight() == 10d);
+        assertEquals(10d, a.getWeight(), 0.0);
     }
 
     @Test

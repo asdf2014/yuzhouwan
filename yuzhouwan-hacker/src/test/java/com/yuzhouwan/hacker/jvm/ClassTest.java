@@ -2,8 +2,7 @@ package com.yuzhouwan.hacker.jvm;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 interface A {
 }
@@ -26,8 +25,8 @@ public class ClassTest {
             assertTrue(A.class.isAssignableFrom(B.class));
             assertTrue(B.class.isAssignableFrom(C.class));
             assertTrue(A.class.isAssignableFrom(C.class));
-            assertTrue(A.class.getClassLoader().equals(B.class.getClassLoader()));
-            assertTrue(B.class.getClassLoader().equals(C.class.getClassLoader()));
+            assertEquals(A.class.getClassLoader(), B.class.getClassLoader());
+            assertEquals(B.class.getClassLoader(), C.class.getClassLoader());
         }
         {
             Class<? extends Class> aClass = A.class.getClass();

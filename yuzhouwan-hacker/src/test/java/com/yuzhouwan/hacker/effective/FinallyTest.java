@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
 
 /**
  * Copyright @ 2019 yuzhouwan.com
@@ -27,7 +28,7 @@ public class FinallyTest {
         } catch (Exception e) {
             catchE = e;
         }
-        assertEquals(true, catchE == null);
+        assertTrue(catchE == null);
 
         try {
             someExceptionRight();
@@ -94,7 +95,7 @@ public class FinallyTest {
         } catch (Exception e) {
             catchE = e;
         }
-        assertEquals(true, catchE == null);
+        assertTrue(catchE == null);
 
         try {
             someExceptionRight3();

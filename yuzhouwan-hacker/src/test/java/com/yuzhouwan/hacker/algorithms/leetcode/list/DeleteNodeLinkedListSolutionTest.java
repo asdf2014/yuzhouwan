@@ -2,7 +2,7 @@ package com.yuzhouwan.hacker.algorithms.leetcode.list;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Copyright @ 2019 yuzhouwan.com
@@ -23,6 +23,6 @@ public class DeleteNodeLinkedListSolutionTest {
         listNode0.next = listNode1;
         listNode1.next = listNode2;
         DeleteNodeLinkedListSolution.deleteNode(listNode1);
-        assertTrue(listNode0.next.val == 2);
+        assertEquals(2, listNode0.next.val);
     }
 }

@@ -7,7 +7,6 @@ import org.junit.*;
 
 import static com.yuzhouwan.bigdata.redis.conn.RedisClusterConnPool.PROJECT_NAME;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 
 /**
@@ -35,7 +34,7 @@ public class RedisClusterConnPoolTest {
     public void testRedisCluster() {
         assertEquals("OK", store.put("yuzhouwan", "com"));
         assertEquals("com", store.get("yuzhouwan"));
-        assertTrue(0 == store.putSet("topics", "bigdata", "ai"));
+        assertEquals(0, (long) store.putSet("topics", "bigdata", "ai"));
         assertEquals("[\"bigdata\",\"ai\"]", JSON.toJSONString(store.getSet("topics")));
     }
 

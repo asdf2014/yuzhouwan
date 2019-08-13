@@ -10,7 +10,6 @@ import java.util.LinkedList;
 import java.util.TreeSet;
 
 import static com.yuzhouwan.common.util.CollectionUtils.remove;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Copyright @ 2019 yuzhouwan.com
@@ -43,7 +42,7 @@ public class BeanUtilsTest {
             head.add("c");
             head.add("d");
             remove(head, null, "b", "c");
-            assertTrue(head.size() == 2);
+            assertEquals(2, head.size());
             assertEquals("a", head.get(0));
             assertEquals("d", head.get(1));
         }
@@ -58,7 +57,7 @@ public class BeanUtilsTest {
             head.add(bean1);
             head.add(bean2);
             remove(head, "bB", 4L);
-            assertTrue(head.size() == 1);
+            assertEquals(1, head.size());
             assertEquals(1, head.get(0).getaA());
         }
     }
@@ -92,12 +91,12 @@ public class BeanUtilsTest {
         beans.add(bean2);
         String[] fields = {"aA"};
         LinkedList<String> rows = BeanUtils.columns2Row(beans, fields, true, false, "d_D", "this$0");
-        assertTrue(rows.size() == 4);
+        assertEquals(4, rows.size());
         int count = 0;
         for (String row : rows)
             if (row.equals("{\"aA\":1,\"bB\":2}") || row.equals("{\"aA\":1,\"cC\":3.0}")
                     || row.equals("{\"aA\":4,\"bB\":5}") || row.equals("{\"aA\":4,\"cC\":6.0}")) count++;
-        assertTrue(count == 4);
+        assertEquals(4, count);
     }
 
     @Test

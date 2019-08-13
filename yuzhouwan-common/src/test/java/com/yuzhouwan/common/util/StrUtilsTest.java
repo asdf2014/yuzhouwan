@@ -97,7 +97,7 @@ public class StrUtilsTest {
                 "namespace_", "_table_", "_region_", "_metric_");
         assert result != null;
         int size = result.size();
-        assertTrue(expect.size() == size);
+        assertEquals(expect.size(), size);
         for (int i = 0; i < size; i++) {
             assertEquals(expect.get(i), result.get(i));
         }
