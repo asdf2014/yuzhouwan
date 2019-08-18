@@ -1,0 +1,11 @@
+path_classifiers:
+  library:
+    - yuzhouwan-site/yuzhouwan-site-service/src/main/webapp/lib
+
+extraction:
+  java:
+    index:
+      java_version: 8
+  python:
+    python_setup:
+      version: 3
