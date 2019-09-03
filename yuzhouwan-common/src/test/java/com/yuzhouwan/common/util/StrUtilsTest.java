@@ -26,6 +26,7 @@ public class StrUtilsTest {
 
     @Test
     public void fillTest() {
+        assertEquals("10", fillWithZero(10, 0));
         assertEquals("00000010", fillWithZero(10, 8));
         assertEquals("00000010", fillWithZero(10.0d, 8));
         assertEquals("00000010", fillWithZero(10.01d, 8));
@@ -33,7 +34,9 @@ public class StrUtilsTest {
 
     @Test
     public void mainValueTest() {
-        String mainValue = getMainValue("ATK000001", "ATK".length(), "0");
+        String mainValue = getMainValue("", "ATK".length(), "0");
+        assertNull(mainValue);
+        mainValue = getMainValue("ATK000001", "ATK".length(), "0");
         assertTrue(mainValue != null && 1 == Integer.parseInt(mainValue));
         mainValue = getMainValue("ATK000040", "ATK".length(), "0");
         assertTrue(mainValue != null && 40 == Integer.parseInt(mainValue));
