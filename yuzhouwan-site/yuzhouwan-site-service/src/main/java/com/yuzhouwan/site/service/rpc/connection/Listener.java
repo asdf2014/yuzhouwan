@@ -45,7 +45,7 @@ public class Listener implements Runnable {
                 Socket clientSocket = serversocket.accept();
                 // 获取客户端的请求
                 ois = new ObjectInputStream(clientSocket.getInputStream());
-                Call call = (Call) ois.readObject();
+                Call call = (Call) ois.readObject();  // lgtm [java/unsafe-deserialization]
                 // 服务器处理
                 server.call(call);
 
@@ -66,7 +66,7 @@ public class Listener implements Runnable {
                 try {
                     ois.close();
                 } catch (IOException e) {
-                    _log.error("Release resource failed: !", e.getMessage());
+                    _log.error("Release resource failed: {}!", e.getMessage());
                 }
             }
         } finally {
@@ -74,7 +74,7 @@ public class Listener implements Runnable {
                 try {
                     oos.close();
                 } catch (IOException e) {
-                    _log.error("Release resource failed: !", e.getMessage());
+                    _log.error("Release resource failed: {}!", e.getMessage());
                 }
             }
         }

@@ -25,10 +25,6 @@ public class BitMap4GExample {
         this.size = size / 8 + 1;
         base = start;
         bitmap = new char[this.size];
-
-        if (bitmap == null)
-            return 0;
-
         return 1;
     }
 

@@ -67,7 +67,7 @@ public final class ZkTopology {
             try {
                 StormSubmitter.submitTopology("storm-kafka-example", config, builder.createTopology());
             } catch (Exception e) {
-                LOG.error("", e.getMessage());
+                LOG.error("", e);
             }
         } else {
             LocalCluster cluster = new LocalCluster();

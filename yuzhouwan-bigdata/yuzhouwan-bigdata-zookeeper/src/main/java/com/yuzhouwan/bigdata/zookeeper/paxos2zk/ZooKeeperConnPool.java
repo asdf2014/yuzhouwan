@@ -44,14 +44,18 @@ public final class ZooKeeperConnPool {
      * @return a single instance of this class
      */
     public static ZooKeeperConnPool getInstance() {
-        if (instance == null)
+        ZooKeeperConnPool tmp = instance;
+        if (tmp == null) {
             synchronized (ZooKeeperConnPool.class) {
-                if (instance == null) {
-                    instance = new ZooKeeperConnPool();
+                tmp = instance;
+                if (tmp == null) {
+                    tmp = new ZooKeeperConnPool();
                     initStorage();
+                    instance = tmp;
                 }
             }
-        return instance;
+        }
+        return tmp;
     }
 
     /**

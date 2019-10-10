@@ -25,7 +25,6 @@ import org.apache.hadoop.classification.InterfaceStability;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.CommonConfigurationKeys;
 import org.apache.hadoop.fs.HardLink;
-import org.apache.hadoop.io.IOUtils;
 import org.apache.hadoop.io.SecureIOUtils.AlreadyExistsException;
 import org.apache.hadoop.util.NativeCodeLoader;
 import org.apache.hadoop.util.PerformanceAdvisory;
@@ -336,15 +335,10 @@ public class NativeIO {
         if (nativeLoaded && Shell.WINDOWS) {
             copyFileUnbuffered0(src.getAbsolutePath(), dst.getAbsolutePath());
         } else {
-            FileInputStream fis = null;
-            FileOutputStream fos = null;
-            FileChannel input = null;
-            FileChannel output = null;
-            try {
-                fis = new FileInputStream(src);
-                fos = new FileOutputStream(dst);
-                input = fis.getChannel();
-                output = fos.getChannel();
+            try (FileInputStream fis = new FileInputStream(src);
+                 FileOutputStream fos = new FileOutputStream(dst);
+                 FileChannel input = fis.getChannel();
+                 FileChannel output = fos.getChannel()) {
                 long remaining = input.size();
                 long position = 0;
                 long transferred;
@@ -353,17 +347,11 @@ public class NativeIO {
                     remaining -= transferred;
                     position += transferred;
                 }
-            } finally {
-                IOUtils.cleanup(LOG, output);
-                IOUtils.cleanup(LOG, fos);
-                IOUtils.cleanup(LOG, input);
-                IOUtils.cleanup(LOG, fis);
             }
         }
     }
 
-    private static native void copyFileUnbuffered0(String src, String dst)
-            ;
+    private static native void copyFileUnbuffered0(String src, String dst);
 
     public static class POSIX {
         // Flags for open() call from bits/fcntl.h

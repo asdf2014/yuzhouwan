@@ -445,12 +445,7 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
         SecurityProtocols.getInstance().addDefaultProtocols();
 
         snmp = new Snmp(mtDispatcher, _transport);
-        if (snmp != null) {
-            snmp.addCommandResponder(this);
-        } else {
-            System.out.println("Unable to create Target object");
-            System.exit(-1);
-        }
+        snmp.addCommandResponder(this);
 
         if (version == SnmpConstants.version3) {
             mtDispatcher.addMessageProcessingModel(new MPv3());

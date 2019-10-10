@@ -67,8 +67,9 @@ public class WelcomePage {
         Writer out = new OutputStreamWriter(System.out);
         temp.process(root, out);
 
-        FileWriter fileWriter = new FileWriter(new File(outPath));
-        temp.process(root, fileWriter);
+        try (FileWriter fileWriter = new FileWriter(new File(outPath))) {
+            temp.process(root, fileWriter);
+        }
     }
 
     /**

@@ -81,13 +81,18 @@ public final class HttpUtils {
     }
 
     public static HttpUtils getInstance() {
-        if (helper == null) synchronized (HttpUtils.class) {
-            if (helper == null) {
-                helper = new HttpUtils();
-                helper.initialize();
+        HttpUtils tmp = helper;
+        if (tmp == null) {
+            synchronized (HttpUtils.class) {
+                tmp = helper;
+                if (tmp == null) {
+                    tmp = new HttpUtils();
+                    tmp.initialize();
+                    helper = tmp;
+                }
             }
         }
-        return helper;
+        return tmp;
     }
 
     public static String getUserAgent() {

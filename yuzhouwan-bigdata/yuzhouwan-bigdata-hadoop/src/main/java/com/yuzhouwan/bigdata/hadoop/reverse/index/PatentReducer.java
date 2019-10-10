@@ -52,7 +52,7 @@ public class PatentReducer extends Reducer<Text, Text, Text, Text> {
                 throw new RuntimeException(e);
             }
         } catch (Exception e) {
-            LOG.error("", e.getMessage());
+            LOG.error("", e);
         }
     }
 
