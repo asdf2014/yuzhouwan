@@ -39,7 +39,7 @@ public class Client {
         oos.flush();
         //waiting server to send result...
         ois = new ObjectInputStream(socket.getInputStream());
-        Call resultCall = (Call) ois.readObject();
+        Call resultCall = (Call) ois.readObject();  // lgtm [java/unsafe-deserialization]
         call.setResult(resultCall.getResult());
     }
 

@@ -108,7 +108,7 @@ public final class KafkaUtils {
             props.put("send.buffer.bytes", p.getProperty("kafka.send.buffer.bytes"));
 //            props.put("compression.type", "lz4");
         } catch (Exception e) {
-            _log.error("Connect with kafka failed!", e.getMessage());
+            _log.error("Connect with kafka failed {}!", e.getMessage());
             throw new RuntimeException(e);
         }
         _log.info("Connect with kafka successfully!");

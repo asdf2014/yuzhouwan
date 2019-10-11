@@ -45,13 +45,16 @@ public final class KafkaConnPoolUtils {
      * @return a single instance of this class
      */
     public static KafkaConnPoolUtils getInstance() {
-        if (instance == null) synchronized (KafkaConnPoolUtils.class) {
-            if (instance == null) {
-                instance = new KafkaConnPoolUtils();
+        KafkaConnPoolUtils tmp = instance;
+        if (tmp == null) synchronized (KafkaConnPoolUtils.class) {
+            tmp = instance;
+            if (tmp == null) {
+                tmp = new KafkaConnPoolUtils();
                 initStorage();
+                instance = tmp;
             }
         }
-        return instance;
+        return tmp;
     }
 
     /**

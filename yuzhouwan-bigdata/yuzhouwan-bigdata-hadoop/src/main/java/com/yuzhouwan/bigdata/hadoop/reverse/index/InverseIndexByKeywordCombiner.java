@@ -69,7 +69,7 @@ public class InverseIndexByKeywordCombiner extends Reducer<Text, Text, Text, Tex
             //写入到 Hadoop上下文中
             context.write(writeKey, writeValue);
         } catch (IOException | InterruptedException e) {
-            LOG.error("", e.getMessage());
+            LOG.error("", e);
         }
     }
 }

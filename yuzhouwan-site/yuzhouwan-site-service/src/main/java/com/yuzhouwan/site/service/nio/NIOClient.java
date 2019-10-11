@@ -70,7 +70,7 @@ class NIOClient implements Runnable {
                         try {
                             this.sendFirstMsg();
                         } catch (ClosedChannelException e) {
-                            _log.warn("Channel closed!", e.getMessage());
+                            _log.warn("Channel closed with {}!", e.getMessage());
                             this.socketChannel.close();
                             return;
                         }

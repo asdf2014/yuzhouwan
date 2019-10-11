@@ -20,7 +20,6 @@ public class StreamClose {
     public static void main(String[] args) throws Exception {
         int count = 1000_0000;
         while (count > 0) {
-//      stream(count);
             streamRelease(count);
             count--;
             if (count % 100_0000 == 0) {
@@ -29,13 +28,6 @@ public class StreamClose {
             }
         }
         Thread.sleep(Integer.MAX_VALUE);
-    }
-
-    private static void stream(int count) throws IOException {
-        ByteBufferInputStream bb = new ByteBufferInputStream(Collections.singletonList(
-                byteArray2byteBuffer((count + "\"VM Thread\" os_prio=2 tid=0x00000000177bf000 nid=0x24f4 runnable"
-                ).getBytes())));
-        bb.readBuffer(1000);
     }
 
     private static void streamRelease(int count) throws IOException {

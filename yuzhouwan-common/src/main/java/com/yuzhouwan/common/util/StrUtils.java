@@ -194,7 +194,9 @@ public final class StrUtils {
         if (StrUtils.isEmpty(s)) return s;
         char[] hexRawArr = String.format("%x", new BigInteger(1, s.getBytes(StandardCharsets.UTF_8))).toCharArray();
         StringBuilder hexFmtStr = new StringBuilder();
-        for (int i = 0; i < hexRawArr.length; i++) hexFmtStr.append(HEX).append(hexRawArr[i]).append(hexRawArr[++i]);
+        for (int i = 0; i < hexRawArr.length; i++) {
+            hexFmtStr.append(HEX).append(hexRawArr[i]).append(hexRawArr[++i]);  // lgtm [java/index-out-of-bounds]
+        }
         return hexFmtStr.toString();
     }
 
@@ -205,7 +207,9 @@ public final class StrUtils {
         if (StrUtils.isEmpty(s)) return s;
         String[] strArr = s.split(DOUBLE_TRANSFER);
         byte[] byteArr = new byte[strArr.length - 1];
-        for (int i = 1; i < strArr.length; i++) byteArr[i - 1] = Integer.decode(ZERO.concat(strArr[i])).byteValue();
+        for (int i = 1; i < strArr.length; i++) {
+            byteArr[i - 1] = Integer.decode(ZERO.concat(strArr[i])).byteValue();
+        }
         return new String(byteArr, StandardCharsets.UTF_8);
     }
 

@@ -155,6 +155,8 @@ public class StrUtilsTest {
     public void hexTest() {
         String yuzhouwan = "宇宙湾yuzhouwan123";
         assertEquals(yuzhouwan, hex2Str(str2Hex(yuzhouwan)));
+        assertEquals("", hex2Str(str2Hex("")));
+        assertNull(hex2Str(str2Hex(null)));
     }
 
     @Test
