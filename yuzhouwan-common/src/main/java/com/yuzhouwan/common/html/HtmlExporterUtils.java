@@ -108,11 +108,11 @@ public final class HtmlExporterUtils {
                 p.getProperty("html.exporter.user.agent"));
 
         PhantomJSDriver driver = new PhantomJSDriver(phantomCaps);
-        driver.manage().timeouts().implicitlyWait(Integer.valueOf(
+        driver.manage().timeouts().implicitlyWait(Integer.parseInt(
                 p.getProperty("html.exporter.driver.timeouts.implicitly.seconds")), TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(Integer.valueOf(
+        driver.manage().timeouts().pageLoadTimeout(Integer.parseInt(
                 p.getProperty("html.exporter.driver.timeouts.page.load.seconds")), TimeUnit.SECONDS);
-        driver.manage().timeouts().setScriptTimeout(Integer.valueOf(
+        driver.manage().timeouts().setScriptTimeout(Integer.parseInt(
                 p.getProperty("html.exporter.driver.timeouts.script.seconds")), TimeUnit.SECONDS);
 
         if (width == null || height == null) driver.manage().window().maximize();

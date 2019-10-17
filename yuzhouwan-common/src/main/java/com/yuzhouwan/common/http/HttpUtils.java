@@ -62,15 +62,15 @@ public final class HttpUtils {
 
     static {
         String timeOutConn = PropUtils.getInstance().getProperty("TIMEOUT_CONNECTION");
-        TIMEOUT_CONNECTION = StrUtils.isEmpty(timeOutConn) ? TIMEOUT_CONNECTION_DEFAULT : Integer.valueOf(timeOutConn);
+        TIMEOUT_CONNECTION = StrUtils.isEmpty(timeOutConn) ? TIMEOUT_CONNECTION_DEFAULT : Integer.parseInt(timeOutConn);
         String timeSocket = PropUtils.getInstance().getProperty("TIMEOUT_SOCKET");
-        TIMEOUT_SOCKET = StrUtils.isEmpty(timeSocket) ? TIMEOUT_SOCKET_DEFAULT : Integer.valueOf(timeSocket);
+        TIMEOUT_SOCKET = StrUtils.isEmpty(timeSocket) ? TIMEOUT_SOCKET_DEFAULT : Integer.parseInt(timeSocket);
         String maxTotal = PropUtils.getInstance().getProperty("MAX_TOTAL");
-        MAX_TOTAL = StrUtils.isEmpty(maxTotal) ? MAX_TOTAL_DEFAULT : Integer.valueOf(maxTotal);
+        MAX_TOTAL = StrUtils.isEmpty(maxTotal) ? MAX_TOTAL_DEFAULT : Integer.parseInt(maxTotal);
         String maxRetry = PropUtils.getInstance().getProperty("MAX_RETRY");
-        MAX_RETRY = StrUtils.isEmpty(maxRetry) ? MAX_RETRY_DEFAULT : Integer.valueOf(maxRetry);
+        MAX_RETRY = StrUtils.isEmpty(maxRetry) ? MAX_RETRY_DEFAULT : Integer.parseInt(maxRetry);
         String maxRouteTotal = PropUtils.getInstance().getProperty("MAX_ROUTE_TOTAL");
-        MAX_ROUTE_TOTAL = StrUtils.isEmpty(maxRouteTotal) ? MAX_ROUTE_TOTAL_DEFAULT : Integer.valueOf(maxRouteTotal);
+        MAX_ROUTE_TOTAL = StrUtils.isEmpty(maxRouteTotal) ? MAX_ROUTE_TOTAL_DEFAULT : Integer.parseInt(maxRouteTotal);
     }
 
     private CloseableHttpClient httpClient;

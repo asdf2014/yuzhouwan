@@ -53,7 +53,7 @@ public class WKCMonkey {
     }
 
     private void makeTheBestChoice(String monkeyId) {
-        double feed = Integer.valueOf(monkeyId) / (Math.pow(10, monkeyId.length()));
+        double feed = Integer.parseInt(monkeyId) / (Math.pow(10, monkeyId.length()));
         double max = 0, sum = 0;
         int count = 0, maxCount = 0;
         int pointBefore, maxPointBefore = 0;

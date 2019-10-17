@@ -12,6 +12,7 @@ import org.junit.Test;
 public class IfCaseTest {
 
     @Test
+    @SuppressWarnings("UnnecessaryBoxing")
     public void test() {
 
         Boolean A = new Boolean(true);

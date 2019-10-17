@@ -59,6 +59,7 @@ public class JodaTimeHaveATry {
     }
 
     @Test
+    @SuppressWarnings("UnnecessaryBoxing")
     public void longTest() {
         assertEquals("Sun May 28 11:15:14 CST 2017", new Date(Long.valueOf("1495941314418")).toString());
         assertEquals("2017-05-28T11:15:14.418+08:00", new DateTime(Long.valueOf("1495941314418")).toString());
