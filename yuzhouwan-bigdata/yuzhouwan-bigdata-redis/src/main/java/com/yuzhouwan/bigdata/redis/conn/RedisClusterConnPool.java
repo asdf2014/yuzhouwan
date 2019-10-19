@@ -54,7 +54,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         Set<HostAndPort> jedisClusterNodes = new HashSet<>();
         for (String clusters : clusterList.split(",")) {
             hostAndPort = clusters.split(":");
-            jedisClusterNodes.add(new HostAndPort(hostAndPort[0], Integer.valueOf(hostAndPort[1])));
+            jedisClusterNodes.add(new HostAndPort(hostAndPort[0], Integer.parseInt(hostAndPort[1])));
         }
         cluster = new JedisCluster(jedisClusterNodes, buildConf());
     }
@@ -65,7 +65,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         String[] hostAndPort;
         for (String clusters : clusterList.split(",")) {
             hostAndPort = clusters.split(":");
-            pools.add(new JedisPool(buildConf(), hostAndPort[0], Integer.valueOf(hostAndPort[1])));
+            pools.add(new JedisPool(buildConf(), hostAndPort[0], Integer.parseInt(hostAndPort[1])));
         }
     }
 

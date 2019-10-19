@@ -25,6 +25,7 @@ public class DecimalUtilsTest {
     }
 
     @Test
+    @SuppressWarnings("UnnecessaryBoxing")
     public void BooleanTest() {
         Boolean ifCase = null;
         if (ifCase != null && ifCase) {

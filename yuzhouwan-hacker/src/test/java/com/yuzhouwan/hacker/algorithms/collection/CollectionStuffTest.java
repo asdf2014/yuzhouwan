@@ -189,9 +189,9 @@ public class CollectionStuffTest {
         File file = new File("queue.txt");
         try (FileOutputStream fileChannel = new FileOutputStream(file)) {
             byte[] bytes = new byte[3];
-            bytes[0] = Byte.valueOf("1");
-            bytes[1] = Byte.valueOf("2");
-            bytes[2] = Byte.valueOf("3");
+            bytes[0] = Byte.parseByte("1");
+            bytes[1] = Byte.parseByte("2");
+            bytes[2] = Byte.parseByte("3");
             fileChannel.write(bytes);
             fileChannel.flush();
             fileChannel.close();

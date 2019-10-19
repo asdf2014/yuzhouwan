@@ -72,7 +72,7 @@ public final class ESUtils {
                 LOG.warn("Invalid es host: {}!", host);
                 continue;
             }
-            httpHosts.add(new HttpHost(hostAndPort[0], Integer.valueOf(hostAndPort[1]), "http"));
+            httpHosts.add(new HttpHost(hostAndPort[0], Integer.parseInt(hostAndPort[1]), "http"));
         }
         int size;
         HttpHost[] httpHostsArray = new HttpHost[size = httpHosts.size()];

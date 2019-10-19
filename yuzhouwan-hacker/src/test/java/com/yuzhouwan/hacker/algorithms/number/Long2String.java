@@ -31,7 +31,7 @@ public class Long2String {
     public void bigNumber2Str() {
         int v = 5000_0000;
         assertEquals("16666666", "" + v / 3);
-        assertEquals("2.5E7", "" + (Double.valueOf(v + "") / 2));
+        assertEquals("2.5E7", "" + (Double.parseDouble(v + "") / 2));
         assertEquals("16666667", "" + new BigDecimal(v).divide(BigDecimal.valueOf(3), new MathContext(8))
                 .toPlainString());
     }
