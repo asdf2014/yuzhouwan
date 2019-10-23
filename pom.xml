@@ -89,7 +89,7 @@
         <apache.curator.version>2.13.0</apache.curator.version>
 
         <!-- quartz -->
-        <quartz.version>2.3.1</quartz.version>
+        <quartz.version>2.3.2</quartz.version>
 
         <!-- spring -->
         <spring.version>4.3.25.RELEASE</spring.version>
