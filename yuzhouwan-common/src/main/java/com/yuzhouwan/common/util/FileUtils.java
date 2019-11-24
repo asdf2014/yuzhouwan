@@ -18,7 +18,7 @@ import java.io.IOException;
  */
 public final class FileUtils {
 
-    private static final Logger LOG = LoggerFactory.getLogger(FileUtils.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FileUtils.class);
 
     public static final int RETRY_DELETE_DEFAULT_TIMES = 3;
     public static final int RETRY_DELETE_DEFAULT_INTERVAL_MS = 100;
@@ -61,9 +61,9 @@ public final class FileUtils {
     public static void retryDelete(File file, int count, long millisecond) {
         int copyCount = count;
         while (checkExist(file) && count > 0) {
-            LOG.debug("File Delete Try Count: {}", copyCount - count + 1);
+            LOGGER.debug("File Delete Try Count: {}", copyCount - count + 1);
             if (file.delete()) {
-                LOG.debug("File Deleted!");
+                LOGGER.debug("File Deleted!");
                 return;
             }
             count--;

@@ -1,6 +1,5 @@
 package com.yuzhouwan.log.storm.base;
 
-
 import backtype.storm.spout.SpoutOutputCollector;
 import backtype.storm.task.TopologyContext;
 import backtype.storm.topology.OutputFieldsDeclarer;
@@ -22,7 +21,7 @@ import java.util.Map;
  */
 public class StringSpout extends BaseRichSpout {
 
-    private static final Logger _log = LoggerFactory.getLogger(StringSpout.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(StringSpout.class);
 
     private SpoutOutputCollector collector;
 
@@ -41,7 +40,7 @@ public class StringSpout extends BaseRichSpout {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            _log.error("", e.getMessage());
+            LOGGER.error("", e);
         }
     }
 

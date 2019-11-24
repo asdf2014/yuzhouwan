@@ -11,6 +11,7 @@ import java.util.Properties;
  * @since 2016/4/8
  */
 class Prop {
+
     private Properties p;
     private long modify;
 

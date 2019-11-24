@@ -22,7 +22,7 @@ import static com.yuzhouwan.common.util.CollectionUtils.remove;
  */
 public final class BeanUtils {
 
-    private static final Logger _log = LoggerFactory.getLogger(BeanUtils.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(BeanUtils.class);
     private static final String FIELD_NAME = "name", DRUID_METRICS = "metric", DRUID_VALUE = "value";
     private static final ConcurrentHashMap<String, Vector<Field>> FIELDS_CACHE = new ConcurrentHashMap<>();
 
@@ -49,7 +49,7 @@ public final class BeanUtils {
             if (field == null) continue;
             if (valueField(o, key, value, field, ignores)) return;
         }
-        _log.debug("[Warn] Cannot be swapped! object: {}, key: {}, value: {}, ignores: {}",
+        LOGGER.debug("[Warn] Cannot be swapped! object: {}, key: {}, value: {}, ignores: {}",
                 o, key, value, JSON.toJSONString(ignores));
     }
 
@@ -69,7 +69,7 @@ public final class BeanUtils {
             try {
                 field.set(o, value);
             } catch (IllegalAccessException e) {
-                _log.error(ExceptionUtils.errorInfo(e));
+                LOGGER.error(ExceptionUtils.errorInfo(e));
                 return false;
             }
             return true;
@@ -248,7 +248,7 @@ public final class BeanUtils {
                 f.setAccessible(true);
                 jsonObject.put(f.getName(), f.get(obj));
             } catch (IllegalAccessException e) {
-                _log.error(ExceptionUtils.errorInfo(e));
+                LOGGER.error(ExceptionUtils.errorInfo(e));
             }
         LinkedList<String> rows = new LinkedList<>();
         if (forDruid) dealWithTail4Druid(obj, tail, rows, jsonObject);
@@ -275,7 +275,7 @@ public final class BeanUtils {
                 rows.add(jsonObject.toJSONString());
                 tailPrev = t;
             } catch (IllegalAccessException e) {
-                _log.error(ExceptionUtils.errorInfo(e));
+                LOGGER.error(ExceptionUtils.errorInfo(e));
             }
     }
 
@@ -304,7 +304,7 @@ public final class BeanUtils {
                 jsonObject.put(DRUID_VALUE, t.get(obj));
                 rows.add(jsonObject.toJSONString());
             } catch (IllegalAccessException e) {
-                _log.error(ExceptionUtils.errorInfo(e));
+                LOGGER.error(ExceptionUtils.errorInfo(e));
             }
     }
 

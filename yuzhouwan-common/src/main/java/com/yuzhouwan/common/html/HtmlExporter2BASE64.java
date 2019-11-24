@@ -46,7 +46,7 @@ public class HtmlExporter2BASE64 implements IHtmlExporter<String> {
         PhantomJSDriver driver = null;
         try {
             driver = HtmlExporterUtils.prepare(url, addedCookie, width, height);
-            return driver == null ? "" : driver.getScreenshotAs(OutputType.BASE64);
+            return driver.getScreenshotAs(OutputType.BASE64);
         } finally {
             HtmlExporterUtils.release(driver);
         }

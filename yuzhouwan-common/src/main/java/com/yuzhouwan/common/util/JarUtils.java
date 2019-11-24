@@ -21,7 +21,7 @@ import java.util.zip.ZipInputStream;
  */
 public final class JarUtils {
 
-    private static final Logger _log = LoggerFactory.getLogger(JarUtils.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(JarUtils.class);
 
     private static final String SUFFIX_JAR = ".jar";
     private static final String LIB_PATH = DirUtils.getLibPathInWebApp();
@@ -53,7 +53,7 @@ public final class JarUtils {
                 loadPropsWithinJar(projectJarPath);
 
             // /classes/lib/*.jar
-            _log.debug("CLASSES_PATH is {}", CLASSES_PATH);
+            LOGGER.debug("CLASSES_PATH is {}", CLASSES_PATH);
             if (!StrUtils.isEmpty(CLASSES_PATH)) {
                 if ((jarPaths = DirUtils.findPath(CLASSES_PATH, "lib", SUFFIX_JAR, false)) != null
                         && jarPaths.size() > 0)
@@ -64,7 +64,7 @@ public final class JarUtils {
             }
 
             // /lib/*.jar
-            _log.debug("LIB_PATH is {}", LIB_PATH);
+            LOGGER.debug("LIB_PATH is {}", LIB_PATH);
             if (!StrUtils.isEmpty(LIB_PATH)) {
                 if ((jarPaths = DirUtils.findPath(LIB_PATH, "lib", SUFFIX_JAR, false)) != null && jarPaths.size() > 0)
                     for (String jarFile : jarPaths) {
@@ -76,12 +76,12 @@ public final class JarUtils {
                     }
             }
         } catch (Exception e) {
-            _log.error(ExceptionUtils.errorInfo(e));
+            LOGGER.error(ExceptionUtils.errorInfo(e));
             throw new RuntimeException(e);
         }
-        _log.debug("The number of Properties in Jar is {}.", p.keySet().size());
+        LOGGER.debug("The number of Properties in Jar is {}.", p.keySet().size());
         for (Object key : p.keySet()) {
-            _log.debug("{} : {}", key, p.get(key));
+            LOGGER.debug("{} : {}", key, p.get(key));
         }
     }
 
@@ -93,30 +93,30 @@ public final class JarUtils {
         String prefix = PropUtils.getInstance().getPropertyInternal("prefix.path.for.scan.dir.with.jar");
         String sourcePath = (StrUtils.isEmpty(StrUtils.isEmpty(prefix) ? "" : prefix)
                 ? DirUtils.PROJECT_BASE_PATH.concat("/") : "").concat(jarPath);
-        _log.debug("SourcePath: {}", sourcePath);
+        LOGGER.debug("SourcePath: {}", sourcePath);
         URL sourceUrl = JarUtils.class.getClassLoader().getResource(sourcePath);
         if (sourceUrl == null && StrUtils.isEmpty(sourcePath)) {
             if (!StrUtils.isEmpty(sourcePath)) {
                 sourcePath = PropUtils.getInstance().getPropertyInternal("file.source.url.prefix").concat(sourcePath);
-                _log.debug("SourcePath: {}", sourcePath);
+                LOGGER.debug("SourcePath: {}", sourcePath);
                 sourceUrl = new URL(sourcePath);
             }
         }
         if (sourceUrl == null) return;
-        _log.debug("Jar Path: {}", sourceUrl.getPath());
+        LOGGER.debug("Jar Path: {}", sourceUrl.getPath());
         loadPropsWithinJar(sourceUrl);
     }
 
     public static void loadPropsWithinJar(String jarPath) throws Exception {
         // file:/
         String sysFilePrefix = PropUtils.getInstance().getPropertyInternal("file.source.url.prefix");
-        _log.debug("System File Url Prefix: {}", sysFilePrefix);
+        LOGGER.debug("System File Url Prefix: {}", sysFilePrefix);
         if (!StrUtils.isEmpty(sysFilePrefix))
             loadPropsWithinJar(new URL(sysFilePrefix.concat(jarPath)));
     }
 
     public static void loadPropsWithinJar(URL sourceUrl) throws Exception {
-        _log.debug("Load Properties Within Jar File: {}", sourceUrl.getPath());
+        LOGGER.debug("Load Properties Within Jar File: {}", sourceUrl.getPath());
         try (ZipInputStream zip = new ZipInputStream(sourceUrl.toURI().toURL().openStream())) {
             if (zip.available() == 0)
                 throw new RuntimeException(sourceUrl.getPath().concat(" is not exist or cannot be available!!"));
@@ -127,9 +127,9 @@ public final class JarUtils {
                     if (StrUtils.isEmpty(StrUtils.cutStartStr(name, PROP_PATH))) continue;
                     p.load(JarUtils.class.getResourceAsStream("/".concat(name)));
                     for (Object key : p.keySet())
-                        _log.debug("JarUtils k-v: <{} = {}>", key, p.get(key));
+                        LOGGER.debug("JarUtils k-v: <{} = {}>", key, p.get(key));
                 }
-                _log.debug("Properties File name is {}", name);
+                LOGGER.debug("Properties File name is {}", name);
             }
         }
     }
@@ -146,7 +146,7 @@ public final class JarUtils {
             return !new File(clazz.getProtectionDomain().getCodeSource().getLocation().toURI())
                     .getName().endsWith(SUFFIX_JAR);
         } catch (Exception e) {
-            _log.error(ExceptionUtils.errorInfo(e));
+            LOGGER.error(ExceptionUtils.errorInfo(e));
             return true;
         }
     }

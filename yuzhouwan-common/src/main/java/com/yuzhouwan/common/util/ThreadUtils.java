@@ -16,7 +16,7 @@ import java.util.concurrent.*;
  */
 public final class ThreadUtils {
 
-    private static final Logger _log = LoggerFactory.getLogger(ThreadUtils.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ThreadUtils.class);
     private static long MIN_PERIOD_MILLISECOND;
 
     static {
@@ -88,7 +88,7 @@ public final class ThreadUtils {
                     // jdk7: new ArrayBlockingQueue<Runnable>
                     new ArrayBlockingQueue<>(jobArrayBlockingQueueSize), threadFactory);
         } catch (Exception e) {
-            _log.error(ExceptionUtils.errorInfo(e));
+            LOGGER.error(ExceptionUtils.errorInfo(e));
             executorService = Executors.newCachedThreadPool(threadFactory);
         }
         return executorService;
@@ -123,13 +123,13 @@ public final class ThreadUtils {
             if (passedPeriod < aimPeriod) {
                 if ((sleep = aimPeriod - passedPeriod) < minPeriod) sleep = minPeriod;
             } else {
-                _log.warn("Thread:{}, Used Time: {}, Excepted Period Time: {}",
+                LOGGER.warn("Thread:{}, Used Time: {}, Excepted Period Time: {}",
                         Thread.currentThread().getName(), passedPeriod, aimPeriod);
                 sleep = minPeriod;
             }
             Thread.sleep(sleep);
         } catch (InterruptedException e) {
-            _log.error(ExceptionUtils.errorInfo(e));
+            LOGGER.error(ExceptionUtils.errorInfo(e));
         }
     }
 }

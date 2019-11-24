@@ -22,7 +22,7 @@ import static com.yuzhouwan.common.util.StrUtils.isEmpty;
  */
 public final class PropUtils {
 
-    private static final Logger _log = LoggerFactory.getLogger(PropUtils.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PropUtils.class);
     private static final Properties properties = new Properties();
 
     private static volatile PropUtils instance;
@@ -35,7 +35,7 @@ public final class PropUtils {
             try (FileInputStream fis = new FileInputStream(confFile)) {
                 properties.load(fis);
             } catch (Exception e) {
-                _log.error(ExceptionUtils.errorInfo(e));
+                LOGGER.error(ExceptionUtils.errorInfo(e));
             }
         }
     }
@@ -97,7 +97,7 @@ public final class PropUtils {
 
     public boolean addProperty(Properties properties, boolean isCover) {
         if (properties == null || properties.size() == 0) {
-            _log.error("Properties is empty!");
+            LOGGER.error("Properties is empty!");
             return false;
         }
         for (Map.Entry<Object, Object> entry : properties.entrySet()) {
@@ -110,7 +110,7 @@ public final class PropUtils {
 
     public boolean addProperty(String key, String value) {
         if (isEmpty(key)) {
-            _log.error(String.format("Params are invalid, key: %s, value: %s!", key, value));
+            LOGGER.error(String.format("Params are invalid, key: %s, value: %s!", key, value));
             return false;
         }
         properties.put(key, value);

@@ -20,7 +20,7 @@ import java.util.TimeZone;
  */
 public final class TimeUtils {
 
-    private static final Logger LOG = LoggerFactory.getLogger(TimeUtils.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TimeUtils.class);
 
     private static final SimpleDateFormat SIMPLE_DATA_FORMAT_TIME_ZONE
             = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss SSS z");
@@ -177,7 +177,7 @@ public final class TimeUtils {
         try {
             return SIMPLE_DATA_FORMAT_TIME_ZONE.parse(SIMPLE_DATA_FORMAT_TIME_ZONE.format(date));
         } catch (ParseException e) {
-            LOG.error("Change TimeZone failed!", e);
+            LOGGER.error("Change TimeZone failed!", e);
         }
         return null;
     }

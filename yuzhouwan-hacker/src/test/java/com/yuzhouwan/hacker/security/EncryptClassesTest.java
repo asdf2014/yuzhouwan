@@ -1,6 +1,7 @@
 package com.yuzhouwan.hacker.security;
 
 import com.yuzhouwan.common.dir.DirUtils;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -16,6 +17,7 @@ public class EncryptClassesTest {
     private static final String CLASSES_PATH = DirUtils.getClassesPath() + "/com/yuzhouwan/hacker/security/";
 
     @Test
+    @Ignore
     public void encrypt() throws Exception {
         EncryptClasses.encrypt(DirUtils.RESOURCES_PATH.concat("security/key.data"),
                 CLASSES_PATH.concat("UnsafeApp.class"),

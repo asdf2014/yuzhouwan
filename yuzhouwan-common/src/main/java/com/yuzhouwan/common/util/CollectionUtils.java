@@ -20,7 +20,7 @@ import static java.util.stream.Collectors.*;
  */
 public final class CollectionUtils {
 
-    private static final Logger _log = LoggerFactory.getLogger(CollectionUtils.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CollectionUtils.class);
 
     private CollectionUtils() {
     }
@@ -97,7 +97,7 @@ public final class CollectionUtils {
                 if (collO.equals(aimO) || fieldClass.cast(collO).equals(fieldClass.cast(aimO))) return (end = e);
             }
         } catch (Exception e) {
-            _log.error(ExceptionUtils.errorInfo(e,
+            LOGGER.error(ExceptionUtils.errorInfo(e,
                     String.format("fieldName: %s, class: %s, object in collection: %s, object aim: %s",
                             fieldName, fieldClass.getName(), collO, aimO)));
         } finally {
@@ -120,7 +120,7 @@ public final class CollectionUtils {
         try {
             for (T c : coll) if (canRemove(field, c, removes)) needRemoved.add(c);
         } catch (Exception e) {
-            _log.error(ExceptionUtils.errorInfo(e));
+            LOGGER.error(ExceptionUtils.errorInfo(e));
             throw new RuntimeException(e);
         }
         coll.removeAll(needRemoved);
@@ -174,6 +174,7 @@ public final class CollectionUtils {
         }
     }
 
+    @SuppressWarnings("StatementWithEmptyBody")
     private static int partition(int[] a, int lo, int hi) {
         int i = lo;
         int j = hi + 1;

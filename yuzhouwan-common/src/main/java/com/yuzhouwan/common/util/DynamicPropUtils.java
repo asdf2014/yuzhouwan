@@ -29,7 +29,7 @@ import java.util.concurrent.atomic.LongAdder;
  */
 public final class DynamicPropUtils implements Serializable, Cloneable, Closeable {
 
-    private static final Logger _log = LoggerFactory.getLogger(DynamicPropUtils.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DynamicPropUtils.class);
     private static final String ZNODE_PREFIX = "/";
     private static final ConcurrentHashMap<String, Prop> PROJECT_PROPERTIES = new ConcurrentHashMap<>();
     // curator configs
@@ -54,7 +54,7 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
             try {
                 Thread.sleep(TICK_MILLIS);
             } catch (InterruptedException e) {
-                _log.error("", e);
+                LOGGER.error("", e);
             }
         }
     };
@@ -67,7 +67,7 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
         try {
             initCurator();
         } catch (Exception e) {
-            _log.error("Cannot init curator in Dynamic PropUtils!", e);
+            LOGGER.error("Cannot init curator in Dynamic PropUtils!", e);
             throw new RuntimeException(e);
         }
         KEEP_SYNCING = true;
@@ -75,7 +75,7 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
     }
 
     private static void initCurator() throws Exception {
-        _log.debug("Curator initializing...");
+        LOGGER.debug("Curator initializing...");
 
         Object zkPath;
         int count = 0;
@@ -84,8 +84,8 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
                 instance.close();
                 System.exit(-1);
             }
-            _log.warn("Cannot get dynamic.prop.utils.zk.path from Dynamic PropUtils! Times: {}", count);
-            _log.warn("PropUtils: {}", JSON.toJSONString(PropUtils.getInstance().getProperties()));
+            LOGGER.warn("Cannot get dynamic.prop.utils.zk.path from Dynamic PropUtils! Times: {}", count);
+            LOGGER.warn("PropUtils: {}", JSON.toJSONString(PropUtils.getInstance().getProperties()));
             Thread.sleep(TICK_MILLIS);
         }
         curatorFramework = CuratorFrameworkFactory
@@ -96,10 +96,10 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
                 .retryPolicy(new ExponentialBackoffRetry(RETRY_POLICY_INTERVAL, RETRY_POLICY_TIMES))
                 .namespace("dynamic")
                 .build();
-        _log.debug("Curator initialized.");
-        _log.debug("Curator starting...");
+        LOGGER.debug("Curator initialized.");
+        LOGGER.debug("Curator starting...");
         curatorFramework.start();
-        _log.debug("Curator started.");
+        LOGGER.debug("Curator started.");
     }
 
     public static DynamicPropUtils getInstance() {
@@ -113,7 +113,7 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
 
     public boolean add(String projectName, Properties p) {
         if (projectName == null || p == null) {
-            _log.warn("Params is invalid! projectName: {}, properties: {}.", projectName, p);
+            LOGGER.warn("Params is invalid! projectName: {}, properties: {}.", projectName, p);
             return false;
         }
         Prop prop = PROJECT_PROPERTIES.get(projectName);
@@ -133,7 +133,7 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
 
     public Object get(String projectName, String key) {
         if (projectName == null || key == null) {
-            _log.warn("Params is invalid! projectName: {}, key: {}.", projectName, key);
+            LOGGER.warn("Params is invalid! projectName: {}, key: {}.", projectName, key);
             return null;
         }
         Properties p = getProperties(projectName);
@@ -143,7 +143,7 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
 
     public Properties getProperties(String projectName) {
         if (projectName == null) {
-            _log.warn("ProjectName is null!");
+            LOGGER.warn("ProjectName is null!");
             return null;
         }
         Prop prop = PROJECT_PROPERTIES.get(projectName);
@@ -157,14 +157,14 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
 
     public Object getFromRemote(String projectName, String key) {
         if (projectName == null || key == null) {
-            _log.warn("Params is invalid! projectName: {}, key: {}.", projectName, key);
+            LOGGER.warn("Params is invalid! projectName: {}, key: {}.", projectName, key);
             return null;
         }
         Prop propFromRemote;
         try {
             propFromRemote = getPropFromRemote(projectName);
         } catch (Exception e) {
-            _log.error("", e);
+            LOGGER.error("", e);
             return null;
         }
         if (propFromRemote == null) return null;
@@ -179,7 +179,7 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
 
         // (local + non_local) * (remote + non_monitor)
         if (projectName == null) {
-            _log.error("Sync failed! Cause projectName cannot be null!");
+            LOGGER.error("Sync failed! Cause projectName cannot be null!");
             return false;
         }
         ExistsBuilder existsBuilder = curatorFramework.checkExists();
@@ -187,33 +187,33 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
         try {
             stat = existsBuilder.forPath(ZNODE_PREFIX.concat(projectName));
         } catch (Exception e) {
-            _log.error("Sync failed!", e);
+            LOGGER.error("Sync failed!", e);
             return false;
         }
         Prop localProp = PROJECT_PROPERTIES.get(projectName);
         boolean isRemote, isLocal;
         if (stat == null) {
-            _log.debug("Configuration about project[{}] is not on remote.", projectName);
+            LOGGER.debug("Configuration about project[{}] is not on remote.", projectName);
             isRemote = false;
         } else {
-            _log.debug("Configuration about project[{}] is on remote.", projectName);
+            LOGGER.debug("Configuration about project[{}] is on remote.", projectName);
             isRemote = true;
         }
         if (localProp == null) {
-            _log.debug("Configuration about project[{}] is not on local.", projectName);
+            LOGGER.debug("Configuration about project[{}] is not on local.", projectName);
             isLocal = false;
         } else {
-            _log.debug("Configuration about project[{}] is on local.", projectName);
+            LOGGER.debug("Configuration about project[{}] is on local.", projectName);
             isLocal = true;
         }
         boolean isSynced = internalSync(projectName, localProp, isRemote, isLocal);
-        if (isSynced) _log.debug("Sync success!");
+        if (isSynced) LOGGER.debug("Sync success!");
         return isSynced;
     }
 
     private boolean uninitialized() {
         if (curatorFramework == null) {
-            _log.error("Sync failed! Cause curatorFramework is null!");
+            LOGGER.error("Sync failed! Cause curatorFramework is null!");
             return true;
         }
         return false;
@@ -222,7 +222,7 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
     private boolean internalSync(String projectName, Prop localProp, boolean isRemote, boolean isLocal) {
         try {
             if (!isLocal && !isRemote) {
-                _log.warn("Sync failed! Cause: config about project[{}] is not on local and remote!", projectName);
+                LOGGER.warn("Sync failed! Cause: config about project[{}] is not on local and remote!", projectName);
                 return false;
             } else if (isLocal && !isRemote) {
                 curatorFramework
@@ -230,7 +230,7 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
                         .creatingParentsIfNeeded()
                         .withMode(CreateMode.PERSISTENT)
                         .forPath(ZNODE_PREFIX.concat(projectName));
-                _log.debug("Created ".concat(projectName));
+                LOGGER.debug("Created ".concat(projectName));
                 return setProp2Remote(projectName, localProp);
             } else if (!isLocal) {
                 Prop remoteProp = getPropFromRemote(projectName);
@@ -246,7 +246,7 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
                 else return setProp2Remote(projectName, localProp);
             }
         } catch (Exception e) {
-            _log.error("Sync failed!", e);
+            LOGGER.error("Sync failed!", e);
             return false;
         }
         return true;
@@ -257,7 +257,7 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
         curatorFramework.setData()
                 .forPath(ZNODE_PREFIX.concat(projectName),
                         JSON.toJSONString(localProp).getBytes(StandardCharsets.UTF_8));
-        _log.debug("Set data to remote success!");
+        LOGGER.debug("Set data to remote success!");
         return true;
     }
 

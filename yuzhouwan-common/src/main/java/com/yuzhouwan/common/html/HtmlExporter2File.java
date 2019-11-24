@@ -49,7 +49,7 @@ public class HtmlExporter2File implements IHtmlExporter<File> {
         PhantomJSDriver driver = null;
         try {
             driver = HtmlExporterUtils.prepare(url, addedCookie, width, height);
-            return driver == null ? null : driver.getScreenshotAs(OutputType.FILE);
+            return driver.getScreenshotAs(OutputType.FILE);
         } finally {
             HtmlExporterUtils.release(driver);
         }

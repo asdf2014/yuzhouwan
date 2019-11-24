@@ -27,7 +27,7 @@ public class WatchRunnable implements Runnable {
      */
     private boolean isRunning = true;
 
-    public WatchRunnable(WatchService watchService, IDirUtils dealProcessor, Long waitTime) {
+    WatchRunnable(WatchService watchService, IDirUtils dealProcessor, Long waitTime) {
         this.dealProcessor = dealProcessor;
         this.waitTime = waitTime;
         this.watchService = watchService;
