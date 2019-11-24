@@ -26,7 +26,7 @@ public class ShellUtils {
         try {
             String cmd = "/bin/sh -c " + script;
             String[] envs = {"val=2", "call=Bash Shell"};
-            final Process process = Runtime.getRuntime().exec(cmd, envs);
+            final Process process = Runtime.getRuntime().exec(cmd, envs);  // lgtm [java/concatenated-command-line]
             final InputStream outStream = process.getInputStream();
             shellOutput(outStream);
             final InputStream errorStream = process.getErrorStream();
