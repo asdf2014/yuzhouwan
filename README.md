@@ -1,7 +1,10 @@
 [<img align="right" width="30%" height="30%" src="https://user-images.githubusercontent.com/8108788/58363706-18c4d080-7edb-11e9-947a-cf7233c8e2cc.png">](https://yuzhouwan.com/)
 
 [![Build Status](https://travis-ci.org/asdf2014/yuzhouwan.svg?branch=master)](https://travis-ci.org/asdf2014/yuzhouwan)
+[![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/asdf2014/yuzhouwan.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/asdf2014/yuzhouwan/context:java)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/asdf2014/yuzhouwan.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/asdf2014/yuzhouwan/context:python)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/asdf2014/yuzhouwan.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/asdf2014/yuzhouwan/context:javascript)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/asdf2014/yuzhouwan.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/asdf2014/yuzhouwan/alerts/)
 [![Codecov](https://codecov.io/gh/asdf2014/yuzhouwan/branch/master/graph/badge.svg)](https://codecov.io/gh/asdf2014/yuzhouwan)
 [![License](https://img.shields.io/github/license/asdf2014/yuzhouwan)](https://yuzhouwan.com/)
 
