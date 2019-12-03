@@ -18,6 +18,7 @@
         <module>yuzhouwan-bigdata-spark</module>
         <module>yuzhouwan-bigdata-storm</module>
         <module>yuzhouwan-bigdata-hbase</module>
+        <module>yuzhouwan-bigdata-lucene</module>
         <module>yuzhouwan-bigdata-elastic</module>
         <module>yuzhouwan-bigdata-druid</module>
         <module>yuzhouwan-bigdata-flume</module>
