@@ -108,7 +108,7 @@
         <mybatis.version>3.5.3</mybatis.version>
 
         <!-- mysql -->
-        <mysql.jdbc.connection.version>8.0.18</mysql.jdbc.connection.version>
+        <mysql.jdbc.connection.version>8.0.19</mysql.jdbc.connection.version>
 
         <!-- spring+mybatis -->
         <spring.mybatis.version>2.0.3</spring.mybatis.version>
