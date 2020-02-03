@@ -428,19 +428,19 @@
         <repository>
             <id>scalaz</id>
             <name>scalaz</name>
-            <url>http://dl.bintray.com/scalaz/releases</url>
+            <url>https://dl.bintray.com/scalaz/releases</url>
         </repository>
 
         <repository>
             <id>mvnrepository</id>
             <name>Derbysoft Release Repository</name>
-            <url>http://search.maven.org/remotecontent?filepath=</url>
+            <url>https://search.maven.org/remotecontent?filepath=</url>
         </repository>
 
         <repository>
             <id>jahia</id>
             <name>mvnrepository</name>
-            <url>http://maven.jahia.org/maven2</url>
+            <url>https://maven.jahia.org/maven2</url>
         </repository>
     </repositories>
 </project>

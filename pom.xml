@@ -323,7 +323,7 @@
         <!-- Fix Clojar(Clojure Jar) -->
         <repository>
             <id>clojars.org</id>
-            <url>http://clojars.org/repo</url>
+            <url>https://clojars.org/repo</url>
             <releases>
                 <enabled>true</enabled>
                 <updatePolicy>always</updatePolicy>
