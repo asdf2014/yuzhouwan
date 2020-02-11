@@ -23,7 +23,7 @@ import static com.yuzhouwan.common.util.StrUtils.isEmpty;
 public final class PropUtils {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PropUtils.class);
-    private static final Properties properties = new Properties();
+    private static final Properties PROPERTIES = new Properties();
 
     private static volatile PropUtils instance;
 
@@ -33,7 +33,7 @@ public final class PropUtils {
         for (String confPath : confPathList) {
             if (isEmpty(confPath) || !(confFile = new File(confPath)).exists()) continue;
             try (FileInputStream fis = new FileInputStream(confFile)) {
-                properties.load(fis);
+                PROPERTIES.load(fis);
             } catch (Exception e) {
                 LOGGER.error(ExceptionUtils.errorInfo(e));
             }
@@ -63,8 +63,7 @@ public final class PropUtils {
      */
     public String getProperty(String key, boolean withinJar) {
         if (isEmpty(key)) return null;
-        if (properties == null) throw new RuntimeException("Properties is not valid!!");
-        String value = properties.getProperty(key);
+        String value = PROPERTIES.getProperty(key);
         if (withinJar && isEmpty(value)) {
             String valueJar = JarUtils.getInstance().getProperty(key);
             return isEmpty(valueJar) ? value : valueJar;
@@ -103,7 +102,7 @@ public final class PropUtils {
         for (Map.Entry<Object, Object> entry : properties.entrySet()) {
             Object key = entry.getKey();
             if (!isCover) continue;
-            PropUtils.properties.put(key, properties.get(key));
+            PropUtils.PROPERTIES.put(key, properties.get(key));
         }
         return true;
     }
@@ -113,11 +112,11 @@ public final class PropUtils {
             LOGGER.error(String.format("Params are invalid, key: %s, value: %s!", key, value));
             return false;
         }
-        properties.put(key, value);
+        PROPERTIES.put(key, value);
         return true;
     }
 
     public Properties getProperties() {
-        return properties;
+        return PROPERTIES;
     }
 }
