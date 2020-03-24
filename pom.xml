@@ -160,6 +160,9 @@
         <jakson.version>2.8.0</jakson.version>
         <org.codehaus.jackson.jackson-mapper-asl.version>1.9.13</org.codehaus.jackson.jackson-mapper-asl.version>
 
+        <!-- ZSTD -->
+        <zstd.version>1.4.4-7</zstd.version>
+
         <!-- apache tika -->
         <apache.tika.version>1.11</apache.tika.version>
 
