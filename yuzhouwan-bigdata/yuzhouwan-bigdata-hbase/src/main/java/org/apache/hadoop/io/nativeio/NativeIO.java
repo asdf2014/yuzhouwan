@@ -864,8 +864,6 @@ public class NativeIO {
          */
         private static native String getOwner(FileDescriptor fd);
 
-        ;
-
         /**
          * Windows only method used to check if the current process has requested
          * access rights on the given path.
