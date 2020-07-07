@@ -1,6 +1,6 @@
 package com.yuzhouwan.hacker.algorithms.reflection;
 
-import com.yuzhouwan.hacker.json.A;
+import com.yuzhouwan.hacker.json.fastjson.A;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

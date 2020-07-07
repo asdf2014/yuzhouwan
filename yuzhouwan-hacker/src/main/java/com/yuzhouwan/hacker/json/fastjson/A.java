@@ -1,4 +1,4 @@
-package com.yuzhouwan.hacker.json;
+package com.yuzhouwan.hacker.json.fastjson;
 
 import java.io.Serializable;
 

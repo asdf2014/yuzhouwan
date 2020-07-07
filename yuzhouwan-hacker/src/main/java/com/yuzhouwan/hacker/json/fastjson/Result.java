@@ -1,4 +1,4 @@
-package com.yuzhouwan.hacker.json;
+package com.yuzhouwan.hacker.json.fastjson;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
