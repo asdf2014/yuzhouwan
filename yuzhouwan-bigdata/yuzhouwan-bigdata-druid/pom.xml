@@ -33,5 +33,12 @@
             <artifactId>async-http-client</artifactId>
             <version>${async-http-client.version}</version>
         </dependency>
+
+        <!-- calcite -->
+        <dependency>
+            <groupId>org.apache.calcite</groupId>
+            <artifactId>calcite-druid</artifactId>
+            <version>${calcite-druid.version}</version>
+        </dependency>
     </dependencies>
 </project>
