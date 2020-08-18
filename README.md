@@ -115,6 +115,6 @@ __[https://yuzhouwan.com](https://yuzhouwan.com)__
 
 　Just [Google](https://www.google.com/search?q=宇宙湾) it :D
 
-![Google yuzhouwan.com](https://picture.yuzhouwan.com/google_yuzhouwan.png?imageslim)
+![Google yuzhouwan.com](https://yuzhouwan.github.io/picture/blog/google_yuzhouwan.png)
 
 
