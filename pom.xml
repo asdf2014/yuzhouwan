@@ -242,7 +242,7 @@
         <redis.client.version>2.10.2</redis.client.version>
 
         <!-- apache calcite -->
-        <calcite-druid.version>1.24.0</calcite-druid.version>
+        <calcite-druid.version>1.25.0</calcite-druid.version>
     </properties>
 
     <build>
