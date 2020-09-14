@@ -150,7 +150,7 @@
         <!-- jFreeChart-->
         <jfreechart.version>1.5.0</jfreechart.version>
         <!-- iTextPDF-->
-        <itextpdf.version>5.5.13.1</itextpdf.version>
+        <itextpdf.version>5.5.13.2</itextpdf.version>
 
         <!-- lmax disruptor -->
         <lmax.disruptor.version>3.4.2</lmax.disruptor.version>
