@@ -15,7 +15,7 @@ import java.util.LinkedList;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Copyright @ 2019 yuzhouwan.com
+ * Copyright @ 2020 yuzhouwan.com
  * All right reserved.
  * Function：Zookeeper Benchmark Watch
  *

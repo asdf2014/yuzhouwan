@@ -21,7 +21,7 @@ import static com.yuzhouwan.common.util.StrUtils.isBlank;
 import static com.yuzhouwan.common.util.StrUtils.isNotBlank;
 
 /**
- * Copyright @ 2019 yuzhouwan.com
+ * Copyright @ 2020 yuzhouwan.com
  * All right reserved.
  * Function：ElasticSearch Utils Test
  *

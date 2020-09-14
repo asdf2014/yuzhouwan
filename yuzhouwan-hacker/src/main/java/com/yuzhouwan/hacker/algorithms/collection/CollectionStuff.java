@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Copyright @ 2019 yuzhouwan.com
+ * Copyright @ 2020 yuzhouwan.com
  * All right reserved.
  * Function: Collection Stuff
  *

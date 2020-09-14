@@ -7,7 +7,7 @@ import org.junit.Test;
 import java.nio.charset.StandardCharsets;
 
 /**
- * Copyright @ yuzhouwan.com
+ * Copyright @ 2020 yuzhouwan.com
  * All right reserved.
  * Function：ConvertEncoding Tester
  *

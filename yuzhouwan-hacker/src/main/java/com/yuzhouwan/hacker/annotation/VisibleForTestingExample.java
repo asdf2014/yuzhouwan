@@ -3,7 +3,7 @@ package com.yuzhouwan.hacker.annotation;
 import com.google.common.annotations.VisibleForTesting;
 
 /**
- * Copyright @ 2019 yuzhouwan.com
+ * Copyright @ 2020 yuzhouwan.com
  * All right reserved.
  * Function：VisibleForTesting Example
  *

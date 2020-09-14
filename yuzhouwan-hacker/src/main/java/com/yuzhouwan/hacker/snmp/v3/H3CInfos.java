@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.snmp.v3;
 
 /**
- * Copyright @ yuzhouwan
+ * Copyright @ 2020 yuzhouwan.com
  * All right reserved.
  * Function：snmp v3 user informations
  *

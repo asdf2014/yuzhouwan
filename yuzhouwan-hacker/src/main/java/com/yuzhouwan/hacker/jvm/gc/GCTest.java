@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.jvm.gc;
 
 /**
- * Copyright @ 2019 yuzhouwan.com
+ * Copyright @ 2020 yuzhouwan.com
  * All right reserved.
  * Function：GC Test
  *

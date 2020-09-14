@@ -6,7 +6,7 @@ import java.net.URLClassLoader;
 import java.util.Objects;
 
 /**
- * Copyright @ 2019 yuzhouwan.com
+ * Copyright @ 2020 yuzhouwan.com
  * All right reserved.
  * Function：Standard Executor ClassLoader
  *

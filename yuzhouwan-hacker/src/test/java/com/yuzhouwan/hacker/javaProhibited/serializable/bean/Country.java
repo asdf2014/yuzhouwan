@@ -3,7 +3,7 @@ package com.yuzhouwan.hacker.javaProhibited.serializable.bean;
 import java.io.Serializable;
 
 /**
- * Copyright @ 2019 yuzhouwan.com
+ * Copyright @ 2020 yuzhouwan.com
  * All right reserved.
  * Function：Country
  *

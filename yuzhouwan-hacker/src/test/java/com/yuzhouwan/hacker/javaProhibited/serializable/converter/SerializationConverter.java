@@ -5,7 +5,7 @@ import java.io.*;
 import static java.lang.System.out;
 
 /**
- * Copyright @ 2019 yuzhouwan.com
+ * Copyright @ 2020 yuzhouwan.com
  * All right reserved.
  * Function: Serialization Converter
  *

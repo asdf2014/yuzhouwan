@@ -3,7 +3,7 @@ package com.yuzhouwan.hacker.effective.encoding;
 import java.nio.charset.Charset;
 
 /**
- * Copyright @ yuzhouwan.com
+ * Copyright @ 2020 yuzhouwan.com
  * All right reserved.
  * Function：Convert Encoding
  *

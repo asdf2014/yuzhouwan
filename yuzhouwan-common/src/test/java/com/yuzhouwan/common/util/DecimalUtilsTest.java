@@ -8,7 +8,7 @@ import java.math.BigInteger;
 import java.nio.ByteBuffer;
 
 /**
- * Copyright @ 2019 yuzhouwan.com
+ * Copyright @ 2020 yuzhouwan.com
  * All right reserved.
  * Function: Decimal Utils Tester
  *

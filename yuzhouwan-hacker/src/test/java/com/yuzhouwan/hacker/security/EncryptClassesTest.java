@@ -5,7 +5,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 /**
- * Copyright @ 2019 yuzhouwan.com
+ * Copyright @ 2020 yuzhouwan.com
  * All right reserved.
  * Function: EncryptClasses Tester
  *

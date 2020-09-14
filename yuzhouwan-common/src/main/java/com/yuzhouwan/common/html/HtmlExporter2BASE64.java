@@ -5,7 +5,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
 /**
- * Copyright @ 2019 yuzhouwan.com
+ * Copyright @ 2020 yuzhouwan.com
  * All right reserved.
  * Function: Html Exporter
  *

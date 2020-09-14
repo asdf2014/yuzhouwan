@@ -16,7 +16,7 @@ import static com.yuzhouwan.common.util.StrUtils.isEmpty;
 import static com.yuzhouwan.common.util.StrUtils.isNotEmpty;
 
 /**
- * Copyright @ 2019 yuzhouwan.com
+ * Copyright @ 2020 yuzhouwan.com
  * All right reserved.
  * Function: Ip Utils
  *

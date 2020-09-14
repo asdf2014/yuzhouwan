@@ -23,7 +23,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 
 /**
- * Copyright @ 2019 yuzhouwan.com
+ * Copyright @ 2020 yuzhouwan.com
  * All right reserved.
  * Function: Validator Controller
  *

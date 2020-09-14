@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 import java.lang.reflect.Field;
 
 /**
- * Copyright @ 2019 yuzhouwan.com
+ * Copyright @ 2020 yuzhouwan.com
  * All right reserved.
  * Function：ReflectionPrivate Tester.
  *

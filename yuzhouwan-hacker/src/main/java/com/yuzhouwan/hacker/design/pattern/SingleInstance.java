@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.design.pattern;
 
 /**
- * Copyright @ 2019 yuzhouwan.com
+ * Copyright @ 2020 yuzhouwan.com
  * All right reserved.
  * Function: Enum Single Instance for (De)Serialize
  *

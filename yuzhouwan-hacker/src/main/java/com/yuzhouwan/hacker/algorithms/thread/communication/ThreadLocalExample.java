@@ -3,7 +3,7 @@ package com.yuzhouwan.hacker.algorithms.thread.communication;
 import java.util.Random;
 
 /**
- * Copyright @ 2019 yuzhouwan.com
+ * Copyright @ 2020 yuzhouwan.com
  * All right reserved.
  * Function: ThreadLocal Example
  *

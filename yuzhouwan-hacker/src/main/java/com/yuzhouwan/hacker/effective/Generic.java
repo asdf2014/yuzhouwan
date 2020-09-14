@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.effective;
 
 /**
- * Copyright @ yuzhouwan.com
+ * Copyright @ 2020 yuzhouwan.com
  * All right reserved.
  * Function：Generic
  *

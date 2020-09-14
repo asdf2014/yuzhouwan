@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.stream.Stream;
 
 /**
- * Copyright @ 2016 yuzhouwan.com
+ * Copyright @ 2020 yuzhouwan.com
  * All right reserved.
  * Function：Evolution Algorithm Test
  *

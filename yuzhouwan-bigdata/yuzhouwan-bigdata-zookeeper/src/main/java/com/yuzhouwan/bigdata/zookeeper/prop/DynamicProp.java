@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import java.nio.file.WatchEvent;
 
 /**
- * Copyright @ 2019 yuzhouwan.com
+ * Copyright @ 2020 yuzhouwan.com
  * All right reserved.
  * Function: Dynamic Prop
  *

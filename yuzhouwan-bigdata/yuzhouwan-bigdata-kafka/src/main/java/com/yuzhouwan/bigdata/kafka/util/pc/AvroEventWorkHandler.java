@@ -5,7 +5,7 @@ import kafka.javaapi.producer.Producer;
 import kafka.producer.KeyedMessage;
 
 /**
- * Copyright @ 2019 yuzhouwan.com
+ * Copyright @ 2020 yuzhouwan.com
  * All right reserved.
  * Function：Avro Event Work Handler
  *

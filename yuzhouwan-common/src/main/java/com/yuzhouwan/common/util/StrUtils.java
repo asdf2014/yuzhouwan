@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import static java.lang.Character.isDigit;
 
 /**
- * Copyright @ 2019 yuzhouwan.com
+ * Copyright @ 2020 yuzhouwan.com
  * All right reserved.
  * Function: String Utils
  *
