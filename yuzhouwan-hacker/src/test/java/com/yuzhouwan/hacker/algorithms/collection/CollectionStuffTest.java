@@ -1,5 +1,6 @@
 package com.yuzhouwan.hacker.algorithms.collection;
 
+import com.google.common.collect.Lists;
 import com.yuzhouwan.common.util.ThreadUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -308,6 +309,33 @@ public class CollectionStuffTest {
             }
             assertFalse(hasCME);
         }
+    }
+
+    @Test
+    @SuppressWarnings("StatementWithEmptyBody")
+    public void testRemoveAllOfNullsFromList() {
+        final List<String> list = Lists.newArrayList(null, "yuzhouwan", null, null, "com", null);
+        while (list.remove(null)) ;
+        assertEquals(2, list.size());
+        assertEquals("yuzhouwan", list.get(0));
+        assertEquals("com", list.get(1));
+    }
+
+    @Test
+    public void testDescendingTreeSet() {
+        // ascending
+        final TreeSet<Integer> ids = new TreeSet<>();
+        ids.add(1);
+        ids.add(3);
+        ids.add(2);
+        assertEquals(1, ids.first().intValue());
+        assertEquals(3, ids.last().intValue());
+        // descending
+        final NavigableSet<Integer> descendingIds = ids.descendingSet();
+        final Iterator<Integer> iter = descendingIds.iterator();
+        assertEquals(3, iter.next().intValue());
+        assertEquals(2, iter.next().intValue());
+        assertEquals(1, iter.next().intValue());
     }
 
     private class ComplexClass {
