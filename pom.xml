@@ -148,7 +148,7 @@
         <struts.version>1.3.10</struts.version>
 
         <!-- jFreeChart-->
-        <jfreechart.version>1.5.0</jfreechart.version>
+        <jfreechart.version>1.5.1</jfreechart.version>
         <!-- iTextPDF-->
         <itextpdf.version>5.5.13.2</itextpdf.version>
 
