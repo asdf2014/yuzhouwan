@@ -40,7 +40,7 @@
         <scala.maven.plugin.version>3.2.2</scala.maven.plugin.version>
 
         <!-- groovy -->
-        <groovy.version>2.4.20</groovy.version>
+        <groovy.version>2.4.21</groovy.version>
         <groovy.gmaven.version>1.5</groovy.gmaven.version>
 
         <!-- scala -->
