@@ -161,7 +161,7 @@
         <org.codehaus.jackson.jackson-mapper-asl.version>1.9.13</org.codehaus.jackson.jackson-mapper-asl.version>
 
         <!-- ZSTD -->
-        <zstd.version>1.4.7-3</zstd.version>
+        <zstd.version>1.4.8-1</zstd.version>
 
         <!-- apache tika -->
         <apache.tika.version>1.11</apache.tika.version>
