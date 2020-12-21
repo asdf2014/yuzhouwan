@@ -25,5 +25,6 @@
         <module>yuzhouwan-bigdata-zookeeper</module>
         <module>yuzhouwan-bigdata-kafka</module>
         <module>yuzhouwan-bigdata-redis</module>
+        <module>yuzhouwan-bigdata-iotdb</module>
     </modules>
 </project>
