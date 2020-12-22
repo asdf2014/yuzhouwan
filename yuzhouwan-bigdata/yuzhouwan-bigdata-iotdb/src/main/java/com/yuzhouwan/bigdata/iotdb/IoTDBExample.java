@@ -92,7 +92,7 @@ public class IoTDBExample {
     public static Connection getConnection() {
 
         String driver = "org.apache.iotdb.jdbc.IoTDBDriver";
-        String url = "jdbc:iotdb:
+        String url = "jdbc:iotdb://127.0.0.1:6667/";
 
         String username = "root";
         String password = "root";
