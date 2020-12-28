@@ -7,15 +7,15 @@ import static org.junit.Assert.assertEquals;
 /**
  * Copyright @ 2020 yuzhouwan.com
  * All right reserved.
- * Function：Md5 Utils Test
+ * Function：Digest Utils Test
  *
  * @author Benedict Jin
  * @since 2017/12/7
  */
-public class Md5UtilsTest {
+public class DigestUtilsTest {
 
     @Test
-    public void testMd5() {
-        assertEquals("24878de96952d64e8149af10f1e96066", Md5Utils.md5("yuzhouwan.com"));
+    public void testDigest() {
+        assertEquals("1f3f67eb86d0931ce91e710f3dd26677a18799823df12ebfa4beb8d4d7da695", DigestUtils.digest("yuzhouwan.com"));
     }
 }

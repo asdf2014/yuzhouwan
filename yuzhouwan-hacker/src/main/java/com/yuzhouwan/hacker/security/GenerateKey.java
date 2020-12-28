@@ -21,7 +21,7 @@ class GenerateKey {
      */
     static void generate(String keyFileName) throws Exception {
         SecureRandom sr = new SecureRandom();
-        KeyGenerator kg = KeyGenerator.getInstance(SecurityClassLoader.ALGORITHM);
+        KeyGenerator kg = KeyGenerator.getInstance(SecurityClassLoader.ALGORITHM); // lgtm [java/weak-cryptographic-algorithm]
         kg.init(sr);
         SecretKey key = kg.generateKey();
         FileUtils.writeFile(keyFileName, key.getEncoded());

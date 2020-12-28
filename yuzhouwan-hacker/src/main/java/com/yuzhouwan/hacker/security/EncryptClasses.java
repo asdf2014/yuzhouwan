@@ -33,10 +33,10 @@ class EncryptClasses {
         byte[] rawKey = FileUtils.readFile(keyFilename);
         assert rawKey != null;
         DESKeySpec dks = new DESKeySpec(rawKey);
-        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(ALGORITHM);
+        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(ALGORITHM); // lgtm [java/weak-cryptographic-algorithm]
         SecretKey key = keyFactory.generateSecret(dks);
 
-        Cipher cipher = Cipher.getInstance(ALGORITHM);
+        Cipher cipher = Cipher.getInstance(ALGORITHM); // lgtm [java/weak-cryptographic-algorithm]
         cipher.init(Cipher.ENCRYPT_MODE, key, sr);
 
         String filename;
