@@ -188,7 +188,7 @@
         <async-http-client.version>1.9.40</async-http-client.version>
 
         <!-- netty -->
-        <netty.version>4.1.59.Final</netty.version>
+        <netty.version>4.1.60.Final</netty.version>
 
         <!-- jetty -->
         <eclipse.jetty.webapp.version>9.2.10.v20150310</eclipse.jetty.webapp.version>
