@@ -7,15 +7,9 @@
 [![Codecov](https://codecov.io/gh/asdf2014/yuzhouwan/branch/master/graph/badge.svg)](https://codecov.io/gh/asdf2014/yuzhouwan)
 [![License](https://img.shields.io/github/license/asdf2014/yuzhouwan)](https://yuzhouwan.com/)
 
-## My Blog
-__[https://yuzhouwan.com](https://yuzhouwan.com)__
-
-(Hexo + Github Page，利用 Node.js 的 NIO 框架快速生成，配合 Github 静态页面托管)
-
----------------
 ## Welcome
 
-　**Welcome to My Blog!**
+　**Welcome to My Blog（[https://yuzhouwan.com](https://yuzhouwan.com)）!**
 
 
 ## 博客介绍
