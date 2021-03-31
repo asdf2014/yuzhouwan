@@ -30,7 +30,7 @@ class SecurityClassLoader extends ClassLoader {
 
     SecurityClassLoader(SecretKey key) throws GeneralSecurityException {
         _log.error("[SecurityClassLoader: creating cipher]");
-        cipher = Cipher.getInstance(ALGORITHM);
+        cipher = Cipher.getInstance(ALGORITHM);  // lgtm [java/weak-cryptographic-algorithm]
         cipher.init(Cipher.DECRYPT_MODE, key, new SecureRandom());
     }
 

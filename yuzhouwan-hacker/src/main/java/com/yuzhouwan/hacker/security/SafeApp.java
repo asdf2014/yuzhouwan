@@ -42,7 +42,7 @@ public class SafeApp {
         byte[] rawKey = FileUtils.readFile(KEY_FILENAME);
         assert rawKey != null;
         DESKeySpec dks = new DESKeySpec(rawKey);
-        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(SecurityClassLoader.ALGORITHM);
+        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(SecurityClassLoader.ALGORITHM);  // lgtm [java/weak-cryptographic-algorithm]
         SecretKey key = keyFactory.generateSecret(dks);
 
         SecurityClassLoader dr = new SecurityClassLoader(key);
