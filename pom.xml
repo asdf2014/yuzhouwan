@@ -83,7 +83,7 @@
         <jedis.version>2.10.2</jedis.version>
 
         <!-- zookeeper -->
-        <apache.zookeeper.version>3.4.6</apache.zookeeper.version>
+        <apache.zookeeper.version>3.4.14</apache.zookeeper.version>
         <zookeeper.zkclient.version>0.1</zookeeper.zkclient.version>
         <!-- only curator v2.x.x support zk v3.4.x-->
         <apache.curator.version>5.1.0</apache.curator.version>
