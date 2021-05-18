@@ -1,0 +1,306 @@
+version: 2
+updates:
+- package-ecosystem: maven
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "21:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: cglib:cglib
+    versions:
+    - ">= 3.3.a, < 3.4"
+  - dependency-name: com.alibaba:transmittable-thread-local
+    versions:
+    - ">= 2.11.a, < 2.12"
+  - dependency-name: com.github.luben:zstd-jni
+    versions:
+    - "> 1.4.7.pre.3, < 1.5"
+  - dependency-name: com.google.protobuf:protobuf-java
+    versions:
+    - "> 3.9.0, < 4"
+  - dependency-name: commons-codec:commons-codec
+    versions:
+    - "> 1.11, < 2"
+  - dependency-name: commons-codec:commons-codec
+    versions:
+    - ">= 1.12.a, < 1.13"
+  - dependency-name: commons-io:commons-io
+    versions:
+    - ">= 2.7.a, < 2.8"
+  - dependency-name: mysql:mysql-connector-java
+    versions:
+    - "> 8.0.19, < 8.1"
+  - dependency-name: org.apache.avro:avro
+    versions:
+    - ">= 1.10.a, < 1.11"
+  - dependency-name: org.apache.avro:avro
+    versions:
+    - ">= 1.9.a, < 1.10"
+  - dependency-name: org.apache.avro:avro-maven-plugin
+    versions:
+    - ">= 1.10.a, < 1.11"
+  - dependency-name: org.apache.avro:avro-maven-plugin
+    versions:
+    - ">= 1.9.a, < 1.10"
+  - dependency-name: org.apache.camel:camel-core
+    versions:
+    - ">= 2.24.a, < 2.25"
+  - dependency-name: org.apache.camel:camel-http
+    versions:
+    - ">= 2.24.a, < 2.25"
+  - dependency-name: org.apache.camel:camel-jetty
+    versions:
+    - ">= 2.24.a, < 2.25"
+  - dependency-name: org.apache.camel:camel-spring
+    versions:
+    - ">= 2.24.a, < 2.25"
+  - dependency-name: org.apache.commons:commons-lang3
+    versions:
+    - ">= 3.9.a, < 3.10"
+  - dependency-name: org.apache.curator:curator-recipes
+    versions:
+    - ">= 3.3.a, < 3.4"
+  - dependency-name: org.apache.curator:curator-recipes
+    versions:
+    - ">= 3.a, < 4"
+  - dependency-name: org.apache.curator:curator-recipes
+    versions:
+    - ">= 4.2.a, < 4.3"
+  - dependency-name: org.apache.curator:curator-recipes
+    versions:
+    - ">= 4.a, < 5"
+  - dependency-name: org.apache.curator:curator-test
+    versions:
+    - ">= 3.3.a, < 3.4"
+  - dependency-name: org.apache.curator:curator-test
+    versions:
+    - ">= 3.a, < 4"
+  - dependency-name: org.apache.curator:curator-test
+    versions:
+    - ">= 4.2.a, < 4.3"
+  - dependency-name: org.apache.curator:curator-test
+    versions:
+    - ">= 4.a, < 5"
+  - dependency-name: org.apache.hadoop:hadoop-auth
+    versions:
+    - ">= 3.2.a, < 3.3"
+  - dependency-name: org.apache.hadoop:hadoop-auth
+    versions:
+    - ">= 3.3.a, < 3.4"
+  - dependency-name: org.apache.hadoop:hadoop-client
+    versions:
+    - ">= 3.2.a, < 3.3"
+  - dependency-name: org.apache.hadoop:hadoop-client
+    versions:
+    - ">= 3.3.a, < 3.4"
+  - dependency-name: org.apache.hadoop:hadoop-common
+    versions:
+    - ">= 3.2.a, < 3.3"
+  - dependency-name: org.apache.hadoop:hadoop-common
+    versions:
+    - ">= 3.3.a, < 3.4"
+  - dependency-name: org.apache.hadoop:hadoop-minicluster
+    versions:
+    - ">= 3.2.a, < 3.3"
+  - dependency-name: org.apache.hadoop:hadoop-minicluster
+    versions:
+    - ">= 3.3.a, < 3.4"
+  - dependency-name: org.apache.hbase:hbase
+    versions:
+    - ">= 2.1.a, < 2.2"
+  - dependency-name: org.apache.hbase:hbase
+    versions:
+    - ">= 2.2.a, < 2.3"
+  - dependency-name: org.apache.hbase:hbase
+    versions:
+    - ">= 2.a, < 3"
+  - dependency-name: org.apache.hbase:hbase-client
+    versions:
+    - ">= 2.1.a, < 2.2"
+  - dependency-name: org.apache.hbase:hbase-client
+    versions:
+    - ">= 2.2.a, < 2.3"
+  - dependency-name: org.apache.hbase:hbase-client
+    versions:
+    - ">= 2.a, < 3"
+  - dependency-name: org.apache.hbase:hbase-server
+    versions:
+    - ">= 2.1.a, < 2.2"
+  - dependency-name: org.apache.hbase:hbase-server
+    versions:
+    - ">= 2.2.a, < 2.3"
+  - dependency-name: org.apache.hbase:hbase-server
+    versions:
+    - ">= 2.a, < 3"
+  - dependency-name: org.apache.httpcomponents:httpclient
+    versions:
+    - "> 4.5.1, < 4.6"
+  - dependency-name: org.apache.kafka:kafka_2.11
+    versions:
+    - ">= 2.3.a, < 2.4"
+  - dependency-name: org.apache.kafka:kafka_2.11
+    versions:
+    - ">= 2.a, < 3"
+  - dependency-name: org.apache.maven.plugins:maven-checkstyle-plugin
+    versions:
+    - "> 3.1.0, < 3.2"
+  - dependency-name: org.apache.maven.plugins:maven-resources-plugin
+    versions:
+    - ">= 3.2.a, < 3.3"
+  - dependency-name: org.apache.pdfbox:fontbox
+    versions:
+    - ">= 2.0.a, < 2.1"
+  - dependency-name: org.apache.pdfbox:pdfbox
+    versions:
+    - ">= 2.0.a, < 2.1"
+  - dependency-name: org.apache.storm:storm-core
+    versions:
+    - ">= 2.0.a, < 2.1"
+  - dependency-name: org.apache.storm:storm-kafka
+    versions:
+    - ">= 1.a, < 2"
+  - dependency-name: org.codehaus.mojo:build-helper-maven-plugin
+    versions:
+    - ">= 3.2.a, < 3.3"
+  - dependency-name: org.elasticsearch.client:transport
+    versions:
+    - "> 6.8.3, < 6.9"
+  - dependency-name: org.elasticsearch.client:transport
+    versions:
+    - ">= 7.2.a, < 7.3"
+  - dependency-name: org.elasticsearch.client:transport
+    versions:
+    - ">= 7.a, < 8"
+  - dependency-name: org.elasticsearch:elasticsearch
+    versions:
+    - "> 2.2.0, < 3"
+  - dependency-name: org.elasticsearch:elasticsearch
+    versions:
+    - ">= 5.a, < 6"
+  - dependency-name: org.elasticsearch:elasticsearch
+    versions:
+    - ">= 7.a, < 8"
+  - dependency-name: org.elasticsearch:elasticsearch-storm
+    versions:
+    - ">= 5.a, < 6"
+  - dependency-name: org.elasticsearch:elasticsearch-storm
+    versions:
+    - ">= 6.a, < 7"
+  - dependency-name: org.elasticsearch:elasticsearch-storm
+    versions:
+    - ">= 7.1.a, < 7.2"
+  - dependency-name: org.elasticsearch:elasticsearch-storm
+    versions:
+    - ">= 7.2.a, < 7.3"
+  - dependency-name: org.elasticsearch:elasticsearch-storm
+    versions:
+    - ">= 7.a, < 8"
+  - dependency-name: org.freemarker:freemarker
+    versions:
+    - "> 2.3.23, < 2.4"
+  - dependency-name: org.hibernate:hibernate-validator
+    versions:
+    - "> 5.2.4.Final"
+  - dependency-name: org.mockito:mockito-core
+    versions:
+    - ">= 3.a, < 4"
+  - dependency-name: org.scalanlp:breeze_2.11
+    versions:
+    - ">= 1.0.a, < 1.1"
+  - dependency-name: org.scalatest:scalatest_2.11
+    versions:
+    - "> 3.0.5, < 4"
+  - dependency-name: org.scalatest:scalatest_2.11
+    versions:
+    - ">= 3.2.a, < 3.3"
+  - dependency-name: org.slf4j:jcl-over-slf4j
+    versions:
+    - "> 1.7.26, < 2"
+  - dependency-name: org.slf4j:jul-to-slf4j
+    versions:
+    - "> 1.7.26, < 2"
+  - dependency-name: org.slf4j:log4j-over-slf4j
+    versions:
+    - "> 1.7.26, < 2"
+  - dependency-name: org.slf4j:slf4j-api
+    versions:
+    - "> 1.7.26, < 2"
+  - dependency-name: org.snmp4j:snmp4j
+    versions:
+    - ">= 2.a, < 3"
+  - dependency-name: org.snmp4j:snmp4j
+    versions:
+    - ">= 3.2.a, < 3.3"
+  - dependency-name: org.snmp4j:snmp4j
+    versions:
+    - ">= 3.a, < 4"
+  - dependency-name: org.springframework.data:spring-data-redis
+    versions:
+    - ">= 2.a, < 3"
+  - dependency-name: org.springframework:spring-aop
+    versions:
+    - ">= 5.1.a, < 5.2"
+  - dependency-name: org.springframework:spring-aop
+    versions:
+    - ">= 5.a, < 6"
+  - dependency-name: org.springframework:spring-context
+    versions:
+    - ">= 5.1.a, < 5.2"
+  - dependency-name: org.springframework:spring-context
+    versions:
+    - ">= 5.a, < 6"
+  - dependency-name: org.springframework:spring-context-support
+    versions:
+    - ">= 5.1.a, < 5.2"
+  - dependency-name: org.springframework:spring-context-support
+    versions:
+    - ">= 5.a, < 6"
+  - dependency-name: org.springframework:spring-core
+    versions:
+    - ">= 5.1.a, < 5.2"
+  - dependency-name: org.springframework:spring-core
+    versions:
+    - ">= 5.a, < 6"
+  - dependency-name: org.springframework:spring-jdbc
+    versions:
+    - ">= 5.1.a, < 5.2"
+  - dependency-name: org.springframework:spring-jdbc
+    versions:
+    - ">= 5.a, < 6"
+  - dependency-name: org.springframework:spring-oxm
+    versions:
+    - ">= 5.1.a, < 5.2"
+  - dependency-name: org.springframework:spring-oxm
+    versions:
+    - ">= 5.a, < 6"
+  - dependency-name: org.springframework:spring-test
+    versions:
+    - ">= 5.1.a, < 5.2"
+  - dependency-name: org.springframework:spring-test
+    versions:
+    - ">= 5.a, < 6"
+  - dependency-name: org.springframework:spring-tx
+    versions:
+    - ">= 5.1.a, < 5.2"
+  - dependency-name: org.springframework:spring-tx
+    versions:
+    - ">= 5.a, < 6"
+  - dependency-name: org.springframework:spring-web
+    versions:
+    - ">= 5.1.a, < 5.2"
+  - dependency-name: org.springframework:spring-web
+    versions:
+    - ">= 5.a, < 6"
+  - dependency-name: org.springframework:spring-webmvc
+    versions:
+    - ">= 5.1.a, < 5.2"
+  - dependency-name: org.springframework:spring-webmvc
+    versions:
+    - ">= 5.a, < 6"
+  - dependency-name: redis.clients:jedis
+    versions:
+    - ">= 3.0.a, < 3.1"
+  - dependency-name: redis.clients:jedis
+    versions:
+    - ">= 3.a, < 4"
