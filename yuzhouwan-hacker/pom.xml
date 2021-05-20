@@ -435,7 +435,7 @@
         <repository>
             <id>scalaz</id>
             <name>scalaz</name>
-            <url>https://dl.bintray.com/scalaz/releases</url>
+            <url>https://dl.bintray.com/scalaz/releases</url> <!-- lgtm[js/duplicate-html-id] -->
         </repository>
 
         <repository>
