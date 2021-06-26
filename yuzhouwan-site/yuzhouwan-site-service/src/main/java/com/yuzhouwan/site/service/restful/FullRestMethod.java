@@ -45,13 +45,13 @@ public class FullRestMethod {
     @RequestMapping(value = "/post", method = RequestMethod.POST)
     @ResponseBody
     public String postMsg(String key, String value) {
-        return save(key, value);
+        return save(key, value);  // lgtm [java/xss]
     }
 
     @RequestMapping(value = "/post/consumes", method = RequestMethod.POST, produces = "text/plain")
     @ResponseBody
     public String postConsumesMsg(String key, String value) {
-        return save(key, value);
+        return save(key, value);  // lgtm [java/xss]
     }
 
     /**
@@ -64,7 +64,7 @@ public class FullRestMethod {
     @RequestMapping(value = "/put", method = RequestMethod.PUT)
     @ResponseBody
     public String putMsg(String key, String value) {
-        return save(key, value);
+        return save(key, value);  // lgtm [java/xss]
     }
 
     /**
