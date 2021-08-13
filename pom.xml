@@ -121,7 +121,7 @@
         <commons.codec.version>1.11</commons.codec.version>
         <apache.common.lang3.verison>3.12.0</apache.common.lang3.verison>
         <apache.common.dbcp.version>1.4</apache.common.dbcp.version>
-        <apache.commons.pool2.version>2.10.0</apache.commons.pool2.version>
+        <apache.commons.pool2.version>2.11.0</apache.commons.pool2.version>
 
         <!-- alipay-->
         <alipay.version>20161121110022</alipay.version>
