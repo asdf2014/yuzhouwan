@@ -63,7 +63,7 @@
         <json.path.assert.version>2.6.0</json.path.assert.version>
 
         <!-- thread -->
-        <transmittable.thread.local.version>2.12.1</transmittable.thread.local.version>
+        <transmittable.thread.local.version>2.12.2</transmittable.thread.local.version>
 
         <!-- test -->
         <junit4.version>4.13.2</junit4.version>
