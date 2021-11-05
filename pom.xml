@@ -176,7 +176,7 @@
         <apache.common.cli>1.5.0</apache.common.cli>
 
         <!-- phantom js -->
-        <phantom.js.version>1.4.4</phantom.js.version>
+        <phantom.js.version>1.5.0</phantom.js.version>
 
         <!-- freemarker -->
         <freemarker.version>2.3.23</freemarker.version>
