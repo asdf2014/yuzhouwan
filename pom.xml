@@ -245,7 +245,7 @@
         <calcite-druid.version>1.28.0</calcite-druid.version>
 
         <!-- apache iotdb -->
-        <iotdb.version>0.12.2</iotdb.version>
+        <iotdb.version>0.12.3</iotdb.version>
     </properties>
 
     <build>
