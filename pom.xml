@@ -131,7 +131,7 @@
 
         <!-- snmp4j -->
         <snmp4j.version>1.10.1</snmp4j.version>
-        <snmp4j.agent.version>3.5.3</snmp4j.agent.version>
+        <snmp4j.agent.version>3.5.4</snmp4j.agent.version>
 
         <!-- log -->
         <slf4j.version>1.7.26</slf4j.version>
