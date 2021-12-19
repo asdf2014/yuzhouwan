@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.yuzhouwan</groupId>
         <artifactId>yuzhouwan-site</artifactId>
-        <version>1.1.0</version>
+        <version>1.1.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>yuzhouwan-site-service</artifactId>
@@ -18,7 +18,7 @@
         <dependency>
             <groupId>com.yuzhouwan</groupId>
             <artifactId>yuzhouwan-common</artifactId>
-            <version>1.1.0</version>
+            <version>1.1.1-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <artifactId>commons-codec</artifactId>
@@ -31,7 +31,7 @@
         <dependency>
             <groupId>com.yuzhouwan</groupId>
             <artifactId>yuzhouwan-site-api</artifactId>
-            <version>1.1.0</version>
+            <version>1.1.1-SNAPSHOT</version>
         </dependency>
 
         <!-- Apache Commons Pool2 -->
