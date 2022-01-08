@@ -36,7 +36,7 @@
         <maven.eclipse.plugin.version>2.10</maven.eclipse.plugin.version>
         <maven.checkstyle.plugin.version>3.1.0</maven.checkstyle.plugin.version>
         <maven.assembly.plugin.version>3.1.1</maven.assembly.plugin.version>
-        <org.codehaus.mojo.build-helper-maven-plugin>3.1.0</org.codehaus.mojo.build-helper-maven-plugin>
+        <org.codehaus.mojo.build-helper-maven-plugin>3.3.0</org.codehaus.mojo.build-helper-maven-plugin>
         <scala.maven.plugin.version>3.2.2</scala.maven.plugin.version>
 
         <!-- groovy -->
