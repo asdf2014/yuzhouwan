@@ -111,7 +111,7 @@
         <mysql.jdbc.connection.version>8.0.19</mysql.jdbc.connection.version>
 
         <!-- spring+mybatis -->
-        <spring.mybatis.version>2.0.6</spring.mybatis.version>
+        <spring.mybatis.version>2.0.7</spring.mybatis.version>
 
         <!-- spring+camel-->
         <apache.camel.spring.version>3.14.1</apache.camel.spring.version>
