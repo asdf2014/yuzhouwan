@@ -135,7 +135,7 @@
 
         <!-- log -->
         <slf4j.version>1.7.26</slf4j.version>
-        <logback.version>1.2.10</logback.version>
+        <logback.version>1.2.11</logback.version>
         <log4j-extras.version>1.2.17</log4j-extras.version>
         <apache.commons.logging.version>1.2</apache.commons.logging.version>
 
