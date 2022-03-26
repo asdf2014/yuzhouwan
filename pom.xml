@@ -55,7 +55,7 @@
         <breeze.version>0.13.2</breeze.version>
 
         <!-- time -->
-        <joda.time.version>2.10.13</joda.time.version>
+        <joda.time.version>2.10.14</joda.time.version>
 
         <!-- json -->
         <jackson.version>2.9.8</jackson.version>
