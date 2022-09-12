@@ -166,7 +166,7 @@ public final class HttpUtils {
         SSLConnectionSocketFactory sslSocketFactory;
         try {
             SSLContext sslContext = SSLContext.getInstance("TLS");
-            sslContext.init(new KeyManager[0], trustManagers, new SecureRandom());
+            sslContext.init(new KeyManager[0], trustManagers, new SecureRandom());  // lgtm [java/insecure-trustmanager]
             sslSocketFactory = new SSLConnectionSocketFactory(sslContext, new NoopHostnameVerifier());  // lgtm [java/insecure-trustmanager]
         } catch (Exception e) {
             _log.error(ExceptionUtils.errorInfo(e));
