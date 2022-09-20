@@ -134,7 +134,7 @@
         <snmp4j.agent.version>3.6.0</snmp4j.agent.version>
 
         <!-- log -->
-        <slf4j.version>1.7.26</slf4j.version>
+        <slf4j.version>2.0.2</slf4j.version>
         <logback.version>1.4.1</logback.version>
         <log4j-extras.version>1.2.17</log4j-extras.version>
         <apache.commons.logging.version>1.2</apache.commons.logging.version>
