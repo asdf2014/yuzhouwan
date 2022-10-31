@@ -86,7 +86,7 @@
         <apache.zookeeper.version>3.4.6</apache.zookeeper.version>
         <zookeeper.zkclient.version>0.1</zookeeper.zkclient.version>
         <!-- only curator v2.x.x support zk v3.4.x-->
-        <apache.curator.version>5.3.0</apache.curator.version>
+        <apache.curator.version>5.4.0</apache.curator.version>
 
         <!-- quartz -->
         <quartz.version>2.3.2</quartz.version>
