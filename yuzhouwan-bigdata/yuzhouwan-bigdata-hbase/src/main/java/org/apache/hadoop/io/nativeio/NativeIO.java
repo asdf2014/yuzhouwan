@@ -566,11 +566,7 @@ public class NativeIO {
          * @param buffer The buffer to unmap.
          */
         public static void munmap(MappedByteBuffer buffer) {
-            if (buffer instanceof sun.nio.ch.DirectBuffer) {
-                sun.misc.Cleaner cleaner =
-                        ((sun.nio.ch.DirectBuffer) buffer).cleaner();
-                cleaner.clean();
-            }
+            buffer.clear();
         }
 
         /**

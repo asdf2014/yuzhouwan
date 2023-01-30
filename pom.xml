@@ -24,7 +24,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.version>1.0.3</project.version>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
 
         <!-- maven -->
         <maven.resource.plugin.version>3.3.0</maven.resource.plugin.version>
@@ -34,14 +36,10 @@
         <maven.release.plugin.version>2.5.3</maven.release.plugin.version>
         <maven.install.plugin.version>2.5.2</maven.install.plugin.version>
         <maven.eclipse.plugin.version>2.10</maven.eclipse.plugin.version>
-        <maven.checkstyle.plugin.version>3.2.0</maven.checkstyle.plugin.version>
+        <maven.checkstyle.plugin.version>3.2.1</maven.checkstyle.plugin.version>
         <maven.assembly.plugin.version>3.1.1</maven.assembly.plugin.version>
         <org.codehaus.mojo.build-helper-maven-plugin>3.3.0</org.codehaus.mojo.build-helper-maven-plugin>
         <scala.maven.plugin.version>3.2.2</scala.maven.plugin.version>
-
-        <!-- groovy -->
-        <groovy.version>2.4.21</groovy.version>
-        <groovy.gmaven.version>1.5</groovy.gmaven.version>
 
         <!-- scala -->
         <!--<scala.version>2.10.4</scala.version>-->
@@ -269,7 +267,6 @@
                         <headerLocation>checkstyle/style.lic</headerLocation>
                         <configLocation>checkstyle/style.xml</configLocation>
                         <excludes>**/avro/**,**/salt/**,**/nativeio/**</excludes>
-                        <encoding>${project.build.sourceEncoding}</encoding>
                     </configuration>
                     <executions>
                         <execution>
@@ -301,8 +298,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven.compiler.plugin.version}</version>
                 <configuration>
-                    <source>${maven.compiler.jdk.version}</source>
-                    <target>${maven.compiler.jdk.version}</target>
+                    <release>${maven.compiler.jdk.version}</release>
                     <encoding>${maven.compiler.encoding}</encoding>
                 </configuration>
             </plugin>
@@ -327,22 +323,6 @@
             </plugin>
         </plugins>
     </build>
-
-    <repositories>
-        <!-- Fix Clojar(Clojure Jar) -->
-        <repository>
-            <id>clojars.org</id>
-            <url>https://clojars.org/repo</url>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </repository>
-    </repositories>
 
     <scm>
         <connection>scm:git@github.com:asdf2014/yuzhouwan.git</connection>

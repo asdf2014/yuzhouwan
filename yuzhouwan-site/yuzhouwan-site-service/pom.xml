@@ -404,8 +404,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven.compiler.plugin.version}</version>
                 <configuration>
-                    <source>${maven.compiler.jdk.version}</source>
-                    <target>${maven.compiler.jdk.version}</target>
+                    <release>${maven.compiler.jdk.version}</release>
                     <encoding>${maven.compiler.encoding}</encoding>
                 </configuration>
             </plugin>

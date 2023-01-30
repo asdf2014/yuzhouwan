@@ -1,8 +1,5 @@
 package com.yuzhouwan.hacker.jvm.heap;
 
-import sun.misc.VM;
-import sun.nio.ch.DirectBuffer;
-
 import java.nio.ByteBuffer;
 
 /**
@@ -22,13 +19,11 @@ public class OffHeapExample {
     isDirect: true
      */
     public static void main(String[] args) throws InterruptedException {
-        System.out.println("maxDirectMemory: " + VM.maxDirectMemory());
         ByteBuffer buffer = ByteBuffer.allocateDirect(1024 * 1024 * 64);
         Thread.sleep(200);
         boolean isDirect = buffer.isDirect();
         System.out.println("isDirect: " + isDirect);
-        if (isDirect) ((DirectBuffer) buffer).cleaner().clean();
-        else buffer.clear();
+        buffer.clear();
         Thread.sleep(200);
         System.exit(0);
     }
