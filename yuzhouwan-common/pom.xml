@@ -374,8 +374,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>${maven.compiler.jdk.version}</source>
-                    <target>${maven.compiler.jdk.version}</target>
+                    <release>${maven.compiler.jdk.version}</release>
+                    <encoding>${maven.compiler.encoding}</encoding>
                 </configuration>
             </plugin>
             <plugin>

@@ -204,13 +204,6 @@
             <version>${freemarker.version}</version>
         </dependency>
 
-        <!-- Groovy -->
-        <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
-            <version>${groovy.version}</version>
-        </dependency>
-
         <!-- Evolution Algorithm -->
         <dependency>
             <groupId>com.circuitwall.ml</groupId>
@@ -370,39 +363,6 @@
                 </configuration>
             </plugin>
 
-            <!-- groovy plugin -->
-            <plugin>
-                <groupId>org.codehaus.gmaven</groupId>
-                <artifactId>gmaven-plugin</artifactId>
-                <version>${groovy.gmaven.version}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>execute</goal>
-                            <goal>compile</goal>
-                            <goal>testCompile</goal>
-                            <goal>generateStubs</goal>
-                            <goal>generateTestStubs</goal>
-                        </goals>
-
-                        <configuration>
-                            <debug>true</debug>
-                            <verbose>true</verbose>
-                            <stacktrace>true</stacktrace>
-                            <defaultScriptExtension>.groovy</defaultScriptExtension>
-                            <providerSelection>${java.version}</providerSelection>
-                            <source>
-                                <fileset>
-                                    <directory>src/main/groovy</directory>
-                                    <includes>
-                                        <include>**/*.groovy</include>
-                                    </includes>
-                                </fileset>
-                            </source>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>org.apache.avro</groupId>
                 <artifactId>avro-maven-plugin</artifactId>
@@ -424,8 +384,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>${maven.compiler.jdk.version}</source>
-                    <target>${maven.compiler.jdk.version}</target>
+                    <release>${maven.compiler.jdk.version}</release>
+                    <encoding>${maven.compiler.encoding}</encoding>
                 </configuration>
             </plugin>
         </plugins>
@@ -442,6 +402,20 @@
             <id>jahia</id>
             <name>mvnrepository</name>
             <url>https://maven.jahia.org/maven2</url>
+        </repository>
+
+        <!-- Fix Clojar(Clojure Jar) -->
+        <repository>
+            <id>clojars.org</id>
+            <url>https://clojars.org/repo</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
         </repository>
     </repositories>
 </project>

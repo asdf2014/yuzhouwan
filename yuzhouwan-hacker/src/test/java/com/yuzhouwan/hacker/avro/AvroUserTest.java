@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import java.io.File;
 
-import static groovy.util.GroovyTestCase.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Copyright @ 2020 yuzhouwan.com
