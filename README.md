@@ -1,5 +1,6 @@
 [<img align="right" width="30%" height="30%" src="https://user-images.githubusercontent.com/8108788/58363706-18c4d080-7edb-11e9-947a-cf7233c8e2cc.png">](https://yuzhouwan.com/)
 
+[![CodeQL](https://github.com/asdf2014/yuzhouwan/actions/workflows/codeql.yml/badge.svg)](https://github.com/asdf2014/yuzhouwan/actions/workflows/codeql.yml)
 [![Build Status](https://travis-ci.org/asdf2014/yuzhouwan.svg?branch=master)](https://travis-ci.org/asdf2014/yuzhouwan)
 [![License](https://img.shields.io/github/license/asdf2014/yuzhouwan)](https://yuzhouwan.com/)
 
