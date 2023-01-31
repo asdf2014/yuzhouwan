@@ -12,6 +12,7 @@ import org.apache.camel.model.ModelCamelContext;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Copyright @ 2023 yuzhouwan.com
@@ -97,7 +98,7 @@ public class ApacheCamelExample extends RouteBuilder {
                 }
 
                 // 返回从Stream中读取的字串
-                return new String(outStream.toByteArray(), "UTF-8");
+                return outStream.toString(StandardCharsets.UTF_8);
             }
         }
     }

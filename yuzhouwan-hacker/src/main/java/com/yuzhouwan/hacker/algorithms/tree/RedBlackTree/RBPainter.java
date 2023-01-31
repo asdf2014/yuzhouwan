@@ -628,7 +628,7 @@ public final class RBPainter implements ActionListener, MouseListener, MouseMoti
         String suffix = filename.substring(filename.lastIndexOf('.') + 1);
 
         // png files
-        if (suffix.toLowerCase().equals("png"))
+        if (suffix.equalsIgnoreCase("png"))
             try {
                 ImageIO.write(offScreenImage, suffix, file);
             } catch (IOException e) {
@@ -636,7 +636,7 @@ public final class RBPainter implements ActionListener, MouseListener, MouseMoti
             }
             // need to change from ARGB to RGB for jpeg
             // reference: http://archives.java.sun.com/cgi-bin/wa?A2=ind0404&L=java2d-interest&D=0&P=2727
-        else if (suffix.toLowerCase().equals("jpg")) {
+        else if (suffix.equalsIgnoreCase("jpg")) {
             WritableRaster raster = offScreenImage.getRaster();
             WritableRaster newRaster;
             newRaster = raster.createWritableChild(0, 0, width, height, 0, 0, new int[]{0, 1, 2});
