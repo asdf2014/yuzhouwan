@@ -7,7 +7,7 @@ import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import java.io.File;
 
 /**
- * Copyright @ 2020 yuzhouwan.com
+ * Copyright @ 2023 yuzhouwan.com
  * All right reserved.
  * Function: Html Exporter
  *

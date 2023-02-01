@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import static java.util.stream.Collectors.*;
 
 /**
- * Copyright @ 2020 yuzhouwan.com
+ * Copyright @ 2023 yuzhouwan.com
  * All right reserved.
  * Function: Collection Utils
  *

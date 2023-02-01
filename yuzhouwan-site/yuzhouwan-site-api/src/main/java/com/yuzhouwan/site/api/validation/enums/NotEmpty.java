@@ -10,7 +10,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Copyright @ 2020 yuzhouwan.com
+ * Copyright @ 2023 yuzhouwan.com
  * All right reserved.
  * Function: NotEmpty Annotation
  *

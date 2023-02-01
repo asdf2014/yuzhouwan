@@ -5,7 +5,7 @@ import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.RetryNTimes;
 
 /**
- * Copyright @ 2020 yuzhouwan.com
+ * Copyright @ 2023 yuzhouwan.com
  * All right reserved.
  * Function: ZKPaths in Curator
  *

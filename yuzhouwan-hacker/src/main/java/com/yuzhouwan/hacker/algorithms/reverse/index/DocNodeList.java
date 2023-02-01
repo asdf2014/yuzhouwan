@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.algorithms.reverse.index;
 
 /**
- * Copyright @ 2020 yuzhouwan.com
+ * Copyright @ 2023 yuzhouwan.com
  * All right reserved.
  * Function: Doc Node List
  *

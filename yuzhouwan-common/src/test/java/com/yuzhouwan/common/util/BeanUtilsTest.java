@@ -12,7 +12,7 @@ import java.util.TreeSet;
 import static com.yuzhouwan.common.util.CollectionUtils.remove;
 
 /**
- * Copyright @ 2020 yuzhouwan.com
+ * Copyright @ 2023 yuzhouwan.com
  * All right reserved.
  * Function：Bean Utils Test
  *

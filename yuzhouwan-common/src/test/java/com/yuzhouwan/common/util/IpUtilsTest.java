@@ -13,7 +13,7 @@ import static com.yuzhouwan.common.util.IpUtils.*;
 import static org.junit.Assert.*;
 
 /**
- * Copyright @ 2020 yuzhouwan.com
+ * Copyright @ 2023 yuzhouwan.com
  * All right reserved.
  * Function: Ip Util Tester
  *

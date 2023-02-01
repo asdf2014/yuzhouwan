@@ -29,7 +29,7 @@ import static com.yuzhouwan.bigdata.kafka.util.KafkaConnPoolUtils.getPool;
 import static com.yuzhouwan.common.util.ExceptionUtils.errorInfo;
 
 /**
- * Copyright @ 2020 yuzhouwan.com
+ * Copyright @ 2023 yuzhouwan.com
  * All right reserved.
  * Function：Kafka Utils
  *

@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.algorithms.leetcode.array;
 
 /**
- * Copyright @ 2020 yuzhouwan.com
+ * Copyright @ 2023 yuzhouwan.com
  * All right reserved.
  * Function: Product of Array Except Self Solution
  *

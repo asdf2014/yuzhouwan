@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.algorithms.jvm;
 
 /**
- * Copyright @ 2020 yuzhouwan.com
+ * Copyright @ 2023 yuzhouwan.com
  * All right reserved.
  * Function: False Sharing
  * See <a href="http://ifeve.com/falsesharing/">http://ifeve.com/falsesharing/</a>

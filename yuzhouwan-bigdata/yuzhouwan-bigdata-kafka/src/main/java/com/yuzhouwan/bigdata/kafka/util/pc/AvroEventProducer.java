@@ -3,7 +3,7 @@ package com.yuzhouwan.bigdata.kafka.util.pc;
 import com.lmax.disruptor.RingBuffer;
 
 /**
- * Copyright @ 2020 yuzhouwan.com
+ * Copyright @ 2023 yuzhouwan.com
  * All right reserved.
  * Function：Avro Event Producer
  *

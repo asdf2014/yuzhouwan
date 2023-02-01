@@ -10,7 +10,7 @@ import javax.crypto.spec.DESKeySpec;
 import java.lang.reflect.Method;
 
 /**
- * Copyright @ 2020 yuzhouwan.com
+ * Copyright @ 2023 yuzhouwan.com
  * All right reserved.
  * Function: SafeApp
  *

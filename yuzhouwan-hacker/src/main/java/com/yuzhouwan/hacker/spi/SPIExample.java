@@ -3,7 +3,7 @@ package com.yuzhouwan.hacker.spi;
 import java.util.ServiceLoader;
 
 /**
- * Copyright @ 2020 yuzhouwan.com
+ * Copyright @ 2023 yuzhouwan.com
  * All right reserved.
  * Function：SPI Example
  *

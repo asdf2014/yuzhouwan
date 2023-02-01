@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.algorithms.thread.sync;
 
 /**
- * Copyright @ 2020 yuzhouwan.com
+ * Copyright @ 2023 yuzhouwan.com
  * All right reserved.
  * Function：Sync Example
  *

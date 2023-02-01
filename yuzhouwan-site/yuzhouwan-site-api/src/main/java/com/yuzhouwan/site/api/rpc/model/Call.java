@@ -3,7 +3,7 @@ package com.yuzhouwan.site.api.rpc.model;
 import java.io.Serializable;
 
 /**
- * Copyright @ 2020 yuzhouwan.com
+ * Copyright @ 2023 yuzhouwan.com
  * All right reserved.
  * Function：Call
  *

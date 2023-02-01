@@ -18,7 +18,7 @@ import org.apache.lucene.store.NIOFSDirectory;
 import java.nio.file.Paths;
 
 /**
- * Copyright @ 2020 yuzhouwan.com
+ * Copyright @ 2023 yuzhouwan.com
  * All right reserved.
  * Function：A simple example for lucene
  *

@@ -20,7 +20,7 @@ import java.util.LinkedList;
 import static com.yuzhouwan.common.util.StrUtils.isBlank;
 
 /**
- * Copyright @ 2020 yuzhouwan.com
+ * Copyright @ 2023 yuzhouwan.com
  * All right reserved.
  * Function：ElasticSearch Utils
  *

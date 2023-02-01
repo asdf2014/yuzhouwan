@@ -3,7 +3,7 @@ package com.yuzhouwan.hacker.algorithms.thread.semaphore;
 import org.junit.Test;
 
 /**
- * Copyright @ 2020 yuzhouwan.com
+ * Copyright @ 2023 yuzhouwan.com
  * All right reserved.
  * Function: Semaphore Try Tester
  *

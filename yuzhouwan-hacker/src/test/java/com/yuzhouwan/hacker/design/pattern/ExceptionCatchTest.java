@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 import java.io.FileNotFoundException;
 
 /**
- * Copyright @ 2020 yuzhouwan.com
+ * Copyright @ 2023 yuzhouwan.com
  * All right reserved.
  * Function: Exception Catch Tester
  *

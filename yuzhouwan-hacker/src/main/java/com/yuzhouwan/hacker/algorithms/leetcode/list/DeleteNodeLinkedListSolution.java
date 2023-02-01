@@ -1,7 +1,7 @@
 package com.yuzhouwan.hacker.algorithms.leetcode.list;
 
 /**
- * Copyright @ 2020 yuzhouwan.com
+ * Copyright @ 2023 yuzhouwan.com
  * All right reserved.
  * Function: Delete Node in a Linked List Solution
  *

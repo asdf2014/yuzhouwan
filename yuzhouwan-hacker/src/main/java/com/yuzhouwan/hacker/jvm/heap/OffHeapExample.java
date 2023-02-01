@@ -3,7 +3,7 @@ package com.yuzhouwan.hacker.jvm.heap;
 import java.nio.ByteBuffer;
 
 /**
- * Copyright @ 2020 yuzhouwan.com
+ * Copyright @ 2023 yuzhouwan.com
  * All right reserved.
  * Function：Off-Heap Example
  *

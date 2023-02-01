@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.concurrent.ArrayBlockingQueue;
 
 /**
- * Copyright @ 2020 yuzhouwan.com
+ * Copyright @ 2023 yuzhouwan.com
  * All right reserved.
  * Function：Load Thread
  *
