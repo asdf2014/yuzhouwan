@@ -24,16 +24,11 @@ public class RemoveDuplicateAndSort {
 
         double of = c0.getFoundation();
         double tf = c1.getFoundation();
-        if (of > tf) {
-            return -1;
-        } else if (of < tf) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return Double.compare(tf, of);
     };
 
     private static Comparator<Company> comparator4Equal = (c1, c2) -> {
+
         String city1 = c1.getCity();
         String city2 = c2.getCity();
 

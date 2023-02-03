@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -56,11 +57,7 @@ public class LambdaTest {
     @Test
     public void sort() {
         List<Apple> sorted = apples.parallelStream()
-                .sorted((Apple a, Apple b) -> {
-                    if (a.getWeight() > b.getWeight()) return 1;
-                    else if (a.getWeight() < b.getWeight()) return -1;
-                    else return 0;
-                })
+            .sorted(Comparator.comparing(Apple::getWeight))
                 .collect(Collectors.toList());
         assertEquals("[{\"color\":\"red\",\"name\":\"A\",\"weight\":3.0}," +
                         "{\"color\":\"green\",\"name\":\"A\",\"weight\":8.0}," +

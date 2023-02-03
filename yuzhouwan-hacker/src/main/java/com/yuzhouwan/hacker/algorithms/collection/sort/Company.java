@@ -37,13 +37,7 @@ public class Company implements Comparable<Company> {
     public int compareTo(Company o) {
         double of = o.getFoundation();
         double tf = this.getFoundation();
-        if (of > tf) {
-            return 1;
-        } else if (of < tf) {
-            return -1;
-        } else {
-            return 0;
-        }
+        return Double.compare(of, tf);
     }
 
     @Override
