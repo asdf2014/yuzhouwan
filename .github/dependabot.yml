@@ -10,12 +10,6 @@ updates:
   - dependency-name: cglib:cglib
     versions:
     - ">= 3.3.a, < 3.4"
-  - dependency-name: com.alibaba:transmittable-thread-local
-    versions:
-    - ">= 2.11.a, < 2.12"
-  - dependency-name: com.github.luben:zstd-jni
-    versions:
-    - "> 1.4.7.pre.3, < 1.5"
   - dependency-name: com.google.protobuf:protobuf-java
     versions:
     - "> 3.9.0, < 4"
@@ -58,30 +52,6 @@ updates:
   - dependency-name: org.apache.commons:commons-lang3
     versions:
     - ">= 3.9.a, < 3.10"
-  - dependency-name: org.apache.curator:curator-recipes
-    versions:
-    - ">= 3.3.a, < 3.4"
-  - dependency-name: org.apache.curator:curator-recipes
-    versions:
-    - ">= 3.a, < 4"
-  - dependency-name: org.apache.curator:curator-recipes
-    versions:
-    - ">= 4.2.a, < 4.3"
-  - dependency-name: org.apache.curator:curator-recipes
-    versions:
-    - ">= 4.a, < 5"
-  - dependency-name: org.apache.curator:curator-test
-    versions:
-    - ">= 3.3.a, < 3.4"
-  - dependency-name: org.apache.curator:curator-test
-    versions:
-    - ">= 3.a, < 4"
-  - dependency-name: org.apache.curator:curator-test
-    versions:
-    - ">= 4.2.a, < 4.3"
-  - dependency-name: org.apache.curator:curator-test
-    versions:
-    - ">= 4.a, < 5"
   - dependency-name: org.apache.hadoop:hadoop-auth
     versions:
     - ">= 3.2.a, < 3.3"
