@@ -249,6 +249,9 @@
 
         <!-- kubernetes -->
         <fabric8.version>6.4.1</fabric8.version>
+
+        <!-- docker -->
+        <go-offline-maven-plugin.version>1.2.8</go-offline-maven-plugin.version>
     </properties>
 
     <build>
@@ -325,6 +328,12 @@
                     </formats>
                     <check/>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>de.qaware.maven</groupId>
+                <artifactId>go-offline-maven-plugin</artifactId>
+                <version>${go-offline-maven-plugin.version}</version>
             </plugin>
         </plugins>
     </build>
