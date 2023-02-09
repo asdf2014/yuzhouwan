@@ -64,6 +64,7 @@
 | 人工智能（进阶） | [![](https://img.shields.io/badge/QQ%E7%BE%A4-1217710-blue.svg)](https://shang.qq.com/wpa/qunwpa?idkey=deb268f65589a1a0a1dbaf7b72c849ed45298697805bef81e0c613dea40cd05e) |
 |     BigData      | [![](https://img.shields.io/badge/QQ%E7%BE%A4-1670647-blue.svg)](https://shang.qq.com/wpa/qunwpa?idkey=f86b3c8de20da1658a3bb42df17a2fc4eee0d75c4a130a63585fdd257e3565ed) |
 |       算法       | [![](https://img.shields.io/badge/QQ%E7%BE%A4-5366753-blue.svg)](https://shang.qq.com/wpa/qunwpa?idkey=bfbcf1453371a0810fd6be235ace47147f6fb9d262fb768b497c861f50af0af4) |
+|      数据库       | [![](https://img.shields.io/badge/QQ%E7%BE%A4-708181-blue.svg)](https://qm.qq.com/cgi-bin/qm/qr?k=6KASfBaSBwgmq1XC1dR0GW0fpsdX4ZPC&jump_from=webapi&authKey=Df9Qbl/dmNT7jPPALbX7MjQe/U7NJ9G12dhN+WjcWh+CZco6PLd9IzdV72pTRHg3) |
 
 
 ### **[BigData 生态圈](https://yuzhouwan.com/categories/大数据/)**
