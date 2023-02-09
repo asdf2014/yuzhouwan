@@ -61,9 +61,9 @@
 |      群名称      |                             群号                             |
 | :--------------: | :----------------------------------------------------------: |
 | 人工智能（高级） | [![](https://img.shields.io/badge/QQ%E7%BE%A4-1020982-blue.svg)](https://qm.qq.com/cgi-bin/qm/qr?k=_hHWmJ4Qh2Iw4LY0Ak46yP3JqXEXWmRe&jump_from=webapi&authKey=the375UnCmKSUhGBD3ojIAPxXHXEKYtYSfIIUyJPgYJEBLan4RI2EpfJA4bOeyXQ) |
-| 人工智能（进阶） | [![](https://img.shields.io/badge/QQ%E7%BE%A4-1217710-blue.svg)]([https://shang.qq.com/wpa/qunwpa?idkey=deb268f65589a1a0a1dbaf7b72c849ed45298697805bef81e0c613dea40cd05e](https://qm.qq.com/cgi-bin/qm/qr?k=6ZhaR63Qo4KIF1fcHwjxkFDoPNq63tSk&jump_from=webapi&authKey=YmlDS84eCZOwJWZ7DNXXxsnUdbQYaKreXSdMW9xShmrSLz3sZfazJY6DVEVV0Aff)) |
+| 人工智能（进阶） | [![](https://img.shields.io/badge/QQ%E7%BE%A4-1217710-blue.svg)](https://qm.qq.com/cgi-bin/qm/qr?k=6ZhaR63Qo4KIF1fcHwjxkFDoPNq63tSk&jump_from=webapi&authKey=YmlDS84eCZOwJWZ7DNXXxsnUdbQYaKreXSdMW9xShmrSLz3sZfazJY6DVEVV0Aff) |
 |     大数据      | [![](https://img.shields.io/badge/QQ%E7%BE%A4-1670647-blue.svg)](https://qm.qq.com/cgi-bin/qm/qr?k=x9GVeIvJe26vgZS1S_jHs2b-qyNWyWfI&jump_from=webapi&authKey=TxsndzF2s+b5b4kiA8uFuhg5WS1hvwoBI3Dt99LZywUEbV2vF7j3gNZGJ8WizuJA) |
-|       算法       | [![](https://img.shields.io/badge/QQ%E7%BE%A4-5366753-blue.svg)]([https://shang.qq.com/wpa/qunwpa?idkey=bfbcf1453371a0810fd6be235ace47147f6fb9d262fb768b497c861f50af0af4](https://qm.qq.com/cgi-bin/qm/qr?k=i_HFpjyhq2S_c6RPFOidnu450j6rY7sy&jump_from=webapi&authKey=o9AAM2+uGld4uNpm2RVyXLmEvUKMe7RThgZPA2iuLR575/5NbC4qEE+tPcnGd2bF)) |
+|       算法       | [![](https://img.shields.io/badge/QQ%E7%BE%A4-5366753-blue.svg)](https://qm.qq.com/cgi-bin/qm/qr?k=i_HFpjyhq2S_c6RPFOidnu450j6rY7sy&jump_from=webapi&authKey=o9AAM2+uGld4uNpm2RVyXLmEvUKMe7RThgZPA2iuLR575/5NbC4qEE+tPcnGd2bF) |
 |      数据库       | [![](https://img.shields.io/badge/QQ%E7%BE%A4-708181-blue.svg)](https://qm.qq.com/cgi-bin/qm/qr?k=6KASfBaSBwgmq1XC1dR0GW0fpsdX4ZPC&jump_from=webapi&authKey=Df9Qbl/dmNT7jPPALbX7MjQe/U7NJ9G12dhN+WjcWh+CZco6PLd9IzdV72pTRHg3) |
 
 
