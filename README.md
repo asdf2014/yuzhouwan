@@ -71,7 +71,7 @@
 
 　讨论大数据生态圈的各种领域，包括：
 
-* Spark / Storm / Hadoop / Flink / Heron / Cassandra / Docker 主流框架
+* Spark / Storm / Hadoop / Flink / Heron / Cassandra 主流框架
 * Paxos / Raft / Gossip / Consistent Hashing / Chubby / Zookeeper 分布式算法与架构
 * Java / Python / Golang / Scala / Clojure / Ruby 各大流行语言
 * PostgreSQL / HBase / Hive / ElasticSearch / Redis / Druid 数据持久化策略
