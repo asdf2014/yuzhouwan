@@ -37,6 +37,7 @@
 | 设计 Logo        | 新 Logo 寓意着浩瀚宇宙中的一处安心的港湾                     | 2019-05-11 |
 | 源站迁移         | 全站迁移至阿里云 OSS，代替 Github Page 作为源站              | 2020-01-01 |
 | 镜像网站         | 搭建镜像网站 [yuzhouwan.github.io](https://yuzhouwan.github.io/) | 2020-02-09 |
+| GPT 加持         | 使用 GPT-4 模型进行网站优化                                  | 2023-03-18 |
 
 
 ## Code Library for Blog
@@ -109,5 +110,4 @@
 　Just [Google](https://www.google.com/search?q=宇宙湾) it :D
 
 ![Google yuzhouwan.com](https://yuzhouwan.github.io/picture/blog/google_yuzhouwan.png)
-
 
