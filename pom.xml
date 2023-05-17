@@ -117,7 +117,7 @@
         <apache.camel.spring.version>3.20.4</apache.camel.spring.version>
 
         <!-- common -->
-        <commons.io.version>2.11.0</commons.io.version>
+        <commons.io.version>2.12.0</commons.io.version>
         <commons.codec.version>1.11</commons.codec.version>
         <apache.common.lang3.verison>3.12.0</apache.common.lang3.verison>
         <apache.common.dbcp.version>1.4</apache.common.dbcp.version>
@@ -195,7 +195,7 @@
 
         <!-- collection -->
         <apache.collections.version>3.2.2</apache.collections.version>
-        <apache.commons.io.version>2.11.0</apache.commons.io.version>
+        <apache.commons.io.version>2.12.0</apache.commons.io.version>
 
         <!-- npl ansj_seg -->
         <nlp.ansj.seg.version>5.1.6</nlp.ansj.seg.version>
