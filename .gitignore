@@ -48,3 +48,6 @@ hs_err_pid*
 # Temporary files
 /yuzhouwan-hacker/src/main/resources/security/key.data
 /yuzhouwan-hacker/src/main/resources/avro/users.avro
+
+# MacOS
+.DS_Store
