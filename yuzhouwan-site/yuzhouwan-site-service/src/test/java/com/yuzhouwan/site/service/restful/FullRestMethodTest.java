@@ -1,7 +1,8 @@
 package com.yuzhouwan.site.service.restful;
 
-import org.jboss.netty.util.internal.ConcurrentHashMap;
 import org.junit.Test;
+
+import java.util.concurrent.ConcurrentHashMap;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -17,7 +18,7 @@ import static org.junit.Assert.assertNull;
 public class FullRestMethodTest {
 
     @Test
-    public void concurrentHashMap() throws Exception {
+    public void concurrentHashMap() {
         ConcurrentHashMap<String, String> chm = new ConcurrentHashMap<>();
         assertNull(chm.get(""));
         assertNull(chm.put("a", "a"));
