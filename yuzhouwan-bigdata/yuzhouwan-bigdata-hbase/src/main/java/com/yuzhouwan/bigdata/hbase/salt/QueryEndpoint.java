@@ -75,7 +75,7 @@ public class QueryEndpoint extends DataProtos.QueryDataService implements Coproc
                 scan.setStartRow(Bytes.toBytes(startRow));
             }
             if (null != endRow) {
-                if (request.getIncluedEnd()) {
+                if (request.getIncludedEnd()) {
                     Filter filter = new InclusiveStopFilter(Bytes.toBytes(endRow));
                     scan.setFilter(filter);
                 } else {

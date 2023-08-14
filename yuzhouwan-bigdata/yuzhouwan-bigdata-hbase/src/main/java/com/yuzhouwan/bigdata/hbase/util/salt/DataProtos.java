@@ -4,111 +4,28 @@
 package com.yuzhouwan.bigdata.hbase.util.salt;
 
 public final class DataProtos {
-    private static final com.google.protobuf.Descriptors.Descriptor
-            internal_static_generated_DataQueryRequest_descriptor;
-    private static final com.google.protobuf.Descriptors.Descriptor
-            internal_static_generated_DataQueryResponse_descriptor;
-    private static final com.google.protobuf.Descriptors.Descriptor
-            internal_static_generated_DataQueryResponse_Cell_descriptor;
-    private static final com.google.protobuf.Descriptors.Descriptor
-            internal_static_generated_DataQueryResponse_Row_descriptor;
-    private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-            internal_static_generated_DataQueryRequest_fieldAccessorTable;
-    private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-            internal_static_generated_DataQueryResponse_fieldAccessorTable;
-    private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-            internal_static_generated_DataQueryResponse_Cell_fieldAccessorTable;
-    private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-            internal_static_generated_DataQueryResponse_Row_fieldAccessorTable;
-    private static com.google.protobuf.Descriptors.FileDescriptor
-            descriptor;
-
-    static {
-        java.lang.String[] descriptorData = {
-                "\n\020DataProtos.proto\022\tgenerated\"~\n\020DataQue" +
-                        "ryRequest\022\021\n\ttableName\030\001 \001(\t\022\020\n\010startRow" +
-                        "\030\002 \001(\t\022\016\n\006endRow\030\003 \001(\t\022\016\n\006rowKey\030\004 \001(\t\022\022" +
-                        "\n\nincluedEnd\030\005 \001(\010\022\021\n\tisSalting\030\006 \001(\010\"\331\001" +
-                        "\n\021DataQueryResponse\0221\n\007rowList\030\001 \003(\0132 .g" +
-                        "enerated.DataQueryResponse.Row\032E\n\004Cell\022\r" +
-                        "\n\005value\030\001 \002(\014\022\016\n\006family\030\002 \002(\014\022\021\n\tqualifi" +
-                        "er\030\003 \002(\014\022\013\n\003row\030\004 \002(\014\032J\n\003Row\022\016\n\006rowKey\030\001" +
-                        " \001(\014\0223\n\010cellList\030\002 \003(\0132!.generated.DataQ" +
-                        "ueryResponse.Cell2\265\001\n\020QueryDataService\022U",
-                "\n\030queryByStartRowAndEndRow\022\033.generated.D" +
-                        "ataQueryRequest\032\034.generated.DataQueryRes" +
-                        "ponse\022J\n\rqueryByRowKey\022\033.generated.DataQ" +
-                        "ueryRequest\032\034.generated.DataQueryRespons" +
-                        "eB;\n%com.yuzhouwan.bigdata.hbase.util.sa" +
-                        "ltB\nDataProtosH\001\210\001\001\240\001\001"
-        };
-        com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-                new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
-                    public com.google.protobuf.ExtensionRegistry assignDescriptors(
-                            com.google.protobuf.Descriptors.FileDescriptor root) {
-                        descriptor = root;
-                        return null;
-                    }
-                };
-        com.google.protobuf.Descriptors.FileDescriptor
-                .internalBuildGeneratedFileFrom(descriptorData,
-                        new com.google.protobuf.Descriptors.FileDescriptor[]{
-                        }, assigner);
-        internal_static_generated_DataQueryRequest_descriptor =
-                getDescriptor().getMessageTypes().get(0);
-        internal_static_generated_DataQueryRequest_fieldAccessorTable = new
-                com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-                internal_static_generated_DataQueryRequest_descriptor,
-                new java.lang.String[]{"TableName", "StartRow", "EndRow", "RowKey", "IncluedEnd", "IsSalting",});
-        internal_static_generated_DataQueryResponse_descriptor =
-                getDescriptor().getMessageTypes().get(1);
-        internal_static_generated_DataQueryResponse_fieldAccessorTable = new
-                com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-                internal_static_generated_DataQueryResponse_descriptor,
-                new java.lang.String[]{"RowList",});
-        internal_static_generated_DataQueryResponse_Cell_descriptor =
-                internal_static_generated_DataQueryResponse_descriptor.getNestedTypes().get(0);
-        internal_static_generated_DataQueryResponse_Cell_fieldAccessorTable = new
-                com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-                internal_static_generated_DataQueryResponse_Cell_descriptor,
-                new java.lang.String[]{"Value", "Family", "Qualifier", "Row",});
-        internal_static_generated_DataQueryResponse_Row_descriptor =
-                internal_static_generated_DataQueryResponse_descriptor.getNestedTypes().get(1);
-        internal_static_generated_DataQueryResponse_Row_fieldAccessorTable = new
-                com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-                internal_static_generated_DataQueryResponse_Row_descriptor,
-                new java.lang.String[]{"RowKey", "CellList",});
+    private DataProtos() {}
+    public static void registerAllExtensions(
+        com.google.protobuf.ExtensionRegistryLite registry) {
     }
 
-    private DataProtos() {
+    public static void registerAllExtensions(
+        com.google.protobuf.ExtensionRegistry registry) {
+        registerAllExtensions(
+            (com.google.protobuf.ExtensionRegistryLite) registry);
     }
-
-    public static void registerAllExtensions() {
-    }
-
-    public static com.google.protobuf.Descriptors.FileDescriptor
-    getDescriptor() {
-        return descriptor;
-    }
-
     public interface DataQueryRequestOrBuilder extends
-            // @@protoc_insertion_point(interface_extends:generated.DataQueryRequest)
-            com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:generated.DataQueryRequest)
+        com.google.protobuf.MessageOrBuilder {
 
         /**
          * <code>optional string tableName = 1;</code>
          */
         boolean hasTableName();
-
         /**
          * <code>optional string tableName = 1;</code>
          */
         java.lang.String getTableName();
-
         /**
          * <code>optional string tableName = 1;</code>
          */
@@ -119,12 +36,10 @@ public final class DataProtos {
          * <code>optional string startRow = 2;</code>
          */
         boolean hasStartRow();
-
         /**
          * <code>optional string startRow = 2;</code>
          */
         java.lang.String getStartRow();
-
         /**
          * <code>optional string startRow = 2;</code>
          */
@@ -135,12 +50,10 @@ public final class DataProtos {
          * <code>optional string endRow = 3;</code>
          */
         boolean hasEndRow();
-
         /**
          * <code>optional string endRow = 3;</code>
          */
         java.lang.String getEndRow();
-
         /**
          * <code>optional string endRow = 3;</code>
          */
@@ -151,12 +64,10 @@ public final class DataProtos {
          * <code>optional string rowKey = 4;</code>
          */
         boolean hasRowKey();
-
         /**
          * <code>optional string rowKey = 4;</code>
          */
         java.lang.String getRowKey();
-
         /**
          * <code>optional string rowKey = 4;</code>
          */
@@ -164,118 +75,65 @@ public final class DataProtos {
         getRowKeyBytes();
 
         /**
-         * <code>optional bool incluedEnd = 5;</code>
+         * <code>optional bool includedEnd = 5;</code>
          */
-        boolean hasIncluedEnd();
-
+        boolean hasIncludedEnd();
         /**
-         * <code>optional bool incluedEnd = 5;</code>
+         * <code>optional bool includedEnd = 5;</code>
          */
-        boolean getIncluedEnd();
+        boolean getIncludedEnd();
 
         /**
          * <code>optional bool isSalting = 6;</code>
          */
         boolean hasIsSalting();
-
         /**
          * <code>optional bool isSalting = 6;</code>
          */
         boolean getIsSalting();
     }
-
-    public interface DataQueryResponseOrBuilder extends
-            // @@protoc_insertion_point(interface_extends:generated.DataQueryResponse)
-            com.google.protobuf.MessageOrBuilder {
-
-        /**
-         * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
-         */
-        java.util.List<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row>
-        getRowListList();
-
-        /**
-         * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
-         */
-        com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row getRowList(int index);
-
-        /**
-         * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
-         */
-        int getRowListCount();
-
-        /**
-         * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
-         */
-        java.util.List<? extends com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.RowOrBuilder>
-        getRowListOrBuilderList();
-
-        /**
-         * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
-         */
-        com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.RowOrBuilder getRowListOrBuilder(
-                int index);
-    }
-
     /**
      * Protobuf type {@code generated.DataQueryRequest}
      */
-    public static final class DataQueryRequest extends
-            com.google.protobuf.GeneratedMessage implements
-            // @@protoc_insertion_point(message_implements:generated.DataQueryRequest)
-            DataQueryRequestOrBuilder {
-        public static final int TABLENAME_FIELD_NUMBER = 1;
-        public static final int STARTROW_FIELD_NUMBER = 2;
-        public static final int ENDROW_FIELD_NUMBER = 3;
-        public static final int ROWKEY_FIELD_NUMBER = 4;
-        public static final int INCLUEDEND_FIELD_NUMBER = 5;
-        public static final int ISSALTING_FIELD_NUMBER = 6;
-        private static final DataQueryRequest defaultInstance;
+    public  static final class DataQueryRequest extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:generated.DataQueryRequest)
+        DataQueryRequestOrBuilder {
         private static final long serialVersionUID = 0L;
-        public static com.google.protobuf.Parser<DataQueryRequest> PARSER =
-                new com.google.protobuf.AbstractParser<DataQueryRequest>() {
-                    public DataQueryRequest parsePartialFrom(
-                            com.google.protobuf.CodedInputStream input,
-                            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                            throws com.google.protobuf.InvalidProtocolBufferException {
-                        return new DataQueryRequest(input, extensionRegistry);
-                    }
-                };
-
-        static {
-            defaultInstance = new DataQueryRequest();
-            defaultInstance.initFields();
-        }
-
-        private final com.google.protobuf.UnknownFieldSet unknownFields;
-        private int bitField0_;
-        private java.lang.Object tableName_;
-        private java.lang.Object startRow_;
-        private java.lang.Object endRow_;
-        private java.lang.Object rowKey_;
-        private boolean incluedEnd_;
-        private boolean isSalting_;
-        private byte memoizedIsInitialized = -1;
-        private int memoizedSerializedSize = -1;
-
         // Use DataQueryRequest.newBuilder() to construct.
-        private DataQueryRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+        private DataQueryRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
             super(builder);
-            this.unknownFields = builder.getUnknownFields();
         }
-
         private DataQueryRequest() {
-            this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+            tableName_ = "";
+            startRow_ = "";
+            endRow_ = "";
+            rowKey_ = "";
         }
 
+        @java.lang.Override
+        @SuppressWarnings({"unused"})
+        protected java.lang.Object newInstance(
+            UnusedPrivateParameter unused) {
+            return new DataQueryRequest();
+        }
+
+        @java.lang.Override
+        public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+            return this.unknownFields;
+        }
         private DataQueryRequest(
-                com.google.protobuf.CodedInputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            initFields();
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+            this();
+            if (extensionRegistry == null) {
+                throw new java.lang.NullPointerException();
+            }
             int mutable_bitField0_ = 0;
             com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-                    com.google.protobuf.UnknownFieldSet.newBuilder();
+                com.google.protobuf.UnknownFieldSet.newBuilder();
             try {
                 boolean done = false;
                 while (!done) {
@@ -284,13 +142,6 @@ public final class DataProtos {
                         case 0:
                             done = true;
                             break;
-                        default: {
-                            if (!parseUnknownField(input, unknownFields,
-                                    extensionRegistry, tag)) {
-                                done = true;
-                            }
-                            break;
-                        }
                         case 10: {
                             com.google.protobuf.ByteString bs = input.readBytes();
                             bitField0_ |= 0x00000001;
@@ -317,12 +168,19 @@ public final class DataProtos {
                         }
                         case 40: {
                             bitField0_ |= 0x00000010;
-                            incluedEnd_ = input.readBool();
+                            includedEnd_ = input.readBool();
                             break;
                         }
                         case 48: {
                             bitField0_ |= 0x00000020;
                             isSalting_ = input.readBool();
+                            break;
+                        }
+                        default: {
+                            if (!parseUnknownField(
+                                input, unknownFields, extensionRegistry, tag)) {
+                                done = true;
+                            }
                             break;
                         }
                     }
@@ -331,121 +189,34 @@ public final class DataProtos {
                 throw e.setUnfinishedMessage(this);
             } catch (java.io.IOException e) {
                 throw new com.google.protobuf.InvalidProtocolBufferException(
-                        e.getMessage()).setUnfinishedMessage(this);
+                    e).setUnfinishedMessage(this);
             } finally {
                 this.unknownFields = unknownFields.build();
                 makeExtensionsImmutable();
             }
         }
-
-        public static DataQueryRequest getDefaultInstance() {
-            return defaultInstance;
-        }
-
         public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
             return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryRequest_descriptor;
         }
 
-        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest parseFrom(
-                com.google.protobuf.ByteString data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return PARSER.parseFrom(data);
-        }
-
-        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest parseFrom(
-                com.google.protobuf.ByteString data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return PARSER.parseFrom(data, extensionRegistry);
-        }
-
-        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest parseFrom(byte[] data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return PARSER.parseFrom(data);
-        }
-
-        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest parseFrom(
-                byte[] data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return PARSER.parseFrom(data, extensionRegistry);
-        }
-
-        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest parseFrom(java.io.InputStream input)
-                throws java.io.IOException {
-            return PARSER.parseFrom(input);
-        }
-
-        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest parseFrom(
-                java.io.InputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return PARSER.parseFrom(input, extensionRegistry);
-        }
-
-        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest parseDelimitedFrom(java.io.InputStream input)
-                throws java.io.IOException {
-            return PARSER.parseDelimitedFrom(input);
-        }
-
-        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest parseDelimitedFrom(
-                java.io.InputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return PARSER.parseDelimitedFrom(input, extensionRegistry);
-        }
-
-        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest parseFrom(
-                com.google.protobuf.CodedInputStream input)
-                throws java.io.IOException {
-            return PARSER.parseFrom(input);
-        }
-
-        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest parseFrom(
-                com.google.protobuf.CodedInputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return PARSER.parseFrom(input, extensionRegistry);
-        }
-
-        public static Builder newBuilder() {
-            return Builder.create();
-        }
-
-        public static Builder newBuilder(com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest prototype) {
-            return newBuilder().mergeFrom(prototype);
-        }
-
-        public DataQueryRequest getDefaultInstanceForType() {
-            return defaultInstance;
-        }
-
         @java.lang.Override
-        public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-            return this.unknownFields;
-        }
-
-        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
             return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryRequest_fieldAccessorTable
-                    .ensureFieldAccessorsInitialized(
-                            com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest.class, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest.Builder.class);
+                .ensureFieldAccessorsInitialized(
+                    com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest.class, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest.Builder.class);
         }
 
-        @java.lang.Override
-        public com.google.protobuf.Parser<DataQueryRequest> getParserForType() {
-            return PARSER;
-        }
-
+        private int bitField0_;
+        public static final int TABLENAME_FIELD_NUMBER = 1;
+        private volatile java.lang.Object tableName_;
         /**
          * <code>optional string tableName = 1;</code>
          */
         public boolean hasTableName() {
-            return ((bitField0_ & 0x00000001) == 0x00000001);
+            return ((bitField0_ & 0x00000001) != 0);
         }
-
         /**
          * <code>optional string tableName = 1;</code>
          */
@@ -455,7 +226,7 @@ public final class DataProtos {
                 return (java.lang.String) ref;
             } else {
                 com.google.protobuf.ByteString bs =
-                        (com.google.protobuf.ByteString) ref;
+                    (com.google.protobuf.ByteString) ref;
                 java.lang.String s = bs.toStringUtf8();
                 if (bs.isValidUtf8()) {
                     tableName_ = s;
@@ -463,7 +234,6 @@ public final class DataProtos {
                 return s;
             }
         }
-
         /**
          * <code>optional string tableName = 1;</code>
          */
@@ -472,8 +242,8 @@ public final class DataProtos {
             java.lang.Object ref = tableName_;
             if (ref instanceof java.lang.String) {
                 com.google.protobuf.ByteString b =
-                        com.google.protobuf.ByteString.copyFromUtf8(
-                                (java.lang.String) ref);
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                        (java.lang.String) ref);
                 tableName_ = b;
                 return b;
             } else {
@@ -481,13 +251,14 @@ public final class DataProtos {
             }
         }
 
+        public static final int STARTROW_FIELD_NUMBER = 2;
+        private volatile java.lang.Object startRow_;
         /**
          * <code>optional string startRow = 2;</code>
          */
         public boolean hasStartRow() {
-            return ((bitField0_ & 0x00000002) == 0x00000002);
+            return ((bitField0_ & 0x00000002) != 0);
         }
-
         /**
          * <code>optional string startRow = 2;</code>
          */
@@ -497,7 +268,7 @@ public final class DataProtos {
                 return (java.lang.String) ref;
             } else {
                 com.google.protobuf.ByteString bs =
-                        (com.google.protobuf.ByteString) ref;
+                    (com.google.protobuf.ByteString) ref;
                 java.lang.String s = bs.toStringUtf8();
                 if (bs.isValidUtf8()) {
                     startRow_ = s;
@@ -505,7 +276,6 @@ public final class DataProtos {
                 return s;
             }
         }
-
         /**
          * <code>optional string startRow = 2;</code>
          */
@@ -514,8 +284,8 @@ public final class DataProtos {
             java.lang.Object ref = startRow_;
             if (ref instanceof java.lang.String) {
                 com.google.protobuf.ByteString b =
-                        com.google.protobuf.ByteString.copyFromUtf8(
-                                (java.lang.String) ref);
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                        (java.lang.String) ref);
                 startRow_ = b;
                 return b;
             } else {
@@ -523,13 +293,14 @@ public final class DataProtos {
             }
         }
 
+        public static final int ENDROW_FIELD_NUMBER = 3;
+        private volatile java.lang.Object endRow_;
         /**
          * <code>optional string endRow = 3;</code>
          */
         public boolean hasEndRow() {
-            return ((bitField0_ & 0x00000004) == 0x00000004);
+            return ((bitField0_ & 0x00000004) != 0);
         }
-
         /**
          * <code>optional string endRow = 3;</code>
          */
@@ -539,7 +310,7 @@ public final class DataProtos {
                 return (java.lang.String) ref;
             } else {
                 com.google.protobuf.ByteString bs =
-                        (com.google.protobuf.ByteString) ref;
+                    (com.google.protobuf.ByteString) ref;
                 java.lang.String s = bs.toStringUtf8();
                 if (bs.isValidUtf8()) {
                     endRow_ = s;
@@ -547,7 +318,6 @@ public final class DataProtos {
                 return s;
             }
         }
-
         /**
          * <code>optional string endRow = 3;</code>
          */
@@ -556,8 +326,8 @@ public final class DataProtos {
             java.lang.Object ref = endRow_;
             if (ref instanceof java.lang.String) {
                 com.google.protobuf.ByteString b =
-                        com.google.protobuf.ByteString.copyFromUtf8(
-                                (java.lang.String) ref);
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                        (java.lang.String) ref);
                 endRow_ = b;
                 return b;
             } else {
@@ -565,13 +335,14 @@ public final class DataProtos {
             }
         }
 
+        public static final int ROWKEY_FIELD_NUMBER = 4;
+        private volatile java.lang.Object rowKey_;
         /**
          * <code>optional string rowKey = 4;</code>
          */
         public boolean hasRowKey() {
-            return ((bitField0_ & 0x00000008) == 0x00000008);
+            return ((bitField0_ & 0x00000008) != 0);
         }
-
         /**
          * <code>optional string rowKey = 4;</code>
          */
@@ -581,7 +352,7 @@ public final class DataProtos {
                 return (java.lang.String) ref;
             } else {
                 com.google.protobuf.ByteString bs =
-                        (com.google.protobuf.ByteString) ref;
+                    (com.google.protobuf.ByteString) ref;
                 java.lang.String s = bs.toStringUtf8();
                 if (bs.isValidUtf8()) {
                     rowKey_ = s;
@@ -589,7 +360,6 @@ public final class DataProtos {
                 return s;
             }
         }
-
         /**
          * <code>optional string rowKey = 4;</code>
          */
@@ -598,8 +368,8 @@ public final class DataProtos {
             java.lang.Object ref = rowKey_;
             if (ref instanceof java.lang.String) {
                 com.google.protobuf.ByteString b =
-                        com.google.protobuf.ByteString.copyFromUtf8(
-                                (java.lang.String) ref);
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                        (java.lang.String) ref);
                 rowKey_ = b;
                 return b;
             } else {
@@ -607,27 +377,29 @@ public final class DataProtos {
             }
         }
 
+        public static final int INCLUDEDEND_FIELD_NUMBER = 5;
+        private boolean includedEnd_;
         /**
-         * <code>optional bool incluedEnd = 5;</code>
+         * <code>optional bool includedEnd = 5;</code>
          */
-        public boolean hasIncluedEnd() {
-            return ((bitField0_ & 0x00000010) == 0x00000010);
+        public boolean hasIncludedEnd() {
+            return ((bitField0_ & 0x00000010) != 0);
+        }
+        /**
+         * <code>optional bool includedEnd = 5;</code>
+         */
+        public boolean getIncludedEnd() {
+            return includedEnd_;
         }
 
-        /**
-         * <code>optional bool incluedEnd = 5;</code>
-         */
-        public boolean getIncluedEnd() {
-            return incluedEnd_;
-        }
-
+        public static final int ISSALTING_FIELD_NUMBER = 6;
+        private boolean isSalting_;
         /**
          * <code>optional bool isSalting = 6;</code>
          */
         public boolean hasIsSalting() {
-            return ((bitField0_ & 0x00000020) == 0x00000020);
+            return ((bitField0_ & 0x00000020) != 0);
         }
-
         /**
          * <code>optional bool isSalting = 6;</code>
          */
@@ -635,15 +407,8 @@ public final class DataProtos {
             return isSalting_;
         }
 
-        private void initFields() {
-            tableName_ = "";
-            startRow_ = "";
-            endRow_ = "";
-            rowKey_ = "";
-            incluedEnd_ = false;
-            isSalting_ = false;
-        }
-
+        private byte memoizedIsInitialized = -1;
+        @java.lang.Override
         public final boolean isInitialized() {
             byte isInitialized = memoizedIsInitialized;
             if (isInitialized == 1) return true;
@@ -653,68 +418,59 @@ public final class DataProtos {
             return true;
         }
 
+        @java.lang.Override
         public void writeTo(com.google.protobuf.CodedOutputStream output)
-                throws java.io.IOException {
-            getSerializedSize();
-            if (((bitField0_ & 0x00000001) == 0x00000001)) {
-                output.writeBytes(1, getTableNameBytes());
+            throws java.io.IOException {
+            if (((bitField0_ & 0x00000001) != 0)) {
+                com.google.protobuf.GeneratedMessageV3.writeString(output, 1, tableName_);
             }
-            if (((bitField0_ & 0x00000002) == 0x00000002)) {
-                output.writeBytes(2, getStartRowBytes());
+            if (((bitField0_ & 0x00000002) != 0)) {
+                com.google.protobuf.GeneratedMessageV3.writeString(output, 2, startRow_);
             }
-            if (((bitField0_ & 0x00000004) == 0x00000004)) {
-                output.writeBytes(3, getEndRowBytes());
+            if (((bitField0_ & 0x00000004) != 0)) {
+                com.google.protobuf.GeneratedMessageV3.writeString(output, 3, endRow_);
             }
-            if (((bitField0_ & 0x00000008) == 0x00000008)) {
-                output.writeBytes(4, getRowKeyBytes());
+            if (((bitField0_ & 0x00000008) != 0)) {
+                com.google.protobuf.GeneratedMessageV3.writeString(output, 4, rowKey_);
             }
-            if (((bitField0_ & 0x00000010) == 0x00000010)) {
-                output.writeBool(5, incluedEnd_);
+            if (((bitField0_ & 0x00000010) != 0)) {
+                output.writeBool(5, includedEnd_);
             }
-            if (((bitField0_ & 0x00000020) == 0x00000020)) {
+            if (((bitField0_ & 0x00000020) != 0)) {
                 output.writeBool(6, isSalting_);
             }
-            getUnknownFields().writeTo(output);
-        }
-
-        public int getSerializedSize() {
-            int size = memoizedSerializedSize;
-            if (size != -1) return size;
-
-            size = 0;
-            if (((bitField0_ & 0x00000001) == 0x00000001)) {
-                size += com.google.protobuf.CodedOutputStream
-                        .computeBytesSize(1, getTableNameBytes());
-            }
-            if (((bitField0_ & 0x00000002) == 0x00000002)) {
-                size += com.google.protobuf.CodedOutputStream
-                        .computeBytesSize(2, getStartRowBytes());
-            }
-            if (((bitField0_ & 0x00000004) == 0x00000004)) {
-                size += com.google.protobuf.CodedOutputStream
-                        .computeBytesSize(3, getEndRowBytes());
-            }
-            if (((bitField0_ & 0x00000008) == 0x00000008)) {
-                size += com.google.protobuf.CodedOutputStream
-                        .computeBytesSize(4, getRowKeyBytes());
-            }
-            if (((bitField0_ & 0x00000010) == 0x00000010)) {
-                size += com.google.protobuf.CodedOutputStream
-                        .computeBoolSize(5, incluedEnd_);
-            }
-            if (((bitField0_ & 0x00000020) == 0x00000020)) {
-                size += com.google.protobuf.CodedOutputStream
-                        .computeBoolSize(6, isSalting_);
-            }
-            size += getUnknownFields().getSerializedSize();
-            memoizedSerializedSize = size;
-            return size;
+            unknownFields.writeTo(output);
         }
 
         @java.lang.Override
-        protected java.lang.Object writeReplace()
-                throws java.io.ObjectStreamException {
-            return super.writeReplace();
+        public int getSerializedSize() {
+            int size = memoizedSize;
+            if (size != -1) return size;
+
+            size = 0;
+            if (((bitField0_ & 0x00000001) != 0)) {
+                size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, tableName_);
+            }
+            if (((bitField0_ & 0x00000002) != 0)) {
+                size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, startRow_);
+            }
+            if (((bitField0_ & 0x00000004) != 0)) {
+                size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, endRow_);
+            }
+            if (((bitField0_ & 0x00000008) != 0)) {
+                size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, rowKey_);
+            }
+            if (((bitField0_ & 0x00000010) != 0)) {
+                size += com.google.protobuf.CodedOutputStream
+                    .computeBoolSize(5, includedEnd_);
+            }
+            if (((bitField0_ & 0x00000020) != 0)) {
+                size += com.google.protobuf.CodedOutputStream
+                    .computeBoolSize(6, isSalting_);
+            }
+            size += unknownFields.getSerializedSize();
+            memoizedSize = size;
+            return size;
         }
 
         @java.lang.Override
@@ -727,40 +483,38 @@ public final class DataProtos {
             }
             com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest other = (com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest) obj;
 
-            boolean result = true;
-            result = result && (hasTableName() == other.hasTableName());
+            if (hasTableName() != other.hasTableName()) return false;
             if (hasTableName()) {
-                result = result && getTableName()
-                        .equals(other.getTableName());
+                if (!getTableName()
+                    .equals(other.getTableName())) return false;
             }
-            result = result && (hasStartRow() == other.hasStartRow());
+            if (hasStartRow() != other.hasStartRow()) return false;
             if (hasStartRow()) {
-                result = result && getStartRow()
-                        .equals(other.getStartRow());
+                if (!getStartRow()
+                    .equals(other.getStartRow())) return false;
             }
-            result = result && (hasEndRow() == other.hasEndRow());
+            if (hasEndRow() != other.hasEndRow()) return false;
             if (hasEndRow()) {
-                result = result && getEndRow()
-                        .equals(other.getEndRow());
+                if (!getEndRow()
+                    .equals(other.getEndRow())) return false;
             }
-            result = result && (hasRowKey() == other.hasRowKey());
+            if (hasRowKey() != other.hasRowKey()) return false;
             if (hasRowKey()) {
-                result = result && getRowKey()
-                        .equals(other.getRowKey());
+                if (!getRowKey()
+                    .equals(other.getRowKey())) return false;
             }
-            result = result && (hasIncluedEnd() == other.hasIncluedEnd());
-            if (hasIncluedEnd()) {
-                result = result && (getIncluedEnd()
-                        == other.getIncluedEnd());
+            if (hasIncludedEnd() != other.hasIncludedEnd()) return false;
+            if (hasIncludedEnd()) {
+                if (getIncludedEnd()
+                    != other.getIncludedEnd()) return false;
             }
-            result = result && (hasIsSalting() == other.hasIsSalting());
+            if (hasIsSalting() != other.hasIsSalting()) return false;
             if (hasIsSalting()) {
-                result = result && (getIsSalting()
-                        == other.getIsSalting());
+                if (getIsSalting()
+                    != other.getIsSalting()) return false;
             }
-            result = result &&
-                    getUnknownFields().equals(other.getUnknownFields());
-            return result;
+            if (!unknownFields.equals(other.unknownFields)) return false;
+            return true;
         }
 
         @java.lang.Override
@@ -769,7 +523,7 @@ public final class DataProtos {
                 return memoizedHashCode;
             }
             int hash = 41;
-            hash = (19 * hash) + getDescriptorForType().hashCode();
+            hash = (19 * hash) + getDescriptor().hashCode();
             if (hasTableName()) {
                 hash = (37 * hash) + TABLENAME_FIELD_NUMBER;
                 hash = (53 * hash) + getTableName().hashCode();
@@ -786,50 +540,130 @@ public final class DataProtos {
                 hash = (37 * hash) + ROWKEY_FIELD_NUMBER;
                 hash = (53 * hash) + getRowKey().hashCode();
             }
-            if (hasIncluedEnd()) {
-                hash = (37 * hash) + INCLUEDEND_FIELD_NUMBER;
+            if (hasIncludedEnd()) {
+                hash = (37 * hash) + INCLUDEDEND_FIELD_NUMBER;
                 hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-                        getIncluedEnd());
+                    getIncludedEnd());
             }
             if (hasIsSalting()) {
                 hash = (37 * hash) + ISSALTING_FIELD_NUMBER;
                 hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-                        getIsSalting());
+                    getIsSalting());
             }
-            hash = (29 * hash) + getUnknownFields().hashCode();
+            hash = (29 * hash) + unknownFields.hashCode();
             memoizedHashCode = hash;
             return hash;
         }
 
-        public Builder newBuilderForType() {
-            return newBuilder();
+        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest parseFrom(
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest parseFrom(
+            java.nio.ByteBuffer data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest parseFrom(
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest parseFrom(
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest parseFrom(java.io.InputStream input)
+            throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+        }
+        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest parseFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest parseDelimitedFrom(java.io.InputStream input)
+            throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input);
+        }
+        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest parseDelimitedFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        }
+        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest parseFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+        }
+        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest parseFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
         }
 
+        @java.lang.Override
+        public Builder newBuilderForType() { return newBuilder(); }
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+        public static Builder newBuilder(com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+        @java.lang.Override
         public Builder toBuilder() {
-            return newBuilder(this);
+            return this == DEFAULT_INSTANCE
+                ? new Builder() : new Builder().mergeFrom(this);
         }
 
         @java.lang.Override
         protected Builder newBuilderForType(
-                com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
             Builder builder = new Builder(parent);
             return builder;
         }
-
         /**
          * Protobuf type {@code generated.DataQueryRequest}
          */
         public static final class Builder extends
-                com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-                // @@protoc_insertion_point(builder_implements:generated.DataQueryRequest)
-                com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequestOrBuilder {
-            private int bitField0_;
-            private java.lang.Object tableName_ = "";
-            private java.lang.Object startRow_ = "";
-            private java.lang.Object endRow_ = "";
-            private java.lang.Object rowKey_ = "";
-            private boolean incluedEnd_;
-            private boolean isSalting_;
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:generated.DataQueryRequest)
+            com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequestOrBuilder {
+            public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+                return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryRequest_descriptor;
+            }
+
+            @java.lang.Override
+            protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+                return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryRequest_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                        com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest.class, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest.Builder.class);
+            }
 
             // Construct using com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest.newBuilder()
             private Builder() {
@@ -837,32 +671,16 @@ public final class DataProtos {
             }
 
             private Builder(
-                    com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+                com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
                 super(parent);
                 maybeForceBuilderInitialization();
             }
-
-            public static final com.google.protobuf.Descriptors.Descriptor
-            getDescriptor() {
-                return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryRequest_descriptor;
-            }
-
-            private static Builder create() {
-                return new Builder();
-            }
-
-            protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-            internalGetFieldAccessorTable() {
-                return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryRequest_fieldAccessorTable
-                        .ensureFieldAccessorsInitialized(
-                                com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest.class, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest.Builder.class);
-            }
-
             private void maybeForceBuilderInitialization() {
-                if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+                if (com.google.protobuf.GeneratedMessageV3
+                    .alwaysUseFieldBuilders) {
                 }
             }
-
+            @java.lang.Override
             public Builder clear() {
                 super.clear();
                 tableName_ = "";
@@ -873,26 +691,25 @@ public final class DataProtos {
                 bitField0_ = (bitField0_ & ~0x00000004);
                 rowKey_ = "";
                 bitField0_ = (bitField0_ & ~0x00000008);
-                incluedEnd_ = false;
+                includedEnd_ = false;
                 bitField0_ = (bitField0_ & ~0x00000010);
                 isSalting_ = false;
                 bitField0_ = (bitField0_ & ~0x00000020);
                 return this;
             }
 
-            public Builder clone() {
-                return create().mergeFrom(buildPartial());
-            }
-
+            @java.lang.Override
             public com.google.protobuf.Descriptors.Descriptor
             getDescriptorForType() {
                 return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryRequest_descriptor;
             }
 
+            @java.lang.Override
             public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest getDefaultInstanceForType() {
                 return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest.getDefaultInstance();
             }
 
+            @java.lang.Override
             public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest build() {
                 com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest result = buildPartial();
                 if (!result.isInitialized()) {
@@ -901,42 +718,76 @@ public final class DataProtos {
                 return result;
             }
 
+            @java.lang.Override
             public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest buildPartial() {
                 com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest result = new com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest(this);
                 int from_bitField0_ = bitField0_;
                 int to_bitField0_ = 0;
-                if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+                if (((from_bitField0_ & 0x00000001) != 0)) {
                     to_bitField0_ |= 0x00000001;
                 }
                 result.tableName_ = tableName_;
-                if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+                if (((from_bitField0_ & 0x00000002) != 0)) {
                     to_bitField0_ |= 0x00000002;
                 }
                 result.startRow_ = startRow_;
-                if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+                if (((from_bitField0_ & 0x00000004) != 0)) {
                     to_bitField0_ |= 0x00000004;
                 }
                 result.endRow_ = endRow_;
-                if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+                if (((from_bitField0_ & 0x00000008) != 0)) {
                     to_bitField0_ |= 0x00000008;
                 }
                 result.rowKey_ = rowKey_;
-                if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+                if (((from_bitField0_ & 0x00000010) != 0)) {
+                    result.includedEnd_ = includedEnd_;
                     to_bitField0_ |= 0x00000010;
                 }
-                result.incluedEnd_ = incluedEnd_;
-                if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+                if (((from_bitField0_ & 0x00000020) != 0)) {
+                    result.isSalting_ = isSalting_;
                     to_bitField0_ |= 0x00000020;
                 }
-                result.isSalting_ = isSalting_;
                 result.bitField0_ = to_bitField0_;
                 onBuilt();
                 return result;
             }
 
+            @java.lang.Override
+            public Builder clone() {
+                return super.clone();
+            }
+            @java.lang.Override
+            public Builder setField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                java.lang.Object value) {
+                return super.setField(field, value);
+            }
+            @java.lang.Override
+            public Builder clearField(
+                com.google.protobuf.Descriptors.FieldDescriptor field) {
+                return super.clearField(field);
+            }
+            @java.lang.Override
+            public Builder clearOneof(
+                com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+                return super.clearOneof(oneof);
+            }
+            @java.lang.Override
+            public Builder setRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                int index, java.lang.Object value) {
+                return super.setRepeatedField(field, index, value);
+            }
+            @java.lang.Override
+            public Builder addRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                java.lang.Object value) {
+                return super.addRepeatedField(field, value);
+            }
+            @java.lang.Override
             public Builder mergeFrom(com.google.protobuf.Message other) {
                 if (other instanceof com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest) {
-                    return mergeFrom((com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest) other);
+                    return mergeFrom((com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest)other);
                 } else {
                     super.mergeFrom(other);
                     return this;
@@ -944,8 +795,7 @@ public final class DataProtos {
             }
 
             public Builder mergeFrom(com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest other) {
-                if (other == com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest.getDefaultInstance())
-                    return this;
+                if (other == com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest.getDefaultInstance()) return this;
                 if (other.hasTableName()) {
                     bitField0_ |= 0x00000001;
                     tableName_ = other.tableName_;
@@ -966,30 +816,33 @@ public final class DataProtos {
                     rowKey_ = other.rowKey_;
                     onChanged();
                 }
-                if (other.hasIncluedEnd()) {
-                    setIncluedEnd(other.getIncluedEnd());
+                if (other.hasIncludedEnd()) {
+                    setIncludedEnd(other.getIncludedEnd());
                 }
                 if (other.hasIsSalting()) {
                     setIsSalting(other.getIsSalting());
                 }
-                this.mergeUnknownFields(other.getUnknownFields());
+                this.mergeUnknownFields(other.unknownFields);
+                onChanged();
                 return this;
             }
 
+            @java.lang.Override
             public final boolean isInitialized() {
                 return true;
             }
 
+            @java.lang.Override
             public Builder mergeFrom(
-                    com.google.protobuf.CodedInputStream input,
-                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                    throws java.io.IOException {
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
                 com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest parsedMessage = null;
                 try {
                     parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
                 } catch (com.google.protobuf.InvalidProtocolBufferException e) {
                     parsedMessage = (com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest) e.getUnfinishedMessage();
-                    throw e;
+                    throw e.unwrapIOException();
                 } finally {
                     if (parsedMessage != null) {
                         mergeFrom(parsedMessage);
@@ -997,14 +850,15 @@ public final class DataProtos {
                 }
                 return this;
             }
+            private int bitField0_;
 
+            private java.lang.Object tableName_ = "";
             /**
              * <code>optional string tableName = 1;</code>
              */
             public boolean hasTableName() {
-                return ((bitField0_ & 0x00000001) == 0x00000001);
+                return ((bitField0_ & 0x00000001) != 0);
             }
-
             /**
              * <code>optional string tableName = 1;</code>
              */
@@ -1012,7 +866,7 @@ public final class DataProtos {
                 java.lang.Object ref = tableName_;
                 if (!(ref instanceof java.lang.String)) {
                     com.google.protobuf.ByteString bs =
-                            (com.google.protobuf.ByteString) ref;
+                        (com.google.protobuf.ByteString) ref;
                     java.lang.String s = bs.toStringUtf8();
                     if (bs.isValidUtf8()) {
                         tableName_ = s;
@@ -1022,21 +876,6 @@ public final class DataProtos {
                     return (java.lang.String) ref;
                 }
             }
-
-            /**
-             * <code>optional string tableName = 1;</code>
-             */
-            public Builder setTableName(
-                    java.lang.String value) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
-                bitField0_ |= 0x00000001;
-                tableName_ = value;
-                onChanged();
-                return this;
-            }
-
             /**
              * <code>optional string tableName = 1;</code>
              */
@@ -1045,20 +884,19 @@ public final class DataProtos {
                 java.lang.Object ref = tableName_;
                 if (ref instanceof String) {
                     com.google.protobuf.ByteString b =
-                            com.google.protobuf.ByteString.copyFromUtf8(
-                                    (java.lang.String) ref);
+                        com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
                     tableName_ = b;
                     return b;
                 } else {
                     return (com.google.protobuf.ByteString) ref;
                 }
             }
-
             /**
              * <code>optional string tableName = 1;</code>
              */
-            public Builder setTableNameBytes(
-                    com.google.protobuf.ByteString value) {
+            public Builder setTableName(
+                java.lang.String value) {
                 if (value == null) {
                     throw new NullPointerException();
                 }
@@ -1067,7 +905,6 @@ public final class DataProtos {
                 onChanged();
                 return this;
             }
-
             /**
              * <code>optional string tableName = 1;</code>
              */
@@ -1077,14 +914,27 @@ public final class DataProtos {
                 onChanged();
                 return this;
             }
+            /**
+             * <code>optional string tableName = 1;</code>
+             */
+            public Builder setTableNameBytes(
+                com.google.protobuf.ByteString value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                bitField0_ |= 0x00000001;
+                tableName_ = value;
+                onChanged();
+                return this;
+            }
 
+            private java.lang.Object startRow_ = "";
             /**
              * <code>optional string startRow = 2;</code>
              */
             public boolean hasStartRow() {
-                return ((bitField0_ & 0x00000002) == 0x00000002);
+                return ((bitField0_ & 0x00000002) != 0);
             }
-
             /**
              * <code>optional string startRow = 2;</code>
              */
@@ -1092,7 +942,7 @@ public final class DataProtos {
                 java.lang.Object ref = startRow_;
                 if (!(ref instanceof java.lang.String)) {
                     com.google.protobuf.ByteString bs =
-                            (com.google.protobuf.ByteString) ref;
+                        (com.google.protobuf.ByteString) ref;
                     java.lang.String s = bs.toStringUtf8();
                     if (bs.isValidUtf8()) {
                         startRow_ = s;
@@ -1102,21 +952,6 @@ public final class DataProtos {
                     return (java.lang.String) ref;
                 }
             }
-
-            /**
-             * <code>optional string startRow = 2;</code>
-             */
-            public Builder setStartRow(
-                    java.lang.String value) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
-                bitField0_ |= 0x00000002;
-                startRow_ = value;
-                onChanged();
-                return this;
-            }
-
             /**
              * <code>optional string startRow = 2;</code>
              */
@@ -1125,20 +960,19 @@ public final class DataProtos {
                 java.lang.Object ref = startRow_;
                 if (ref instanceof String) {
                     com.google.protobuf.ByteString b =
-                            com.google.protobuf.ByteString.copyFromUtf8(
-                                    (java.lang.String) ref);
+                        com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
                     startRow_ = b;
                     return b;
                 } else {
                     return (com.google.protobuf.ByteString) ref;
                 }
             }
-
             /**
              * <code>optional string startRow = 2;</code>
              */
-            public Builder setStartRowBytes(
-                    com.google.protobuf.ByteString value) {
+            public Builder setStartRow(
+                java.lang.String value) {
                 if (value == null) {
                     throw new NullPointerException();
                 }
@@ -1147,7 +981,6 @@ public final class DataProtos {
                 onChanged();
                 return this;
             }
-
             /**
              * <code>optional string startRow = 2;</code>
              */
@@ -1157,14 +990,27 @@ public final class DataProtos {
                 onChanged();
                 return this;
             }
+            /**
+             * <code>optional string startRow = 2;</code>
+             */
+            public Builder setStartRowBytes(
+                com.google.protobuf.ByteString value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                bitField0_ |= 0x00000002;
+                startRow_ = value;
+                onChanged();
+                return this;
+            }
 
+            private java.lang.Object endRow_ = "";
             /**
              * <code>optional string endRow = 3;</code>
              */
             public boolean hasEndRow() {
-                return ((bitField0_ & 0x00000004) == 0x00000004);
+                return ((bitField0_ & 0x00000004) != 0);
             }
-
             /**
              * <code>optional string endRow = 3;</code>
              */
@@ -1172,7 +1018,7 @@ public final class DataProtos {
                 java.lang.Object ref = endRow_;
                 if (!(ref instanceof java.lang.String)) {
                     com.google.protobuf.ByteString bs =
-                            (com.google.protobuf.ByteString) ref;
+                        (com.google.protobuf.ByteString) ref;
                     java.lang.String s = bs.toStringUtf8();
                     if (bs.isValidUtf8()) {
                         endRow_ = s;
@@ -1182,21 +1028,6 @@ public final class DataProtos {
                     return (java.lang.String) ref;
                 }
             }
-
-            /**
-             * <code>optional string endRow = 3;</code>
-             */
-            public Builder setEndRow(
-                    java.lang.String value) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
-                bitField0_ |= 0x00000004;
-                endRow_ = value;
-                onChanged();
-                return this;
-            }
-
             /**
              * <code>optional string endRow = 3;</code>
              */
@@ -1205,20 +1036,19 @@ public final class DataProtos {
                 java.lang.Object ref = endRow_;
                 if (ref instanceof String) {
                     com.google.protobuf.ByteString b =
-                            com.google.protobuf.ByteString.copyFromUtf8(
-                                    (java.lang.String) ref);
+                        com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
                     endRow_ = b;
                     return b;
                 } else {
                     return (com.google.protobuf.ByteString) ref;
                 }
             }
-
             /**
              * <code>optional string endRow = 3;</code>
              */
-            public Builder setEndRowBytes(
-                    com.google.protobuf.ByteString value) {
+            public Builder setEndRow(
+                java.lang.String value) {
                 if (value == null) {
                     throw new NullPointerException();
                 }
@@ -1227,7 +1057,6 @@ public final class DataProtos {
                 onChanged();
                 return this;
             }
-
             /**
              * <code>optional string endRow = 3;</code>
              */
@@ -1237,14 +1066,27 @@ public final class DataProtos {
                 onChanged();
                 return this;
             }
+            /**
+             * <code>optional string endRow = 3;</code>
+             */
+            public Builder setEndRowBytes(
+                com.google.protobuf.ByteString value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                bitField0_ |= 0x00000004;
+                endRow_ = value;
+                onChanged();
+                return this;
+            }
 
+            private java.lang.Object rowKey_ = "";
             /**
              * <code>optional string rowKey = 4;</code>
              */
             public boolean hasRowKey() {
-                return ((bitField0_ & 0x00000008) == 0x00000008);
+                return ((bitField0_ & 0x00000008) != 0);
             }
-
             /**
              * <code>optional string rowKey = 4;</code>
              */
@@ -1252,7 +1094,7 @@ public final class DataProtos {
                 java.lang.Object ref = rowKey_;
                 if (!(ref instanceof java.lang.String)) {
                     com.google.protobuf.ByteString bs =
-                            (com.google.protobuf.ByteString) ref;
+                        (com.google.protobuf.ByteString) ref;
                     java.lang.String s = bs.toStringUtf8();
                     if (bs.isValidUtf8()) {
                         rowKey_ = s;
@@ -1262,21 +1104,6 @@ public final class DataProtos {
                     return (java.lang.String) ref;
                 }
             }
-
-            /**
-             * <code>optional string rowKey = 4;</code>
-             */
-            public Builder setRowKey(
-                    java.lang.String value) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
-                bitField0_ |= 0x00000008;
-                rowKey_ = value;
-                onChanged();
-                return this;
-            }
-
             /**
              * <code>optional string rowKey = 4;</code>
              */
@@ -1285,20 +1112,19 @@ public final class DataProtos {
                 java.lang.Object ref = rowKey_;
                 if (ref instanceof String) {
                     com.google.protobuf.ByteString b =
-                            com.google.protobuf.ByteString.copyFromUtf8(
-                                    (java.lang.String) ref);
+                        com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
                     rowKey_ = b;
                     return b;
                 } else {
                     return (com.google.protobuf.ByteString) ref;
                 }
             }
-
             /**
              * <code>optional string rowKey = 4;</code>
              */
-            public Builder setRowKeyBytes(
-                    com.google.protobuf.ByteString value) {
+            public Builder setRowKey(
+                java.lang.String value) {
                 if (value == null) {
                     throw new NullPointerException();
                 }
@@ -1307,7 +1133,6 @@ public final class DataProtos {
                 onChanged();
                 return this;
             }
-
             /**
              * <code>optional string rowKey = 4;</code>
              */
@@ -1317,55 +1142,65 @@ public final class DataProtos {
                 onChanged();
                 return this;
             }
-
             /**
-             * <code>optional bool incluedEnd = 5;</code>
+             * <code>optional string rowKey = 4;</code>
              */
-            public boolean hasIncluedEnd() {
-                return ((bitField0_ & 0x00000010) == 0x00000010);
+            public Builder setRowKeyBytes(
+                com.google.protobuf.ByteString value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                bitField0_ |= 0x00000008;
+                rowKey_ = value;
+                onChanged();
+                return this;
             }
 
+            private boolean includedEnd_ ;
             /**
-             * <code>optional bool incluedEnd = 5;</code>
+             * <code>optional bool includedEnd = 5;</code>
              */
-            public boolean getIncluedEnd() {
-                return incluedEnd_;
+            public boolean hasIncludedEnd() {
+                return ((bitField0_ & 0x00000010) != 0);
             }
-
             /**
-             * <code>optional bool incluedEnd = 5;</code>
+             * <code>optional bool includedEnd = 5;</code>
              */
-            public Builder setIncluedEnd(boolean value) {
+            public boolean getIncludedEnd() {
+                return includedEnd_;
+            }
+            /**
+             * <code>optional bool includedEnd = 5;</code>
+             */
+            public Builder setIncludedEnd(boolean value) {
                 bitField0_ |= 0x00000010;
-                incluedEnd_ = value;
+                includedEnd_ = value;
                 onChanged();
                 return this;
             }
-
             /**
-             * <code>optional bool incluedEnd = 5;</code>
+             * <code>optional bool includedEnd = 5;</code>
              */
-            public Builder clearIncluedEnd() {
+            public Builder clearIncludedEnd() {
                 bitField0_ = (bitField0_ & ~0x00000010);
-                incluedEnd_ = false;
+                includedEnd_ = false;
                 onChanged();
                 return this;
             }
 
+            private boolean isSalting_ ;
             /**
              * <code>optional bool isSalting = 6;</code>
              */
             public boolean hasIsSalting() {
-                return ((bitField0_ & 0x00000020) == 0x00000020);
+                return ((bitField0_ & 0x00000020) != 0);
             }
-
             /**
              * <code>optional bool isSalting = 6;</code>
              */
             public boolean getIsSalting() {
                 return isSalting_;
             }
-
             /**
              * <code>optional bool isSalting = 6;</code>
              */
@@ -1375,7 +1210,6 @@ public final class DataProtos {
                 onChanged();
                 return this;
             }
-
             /**
              * <code>optional bool isSalting = 6;</code>
              */
@@ -1385,61 +1219,126 @@ public final class DataProtos {
                 onChanged();
                 return this;
             }
+            @java.lang.Override
+            public final Builder setUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return super.setUnknownFields(unknownFields);
+            }
+
+            @java.lang.Override
+            public final Builder mergeUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return super.mergeUnknownFields(unknownFields);
+            }
+
 
             // @@protoc_insertion_point(builder_scope:generated.DataQueryRequest)
         }
 
         // @@protoc_insertion_point(class_scope:generated.DataQueryRequest)
-    }
-
-    /**
-     * Protobuf type {@code generated.DataQueryResponse}
-     */
-    public static final class DataQueryResponse extends
-            com.google.protobuf.GeneratedMessage implements
-            // @@protoc_insertion_point(message_implements:generated.DataQueryResponse)
-            DataQueryResponseOrBuilder {
-        public static final int ROWLIST_FIELD_NUMBER = 1;
-        private static final DataQueryResponse defaultInstance;
-        private static final long serialVersionUID = 0L;
-        public static com.google.protobuf.Parser<DataQueryResponse> PARSER =
-                new com.google.protobuf.AbstractParser<DataQueryResponse>() {
-                    public DataQueryResponse parsePartialFrom(
-                            com.google.protobuf.CodedInputStream input,
-                            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                            throws com.google.protobuf.InvalidProtocolBufferException {
-                        return new DataQueryResponse(input, extensionRegistry);
-                    }
-                };
-
+        private static final com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest DEFAULT_INSTANCE;
         static {
-            defaultInstance = new DataQueryResponse();
-            defaultInstance.initFields();
+            DEFAULT_INSTANCE = new com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest();
         }
 
-        private final com.google.protobuf.UnknownFieldSet unknownFields;
-        private java.util.List<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row> rowList_;
-        private byte memoizedIsInitialized = -1;
-        private int memoizedSerializedSize = -1;
-
-        // Use DataQueryResponse.newBuilder() to construct.
-        private DataQueryResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
-            super(builder);
-            this.unknownFields = builder.getUnknownFields();
+        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest getDefaultInstance() {
+            return DEFAULT_INSTANCE;
         }
 
-        private DataQueryResponse() {
-            this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-        }
-
-        private DataQueryResponse(
+        @java.lang.Deprecated public static final com.google.protobuf.Parser<DataQueryRequest>
+            PARSER = new com.google.protobuf.AbstractParser<DataQueryRequest>() {
+            @java.lang.Override
+            public DataQueryRequest parsePartialFrom(
                 com.google.protobuf.CodedInputStream input,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws com.google.protobuf.InvalidProtocolBufferException {
-            initFields();
+                return new DataQueryRequest(input, extensionRegistry);
+            }
+        };
+
+        public static com.google.protobuf.Parser<DataQueryRequest> parser() {
+            return PARSER;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Parser<DataQueryRequest> getParserForType() {
+            return PARSER;
+        }
+
+        @java.lang.Override
+        public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest getDefaultInstanceForType() {
+            return DEFAULT_INSTANCE;
+        }
+
+    }
+
+    public interface DataQueryResponseOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:generated.DataQueryResponse)
+        com.google.protobuf.MessageOrBuilder {
+
+        /**
+         * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
+         */
+        java.util.List<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row>
+        getRowListList();
+        /**
+         * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
+         */
+        com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row getRowList(int index);
+        /**
+         * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
+         */
+        int getRowListCount();
+        /**
+         * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
+         */
+        java.util.List<? extends com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.RowOrBuilder>
+        getRowListOrBuilderList();
+        /**
+         * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
+         */
+        com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.RowOrBuilder getRowListOrBuilder(
+            int index);
+    }
+    /**
+     * Protobuf type {@code generated.DataQueryResponse}
+     */
+    public  static final class DataQueryResponse extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:generated.DataQueryResponse)
+        DataQueryResponseOrBuilder {
+        private static final long serialVersionUID = 0L;
+        // Use DataQueryResponse.newBuilder() to construct.
+        private DataQueryResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+            super(builder);
+        }
+        private DataQueryResponse() {
+            rowList_ = java.util.Collections.emptyList();
+        }
+
+        @java.lang.Override
+        @SuppressWarnings({"unused"})
+        protected java.lang.Object newInstance(
+            UnusedPrivateParameter unused) {
+            return new DataQueryResponse();
+        }
+
+        @java.lang.Override
+        public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+            return this.unknownFields;
+        }
+        private DataQueryResponse(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+            this();
+            if (extensionRegistry == null) {
+                throw new java.lang.NullPointerException();
+            }
             int mutable_bitField0_ = 0;
             com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-                    com.google.protobuf.UnknownFieldSet.newBuilder();
+                com.google.protobuf.UnknownFieldSet.newBuilder();
             try {
                 boolean done = false;
                 while (!done) {
@@ -1448,19 +1347,20 @@ public final class DataProtos {
                         case 0:
                             done = true;
                             break;
-                        default: {
-                            if (!parseUnknownField(input, unknownFields,
-                                    extensionRegistry, tag)) {
-                                done = true;
-                            }
-                            break;
-                        }
                         case 10: {
-                            if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                            if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                                 rowList_ = new java.util.ArrayList<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row>();
                                 mutable_bitField0_ |= 0x00000001;
                             }
-                            rowList_.add(input.readMessage(com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.PARSER, extensionRegistry));
+                            rowList_.add(
+                                input.readMessage(com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.PARSER, extensionRegistry));
+                            break;
+                        }
+                        default: {
+                            if (!parseUnknownField(
+                                input, unknownFields, extensionRegistry, tag)) {
+                                done = true;
+                            }
                             break;
                         }
                     }
@@ -1469,260 +1369,36 @@ public final class DataProtos {
                 throw e.setUnfinishedMessage(this);
             } catch (java.io.IOException e) {
                 throw new com.google.protobuf.InvalidProtocolBufferException(
-                        e.getMessage()).setUnfinishedMessage(this);
+                    e).setUnfinishedMessage(this);
             } finally {
-                if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                if (((mutable_bitField0_ & 0x00000001) != 0)) {
                     rowList_ = java.util.Collections.unmodifiableList(rowList_);
                 }
                 this.unknownFields = unknownFields.build();
                 makeExtensionsImmutable();
             }
         }
-
-        public static DataQueryResponse getDefaultInstance() {
-            return defaultInstance;
-        }
-
         public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
             return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryResponse_descriptor;
         }
 
-        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse parseFrom(
-                com.google.protobuf.ByteString data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return PARSER.parseFrom(data);
-        }
-
-        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse parseFrom(
-                com.google.protobuf.ByteString data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return PARSER.parseFrom(data, extensionRegistry);
-        }
-
-        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse parseFrom(byte[] data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return PARSER.parseFrom(data);
-        }
-
-        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse parseFrom(
-                byte[] data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return PARSER.parseFrom(data, extensionRegistry);
-        }
-
-        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse parseFrom(java.io.InputStream input)
-                throws java.io.IOException {
-            return PARSER.parseFrom(input);
-        }
-
-        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse parseFrom(
-                java.io.InputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return PARSER.parseFrom(input, extensionRegistry);
-        }
-
-        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse parseDelimitedFrom(java.io.InputStream input)
-                throws java.io.IOException {
-            return PARSER.parseDelimitedFrom(input);
-        }
-
-        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse parseDelimitedFrom(
-                java.io.InputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return PARSER.parseDelimitedFrom(input, extensionRegistry);
-        }
-
-        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse parseFrom(
-                com.google.protobuf.CodedInputStream input)
-                throws java.io.IOException {
-            return PARSER.parseFrom(input);
-        }
-
-        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse parseFrom(
-                com.google.protobuf.CodedInputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return PARSER.parseFrom(input, extensionRegistry);
-        }
-
-        public static Builder newBuilder() {
-            return Builder.create();
-        }
-
-        public static Builder newBuilder(com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse prototype) {
-            return newBuilder().mergeFrom(prototype);
-        }
-
-        public DataQueryResponse getDefaultInstanceForType() {
-            return defaultInstance;
-        }
-
         @java.lang.Override
-        public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-            return this.unknownFields;
-        }
-
-        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
             return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryResponse_fieldAccessorTable
-                    .ensureFieldAccessorsInitialized(
-                            com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.class, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Builder.class);
-        }
-
-        @java.lang.Override
-        public com.google.protobuf.Parser<DataQueryResponse> getParserForType() {
-            return PARSER;
-        }
-
-        /**
-         * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
-         */
-        public java.util.List<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row> getRowListList() {
-            return rowList_;
-        }
-
-        /**
-         * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
-         */
-        public java.util.List<? extends com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.RowOrBuilder>
-        getRowListOrBuilderList() {
-            return rowList_;
-        }
-
-        /**
-         * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
-         */
-        public int getRowListCount() {
-            return rowList_.size();
-        }
-
-        /**
-         * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
-         */
-        public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row getRowList(int index) {
-            return rowList_.get(index);
-        }
-
-        /**
-         * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
-         */
-        public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.RowOrBuilder getRowListOrBuilder(
-                int index) {
-            return rowList_.get(index);
-        }
-
-        private void initFields() {
-            rowList_ = java.util.Collections.emptyList();
-        }
-
-        public final boolean isInitialized() {
-            byte isInitialized = memoizedIsInitialized;
-            if (isInitialized == 1) return true;
-            if (isInitialized == 0) return false;
-
-            for (int i = 0; i < getRowListCount(); i++) {
-                if (!getRowList(i).isInitialized()) {
-                    memoizedIsInitialized = 0;
-                    return false;
-                }
-            }
-            memoizedIsInitialized = 1;
-            return true;
-        }
-
-        public void writeTo(com.google.protobuf.CodedOutputStream output)
-                throws java.io.IOException {
-            getSerializedSize();
-            for (int i = 0; i < rowList_.size(); i++) {
-                output.writeMessage(1, rowList_.get(i));
-            }
-            getUnknownFields().writeTo(output);
-        }
-
-        public int getSerializedSize() {
-            int size = memoizedSerializedSize;
-            if (size != -1) return size;
-
-            size = 0;
-            for (int i = 0; i < rowList_.size(); i++) {
-                size += com.google.protobuf.CodedOutputStream
-                        .computeMessageSize(1, rowList_.get(i));
-            }
-            size += getUnknownFields().getSerializedSize();
-            memoizedSerializedSize = size;
-            return size;
-        }
-
-        @java.lang.Override
-        protected java.lang.Object writeReplace()
-                throws java.io.ObjectStreamException {
-            return super.writeReplace();
-        }
-
-        @java.lang.Override
-        public boolean equals(final java.lang.Object obj) {
-            if (obj == this) {
-                return true;
-            }
-            if (!(obj instanceof com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse)) {
-                return super.equals(obj);
-            }
-            com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse other = (com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse) obj;
-
-            boolean result = true;
-            result = result && getRowListList()
-                    .equals(other.getRowListList());
-            result = result &&
-                    getUnknownFields().equals(other.getUnknownFields());
-            return result;
-        }
-
-        @java.lang.Override
-        public int hashCode() {
-            if (memoizedHashCode != 0) {
-                return memoizedHashCode;
-            }
-            int hash = 41;
-            hash = (19 * hash) + getDescriptorForType().hashCode();
-            if (getRowListCount() > 0) {
-                hash = (37 * hash) + ROWLIST_FIELD_NUMBER;
-                hash = (53 * hash) + getRowListList().hashCode();
-            }
-            hash = (29 * hash) + getUnknownFields().hashCode();
-            memoizedHashCode = hash;
-            return hash;
-        }
-
-        public Builder newBuilderForType() {
-            return newBuilder();
-        }
-
-        public Builder toBuilder() {
-            return newBuilder(this);
-        }
-
-        @java.lang.Override
-        protected Builder newBuilderForType(
-                com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-            Builder builder = new Builder(parent);
-            return builder;
+                .ensureFieldAccessorsInitialized(
+                    com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.class, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Builder.class);
         }
 
         public interface CellOrBuilder extends
-                // @@protoc_insertion_point(interface_extends:generated.DataQueryResponse.Cell)
-                com.google.protobuf.MessageOrBuilder {
+            // @@protoc_insertion_point(interface_extends:generated.DataQueryResponse.Cell)
+            com.google.protobuf.MessageOrBuilder {
 
             /**
              * <code>required bytes value = 1;</code>
              */
             boolean hasValue();
-
             /**
              * <code>required bytes value = 1;</code>
              */
@@ -1732,7 +1408,6 @@ public final class DataProtos {
              * <code>required bytes family = 2;</code>
              */
             boolean hasFamily();
-
             /**
              * <code>required bytes family = 2;</code>
              */
@@ -1742,7 +1417,6 @@ public final class DataProtos {
              * <code>required bytes qualifier = 3;</code>
              */
             boolean hasQualifier();
-
             /**
              * <code>required bytes qualifier = 3;</code>
              */
@@ -1752,111 +1426,53 @@ public final class DataProtos {
              * <code>required bytes row = 4;</code>
              */
             boolean hasRow();
-
             /**
              * <code>required bytes row = 4;</code>
              */
             com.google.protobuf.ByteString getRow();
         }
-
-        public interface RowOrBuilder extends
-                // @@protoc_insertion_point(interface_extends:generated.DataQueryResponse.Row)
-                com.google.protobuf.MessageOrBuilder {
-
-            /**
-             * <code>optional bytes rowKey = 1;</code>
-             */
-            boolean hasRowKey();
-
-            /**
-             * <code>optional bytes rowKey = 1;</code>
-             */
-            com.google.protobuf.ByteString getRowKey();
-
-            /**
-             * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
-             */
-            java.util.List<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell>
-            getCellListList();
-
-            /**
-             * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
-             */
-            com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell getCellList(int index);
-
-            /**
-             * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
-             */
-            int getCellListCount();
-
-            /**
-             * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
-             */
-            java.util.List<? extends com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.CellOrBuilder>
-            getCellListOrBuilderList();
-
-            /**
-             * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
-             */
-            com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.CellOrBuilder getCellListOrBuilder(
-                    int index);
-        }
-
         /**
          * Protobuf type {@code generated.DataQueryResponse.Cell}
          */
-        public static final class Cell extends
-                com.google.protobuf.GeneratedMessage implements
-                // @@protoc_insertion_point(message_implements:generated.DataQueryResponse.Cell)
-                CellOrBuilder {
-            public static final int VALUE_FIELD_NUMBER = 1;
-            public static final int FAMILY_FIELD_NUMBER = 2;
-            public static final int QUALIFIER_FIELD_NUMBER = 3;
-            public static final int ROW_FIELD_NUMBER = 4;
-            private static final Cell defaultInstance;
+        public  static final class Cell extends
+            com.google.protobuf.GeneratedMessageV3 implements
+            // @@protoc_insertion_point(message_implements:generated.DataQueryResponse.Cell)
+            CellOrBuilder {
             private static final long serialVersionUID = 0L;
-            public static com.google.protobuf.Parser<Cell> PARSER =
-                    new com.google.protobuf.AbstractParser<Cell>() {
-                        public Cell parsePartialFrom(
-                                com.google.protobuf.CodedInputStream input,
-                                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                                throws com.google.protobuf.InvalidProtocolBufferException {
-                            return new Cell(input, extensionRegistry);
-                        }
-                    };
-
-            static {
-                defaultInstance = new Cell();
-                defaultInstance.initFields();
-            }
-
-            private final com.google.protobuf.UnknownFieldSet unknownFields;
-            private int bitField0_;
-            private com.google.protobuf.ByteString value_;
-            private com.google.protobuf.ByteString family_;
-            private com.google.protobuf.ByteString qualifier_;
-            private com.google.protobuf.ByteString row_;
-            private byte memoizedIsInitialized = -1;
-            private int memoizedSerializedSize = -1;
-
             // Use Cell.newBuilder() to construct.
-            private Cell(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+            private Cell(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
                 super(builder);
-                this.unknownFields = builder.getUnknownFields();
             }
-
             private Cell() {
-                this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+                value_ = com.google.protobuf.ByteString.EMPTY;
+                family_ = com.google.protobuf.ByteString.EMPTY;
+                qualifier_ = com.google.protobuf.ByteString.EMPTY;
+                row_ = com.google.protobuf.ByteString.EMPTY;
             }
 
+            @java.lang.Override
+            @SuppressWarnings({"unused"})
+            protected java.lang.Object newInstance(
+                UnusedPrivateParameter unused) {
+                return new Cell();
+            }
+
+            @java.lang.Override
+            public final com.google.protobuf.UnknownFieldSet
+            getUnknownFields() {
+                return this.unknownFields;
+            }
             private Cell(
-                    com.google.protobuf.CodedInputStream input,
-                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                    throws com.google.protobuf.InvalidProtocolBufferException {
-                initFields();
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+                this();
+                if (extensionRegistry == null) {
+                    throw new java.lang.NullPointerException();
+                }
                 int mutable_bitField0_ = 0;
                 com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-                        com.google.protobuf.UnknownFieldSet.newBuilder();
+                    com.google.protobuf.UnknownFieldSet.newBuilder();
                 try {
                     boolean done = false;
                     while (!done) {
@@ -1865,13 +1481,6 @@ public final class DataProtos {
                             case 0:
                                 done = true;
                                 break;
-                            default: {
-                                if (!parseUnknownField(input, unknownFields,
-                                        extensionRegistry, tag)) {
-                                    done = true;
-                                }
-                                break;
-                            }
                             case 10: {
                                 bitField0_ |= 0x00000001;
                                 value_ = input.readBytes();
@@ -1892,127 +1501,47 @@ public final class DataProtos {
                                 row_ = input.readBytes();
                                 break;
                             }
+                            default: {
+                                if (!parseUnknownField(
+                                    input, unknownFields, extensionRegistry, tag)) {
+                                    done = true;
+                                }
+                                break;
+                            }
                         }
                     }
                 } catch (com.google.protobuf.InvalidProtocolBufferException e) {
                     throw e.setUnfinishedMessage(this);
                 } catch (java.io.IOException e) {
                     throw new com.google.protobuf.InvalidProtocolBufferException(
-                            e.getMessage()).setUnfinishedMessage(this);
+                        e).setUnfinishedMessage(this);
                 } finally {
                     this.unknownFields = unknownFields.build();
                     makeExtensionsImmutable();
                 }
             }
-
-            public static Cell getDefaultInstance() {
-                return defaultInstance;
-            }
-
             public static final com.google.protobuf.Descriptors.Descriptor
             getDescriptor() {
                 return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryResponse_Cell_descriptor;
             }
 
-            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell parseFrom(
-                    com.google.protobuf.ByteString data)
-                    throws com.google.protobuf.InvalidProtocolBufferException {
-                return PARSER.parseFrom(data);
-            }
-
-            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell parseFrom(
-                    com.google.protobuf.ByteString data,
-                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                    throws com.google.protobuf.InvalidProtocolBufferException {
-                return PARSER.parseFrom(data, extensionRegistry);
-            }
-
-            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell parseFrom(byte[] data)
-                    throws com.google.protobuf.InvalidProtocolBufferException {
-                return PARSER.parseFrom(data);
-            }
-
-            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell parseFrom(
-                    byte[] data,
-                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                    throws com.google.protobuf.InvalidProtocolBufferException {
-                return PARSER.parseFrom(data, extensionRegistry);
-            }
-
-            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell parseFrom(java.io.InputStream input)
-                    throws java.io.IOException {
-                return PARSER.parseFrom(input);
-            }
-
-            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell parseFrom(
-                    java.io.InputStream input,
-                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                    throws java.io.IOException {
-                return PARSER.parseFrom(input, extensionRegistry);
-            }
-
-            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell parseDelimitedFrom(java.io.InputStream input)
-                    throws java.io.IOException {
-                return PARSER.parseDelimitedFrom(input);
-            }
-
-            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell parseDelimitedFrom(
-                    java.io.InputStream input,
-                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                    throws java.io.IOException {
-                return PARSER.parseDelimitedFrom(input, extensionRegistry);
-            }
-
-            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell parseFrom(
-                    com.google.protobuf.CodedInputStream input)
-                    throws java.io.IOException {
-                return PARSER.parseFrom(input);
-            }
-
-            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell parseFrom(
-                    com.google.protobuf.CodedInputStream input,
-                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                    throws java.io.IOException {
-                return PARSER.parseFrom(input, extensionRegistry);
-            }
-
-            public static Builder newBuilder() {
-                return Builder.create();
-            }
-
-            public static Builder newBuilder(com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell prototype) {
-                return newBuilder().mergeFrom(prototype);
-            }
-
-            public Cell getDefaultInstanceForType() {
-                return defaultInstance;
-            }
-
             @java.lang.Override
-            public final com.google.protobuf.UnknownFieldSet
-            getUnknownFields() {
-                return this.unknownFields;
-            }
-
-            protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+            protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
             internalGetFieldAccessorTable() {
                 return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryResponse_Cell_fieldAccessorTable
-                        .ensureFieldAccessorsInitialized(
-                                com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.class, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.Builder.class);
+                    .ensureFieldAccessorsInitialized(
+                        com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.class, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.Builder.class);
             }
 
-            @java.lang.Override
-            public com.google.protobuf.Parser<Cell> getParserForType() {
-                return PARSER;
-            }
-
+            private int bitField0_;
+            public static final int VALUE_FIELD_NUMBER = 1;
+            private com.google.protobuf.ByteString value_;
             /**
              * <code>required bytes value = 1;</code>
              */
             public boolean hasValue() {
-                return ((bitField0_ & 0x00000001) == 0x00000001);
+                return ((bitField0_ & 0x00000001) != 0);
             }
-
             /**
              * <code>required bytes value = 1;</code>
              */
@@ -2020,13 +1549,14 @@ public final class DataProtos {
                 return value_;
             }
 
+            public static final int FAMILY_FIELD_NUMBER = 2;
+            private com.google.protobuf.ByteString family_;
             /**
              * <code>required bytes family = 2;</code>
              */
             public boolean hasFamily() {
-                return ((bitField0_ & 0x00000002) == 0x00000002);
+                return ((bitField0_ & 0x00000002) != 0);
             }
-
             /**
              * <code>required bytes family = 2;</code>
              */
@@ -2034,13 +1564,14 @@ public final class DataProtos {
                 return family_;
             }
 
+            public static final int QUALIFIER_FIELD_NUMBER = 3;
+            private com.google.protobuf.ByteString qualifier_;
             /**
              * <code>required bytes qualifier = 3;</code>
              */
             public boolean hasQualifier() {
-                return ((bitField0_ & 0x00000004) == 0x00000004);
+                return ((bitField0_ & 0x00000004) != 0);
             }
-
             /**
              * <code>required bytes qualifier = 3;</code>
              */
@@ -2048,13 +1579,14 @@ public final class DataProtos {
                 return qualifier_;
             }
 
+            public static final int ROW_FIELD_NUMBER = 4;
+            private com.google.protobuf.ByteString row_;
             /**
              * <code>required bytes row = 4;</code>
              */
             public boolean hasRow() {
-                return ((bitField0_ & 0x00000008) == 0x00000008);
+                return ((bitField0_ & 0x00000008) != 0);
             }
-
             /**
              * <code>required bytes row = 4;</code>
              */
@@ -2062,13 +1594,8 @@ public final class DataProtos {
                 return row_;
             }
 
-            private void initFields() {
-                value_ = com.google.protobuf.ByteString.EMPTY;
-                family_ = com.google.protobuf.ByteString.EMPTY;
-                qualifier_ = com.google.protobuf.ByteString.EMPTY;
-                row_ = com.google.protobuf.ByteString.EMPTY;
-            }
-
+            private byte memoizedIsInitialized = -1;
+            @java.lang.Override
             public final boolean isInitialized() {
                 byte isInitialized = memoizedIsInitialized;
                 if (isInitialized == 1) return true;
@@ -2094,54 +1621,49 @@ public final class DataProtos {
                 return true;
             }
 
+            @java.lang.Override
             public void writeTo(com.google.protobuf.CodedOutputStream output)
-                    throws java.io.IOException {
-                getSerializedSize();
-                if (((bitField0_ & 0x00000001) == 0x00000001)) {
+                throws java.io.IOException {
+                if (((bitField0_ & 0x00000001) != 0)) {
                     output.writeBytes(1, value_);
                 }
-                if (((bitField0_ & 0x00000002) == 0x00000002)) {
+                if (((bitField0_ & 0x00000002) != 0)) {
                     output.writeBytes(2, family_);
                 }
-                if (((bitField0_ & 0x00000004) == 0x00000004)) {
+                if (((bitField0_ & 0x00000004) != 0)) {
                     output.writeBytes(3, qualifier_);
                 }
-                if (((bitField0_ & 0x00000008) == 0x00000008)) {
+                if (((bitField0_ & 0x00000008) != 0)) {
                     output.writeBytes(4, row_);
                 }
-                getUnknownFields().writeTo(output);
-            }
-
-            public int getSerializedSize() {
-                int size = memoizedSerializedSize;
-                if (size != -1) return size;
-
-                size = 0;
-                if (((bitField0_ & 0x00000001) == 0x00000001)) {
-                    size += com.google.protobuf.CodedOutputStream
-                            .computeBytesSize(1, value_);
-                }
-                if (((bitField0_ & 0x00000002) == 0x00000002)) {
-                    size += com.google.protobuf.CodedOutputStream
-                            .computeBytesSize(2, family_);
-                }
-                if (((bitField0_ & 0x00000004) == 0x00000004)) {
-                    size += com.google.protobuf.CodedOutputStream
-                            .computeBytesSize(3, qualifier_);
-                }
-                if (((bitField0_ & 0x00000008) == 0x00000008)) {
-                    size += com.google.protobuf.CodedOutputStream
-                            .computeBytesSize(4, row_);
-                }
-                size += getUnknownFields().getSerializedSize();
-                memoizedSerializedSize = size;
-                return size;
+                unknownFields.writeTo(output);
             }
 
             @java.lang.Override
-            protected java.lang.Object writeReplace()
-                    throws java.io.ObjectStreamException {
-                return super.writeReplace();
+            public int getSerializedSize() {
+                int size = memoizedSize;
+                if (size != -1) return size;
+
+                size = 0;
+                if (((bitField0_ & 0x00000001) != 0)) {
+                    size += com.google.protobuf.CodedOutputStream
+                        .computeBytesSize(1, value_);
+                }
+                if (((bitField0_ & 0x00000002) != 0)) {
+                    size += com.google.protobuf.CodedOutputStream
+                        .computeBytesSize(2, family_);
+                }
+                if (((bitField0_ & 0x00000004) != 0)) {
+                    size += com.google.protobuf.CodedOutputStream
+                        .computeBytesSize(3, qualifier_);
+                }
+                if (((bitField0_ & 0x00000008) != 0)) {
+                    size += com.google.protobuf.CodedOutputStream
+                        .computeBytesSize(4, row_);
+                }
+                size += unknownFields.getSerializedSize();
+                memoizedSize = size;
+                return size;
             }
 
             @java.lang.Override
@@ -2154,30 +1676,28 @@ public final class DataProtos {
                 }
                 com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell other = (com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell) obj;
 
-                boolean result = true;
-                result = result && (hasValue() == other.hasValue());
+                if (hasValue() != other.hasValue()) return false;
                 if (hasValue()) {
-                    result = result && getValue()
-                            .equals(other.getValue());
+                    if (!getValue()
+                        .equals(other.getValue())) return false;
                 }
-                result = result && (hasFamily() == other.hasFamily());
+                if (hasFamily() != other.hasFamily()) return false;
                 if (hasFamily()) {
-                    result = result && getFamily()
-                            .equals(other.getFamily());
+                    if (!getFamily()
+                        .equals(other.getFamily())) return false;
                 }
-                result = result && (hasQualifier() == other.hasQualifier());
+                if (hasQualifier() != other.hasQualifier()) return false;
                 if (hasQualifier()) {
-                    result = result && getQualifier()
-                            .equals(other.getQualifier());
+                    if (!getQualifier()
+                        .equals(other.getQualifier())) return false;
                 }
-                result = result && (hasRow() == other.hasRow());
+                if (hasRow() != other.hasRow()) return false;
                 if (hasRow()) {
-                    result = result && getRow()
-                            .equals(other.getRow());
+                    if (!getRow()
+                        .equals(other.getRow())) return false;
                 }
-                result = result &&
-                        getUnknownFields().equals(other.getUnknownFields());
-                return result;
+                if (!unknownFields.equals(other.unknownFields)) return false;
+                return true;
             }
 
             @java.lang.Override
@@ -2186,7 +1706,7 @@ public final class DataProtos {
                     return memoizedHashCode;
                 }
                 int hash = 41;
-                hash = (19 * hash) + getDescriptorForType().hashCode();
+                hash = (19 * hash) + getDescriptor().hashCode();
                 if (hasValue()) {
                     hash = (37 * hash) + VALUE_FIELD_NUMBER;
                     hash = (53 * hash) + getValue().hashCode();
@@ -2203,38 +1723,120 @@ public final class DataProtos {
                     hash = (37 * hash) + ROW_FIELD_NUMBER;
                     hash = (53 * hash) + getRow().hashCode();
                 }
-                hash = (29 * hash) + getUnknownFields().hashCode();
+                hash = (29 * hash) + unknownFields.hashCode();
                 memoizedHashCode = hash;
                 return hash;
             }
 
-            public Builder newBuilderForType() {
-                return newBuilder();
+            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell parseFrom(
+                java.nio.ByteBuffer data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+                return PARSER.parseFrom(data);
+            }
+            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell parseFrom(
+                java.nio.ByteBuffer data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+                return PARSER.parseFrom(data, extensionRegistry);
+            }
+            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+                return PARSER.parseFrom(data);
+            }
+            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+                return PARSER.parseFrom(data, extensionRegistry);
+            }
+            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+                return PARSER.parseFrom(data);
+            }
+            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+                return PARSER.parseFrom(data, extensionRegistry);
+            }
+            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+                return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+            }
+            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+                return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+            }
+            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+                return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input);
+            }
+            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+                return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+            }
+            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+                return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+            }
+            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+                return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
             }
 
+            @java.lang.Override
+            public Builder newBuilderForType() { return newBuilder(); }
+            public static Builder newBuilder() {
+                return DEFAULT_INSTANCE.toBuilder();
+            }
+            public static Builder newBuilder(com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell prototype) {
+                return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+            }
+            @java.lang.Override
             public Builder toBuilder() {
-                return newBuilder(this);
+                return this == DEFAULT_INSTANCE
+                    ? new Builder() : new Builder().mergeFrom(this);
             }
 
             @java.lang.Override
             protected Builder newBuilderForType(
-                    com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+                com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
                 Builder builder = new Builder(parent);
                 return builder;
             }
-
             /**
              * Protobuf type {@code generated.DataQueryResponse.Cell}
              */
             public static final class Builder extends
-                    com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-                    // @@protoc_insertion_point(builder_implements:generated.DataQueryResponse.Cell)
-                    com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.CellOrBuilder {
-                private int bitField0_;
-                private com.google.protobuf.ByteString value_ = com.google.protobuf.ByteString.EMPTY;
-                private com.google.protobuf.ByteString family_ = com.google.protobuf.ByteString.EMPTY;
-                private com.google.protobuf.ByteString qualifier_ = com.google.protobuf.ByteString.EMPTY;
-                private com.google.protobuf.ByteString row_ = com.google.protobuf.ByteString.EMPTY;
+                com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+                // @@protoc_insertion_point(builder_implements:generated.DataQueryResponse.Cell)
+                com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.CellOrBuilder {
+                public static final com.google.protobuf.Descriptors.Descriptor
+                getDescriptor() {
+                    return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryResponse_Cell_descriptor;
+                }
+
+                @java.lang.Override
+                protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+                internalGetFieldAccessorTable() {
+                    return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryResponse_Cell_fieldAccessorTable
+                        .ensureFieldAccessorsInitialized(
+                            com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.class, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.Builder.class);
+                }
 
                 // Construct using com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.newBuilder()
                 private Builder() {
@@ -2242,32 +1844,16 @@ public final class DataProtos {
                 }
 
                 private Builder(
-                        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+                    com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
                     super(parent);
                     maybeForceBuilderInitialization();
                 }
-
-                public static final com.google.protobuf.Descriptors.Descriptor
-                getDescriptor() {
-                    return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryResponse_Cell_descriptor;
-                }
-
-                private static Builder create() {
-                    return new Builder();
-                }
-
-                protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-                internalGetFieldAccessorTable() {
-                    return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryResponse_Cell_fieldAccessorTable
-                            .ensureFieldAccessorsInitialized(
-                                    com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.class, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.Builder.class);
-                }
-
                 private void maybeForceBuilderInitialization() {
-                    if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+                    if (com.google.protobuf.GeneratedMessageV3
+                        .alwaysUseFieldBuilders) {
                     }
                 }
-
+                @java.lang.Override
                 public Builder clear() {
                     super.clear();
                     value_ = com.google.protobuf.ByteString.EMPTY;
@@ -2281,19 +1867,18 @@ public final class DataProtos {
                     return this;
                 }
 
-                public Builder clone() {
-                    return create().mergeFrom(buildPartial());
-                }
-
+                @java.lang.Override
                 public com.google.protobuf.Descriptors.Descriptor
                 getDescriptorForType() {
                     return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryResponse_Cell_descriptor;
                 }
 
+                @java.lang.Override
                 public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell getDefaultInstanceForType() {
                     return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.getDefaultInstance();
                 }
 
+                @java.lang.Override
                 public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell build() {
                     com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell result = buildPartial();
                     if (!result.isInitialized()) {
@@ -2302,23 +1887,24 @@ public final class DataProtos {
                     return result;
                 }
 
+                @java.lang.Override
                 public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell buildPartial() {
                     com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell result = new com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell(this);
                     int from_bitField0_ = bitField0_;
                     int to_bitField0_ = 0;
-                    if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+                    if (((from_bitField0_ & 0x00000001) != 0)) {
                         to_bitField0_ |= 0x00000001;
                     }
                     result.value_ = value_;
-                    if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+                    if (((from_bitField0_ & 0x00000002) != 0)) {
                         to_bitField0_ |= 0x00000002;
                     }
                     result.family_ = family_;
-                    if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+                    if (((from_bitField0_ & 0x00000004) != 0)) {
                         to_bitField0_ |= 0x00000004;
                     }
                     result.qualifier_ = qualifier_;
-                    if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+                    if (((from_bitField0_ & 0x00000008) != 0)) {
                         to_bitField0_ |= 0x00000008;
                     }
                     result.row_ = row_;
@@ -2327,9 +1913,42 @@ public final class DataProtos {
                     return result;
                 }
 
+                @java.lang.Override
+                public Builder clone() {
+                    return super.clone();
+                }
+                @java.lang.Override
+                public Builder setField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    java.lang.Object value) {
+                    return super.setField(field, value);
+                }
+                @java.lang.Override
+                public Builder clearField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field) {
+                    return super.clearField(field);
+                }
+                @java.lang.Override
+                public Builder clearOneof(
+                    com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+                    return super.clearOneof(oneof);
+                }
+                @java.lang.Override
+                public Builder setRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    int index, java.lang.Object value) {
+                    return super.setRepeatedField(field, index, value);
+                }
+                @java.lang.Override
+                public Builder addRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    java.lang.Object value) {
+                    return super.addRepeatedField(field, value);
+                }
+                @java.lang.Override
                 public Builder mergeFrom(com.google.protobuf.Message other) {
                     if (other instanceof com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell) {
-                        return mergeFrom((com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell) other);
+                        return mergeFrom((com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell)other);
                     } else {
                         super.mergeFrom(other);
                         return this;
@@ -2337,8 +1956,7 @@ public final class DataProtos {
                 }
 
                 public Builder mergeFrom(com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell other) {
-                    if (other == com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.getDefaultInstance())
-                        return this;
+                    if (other == com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.getDefaultInstance()) return this;
                     if (other.hasValue()) {
                         setValue(other.getValue());
                     }
@@ -2351,40 +1969,39 @@ public final class DataProtos {
                     if (other.hasRow()) {
                         setRow(other.getRow());
                     }
-                    this.mergeUnknownFields(other.getUnknownFields());
+                    this.mergeUnknownFields(other.unknownFields);
+                    onChanged();
                     return this;
                 }
 
+                @java.lang.Override
                 public final boolean isInitialized() {
                     if (!hasValue()) {
-
                         return false;
                     }
                     if (!hasFamily()) {
-
                         return false;
                     }
                     if (!hasQualifier()) {
-
                         return false;
                     }
                     if (!hasRow()) {
-
                         return false;
                     }
                     return true;
                 }
 
+                @java.lang.Override
                 public Builder mergeFrom(
-                        com.google.protobuf.CodedInputStream input,
-                        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                        throws java.io.IOException {
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws java.io.IOException {
                     com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell parsedMessage = null;
                     try {
                         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
                     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
                         parsedMessage = (com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell) e.getUnfinishedMessage();
-                        throw e;
+                        throw e.unwrapIOException();
                     } finally {
                         if (parsedMessage != null) {
                             mergeFrom(parsedMessage);
@@ -2392,21 +2009,21 @@ public final class DataProtos {
                     }
                     return this;
                 }
+                private int bitField0_;
 
+                private com.google.protobuf.ByteString value_ = com.google.protobuf.ByteString.EMPTY;
                 /**
                  * <code>required bytes value = 1;</code>
                  */
                 public boolean hasValue() {
-                    return ((bitField0_ & 0x00000001) == 0x00000001);
+                    return ((bitField0_ & 0x00000001) != 0);
                 }
-
                 /**
                  * <code>required bytes value = 1;</code>
                  */
                 public com.google.protobuf.ByteString getValue() {
                     return value_;
                 }
-
                 /**
                  * <code>required bytes value = 1;</code>
                  */
@@ -2419,7 +2036,6 @@ public final class DataProtos {
                     onChanged();
                     return this;
                 }
-
                 /**
                  * <code>required bytes value = 1;</code>
                  */
@@ -2430,20 +2046,19 @@ public final class DataProtos {
                     return this;
                 }
 
+                private com.google.protobuf.ByteString family_ = com.google.protobuf.ByteString.EMPTY;
                 /**
                  * <code>required bytes family = 2;</code>
                  */
                 public boolean hasFamily() {
-                    return ((bitField0_ & 0x00000002) == 0x00000002);
+                    return ((bitField0_ & 0x00000002) != 0);
                 }
-
                 /**
                  * <code>required bytes family = 2;</code>
                  */
                 public com.google.protobuf.ByteString getFamily() {
                     return family_;
                 }
-
                 /**
                  * <code>required bytes family = 2;</code>
                  */
@@ -2456,7 +2071,6 @@ public final class DataProtos {
                     onChanged();
                     return this;
                 }
-
                 /**
                  * <code>required bytes family = 2;</code>
                  */
@@ -2467,20 +2081,19 @@ public final class DataProtos {
                     return this;
                 }
 
+                private com.google.protobuf.ByteString qualifier_ = com.google.protobuf.ByteString.EMPTY;
                 /**
                  * <code>required bytes qualifier = 3;</code>
                  */
                 public boolean hasQualifier() {
-                    return ((bitField0_ & 0x00000004) == 0x00000004);
+                    return ((bitField0_ & 0x00000004) != 0);
                 }
-
                 /**
                  * <code>required bytes qualifier = 3;</code>
                  */
                 public com.google.protobuf.ByteString getQualifier() {
                     return qualifier_;
                 }
-
                 /**
                  * <code>required bytes qualifier = 3;</code>
                  */
@@ -2493,7 +2106,6 @@ public final class DataProtos {
                     onChanged();
                     return this;
                 }
-
                 /**
                  * <code>required bytes qualifier = 3;</code>
                  */
@@ -2504,20 +2116,19 @@ public final class DataProtos {
                     return this;
                 }
 
+                private com.google.protobuf.ByteString row_ = com.google.protobuf.ByteString.EMPTY;
                 /**
                  * <code>required bytes row = 4;</code>
                  */
                 public boolean hasRow() {
-                    return ((bitField0_ & 0x00000008) == 0x00000008);
+                    return ((bitField0_ & 0x00000008) != 0);
                 }
-
                 /**
                  * <code>required bytes row = 4;</code>
                  */
                 public com.google.protobuf.ByteString getRow() {
                     return row_;
                 }
-
                 /**
                  * <code>required bytes row = 4;</code>
                  */
@@ -2530,7 +2141,6 @@ public final class DataProtos {
                     onChanged();
                     return this;
                 }
-
                 /**
                  * <code>required bytes row = 4;</code>
                  */
@@ -2540,64 +2150,136 @@ public final class DataProtos {
                     onChanged();
                     return this;
                 }
+                @java.lang.Override
+                public final Builder setUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                    return super.setUnknownFields(unknownFields);
+                }
+
+                @java.lang.Override
+                public final Builder mergeUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                    return super.mergeUnknownFields(unknownFields);
+                }
+
 
                 // @@protoc_insertion_point(builder_scope:generated.DataQueryResponse.Cell)
             }
 
             // @@protoc_insertion_point(class_scope:generated.DataQueryResponse.Cell)
-        }
-
-        /**
-         * Protobuf type {@code generated.DataQueryResponse.Row}
-         */
-        public static final class Row extends
-                com.google.protobuf.GeneratedMessage implements
-                // @@protoc_insertion_point(message_implements:generated.DataQueryResponse.Row)
-                RowOrBuilder {
-            public static final int ROWKEY_FIELD_NUMBER = 1;
-            public static final int CELLLIST_FIELD_NUMBER = 2;
-            private static final Row defaultInstance;
-            private static final long serialVersionUID = 0L;
-            public static com.google.protobuf.Parser<Row> PARSER =
-                    new com.google.protobuf.AbstractParser<Row>() {
-                        public Row parsePartialFrom(
-                                com.google.protobuf.CodedInputStream input,
-                                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                                throws com.google.protobuf.InvalidProtocolBufferException {
-                            return new Row(input, extensionRegistry);
-                        }
-                    };
-
+            private static final com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell DEFAULT_INSTANCE;
             static {
-                defaultInstance = new Row();
-                defaultInstance.initFields();
+                DEFAULT_INSTANCE = new com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell();
             }
 
-            private final com.google.protobuf.UnknownFieldSet unknownFields;
-            private int bitField0_;
-            private com.google.protobuf.ByteString rowKey_;
-            private java.util.List<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell> cellList_;
-            private byte memoizedIsInitialized = -1;
-            private int memoizedSerializedSize = -1;
-
-            // Use Row.newBuilder() to construct.
-            private Row(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
-                super(builder);
-                this.unknownFields = builder.getUnknownFields();
+            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell getDefaultInstance() {
+                return DEFAULT_INSTANCE;
             }
 
-            private Row() {
-                this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-            }
-
-            private Row(
+            @java.lang.Deprecated public static final com.google.protobuf.Parser<Cell>
+                PARSER = new com.google.protobuf.AbstractParser<Cell>() {
+                @java.lang.Override
+                public Cell parsePartialFrom(
                     com.google.protobuf.CodedInputStream input,
                     com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                     throws com.google.protobuf.InvalidProtocolBufferException {
-                initFields();
+                    return new Cell(input, extensionRegistry);
+                }
+            };
+
+            public static com.google.protobuf.Parser<Cell> parser() {
+                return PARSER;
+            }
+
+            @java.lang.Override
+            public com.google.protobuf.Parser<Cell> getParserForType() {
+                return PARSER;
+            }
+
+            @java.lang.Override
+            public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell getDefaultInstanceForType() {
+                return DEFAULT_INSTANCE;
+            }
+
+        }
+
+        public interface RowOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:generated.DataQueryResponse.Row)
+            com.google.protobuf.MessageOrBuilder {
+
+            /**
+             * <code>optional bytes rowKey = 1;</code>
+             */
+            boolean hasRowKey();
+            /**
+             * <code>optional bytes rowKey = 1;</code>
+             */
+            com.google.protobuf.ByteString getRowKey();
+
+            /**
+             * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
+             */
+            java.util.List<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell>
+            getCellListList();
+            /**
+             * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
+             */
+            com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell getCellList(int index);
+            /**
+             * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
+             */
+            int getCellListCount();
+            /**
+             * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
+             */
+            java.util.List<? extends com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.CellOrBuilder>
+            getCellListOrBuilderList();
+            /**
+             * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
+             */
+            com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.CellOrBuilder getCellListOrBuilder(
+                int index);
+        }
+        /**
+         * Protobuf type {@code generated.DataQueryResponse.Row}
+         */
+        public  static final class Row extends
+            com.google.protobuf.GeneratedMessageV3 implements
+            // @@protoc_insertion_point(message_implements:generated.DataQueryResponse.Row)
+            RowOrBuilder {
+            private static final long serialVersionUID = 0L;
+            // Use Row.newBuilder() to construct.
+            private Row(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+                super(builder);
+            }
+            private Row() {
+                rowKey_ = com.google.protobuf.ByteString.EMPTY;
+                cellList_ = java.util.Collections.emptyList();
+            }
+
+            @java.lang.Override
+            @SuppressWarnings({"unused"})
+            protected java.lang.Object newInstance(
+                UnusedPrivateParameter unused) {
+                return new Row();
+            }
+
+            @java.lang.Override
+            public final com.google.protobuf.UnknownFieldSet
+            getUnknownFields() {
+                return this.unknownFields;
+            }
+            private Row(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+                this();
+                if (extensionRegistry == null) {
+                    throw new java.lang.NullPointerException();
+                }
                 int mutable_bitField0_ = 0;
                 com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-                        com.google.protobuf.UnknownFieldSet.newBuilder();
+                    com.google.protobuf.UnknownFieldSet.newBuilder();
                 try {
                     boolean done = false;
                     while (!done) {
@@ -2606,24 +2288,25 @@ public final class DataProtos {
                             case 0:
                                 done = true;
                                 break;
-                            default: {
-                                if (!parseUnknownField(input, unknownFields,
-                                        extensionRegistry, tag)) {
-                                    done = true;
-                                }
-                                break;
-                            }
                             case 10: {
                                 bitField0_ |= 0x00000001;
                                 rowKey_ = input.readBytes();
                                 break;
                             }
                             case 18: {
-                                if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                                if (!((mutable_bitField0_ & 0x00000002) != 0)) {
                                     cellList_ = new java.util.ArrayList<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell>();
                                     mutable_bitField0_ |= 0x00000002;
                                 }
-                                cellList_.add(input.readMessage(com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.PARSER, extensionRegistry));
+                                cellList_.add(
+                                    input.readMessage(com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.PARSER, extensionRegistry));
+                                break;
+                            }
+                            default: {
+                                if (!parseUnknownField(
+                                    input, unknownFields, extensionRegistry, tag)) {
+                                    done = true;
+                                }
                                 break;
                             }
                         }
@@ -2632,124 +2315,37 @@ public final class DataProtos {
                     throw e.setUnfinishedMessage(this);
                 } catch (java.io.IOException e) {
                     throw new com.google.protobuf.InvalidProtocolBufferException(
-                            e.getMessage()).setUnfinishedMessage(this);
+                        e).setUnfinishedMessage(this);
                 } finally {
-                    if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                    if (((mutable_bitField0_ & 0x00000002) != 0)) {
                         cellList_ = java.util.Collections.unmodifiableList(cellList_);
                     }
                     this.unknownFields = unknownFields.build();
                     makeExtensionsImmutable();
                 }
             }
-
-            public static Row getDefaultInstance() {
-                return defaultInstance;
-            }
-
             public static final com.google.protobuf.Descriptors.Descriptor
             getDescriptor() {
                 return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryResponse_Row_descriptor;
             }
 
-            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row parseFrom(
-                    com.google.protobuf.ByteString data)
-                    throws com.google.protobuf.InvalidProtocolBufferException {
-                return PARSER.parseFrom(data);
-            }
-
-            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row parseFrom(
-                    com.google.protobuf.ByteString data,
-                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                    throws com.google.protobuf.InvalidProtocolBufferException {
-                return PARSER.parseFrom(data, extensionRegistry);
-            }
-
-            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row parseFrom(byte[] data)
-                    throws com.google.protobuf.InvalidProtocolBufferException {
-                return PARSER.parseFrom(data);
-            }
-
-            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row parseFrom(
-                    byte[] data,
-                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                    throws com.google.protobuf.InvalidProtocolBufferException {
-                return PARSER.parseFrom(data, extensionRegistry);
-            }
-
-            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row parseFrom(java.io.InputStream input)
-                    throws java.io.IOException {
-                return PARSER.parseFrom(input);
-            }
-
-            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row parseFrom(
-                    java.io.InputStream input,
-                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                    throws java.io.IOException {
-                return PARSER.parseFrom(input, extensionRegistry);
-            }
-
-            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row parseDelimitedFrom(java.io.InputStream input)
-                    throws java.io.IOException {
-                return PARSER.parseDelimitedFrom(input);
-            }
-
-            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row parseDelimitedFrom(
-                    java.io.InputStream input,
-                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                    throws java.io.IOException {
-                return PARSER.parseDelimitedFrom(input, extensionRegistry);
-            }
-
-            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row parseFrom(
-                    com.google.protobuf.CodedInputStream input)
-                    throws java.io.IOException {
-                return PARSER.parseFrom(input);
-            }
-
-            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row parseFrom(
-                    com.google.protobuf.CodedInputStream input,
-                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                    throws java.io.IOException {
-                return PARSER.parseFrom(input, extensionRegistry);
-            }
-
-            public static Builder newBuilder() {
-                return Builder.create();
-            }
-
-            public static Builder newBuilder(com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row prototype) {
-                return newBuilder().mergeFrom(prototype);
-            }
-
-            public Row getDefaultInstanceForType() {
-                return defaultInstance;
-            }
-
             @java.lang.Override
-            public final com.google.protobuf.UnknownFieldSet
-            getUnknownFields() {
-                return this.unknownFields;
-            }
-
-            protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+            protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
             internalGetFieldAccessorTable() {
                 return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryResponse_Row_fieldAccessorTable
-                        .ensureFieldAccessorsInitialized(
-                                com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.class, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.Builder.class);
+                    .ensureFieldAccessorsInitialized(
+                        com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.class, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.Builder.class);
             }
 
-            @java.lang.Override
-            public com.google.protobuf.Parser<Row> getParserForType() {
-                return PARSER;
-            }
-
+            private int bitField0_;
+            public static final int ROWKEY_FIELD_NUMBER = 1;
+            private com.google.protobuf.ByteString rowKey_;
             /**
              * <code>optional bytes rowKey = 1;</code>
              */
             public boolean hasRowKey() {
-                return ((bitField0_ & 0x00000001) == 0x00000001);
+                return ((bitField0_ & 0x00000001) != 0);
             }
-
             /**
              * <code>optional bytes rowKey = 1;</code>
              */
@@ -2757,13 +2353,14 @@ public final class DataProtos {
                 return rowKey_;
             }
 
+            public static final int CELLLIST_FIELD_NUMBER = 2;
+            private java.util.List<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell> cellList_;
             /**
              * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
              */
             public java.util.List<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell> getCellListList() {
                 return cellList_;
             }
-
             /**
              * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
              */
@@ -2771,34 +2368,28 @@ public final class DataProtos {
             getCellListOrBuilderList() {
                 return cellList_;
             }
-
             /**
              * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
              */
             public int getCellListCount() {
                 return cellList_.size();
             }
-
             /**
              * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
              */
             public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell getCellList(int index) {
                 return cellList_.get(index);
             }
-
             /**
              * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
              */
             public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.CellOrBuilder getCellListOrBuilder(
-                    int index) {
+                int index) {
                 return cellList_.get(index);
             }
 
-            private void initFields() {
-                rowKey_ = com.google.protobuf.ByteString.EMPTY;
-                cellList_ = java.util.Collections.emptyList();
-            }
-
+            private byte memoizedIsInitialized = -1;
+            @java.lang.Override
             public final boolean isInitialized() {
                 byte isInitialized = memoizedIsInitialized;
                 if (isInitialized == 1) return true;
@@ -2814,40 +2405,35 @@ public final class DataProtos {
                 return true;
             }
 
+            @java.lang.Override
             public void writeTo(com.google.protobuf.CodedOutputStream output)
-                    throws java.io.IOException {
-                getSerializedSize();
-                if (((bitField0_ & 0x00000001) == 0x00000001)) {
+                throws java.io.IOException {
+                if (((bitField0_ & 0x00000001) != 0)) {
                     output.writeBytes(1, rowKey_);
                 }
                 for (int i = 0; i < cellList_.size(); i++) {
                     output.writeMessage(2, cellList_.get(i));
                 }
-                getUnknownFields().writeTo(output);
-            }
-
-            public int getSerializedSize() {
-                int size = memoizedSerializedSize;
-                if (size != -1) return size;
-
-                size = 0;
-                if (((bitField0_ & 0x00000001) == 0x00000001)) {
-                    size += com.google.protobuf.CodedOutputStream
-                            .computeBytesSize(1, rowKey_);
-                }
-                for (int i = 0; i < cellList_.size(); i++) {
-                    size += com.google.protobuf.CodedOutputStream
-                            .computeMessageSize(2, cellList_.get(i));
-                }
-                size += getUnknownFields().getSerializedSize();
-                memoizedSerializedSize = size;
-                return size;
+                unknownFields.writeTo(output);
             }
 
             @java.lang.Override
-            protected java.lang.Object writeReplace()
-                    throws java.io.ObjectStreamException {
-                return super.writeReplace();
+            public int getSerializedSize() {
+                int size = memoizedSize;
+                if (size != -1) return size;
+
+                size = 0;
+                if (((bitField0_ & 0x00000001) != 0)) {
+                    size += com.google.protobuf.CodedOutputStream
+                        .computeBytesSize(1, rowKey_);
+                }
+                for (int i = 0; i < cellList_.size(); i++) {
+                    size += com.google.protobuf.CodedOutputStream
+                        .computeMessageSize(2, cellList_.get(i));
+                }
+                size += unknownFields.getSerializedSize();
+                memoizedSize = size;
+                return size;
             }
 
             @java.lang.Override
@@ -2860,17 +2446,15 @@ public final class DataProtos {
                 }
                 com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row other = (com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row) obj;
 
-                boolean result = true;
-                result = result && (hasRowKey() == other.hasRowKey());
+                if (hasRowKey() != other.hasRowKey()) return false;
                 if (hasRowKey()) {
-                    result = result && getRowKey()
-                            .equals(other.getRowKey());
+                    if (!getRowKey()
+                        .equals(other.getRowKey())) return false;
                 }
-                result = result && getCellListList()
-                        .equals(other.getCellListList());
-                result = result &&
-                        getUnknownFields().equals(other.getUnknownFields());
-                return result;
+                if (!getCellListList()
+                    .equals(other.getCellListList())) return false;
+                if (!unknownFields.equals(other.unknownFields)) return false;
+                return true;
             }
 
             @java.lang.Override
@@ -2879,7 +2463,7 @@ public final class DataProtos {
                     return memoizedHashCode;
                 }
                 int hash = 41;
-                hash = (19 * hash) + getDescriptorForType().hashCode();
+                hash = (19 * hash) + getDescriptor().hashCode();
                 if (hasRowKey()) {
                     hash = (37 * hash) + ROWKEY_FIELD_NUMBER;
                     hash = (53 * hash) + getRowKey().hashCode();
@@ -2888,39 +2472,120 @@ public final class DataProtos {
                     hash = (37 * hash) + CELLLIST_FIELD_NUMBER;
                     hash = (53 * hash) + getCellListList().hashCode();
                 }
-                hash = (29 * hash) + getUnknownFields().hashCode();
+                hash = (29 * hash) + unknownFields.hashCode();
                 memoizedHashCode = hash;
                 return hash;
             }
 
-            public Builder newBuilderForType() {
-                return newBuilder();
+            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row parseFrom(
+                java.nio.ByteBuffer data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+                return PARSER.parseFrom(data);
+            }
+            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row parseFrom(
+                java.nio.ByteBuffer data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+                return PARSER.parseFrom(data, extensionRegistry);
+            }
+            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+                return PARSER.parseFrom(data);
+            }
+            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+                return PARSER.parseFrom(data, extensionRegistry);
+            }
+            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+                return PARSER.parseFrom(data);
+            }
+            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+                return PARSER.parseFrom(data, extensionRegistry);
+            }
+            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+                return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+            }
+            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+                return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+            }
+            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+                return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input);
+            }
+            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+                return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+            }
+            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+                return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+            }
+            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+                return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
             }
 
+            @java.lang.Override
+            public Builder newBuilderForType() { return newBuilder(); }
+            public static Builder newBuilder() {
+                return DEFAULT_INSTANCE.toBuilder();
+            }
+            public static Builder newBuilder(com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row prototype) {
+                return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+            }
+            @java.lang.Override
             public Builder toBuilder() {
-                return newBuilder(this);
+                return this == DEFAULT_INSTANCE
+                    ? new Builder() : new Builder().mergeFrom(this);
             }
 
             @java.lang.Override
             protected Builder newBuilderForType(
-                    com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+                com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
                 Builder builder = new Builder(parent);
                 return builder;
             }
-
             /**
              * Protobuf type {@code generated.DataQueryResponse.Row}
              */
             public static final class Builder extends
-                    com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-                    // @@protoc_insertion_point(builder_implements:generated.DataQueryResponse.Row)
-                    com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.RowOrBuilder {
-                private int bitField0_;
-                private com.google.protobuf.ByteString rowKey_ = com.google.protobuf.ByteString.EMPTY;
-                private java.util.List<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell> cellList_ =
-                        java.util.Collections.emptyList();
-                private com.google.protobuf.RepeatedFieldBuilder<
-                        com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.Builder, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.CellOrBuilder> cellListBuilder_;
+                com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+                // @@protoc_insertion_point(builder_implements:generated.DataQueryResponse.Row)
+                com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.RowOrBuilder {
+                public static final com.google.protobuf.Descriptors.Descriptor
+                getDescriptor() {
+                    return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryResponse_Row_descriptor;
+                }
+
+                @java.lang.Override
+                protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+                internalGetFieldAccessorTable() {
+                    return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryResponse_Row_fieldAccessorTable
+                        .ensureFieldAccessorsInitialized(
+                            com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.class, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.Builder.class);
+                }
 
                 // Construct using com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.newBuilder()
                 private Builder() {
@@ -2928,33 +2593,17 @@ public final class DataProtos {
                 }
 
                 private Builder(
-                        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+                    com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
                     super(parent);
                     maybeForceBuilderInitialization();
                 }
-
-                public static final com.google.protobuf.Descriptors.Descriptor
-                getDescriptor() {
-                    return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryResponse_Row_descriptor;
-                }
-
-                private static Builder create() {
-                    return new Builder();
-                }
-
-                protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-                internalGetFieldAccessorTable() {
-                    return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryResponse_Row_fieldAccessorTable
-                            .ensureFieldAccessorsInitialized(
-                                    com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.class, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.Builder.class);
-                }
-
                 private void maybeForceBuilderInitialization() {
-                    if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+                    if (com.google.protobuf.GeneratedMessageV3
+                        .alwaysUseFieldBuilders) {
                         getCellListFieldBuilder();
                     }
                 }
-
+                @java.lang.Override
                 public Builder clear() {
                     super.clear();
                     rowKey_ = com.google.protobuf.ByteString.EMPTY;
@@ -2968,19 +2617,18 @@ public final class DataProtos {
                     return this;
                 }
 
-                public Builder clone() {
-                    return create().mergeFrom(buildPartial());
-                }
-
+                @java.lang.Override
                 public com.google.protobuf.Descriptors.Descriptor
                 getDescriptorForType() {
                     return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryResponse_Row_descriptor;
                 }
 
+                @java.lang.Override
                 public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row getDefaultInstanceForType() {
                     return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.getDefaultInstance();
                 }
 
+                @java.lang.Override
                 public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row build() {
                     com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row result = buildPartial();
                     if (!result.isInitialized()) {
@@ -2989,16 +2637,17 @@ public final class DataProtos {
                     return result;
                 }
 
+                @java.lang.Override
                 public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row buildPartial() {
                     com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row result = new com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row(this);
                     int from_bitField0_ = bitField0_;
                     int to_bitField0_ = 0;
-                    if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+                    if (((from_bitField0_ & 0x00000001) != 0)) {
                         to_bitField0_ |= 0x00000001;
                     }
                     result.rowKey_ = rowKey_;
                     if (cellListBuilder_ == null) {
-                        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+                        if (((bitField0_ & 0x00000002) != 0)) {
                             cellList_ = java.util.Collections.unmodifiableList(cellList_);
                             bitField0_ = (bitField0_ & ~0x00000002);
                         }
@@ -3011,9 +2660,42 @@ public final class DataProtos {
                     return result;
                 }
 
+                @java.lang.Override
+                public Builder clone() {
+                    return super.clone();
+                }
+                @java.lang.Override
+                public Builder setField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    java.lang.Object value) {
+                    return super.setField(field, value);
+                }
+                @java.lang.Override
+                public Builder clearField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field) {
+                    return super.clearField(field);
+                }
+                @java.lang.Override
+                public Builder clearOneof(
+                    com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+                    return super.clearOneof(oneof);
+                }
+                @java.lang.Override
+                public Builder setRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    int index, java.lang.Object value) {
+                    return super.setRepeatedField(field, index, value);
+                }
+                @java.lang.Override
+                public Builder addRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    java.lang.Object value) {
+                    return super.addRepeatedField(field, value);
+                }
+                @java.lang.Override
                 public Builder mergeFrom(com.google.protobuf.Message other) {
                     if (other instanceof com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row) {
-                        return mergeFrom((com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row) other);
+                        return mergeFrom((com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row)other);
                     } else {
                         super.mergeFrom(other);
                         return this;
@@ -3021,8 +2703,7 @@ public final class DataProtos {
                 }
 
                 public Builder mergeFrom(com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row other) {
-                    if (other == com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.getDefaultInstance())
-                        return this;
+                    if (other == com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.getDefaultInstance()) return this;
                     if (other.hasRowKey()) {
                         setRowKey(other.getRowKey());
                     }
@@ -3045,37 +2726,39 @@ public final class DataProtos {
                                 cellList_ = other.cellList_;
                                 bitField0_ = (bitField0_ & ~0x00000002);
                                 cellListBuilder_ =
-                                        com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
-                                                getCellListFieldBuilder() : null;
+                                    com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                                        getCellListFieldBuilder() : null;
                             } else {
                                 cellListBuilder_.addAllMessages(other.cellList_);
                             }
                         }
                     }
-                    this.mergeUnknownFields(other.getUnknownFields());
+                    this.mergeUnknownFields(other.unknownFields);
+                    onChanged();
                     return this;
                 }
 
+                @java.lang.Override
                 public final boolean isInitialized() {
                     for (int i = 0; i < getCellListCount(); i++) {
                         if (!getCellList(i).isInitialized()) {
-
                             return false;
                         }
                     }
                     return true;
                 }
 
+                @java.lang.Override
                 public Builder mergeFrom(
-                        com.google.protobuf.CodedInputStream input,
-                        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                        throws java.io.IOException {
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws java.io.IOException {
                     com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row parsedMessage = null;
                     try {
                         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
                     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
                         parsedMessage = (com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row) e.getUnfinishedMessage();
-                        throw e;
+                        throw e.unwrapIOException();
                     } finally {
                         if (parsedMessage != null) {
                             mergeFrom(parsedMessage);
@@ -3083,21 +2766,21 @@ public final class DataProtos {
                     }
                     return this;
                 }
+                private int bitField0_;
 
+                private com.google.protobuf.ByteString rowKey_ = com.google.protobuf.ByteString.EMPTY;
                 /**
                  * <code>optional bytes rowKey = 1;</code>
                  */
                 public boolean hasRowKey() {
-                    return ((bitField0_ & 0x00000001) == 0x00000001);
+                    return ((bitField0_ & 0x00000001) != 0);
                 }
-
                 /**
                  * <code>optional bytes rowKey = 1;</code>
                  */
                 public com.google.protobuf.ByteString getRowKey() {
                     return rowKey_;
                 }
-
                 /**
                  * <code>optional bytes rowKey = 1;</code>
                  */
@@ -3110,7 +2793,6 @@ public final class DataProtos {
                     onChanged();
                     return this;
                 }
-
                 /**
                  * <code>optional bytes rowKey = 1;</code>
                  */
@@ -3121,12 +2803,17 @@ public final class DataProtos {
                     return this;
                 }
 
+                private java.util.List<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell> cellList_ =
+                    java.util.Collections.emptyList();
                 private void ensureCellListIsMutable() {
-                    if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+                    if (!((bitField0_ & 0x00000002) != 0)) {
                         cellList_ = new java.util.ArrayList<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell>(cellList_);
                         bitField0_ |= 0x00000002;
                     }
                 }
+
+                private com.google.protobuf.RepeatedFieldBuilderV3<
+                    com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.Builder, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.CellOrBuilder> cellListBuilder_;
 
                 /**
                  * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
@@ -3138,7 +2825,6 @@ public final class DataProtos {
                         return cellListBuilder_.getMessageList();
                     }
                 }
-
                 /**
                  * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
                  */
@@ -3149,7 +2835,6 @@ public final class DataProtos {
                         return cellListBuilder_.getCount();
                     }
                 }
-
                 /**
                  * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
                  */
@@ -3160,12 +2845,11 @@ public final class DataProtos {
                         return cellListBuilder_.getMessage(index);
                     }
                 }
-
                 /**
                  * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
                  */
                 public Builder setCellList(
-                        int index, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell value) {
+                    int index, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell value) {
                     if (cellListBuilder_ == null) {
                         if (value == null) {
                             throw new NullPointerException();
@@ -3178,12 +2862,11 @@ public final class DataProtos {
                     }
                     return this;
                 }
-
                 /**
                  * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
                  */
                 public Builder setCellList(
-                        int index, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.Builder builderForValue) {
+                    int index, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.Builder builderForValue) {
                     if (cellListBuilder_ == null) {
                         ensureCellListIsMutable();
                         cellList_.set(index, builderForValue.build());
@@ -3193,7 +2876,6 @@ public final class DataProtos {
                     }
                     return this;
                 }
-
                 /**
                  * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
                  */
@@ -3210,12 +2892,11 @@ public final class DataProtos {
                     }
                     return this;
                 }
-
                 /**
                  * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
                  */
                 public Builder addCellList(
-                        int index, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell value) {
+                    int index, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell value) {
                     if (cellListBuilder_ == null) {
                         if (value == null) {
                             throw new NullPointerException();
@@ -3228,12 +2909,11 @@ public final class DataProtos {
                     }
                     return this;
                 }
-
                 /**
                  * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
                  */
                 public Builder addCellList(
-                        com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.Builder builderForValue) {
+                    com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.Builder builderForValue) {
                     if (cellListBuilder_ == null) {
                         ensureCellListIsMutable();
                         cellList_.add(builderForValue.build());
@@ -3243,12 +2923,11 @@ public final class DataProtos {
                     }
                     return this;
                 }
-
                 /**
                  * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
                  */
                 public Builder addCellList(
-                        int index, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.Builder builderForValue) {
+                    int index, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.Builder builderForValue) {
                     if (cellListBuilder_ == null) {
                         ensureCellListIsMutable();
                         cellList_.add(index, builderForValue.build());
@@ -3258,23 +2937,21 @@ public final class DataProtos {
                     }
                     return this;
                 }
-
                 /**
                  * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
                  */
                 public Builder addAllCellList(
-                        java.lang.Iterable<? extends com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell> values) {
+                    java.lang.Iterable<? extends com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell> values) {
                     if (cellListBuilder_ == null) {
                         ensureCellListIsMutable();
                         com.google.protobuf.AbstractMessageLite.Builder.addAll(
-                                values, cellList_);
+                            values, cellList_);
                         onChanged();
                     } else {
                         cellListBuilder_.addAllMessages(values);
                     }
                     return this;
                 }
-
                 /**
                  * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
                  */
@@ -3288,7 +2965,6 @@ public final class DataProtos {
                     }
                     return this;
                 }
-
                 /**
                  * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
                  */
@@ -3302,27 +2978,23 @@ public final class DataProtos {
                     }
                     return this;
                 }
-
                 /**
                  * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
                  */
                 public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.Builder getCellListBuilder(
-                        int index) {
+                    int index) {
                     return getCellListFieldBuilder().getBuilder(index);
                 }
-
                 /**
                  * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
                  */
                 public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.CellOrBuilder getCellListOrBuilder(
-                        int index) {
+                    int index) {
                     if (cellListBuilder_ == null) {
-                        return cellList_.get(index);
-                    } else {
+                        return cellList_.get(index);  } else {
                         return cellListBuilder_.getMessageOrBuilder(index);
                     }
                 }
-
                 /**
                  * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
                  */
@@ -3334,24 +3006,21 @@ public final class DataProtos {
                         return java.util.Collections.unmodifiableList(cellList_);
                     }
                 }
-
                 /**
                  * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
                  */
                 public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.Builder addCellListBuilder() {
                     return getCellListFieldBuilder().addBuilder(
-                            com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.getDefaultInstance());
+                        com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.getDefaultInstance());
                 }
-
                 /**
                  * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
                  */
                 public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.Builder addCellListBuilder(
-                        int index) {
+                    int index) {
                     return getCellListFieldBuilder().addBuilder(
-                            index, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.getDefaultInstance());
+                        index, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.getDefaultInstance());
                 }
-
                 /**
                  * <code>repeated .generated.DataQueryResponse.Cell cellList = 2;</code>
                  */
@@ -3359,40 +3028,290 @@ public final class DataProtos {
                 getCellListBuilderList() {
                     return getCellListFieldBuilder().getBuilderList();
                 }
-
-                private com.google.protobuf.RepeatedFieldBuilder<
-                        com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.Builder, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.CellOrBuilder>
+                private com.google.protobuf.RepeatedFieldBuilderV3<
+                    com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.Builder, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.CellOrBuilder>
                 getCellListFieldBuilder() {
                     if (cellListBuilder_ == null) {
-                        cellListBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-                                com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.Builder, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.CellOrBuilder>(
-                                cellList_,
-                                ((bitField0_ & 0x00000002) == 0x00000002),
-                                getParentForChildren(),
-                                isClean());
+                        cellListBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+                            com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.Builder, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.CellOrBuilder>(
+                            cellList_,
+                            ((bitField0_ & 0x00000002) != 0),
+                            getParentForChildren(),
+                            isClean());
                         cellList_ = null;
                     }
                     return cellListBuilder_;
                 }
+                @java.lang.Override
+                public final Builder setUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                    return super.setUnknownFields(unknownFields);
+                }
+
+                @java.lang.Override
+                public final Builder mergeUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                    return super.mergeUnknownFields(unknownFields);
+                }
+
 
                 // @@protoc_insertion_point(builder_scope:generated.DataQueryResponse.Row)
             }
 
             // @@protoc_insertion_point(class_scope:generated.DataQueryResponse.Row)
+            private static final com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row DEFAULT_INSTANCE;
+            static {
+                DEFAULT_INSTANCE = new com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row();
+            }
+
+            public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row getDefaultInstance() {
+                return DEFAULT_INSTANCE;
+            }
+
+            @java.lang.Deprecated public static final com.google.protobuf.Parser<Row>
+                PARSER = new com.google.protobuf.AbstractParser<Row>() {
+                @java.lang.Override
+                public Row parsePartialFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws com.google.protobuf.InvalidProtocolBufferException {
+                    return new Row(input, extensionRegistry);
+                }
+            };
+
+            public static com.google.protobuf.Parser<Row> parser() {
+                return PARSER;
+            }
+
+            @java.lang.Override
+            public com.google.protobuf.Parser<Row> getParserForType() {
+                return PARSER;
+            }
+
+            @java.lang.Override
+            public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row getDefaultInstanceForType() {
+                return DEFAULT_INSTANCE;
+            }
+
         }
 
+        public static final int ROWLIST_FIELD_NUMBER = 1;
+        private java.util.List<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row> rowList_;
+        /**
+         * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
+         */
+        public java.util.List<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row> getRowListList() {
+            return rowList_;
+        }
+        /**
+         * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
+         */
+        public java.util.List<? extends com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.RowOrBuilder>
+        getRowListOrBuilderList() {
+            return rowList_;
+        }
+        /**
+         * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
+         */
+        public int getRowListCount() {
+            return rowList_.size();
+        }
+        /**
+         * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
+         */
+        public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row getRowList(int index) {
+            return rowList_.get(index);
+        }
+        /**
+         * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
+         */
+        public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.RowOrBuilder getRowListOrBuilder(
+            int index) {
+            return rowList_.get(index);
+        }
+
+        private byte memoizedIsInitialized = -1;
+        @java.lang.Override
+        public final boolean isInitialized() {
+            byte isInitialized = memoizedIsInitialized;
+            if (isInitialized == 1) return true;
+            if (isInitialized == 0) return false;
+
+            for (int i = 0; i < getRowListCount(); i++) {
+                if (!getRowList(i).isInitialized()) {
+                    memoizedIsInitialized = 0;
+                    return false;
+                }
+            }
+            memoizedIsInitialized = 1;
+            return true;
+        }
+
+        @java.lang.Override
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+            throws java.io.IOException {
+            for (int i = 0; i < rowList_.size(); i++) {
+                output.writeMessage(1, rowList_.get(i));
+            }
+            unknownFields.writeTo(output);
+        }
+
+        @java.lang.Override
+        public int getSerializedSize() {
+            int size = memoizedSize;
+            if (size != -1) return size;
+
+            size = 0;
+            for (int i = 0; i < rowList_.size(); i++) {
+                size += com.google.protobuf.CodedOutputStream
+                    .computeMessageSize(1, rowList_.get(i));
+            }
+            size += unknownFields.getSerializedSize();
+            memoizedSize = size;
+            return size;
+        }
+
+        @java.lang.Override
+        public boolean equals(final java.lang.Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse)) {
+                return super.equals(obj);
+            }
+            com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse other = (com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse) obj;
+
+            if (!getRowListList()
+                .equals(other.getRowListList())) return false;
+            if (!unknownFields.equals(other.unknownFields)) return false;
+            return true;
+        }
+
+        @java.lang.Override
+        public int hashCode() {
+            if (memoizedHashCode != 0) {
+                return memoizedHashCode;
+            }
+            int hash = 41;
+            hash = (19 * hash) + getDescriptor().hashCode();
+            if (getRowListCount() > 0) {
+                hash = (37 * hash) + ROWLIST_FIELD_NUMBER;
+                hash = (53 * hash) + getRowListList().hashCode();
+            }
+            hash = (29 * hash) + unknownFields.hashCode();
+            memoizedHashCode = hash;
+            return hash;
+        }
+
+        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse parseFrom(
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse parseFrom(
+            java.nio.ByteBuffer data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse parseFrom(
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse parseFrom(
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse parseFrom(java.io.InputStream input)
+            throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+        }
+        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse parseFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse parseDelimitedFrom(java.io.InputStream input)
+            throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input);
+        }
+        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse parseDelimitedFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        }
+        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse parseFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+        }
+        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse parseFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        @java.lang.Override
+        public Builder newBuilderForType() { return newBuilder(); }
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+        public static Builder newBuilder(com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+        @java.lang.Override
+        public Builder toBuilder() {
+            return this == DEFAULT_INSTANCE
+                ? new Builder() : new Builder().mergeFrom(this);
+        }
+
+        @java.lang.Override
+        protected Builder newBuilderForType(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            Builder builder = new Builder(parent);
+            return builder;
+        }
         /**
          * Protobuf type {@code generated.DataQueryResponse}
          */
         public static final class Builder extends
-                com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-                // @@protoc_insertion_point(builder_implements:generated.DataQueryResponse)
-                com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponseOrBuilder {
-            private int bitField0_;
-            private java.util.List<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row> rowList_ =
-                    java.util.Collections.emptyList();
-            private com.google.protobuf.RepeatedFieldBuilder<
-                    com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.Builder, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.RowOrBuilder> rowListBuilder_;
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:generated.DataQueryResponse)
+            com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponseOrBuilder {
+            public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+                return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryResponse_descriptor;
+            }
+
+            @java.lang.Override
+            protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+                return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryResponse_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                        com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.class, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Builder.class);
+            }
 
             // Construct using com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.newBuilder()
             private Builder() {
@@ -3400,33 +3319,17 @@ public final class DataProtos {
             }
 
             private Builder(
-                    com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+                com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
                 super(parent);
                 maybeForceBuilderInitialization();
             }
-
-            public static final com.google.protobuf.Descriptors.Descriptor
-            getDescriptor() {
-                return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryResponse_descriptor;
-            }
-
-            private static Builder create() {
-                return new Builder();
-            }
-
-            protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-            internalGetFieldAccessorTable() {
-                return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryResponse_fieldAccessorTable
-                        .ensureFieldAccessorsInitialized(
-                                com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.class, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Builder.class);
-            }
-
             private void maybeForceBuilderInitialization() {
-                if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+                if (com.google.protobuf.GeneratedMessageV3
+                    .alwaysUseFieldBuilders) {
                     getRowListFieldBuilder();
                 }
             }
-
+            @java.lang.Override
             public Builder clear() {
                 super.clear();
                 if (rowListBuilder_ == null) {
@@ -3438,19 +3341,18 @@ public final class DataProtos {
                 return this;
             }
 
-            public Builder clone() {
-                return create().mergeFrom(buildPartial());
-            }
-
+            @java.lang.Override
             public com.google.protobuf.Descriptors.Descriptor
             getDescriptorForType() {
                 return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryResponse_descriptor;
             }
 
+            @java.lang.Override
             public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse getDefaultInstanceForType() {
                 return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.getDefaultInstance();
             }
 
+            @java.lang.Override
             public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse build() {
                 com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse result = buildPartial();
                 if (!result.isInitialized()) {
@@ -3459,11 +3361,12 @@ public final class DataProtos {
                 return result;
             }
 
+            @java.lang.Override
             public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse buildPartial() {
                 com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse result = new com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse(this);
                 int from_bitField0_ = bitField0_;
                 if (rowListBuilder_ == null) {
-                    if (((bitField0_ & 0x00000001) == 0x00000001)) {
+                    if (((bitField0_ & 0x00000001) != 0)) {
                         rowList_ = java.util.Collections.unmodifiableList(rowList_);
                         bitField0_ = (bitField0_ & ~0x00000001);
                     }
@@ -3475,9 +3378,42 @@ public final class DataProtos {
                 return result;
             }
 
+            @java.lang.Override
+            public Builder clone() {
+                return super.clone();
+            }
+            @java.lang.Override
+            public Builder setField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                java.lang.Object value) {
+                return super.setField(field, value);
+            }
+            @java.lang.Override
+            public Builder clearField(
+                com.google.protobuf.Descriptors.FieldDescriptor field) {
+                return super.clearField(field);
+            }
+            @java.lang.Override
+            public Builder clearOneof(
+                com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+                return super.clearOneof(oneof);
+            }
+            @java.lang.Override
+            public Builder setRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                int index, java.lang.Object value) {
+                return super.setRepeatedField(field, index, value);
+            }
+            @java.lang.Override
+            public Builder addRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                java.lang.Object value) {
+                return super.addRepeatedField(field, value);
+            }
+            @java.lang.Override
             public Builder mergeFrom(com.google.protobuf.Message other) {
                 if (other instanceof com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse) {
-                    return mergeFrom((com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse) other);
+                    return mergeFrom((com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse)other);
                 } else {
                     super.mergeFrom(other);
                     return this;
@@ -3485,8 +3421,7 @@ public final class DataProtos {
             }
 
             public Builder mergeFrom(com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse other) {
-                if (other == com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.getDefaultInstance())
-                    return this;
+                if (other == com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.getDefaultInstance()) return this;
                 if (rowListBuilder_ == null) {
                     if (!other.rowList_.isEmpty()) {
                         if (rowList_.isEmpty()) {
@@ -3506,37 +3441,39 @@ public final class DataProtos {
                             rowList_ = other.rowList_;
                             bitField0_ = (bitField0_ & ~0x00000001);
                             rowListBuilder_ =
-                                    com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
-                                            getRowListFieldBuilder() : null;
+                                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                                    getRowListFieldBuilder() : null;
                         } else {
                             rowListBuilder_.addAllMessages(other.rowList_);
                         }
                     }
                 }
-                this.mergeUnknownFields(other.getUnknownFields());
+                this.mergeUnknownFields(other.unknownFields);
+                onChanged();
                 return this;
             }
 
+            @java.lang.Override
             public final boolean isInitialized() {
                 for (int i = 0; i < getRowListCount(); i++) {
                     if (!getRowList(i).isInitialized()) {
-
                         return false;
                     }
                 }
                 return true;
             }
 
+            @java.lang.Override
             public Builder mergeFrom(
-                    com.google.protobuf.CodedInputStream input,
-                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                    throws java.io.IOException {
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
                 com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse parsedMessage = null;
                 try {
                     parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
                 } catch (com.google.protobuf.InvalidProtocolBufferException e) {
                     parsedMessage = (com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse) e.getUnfinishedMessage();
-                    throw e;
+                    throw e.unwrapIOException();
                 } finally {
                     if (parsedMessage != null) {
                         mergeFrom(parsedMessage);
@@ -3544,13 +3481,19 @@ public final class DataProtos {
                 }
                 return this;
             }
+            private int bitField0_;
 
+            private java.util.List<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row> rowList_ =
+                java.util.Collections.emptyList();
             private void ensureRowListIsMutable() {
-                if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+                if (!((bitField0_ & 0x00000001) != 0)) {
                     rowList_ = new java.util.ArrayList<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row>(rowList_);
                     bitField0_ |= 0x00000001;
                 }
             }
+
+            private com.google.protobuf.RepeatedFieldBuilderV3<
+                com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.Builder, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.RowOrBuilder> rowListBuilder_;
 
             /**
              * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
@@ -3562,7 +3505,6 @@ public final class DataProtos {
                     return rowListBuilder_.getMessageList();
                 }
             }
-
             /**
              * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
              */
@@ -3573,7 +3515,6 @@ public final class DataProtos {
                     return rowListBuilder_.getCount();
                 }
             }
-
             /**
              * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
              */
@@ -3584,12 +3525,11 @@ public final class DataProtos {
                     return rowListBuilder_.getMessage(index);
                 }
             }
-
             /**
              * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
              */
             public Builder setRowList(
-                    int index, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row value) {
+                int index, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row value) {
                 if (rowListBuilder_ == null) {
                     if (value == null) {
                         throw new NullPointerException();
@@ -3602,12 +3542,11 @@ public final class DataProtos {
                 }
                 return this;
             }
-
             /**
              * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
              */
             public Builder setRowList(
-                    int index, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.Builder builderForValue) {
+                int index, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.Builder builderForValue) {
                 if (rowListBuilder_ == null) {
                     ensureRowListIsMutable();
                     rowList_.set(index, builderForValue.build());
@@ -3617,7 +3556,6 @@ public final class DataProtos {
                 }
                 return this;
             }
-
             /**
              * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
              */
@@ -3634,12 +3572,11 @@ public final class DataProtos {
                 }
                 return this;
             }
-
             /**
              * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
              */
             public Builder addRowList(
-                    int index, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row value) {
+                int index, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row value) {
                 if (rowListBuilder_ == null) {
                     if (value == null) {
                         throw new NullPointerException();
@@ -3652,12 +3589,11 @@ public final class DataProtos {
                 }
                 return this;
             }
-
             /**
              * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
              */
             public Builder addRowList(
-                    com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.Builder builderForValue) {
+                com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.Builder builderForValue) {
                 if (rowListBuilder_ == null) {
                     ensureRowListIsMutable();
                     rowList_.add(builderForValue.build());
@@ -3667,12 +3603,11 @@ public final class DataProtos {
                 }
                 return this;
             }
-
             /**
              * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
              */
             public Builder addRowList(
-                    int index, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.Builder builderForValue) {
+                int index, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.Builder builderForValue) {
                 if (rowListBuilder_ == null) {
                     ensureRowListIsMutable();
                     rowList_.add(index, builderForValue.build());
@@ -3682,23 +3617,21 @@ public final class DataProtos {
                 }
                 return this;
             }
-
             /**
              * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
              */
             public Builder addAllRowList(
-                    java.lang.Iterable<? extends com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row> values) {
+                java.lang.Iterable<? extends com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row> values) {
                 if (rowListBuilder_ == null) {
                     ensureRowListIsMutable();
                     com.google.protobuf.AbstractMessageLite.Builder.addAll(
-                            values, rowList_);
+                        values, rowList_);
                     onChanged();
                 } else {
                     rowListBuilder_.addAllMessages(values);
                 }
                 return this;
             }
-
             /**
              * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
              */
@@ -3712,7 +3645,6 @@ public final class DataProtos {
                 }
                 return this;
             }
-
             /**
              * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
              */
@@ -3726,27 +3658,23 @@ public final class DataProtos {
                 }
                 return this;
             }
-
             /**
              * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
              */
             public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.Builder getRowListBuilder(
-                    int index) {
+                int index) {
                 return getRowListFieldBuilder().getBuilder(index);
             }
-
             /**
              * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
              */
             public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.RowOrBuilder getRowListOrBuilder(
-                    int index) {
+                int index) {
                 if (rowListBuilder_ == null) {
-                    return rowList_.get(index);
-                } else {
+                    return rowList_.get(index);  } else {
                     return rowListBuilder_.getMessageOrBuilder(index);
                 }
             }
-
             /**
              * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
              */
@@ -3758,24 +3686,21 @@ public final class DataProtos {
                     return java.util.Collections.unmodifiableList(rowList_);
                 }
             }
-
             /**
              * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
              */
             public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.Builder addRowListBuilder() {
                 return getRowListFieldBuilder().addBuilder(
-                        com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.getDefaultInstance());
+                    com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.getDefaultInstance());
             }
-
             /**
              * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
              */
             public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.Builder addRowListBuilder(
-                    int index) {
+                int index) {
                 return getRowListFieldBuilder().addBuilder(
-                        index, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.getDefaultInstance());
+                    index, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.getDefaultInstance());
             }
-
             /**
              * <code>repeated .generated.DataQueryResponse.Row rowList = 1;</code>
              */
@@ -3783,52 +3708,115 @@ public final class DataProtos {
             getRowListBuilderList() {
                 return getRowListFieldBuilder().getBuilderList();
             }
-
-            private com.google.protobuf.RepeatedFieldBuilder<
-                    com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.Builder, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.RowOrBuilder>
+            private com.google.protobuf.RepeatedFieldBuilderV3<
+                com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.Builder, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.RowOrBuilder>
             getRowListFieldBuilder() {
                 if (rowListBuilder_ == null) {
-                    rowListBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-                            com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.Builder, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.RowOrBuilder>(
-                            rowList_,
-                            ((bitField0_ & 0x00000001) == 0x00000001),
-                            getParentForChildren(),
-                            isClean());
+                    rowListBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+                        com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.Builder, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.RowOrBuilder>(
+                        rowList_,
+                        ((bitField0_ & 0x00000001) != 0),
+                        getParentForChildren(),
+                        isClean());
                     rowList_ = null;
                 }
                 return rowListBuilder_;
             }
+            @java.lang.Override
+            public final Builder setUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return super.setUnknownFields(unknownFields);
+            }
+
+            @java.lang.Override
+            public final Builder mergeUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return super.mergeUnknownFields(unknownFields);
+            }
+
 
             // @@protoc_insertion_point(builder_scope:generated.DataQueryResponse)
         }
 
         // @@protoc_insertion_point(class_scope:generated.DataQueryResponse)
+        private static final com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse DEFAULT_INSTANCE;
+        static {
+            DEFAULT_INSTANCE = new com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse();
+        }
+
+        public static com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
+
+        @java.lang.Deprecated public static final com.google.protobuf.Parser<DataQueryResponse>
+            PARSER = new com.google.protobuf.AbstractParser<DataQueryResponse>() {
+            @java.lang.Override
+            public DataQueryResponse parsePartialFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+                return new DataQueryResponse(input, extensionRegistry);
+            }
+        };
+
+        public static com.google.protobuf.Parser<DataQueryResponse> parser() {
+            return PARSER;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Parser<DataQueryResponse> getParserForType() {
+            return PARSER;
+        }
+
+        @java.lang.Override
+        public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse getDefaultInstanceForType() {
+            return DEFAULT_INSTANCE;
+        }
+
     }
 
     /**
      * Protobuf service {@code generated.QueryDataService}
      */
     public static abstract class QueryDataService
-            implements com.google.protobuf.Service {
-        protected QueryDataService() {
+        implements com.google.protobuf.Service {
+        protected QueryDataService() {}
+
+        public interface Interface {
+            /**
+             * <code>rpc queryByStartRowAndEndRow(.generated.DataQueryRequest) returns (.generated.DataQueryResponse);</code>
+             */
+            public abstract void queryByStartRowAndEndRow(
+                com.google.protobuf.RpcController controller,
+                com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest request,
+                com.google.protobuf.RpcCallback<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse> done);
+
+            /**
+             * <code>rpc queryByRowKey(.generated.DataQueryRequest) returns (.generated.DataQueryResponse);</code>
+             */
+            public abstract void queryByRowKey(
+                com.google.protobuf.RpcController controller,
+                com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest request,
+                com.google.protobuf.RpcCallback<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse> done);
+
         }
 
         public static com.google.protobuf.Service newReflectiveService(
-                final Interface impl) {
+            final Interface impl) {
             return new QueryDataService() {
                 @java.lang.Override
-                public void queryByStartRowAndEndRow(
-                        com.google.protobuf.RpcController controller,
-                        com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest request,
-                        com.google.protobuf.RpcCallback<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse> done) {
+                public  void queryByStartRowAndEndRow(
+                    com.google.protobuf.RpcController controller,
+                    com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest request,
+                    com.google.protobuf.RpcCallback<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse> done) {
                     impl.queryByStartRowAndEndRow(controller, request, done);
                 }
 
                 @java.lang.Override
-                public void queryByRowKey(
-                        com.google.protobuf.RpcController controller,
-                        com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest request,
-                        com.google.protobuf.RpcCallback<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse> done) {
+                public  void queryByRowKey(
+                    com.google.protobuf.RpcController controller,
+                    com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest request,
+                    com.google.protobuf.RpcCallback<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse> done) {
                     impl.queryByRowKey(controller, request, done);
                 }
 
@@ -3844,20 +3832,20 @@ public final class DataProtos {
                 }
 
                 public final com.google.protobuf.Message callBlockingMethod(
-                        com.google.protobuf.Descriptors.MethodDescriptor method,
-                        com.google.protobuf.RpcController controller,
-                        com.google.protobuf.Message request)
-                        throws com.google.protobuf.ServiceException {
+                    com.google.protobuf.Descriptors.MethodDescriptor method,
+                    com.google.protobuf.RpcController controller,
+                    com.google.protobuf.Message request)
+                    throws com.google.protobuf.ServiceException {
                     if (method.getService() != getDescriptor()) {
                         throw new java.lang.IllegalArgumentException(
-                                "Service.callBlockingMethod() given method descriptor for " +
-                                        "wrong service type.");
+                            "Service.callBlockingMethod() given method descriptor for " +
+                                "wrong service type.");
                     }
-                    switch (method.getIndex()) {
+                    switch(method.getIndex()) {
                         case 0:
-                            return impl.queryByStartRowAndEndRow(controller, (com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest) request);
+                            return impl.queryByStartRowAndEndRow(controller, (com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest)request);
                         case 1:
-                            return impl.queryByRowKey(controller, (com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest) request);
+                            return impl.queryByRowKey(controller, (com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest)request);
                         default:
                             throw new java.lang.AssertionError("Can't get here.");
                     }
@@ -3865,13 +3853,13 @@ public final class DataProtos {
 
                 public final com.google.protobuf.Message
                 getRequestPrototype(
-                        com.google.protobuf.Descriptors.MethodDescriptor method) {
+                    com.google.protobuf.Descriptors.MethodDescriptor method) {
                     if (method.getService() != getDescriptor()) {
                         throw new java.lang.IllegalArgumentException(
-                                "Service.getRequestPrototype() given method " +
-                                        "descriptor for wrong service type.");
+                            "Service.getRequestPrototype() given method " +
+                                "descriptor for wrong service type.");
                     }
-                    switch (method.getIndex()) {
+                    switch(method.getIndex()) {
                         case 0:
                             return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest.getDefaultInstance();
                         case 1:
@@ -3883,13 +3871,13 @@ public final class DataProtos {
 
                 public final com.google.protobuf.Message
                 getResponsePrototype(
-                        com.google.protobuf.Descriptors.MethodDescriptor method) {
+                    com.google.protobuf.Descriptors.MethodDescriptor method) {
                     if (method.getService() != getDescriptor()) {
                         throw new java.lang.IllegalArgumentException(
-                                "Service.getResponsePrototype() given method " +
-                                        "descriptor for wrong service type.");
+                            "Service.getResponsePrototype() given method " +
+                                "descriptor for wrong service type.");
                     }
-                    switch (method.getIndex()) {
+                    switch(method.getIndex()) {
                         case 0:
                             return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.getDefaultInstance();
                         case 1:
@@ -3902,63 +3890,53 @@ public final class DataProtos {
             };
         }
 
-        public static final com.google.protobuf.Descriptors.ServiceDescriptor
-        getDescriptor() {
-            return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.getDescriptor().getServices().get(0);
-        }
-
-        public static Stub newStub(
-                com.google.protobuf.RpcChannel channel) {
-            return new Stub(channel);
-        }
-
-        public static BlockingInterface newBlockingStub(
-                com.google.protobuf.BlockingRpcChannel channel) {
-            return new BlockingStub(channel);
-        }
-
         /**
          * <code>rpc queryByStartRowAndEndRow(.generated.DataQueryRequest) returns (.generated.DataQueryResponse);</code>
          */
         public abstract void queryByStartRowAndEndRow(
-                com.google.protobuf.RpcController controller,
-                com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest request,
-                com.google.protobuf.RpcCallback<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse> done);
+            com.google.protobuf.RpcController controller,
+            com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest request,
+            com.google.protobuf.RpcCallback<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse> done);
 
         /**
          * <code>rpc queryByRowKey(.generated.DataQueryRequest) returns (.generated.DataQueryResponse);</code>
          */
         public abstract void queryByRowKey(
-                com.google.protobuf.RpcController controller,
-                com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest request,
-                com.google.protobuf.RpcCallback<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse> done);
+            com.google.protobuf.RpcController controller,
+            com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest request,
+            com.google.protobuf.RpcCallback<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse> done);
 
+        public static final
+        com.google.protobuf.Descriptors.ServiceDescriptor
+        getDescriptor() {
+            return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.getDescriptor().getServices().get(0);
+        }
         public final com.google.protobuf.Descriptors.ServiceDescriptor
         getDescriptorForType() {
             return getDescriptor();
         }
 
         public final void callMethod(
-                com.google.protobuf.Descriptors.MethodDescriptor method,
-                com.google.protobuf.RpcController controller,
-                com.google.protobuf.Message request,
-                com.google.protobuf.RpcCallback<
-                        com.google.protobuf.Message> done) {
+            com.google.protobuf.Descriptors.MethodDescriptor method,
+            com.google.protobuf.RpcController controller,
+            com.google.protobuf.Message request,
+            com.google.protobuf.RpcCallback<
+                com.google.protobuf.Message> done) {
             if (method.getService() != getDescriptor()) {
                 throw new java.lang.IllegalArgumentException(
-                        "Service.callMethod() given method descriptor for wrong " +
-                                "service type.");
+                    "Service.callMethod() given method descriptor for wrong " +
+                        "service type.");
             }
-            switch (method.getIndex()) {
+            switch(method.getIndex()) {
                 case 0:
-                    this.queryByStartRowAndEndRow(controller, (com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest) request,
-                            com.google.protobuf.RpcUtil.<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse>specializeCallback(
-                                    done));
+                    this.queryByStartRowAndEndRow(controller, (com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest)request,
+                        com.google.protobuf.RpcUtil.<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse>specializeCallback(
+                            done));
                     return;
                 case 1:
-                    this.queryByRowKey(controller, (com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest) request,
-                            com.google.protobuf.RpcUtil.<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse>specializeCallback(
-                                    done));
+                    this.queryByRowKey(controller, (com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest)request,
+                        com.google.protobuf.RpcUtil.<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse>specializeCallback(
+                            done));
                     return;
                 default:
                     throw new java.lang.AssertionError("Can't get here.");
@@ -3967,13 +3945,13 @@ public final class DataProtos {
 
         public final com.google.protobuf.Message
         getRequestPrototype(
-                com.google.protobuf.Descriptors.MethodDescriptor method) {
+            com.google.protobuf.Descriptors.MethodDescriptor method) {
             if (method.getService() != getDescriptor()) {
                 throw new java.lang.IllegalArgumentException(
-                        "Service.getRequestPrototype() given method " +
-                                "descriptor for wrong service type.");
+                    "Service.getRequestPrototype() given method " +
+                        "descriptor for wrong service type.");
             }
-            switch (method.getIndex()) {
+            switch(method.getIndex()) {
                 case 0:
                     return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest.getDefaultInstance();
                 case 1:
@@ -3985,13 +3963,13 @@ public final class DataProtos {
 
         public final com.google.protobuf.Message
         getResponsePrototype(
-                com.google.protobuf.Descriptors.MethodDescriptor method) {
+            com.google.protobuf.Descriptors.MethodDescriptor method) {
             if (method.getService() != getDescriptor()) {
                 throw new java.lang.IllegalArgumentException(
-                        "Service.getResponsePrototype() given method " +
-                                "descriptor for wrong service type.");
+                    "Service.getResponsePrototype() given method " +
+                        "descriptor for wrong service type.");
             }
-            switch (method.getIndex()) {
+            switch(method.getIndex()) {
                 case 0:
                     return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.getDefaultInstance();
                 case 1:
@@ -4001,112 +3979,179 @@ public final class DataProtos {
             }
         }
 
-        public interface Interface {
-            /**
-             * <code>rpc queryByStartRowAndEndRow(.generated.DataQueryRequest) returns (.generated.DataQueryResponse);</code>
-             */
-            public abstract void queryByStartRowAndEndRow(
-                    com.google.protobuf.RpcController controller,
-                    com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest request,
-                    com.google.protobuf.RpcCallback<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse> done);
-
-            /**
-             * <code>rpc queryByRowKey(.generated.DataQueryRequest) returns (.generated.DataQueryResponse);</code>
-             */
-            public abstract void queryByRowKey(
-                    com.google.protobuf.RpcController controller,
-                    com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest request,
-                    com.google.protobuf.RpcCallback<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse> done);
-
-        }
-
-        public interface BlockingInterface {
-            public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse queryByStartRowAndEndRow(
-                    com.google.protobuf.RpcController controller,
-                    com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest request)
-                    throws com.google.protobuf.ServiceException;
-
-            public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse queryByRowKey(
-                    com.google.protobuf.RpcController controller,
-                    com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest request)
-                    throws com.google.protobuf.ServiceException;
+        public static Stub newStub(
+            com.google.protobuf.RpcChannel channel) {
+            return new Stub(channel);
         }
 
         public static final class Stub extends com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.QueryDataService implements Interface {
-            private final com.google.protobuf.RpcChannel channel;
-
             private Stub(com.google.protobuf.RpcChannel channel) {
                 this.channel = channel;
             }
+
+            private final com.google.protobuf.RpcChannel channel;
 
             public com.google.protobuf.RpcChannel getChannel() {
                 return channel;
             }
 
-            public void queryByStartRowAndEndRow(
-                    com.google.protobuf.RpcController controller,
-                    com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest request,
-                    com.google.protobuf.RpcCallback<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse> done) {
+            public  void queryByStartRowAndEndRow(
+                com.google.protobuf.RpcController controller,
+                com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest request,
+                com.google.protobuf.RpcCallback<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse> done) {
                 channel.callMethod(
-                        getDescriptor().getMethods().get(0),
-                        controller,
-                        request,
-                        com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.getDefaultInstance(),
-                        com.google.protobuf.RpcUtil.generalizeCallback(
-                                done,
-                                com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.class,
-                                com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.getDefaultInstance()));
+                    getDescriptor().getMethods().get(0),
+                    controller,
+                    request,
+                    com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.getDefaultInstance(),
+                    com.google.protobuf.RpcUtil.generalizeCallback(
+                        done,
+                        com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.class,
+                        com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.getDefaultInstance()));
             }
 
-            public void queryByRowKey(
-                    com.google.protobuf.RpcController controller,
-                    com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest request,
-                    com.google.protobuf.RpcCallback<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse> done) {
+            public  void queryByRowKey(
+                com.google.protobuf.RpcController controller,
+                com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest request,
+                com.google.protobuf.RpcCallback<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse> done) {
                 channel.callMethod(
-                        getDescriptor().getMethods().get(1),
-                        controller,
-                        request,
-                        com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.getDefaultInstance(),
-                        com.google.protobuf.RpcUtil.generalizeCallback(
-                                done,
-                                com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.class,
-                                com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.getDefaultInstance()));
+                    getDescriptor().getMethods().get(1),
+                    controller,
+                    request,
+                    com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.getDefaultInstance(),
+                    com.google.protobuf.RpcUtil.generalizeCallback(
+                        done,
+                        com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.class,
+                        com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.getDefaultInstance()));
             }
         }
 
-        private static final class BlockingStub implements BlockingInterface {
-            private final com.google.protobuf.BlockingRpcChannel channel;
+        public static BlockingInterface newBlockingStub(
+            com.google.protobuf.BlockingRpcChannel channel) {
+            return new BlockingStub(channel);
+        }
 
+        public interface BlockingInterface {
+            public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse queryByStartRowAndEndRow(
+                com.google.protobuf.RpcController controller,
+                com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest request)
+                throws com.google.protobuf.ServiceException;
+
+            public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse queryByRowKey(
+                com.google.protobuf.RpcController controller,
+                com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest request)
+                throws com.google.protobuf.ServiceException;
+        }
+
+        private static final class BlockingStub implements BlockingInterface {
             private BlockingStub(com.google.protobuf.BlockingRpcChannel channel) {
                 this.channel = channel;
             }
 
+            private final com.google.protobuf.BlockingRpcChannel channel;
+
             public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse queryByStartRowAndEndRow(
-                    com.google.protobuf.RpcController controller,
-                    com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest request)
-                    throws com.google.protobuf.ServiceException {
+                com.google.protobuf.RpcController controller,
+                com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest request)
+                throws com.google.protobuf.ServiceException {
                 return (com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse) channel.callBlockingMethod(
-                        getDescriptor().getMethods().get(0),
-                        controller,
-                        request,
-                        com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.getDefaultInstance());
+                    getDescriptor().getMethods().get(0),
+                    controller,
+                    request,
+                    com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.getDefaultInstance());
             }
 
 
             public com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse queryByRowKey(
-                    com.google.protobuf.RpcController controller,
-                    com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest request)
-                    throws com.google.protobuf.ServiceException {
+                com.google.protobuf.RpcController controller,
+                com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest request)
+                throws com.google.protobuf.ServiceException {
                 return (com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse) channel.callBlockingMethod(
-                        getDescriptor().getMethods().get(1),
-                        controller,
-                        request,
-                        com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.getDefaultInstance());
+                    getDescriptor().getMethods().get(1),
+                    controller,
+                    request,
+                    com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.getDefaultInstance());
             }
 
         }
 
         // @@protoc_insertion_point(class_scope:generated.QueryDataService)
+    }
+
+    private static final com.google.protobuf.Descriptors.Descriptor
+        internal_static_generated_DataQueryRequest_descriptor;
+    private static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internal_static_generated_DataQueryRequest_fieldAccessorTable;
+    private static final com.google.protobuf.Descriptors.Descriptor
+        internal_static_generated_DataQueryResponse_descriptor;
+    private static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internal_static_generated_DataQueryResponse_fieldAccessorTable;
+    private static final com.google.protobuf.Descriptors.Descriptor
+        internal_static_generated_DataQueryResponse_Cell_descriptor;
+    private static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internal_static_generated_DataQueryResponse_Cell_fieldAccessorTable;
+    private static final com.google.protobuf.Descriptors.Descriptor
+        internal_static_generated_DataQueryResponse_Row_descriptor;
+    private static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internal_static_generated_DataQueryResponse_Row_fieldAccessorTable;
+
+    public static com.google.protobuf.Descriptors.FileDescriptor
+    getDescriptor() {
+        return descriptor;
+    }
+    private static  com.google.protobuf.Descriptors.FileDescriptor
+        descriptor;
+    static {
+        java.lang.String[] descriptorData = {
+            "\n\020DataProtos.proto\022\tgenerated\"\177\n\020DataQue" +
+                "ryRequest\022\021\n\ttableName\030\001 \001(\t\022\020\n\010startRow" +
+                "\030\002 \001(\t\022\016\n\006endRow\030\003 \001(\t\022\016\n\006rowKey\030\004 \001(\t\022\023" +
+                "\n\013includedEnd\030\005 \001(\010\022\021\n\tisSalting\030\006 \001(\010\"\331" +
+                "\001\n\021DataQueryResponse\0221\n\007rowList\030\001 \003(\0132 ." +
+                "generated.DataQueryResponse.Row\032E\n\004Cell\022" +
+                "\r\n\005value\030\001 \002(\014\022\016\n\006family\030\002 \002(\014\022\021\n\tqualif" +
+                "ier\030\003 \002(\014\022\013\n\003row\030\004 \002(\014\032J\n\003Row\022\016\n\006rowKey\030" +
+                "\001 \001(\014\0223\n\010cellList\030\002 \003(\0132!.generated.Data" +
+                "QueryResponse.Cell2\265\001\n\020QueryDataService\022" +
+                "U\n\030queryByStartRowAndEndRow\022\033.generated." +
+                "DataQueryRequest\032\034.generated.DataQueryRe" +
+                "sponse\022J\n\rqueryByRowKey\022\033.generated.Data" +
+                "QueryRequest\032\034.generated.DataQueryRespon" +
+                "seB;\n%com.yuzhouwan.bigdata.hbase.util.s" +
+                "altB\nDataProtosH\001\210\001\001\240\001\001"
+        };
+        descriptor = com.google.protobuf.Descriptors.FileDescriptor
+            .internalBuildGeneratedFileFrom(descriptorData,
+                new com.google.protobuf.Descriptors.FileDescriptor[] {
+                });
+        internal_static_generated_DataQueryRequest_descriptor =
+            getDescriptor().getMessageTypes().get(0);
+        internal_static_generated_DataQueryRequest_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+            internal_static_generated_DataQueryRequest_descriptor,
+            new java.lang.String[] { "TableName", "StartRow", "EndRow", "RowKey", "IncludedEnd", "IsSalting", });
+        internal_static_generated_DataQueryResponse_descriptor =
+            getDescriptor().getMessageTypes().get(1);
+        internal_static_generated_DataQueryResponse_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+            internal_static_generated_DataQueryResponse_descriptor,
+            new java.lang.String[] { "RowList", });
+        internal_static_generated_DataQueryResponse_Cell_descriptor =
+            internal_static_generated_DataQueryResponse_descriptor.getNestedTypes().get(0);
+        internal_static_generated_DataQueryResponse_Cell_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+            internal_static_generated_DataQueryResponse_Cell_descriptor,
+            new java.lang.String[] { "Value", "Family", "Qualifier", "Row", });
+        internal_static_generated_DataQueryResponse_Row_descriptor =
+            internal_static_generated_DataQueryResponse_descriptor.getNestedTypes().get(1);
+        internal_static_generated_DataQueryResponse_Row_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+            internal_static_generated_DataQueryResponse_Row_descriptor,
+            new java.lang.String[] { "RowKey", "CellList", });
     }
 
     // @@protoc_insertion_point(outer_class_scope)

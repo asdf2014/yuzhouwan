@@ -31,7 +31,7 @@ public class QueryExample {
         requestBuilder.setTableName(tableName);
         requestBuilder.setStartRow(startRow);
         requestBuilder.setEndRow(stopRow);
-        requestBuilder.setIncluedEnd(isIncludeEnd);
+        requestBuilder.setIncludedEnd(isIncludeEnd);
         requestBuilder.setIsSalting(isSalting);
         try {
             HTable table = new HTable(HBaseConfiguration.create(conf), tableName);

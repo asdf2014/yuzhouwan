@@ -11,7 +11,7 @@ message DataQueryRequest {
     optional string startRow = 2;
     optional string endRow = 3;
     optional string rowKey = 4;
-    optional bool incluedEnd = 5;
+    optional bool includedEnd = 5;
     optional bool isSalting = 6;
 }
 
