@@ -1,27 +1,13 @@
-# Add Slat for solving 'Hot Region' Problem in HBase
+# Solving 'Hot Region' problem in HBase by adding Slat
 
 ## Windows
 
-### Download
-
-#### Google Protocol Buffers
-
 ```bash
-wget https://github.com/google/protobuf/releases/download/v3.1.0/protoc-3.1.0-win32.zip -c -O protoc-3.1.0-win32.zip
-```
+# Download google protocol buffers
+$ wget https://github.com/google/protobuf/releases/download/v3.9.1/protoc-3.9.1-win32.zip -c -O protoc-3.9.1-win32.zip
 
-### Code
-
-#### DataProtos.proto
-
-linked to resources/salt/DataProtos.proto
-
-### Generate
-
-#### Proto
-
-```bash
-protoc.exe DataProtos.proto --java_out=.
+# Generate code to resources/salt/DataProtos.proto
+$ protoc.exe DataProtos.proto --java_out=.
 ```
 
 ## MacOS
