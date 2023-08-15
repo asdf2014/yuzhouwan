@@ -56,8 +56,8 @@ public class ZkClientCRUD {
         long endDelete = System.currentTimeMillis();
         if (zkClientCRUD.exist(rmr)) System.out.println("Delete /rmr failed!");
         else System.out.println("Deleted /rmr .");
-        System.out.println(String.format("Create used %s ms, Delete used %s ms, Size %s.",
-                endCreate - beginCreate, endDelete - beginDelete, len - 1));
+        System.out.printf("Create used %s ms, Delete used %s ms, Size %s.%n",
+                endCreate - beginCreate, endDelete - beginDelete, len - 1);
         System.out.println("Done.");
     }
 

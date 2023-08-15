@@ -26,7 +26,7 @@ public class KafkaConnPoolUtilsTest {
         Producer<String, byte[]> conn = KafkaConnPoolUtils.getInstance().getConn();
         String topic = p.getProperty("kafka.topic");
         for (int i = 0, max = 1000000000; i < max; i++) {
-            System.out.println(String.format("Sending %s/%s ...", i, max));
+            System.out.printf("Sending %s/%s ...%n", i, max);
             Thread.sleep(1000);
             conn.send(new KeyedMessage<>(topic,
                     ("{\"appId\":1,\"attemptId\":\"2\",\"callId\":\"" + i + "\",\"description\":\"yuzhouwan\"}")

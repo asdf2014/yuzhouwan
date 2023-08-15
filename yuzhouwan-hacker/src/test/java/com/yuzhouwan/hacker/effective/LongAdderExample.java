@@ -43,7 +43,7 @@ public class LongAdderExample {
                 for (int j = 0; j < 1000_0000; j++) {
                     longAdder.increment();
                 }
-                System.out.print(String.format("%s %s \t", Thread.currentThread().getId(), longAdder.longValue()));
+                System.out.printf("%s %s \t", Thread.currentThread().getId(), longAdder.longValue());
                 /*
                 14 19607585 	12 36445036 	20 38985288 	38 76821270 	70 117094732 	18 127252576
                 22 137043349 	26 153411172 	30 164051380 	34 165971155 	102 192241678 	134 201104979
@@ -85,7 +85,7 @@ public class LongAdderExample {
                 for (int j = 0; j < 1000_0000; j++) {
                     atomicLong.getAndIncrement();
                 }
-                System.out.print(String.format("%s %s \t", Thread.currentThread().getId(), atomicLong.longValue()));
+                System.out.printf("%s %s \t", Thread.currentThread().getId(), atomicLong.longValue());
                 /*
                 12 390000000 	28 390000000 	44 390000000 	20 390000000 	26 390000000 	18 390000000
                 80 390000000 	56 390000000 	96 390000000 	24 390000000 	88 390000000 	72 390000000

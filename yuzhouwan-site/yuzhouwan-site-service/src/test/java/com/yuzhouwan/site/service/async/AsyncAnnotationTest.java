@@ -35,19 +35,19 @@ public class AsyncAnnotationTest {
             begin = System.currentTimeMillis();
             asyncAnnotation.longTimeOperation(TTL);
             end = System.currentTimeMillis();
-            System.out.println(String.format("Normal Async Done in %d milliseconds", end - begin));
+            System.out.printf("Normal Async Done in %d milliseconds%n", end - begin);
         }
         {
             begin = System.currentTimeMillis();
             asyncAnnotation.longTimeOperationInternal(TTL);
             end = System.currentTimeMillis();
-            System.out.println(String.format("Internal Async Done in %d milliseconds", end - begin));
+            System.out.printf("Internal Async Done in %d milliseconds%n", end - begin);
         }
         {
             begin = System.currentTimeMillis();
             asyncAnnotation.longTimeOperationOrigin(TTL);
             end = System.currentTimeMillis();
-            System.out.println(String.format("Origin Async Done in %d milliseconds", end - begin));
+            System.out.printf("Origin Async Done in %d milliseconds%n", end - begin);
         }
     }
 }

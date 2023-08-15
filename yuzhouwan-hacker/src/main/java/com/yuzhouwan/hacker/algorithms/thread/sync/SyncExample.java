@@ -34,9 +34,9 @@ public class SyncExample {
         Thread.sleep(1000);
         int num = syncObj.getNum();
         debug(num);
-        System.out.println(String.format("Thread: %s, start sync method", Thread.currentThread().getName()));
+        System.out.printf("Thread: %s, start sync method%n", Thread.currentThread().getName());
         sync(syncObj);
-        System.out.println(String.format("Thread: %s, end sync method", Thread.currentThread().getName()));
+        System.out.printf("Thread: %s, end sync method%n", Thread.currentThread().getName());
     }
 
     private static synchronized void sync(SyncObj syncObj) throws InterruptedException {
@@ -50,7 +50,7 @@ public class SyncExample {
     }
 
     private static void debug(int num) {
-        System.out.println(String.format("Thread: %s, Result: %d", Thread.currentThread().getName(), num));
+        System.out.printf("Thread: %s, Result: %d%n", Thread.currentThread().getName(), num);
     }
 }
 

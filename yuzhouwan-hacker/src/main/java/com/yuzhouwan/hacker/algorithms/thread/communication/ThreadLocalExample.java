@@ -40,7 +40,7 @@ public class ThreadLocalExample {
                 }
             }).start();
         }
-        System.out.println(String.format("Main Thread from %s get %s", Thread.currentThread().getName(), x.get()));
+        System.out.printf("Main Thread from %s get %s%n", Thread.currentThread().getName(), x.get());
     }
 
     /**

@@ -69,8 +69,8 @@ public class WKCMonkey {
                 max = pointAfter;
                 maxCount = count;
             }
-            System.out.println(String.format("max: %s, maxCount: %s, sum: %s, count: %s", max, maxCount, sum, count));
-            System.out.println(String.format("pointBefore: %s, pointAfter: %s\n", pointBefore, pointAfter));
+            System.out.printf("max: %s, maxCount: %s, sum: %s, count: %s%n", max, maxCount, sum, count);
+            System.out.printf("pointBefore: %s, pointAfter: %s\n%n", pointBefore, pointAfter);
         }
         String result = theBest(MAX_FEED - 1 - maxPointBefore, maxCount, 0, new StringBuffer(), new StringBuffer()).toString();
         String[] split = result.split(HIGH_SPLITTER);

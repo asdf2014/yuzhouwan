@@ -51,14 +51,14 @@ public class ZxidUtilTest {
     public void concurrent() {
         long zxid;
         System.out.println(zxid = ((1L << 40L) | (2L & 0xffffffffffL)));  // 1099511627778
-        System.out.println((zxid >> 40L) == 1);                     // true
-        System.out.println((zxid & 0xffffffffffL) == 2);            // true
+        System.out.println((zxid >> 40L) == 1);                           // true
+        System.out.println((zxid & 0xffffffffffL) == 2);                  // true
 
         System.out.println(zxid = ((1L << 40L) | (2L & 0xffffffffffL)));  // 1099511627778
-        System.out.println((zxid >> 40L) == 1);                     // true
-        System.out.println(zxid = (((zxid >> 40L) + 2) << 40L));    // 3298534883328
-        System.out.println((zxid >> 40L) == 3);                     // true
-        System.out.println((zxid & 0xffffffffffL) == 0);            // true
+        System.out.println((zxid >> 40L) == 1);                           // true
+        System.out.println(zxid = (((zxid >> 40L) + 2) << 40L));          // 3298534883328
+        System.out.println((zxid >> 40L) == 3);                           // true
+        System.out.println((zxid & 0xffffffffffL) == 0);                  // true
     }
 
     @Test
@@ -152,11 +152,11 @@ public class ZxidUtilTest {
         while (count > 0) {
             long currentTime = System.currentTimeMillis();
             r = new Random(currentTime ^ hashCode);
-            System.out.print(String.format("currentTime: %s, currentTime ^ hashCode: %s, Result: ",
-                    currentTime, currentTime ^ hashCode));
+            System.out.printf("currentTime: %s, currentTime ^ hashCode: %s, Result: ",
+                    currentTime, currentTime ^ hashCode);
             Collections.shuffle(inetSocketAddressesList, r);
             for (InetSocketAddress inetSocketAddress : inetSocketAddressesList) {
-                System.out.print(String.format("%s ", inetSocketAddress.getPort()));
+                System.out.printf("%s ", inetSocketAddress.getPort());
             }
             System.out.println();
             count--;
@@ -171,11 +171,11 @@ public class ZxidUtilTest {
         while (count > 0) {
             long currentTime = System.nanoTime();
             r = new Random(currentTime ^ hashCode);
-            System.out.print(String.format("currentTime: %s, currentTime ^ hashCode: %s, Result: ",
-                    currentTime, currentTime ^ hashCode));
+            System.out.printf("currentTime: %s, currentTime ^ hashCode: %s, Result: ",
+                    currentTime, currentTime ^ hashCode);
             Collections.shuffle(inetSocketAddressesList, r);
             for (InetSocketAddress inetSocketAddress : inetSocketAddressesList) {
-                System.out.print(String.format("%s ", inetSocketAddress.getPort()));
+                System.out.printf("%s ", inetSocketAddress.getPort());
             }
             System.out.println();
             count--;

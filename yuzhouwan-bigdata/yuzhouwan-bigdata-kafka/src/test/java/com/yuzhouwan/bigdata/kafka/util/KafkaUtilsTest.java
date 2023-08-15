@@ -51,7 +51,7 @@ public class KafkaUtilsTest {
             else if (index == 1) producer2.product(getByteBuffer(bb));
             else producer3.product(getByteBuffer(bb));
         }
-        System.out.println(String.format("Time: %dms", System.currentTimeMillis() - start));        // Time: 98ms
+        System.out.printf("Time: %dms%n", System.currentTimeMillis() - start);        // Time: 98ms
         disruptor.shutdown();
         System.exit(0);
     }

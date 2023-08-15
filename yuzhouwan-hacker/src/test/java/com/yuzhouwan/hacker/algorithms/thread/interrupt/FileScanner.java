@@ -76,7 +76,7 @@ public class FileScanner {
         while (isAlive) {
             isInterrupted = fileScanner.isInterrupted();
             isAlive = fileScanner.isAlive();
-            System.out.println(String.format("isInterrupted: %s, isAlive: %s", isInterrupted, isAlive));
+            System.out.printf("isInterrupted: %s, isAlive: %s%n", isInterrupted, isAlive);
             Thread.sleep(10);
         }
     }

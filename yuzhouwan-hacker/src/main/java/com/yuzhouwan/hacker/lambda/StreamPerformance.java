@@ -60,15 +60,15 @@ public class StreamPerformance {
             countLoop += i;
         }
         endTime = System.nanoTime();
-        System.out.println(String.format("Simple Loop:\r\n\tArrayList: %d elements, Count: %d, Time: %d ns",
-                len, countLoop, (endTime - startTime)));
+        System.out.printf("Simple Loop:\r\n\tArrayList: %d elements, Count: %d, Time: %d ns%n",
+                len, countLoop, (endTime - startTime));
 
         startTime = System.nanoTime();
         countStream = list.stream().reduce(countStream, (acc, e) -> acc + e);
         endTime = System.nanoTime();
 
-        System.out.println(String.format("Lambda Stream:\r\n\tArrayList: %d elements, Count: %d, Time: %d ns",
-                len, countStream, (endTime - startTime)));
+        System.out.printf("Lambda Stream:\r\n\tArrayList: %d elements, Count: %d, Time: %d ns%n",
+                len, countStream, (endTime - startTime));
         list.clear();
     }
 }

@@ -33,6 +33,6 @@ public class GuavaRateLimiterTest {
         long usedTime = System.currentTimeMillis() - startTime;
         System.out.println(usedTime + " ms");
         assertTrue(usedTime + FOR_FAULT_TOLERANT_MILLISECONDS >= SHOULD_WAIT_MILLISECONDS);
-        System.out.println(String.format("%s >= %s" + " ms", usedTime, SHOULD_WAIT_MILLISECONDS));
+        System.out.printf("%s >= %s" + " ms%n", usedTime, SHOULD_WAIT_MILLISECONDS);
     }
 }

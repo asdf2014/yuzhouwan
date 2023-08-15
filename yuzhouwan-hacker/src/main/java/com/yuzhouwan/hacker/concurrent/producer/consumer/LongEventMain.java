@@ -52,7 +52,7 @@ public class LongEventMain {
             else producer3.product(bb);
 //            Thread.sleep(100);
         }
-        System.out.println(String.format("Time: %dms", System.currentTimeMillis() - start));        // Time: 98ms
+        System.out.printf("Time: %dms%n", System.currentTimeMillis() - start);        // Time: 98ms
         disruptor.shutdown();
         System.exit(0);
     }
