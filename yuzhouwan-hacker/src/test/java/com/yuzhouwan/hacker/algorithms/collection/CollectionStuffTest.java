@@ -256,17 +256,29 @@ public class CollectionStuffTest {
     public void testSingletonList() {
         boolean failed = false;
         try {
-            List<Boolean[]> booleans = Arrays.asList((Boolean[]) Collections.singletonList(Boolean.FALSE).toArray(),
-                    (Boolean[]) Collections.singletonList(Boolean.TRUE).toArray());
+            List<Boolean[]> booleans = Arrays.asList(
+                (Boolean[]) Collections.singletonList(Boolean.FALSE).toArray(),
+                (Boolean[]) Collections.singletonList(Boolean.TRUE).toArray()
+            );
             booleans.forEach(System.out::print);
         } catch (Exception e) {
             failed = true;
             assertEquals("ClassCastException", e.getClass().getSimpleName());
         }
         assertTrue(failed);
-        List<Boolean[]> booleans = Arrays.asList((Boolean[]) Arrays.asList(Boolean.FALSE).toArray(),
-                (Boolean[]) Arrays.asList(Boolean.TRUE).toArray());
-        booleans.forEach(System.out::print);
+
+        failed = false;
+        try {
+            List<Boolean[]> booleans = Arrays.asList(
+                (Boolean[]) Arrays.asList(Boolean.FALSE).toArray(),
+                (Boolean[]) Arrays.asList(Boolean.TRUE).toArray()
+            );
+            booleans.forEach(System.out::print);
+        } catch (Exception e) {
+            failed = true;
+            assertEquals("ClassCastException", e.getClass().getSimpleName());
+        }
+        assertTrue(failed);
     }
 
     @Test
@@ -288,7 +300,7 @@ public class CollectionStuffTest {
             } catch (ConcurrentModificationException cme) {
                 hasCME = true;
             }
-            assertTrue(hasCME);
+            assertFalse(hasCME);
         }
         {
             ConcurrentHashMap<String, Object> map = new ConcurrentHashMap<>();

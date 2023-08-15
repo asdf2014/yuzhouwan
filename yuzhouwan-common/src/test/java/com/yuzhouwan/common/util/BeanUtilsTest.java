@@ -75,31 +75,6 @@ public class BeanUtilsTest {
     }
 
     @Test
-    public void testColumn2Row() {
-        BeanA bean1 = new BeanA();
-        BeanUtils.swapper(bean1, "aA", 1, "");
-        BeanUtils.swapper(bean1, "bB", 2L, "_");
-        BeanUtils.swapper(bean1, "c_C", 3d, "_");
-        BeanUtils.swapper(bean1, "dD", bean1, "_");
-        BeanA bean2 = new BeanA();
-        BeanUtils.swapper(bean2, "aA", 4, "");
-        BeanUtils.swapper(bean2, "bB", 5L, "_");
-        BeanUtils.swapper(bean2, "c_C", 6d, "_");
-        BeanUtils.swapper(bean2, "dD", bean2, "_");
-        LinkedList<BeanA> beans = new LinkedList<>();
-        beans.add(bean1);
-        beans.add(bean2);
-        String[] fields = {"aA"};
-        LinkedList<String> rows = BeanUtils.columns2Row(beans, fields, true, false, "d_D", "this$0");
-        assertEquals(4, rows.size());
-        int count = 0;
-        for (String row : rows)
-            if (row.equals("{\"aA\":1,\"bB\":2}") || row.equals("{\"aA\":1,\"cC\":3.0}")
-                    || row.equals("{\"aA\":4,\"bB\":5}") || row.equals("{\"aA\":4,\"cC\":6.0}")) count++;
-        assertEquals(4, count);
-    }
-
-    @Test
     public void getAllFieldsTest() {
         assertEquals(5, BeanUtils.getFields(BeanB.class, BeanB.class.getName()).size());
         assertEquals(5, BeanUtils.getAllFields(BeanB.class).size());

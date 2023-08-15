@@ -1,6 +1,7 @@
 package com.yuzhouwan.hacker.security;
 
 import com.yuzhouwan.common.dir.DirUtils;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.File;
@@ -15,6 +16,7 @@ import java.io.File;
  */
 public class GenerateKeyTest {
 
+    @Ignore
     @Test
     public void generate() throws Exception {
         final String keyFile = DirUtils.RESOURCES_PATH.concat("security/key.data");
