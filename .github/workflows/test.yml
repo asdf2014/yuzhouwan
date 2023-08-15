@@ -1,0 +1,25 @@
+name: Run all of test cases with Maven
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Run all of test cases
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+          cache: maven
+
+      - name: Test with Maven
+        run: mvn clean install -T 1C
