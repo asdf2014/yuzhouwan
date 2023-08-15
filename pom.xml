@@ -43,12 +43,10 @@
         <scala.maven.plugin.version>3.2.2</scala.maven.plugin.version>
 
         <!-- scala -->
-        <!--<scala.version>2.10.4</scala.version>-->
         <scala.short.version>2.11</scala.short.version>
         <scala.version>${scala.short.version}.12</scala.version>
         <scala.unittest.version>3.0.5</scala.unittest.version>
         <scala.sepcs.version>3.3.1</scala.sepcs.version>
-        <!--<spark.version>1.2.2</spark.version>-->
         <spark.version>2.3.2</spark.version>
         <spark.scala.version>${scala.short.version}</spark.scala.version>
         <breeze.version>0.13.2</breeze.version>
