@@ -249,7 +249,7 @@
         <iotdb.version>0.12.5</iotdb.version>
 
         <!-- kubernetes -->
-        <fabric8.version>6.8.0</fabric8.version>
+        <fabric8.version>6.8.1</fabric8.version>
 
         <!-- docker -->
         <go-offline-maven-plugin.version>1.2.8</go-offline-maven-plugin.version>
