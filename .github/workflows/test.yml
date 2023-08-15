@@ -1,4 +1,4 @@
-name: Run all of test cases with Maven
+name: Test
 
 on:
   push:
