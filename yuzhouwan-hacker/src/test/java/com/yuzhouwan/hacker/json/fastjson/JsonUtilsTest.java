@@ -47,8 +47,8 @@ public class JsonUtilsTest {
             //fastjson
             String json = "{'args':['0:userName', '0:userPassword'], 'rets':['0:email']}";
             LinkedHashMap<String, LinkedList<String>> map = JSON.parseObject(json,
-                    new TypeReference<LinkedHashMap<String, LinkedList<String>>>() {
-                    });
+                new TypeReference<>() {
+                });
             assertEquals("{args=[0:userName, 0:userPassword], rets=[0:email]}", map.toString());
         }
         {
