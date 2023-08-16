@@ -49,7 +49,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class NativeIO {
     private static final Log LOG = LogFactory.getLog(NativeIO.class);
     private static final Map<Long, CachedUid> uidCache =
-            new ConcurrentHashMap<Long, CachedUid>();
+        new ConcurrentHashMap<>();
     private static boolean workaroundNonThreadSafePasswdCalls = false;
     private static boolean nativeLoaded = false;
     private static long cacheTimeout;
@@ -405,9 +405,9 @@ public class NativeIO {
         static final boolean WORKAROUND_NON_THREADSAFE_CALLS_DEFAULT = true;
         private static final Log LOG = LogFactory.getLog(NativeIO.class);
         private static final Map<Integer, CachedName> USER_ID_NAME_CACHE =
-                new ConcurrentHashMap<Integer, CachedName>();
+            new ConcurrentHashMap<>();
         private static final Map<Integer, CachedName> GROUP_ID_NAME_CACHE =
-                new ConcurrentHashMap<Integer, CachedName>();
+            new ConcurrentHashMap<>();
         private static boolean nativeLoaded = false;
         private static boolean fadvisePossible = true;
         private static boolean syncFileRangePossible = true;

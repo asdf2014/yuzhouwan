@@ -39,8 +39,8 @@ public class JsonUtilsTest {
             //jackson
             String json = "{'args':['0:userName', '0:userPassword'], 'rets':['0:email']}".replace("'", "\"");
             LinkedHashMap<String, LinkedList<String>> map = new ObjectMapper().readValue(json,
-                    new com.fasterxml.jackson.core.type.TypeReference<LinkedHashMap<String, LinkedList<String>>>() {
-                    });
+                new com.fasterxml.jackson.core.type.TypeReference<>() {
+                });
             assertEquals("{args=[0:userName, 0:userPassword], rets=[0:email]}", map.toString());
         }
         {

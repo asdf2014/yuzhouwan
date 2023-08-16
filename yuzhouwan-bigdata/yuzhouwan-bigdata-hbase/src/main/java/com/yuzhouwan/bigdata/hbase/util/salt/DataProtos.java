@@ -1246,7 +1246,7 @@ public final class DataProtos {
         }
 
         @java.lang.Deprecated public static final com.google.protobuf.Parser<DataQueryRequest>
-            PARSER = new com.google.protobuf.AbstractParser<DataQueryRequest>() {
+            PARSER = new com.google.protobuf.AbstractParser<>() {
             @java.lang.Override
             public DataQueryRequest parsePartialFrom(
                 com.google.protobuf.CodedInputStream input,
@@ -1349,7 +1349,7 @@ public final class DataProtos {
                             break;
                         case 10: {
                             if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                                rowList_ = new java.util.ArrayList<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row>();
+                                rowList_ = new java.util.ArrayList<>();
                                 mutable_bitField0_ |= 0x00000001;
                             }
                             rowList_.add(
@@ -2177,7 +2177,7 @@ public final class DataProtos {
             }
 
             @java.lang.Deprecated public static final com.google.protobuf.Parser<Cell>
-                PARSER = new com.google.protobuf.AbstractParser<Cell>() {
+                PARSER = new com.google.protobuf.AbstractParser<>() {
                 @java.lang.Override
                 public Cell parsePartialFrom(
                     com.google.protobuf.CodedInputStream input,
@@ -2295,7 +2295,7 @@ public final class DataProtos {
                             }
                             case 18: {
                                 if (!((mutable_bitField0_ & 0x00000002) != 0)) {
-                                    cellList_ = new java.util.ArrayList<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell>();
+                                    cellList_ = new java.util.ArrayList<>();
                                     mutable_bitField0_ |= 0x00000002;
                                 }
                                 cellList_.add(
@@ -2807,7 +2807,7 @@ public final class DataProtos {
                     java.util.Collections.emptyList();
                 private void ensureCellListIsMutable() {
                     if (!((bitField0_ & 0x00000002) != 0)) {
-                        cellList_ = new java.util.ArrayList<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell>(cellList_);
+                        cellList_ = new java.util.ArrayList<>(cellList_);
                         bitField0_ |= 0x00000002;
                     }
                 }
@@ -3032,8 +3032,7 @@ public final class DataProtos {
                     com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.Builder, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.CellOrBuilder>
                 getCellListFieldBuilder() {
                     if (cellListBuilder_ == null) {
-                        cellListBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-                            com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.Builder, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.CellOrBuilder>(
+                        cellListBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                             cellList_,
                             ((bitField0_ & 0x00000002) != 0),
                             getParentForChildren(),
@@ -3069,7 +3068,7 @@ public final class DataProtos {
             }
 
             @java.lang.Deprecated public static final com.google.protobuf.Parser<Row>
-                PARSER = new com.google.protobuf.AbstractParser<Row>() {
+                PARSER = new com.google.protobuf.AbstractParser<>() {
                 @java.lang.Override
                 public Row parsePartialFrom(
                     com.google.protobuf.CodedInputStream input,
@@ -3487,7 +3486,7 @@ public final class DataProtos {
                 java.util.Collections.emptyList();
             private void ensureRowListIsMutable() {
                 if (!((bitField0_ & 0x00000001) != 0)) {
-                    rowList_ = new java.util.ArrayList<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row>(rowList_);
+                    rowList_ = new java.util.ArrayList<>(rowList_);
                     bitField0_ |= 0x00000001;
                 }
             }
@@ -3712,8 +3711,7 @@ public final class DataProtos {
                 com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.Builder, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.RowOrBuilder>
             getRowListFieldBuilder() {
                 if (rowListBuilder_ == null) {
-                    rowListBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-                        com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.Builder, com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.RowOrBuilder>(
+                    rowListBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                         rowList_,
                         ((bitField0_ & 0x00000001) != 0),
                         getParentForChildren(),
@@ -3749,7 +3747,7 @@ public final class DataProtos {
         }
 
         @java.lang.Deprecated public static final com.google.protobuf.Parser<DataQueryResponse>
-            PARSER = new com.google.protobuf.AbstractParser<DataQueryResponse>() {
+            PARSER = new com.google.protobuf.AbstractParser<>() {
             @java.lang.Override
             public DataQueryResponse parsePartialFrom(
                 com.google.protobuf.CodedInputStream input,

@@ -35,8 +35,11 @@ public class QueryExample {
         requestBuilder.setIsSalting(isSalting);
         try {
             HTable table = new HTable(HBaseConfiguration.create(conf), tableName);
-            Map<byte[], List<DataProtos.DataQueryResponse.Row>> result = table.coprocessorService(DataProtos.QueryDataService.class, null, null, new Batch.Call<DataProtos.QueryDataService, List<DataProtos.DataQueryResponse.Row>>() {
-                public List<DataProtos.DataQueryResponse.Row> call(DataProtos.QueryDataService counter) throws IOException {
+            Map<byte[], List<DataProtos.DataQueryResponse.Row>> result = table.coprocessorService(
+                DataProtos.QueryDataService.class,
+                null,
+                null,
+                counter -> {
                     ServerRpcController controller = new ServerRpcController();
                     BlockingRpcCallback<DataProtos.DataQueryResponse> rpcCallback = new BlockingRpcCallback<>();
                     counter.queryByStartRowAndEndRow(controller, requestBuilder.build(), rpcCallback);
@@ -46,12 +49,12 @@ public class QueryExample {
                     }
                     return response.getRowListList();
                 }
-            });
+            );
             List<DataProtos.DataQueryResponse.Row> results = new LinkedList<>();
             result.entrySet()
-                    .stream()
-                    .filter(entry -> null != entry.getValue())
-                    .forEach(entry -> results.addAll(entry.getValue()));
+                .stream()
+                .filter(entry -> null != entry.getValue())
+                .forEach(entry -> results.addAll(entry.getValue()));
             return results;
         } catch (Throwable e) {
             throw new RuntimeException(e);

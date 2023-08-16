@@ -302,7 +302,7 @@ public class DoubleArrayTrieTree {
         if (len <= 0) len = key.length();
         if (nodePos <= 0) nodePos = 0;
 
-        List<Integer> result = new ArrayList<Integer>();
+        List<Integer> result = new ArrayList<>();
 
         char[] keyChars = key.toCharArray();
 
