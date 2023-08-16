@@ -1,6 +1,6 @@
 [<img align="right" width="30%" height="30%" src="https://user-images.githubusercontent.com/8108788/58363706-18c4d080-7edb-11e9-947a-cf7233c8e2cc.png">](https://yuzhouwan.com/)
 
-[![CodeQL](https://img.shields.io/github/actions/workflow/status/asdf2014/yuzhouwan/codeql.yml?branch=master&logo=github)](https://github.com/asdf2014/yuzhouwan/actions/workflows/codeql.yml)
+[![CodeQL](https://github.com/asdf2014/yuzhouwan/actions/workflows/codeql.yml/badge.svg)](https://github.com/asdf2014/yuzhouwan/actions/workflows/codeql.yml)
 [![Docker Build](https://img.shields.io/github/actions/workflow/status/asdf2014/yuzhouwan/docker.yml?branch=master&logo=docker)](https://github.com/asdf2014/yuzhouwan/actions/workflows/docker.yml)
 [![Unit Test](https://img.shields.io/github/actions/workflow/status/asdf2014/yuzhouwan/test.yml?branch=master&logo=github-actions)](https://github.com/asdf2014/yuzhouwan/actions/workflows/test.yml)
 [![License](https://img.shields.io/github/license/asdf2014/yuzhouwan?logo=apache)](https://yuzhouwan.com/)
