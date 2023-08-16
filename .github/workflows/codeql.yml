@@ -2,15 +2,12 @@ name: CodeQL
 
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
-  schedule:
-    - cron: '33 18 * * 4'
-  paths-ignore:
-    - '**/*.md'
-    - '**/*.yml'
-    - '**/*.ipynb'
+    branches:
+      - master
+    paths-ignore:
+      - '**/*.md'
+      - '**/*.yml'
+      - '**/*.ipynb'
 
 jobs:
   analyze:
