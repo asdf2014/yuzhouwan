@@ -6,7 +6,6 @@ on:
       - master
     paths-ignore:
       - '**/*.md'
-      - '**/*.yml'
       - '**/*.ipynb'
 
 jobs:
@@ -24,6 +23,13 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
           cache: maven
+
+      - name: Cache Maven target
+        uses: actions/cache@v2
+        with:
+          path: '**/target'
+          key: maven-target-${{ runner.os }}-${{ github.sha }}
+          restore-keys: maven-target-${{ runner.os }}-
 
       - name: Test with Maven
         run: mvn clean install -T 1C

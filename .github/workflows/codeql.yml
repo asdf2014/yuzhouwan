@@ -6,7 +6,6 @@ on:
       - master
     paths-ignore:
       - '**/*.md'
-      - '**/*.yml'
       - '**/*.ipynb'
 
 jobs:
@@ -27,11 +26,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up JDK 17
+      - name: Set up JDK 17 for Java
+        if: matrix.language == 'java'
         uses: actions/setup-java@v2
         with:
           java-version: '17'
           distribution: 'adopt'
+          cache: 'maven'
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2

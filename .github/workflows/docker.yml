@@ -6,7 +6,6 @@ on:
       - master
     paths-ignore:
       - '**/*.md'
-      - '**/*.yml'
       - '**/*.ipynb'
 
 jobs:
@@ -18,6 +17,27 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/docker-layers
+          key: docker-layers-${{ runner.os }}-${{ github.sha }}
+          restore-keys: docker-layers-${{ runner.os }}-
+
+      - name: Load cached Docker layers
+        run: |
+          if [ -d "/tmp/docker-layers" ]; then
+            docker load < /tmp/docker-layers/cache.tar
+          fi
+
       - name: Build Docker image
         run: |
-          docker -D build -t yuzhouwan:1.1.1-SNAPSHOT -f distribution/docker/Dockerfile .
+          docker -D build \
+            --cache-from=yuzhouwan:1.1.1-SNAPSHOT \
+            -t yuzhouwan:1.1.1-SNAPSHOT \
+            -f distribution/docker/Dockerfile .
+
+      - name: Save Docker layers
+        run: |
+          mkdir -p /tmp/docker-layers
+          docker save yuzhouwan:1.1.1-SNAPSHOT > /tmp/docker-layers/cache.tar
