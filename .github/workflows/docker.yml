@@ -33,11 +33,11 @@ jobs:
       - name: Build Docker image
         run: |
           docker -D build \
-            --cache-from=yuzhouwan:1.1.1-SNAPSHOT \
-            -t yuzhouwan:1.1.1-SNAPSHOT \
+            --cache-from=yuzhouwan:1.1.1 \
+            -t yuzhouwan:1.1.1 \
             -f distribution/docker/Dockerfile .
 
       - name: Save Docker layers
         run: |
           mkdir -p /tmp/docker-layers
-          docker save yuzhouwan:1.1.1-SNAPSHOT > /tmp/docker-layers/cache.tar
+          docker save yuzhouwan:1.1.1 > /tmp/docker-layers/cache.tar

@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.yuzhouwan</groupId>
         <artifactId>yuzhouwan-bigdata</artifactId>
-        <version>1.1.1-SNAPSHOT</version>
+        <version>1.1.1</version>
     </parent>
 
     <artifactId>yuzhouwan-bigdata-zookeeper</artifactId>
@@ -17,7 +17,7 @@
         <dependency>
             <groupId>com.yuzhouwan</groupId>
             <artifactId>yuzhouwan-common</artifactId>
-            <version>1.1.1-SNAPSHOT</version>
+            <version>1.1.1</version>
             <exclusions>
                 <exclusion>
                     <artifactId>netty</artifactId>
