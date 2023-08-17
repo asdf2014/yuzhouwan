@@ -5,7 +5,7 @@ path_classifiers:
 extraction:
   java:
     index:
-      java_version: 11
+      java_version: 17
   python:
     python_setup:
       version: 3
