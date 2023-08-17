@@ -24,25 +24,30 @@ public final class DruidUtils {
 
     /**
      * Generate tranquility metricsSpec in Druid config file.
-     * [Note]: if using <code>BeanUtils#columns2Row</code>, then could avoid this situation
      *
      * @param classList the list of classes
      * @return metricsSpec
      */
-    public static String genTranquilityMetricsSpec(Class... classList) {
-        if (classList == null || classList.length <= 0) return "";
+    public static String genTranquilityMetricsSpec(Class<?>... classList) {
+        if (classList == null || classList.length <= 0) {
+            return "";
+        }
         String metricsSpecPrefix, metricsSpecMiddle;
         if (StrUtils.isEmpty(metricsSpecPrefix = p.getProperty("metrics.spec.prefix"))
-                || StrUtils.isEmpty(metricsSpecMiddle = p.getProperty("metrics.spec.middle")))
+            || StrUtils.isEmpty(metricsSpecMiddle = p.getProperty("metrics.spec.middle"))) {
             throw new RuntimeException("Properties [metrics.spec.prefix/middle] is empty!");
+        }
         String fieldName;
         StringBuilder strBuilder = new StringBuilder(metricsSpecPrefix);
         LinkedHashSet<String> checkExists = new LinkedHashSet<>();
-        for (Class clazz : classList)
+        for (Class<?> clazz : classList) {
             for (Field field : BeanUtils.getAllFields(clazz)) {
-                if (checkExists.contains(fieldName = field.getName())) continue;
+                if (checkExists.contains(fieldName = field.getName())) {
+                    continue;
+                }
                 buildMiddlePart(strBuilder, field, fieldName, metricsSpecMiddle, checkExists);
             }
+        }
         return strBuilder.append("]}").toString().replaceAll(",]", "]");
     }
 
@@ -51,9 +56,11 @@ public final class DruidUtils {
         String simpleTypeName;
         checkExists.add(fieldName);
         if ("string".equalsIgnoreCase(simpleTypeName = field.getType().getSimpleName())
-                || !"long".equalsIgnoreCase(simpleTypeName) && !"double".equalsIgnoreCase(simpleTypeName))
+            || !"long".equalsIgnoreCase(simpleTypeName) && !"double".equalsIgnoreCase(simpleTypeName)) {
             return;
-        strBuilder.append(String.format(metricsSpecMiddle, fieldName, fieldName, simpleTypeName,
-                fieldName, fieldName, simpleTypeName));
+        }
+        strBuilder.append(String.format(metricsSpecMiddle,
+            fieldName, fieldName, simpleTypeName,
+            fieldName, fieldName, simpleTypeName));
     }
 }
