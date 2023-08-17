@@ -44,7 +44,7 @@ public class RemoveDuplicateAndSort {
         companies.add(new Company("Washington", 1));
         companies.add(new Company("Washington", 4));
         companies.add(new Company("China", 3));
-        Collections.sort(companies, comparator);
+        companies.sort(comparator);
         for (Company company : companies) {
             _log.debug(company.toString());
         }
@@ -70,7 +70,7 @@ public class RemoveDuplicateAndSort {
             count--;
         }
         long start = System.currentTimeMillis();
-        Collections.sort(companies, comparator);
+        companies.sort(comparator);
         List<Company> result = removeDuplicateUsers(companies, 2);
         long end = System.currentTimeMillis();
         for (Company company : result) {
