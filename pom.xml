@@ -112,7 +112,7 @@
         <!-- spring+mybatis -->
         <spring.mybatis.version>3.0.2</spring.mybatis.version>
 
-        <!-- spring+camel-->
+        <!-- spring + camel-->
         <apache.camel.spring.version>4.0.0</apache.camel.spring.version>
 
         <!-- common -->
