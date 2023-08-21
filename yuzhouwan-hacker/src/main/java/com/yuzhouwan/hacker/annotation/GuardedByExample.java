@@ -1,7 +1,6 @@
 package com.yuzhouwan.hacker.annotation;
 
-import org.apache.http.annotation.GuardedBy;
-
+import javax.annotation.concurrent.GuardedBy;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
