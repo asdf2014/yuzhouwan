@@ -5,10 +5,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.*;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.mapping;
+import static java.util.stream.Collectors.toMap;
 
 /**
  * Copyright @ 2023 yuzhouwan.com
@@ -29,15 +39,24 @@ public final class CollectionUtils {
      * 按照 strWithSeparator 中包含的几个单词，模糊匹配 originList 内元素，并移除.
      */
     public static List<String> removeAllByStrWithSeparator(List<String> originList,
-                                                           String strWithSeparator, String separator) {
-        if (originList == null || originList.size() <= 0 || strWithSeparator == null || separator == null) return null;
+                                                           String strWithSeparator,
+                                                           String separator) {
+        if (originList == null || originList.size() <= 0 || strWithSeparator == null || separator == null) {
+            return null;
+        }
         List<String> result = new LinkedList<>();
         boolean isContains;
         for (String origin : originList) {
             isContains = false;
-            for (String aim : strWithSeparator.split(separator))
-                if (!isContains && origin.contains(aim)) isContains = true;
-            if (!isContains) result.add(origin);
+            for (String aim : strWithSeparator.split(separator)) {
+                if (origin.contains(aim)) {
+                    isContains = true;
+                    break;
+                }
+            }
+            if (!isContains) {
+                result.add(origin);
+            }
         }
         return result;
     }
@@ -46,10 +65,16 @@ public final class CollectionUtils {
      * Remove Duplicate for Object[].
      */
     public static Object[] intersection(Object[] a, Object[] b) {
-        if (a == null || b == null || a.length == 0 || b.length == 0) return null;
+        if (a == null || b == null || a.length == 0 || b.length == 0) {
+            return null;
+        }
         LinkedHashSet<Object> set = new LinkedHashSet<>(), result = new LinkedHashSet<>();
         Collections.addAll(set, a);
-        for (Object bi : b) if (set.contains(bi)) result.add(bi);
+        for (Object bi : b) {
+            if (set.contains(bi)) {
+                result.add(bi);
+            }
+        }
         return result.toArray();
     }
 
@@ -57,9 +82,13 @@ public final class CollectionUtils {
      * Remove Duplicate for Collection.
      */
     public static <T> Collection<T> intersection(Collection<T> a, Collection<T> b) {
-        if (a == null || b == null || a.size() == 0 || b.size() == 0) return null;
+        if (a == null || b == null || a.size() == 0 || b.size() == 0) {
+            return null;
+        }
         LinkedHashSet<T> set = new LinkedHashSet<>(a);
-        return b.stream().filter(set::contains).collect(Collectors.toSet());
+        return b.stream()
+            .filter(set::contains)
+            .collect(Collectors.toSet());
     }
 
     public static <E> Object getDuplicate(Collection<E> coll, E o, String field, Class<?> fieldClass) {
@@ -81,27 +110,36 @@ public final class CollectionUtils {
     public static <E> Object getDuplicate(Collection<E> coll, E o, String fieldName,
                                           Class<?> fieldClass, Class<?> elementClass) {
 
-        if (coll == null || coll.isEmpty() || o == null || StrUtils.isEmpty(fieldName) || fieldClass == null)
+        if (coll == null || coll.isEmpty() || o == null || StrUtils.isEmpty(fieldName) || fieldClass == null) {
             return null;
+        }
         Object collO = null, aimO = null;
         String elementClassName = "";
         boolean subClass = false;
-        if (elementClass != null) subClass = StrUtils.isNotEmpty(elementClassName = elementClass.getName());
+        if (elementClass != null) {
+            subClass = StrUtils.isNotEmpty(elementClassName = elementClass.getName());
+        }
         E end = null;
         try {
             Field f = o.getClass().getDeclaredField(fieldName);
             f.setAccessible(true);
             for (E e : coll) {
                 if (subClass && !elementClassName.equals(e.getClass().getName())
-                        || (collO = f.get(e)) == null || (aimO = f.get(o)) == null) continue;
-                if (collO.equals(aimO) || fieldClass.cast(collO).equals(fieldClass.cast(aimO))) return (end = e);
+                    || (collO = f.get(e)) == null || (aimO = f.get(o)) == null) {
+                    continue;
+                }
+                if (collO.equals(aimO) || fieldClass.cast(collO).equals(fieldClass.cast(aimO))) {
+                    return (end = e);
+                }
             }
         } catch (Exception e) {
             LOGGER.error(ExceptionUtils.errorInfo(e,
                     String.format("fieldName: %s, class: %s, object in collection: %s, object aim: %s",
                             fieldName, fieldClass.getName(), collO, aimO)));
         } finally {
-            if (end != null) coll.remove(end);
+            if (end != null) {
+                coll.remove(end);
+            }
         }
         return null;
     }
@@ -115,10 +153,16 @@ public final class CollectionUtils {
      * @param <T>     generic type
      */
     public static <T> Collection<T> remove(Collection<T> coll, final String field, final Object... removes) {
-        if (coll == null || coll.size() == 0 || removes == null || removes.length == 0) return coll;
+        if (coll == null || coll.size() == 0 || removes == null || removes.length == 0) {
+            return coll;
+        }
         Collection<T> needRemoved = new LinkedList<>();
         try {
-            for (T c : coll) if (canRemove(field, c, removes)) needRemoved.add(c);
+            for (T c : coll) {
+                if (canRemove(field, c, removes)) {
+                    needRemoved.add(c);
+                }
+            }
         } catch (Exception e) {
             LOGGER.error(ExceptionUtils.errorInfo(e));
             throw new RuntimeException(e);
@@ -138,8 +182,12 @@ public final class CollectionUtils {
             if (StrUtils.isNotEmpty(field)) {
                 (f = c.getClass().getDeclaredField(field)).setAccessible(true);
                 tmp = f.get(c);
-            } else tmp = c;
-            if (tmp.equals(remove)) return true;
+            } else {
+                tmp = c;
+            }
+            if (tmp.equals(remove)) {
+                return true;
+            }
         }
         return false;
     }
@@ -228,12 +276,16 @@ public final class CollectionUtils {
      * @see #join(Object[], String)
      */
     public static <T> String join(Collection<T> list, String separator) {
-        if (list == null || list.size() == 0) return "";
+        if (list == null || list.size() == 0) {
+            return "";
+        }
         StringBuilder sb = new StringBuilder();
         Iterator<T> iter = list.iterator();
         while (iter.hasNext()) {
             sb.append(iter.next());
-            if (iter.hasNext()) sb.append(separator);
+            if (iter.hasNext()) {
+                sb.append(separator);
+            }
         }
         return sb.toString();
     }

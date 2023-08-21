@@ -4,17 +4,25 @@ import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Maps;
 import org.apache.avro.io.DecoderFactory;
 import org.apache.avro.util.ByteBufferInputStream;
-import org.junit.Ignore;
 import org.junit.Test;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.nio.ByteBuffer;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 import static com.yuzhouwan.common.util.CollectionUtils.intersection;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Copyright @ 2023 yuzhouwan.com
@@ -26,11 +34,13 @@ import static org.junit.Assert.*;
  */
 public class CollectionUtilsTest {
 
-    private static final Logger _log = LoggerFactory.getLogger(CollectionUtilsTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CollectionUtilsTest.class);
 
     private static Integer putIfAbsent(LinkedHashMap<String, Integer> lhm, String key, Integer value) {
         Integer oldValue = lhm.get(key);
-        if (oldValue == null) oldValue = lhm.put(key, value);
+        if (oldValue == null) {
+            oldValue = lhm.put(key, value);
+        }
         return oldValue;
     }
 
@@ -148,10 +158,7 @@ public class CollectionUtilsTest {
         ByteBuffer bb = DecimalUtils.byteArray2byteBuffer("yuzhouwan".getBytes());
         List<ByteBuffer> bytes = Collections.singletonList(bb);
         ByteBufferInputStream inputStream = new ByteBufferInputStream(bytes);
-        /*BinaryDecoder bd = */
         DecoderFactory.get().binaryDecoder(inputStream, null);
-//        System.out.println(new String(DecimalUtils.byteBuffer2byteArray(
-//                DecoderFactory.get().binaryDecoder(inputStream, null).readBytes(bb))));
     }
 
     @Test
@@ -185,7 +192,15 @@ public class CollectionUtilsTest {
         internalNthTest(1000, 100);
     }
 
-    @Ignore
+    /*
+    -ea -Xmx700M -Xms700M -Xmn256M -XX:+AlwaysPreTouch
+
+    Array length: 10000, Spend Time: 4087450.0ns = 4.08745ms
+    Array length: 100000, Spend Time: 1.2797775E7ns = 12.797775ms
+    Array length: 1000000, Spend Time: 3.7088521E7ns = 37.088521ms
+    Array length: 10000000, Spend Time: 6.4926528E8ns = 649.26528ms
+    Array length: 100000000, Spend Time: 7.983493998E9ns = 7983.493998ms
+     */
     @Test
     public void getNthNumberPerformanceTest() {
         internalNthTest(1_0000, 1000);
@@ -207,7 +222,7 @@ public class CollectionUtilsTest {
         long endTime = System.nanoTime();
         assertEquals(1, nth);
         double totalTime = endTime - startTime;
-        _log.info("Array length: {}, Spend Time: {}ns = {}ms", len, totalTime, totalTime / Math.pow(10, 6));
+        LOGGER.info("Array length: {}, Spend Time: {}ns = {}ms", len, totalTime, totalTime / Math.pow(10, 6));
     }
 
     @Test
@@ -256,6 +271,7 @@ public class CollectionUtilsTest {
     }
 
     @Test
+    @SuppressWarnings("ConstantConditions")
     public void mapPutIfAbsentTest() {
         LinkedHashMap<String, Integer> lhm = new LinkedHashMap<>();
         Integer old = lhm.putIfAbsent("a", 1);
@@ -275,7 +291,7 @@ public class CollectionUtilsTest {
         assertNull(old);
     }
 
-    private class A {
+    private static class A {
         int a;
         String b;
         Object c;
