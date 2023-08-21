@@ -7,12 +7,14 @@ on:
     paths-ignore:
       - '**/*.md'
       - '**/*.ipynb'
+      - '.gitignore'
   pull_request:
     branches:
       - master
     paths-ignore:
       - '**/*.md'
       - '**/*.ipynb'
+      - '.gitignore'
 
 jobs:
   analyze:
