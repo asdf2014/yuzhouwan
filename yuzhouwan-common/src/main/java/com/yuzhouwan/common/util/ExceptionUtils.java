@@ -10,19 +10,21 @@ package com.yuzhouwan.common.util;
  */
 public final class ExceptionUtils {
 
-    private ExceptionUtils() {
-    }
+  private ExceptionUtils() {
+  }
 
-    public static String errorInfo(Exception e) {
-        return errorInfo(e, null);
-    }
+  public static String errorInfo(Exception e) {
+    return errorInfo(e, null);
+  }
 
-    public static String errorInfo(Exception e, String detail) {
-        if (e == null) return null;
-        Class<?> clazz = e.getClass();
-        String msg = e.getMessage();
-        return String.format("%s: %s%s", clazz == null ? "" : clazz.getSimpleName(),
-                StrUtils.isEmpty(msg) ? "[No More Detail Info]" : msg,
-                StrUtils.isEmpty(detail) ? "" : ", Detail: ".concat(detail));
+  public static String errorInfo(Exception e, String detail) {
+    if (e == null) {
+      return null;
     }
+    Class<?> clazz = e.getClass();
+    String msg = e.getMessage();
+    return String.format("%s: %s%s", clazz == null ? "" : clazz.getSimpleName(),
+      StrUtils.isEmpty(msg) ? "[No More Detail Info]" : msg,
+      StrUtils.isEmpty(detail) ? "" : ", Detail: ".concat(detail));
+  }
 }
