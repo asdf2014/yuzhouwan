@@ -126,7 +126,7 @@
         <alipay.version>20161121110022</alipay.version>
 
         <!-- cglib -->
-        <cglib.version>3.2.12</cglib.version>
+        <cglib.version>3.3.0</cglib.version>
 
         <!-- snmp4j -->
         <snmp4j.version>3.7.7</snmp4j.version>
