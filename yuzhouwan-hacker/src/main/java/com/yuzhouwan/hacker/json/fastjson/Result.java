@@ -79,13 +79,11 @@ public class Result {
             return true;
         }
 
-        if (!(o instanceof Result)) {
+        if (!(o instanceof Result result)) {
             return false;
         }
 
-        Result result = (Result) o;
-
-        return new EqualsBuilder()
+      return new EqualsBuilder()
                 .append(getStatusCode(), result.getStatusCode())
                 .append(getMsg(), result.getMsg())
                 .append(getData(), result.getData())

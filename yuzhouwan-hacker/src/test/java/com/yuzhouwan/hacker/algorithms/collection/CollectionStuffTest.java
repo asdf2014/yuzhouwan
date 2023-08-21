@@ -358,9 +358,7 @@ public class CollectionStuffTest {
         @Override
         public boolean equals(Object o1) {
             if (this == o1) return true;
-            if (!(o1 instanceof ComplexClass)) return false;
-
-            ComplexClass that = (ComplexClass) o1;
+            if (!(o1 instanceof ComplexClass that)) return false;
 
             if (!getI().equals(that.getI())) return false;
             if (!getS().equals(that.getS())) return false;

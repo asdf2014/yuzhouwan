@@ -478,10 +478,9 @@ public final class DataProtos {
             if (obj == this) {
                 return true;
             }
-            if (!(obj instanceof com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest)) {
+            if (!(obj instanceof DataQueryRequest other)) {
                 return super.equals(obj);
             }
-            com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest other = (com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest) obj;
 
             if (hasTableName() != other.hasTableName()) return false;
             if (hasTableName()) {
@@ -1671,10 +1670,9 @@ public final class DataProtos {
                 if (obj == this) {
                     return true;
                 }
-                if (!(obj instanceof com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell)) {
+                if (!(obj instanceof Cell other)) {
                     return super.equals(obj);
                 }
-                com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell other = (com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell) obj;
 
                 if (hasValue() != other.hasValue()) return false;
                 if (hasValue()) {
@@ -2441,10 +2439,9 @@ public final class DataProtos {
                 if (obj == this) {
                     return true;
                 }
-                if (!(obj instanceof com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row)) {
+                if (!(obj instanceof Row other)) {
                     return super.equals(obj);
                 }
-                com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row other = (com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row) obj;
 
                 if (hasRowKey() != other.hasRowKey()) return false;
                 if (hasRowKey()) {
@@ -3175,10 +3172,9 @@ public final class DataProtos {
             if (obj == this) {
                 return true;
             }
-            if (!(obj instanceof com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse)) {
+            if (!(obj instanceof DataQueryResponse other)) {
                 return super.equals(obj);
             }
-            com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse other = (com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse) obj;
 
             if (!getRowListList()
                 .equals(other.getRowListList())) return false;
