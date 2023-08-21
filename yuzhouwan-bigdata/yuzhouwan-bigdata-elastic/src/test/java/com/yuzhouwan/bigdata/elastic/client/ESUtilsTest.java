@@ -5,18 +5,22 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yuzhouwan.common.util.PropUtils;
 import org.apache.http.HttpEntity;
+import org.elasticsearch.client.Request;
 import org.elasticsearch.client.Response;
 import org.elasticsearch.client.RestClient;
 import org.junit.Ignore;
 import org.junit.Test;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Collections;
 import java.util.LinkedList;
 
-import static com.yuzhouwan.bigdata.elastic.util.ESUtils.*;
+import static com.yuzhouwan.bigdata.elastic.util.ESUtils.ES_SEARCH;
+import static com.yuzhouwan.bigdata.elastic.util.ESUtils.REST_CLIENT_BUILDER;
+import static com.yuzhouwan.bigdata.elastic.util.ESUtils.SMILE_FACTORY;
+import static com.yuzhouwan.bigdata.elastic.util.ESUtils.buildFieldQuery;
+import static com.yuzhouwan.bigdata.elastic.util.ESUtils.buildTimestampQuery;
+import static com.yuzhouwan.bigdata.elastic.util.ESUtils.createEntity;
 import static com.yuzhouwan.common.util.StrUtils.isBlank;
 import static com.yuzhouwan.common.util.StrUtils.isNotBlank;
 
@@ -45,17 +49,19 @@ public class ESUtilsTest extends ElasticSearchClientBaseTestCase {
         try (RestClient esClient = REST_CLIENT_BUILDER.build()) {
             final ObjectMapper smileMapper = new ObjectMapper(SMILE_FACTORY);
             final HttpEntity entity = createEntity("{\n"
-                    + "  \"from\": " + 0 + ",\n"
-                    + "  \"size\": " + 10 + ",\n"
-                    + "  \"query\": {\n"
-                    + "    \"bool\": {\n"
-                    + "      \"must\": [\n"
-                    + buildQuery(1501813000005L, 1501813999999L, "7dcaa4ff-58fd-4a0d-842f-843d108c1067")
-                    + "      ]\n"
-                    + "    }\n"
-                    + "  }\n"
-                    + "}");
-            Response response = esClient.performRequest("GET", ES_INDEX, Collections.emptyMap(), entity);
+                + "  \"from\": " + 0 + ",\n"
+                + "  \"size\": " + 10 + ",\n"
+                + "  \"query\": {\n"
+                + "    \"bool\": {\n"
+                + "      \"must\": [\n"
+                + buildQuery(1501813000005L, 1501813999999L, "7dcaa4ff-58fd-4a0d-842f-843d108c1067")
+                + "      ]\n"
+                + "    }\n"
+                + "  }\n"
+                + "}");
+            Request get = new Request("GET", ES_INDEX);
+            get.setEntity(entity);
+            Response response = esClient.performRequest(get);
             final JsonNode jsonNode = smileMapper.readTree(response.getEntity().getContent());
             JsonNode hits;
             if (jsonNode == null || (hits = jsonNode.get("hits")).size() == 0) return;
