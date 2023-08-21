@@ -11,7 +11,6 @@ import com.yuzhouwan.common.util.StrUtils;
 import org.apache.hadoop.hbase.Cell;
 import org.apache.hadoop.hbase.Coprocessor;
 import org.apache.hadoop.hbase.CoprocessorEnvironment;
-import org.apache.hadoop.hbase.KeyValue;
 import org.apache.hadoop.hbase.client.Get;
 import org.apache.hadoop.hbase.client.Result;
 import org.apache.hadoop.hbase.client.Scan;
@@ -20,8 +19,8 @@ import org.apache.hadoop.hbase.coprocessor.CoprocessorService;
 import org.apache.hadoop.hbase.coprocessor.RegionCoprocessorEnvironment;
 import org.apache.hadoop.hbase.filter.Filter;
 import org.apache.hadoop.hbase.filter.InclusiveStopFilter;
-import org.apache.hadoop.hbase.protobuf.ResponseConverter;
 import org.apache.hadoop.hbase.regionserver.InternalScanner;
+import org.apache.hadoop.hbase.shaded.protobuf.ResponseConverter;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -91,9 +90,9 @@ public class QueryEndpoint extends DataProtos.QueryDataService implements Coproc
                 hasMore = scanner.next(results);
                 DataProtos.DataQueryResponse.Row.Builder rowBuilder = DataProtos.DataQueryResponse.Row.newBuilder();
                 if (results.size() > 0) {
-                    rowBuilder.setRowKey(ByteString.copyFrom(results.get(0).getRow()));
+                    rowBuilder.setRowKey(ByteString.copyFrom(results.get(0).getRowArray()));
                     for (Cell kv : results) {
-                        queryBuilder(rowBuilder, ByteString.copyFrom(kv.getFamily()), ByteString.copyFrom(kv.getQualifier()), ByteString.copyFrom(kv.getRow()), ByteString.copyFrom(kv.getValue()));
+                        queryBuilder(rowBuilder, ByteString.copyFrom(kv.getFamilyArray()), ByteString.copyFrom(kv.getQualifierArray()), ByteString.copyFrom(kv.getRowArray()), ByteString.copyFrom(kv.getValueArray()));
                     }
                 }
                 responseBuilder.addRowList(rowBuilder);
@@ -141,11 +140,11 @@ public class QueryEndpoint extends DataProtos.QueryDataService implements Coproc
             DataProtos.DataQueryResponse.Row.Builder rowBuilder = DataProtos.DataQueryResponse.Row.newBuilder();
 
             if (result != null && !result.isEmpty()) {
-                List<KeyValue> list = result.list();
+                List<Cell> list = result.listCells();
                 if (null != list && !list.isEmpty()) {
-                    rowBuilder.setRowKey(ByteString.copyFrom(list.get(0).getRow()));
-                    for (KeyValue kv : list) {
-                        queryBuilder(rowBuilder, ByteString.copyFrom(kv.getFamily()), ByteString.copyFrom(kv.getQualifier()), ByteString.copyFrom(kv.getRow()), ByteString.copyFrom(kv.getValue()));
+                    rowBuilder.setRowKey(ByteString.copyFrom(list.get(0).getRowArray()));
+                    for (Cell kv : list) {
+                        queryBuilder(rowBuilder, ByteString.copyFrom(kv.getFamilyArray()), ByteString.copyFrom(kv.getQualifierArray()), ByteString.copyFrom(kv.getRowArray()), ByteString.copyFrom(kv.getValueArray()));
                     }
                 }
             }
