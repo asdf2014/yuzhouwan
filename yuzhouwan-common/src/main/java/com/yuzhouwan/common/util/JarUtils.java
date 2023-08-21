@@ -26,7 +26,7 @@ public final class JarUtils {
     private static final String SUFFIX_JAR = ".jar";
     private static final String LIB_PATH = DirUtils.getLibPathInWebApp();
     private static final String CLASSES_PATH = DirUtils.getTestClassesPath();
-    private static Properties p = new Properties();
+    private static final Properties p = new Properties();
     private static volatile JarUtils instance;
     private static final String PROP_PATH = PropUtils.getInstance().getPropertyInternal("prop.path");
 
@@ -34,13 +34,14 @@ public final class JarUtils {
     }
 
     public static JarUtils getInstance() {
-        if (instance == null)
+        if (instance == null) {
             synchronized (PropUtils.class) {
                 if (instance == null) {
                     init();
                     instance = new JarUtils();
                 }
             }
+        }
         return instance;
     }
 
@@ -49,8 +50,9 @@ public final class JarUtils {
         try {
             // $PROJECT_BASE_PATH/*.jar
             String projectJarPath = PropUtils.getInstance().getPropertyInternal("project.jar.path");
-            if (!StrUtils.isEmpty(projectJarPath) && projectJarPath.endsWith(SUFFIX_JAR))
+            if (!StrUtils.isEmpty(projectJarPath) && projectJarPath.endsWith(SUFFIX_JAR)) {
                 loadPropsWithinJar(projectJarPath);
+            }
 
             // /classes/lib/*.jar
             LOGGER.debug("CLASSES_PATH is {}", CLASSES_PATH);
@@ -69,10 +71,14 @@ public final class JarUtils {
                 if ((jarPaths = DirUtils.findPath(LIB_PATH, "lib", SUFFIX_JAR, false)) != null && jarPaths.size() > 0)
                     for (String jarFile : jarPaths) {
                         //如果是 webApp，这里需要改为 WEB-INF; 否则是 target (supported by profile in maven)
-                        jarPaths = DirUtils.findPath(LIB_PATH,
-                                PropUtils.getInstance().getPropertyInternal("lib.path"),
-                                jarFile.substring(1), false);
-                        if (jarPaths != null && jarPaths.size() > 0) scanDirWithinJar(jarPaths.get(0));
+                        jarPaths = DirUtils.findPath(
+                            LIB_PATH,
+                            PropUtils.getInstance().getPropertyInternal("lib.path"),
+                            jarFile.substring(1), false
+                        );
+                        if (jarPaths != null && jarPaths.size() > 0) {
+                            scanDirWithinJar(jarPaths.get(0));
+                        }
                     }
             }
         } catch (Exception e) {
@@ -92,7 +98,7 @@ public final class JarUtils {
         //如果是 webApp，这里需要是改为 ".." + JAR_PATH；否则，直接用 JAR_PATH (supported by profile in maven)
         String prefix = PropUtils.getInstance().getPropertyInternal("prefix.path.for.scan.dir.with.jar");
         String sourcePath = (StrUtils.isEmpty(StrUtils.isEmpty(prefix) ? "" : prefix)
-                ? DirUtils.PROJECT_BASE_PATH.concat("/") : "").concat(jarPath);
+            ? DirUtils.PROJECT_BASE_PATH.concat("/") : "").concat(jarPath);
         LOGGER.debug("SourcePath: {}", sourcePath);
         URL sourceUrl = JarUtils.class.getClassLoader().getResource(sourcePath);
         if (sourceUrl == null && StrUtils.isEmpty(sourcePath)) {
@@ -102,7 +108,9 @@ public final class JarUtils {
                 sourceUrl = new URL(sourcePath);
             }
         }
-        if (sourceUrl == null) return;
+        if (sourceUrl == null) {
+            return;
+        }
         LOGGER.debug("Jar Path: {}", sourceUrl.getPath());
         loadPropsWithinJar(sourceUrl);
     }
@@ -111,23 +119,30 @@ public final class JarUtils {
         // file:/
         String sysFilePrefix = PropUtils.getInstance().getPropertyInternal("file.source.url.prefix");
         LOGGER.debug("System File Url Prefix: {}", sysFilePrefix);
-        if (!StrUtils.isEmpty(sysFilePrefix))
+        if (!StrUtils.isEmpty(sysFilePrefix)) {
             loadPropsWithinJar(new URL(sysFilePrefix.concat(jarPath)));
+        }
     }
 
     public static void loadPropsWithinJar(URL sourceUrl) throws Exception {
-        LOGGER.debug("Load Properties Within Jar File: {}", sourceUrl.getPath());
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Load Properties Within Jar File: {}", sourceUrl.getPath());
+        }
         try (ZipInputStream zip = new ZipInputStream(sourceUrl.toURI().toURL().openStream())) {
-            if (zip.available() == 0)
+            if (zip.available() == 0) {
                 throw new RuntimeException(sourceUrl.getPath().concat(" is not exist or cannot be available!!"));
+            }
             ZipEntry e;
             String name;
             while ((e = zip.getNextEntry()) != null) {
                 if (!StrUtils.isEmpty(name = e.getName()) && name.startsWith(PROP_PATH)) {
-                    if (StrUtils.isEmpty(StrUtils.cutStartStr(name, PROP_PATH))) continue;
+                    if (StrUtils.isEmpty(StrUtils.cutStartStr(name, PROP_PATH))) {
+                        continue;
+                    }
                     p.load(JarUtils.class.getResourceAsStream("/".concat(name)));
-                    for (Object key : p.keySet())
+                    for (Object key : p.keySet()) {
                         LOGGER.debug("JarUtils k-v: <{} = {}>", key, p.get(key));
+                    }
                 }
                 LOGGER.debug("Properties File name is {}", name);
             }
@@ -141,10 +156,13 @@ public final class JarUtils {
      * @return isProjectJar
      */
     public static boolean isProjectJar(final Class<?> clazz) {
-        if (clazz == null) return false;
+        if (clazz == null) {
+            return false;
+        }
         try {
             return !new File(clazz.getProtectionDomain().getCodeSource().getLocation().toURI())
-                    .getName().endsWith(SUFFIX_JAR);
+                .getName()
+                .endsWith(SUFFIX_JAR);
         } catch (Exception e) {
             LOGGER.error(ExceptionUtils.errorInfo(e));
             return true;
@@ -152,7 +170,9 @@ public final class JarUtils {
     }
 
     public String getProperty(String key) {
-        if (p == null) return null;
+        if (p == null) {
+            return null;
+        }
         return p.getProperty(key);
     }
 }
