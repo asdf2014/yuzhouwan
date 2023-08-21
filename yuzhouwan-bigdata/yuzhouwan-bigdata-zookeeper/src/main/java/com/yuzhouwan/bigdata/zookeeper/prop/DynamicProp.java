@@ -20,7 +20,7 @@ import java.nio.file.WatchEvent;
  */
 public class DynamicProp implements IDirUtils {
 
-    private static final Logger _log = LoggerFactory.getLogger(DynamicProp.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DynamicProp.class);
 
     //0: nothing; 1: upload
     private static final String DYNAMIC_PROP_UPLOAD = "1";
@@ -41,7 +41,7 @@ public class DynamicProp implements IDirUtils {
             runnable = DirUtils.buildWatchService(path, this, waitTime);
             thread = new Thread(runnable);
         } catch (Exception e) {
-            _log.error("Dynamic Properties initialization failed!", e);
+            LOGGER.error("Dynamic Properties initialization failed!", e);
             throw new RuntimeException(e);
         }
     }
@@ -55,7 +55,7 @@ public class DynamicProp implements IDirUtils {
         try {
             thread.join(timeout);
         } catch (InterruptedException e) {
-            _log.error("Dynamic Properties safely stopping failed!", e);
+            LOGGER.error("Dynamic Properties safely stopping failed!", e);
             throw new RuntimeException(e);
         }
     }
@@ -81,10 +81,10 @@ public class DynamicProp implements IDirUtils {
     @Override
     public void dealWithEvent(WatchEvent<?> event) {
 
-        _log.debug(event.context() + ":\t " + event.kind() + " event.");
+        LOGGER.debug(event.context() + ":\t " + event.kind() + " event.");
 
         String dynamicPolicy = PropUtils.getInstance().getProperty("dynamic.prop.changed");
-        _log.debug("DynamicPolicy is {}", dynamicPolicy);
+        LOGGER.debug("DynamicPolicy is {}", dynamicPolicy);
         if (!StrUtils.isEmpty(dynamicPolicy) && DYNAMIC_PROP_UPLOAD.equals(dynamicPolicy)) {
             uploadProp2ZK();
         }

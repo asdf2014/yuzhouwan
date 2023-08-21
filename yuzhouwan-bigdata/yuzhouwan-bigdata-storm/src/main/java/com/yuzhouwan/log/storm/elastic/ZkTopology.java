@@ -26,7 +26,7 @@ import java.util.List;
  */
 public final class ZkTopology {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ZkTopology.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ZkTopology.class);
 
     private ZkTopology() {
     }
@@ -67,7 +67,7 @@ public final class ZkTopology {
             try {
                 StormSubmitter.submitTopology("storm-kafka-example", config, builder.createTopology());
             } catch (Exception e) {
-                LOG.error("", e);
+                LOGGER.error("", e);
             }
         } else {
             LocalCluster cluster = new LocalCluster();

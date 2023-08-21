@@ -24,11 +24,13 @@ import java.util.Iterator;
  */
 class NIOClient implements Runnable {
 
-    private static final Logger _log = LoggerFactory.getLogger(NIOClient.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(NIOClient.class);
+
     private static final int SOCKET_PORT = 6603;
     private static final ByteBuffer temp = ByteBuffer.allocate(1024);
     private static final Charset CHARSET = StandardCharsets.UTF_8;
     private static final String msg = "Yuzhouwan";
+
     // 空闲计数器, 如果空闲超过10次, 将检测server是否中断连接
     private static int idleCounter;
     private Selector selector;
@@ -70,7 +72,7 @@ class NIOClient implements Runnable {
                         try {
                             this.sendFirstMsg();
                         } catch (ClosedChannelException e) {
-                            _log.warn("Channel closed with {}!", e.getMessage());
+                            LOGGER.warn("Channel closed with {}!", e.getMessage());
                             this.socketChannel.close();
                             return;
                         }
@@ -113,7 +115,7 @@ class NIOClient implements Runnable {
                 // 切换buffer到读状态, 内部指针归位
                 temp.flip();
                 String msg = CHARSET.decode(temp).toString();
-                _log.info("Client received [{}] from server address: {}", msg, sc.getRemoteAddress());
+                LOGGER.info("Client received [{}] from server address: {}", msg, sc.getRemoteAddress());
 
 //                Thread.sleep(5);
                 // echo back

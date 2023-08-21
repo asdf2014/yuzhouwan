@@ -15,7 +15,8 @@ import java.util.*;
  */
 public class RemoveDuplicateAndSort {
 
-    private static final Logger _log = LoggerFactory.getLogger(RemoveDuplicateAndSort.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RemoveDuplicateAndSort.class);
+
     private static Random r0 = new Random(17);
     private static Random r1 = new Random(34);
     private static Random r2 = new Random(91);
@@ -46,13 +47,13 @@ public class RemoveDuplicateAndSort {
         companies.add(new Company("China", 3));
         companies.sort(comparator);
         for (Company company : companies) {
-            _log.debug(company.toString());
+            LOGGER.debug(company.toString());
         }
         System.out.println("------------------------------------");
         List<Company> result = removeDuplicateUsers(companies, 1);
         System.out.println("------------------------------------");
         for (Company company : result) {
-            _log.debug(company.toString());
+            LOGGER.debug(company.toString());
         }
     }
 
@@ -74,9 +75,9 @@ public class RemoveDuplicateAndSort {
         List<Company> result = removeDuplicateUsers(companies, 2);
         long end = System.currentTimeMillis();
         for (Company company : result) {
-            _log.debug(company.toString());
+            LOGGER.debug(company.toString());
         }
-        _log.debug("time:{} ms", end - start);
+        LOGGER.debug("time:{} ms", end - start);
     }
 
     /**

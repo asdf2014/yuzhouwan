@@ -27,7 +27,8 @@ import java.util.concurrent.TimeUnit;
 @State(Scope.Thread)
 public class ZKBenchmarkWatch {
 
-    private final static Logger _log = LoggerFactory.getLogger(ZKBenchmarkWatch.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(ZKBenchmarkWatch.class);
+
     private final static String NAMESPACE = "benchmark";
     private final static String WATCH_PREFIX = "/watch";
     private final static char FILL_CHAR = '0';
@@ -103,16 +104,16 @@ public class ZKBenchmarkWatch {
 
     private void init() {
         curatorFramework = CuratorFrameworkFactory
-                .builder()
-                .connectString("localhost:2181")
-                .connectionTimeoutMs(500)
-                .sessionTimeoutMs(1000)
-                .retryPolicy(new ExponentialBackoffRetry(100, 3))
-                .namespace(NAMESPACE)
-                .build();
-        _log.debug("Initialized.");
+            .builder()
+            .connectString("localhost:2181")
+            .connectionTimeoutMs(500)
+            .sessionTimeoutMs(1000)
+            .retryPolicy(new ExponentialBackoffRetry(100, 3))
+            .namespace(NAMESPACE)
+            .build();
+        LOGGER.debug("Initialized.");
         curatorFramework.start();
-        _log.debug("Started.");
+        LOGGER.debug("Started.");
     }
 
     @Setup
@@ -158,12 +159,12 @@ public class ZKBenchmarkWatch {
 
     private void createNode(String path) throws Exception {
         curatorFramework.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath(path);
-        _log.debug("Created ".concat(path));
+        LOGGER.debug("Created ".concat(path));
     }
 
     private void deleteNode(String path) throws Exception {
         curatorFramework.delete().deletingChildrenIfNeeded().forPath(path);
-        _log.debug("Deleted ".concat(path));
+        LOGGER.debug("Deleted ".concat(path));
     }
 
     private String readNode(String path) throws Exception {
@@ -172,7 +173,7 @@ public class ZKBenchmarkWatch {
 
     private void writeNode(String path, byte[] data) throws Exception {
         curatorFramework.setData().forPath(path, data);
-        _log.debug("Updated ".concat(path));
+        LOGGER.debug("Updated ".concat(path));
     }
 
     @TearDown
@@ -185,6 +186,6 @@ public class ZKBenchmarkWatch {
 
     private void close() {
         if (curatorFramework != null) curatorFramework.close();
-        _log.info("Closed.");
+        LOGGER.info("Closed.");
     }
 }

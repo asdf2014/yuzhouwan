@@ -28,7 +28,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class SnmpH3C {
 
-    private static final Logger LOG = LoggerFactory.getLogger(SnmpH3C.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SnmpH3C.class);
 
     private Snmp snmp;
 
@@ -52,18 +52,18 @@ public class SnmpH3C {
 
         prepare();
 
-        LOG.info("Adding oids into PDU...");
+        LOGGER.info("Adding oids into PDU...");
         addOIDs2PDU(oidList);
         try {
-            LOG.info("Sending userTarget...");
+            LOGGER.info("Sending userTarget...");
             sendGetPDU(snmp, userTarget, pdu);
         } catch (Exception e) {
-            LOG.error("Sending userTarget is failed");
+            LOGGER.error("Sending userTarget is failed");
         }
         try {
             snmp.close();
         } catch (IOException e) {
-            LOG.error("Cannot close snmp");
+            LOGGER.error("Cannot close snmp");
         }
     }
 
@@ -82,7 +82,7 @@ public class SnmpH3C {
      */
     private void createSNMP() {
 
-        LOG.info("Creating SNMP...");
+        LOGGER.info("Creating SNMP...");
         try {
             TransportMapping transport = new DefaultUdpTransportMapping();
             transport.listen();
@@ -92,9 +92,9 @@ public class SnmpH3C {
             USM usm = new USM(SecurityProtocols.getInstance(), new OctetString(MPv3.createLocalEngineID()), 0);
             SecurityModels.getInstance().addSecurityModel(usm);
 
-            LOG.debug("Snmp created.");
+            LOGGER.debug("Snmp created.");
             snmp.listen();
-            LOG.debug("Snmp listening...");
+            LOGGER.debug("Snmp listening...");
         } catch (IOException e) {
             throw new RuntimeException("Cannot create snmp!!!", e);
         }
@@ -104,7 +104,7 @@ public class SnmpH3C {
      * Create user by those informations from H3CInfos.H3CSnmpV3User.
      */
     private void createUserByH3CInfos() {
-        LOG.info("Creating snmp v3 USM user...");
+        LOGGER.info("Creating snmp v3 USM user...");
         H3CSnmpV3User h3CSnmpV3User = h3CInfos.getH3CSnmpV3User();
 
         String securityName = h3CSnmpV3User.getSecurityName();
@@ -145,10 +145,10 @@ public class SnmpH3C {
             if (snmp != null) {
                 snmp.getUSM().addUser(new OctetString(userName), this.usmUser);
             } else {
-                LOG.error("Please create a instance of SNMP firstly !!");
+                LOGGER.error("Please create a instance of SNMP firstly !!");
             }
         } else {
-            LOG.error("Please create usmUser before add it into SNMP !!");
+            LOGGER.error("Please create usmUser before add it into SNMP !!");
         }
     }
 
@@ -156,7 +156,7 @@ public class SnmpH3C {
      * Create userTarget by those informations from H3CInfos.H3CUserTarget.
      */
     private void createUserTargetByH3CInfos() {
-        LOG.info("Creating userTarget...");
+        LOGGER.info("Creating userTarget...");
         H3CUserTarget userTarget = h3CInfos.getH3CUserTarget();
 
         String address = userTarget.getAddress();
@@ -219,32 +219,32 @@ public class SnmpH3C {
                 ((Snmp) event.getSource()).cancel(event.getRequest(), this);
                 PDU response = event.getResponse();
                 PDU request = event.getRequest();
-                LOG.debug("[request]: {}", request);
+                LOGGER.debug("[request]: {}", request);
 
                 if (response == null) {
-                    LOG.error("[ERROR]: response is null");
+                    LOGGER.error("[ERROR]: response is null");
 
                 } else if (response.getErrorStatus() != 0) {
-                    LOG.error(String.format("[ERROR]: response status %s, Text: %s",
+                    LOGGER.error(String.format("[ERROR]: response status %s, Text: %s",
                             response.getErrorStatus(),
                             response.getErrorStatusText()));
                 } else {
-                    LOG.debug("Received response Success!");
+                    LOGGER.debug("Received response Success!");
                     for (int i = 0; i < response.size(); i++) {
                         VariableBinding vb = response.get(i);
-                        LOG.info("{} = {}",
+                        LOGGER.info("{} = {}",
                                 vb.getOid(),
                                 vb.getVariable());
                     }
-                    LOG.debug("SNMP Async GetList OID finished. ");
+                    LOGGER.debug("SNMP Async GetList OID finished. ");
                     latch.countDown();
                 }
             }
         };
         snmp.send(pdu, userTarget, null, listener);
-        LOG.debug("async send pdu wait for response...");
+        LOGGER.debug("async send pdu wait for response...");
 
         boolean wait = latch.await(3, TimeUnit.SECONDS);
-        LOG.debug("latch.await =:" + wait);
+        LOGGER.debug("latch.await =:" + wait);
     }
 }

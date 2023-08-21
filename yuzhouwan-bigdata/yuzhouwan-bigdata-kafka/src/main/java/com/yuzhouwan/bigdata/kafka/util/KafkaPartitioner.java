@@ -18,7 +18,7 @@ import java.util.Random;
  */
 public class KafkaPartitioner implements Partitioner {
 
-    private static final Logger _log = LoggerFactory.getLogger(KafkaPartitioner.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(KafkaPartitioner.class);
     private static final Random r = new Random();
 
     /**
@@ -42,7 +42,7 @@ public class KafkaPartitioner implements Partitioner {
         try {
             if (StrUtils.isNumber(keyStr)) return (int) Math.abs(Long.parseLong(keyStr) % numPartitions);
         } catch (Exception e) {
-            _log.error(ExceptionUtils.errorInfo(e));
+            LOGGER.error(ExceptionUtils.errorInfo(e));
         }
         return Math.abs(key.hashCode() % numPartitions);
     }

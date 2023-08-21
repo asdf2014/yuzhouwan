@@ -17,7 +17,7 @@ import java.util.concurrent.*;
  */
 public class CallableFutureExample {
 
-    private static final Logger _log = LoggerFactory.getLogger(ReadWriteLockExample.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ReadWriteLockExample.class);
 
     public static void main(String[] args) {
 
@@ -29,11 +29,11 @@ public class CallableFutureExample {
                         return "yuzhouwan|" + taskId;
                     }
             );
-            _log.info("waiting...");
+            LOGGER.info("waiting...");
             try {
-                _log.debug(future.get());
+                LOGGER.debug(future.get());
             } catch (InterruptedException | ExecutionException e) {
-                _log.error("", e);
+                LOGGER.error("", e);
             }
         }
 
@@ -47,12 +47,12 @@ public class CallableFutureExample {
                     }
             );
         }
-        _log.info("All thread were submitted into pool...");
+        LOGGER.info("All thread were submitted into pool...");
         for (int i = 0; i < 10; i++) {
             try {
-                _log.debug("{}", completionService.take().get());
+                LOGGER.debug("{}", completionService.take().get());
             } catch (InterruptedException | ExecutionException e) {
-                _log.error("", e);
+                LOGGER.error("", e);
             }
         }
         executorService.shutdown();

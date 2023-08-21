@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class DistributedQueue {
 
-    private static final Logger _log = LoggerFactory.getLogger(DistributedQueue.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DistributedQueue.class);
 
     private static final String yuzhouwan4 = "192.168.1.101:2181";
     private static final String yuzhouwan5 = "192.168.1.102:2181";
@@ -67,7 +67,7 @@ public class DistributedQueue {
     private static ZooKeeper connection(String host) throws IOException {
 
         return new ZooKeeper(host, 60000, event -> {
-            _log.info("Path: {}, State: {}", event.getPath(), event.getState());
+            LOGGER.info("Path: {}, State: {}", event.getPath(), event.getState());
         });
     }
 

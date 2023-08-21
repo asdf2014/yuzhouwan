@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
  */
 public class CuratorNodeCache {
 
-    private static final Logger LOG = LoggerFactory.getLogger(CuratorNodeCache.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CuratorNodeCache.class);
 
     private CuratorFramework curatorFramework;
 
@@ -38,7 +38,7 @@ public class CuratorNodeCache {
                 namespace("watchNodeCache").
                 build();
         curatorFramework.start();
-        LOG.info("Curator's Framework start...");
+        LOGGER.info("Curator's Framework start...");
     }
 
     public void addNodeCacheListener(String path) throws Exception {
@@ -55,7 +55,7 @@ public class CuratorNodeCache {
         nodeCache.start();
         nodeCache.getListenable().addListener(() -> {
                     ChildData currentData = nodeCache.getCurrentData();
-                    LOG.info("New Cache Data: {}", currentData == null ? "null" : new String(currentData.getData()));
+                    LOGGER.info("New Cache Data: {}", currentData == null ? "null" : new String(currentData.getData()));
                 }
         );
     }

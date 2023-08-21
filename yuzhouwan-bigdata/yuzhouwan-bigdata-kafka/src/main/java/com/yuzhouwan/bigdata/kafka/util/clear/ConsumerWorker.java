@@ -18,7 +18,7 @@ import java.nio.charset.StandardCharsets;
  */
 public class ConsumerWorker implements Runnable {
 
-    private static Logger _log = LoggerFactory.getLogger(ConsumerWorker.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ConsumerWorker.class);
 
     private KafkaStream<byte[], byte[]> kafkaStream;
     private int threadNum;
@@ -37,14 +37,14 @@ public class ConsumerWorker implements Runnable {
         while (iter.hasNext()) {
             try {
                 msg = iter.next();
-                _log.info("Thread {}: {}", threadNum, new String(msg.message(), StandardCharsets.UTF_8));
-                _log.info("partition: {}, offset: {}", msg.partition(), msg.offset());
+                LOGGER.info("Thread {}: {}", threadNum, new String(msg.message(), StandardCharsets.UTF_8));
+                LOGGER.info("partition: {}, offset: {}", msg.partition(), msg.offset());
                 success++;
             } catch (Exception e) {
-                _log.error("", e);
+                LOGGER.error("", e);
                 fail++;
             }
-            _log.info("Count [fail/success/total]: [{}/{}/{}], Time: {}s", fail, success, ++total,
+            LOGGER.info("Count [fail/success/total]: [{}/{}/{}], Time: {}s", fail, success, ++total,
                     (System.currentTimeMillis() - start) / 1000);
         }
     }

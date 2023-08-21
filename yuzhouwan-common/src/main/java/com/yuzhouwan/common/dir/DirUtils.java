@@ -23,7 +23,7 @@ import java.util.List;
  */
 public final class DirUtils implements IDirUtils {
 
-    private static final Logger LOG = LoggerFactory.getLogger(DirUtils.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DirUtils.class);
 
     public static final String PROJECT_BASE_PATH = System.getProperty("user.dir");
     public static final String RESOURCES_PATH = PROJECT_BASE_PATH.concat("/src/main/resources/");
@@ -39,11 +39,11 @@ public final class DirUtils implements IDirUtils {
     public static boolean createOutDir() {
         String outDirPath = PROJECT_BASE_PATH.concat("\\out");
         File outDir = new File(outDirPath);
-        LOG.debug(outDirPath);
+        LOGGER.debug(outDirPath);
         boolean isCreated = true;
         if (!outDir.exists()) isCreated = outDir.mkdir();
-        if (isCreated) LOG.debug("OutDir:{} was created success.", outDirPath);
-        else LOG.error(String.format("OutDir [%s] was created failed!", outDirPath));
+        if (isCreated) LOGGER.debug("OutDir:{} was created success.", outDirPath);
+        else LOGGER.error(String.format("OutDir [%s] was created failed!", outDirPath));
         return isCreated;
     }
 
@@ -62,10 +62,10 @@ public final class DirUtils implements IDirUtils {
     public static String getClassesPath() {
         String basicPath;
         if ((basicPath = getBasicPath()) == null) {
-            LOG.debug("Basic Path is null");
+            LOGGER.debug("Basic Path is null");
             return null;
         }
-        LOG.debug("Basic Path: {}", basicPath);
+        LOGGER.debug("Basic Path: {}", basicPath);
         return basicPath.concat("/classes");
     }
 
@@ -91,9 +91,9 @@ public final class DirUtils implements IDirUtils {
             if (location == null) location = classLoader.getResource("");
             if (location == null) return null;
             path = location.toURI().getPath();
-            LOG.debug("Current Thread Location: {}", path);
+            LOGGER.debug("Current Thread Location: {}", path);
         } catch (Exception e) {
-            LOG.error(ExceptionUtils.errorInfo(e));
+            LOGGER.error(ExceptionUtils.errorInfo(e));
             throw new RuntimeException(e);
         }
         if (StrUtils.isEmpty(path)) throw new RuntimeException("Basic Path is null!");
@@ -105,7 +105,7 @@ public final class DirUtils implements IDirUtils {
 
     public static String getProjectBasicPath() {
         String projectBasicPath = System.getProperty("user.dir");
-        LOG.debug("Project Basic Path: {}", projectBasicPath);
+        LOGGER.debug("Project Basic Path: {}", projectBasicPath);
         return projectBasicPath;
     }
 
@@ -129,7 +129,7 @@ public final class DirUtils implements IDirUtils {
      */
     public static List<String> scanDir(String path) {
         if (path == null) return null;
-        LOG.debug("Scan path: {}", path);
+        LOGGER.debug("Scan path: {}", path);
         List<String> wholeFiles = new LinkedList<>();
         File file = new File(path);
         if (file.exists()) {
@@ -138,7 +138,7 @@ public final class DirUtils implements IDirUtils {
             getAllFiles(wholeFiles, currentDirFiles);
             return wholeFiles;
         } else {
-            LOG.warn("{} is not exist!!", path);
+            LOGGER.warn("{} is not exist!!", path);
             return null;
         }
     }
@@ -151,10 +151,10 @@ public final class DirUtils implements IDirUtils {
         while (!currentDirFiles.isEmpty()) {
             tempFile = currentDirFiles.removeFirst();
             isDirectory = tempFile.isDirectory();
-            LOG.debug("{} is directory: {}", tempFile.getPath(), isDirectory);
+            LOGGER.debug("{} is directory: {}", tempFile.getPath(), isDirectory);
             if (!isDirectory) {
                 wholeFiles.add((absolutePath = tempFile.getAbsolutePath()));
-                LOG.debug("scanDir absolutePath is {}", absolutePath);
+                LOGGER.debug("scanDir absolutePath is {}", absolutePath);
                 continue;
             }
             if ((files = tempFile.listFiles()) == null) continue;
@@ -197,9 +197,9 @@ public final class DirUtils implements IDirUtils {
         for (File file : files) {
             if (file.isDirectory()) list.add(file);
             result.add((absolutePath = file.getAbsolutePath()));
-            LOG.debug(absolutePath);
+            LOGGER.debug(absolutePath);
         }
-        LOG.debug("Sub Files size is {}, and Sub Directories size is {}.", result.size(), list.size());
+        LOGGER.debug("Sub Files size is {}, and Sub Directories size is {}.", result.size(), list.size());
     }
 
     /**
@@ -231,15 +231,15 @@ public final class DirUtils implements IDirUtils {
     public static WatchRunnable buildWatchService(String watchedPath, IDirUtils dealProcessor,
                                                   final Long waitTimeMilliseconds) throws Exception {
         if (StrUtils.isEmpty(watchedPath) || !makeSureExist(watchedPath, false)) {
-            LOG.error(String.format("Path [%s] is a invalid path!", watchedPath));
+            LOGGER.error(String.format("Path [%s] is a invalid path!", watchedPath));
             return null;
         }
-        LOG.debug("Starting build watch service...");
+        LOGGER.debug("Starting build watch service...");
         final WatchService watchService = FileSystems.getDefault().newWatchService();
         Paths.get(watchedPath).register(watchService,
                 StandardWatchEventKinds.ENTRY_CREATE, StandardWatchEventKinds.ENTRY_DELETE,
                 StandardWatchEventKinds.ENTRY_MODIFY, StandardWatchEventKinds.OVERFLOW);
-        LOG.debug("Finished build watch service, and ready for watching...");
+        LOGGER.debug("Finished build watch service, and ready for watching...");
         return new WatchRunnable(watchService, dealProcessor, waitTimeMilliseconds);
     }
 
@@ -252,7 +252,7 @@ public final class DirUtils implements IDirUtils {
      * @return isExist
      */
     public static boolean makeSureExist(final String path, final boolean isFile) {
-        LOG.debug("Path: {}, isFile: {}", path, isFile);
+        LOGGER.debug("Path: {}, isFile: {}", path, isFile);
         if (StrUtils.isEmpty(path)) return false;
         File file = new File(path);
         if (!FileUtils.checkExist(file)) {
@@ -260,7 +260,7 @@ public final class DirUtils implements IDirUtils {
                 try {
                     return file.createNewFile();
                 } catch (IOException e) {
-                    LOG.error("Cannot create new file!", e);
+                    LOGGER.error("Cannot create new file!", e);
                     return false;
                 }
             } else return file.mkdir();
@@ -273,6 +273,6 @@ public final class DirUtils implements IDirUtils {
      */
     public void dealWithEvent(WatchEvent<?> event) {
         // could expand more processes here
-        LOG.info("{}:\t {} event.", event.context(), event.kind());
+        LOGGER.info("{}:\t {} event.", event.context(), event.kind());
     }
 }

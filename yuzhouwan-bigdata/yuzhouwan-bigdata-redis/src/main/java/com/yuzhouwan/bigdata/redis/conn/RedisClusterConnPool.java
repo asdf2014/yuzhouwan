@@ -25,7 +25,7 @@ import java.util.*;
 public class RedisClusterConnPool implements AutoCloseable, Serializable {
 
     public static final String PROJECT_NAME = "REDIS_CLUSTER";
-    private static final Logger _log = LoggerFactory.getLogger(RedisClusterConnPool.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RedisClusterConnPool.class);
     private JedisCluster cluster;
     private List<JedisPool> pools;
 
@@ -74,7 +74,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         String clusterList;
         if (clusterListObj == null || StrUtils.isEmpty(clusterList = clusterListObj.toString())) {
             String error = String.format("Cannot get [%s-redis.cluster.list] from Dynamic PropUtils!", PROJECT_NAME);
-            _log.error(error);
+            LOGGER.error(error);
             throw new RuntimeException(error);
         }
         return clusterList;
@@ -101,7 +101,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         try {
             return cluster.set(key, value);
         } catch (Exception e) {
-            _log.error("", e);
+            LOGGER.error("", e);
             return null;
         }
     }
@@ -112,7 +112,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
             // EX|PX, expire time units: EX = seconds; PX = milliseconds
             return cluster.set(key, value, "NX", "PX", millisecond);
         } catch (Exception e) {
-            _log.error("", e);
+            LOGGER.error("", e);
             return null;
         }
     }
@@ -123,7 +123,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
             // EX|PX, expire time units: EX = seconds; PX = milliseconds
             return cluster.expire(key, second);
         } catch (Exception e) {
-            _log.error("", e);
+            LOGGER.error("", e);
             return null;
         }
     }
@@ -132,7 +132,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         try {
             return cluster.get(key);
         } catch (Exception e) {
-            _log.error("", e);
+            LOGGER.error("", e);
             return null;
         }
     }
@@ -141,7 +141,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         try {
             return cluster.del(key);
         } catch (Exception e) {
-            _log.error("", e);
+            LOGGER.error("", e);
             return null;
         }
     }
@@ -155,7 +155,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         try {
             return cluster.lset(key, index, value);
         } catch (Exception e) {
-            _log.error("", e);
+            LOGGER.error("", e);
             return null;
         }
     }
@@ -164,7 +164,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         try {
             return cluster.lpush(key, value);
         } catch (Exception e) {
-            _log.error("", e);
+            LOGGER.error("", e);
             return null;
         }
     }
@@ -173,7 +173,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         try {
             for (String value : values) cluster.lpush(key, value);
         } catch (Exception e) {
-            _log.error("", e);
+            LOGGER.error("", e);
             return null;
         }
         return 0L;
@@ -190,7 +190,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         try {
             return cluster.lrange(key, 0, -1);
         } catch (Exception e) {
-            _log.error("", e);
+            LOGGER.error("", e);
             return null;
         }
     }
@@ -200,7 +200,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         try {
             return cluster.sadd(key, values);
         } catch (Exception e) {
-            _log.error("", e);
+            LOGGER.error("", e);
             return null;
         }
     }
@@ -209,7 +209,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         try {
             for (String value : values) cluster.sadd(key, value);
         } catch (Exception e) {
-            _log.error("", e);
+            LOGGER.error("", e);
             return null;
         }
         return 0L;
@@ -219,7 +219,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         try {
             return cluster.smembers(key);
         } catch (Exception e) {
-            _log.error("", e);
+            LOGGER.error("", e);
             return null;
         }
     }
@@ -237,7 +237,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
                 putSet(key, members);
             } else return 0L;
         } catch (Exception e) {
-            _log.error("", e);
+            LOGGER.error("", e);
             return null;
         }
         return 0L;
@@ -248,7 +248,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         try {
             return cluster.hset(key, field, value);
         } catch (Exception e) {
-            _log.error("", e);
+            LOGGER.error("", e);
             return null;
         }
     }
@@ -257,7 +257,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         try {
             return cluster.hget(key, field);
         } catch (Exception e) {
-            _log.error("", e);
+            LOGGER.error("", e);
             return null;
         }
     }
@@ -266,7 +266,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         try {
             return cluster.hgetAll(key);
         } catch (Exception e) {
-            _log.error("", e);
+            LOGGER.error("", e);
             return null;
         }
     }
@@ -275,7 +275,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         try {
             return cluster.hvals(key);
         } catch (Exception e) {
-            _log.error("", e);
+            LOGGER.error("", e);
             return null;
         }
     }
@@ -284,7 +284,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         try {
             return cluster.hdel(key, fields);
         } catch (Exception e) {
-            _log.error("", e);
+            LOGGER.error("", e);
             return null;
         }
     }
@@ -293,7 +293,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         try {
             for (String k : cluster.hkeys(key)) cluster.hdel(key, k);
         } catch (Exception e) {
-            _log.error("", e);
+            LOGGER.error("", e);
             return null;
         }
         return 0L;
@@ -312,7 +312,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         try {
             if (cluster != null) cluster.close();
         } catch (IOException e) {
-            _log.error("", e);
+            LOGGER.error("", e);
         }
     }
 }

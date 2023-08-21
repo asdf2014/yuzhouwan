@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
  */
 public class ZKEventWatch implements Watcher {
 
-    private static final Logger _log = LoggerFactory.getLogger(ZKEventWatch.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ZKEventWatch.class);
 
     public ZKEventWatch() {
     }
@@ -24,7 +24,7 @@ public class ZKEventWatch implements Watcher {
     public void process(WatchedEvent event) {
 
         Watcher.Event.KeeperState state = event.getState();
-        _log.info("$$$$$$$$$$$$$$$$$$ WatchedEvent's state: " + state);
+        LOGGER.info("$$$$$$$$$$$$$$$$$$ WatchedEvent's state: " + state);
 
         if (Watcher.Event.KeeperState.SyncConnected == state) {
             ZooKeeperConnPool.getConnectZKClientLatch().countDown();

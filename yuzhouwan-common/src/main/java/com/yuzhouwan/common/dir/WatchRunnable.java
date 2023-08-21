@@ -16,7 +16,7 @@ import java.nio.file.WatchService;
  */
 public class WatchRunnable implements Runnable {
 
-    private static final Logger LOG = LoggerFactory.getLogger(WatchRunnable.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(WatchRunnable.class);
 
     private IDirUtils dealProcessor;
     private Long waitTime;
@@ -43,7 +43,7 @@ public class WatchRunnable implements Runnable {
         try {
             key = watchService.take();
         } catch (InterruptedException e) {
-            LOG.error("WatchService is error!", e);
+            LOGGER.error("WatchService is error!", e);
         }
         if (key == null) return;
         IDirUtils dirUtil = dealProcessor == null ? new DirUtils() : dealProcessor;
@@ -52,7 +52,7 @@ public class WatchRunnable implements Runnable {
                 try {
                     Thread.sleep(waitTime);
                 } catch (InterruptedException e) {
-                    LOG.error("Thread sleep error!", e);
+                    LOGGER.error("Thread sleep error!", e);
                 }
             if (!key.reset()) break;
             key.pollEvents().forEach(dirUtil::dealWithEvent);

@@ -18,7 +18,7 @@ import static junit.framework.TestCase.assertTrue;
  */
 public class FinallyTest {
 
-    private static final Logger _log = LoggerFactory.getLogger(FinallyTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FinallyTest.class);
 
     @Test
     public void testReturnInside() throws Exception {
@@ -71,7 +71,7 @@ public class FinallyTest {
         try {
             throw new RuntimeException("Some Problem.");
         } catch (Exception e) {
-            _log.error("{}", e.getMessage());
+            LOGGER.error("{}", e.getMessage());
         } finally {
             return;
         }
@@ -81,7 +81,7 @@ public class FinallyTest {
         try {
             throw new RuntimeException("Some Problem.");
         } catch (Exception e) {
-            _log.error("{}", e.getMessage());
+            LOGGER.error("{}", e.getMessage());
         } finally {
         }
     }

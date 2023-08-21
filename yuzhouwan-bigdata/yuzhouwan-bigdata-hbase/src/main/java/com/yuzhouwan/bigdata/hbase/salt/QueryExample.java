@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class QueryExample {
 
-    private static final Logger _log = LoggerFactory.getLogger(QueryExample.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(QueryExample.class);
     private static Configuration conf;
 
     static {
@@ -63,7 +63,7 @@ public class QueryExample {
         List<DataProtos.DataQueryResponse.Row> rows = queryByStartRowAndStopRow("test", "00", "01", true, true);
         if (rows != null) {
             for (DataProtos.DataQueryResponse.Row row : rows) {
-                _log.debug("Row: {}", row.getRowKey().toStringUtf8());
+                LOGGER.debug("Row: {}", row.getRowKey().toStringUtf8());
             }
         }
     }

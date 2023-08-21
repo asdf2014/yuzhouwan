@@ -30,7 +30,8 @@ import static org.junit.Assert.*;
  */
 public class CollectionStuffTest {
 
-    private static final Logger _log = LoggerFactory.getLogger(CollectionStuffTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CollectionStuffTest.class);
+
     private final Vector<Long> v = new Vector<>();
     private List<ComplexClass> cs;
 
@@ -147,8 +148,8 @@ public class CollectionStuffTest {
         long totalMemory = runtime.totalMemory() / 1024 / 1024;
         long freeMemory = runtime.freeMemory() / 1024 / 1024;
         // [Collections.singleton] Spend Time: 1370786852ns = 1370.786852ms, Mem: 39/441/480 MB (diff/free/total)
-        _log.info("[Collections.singleton] Spend Time: {}ns = {}ms, Mem: {}/{}/{} MB (diff/free/total)",
-                spendTime, spendTime / Math.pow(10, 6), totalMemory - freeMemory, freeMemory, totalMemory);
+        LOGGER.info("[Collections.singleton] Spend Time: {}ns = {}ms, Mem: {}/{}/{} MB (diff/free/total)",
+            spendTime, spendTime / Math.pow(10, 6), totalMemory - freeMemory, freeMemory, totalMemory);
     }
 
     // -ea -Xmx512M -Xms512M -Xmn256M -XX:+AlwaysPreTouch
@@ -168,8 +169,8 @@ public class CollectionStuffTest {
         long totalMemory = runtime.totalMemory() / 1024 / 1024;
         long freeMemory = runtime.freeMemory() / 1024 / 1024;
         // [Arrays.asList] Spend Time: 1549508768ns = 1549.508768ms, Mem: 195/312/507 MB (diff/free/total)
-        _log.info("[Arrays.asList] Spend Time: {}ns = {}ms, Mem: {}/{}/{} MB (diff/free/total)",
-                spendTime, spendTime / Math.pow(10, 6), totalMemory - freeMemory, freeMemory, totalMemory);
+        LOGGER.info("[Arrays.asList] Spend Time: {}ns = {}ms, Mem: {}/{}/{} MB (diff/free/total)",
+            spendTime, spendTime / Math.pow(10, 6), totalMemory - freeMemory, freeMemory, totalMemory);
     }
 
     @Test
@@ -242,9 +243,9 @@ public class CollectionStuffTest {
             count++;
         }
         // Sync Time: 17.851833 ms, Time: 16.120418 ms, Subtract: 1.731415 ms, Count: 10000, Size: 100, Thread: 10
-        _log.info("Sync Time: {} ms, Time: {} ms, Subtract: {} ms, Count: {}, Size: {}, Thread: {}",
-                timeSync / Math.pow(10, 6), time / Math.pow(10, 6), (timeSync - time) / Math.pow(10, 6),
-                count, size, thread);
+        LOGGER.info("Sync Time: {} ms, Time: {} ms, Subtract: {} ms, Count: {}, Size: {}, Thread: {}",
+            timeSync / Math.pow(10, 6), time / Math.pow(10, 6), (timeSync - time) / Math.pow(10, 6),
+            count, size, thread);
         es.shutdown();
         while (!es.isTerminated()) Thread.sleep(10);
         assertEquals(0, v.size());

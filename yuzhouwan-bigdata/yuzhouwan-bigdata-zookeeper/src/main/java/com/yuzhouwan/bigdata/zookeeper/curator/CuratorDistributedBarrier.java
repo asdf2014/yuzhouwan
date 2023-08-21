@@ -18,7 +18,8 @@ import org.slf4j.LoggerFactory;
  */
 public class CuratorDistributedBarrier {
 
-    private static final Logger LOG = LoggerFactory.getLogger(CuratorDistributedBarrier.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CuratorDistributedBarrier.class);
+
     private DistributedBarrier distributedBarrier;
     private DistributedDoubleBarrier distributedDoubleBarrier;
 
@@ -91,10 +92,10 @@ public class CuratorDistributedBarrier {
                 @Override
                 public void run() {
                     try {
-                        LOG.info("set {}...", finalCount);
+                        LOGGER.info("set {}...", finalCount);
                         distributedBarrier.setBarrier();
                         distributedBarrier.waitOnBarrier();
-                        LOG.info("start {}...", finalCount);
+                        LOGGER.info("start {}...", finalCount);
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }

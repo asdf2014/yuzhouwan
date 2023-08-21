@@ -26,7 +26,8 @@ import java.util.concurrent.TimeUnit;
 @State(Scope.Thread)
 public class ZKBenchmarkRead {
 
-    private final static Logger _log = LoggerFactory.getLogger(ZKBenchmarkRead.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(ZKBenchmarkRead.class);
+
     private final static String NAMESPACE = "benchmark";
     private final static char FILL_CHAR = '0';
     private static ZKBenchmarkRead bench;
@@ -93,9 +94,9 @@ public class ZKBenchmarkRead {
                 .retryPolicy(new ExponentialBackoffRetry(100, 3))
                 .namespace(NAMESPACE)
                 .build();
-        _log.debug("Initialized.");
+        LOGGER.debug("Initialized.");
         curatorFramework.start();
-        _log.debug("Started.");
+        LOGGER.debug("Started.");
     }
 
     @Setup
@@ -189,12 +190,12 @@ public class ZKBenchmarkRead {
 
     private void createNode(String path) throws Exception {
         curatorFramework.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath(path);
-        _log.debug("Created ".concat(path));
+        LOGGER.debug("Created ".concat(path));
     }
 
     private void deleteNode(String path) throws Exception {
         curatorFramework.delete().deletingChildrenIfNeeded().forPath(path);
-        _log.debug("Deleted ".concat(path));
+        LOGGER.debug("Deleted ".concat(path));
     }
 
     private String readNode(String path) throws Exception {
@@ -203,7 +204,7 @@ public class ZKBenchmarkRead {
 
     private void writeNode(String path, byte[] data) throws Exception {
         curatorFramework.setData().forPath(path, data);
-        _log.debug("Updated ".concat(path));
+        LOGGER.debug("Updated ".concat(path));
     }
 
     @TearDown
@@ -219,6 +220,6 @@ public class ZKBenchmarkRead {
 
     private void close() {
         if (curatorFramework != null) curatorFramework.close();
-        _log.info("Closed.");
+        LOGGER.info("Closed.");
     }
 }

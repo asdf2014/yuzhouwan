@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
  */
 public class CommonCliExample {
 
-    private static final Logger _log = LoggerFactory.getLogger(CommonCliExample.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CommonCliExample.class);
 
     public static void main(String[] args) {
         String[] help = {"-h"};
@@ -48,7 +48,7 @@ public class CommonCliExample {
                 hf.printHelp("May Options", opts);
             }
         } catch (ParseException e) {
-            _log.error("", e);
+            LOGGER.error("", e);
         }
     }
 }

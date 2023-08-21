@@ -29,7 +29,7 @@ import static com.yuzhouwan.common.util.StrUtils.isBlank;
  */
 public final class ESUtils {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ESUtils.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ESUtils.class);
 
     public static final String ES_SEARCH = "/_search";
     public static final String APPLICATION_JACKSON_SMILE = "application/x-jackson-smile";
@@ -69,7 +69,7 @@ public final class ESUtils {
             host = hosts[i];
             hostAndPort = host.split(":");
             if (hostAndPort.length != 2) {
-                LOG.warn("Invalid es host: {}!", host);
+                LOGGER.warn("Invalid es host: {}!", host);
                 continue;
             }
             httpHosts.add(new HttpHost(hostAndPort[0], Integer.parseInt(hostAndPort[1]), "http"));
@@ -121,7 +121,7 @@ public final class ESUtils {
             byte[] bytes = SMILE_MAPPER.writeValueAsBytes(SMILE_MAPPER.readValue(json, Object.class));
             return new NByteArrayEntity(bytes, ContentType.create(APPLICATION_JACKSON_SMILE));
         } catch (Exception e) {
-            LOG.error("Cannot create entity!", e);
+            LOGGER.error("Cannot create entity!", e);
             throw new RuntimeException("Cannot create entity!", e);
         }
     }

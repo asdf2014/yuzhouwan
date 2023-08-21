@@ -21,15 +21,16 @@ import java.security.SecureRandom;
  */
 class SecurityClassLoader extends ClassLoader {
 
-    static final String ALGORITHM = "DES";
-    private static final Logger _log = LoggerFactory.getLogger(SecurityClassLoader.class);
-    private static final String CLASSES_PATH = "F:/如何成为 Java 高手/笔记/Soft Engineering/Git/[code]/"
-            + "yuzhouwan/yuzhouwan-hacker/target/classes/com/yuzhouwan/hacker/security/";
+    private static final Logger LOGGER = LoggerFactory.getLogger(SecurityClassLoader.class);
 
-    private Cipher cipher;
+    static final String ALGORITHM = "DES";
+    private static final String CLASSES_PATH = "F:/如何成为 Java 高手/笔记/Soft Engineering/Git/[code]/"
+        + "yuzhouwan/yuzhouwan-hacker/target/classes/com/yuzhouwan/hacker/security/";
+
+    private final Cipher cipher;
 
     SecurityClassLoader(SecretKey key) throws GeneralSecurityException {
-        _log.error("[SecurityClassLoader: creating cipher]");
+        LOGGER.error("[SecurityClassLoader: creating cipher]");
         cipher = Cipher.getInstance(ALGORITHM);  // lgtm [java/weak-cryptographic-algorithm]
         cipher.init(Cipher.DECRYPT_MODE, key, new SecureRandom());
     }
@@ -49,7 +50,7 @@ class SecurityClassLoader extends ClassLoader {
                 if (classData != null) {
                     byte[] decryptedClassData = cipher.doFinal(classData);
                     clazz = defineClass(name, decryptedClassData, 0, decryptedClassData.length);
-                    _log.error("[SecurityClassLoader: decrypting class " + name + "]");
+                    LOGGER.error("[SecurityClassLoader: decrypting class " + name + "]");
                 }
             } catch (FileNotFoundException fileNotFoundException) {
                 //do nothing, just for judging security class or not

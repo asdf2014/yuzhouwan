@@ -22,7 +22,7 @@ import static org.junit.Assert.*;
  */
 public class IpUtilsTest {
 
-    private static final Logger _log = LoggerFactory.getLogger(IpUtilsTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(IpUtilsTest.class);
 
     /*
     JVM: -ea -Xmx1024M -Xms1024M -Xmn128M -XX:+AlwaysPreTouch
@@ -56,7 +56,7 @@ public class IpUtilsTest {
             total += (end - begin);
             count++;
         }
-        _log.info("[checkValid] Count: {}, Time: {} ms", count, total * Math.pow(10, -6));
+        LOGGER.info("[checkValid] Count: {}, Time: {} ms", count, total * Math.pow(10, -6));
     }
 
     /*
@@ -92,7 +92,7 @@ public class IpUtilsTest {
             total += (end - begin);
             count++;
         }
-        _log.info("[checkValid2] Count: {}, Time: {} ms", count, total * Math.pow(10, -6));
+        LOGGER.info("[checkValid2] Count: {}, Time: {} ms", count, total * Math.pow(10, -6));
     }
 
     @Test

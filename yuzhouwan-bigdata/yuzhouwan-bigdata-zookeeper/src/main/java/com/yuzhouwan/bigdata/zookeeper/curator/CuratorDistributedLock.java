@@ -22,7 +22,8 @@ import java.util.concurrent.CountDownLatch;
  */
 public class CuratorDistributedLock {
 
-    private static final Logger LOG = LoggerFactory.getLogger(CuratorDistributedLock.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CuratorDistributedLock.class);
+
     private CuratorFramework curatorFramework;
     private SimpleDateFormat simpleDateFormat;
 
@@ -60,7 +61,7 @@ public class CuratorDistributedLock {
                         throw new RuntimeException(e);
                     }
                     String now = simpleDateFormat.format(new Date());
-                    LOG.info("Now time: ".concat(now));
+                    LOGGER.info("Now time: ".concat(now));
                 }
             }.start();
             count--;
@@ -82,7 +83,7 @@ public class CuratorDistributedLock {
                         countDownLatch.await();
                         interProcessLock.acquire();
                         String now = simpleDateFormat.format(new Date());
-                        LOG.info("Now time: ".concat(now));
+                        LOGGER.info("Now time: ".concat(now));
                         interProcessLock.release();
                     } catch (Exception e) {
                         throw new RuntimeException(e);

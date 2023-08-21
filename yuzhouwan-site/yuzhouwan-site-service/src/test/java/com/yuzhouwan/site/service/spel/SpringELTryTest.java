@@ -28,7 +28,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class SpringELTryTest {
 
-    private static final Logger _log = LoggerFactory.getLogger(SpringELTryTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SpringELTryTest.class);
 
     private SpringELTry springELTry;
 
@@ -62,29 +62,29 @@ public class SpringELTryTest {
         Pattern patternSplitIntoFourParts = Pattern.compile(REGULAR_SPLIT_INTO_FOUR_PARTS);
         Matcher parts = patternSplitIntoFourParts.matcher(s);
         if (!parts.find()) {
-            _log.error("Cannot catch four parts in switch log!");
+            LOGGER.error("Cannot catch four parts in switch log!");
         }
-        _log.info("Group's Count:\t" + parts.groupCount() + NEXT_LINE);
+        LOGGER.info("Group's Count:\t" + parts.groupCount() + NEXT_LINE);
 
         String timePart = parts.group("time").trim();
         if (StrUtils.isEmpty(timePart)) {
-            _log.error("Cannot find date in this switch log.");
+            LOGGER.error("Cannot find date in this switch log.");
         } else {
             try {
                 //Mar 29 2016 14:35:51+08:00
                 Date time;
                 if (timePart.contains("+")) {
-                    _log.info(timePart);
+                    LOGGER.info(timePart);
                     time = dataFormatChengdu.parse(timePart);
-                    _log.info(time.toString());
+                    LOGGER.info(time.toString());
                     timePart = datePrettyFormat.format(time);
                 }
             } catch (ParseException e) {
-                _log.error("Parsing date\"{}\" had a error:{}", timePart, e.getMessage());
+                LOGGER.error("Parsing date\"{}\" had a error:{}", timePart, e.getMessage());
                 throw new RuntimeException(e);
             }
         }
-        _log.debug("Time:\t" + timePart);
+        LOGGER.debug("Time:\t" + timePart);
     }
 
     @Test

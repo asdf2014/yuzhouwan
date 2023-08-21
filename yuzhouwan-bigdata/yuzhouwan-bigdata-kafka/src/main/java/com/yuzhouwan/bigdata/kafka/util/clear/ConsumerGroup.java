@@ -28,7 +28,7 @@ import static kafka.consumer.Consumer.createJavaConsumerConnector;
 public class ConsumerGroup {
 
     private static final PropUtils p = PropUtils.getInstance();
-    private static Logger _log = LoggerFactory.getLogger(ConsumerGroup.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ConsumerGroup.class);
     private final ConsumerConnector consumer;
     private final String topic;
     private ExecutorService executor;
@@ -52,10 +52,10 @@ public class ConsumerGroup {
         try {
             assert executor != null;
             if (!executor.awaitTermination(5000, TimeUnit.MILLISECONDS)) {
-                _log.info("Timed out waiting for consumer threads to shut down, exiting uncleanly");
+                LOGGER.info("Timed out waiting for consumer threads to shut down, exiting uncleanly");
             }
         } catch (InterruptedException e) {
-            _log.info("Interrupted during shutdown, exiting uncleanly");
+            LOGGER.info("Interrupted during shutdown, exiting uncleanly");
         }
     }
 
@@ -68,7 +68,7 @@ public class ConsumerGroup {
         executor = Executors.newFixedThreadPool(threadNum);
 
         int threadNumber = 0;
-        _log.info("the streams size is {}", streams.size());
+        LOGGER.info("the streams size is {}", streams.size());
         for (final KafkaStream<byte[], byte[]> stream : streams) {
             executor.submit(new ConsumerWorker(stream, threadNumber));
             consumer.commitOffsets();

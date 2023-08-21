@@ -38,7 +38,8 @@ import static com.yuzhouwan.common.util.ExceptionUtils.errorInfo;
  */
 public final class KafkaUtils {
 
-    private static final Logger _log = LoggerFactory.getLogger(KafkaUtils.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(KafkaUtils.class);
+
     private static final PropUtils p = PropUtils.getInstance();
     private static final String PARTITIONER_CLASS_NAME = KafkaPartitioner.class.getName();
     private static final String KAFKA_TOPIC = p.getProperty("kafka.topic");
@@ -108,10 +109,10 @@ public final class KafkaUtils {
             props.put("send.buffer.bytes", p.getProperty("kafka.send.buffer.bytes"));
 //            props.put("compression.type", "lz4");
         } catch (Exception e) {
-            _log.error("Connect with kafka failed {}!", e.getMessage());
+            LOGGER.error("Connect with kafka failed {}!", e.getMessage());
             throw new RuntimeException(e);
         }
-        _log.info("Connect with kafka successfully!");
+        LOGGER.info("Connect with kafka successfully!");
         return new Producer<>(new ProducerConfig(props));
     }
 
@@ -133,7 +134,7 @@ public final class KafkaUtils {
             avroProducer.product(os.toByteArray());
             os.reset();
         } catch (Exception e) {
-            _log.error(errorInfo(e));
+            LOGGER.error(errorInfo(e));
         }
     }
 }

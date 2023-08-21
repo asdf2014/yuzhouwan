@@ -29,7 +29,7 @@ class NIOServer {
     /**
      * 原理参考：《Netty权威指南, 2nd》第22章 高性能之道.
      */
-    private static final Logger _log = LoggerFactory.getLogger(NIOServer.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(NIOServer.class);
 
     private static final int SOCKET_PORT = 6603;
     private static final Charset CHARSET = StandardCharsets.UTF_8;
@@ -90,7 +90,7 @@ class NIOServer {
                         this.dispatch(key);
                     }
                 } catch (IOException | InterruptedException e) {
-                    _log.error("Selector has error: {}", e.getMessage());
+                    LOGGER.error("Selector has error: {}", e.getMessage());
                     break;
                 }
             }
@@ -130,7 +130,7 @@ class NIOServer {
                 // 切换buffer到读状态, 内部指针归位
                 temp.flip();
                 String msg = CHARSET.decode(temp).toString();
-                _log.info("Server received [{}] from client address: {}", msg, sc.getRemoteAddress());
+                LOGGER.info("Server received [{}] from client address: {}", msg, sc.getRemoteAddress());
 
                 Thread.sleep(5);
                 // echo back

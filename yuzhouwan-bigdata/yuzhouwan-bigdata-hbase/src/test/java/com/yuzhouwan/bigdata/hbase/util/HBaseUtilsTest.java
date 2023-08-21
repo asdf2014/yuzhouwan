@@ -26,7 +26,7 @@ public class HBaseUtilsTest {
      关闭自动分区
      alter 'yuzhouwan', {METHOD => 'table_att', SPLIT_POLICY => 'org.apache.hadoop.hbase.regionserver.DisabledRegionSplitPolicy'}
       */
-    private Logger _log = LoggerFactory.getLogger(HBaseUtilsTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(HBaseUtilsTest.class);
 
     @Test
     public void generateSplitKeysTest() {
@@ -50,9 +50,9 @@ public class HBaseUtilsTest {
     public void getHexSplitsTest() {
 //        byte[][] splits = HBaseUtils.getHexSplits("0000000000", "ffffffffffffffffffffffffffffffffffffffff", 400_0000);
         byte[][] splits = HBaseUtils.getHexSplits("0", "f", 16);
-        _log.debug("Splits size: {}", splits.length);
+        LOGGER.debug("Splits size: {}", splits.length);
         for (byte[] split : splits) {
-            _log.debug("Hex Splits: {}", JSON.toJSONString(Arrays.asList(split)));
+            LOGGER.debug("Hex Splits: {}", JSON.toJSONString(Arrays.asList(split)));
         }
     }
 

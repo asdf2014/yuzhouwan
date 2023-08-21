@@ -19,7 +19,7 @@ import java.util.Set;
  */
 public class StringTest {
 
-    private static final Logger _log = LoggerFactory.getLogger(StringTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(StringTest.class);
 
     @Test
     public void testSplitNothing() {
@@ -61,7 +61,7 @@ public class StringTest {
             }
             String withoutTail = addrs.toString();
             performanceTime = System.nanoTime() - begin;
-            _log.info("Time: {} ms", performanceTime * Math.pow(10, -6));
+            LOGGER.info("Time: {} ms", performanceTime * Math.pow(10, -6));
             assertEquals("a, b, c", withoutTail);
         }
         {
@@ -76,7 +76,7 @@ public class StringTest {
             }
             String withoutTail = uniqAddr.size() > 0 ? addrs.substring(0, addrs.length() - 2) : addrs.toString();
             performanceTime = System.nanoTime() - begin;
-            _log.info("Time: {} ms", performanceTime * Math.pow(10, -6));
+            LOGGER.info("Time: {} ms", performanceTime * Math.pow(10, -6));
             assertEquals("a, b, c", withoutTail);
             assertEquals("a, b, c", uniqAddr.size() > 0 ?
                     addrs.delete(addrs.length() - 2, addrs.length()).toString() : addrs.toString());

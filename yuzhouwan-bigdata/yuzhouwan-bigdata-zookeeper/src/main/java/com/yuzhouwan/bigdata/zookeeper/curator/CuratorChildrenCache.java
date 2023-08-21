@@ -22,7 +22,8 @@ import org.slf4j.LoggerFactory;
 public class CuratorChildrenCache {
 
     // Start a org.apache.zookeeper.server.ZooKeeperServerMain instance local first
-    private static final Logger LOG = LoggerFactory.getLogger(CuratorChildrenCache.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CuratorChildrenCache.class);
+
     private CuratorFramework curatorFramework;
 
     public CuratorChildrenCache() {
@@ -114,30 +115,30 @@ public class CuratorChildrenCache {
                 .addListener(
                         (CuratorFramework client, PathChildrenCacheEvent event) -> {
                             PathChildrenCacheEvent.Type type = event.getType();
-                            LOG.info("Event type: {}", type);
+                            LOGGER.info("Event type: {}", type);
                             switch (type) {
                                 case CONNECTION_RECONNECTED:
-                                    LOG.info("Reconnected...");
+                                    LOGGER.info("Reconnected...");
                                     break;
                                 case CONNECTION_LOST:
-                                    LOG.info("Connection lost...");
+                                    LOGGER.info("Connection lost...");
                                     pathChildrenCache.rebuild();
-                                    LOG.info("Rebuild pathChildrenCache...");
+                                    LOGGER.info("Rebuild pathChildrenCache...");
                                     break;
                                 case CONNECTION_SUSPENDED:
-                                    LOG.info("Connection suspended...");
+                                    LOGGER.info("Connection suspended...");
                                     break;
                                 case CHILD_ADDED:
-                                    LOG.info("Add new child: {}", event.getData().getPath());
+                                    LOGGER.info("Add new child: {}", event.getData().getPath());
                                     break;
                                 case CHILD_UPDATED:
-                                    LOG.info("Updated child: {}", event.getData().getPath());
+                                    LOGGER.info("Updated child: {}", event.getData().getPath());
                                     break;
                                 case CHILD_REMOVED:
-                                    LOG.info("Removed child: {}", event.getData().getPath());
+                                    LOGGER.info("Removed child: {}", event.getData().getPath());
                                     break;
                                 default:
-                                    LOG.error(String.format("Something was not excepted: %s", type));
+                                    LOGGER.error(String.format("Something was not excepted: %s", type));
                                     break;
                             }
                         }

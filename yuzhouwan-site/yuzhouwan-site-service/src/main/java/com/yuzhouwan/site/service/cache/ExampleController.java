@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class ExampleController {
 
-    private static final Logger LOG = Logger.getLogger(ExampleController.class);
+    private static final Logger LOGGER = Logger.getLogger(ExampleController.class);
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
     @Cacheable("calculateResult")
     public String calculateResult() {
-        LOG.debug("Performing expensive calculation...");
+        LOGGER.debug("Performing expensive calculation...");
         // perform computationally expensive calculation
         return "result";
     }

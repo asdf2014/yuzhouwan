@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
  */
 public class InsertionSortTest {
 
-    private static final Logger _log = LoggerFactory.getLogger(InsertionSortTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(InsertionSortTest.class);
 
     private InsertionSort insertionSort;
 
@@ -79,13 +79,13 @@ public class InsertionSortTest {
             begin = System.currentTimeMillis();
             insertionSort.insertionSort(sorted);
             end = System.currentTimeMillis();
-            _log.debug("Max: " + sorted[ARRAY_SIZE - 1] + ", and finished in " + (end - begin) + " millisecond");
+            LOGGER.debug("Max: " + sorted[ARRAY_SIZE - 1] + ", and finished in " + (end - begin) + " millisecond");
         }
         {
             begin = System.currentTimeMillis();
             insertionSort.insertionSort(reversed);
             end = System.currentTimeMillis();
-            _log.debug("Max: " + sorted[ARRAY_SIZE - 1] + ", and finished in " + (end - begin) + " millisecond");
+            LOGGER.debug("Max: " + sorted[ARRAY_SIZE - 1] + ", and finished in " + (end - begin) + " millisecond");
         }
     }
 }

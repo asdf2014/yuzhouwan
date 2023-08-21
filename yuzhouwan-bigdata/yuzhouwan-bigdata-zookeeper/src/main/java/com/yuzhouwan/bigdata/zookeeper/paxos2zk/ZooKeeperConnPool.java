@@ -21,7 +21,8 @@ import java.util.concurrent.CountDownLatch;
  */
 public final class ZooKeeperConnPool {
 
-    private static final Logger _log = LoggerFactory.getLogger(ZooKeeperConnPool.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ZooKeeperConnPool.class);
+
     // There need to be set bigger value into [MIN_CONN_IN_POOL], how about the one-third of [MAX_CONN_IN_POOL]
     private static final int MIN_CONN_IN_POOL = 3;
     private static final int MAX_CONN_IN_POOL = 5;
@@ -88,8 +89,8 @@ public final class ZooKeeperConnPool {
             connectZKClientLatch.await();
             pool.add(newZookeeper);
 
-            _log.info("################ Add a new ZKClient Connection into pool...");
-            _log.info("Storage: [" + pool.size() + "/" + MAX_CONN_IN_POOL + "]");
+            LOGGER.info("################ Add a new ZKClient Connection into pool...");
+            LOGGER.info("Storage: [" + pool.size() + "/" + MAX_CONN_IN_POOL + "]");
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -118,7 +119,7 @@ public final class ZooKeeperConnPool {
      * @return a alive zookeeper connection which state is Watcher.Event.KeeperState.SyncConnected
      */
     public ZooKeeper getConn() {
-        _log.info("################ Get ZKClient Connection from pool...");
+        LOGGER.info("################ Get ZKClient Connection from pool...");
         if (used >= MAX_CONN_IN_POOL) {
             return null;
         }
@@ -145,7 +146,7 @@ public final class ZooKeeperConnPool {
      * @param freeZK a zookeeper connection will be closed or add into connection pool
      */
     public void freeConn(ZooKeeper freeZK) {
-        _log.info("################ Free ZKClient Connection into pool...");
+        LOGGER.info("################ Free ZKClient Connection into pool...");
         if (freeZK == null)
             return;
         if (!freeZK.getState().isAlive())
@@ -168,7 +169,7 @@ public final class ZooKeeperConnPool {
      * Close some overfull connection from pool.
      */
     private void closeOverFullZKFromPool() {
-        _log.info("################ Remove some ZKClient Connections from pool...");
+        LOGGER.info("################ Remove some ZKClient Connections from pool...");
         if (pool.size() <= MIN_CONN_IN_POOL)
             return;
         int count = 0;
@@ -197,7 +198,7 @@ public final class ZooKeeperConnPool {
                 needCloseZK.close();
                 closeZKClientLatch.await();
 
-                _log.info("Storage: [" + pool.size() + "/" + MAX_CONN_IN_POOL + "]");
+                LOGGER.info("Storage: [" + pool.size() + "/" + MAX_CONN_IN_POOL + "]");
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -208,7 +209,7 @@ public final class ZooKeeperConnPool {
      * Balance the sum of alive zkClient in pool.
      */
     private void balance() {
-        _log.info("################ Balance the storage of pool...");
+        LOGGER.info("################ Balance the storage of pool...");
 
         if (used < MAX_CONN_IN_POOL && pool.size() < MIN_CONN_IN_POOL) {
             Thread addSomeConnThread = new Thread() {

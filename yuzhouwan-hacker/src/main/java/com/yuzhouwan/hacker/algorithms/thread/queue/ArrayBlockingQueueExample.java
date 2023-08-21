@@ -17,7 +17,7 @@ import java.util.concurrent.BlockingQueue;
  */
 public class ArrayBlockingQueueExample {
 
-    private static final Logger _log = LoggerFactory.getLogger(ArrayBlockingQueueExample.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ArrayBlockingQueueExample.class);
 
     public static void main(String[] args) {
         final MyArrayBlockingQueue myArrayBlockingQueue = new MyArrayBlockingQueue();
@@ -26,7 +26,7 @@ public class ArrayBlockingQueueExample {
                 try {
                     Thread.sleep(new Random().nextInt(1000));
                 } catch (InterruptedException e) {
-                    _log.error("", e);
+                    LOGGER.error("", e);
                 }
                 myArrayBlockingQueue.queue1();
             }
@@ -50,27 +50,27 @@ public class ArrayBlockingQueueExample {
             try {
                 blockingQueue2.put(1);
             } catch (InterruptedException e) {
-                _log.error("", e);
+                LOGGER.error("", e);
             }
         }
 
         void queue1() {
             try {
                 blockingQueue1.put(1);
-                _log.info("blockingQueue1 putted  {}", Thread.currentThread().getName());
+                LOGGER.info("blockingQueue1 putted  {}", Thread.currentThread().getName());
                 blockingQueue2.take();
             } catch (InterruptedException e) {
-                _log.error("", e);
+                LOGGER.error("", e);
             }
         }
 
         void queue2() {
             try {
                 blockingQueue2.put(1);
-                _log.info("blockingQueue2 putted  {}", Thread.currentThread().getName());
+                LOGGER.info("blockingQueue2 putted  {}", Thread.currentThread().getName());
                 blockingQueue1.take();
             } catch (InterruptedException e) {
-                _log.error("", e);
+                LOGGER.error("", e);
             }
         }
         /**

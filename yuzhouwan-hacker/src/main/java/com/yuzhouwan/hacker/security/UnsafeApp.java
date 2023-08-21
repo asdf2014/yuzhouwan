@@ -13,15 +13,17 @@ import org.slf4j.LoggerFactory;
  */
 public class UnsafeApp {
 
-    private static final Logger _log = LoggerFactory.getLogger(UnsafeApp.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UnsafeApp.class);
 
     /**
      * @param args arg0 arg1 arg2
      */
     public static void main(String[] args) {
-        _log.debug("This is your application.");
-        _log.debug("Args: ");
-        for (String arg : args) _log.debug(arg + " ");
+        LOGGER.debug("This is your application.");
+        LOGGER.debug("Args: ");
+        for (String arg : args) {
+            LOGGER.debug(arg + " ");
+        }
         new UnsafeClass();
     }
 }

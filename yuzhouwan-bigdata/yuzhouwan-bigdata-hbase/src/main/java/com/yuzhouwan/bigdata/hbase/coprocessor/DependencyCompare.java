@@ -18,32 +18,32 @@ import java.util.Arrays;
  */
 public class DependencyCompare {
 
-    private static final Logger _log = LoggerFactory.getLogger(DependencyCompare.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DependencyCompare.class);
     private static final String HBASE_DEPENDENCIES = DirUtils.PROJECT_BASE_PATH.concat(
             "\\yuzhouwan-bigdata\\yuzhouwan-bigdata-hbase\\src\\main\\resources\\coprocessor\\"
                     + "hbase-0.98.8-hadoop2.dependency");
 
     public static void main(String[] args) throws Exception {
         if (args == null || args.length != 1) {
-            _log.error(String.format("Params [%s] wrong!", Arrays.toString(args)));
-            _log.info("Usage: jar -jar com.yuzhouwan.bigdata.hbase.coprocessor.DependencyCompare "
+            LOGGER.error(String.format("Params [%s] wrong!", Arrays.toString(args)));
+            LOGGER.info("Usage: jar -jar com.yuzhouwan.bigdata.hbase.coprocessor.DependencyCompare "
                     + "<Coprocessor's dependency path>");
             System.exit(-1);
         }
         String path = args[0];
         File coprocessorFile;
         if (!FileUtils.checkExist(coprocessorFile = new File(path))) {
-            _log.error(String.format("Path [%s] not exist!", path));
+            LOGGER.error(String.format("Path [%s] not exist!", path));
             System.exit(-2);
         }
         String[] coprocessorDependencies = coprocessorFile.list();
         if (coprocessorDependencies == null || coprocessorDependencies.length == 0) {
-            _log.info("Empty directory.");
+            LOGGER.info("Empty directory.");
             System.exit(0);
         }
         byte[] hbaseDependenciesBytes = FileUtils.readFile(HBASE_DEPENDENCIES);
         if (hbaseDependenciesBytes == null || hbaseDependenciesBytes.length == 0) {
-            _log.error(String.format("Cannot get those dependencies from %s!", HBASE_DEPENDENCIES));
+            LOGGER.error(String.format("Cannot get those dependencies from %s!", HBASE_DEPENDENCIES));
             System.exit(-3);
         }
         String[] hbaseDependenciesStrs = new String(hbaseDependenciesBytes).split("\n");

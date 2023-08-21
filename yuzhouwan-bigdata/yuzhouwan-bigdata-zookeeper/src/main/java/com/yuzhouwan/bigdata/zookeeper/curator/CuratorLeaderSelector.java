@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
  */
 public class CuratorLeaderSelector {
 
-    private static final Logger LOG = LoggerFactory.getLogger(CuratorLeaderSelector.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CuratorLeaderSelector.class);
 
     private CuratorFramework curatorFramework;
 
@@ -53,17 +53,17 @@ public class CuratorLeaderSelector {
                 new LeaderSelectorListenerAdapter() {
                     @Override
                     public void takeLeadership(CuratorFramework client) throws Exception {
-                        LOG.info("CuratorFramework connection string: {}",
+                        LOGGER.info("CuratorFramework connection string: {}",
                                 client.getZookeeperClient().getCurrentConnectionString());
-                        LOG.info("Namespace: {}", client.getNamespace());
+                        LOGGER.info("Namespace: {}", client.getNamespace());
                         Stat stat = client.checkExists().forPath(path);
-                        LOG.info("Check the stat in path [{}]: {}", path, stat.toString());
+                        LOGGER.info("Check the stat in path [{}]: {}", path, stat.toString());
                     }
                 }
         );
-        LOG.info("Leader selector auto requeue...");
+        LOGGER.info("Leader selector auto requeue...");
         leaderSelector.autoRequeue();
         leaderSelector.start();
-        LOG.info("Starting...");
+        LOGGER.info("Starting...");
     }
 }

@@ -21,9 +21,9 @@ import java.net.Socket;
  */
 public class Listener implements Runnable {
 
-    private static final Logger _log = LoggerFactory.getLogger(Listener.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(Listener.class);
 
-    private Server server;
+    private final Server server;
 
     public Listener(Server server) {
         this.server = server;
@@ -66,7 +66,7 @@ public class Listener implements Runnable {
                 try {
                     ois.close();
                 } catch (IOException e) {
-                    _log.error("Release resource failed: {}!", e.getMessage());
+                    LOGGER.error("Release resource failed: {}!", e.getMessage());
                 }
             }
         } finally {
@@ -74,7 +74,7 @@ public class Listener implements Runnable {
                 try {
                     oos.close();
                 } catch (IOException e) {
-                    _log.error("Release resource failed: {}!", e.getMessage());
+                    LOGGER.error("Release resource failed: {}!", e.getMessage());
                 }
             }
         }

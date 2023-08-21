@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
  */
 public class ZookeeperWatcher {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ZookeeperWatcher.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ZookeeperWatcher.class);
 
     private static final String yuzhouwan4 = "yuzhouwan04:2181";
     private static final String zNode = "/yuzhouwan";
@@ -56,10 +56,10 @@ public class ZookeeperWatcher {
                         break;
                     case CONNECTION_SUSPENDED:
                     case CONNECTION_LOST:
-                        LOG.error("Connection error, waiting...");
+                        LOGGER.error("Connection error, waiting...");
                         break;
                     default:
-                        LOG.info("PathChildrenCache changed : {path:" + event.getData().getPath() + " data:"
+                        LOGGER.info("PathChildrenCache changed : {path:" + event.getData().getPath() + " data:"
                                 + new String(event.getData().getData()) + "}");
                 }
             }
@@ -67,7 +67,7 @@ public class ZookeeperWatcher {
         try {
             cached.start();
         } catch (Exception e) {
-            LOG.error("Can not start PathChildrenCache!!");
+            LOGGER.error("Can not start PathChildrenCache!!");
             throw new RuntimeException(e);
         }
     }

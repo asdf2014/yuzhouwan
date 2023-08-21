@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit;
  */
 public final class HtmlExporterUtils {
 
-    private static final Logger LOG = LoggerFactory.getLogger(HtmlExporterUtils.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(HtmlExporterUtils.class);
 
     private HtmlExporterUtils() {
     }
@@ -163,7 +163,7 @@ public final class HtmlExporterUtils {
                 try {
                     inputStream.close();
                 } catch (IOException e) {
-                    LOG.error("Cannot close inputStream!", e);
+                    LOGGER.error("Cannot close inputStream!", e);
                 }
             }
         }

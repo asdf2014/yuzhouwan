@@ -20,46 +20,30 @@ import java.util.concurrent.TimeUnit;
  */
 public class ScheduledExecutorServiceExample {
 
-    private static final Logger _log = LoggerFactory.getLogger(ScheduledExecutorServiceExample.class);
-    private static final Random r = new Random();
+  private static final Logger LOGGER = LoggerFactory.getLogger(ScheduledExecutorServiceExample.class);
 
-    public static void main(String[] args) {
-        int len = 25;
-        final int[] count = new int[len];
-        ScheduledExecutorService executorService
-                = Executors.newScheduledThreadPool(ThreadUtils.availableProcessors4Computing());
+  private static final Random r = new Random();
 
-        _log.info("Start...");
-        for (int i = 0; i < len; i++) {
-            int finalI = i;
-            executorService.scheduleAtFixedRate(() -> {
-                        long random = r.nextInt(3000);
-                        _log.info("Task{}: {}, Count: {}, Random: {}",
-                                finalI, Thread.currentThread(), count[finalI]++, random);
-                        try {
-                            Thread.sleep(random);
-                        } catch (InterruptedException e) {
-                            _log.error(ExceptionUtils.errorInfo(e));
-                        }
-                    },
-                    1000, 1000, TimeUnit.MILLISECONDS);
-        }
+  public static void main(String[] args) {
+    int len = 25;
+    final int[] count = new int[len];
+    ScheduledExecutorService executorService
+        = Executors.newScheduledThreadPool(ThreadUtils.availableProcessors4Computing());
 
-//        final ScheduledFuture task2 = executorService.schedule(() -> {
-//            _log.info("Task:{}, Count: {}", Thread.currentThread(), count[1]++);
-//            return "Task2 Result.";
-//        }, 10, TimeUnit.MILLISECONDS);
-//
-//        executorService.schedule(() -> {
-//            try {
-//                _log.info("Task:{}, Count: {}, Get info: {}",
-//                        Thread.currentThread(), count[2]++, task2.get());
-//            } catch (Exception e) {
-//                _log.error(ExceptionUtils.errorInfo(e));
-//            }
-//            task1.cancel(false);
-//            task2.cancel(false);
-//            System.exit(0);
-//        }, 30, TimeUnit.MILLISECONDS);
+    LOGGER.info("Start...");
+    for (int i = 0; i < len; i++) {
+      int finalI = i;
+      executorService.scheduleAtFixedRate(() -> {
+            long random = r.nextInt(3000);
+            LOGGER.info("Task{}: {}, Count: {}, Random: {}",
+                finalI, Thread.currentThread(), count[finalI]++, random);
+            try {
+              Thread.sleep(random);
+            } catch (InterruptedException e) {
+              LOGGER.error(ExceptionUtils.errorInfo(e));
+            }
+          },
+          1000, 1000, TimeUnit.MILLISECONDS);
     }
+  }
 }

@@ -18,7 +18,7 @@ import java.util.Iterator;
  */
 public class PatentReducer extends Reducer<Text, Text, Text, Text> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(PatentReducer.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PatentReducer.class);
 
     /**
      * Reducer 的核心方法，用来处理 海量的 Combiner端输入数据.
@@ -52,7 +52,7 @@ public class PatentReducer extends Reducer<Text, Text, Text, Text> {
                 throw new RuntimeException(e);
             }
         } catch (Exception e) {
-            LOG.error("", e);
+            LOGGER.error("", e);
         }
     }
 

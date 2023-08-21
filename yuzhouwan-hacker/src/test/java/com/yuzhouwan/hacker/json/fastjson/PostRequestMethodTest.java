@@ -22,7 +22,8 @@ import java.util.List;
  */
 public class PostRequestMethodTest {
 
-    private static final Logger _log = LoggerFactory.getLogger(PostRequestMethodTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PostRequestMethodTest.class);
+
     private static final String url = "http://localhost:8080/yuzhouwan-site/post/msg";
 
     @Ignore
@@ -39,12 +40,12 @@ public class PostRequestMethodTest {
      */
     private List<A> doRequest(String msg) {
         try {
-            _log.debug("do request url {} param {}", PostRequestMethodTest.url, msg);
+            LOGGER.debug("do request url {} param {}", PostRequestMethodTest.url, msg);
             StringEntity entity = new StringEntity(msg, ContentType.DEFAULT_TEXT);
             String post = HttpUtils.getInstance().postPlain(PostRequestMethodTest.url, entity, null);
             return JSON.parseArray(post, A.class);
         } catch (Exception e) {
-            _log.error(e.getMessage());
+            LOGGER.error(e.getMessage());
             return null;
         }
     }

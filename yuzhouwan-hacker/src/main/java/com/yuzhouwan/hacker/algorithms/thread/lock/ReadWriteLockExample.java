@@ -26,7 +26,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  */
 public class ReadWriteLockExample {
 
-    private static final Logger _log = LoggerFactory.getLogger(ReadWriteLockExample.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ReadWriteLockExample.class);
 
     public static void main(String... args) throws InterruptedException {
 
@@ -38,7 +38,7 @@ public class ReadWriteLockExample {
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException e) {
-                    _log.error("", e);
+                    LOGGER.error("", e);
                 }
                 if (count == 10) return;
             }
@@ -52,7 +52,7 @@ public class ReadWriteLockExample {
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException e) {
-                    _log.error("", e);
+                    LOGGER.error("", e);
                 }
                 Business.getInstance().isExist(task + 1);
             });
@@ -111,7 +111,7 @@ public class ReadWriteLockExample {
                     writeLock.unlock();
                 }
             }
-            _log.debug("Thread: {}, count: {}, value: {}, isExist: {}",
+            LOGGER.debug("Thread: {}, count: {}, value: {}, isExist: {}",
                     Thread.currentThread().getName(), key, value, isExist);
             return value;
         }
@@ -149,14 +149,14 @@ public class ReadWriteLockExample {
          * Process finished with exit code 0
          */
         void check() {
-            _log.info("Please input a number...");
+            LOGGER.info("Please input a number...");
             int input = 1;
             try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
                 input = Integer.parseInt(br.readLine());
             } catch (NumberFormatException | IOException e) {
-                _log.error("", e);
+                LOGGER.error("", e);
             }
-            _log.debug("Result: {} - {}", input, myData.get(input));
+            LOGGER.debug("Result: {} - {}", input, myData.get(input));
         }
     }
 }

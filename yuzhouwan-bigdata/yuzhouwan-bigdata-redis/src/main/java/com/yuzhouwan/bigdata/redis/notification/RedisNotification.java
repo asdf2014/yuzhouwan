@@ -24,7 +24,7 @@ import static com.yuzhouwan.bigdata.redis.conn.RedisClusterConnPool.PROJECT_NAME
  */
 public class RedisNotification {
 
-    private static final Logger _log = LoggerFactory.getLogger(RedisNotification.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RedisNotification.class);
     private static final long CHECK_EXECUTOR_SERVICE_INTERVAL_MILLISECONDS = 1000 * 60 * 60 * 24;
     private static final String EXECUTOR_SERVICE_NAME = "redis-subscribe";
 
@@ -55,12 +55,12 @@ public class RedisNotification {
 
                 @Override
                 public void onPSubscribe(String pattern, int subscribedChannels) {
-                    _log.info("onPSubscribe Pattern: {}, SubscribedChannels: {}", pattern, subscribedChannels);
+                    LOGGER.info("onPSubscribe Pattern: {}, SubscribedChannels: {}", pattern, subscribedChannels);
                 }
 
                 @Override
                 public void onPMessage(String pattern, String channel, String message) {
-                    _log.info("onPMessage Pattern: {}, Channel: {}, Message: {}", pattern, channel, message);
+                    LOGGER.info("onPMessage Pattern: {}, Channel: {}, Message: {}", pattern, channel, message);
                 }
             };
             for (JedisPool j : jedis)

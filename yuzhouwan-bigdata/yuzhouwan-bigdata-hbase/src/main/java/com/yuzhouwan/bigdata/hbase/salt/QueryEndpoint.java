@@ -32,7 +32,7 @@ import java.util.List;
 
 public class QueryEndpoint extends DataProtos.QueryDataService implements Coprocessor, CoprocessorService {
 
-    private static final Logger _log = LoggerFactory.getLogger(QueryEndpoint.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(QueryEndpoint.class);
     private RegionCoprocessorEnvironment env;
 
     public QueryEndpoint() {
@@ -107,7 +107,7 @@ public class QueryEndpoint extends DataProtos.QueryDataService implements Coproc
                 try {
                     scanner.close();
                 } catch (IOException e) {
-                    _log.error(ExceptionUtils.errorInfo(e));
+                    LOGGER.error(ExceptionUtils.errorInfo(e));
                 }
             }
         }

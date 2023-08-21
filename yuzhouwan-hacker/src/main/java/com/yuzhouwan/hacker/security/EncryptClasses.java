@@ -22,7 +22,7 @@ import static com.yuzhouwan.hacker.security.SecurityClassLoader.ALGORITHM;
  */
 class EncryptClasses {
 
-    private static final Logger _log = LoggerFactory.getLogger(EncryptClasses.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EncryptClasses.class);
 
     /**
      * @param clazz key.data UnsafeApp.class UnsafeClass.class
@@ -49,7 +49,7 @@ class EncryptClasses {
             encryptedClassData = cipher.doFinal(classData);
             FileUtils.writeFile(filename, encryptedClassData);
 
-            _log.debug("Encrypted {}", filename);
+            LOGGER.debug("Encrypted {}", filename);
         }
     }
 }

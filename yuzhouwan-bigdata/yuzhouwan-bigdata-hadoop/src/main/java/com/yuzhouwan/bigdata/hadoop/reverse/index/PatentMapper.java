@@ -23,7 +23,7 @@ import java.util.Iterator;
  */
 public class PatentMapper extends Mapper<LongWritable, Text, Text, Text> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(PatentMapper.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PatentMapper.class);
 
     //分割出一行中 多个 patent的信息
     private static final String PATENT_SPLIT_TOKEN = "'\\),\\('";
@@ -137,7 +137,7 @@ public class PatentMapper extends Mapper<LongWritable, Text, Text, Text> {
             //写入到 Hadoop上下文中
             context.write(writeKey, writeValue);
         } catch (IOException | InterruptedException e) {
-            LOG.error("", e);
+            LOGGER.error("", e);
         }
     }
 

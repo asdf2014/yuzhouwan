@@ -34,7 +34,8 @@ import static com.yuzhouwan.common.util.StrUtils.isNotBlank;
  */
 public class ESUtilsTest extends ElasticSearchClientBaseTestCase {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ESUtilsTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ESUtilsTest.class);
+
     private static final String ES_INDEX = PropUtils.getInstance().getProperty("es.index.name").concat(ES_SEARCH);
 
     public static String buildQuery(Long timestampStart, Long timestampEnd, String uuid) {
@@ -76,10 +77,10 @@ public class ESUtilsTest extends ElasticSearchClientBaseTestCase {
                     resultBean = JSON.parseObject(nodeStr);
                     objs.add(resultBean);
                 } catch (Exception e) {
-                    LOG.warn("Cannot parse jsonNode: {}!", node);
+                    LOGGER.warn("Cannot parse jsonNode: {}!", node);
                 }
             }
-            LOG.info(JSON.toJSONString(objs));
+            LOGGER.info(JSON.toJSONString(objs));
         } catch (Exception e) {
             throw new RuntimeException("Cannot query events from es!", e);
         }

@@ -21,7 +21,7 @@ import static com.yuzhouwan.bigdata.kafka.util.KafkaUtils.createProducer;
  */
 public final class KafkaConnPoolUtils {
 
-    private static final Logger _log = LoggerFactory.getLogger(KafkaConnPoolUtils.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(KafkaConnPoolUtils.class);
 
     private static int CONN_IN_POOL;
     private static volatile long CONN_INDEX;
@@ -67,7 +67,7 @@ public final class KafkaConnPoolUtils {
             count++;
         }
         if (pool.size() != CONN_IN_POOL)
-            _log.warn("Init Kafka connection pool, size: [{}/{}]", pool.size(), CONN_IN_POOL);
+            LOGGER.warn("Init Kafka connection pool, size: [{}/{}]", pool.size(), CONN_IN_POOL);
     }
 
     /**
@@ -77,8 +77,8 @@ public final class KafkaConnPoolUtils {
         Producer<String, byte[]> p;
         if ((p = createProducer()) == null) return;
         pool.put(index + "", p);
-        _log.debug("Add a new Kafka Connection into pool...");
-        _log.debug("Storage: [{}/{}]", pool.size(), CONN_IN_POOL);
+        LOGGER.debug("Add a new Kafka Connection into pool...");
+        LOGGER.debug("Storage: [{}/{}]", pool.size(), CONN_IN_POOL);
     }
 
     public static Collection<Producer<String, byte[]>> getPool() {
@@ -100,7 +100,7 @@ public final class KafkaConnPoolUtils {
     public Producer<String, byte[]> getConn() {
         long index = (CONN_INDEX %= CONN_IN_POOL);
         CONN_INDEX++;
-        _log.debug("Get Kafka Connection from pool, index: [{} in {}] ...", index + 1, CONN_IN_POOL);
+        LOGGER.debug("Get Kafka Connection from pool, index: [{} in {}] ...", index + 1, CONN_IN_POOL);
         return pool.get(index + "");
     }
 }

@@ -24,7 +24,7 @@ import java.util.concurrent.Executors;
  */
 public class CuratorInBackground {
 
-    private static final Logger LOG = LoggerFactory.getLogger(CuratorInBackground.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CuratorInBackground.class);
 
     private CuratorFramework curatorFramework;
     private CountDownLatch countDownLatch;
@@ -57,7 +57,7 @@ public class CuratorInBackground {
         countDownLatch.await();
         executorService.shutdown();
 
-        LOG.info("end.");
+        LOGGER.info("end.");
     }
 
     public void createEphemeralNodeRecursionInBackground(String path) throws Exception {
@@ -68,7 +68,7 @@ public class CuratorInBackground {
                     @Override
                     public void processResult(CuratorFramework client, CuratorEvent event) {
 
-                        LOG.info("event's result code: {}, type: {}", event.getResultCode(), event.getType());
+                        LOGGER.info("event's result code: {}, type: {}", event.getResultCode(), event.getType());
 
                         showCurrentThreadName();
 
@@ -78,6 +78,6 @@ public class CuratorInBackground {
     }
 
     private void showCurrentThreadName() {
-        LOG.info("Thread: {}", Thread.currentThread().getName());
+        LOGGER.info("Thread: {}", Thread.currentThread().getName());
     }
 }

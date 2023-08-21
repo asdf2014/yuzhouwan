@@ -31,7 +31,7 @@ import static com.yuzhouwan.common.util.StrUtils.*;
  */
 public final class HBaseUtils {
 
-    private static final Logger _log = LoggerFactory.getLogger(HBaseUtils.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(HBaseUtils.class);
     private static final String NAMESPACE_DEFAULT = "default";
 
     private static volatile HBaseUtils instance;
@@ -57,7 +57,7 @@ public final class HBaseUtils {
         PropUtils p = PropUtils.getInstance();
         String zookeeperQuorum = p.getProperty("metric.hbase.zookeeper.quorum");
         if (zookeeperQuorum == null) {
-            _log.error("hbase.zookeeper.quorum not configZK in prop/hbase.cluster.infos.properties");
+            LOGGER.error("hbase.zookeeper.quorum not configZK in prop/hbase.cluster.infos.properties");
             System.exit(-1);
         }
         configZK(zookeeperQuorum, p.getProperty("metric.hbase.zookeeper.property.clientPort"),
@@ -90,10 +90,10 @@ public final class HBaseUtils {
         try {
             admin.createTable(table, splits);
         } catch (TableExistsException e) {
-            _log.error(String.format("Table %s already exists!", table.getNameAsString()));
+            LOGGER.error(String.format("Table %s already exists!", table.getNameAsString()));
             return false;
         } catch (Exception e) {
-            _log.error(ExceptionUtils.errorInfo(e));
+            LOGGER.error(ExceptionUtils.errorInfo(e));
             throw new RuntimeException(e);
         }
         return true;

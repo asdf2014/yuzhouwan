@@ -26,8 +26,9 @@ import java.util.LinkedList;
  */
 public class TimeUtilsTest {
 
-    private Logger _log = LoggerFactory.getLogger(TimeUtilsTest.class);
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
+    private static final Logger LOGGER = LoggerFactory.getLogger(TimeUtilsTest.class);
+
+    private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
 
     @Test
     public void nowStrTest() {
@@ -38,7 +39,7 @@ public class TimeUtilsTest {
     @Test
     public void test() {
         int m = Integer.parseInt(new SimpleDateFormat("MM").format(new Date()));
-        _log.debug("month:{}", m);
+        LOGGER.debug("month:{}", m);
         assertEquals(m, TimeUtils.month());
     }
 
@@ -50,7 +51,7 @@ public class TimeUtilsTest {
         l.add(2);
         int counter = 0;
         for (Integer integer : l) {
-            _log.debug("{}", integer);
+            LOGGER.debug("{}", integer);
             counter++;
         }
         assertEquals(2, counter);

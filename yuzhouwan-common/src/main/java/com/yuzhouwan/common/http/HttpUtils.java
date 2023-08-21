@@ -46,14 +46,17 @@ import java.util.Map.Entry;
  */
 public final class HttpUtils {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(HttpUtils.class);
+
     private static final int TIMEOUT_CONNECTION_DEFAULT = 6_0000;
     private static final int TIMEOUT_SOCKET_DEFAULT = 6_0000;
     private static final int MAX_TOTAL_DEFAULT = 200;
     private static final int MAX_RETRY_DEFAULT = 5;
     private static final int MAX_ROUTE_TOTAL_DEFAULT = 20;
-    private static final Logger _log = LoggerFactory.getLogger(HttpUtils.class);
+
     private static volatile HttpUtils helper;
     private static String userAgent;
+
     private static int TIMEOUT_CONNECTION;
     private static int TIMEOUT_SOCKET;
     private static int MAX_TOTAL;
@@ -169,7 +172,7 @@ public final class HttpUtils {
             sslContext.init(new KeyManager[0], trustManagers, new SecureRandom());  // lgtm [java/insecure-trustmanager]
             sslSocketFactory = new SSLConnectionSocketFactory(sslContext, new NoopHostnameVerifier());  // lgtm [java/insecure-trustmanager]
         } catch (Exception e) {
-            _log.error(ExceptionUtils.errorInfo(e));
+            LOGGER.error(ExceptionUtils.errorInfo(e));
             throw new RuntimeException(e);
         }
         return sslSocketFactory;
@@ -227,7 +230,7 @@ public final class HttpUtils {
         ContentType contentType = ContentType.TEXT_PLAIN.withCharset(Consts.UTF_8);
         MultipartEntityBuilder builder = MultipartEntityBuilder.create();
         if (params != null) {
-            _log.debug(params.toString());
+            LOGGER.debug(params.toString());
             Object value;
             for (Entry<String, Object> entry : params.entrySet()) {
                 value = entry.getValue();
@@ -253,7 +256,7 @@ public final class HttpUtils {
     }
 
     public HttpResponse post(String url, Map<String, Object> params, Map<String, String> headers) {
-        _log.debug(url);
+        LOGGER.debug(url);
         MultipartEntityBuilder builder = processBuilderParams(params);
         builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
         builder.setCharset(Consts.UTF_8);
@@ -276,7 +279,7 @@ public final class HttpUtils {
 
     public HttpResponse post(String url, HttpEntity entity, Map<String, String> headers) {
         HttpPost post = new HttpPost(url);
-        _log.debug(url);
+        LOGGER.debug(url);
         post.setEntity(entity);
         processHeader(post, headers);
         return internalProcess(post);
@@ -294,7 +297,7 @@ public final class HttpUtils {
     }
 
     public HttpResponse get(String url, Map<String, Object> params, Map<String, String> headers) {
-        _log.debug(url);
+        LOGGER.debug(url);
         HttpGet get = new HttpGet(processURL(url, params));
         processHeader(get, headers);
         return internalProcess(get);
@@ -312,7 +315,7 @@ public final class HttpUtils {
     }
 
     public HttpResponse put(String url, Map<String, Object> params, Map<String, String> headers) {
-        _log.debug(url);
+        LOGGER.debug(url);
         HttpPut put = new HttpPut(processURL(url, params));
         processHeader(put, headers);
         return internalProcess(put);
@@ -330,7 +333,7 @@ public final class HttpUtils {
     }
 
     public HttpResponse put(String url, HttpEntity entity, Map<String, String> headers) {
-        _log.debug(url);
+        LOGGER.debug(url);
         HttpPut put = new HttpPut(url);
         put.setEntity(entity);
         processHeader(put, headers);
@@ -350,7 +353,7 @@ public final class HttpUtils {
     }
 
     public HttpResponse delete(String url, Map<String, Object> params, Map<String, String> headers) {
-        _log.debug("Url: {}", url);
+        LOGGER.debug("Url: {}", url);
         HttpDelete delete;
         processHeader((delete = new HttpDelete(processURL(url, params))), headers);
         return internalProcess(delete);
@@ -367,14 +370,14 @@ public final class HttpUtils {
             HttpResponse httpResponse = new HttpResponse();
             httpResponse.setCode(statusCode);
             if (httpResponse.isError())
-                _log.error(String.format("Error response: status %s, method %s!", statusCode, rest.getMethod()));
+                LOGGER.error(String.format("Error response: status %s, method %s!", statusCode, rest.getMethod()));
             httpResponse.setBytes(EntityUtils.toByteArray(response.getEntity()));
             Header header;
             if ((header = response.getEntity().getContentType()) != null)
                 httpResponse.setContentType(header.getValue());
             return httpResponse;
         } catch (Exception e) {
-            _log.error(ExceptionUtils.errorInfo(e));
+            LOGGER.error(ExceptionUtils.errorInfo(e));
             throw new RuntimeException(e);
         } finally {
             release(rest, response, response != null ? response.getEntity() : null);
@@ -397,7 +400,7 @@ public final class HttpUtils {
 
     private String processURL(String processUrl, Map<String, Object> params) {
         if (params == null) return processUrl;
-        _log.debug("{}", params.toString());
+        LOGGER.debug("{}", params.toString());
         StringBuilder url;
         if ((url = new StringBuilder(processUrl)).indexOf("?") < 0) url.append('?');
         for (String name : params.keySet())
@@ -412,12 +415,12 @@ public final class HttpUtils {
             try {
                 if (entity != null) EntityUtils.consume(entity);
             } catch (IOException e) {
-                _log.error(ExceptionUtils.errorInfo(e));
+                LOGGER.error(ExceptionUtils.errorInfo(e));
             } finally {
                 try {
                     if (response != null) response.close();
                 } catch (IOException e) {
-                    _log.error(ExceptionUtils.errorInfo(e));
+                    LOGGER.error(ExceptionUtils.errorInfo(e));
                 }
             }
         }

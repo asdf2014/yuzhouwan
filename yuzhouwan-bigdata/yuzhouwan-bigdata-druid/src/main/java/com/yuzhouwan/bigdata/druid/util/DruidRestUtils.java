@@ -23,7 +23,7 @@ import static com.yuzhouwan.common.util.StrUtils.isEmpty;
  */
 public class DruidRestUtils {
 
-    private static final Logger _log = LoggerFactory.getLogger(DruidRestUtils.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DruidRestUtils.class);
     private static final TimeUnit DEFEAT_UNIT = TimeUnit.MILLISECONDS;
     private static long DEFEAT_TIMEOUT;
 
@@ -76,7 +76,7 @@ public class DruidRestUtils {
                     timeUnit == null ? DEFEAT_UNIT : timeUnit)
                     .getResponseBody(charset == null ? StandardCharsets.UTF_8.name() : charset);
         } catch (Exception e) {
-            _log.error(ExceptionUtils.errorInfo(e));
+            LOGGER.error(ExceptionUtils.errorInfo(e));
             throw new RuntimeException(e);
         } finally {
             if (f != null) f.cancel(true);

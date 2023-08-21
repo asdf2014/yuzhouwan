@@ -23,7 +23,7 @@ import java.util.Map;
  */
 public class RPC {
 
-    private static final Logger _log = LoggerFactory.getLogger(RPC.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RPC.class);
 
     /**
      * @param clazz Provide an interface for the service, so that the server can check if the service is provided
@@ -95,7 +95,7 @@ public class RPC {
                     throw new RuntimeException(e);
                 }
             } else {
-                _log.warn("Not registered this interface: {}!", interfaceName);
+                LOGGER.warn("Not registered this interface: {}!", interfaceName);
             }
         }
 
