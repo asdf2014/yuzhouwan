@@ -1,1 +1,1 @@
-Put this directory into $ZOOKEEPER_HOME.
+Put these shell scripts under `$ZOOKEEPER_HOME` directory.
