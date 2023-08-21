@@ -1,8 +1,8 @@
 package com.yuzhouwan.bigdata.hadoop.reverse.index;
 
+import com.yuzhouwan.common.util.StrUtils;
 import org.ansj.app.keyword.KeyWordComputer;
 import org.ansj.app.keyword.Keyword;
-import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
@@ -162,7 +162,7 @@ public class PatentMapper extends Mapper<LongWritable, Text, Text, Text> {
      */
     private Collection<Keyword> getKeywordsByKWC(String title, String content) {
         //标题、内容 判空
-        if (StringUtils.isEmpty(title) || StringUtils.isEmpty(content))
+        if (StrUtils.isEmpty(title) || StrUtils.isEmpty(content))
             return null;
         return kwc.computeArticleTfidf(title, content);
     }
