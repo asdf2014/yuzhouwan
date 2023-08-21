@@ -228,7 +228,7 @@
         <async.version>1.4.1</async.version>
 
         <!-- storm + kafka -->
-        <storm.kafka.version>0.10.2</storm.kafka.version>
+        <storm.kafka.version>1.2.4</storm.kafka.version>
 
         <!-- storm + elasticsearch -->
         <storm.elasticsearch.version>${elasticsearch.version}</storm.elasticsearch.version>
