@@ -100,7 +100,7 @@
         <javaee.version>8.0.1</javaee.version>
         <jstl.version>1.2</jstl.version>
         <file.upload.version>1.5</file.upload.version>
-        <hibernate.validator.version>5.2.4.Final</hibernate.validator.version>
+        <hibernate.validator.version>8.0.1.Final</hibernate.validator.version>
         <spring.test.version>4.2.2.RELEASE</spring.test.version>
 
         <!-- mybatis -->
