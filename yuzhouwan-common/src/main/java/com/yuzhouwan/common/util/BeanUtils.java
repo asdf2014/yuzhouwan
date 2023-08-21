@@ -95,7 +95,7 @@ public final class BeanUtils {
      * @param clazz class
      * @return all fields in class and it's super classes
      */
-    public static Vector<Field> getAllFields(Class clazz) {
+    public static Vector<Field> getAllFields(Class<?> clazz) {
         return getAllFieldsRec(clazz, new Vector<>()).stream().filter(field -> !field.getName().equals("this$0"))
                 .collect(Collectors.toCollection(Vector::new));
     }
@@ -107,8 +107,8 @@ public final class BeanUtils {
      * @param v     hold fields
      * @return fields
      */
-    private static Vector<Field> getAllFieldsRec(Class clazz, Vector<Field> v) {
-        Class superClass = clazz.getSuperclass();
+    private static Vector<Field> getAllFieldsRec(Class<?> clazz, Vector<Field> v) {
+        Class<?> superClass = clazz.getSuperclass();
         if (superClass != null) getAllFieldsRec(superClass, v);
         Collections.addAll(v, clazz.getDeclaredFields());
         return v;

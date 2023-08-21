@@ -62,7 +62,7 @@ public final class CollectionUtils {
         return b.stream().filter(set::contains).collect(Collectors.toSet());
     }
 
-    public static <E> Object getDuplicate(Collection<E> coll, E o, String field, Class fieldClass) {
+    public static <E> Object getDuplicate(Collection<E> coll, E o, String field, Class<?> fieldClass) {
         return getDuplicate(coll, o, field, fieldClass, null);
     }
 
@@ -79,7 +79,7 @@ public final class CollectionUtils {
      * @return the object which has same the value of fieldName in collection
      */
     public static <E> Object getDuplicate(Collection<E> coll, E o, String fieldName,
-                                          Class fieldClass, Class elementClass) {
+                                          Class<?> fieldClass, Class<?> elementClass) {
 
         if (coll == null || coll.isEmpty() || o == null || StrUtils.isEmpty(fieldName) || fieldClass == null)
             return null;

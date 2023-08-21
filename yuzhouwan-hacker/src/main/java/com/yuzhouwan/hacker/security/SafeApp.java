@@ -48,9 +48,9 @@ public class SafeApp {
         SecurityClassLoader dr = new SecurityClassLoader(key);
 
         _log.error("[SecurityClassLoader: loading " + APP_NAME + "]");
-        Class clazz = dr.loadClass(APP_NAME);
+        Class<?> clazz = dr.loadClass(APP_NAME);
 
-        Class[] mainArgs = {(new String[1]).getClass()};
+        Class<?>[] mainArgs = {String[].class};
         Method main = clazz.getMethod("main", mainArgs);
 
         Object[] argsArray = {realArgs};

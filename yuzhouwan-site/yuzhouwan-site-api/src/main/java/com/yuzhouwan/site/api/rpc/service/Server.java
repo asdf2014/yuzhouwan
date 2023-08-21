@@ -16,7 +16,7 @@ public interface Server {
 
     void stop();
 
-    void register(Class serviceInterface, Class serviceImp);
+    void register(Class<?> serviceInterface, Class<?> serviceImp);
 
     void call(Call call);
 

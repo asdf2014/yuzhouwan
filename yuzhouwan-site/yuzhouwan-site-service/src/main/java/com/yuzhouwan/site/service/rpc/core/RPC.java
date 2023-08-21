@@ -70,7 +70,7 @@ public class RPC {
 
         // register service
         @Override
-        public void register(Class serviceInterface, Class serviceImp) {
+        public void register(Class<?> serviceInterface, Class<?> serviceImp) {
             if (!serviceEntry.containsKey(serviceInterface.getName())) {
                 try {
                     serviceEntry.put(serviceInterface.getName(), serviceImp.newInstance());

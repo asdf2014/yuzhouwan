@@ -12,17 +12,17 @@ import java.io.Serializable;
  */
 public class Call implements Serializable {
 
-    private Class interfaces;
+    private Class<?> interfaces;
     private Object[] params;
     private Object result;  //这是存储服务端的计算结果的
     private String methodName;
-    private Class[] parameterTypes;
+    private Class<?>[] parameterTypes;
 
-    public Class getInterfaces() {
+    public Class<?> getInterfaces() {
         return interfaces;
     }
 
-    public void setInterfaces(Class interfaces) {
+    public void setInterfaces(Class<?> interfaces) {
         this.interfaces = interfaces;
     }
 

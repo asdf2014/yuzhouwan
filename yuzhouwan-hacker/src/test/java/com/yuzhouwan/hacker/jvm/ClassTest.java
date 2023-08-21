@@ -29,8 +29,8 @@ public class ClassTest {
             assertEquals(B.class.getClassLoader(), C.class.getClassLoader());
         }
         {
-            Class<? extends Class> aClass = A.class.getClass();
-            Class<? extends Class> bClass = B.class.getClass();
+            Class<?> aClass = A.class.getClass();
+            Class<?> bClass = B.class.getClass();
         }
     }
 

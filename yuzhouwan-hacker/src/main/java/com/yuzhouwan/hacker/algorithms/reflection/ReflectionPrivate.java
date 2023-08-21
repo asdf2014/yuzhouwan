@@ -17,7 +17,7 @@ public class ReflectionPrivate {
 
         SimpleBean simpleBean = new SimpleBean();
 
-        Class clazz = simpleBean.getClass();
+        Class<?> clazz = simpleBean.getClass();
         Field fI = clazz.getDeclaredField("i");
         Field fL = clazz.getDeclaredField("l");
         Field fS = clazz.getDeclaredField("s");
@@ -26,7 +26,7 @@ public class ReflectionPrivate {
         fL.setAccessible(true);
         fS.setAccessible(true);
 
-        Class type = fI.getType();
+        Class<?> type = fI.getType();
         String strI = i.toString();
 
         Object objI = Integer.parseInt(strI);

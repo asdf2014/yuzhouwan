@@ -35,9 +35,9 @@ class SecurityClassLoader extends ClassLoader {
     }
 
     @Override
-    public Class loadClass(String name, boolean resolve) throws ClassNotFoundException {
+    public Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
         try {
-            Class clazz = findLoadedClass(name);
+            Class<?> clazz = findLoadedClass(name);
             if (clazz != null) return clazz;
             try {
                 byte[] classData;

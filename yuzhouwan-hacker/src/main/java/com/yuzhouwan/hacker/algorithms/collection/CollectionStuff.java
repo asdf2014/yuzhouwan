@@ -22,7 +22,7 @@ public class CollectionStuff<C extends Collection<E>, E> {
 
         if (c == null || c.size() == 0) return c;
 
-        Class clazz = ((ArrayList) c).get(0).getClass();
+        Class<?> clazz = ((ArrayList<?>) c).get(0).getClass();
         Field[] fs;
         if (isDeclared) fs = clazz.getDeclaredFields();
         else fs = clazz.getFields();
