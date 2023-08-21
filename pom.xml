@@ -211,7 +211,7 @@
         <apache.storm.version>0.10.2</apache.storm.version>
 
         <!-- apache kafka-->
-        <apache.kafka.version>1.1.1</apache.kafka.version>
+        <apache.kafka.version>2.4.1</apache.kafka.version>
 
         <!-- lucene -->
         <lucene.version>8.11.1</lucene.version>
