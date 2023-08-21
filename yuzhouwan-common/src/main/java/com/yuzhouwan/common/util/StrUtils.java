@@ -57,9 +57,13 @@ public final class StrUtils {
     public static String getMainValue(String suppressCode, int headIndex, String needRemoved) {
         if (!StrUtils.isEmpty(suppressCode)) {
             String tail = suppressCode.substring(headIndex);
-            while (true)
-                if (tail.startsWith(needRemoved)) tail = tail.substring(1);
-                else return tail;
+            while (true) {
+                if (tail.startsWith(needRemoved)) {
+                    tail = tail.substring(1);
+                } else {
+                    return tail;
+                }
+            }
         }
         return null;
     }
@@ -126,14 +130,18 @@ public final class StrUtils {
         int index;
         LinkedList<String> result = new LinkedList<>();
         for (int i = 0; i < separators.length; i++) {
-            if ((index = origin.indexOf(separators[i])) == -1) break;
+            if ((index = origin.indexOf(separators[i])) == -1) {
+                break;
+            }
             origin = origin.substring(index + separators[i].length());
             if (i == len - 1) {
                 result.add(origin);
                 break;
             }
             index = origin.indexOf(separators[i + 1]);
-            if (index == -1) break;
+            if (index == -1) {
+                break;
+            }
             result.add(origin.substring(0, index));
             origin = origin.substring(index);
         }
@@ -148,14 +156,17 @@ public final class StrUtils {
      * @param ignores characters to ignores
      */
     public static boolean isLike(final String origin, final String aim, final String... ignores) {
-        if (StrUtils.isEmpty(origin) || StrUtils.isEmpty(aim)) return false;
+        if (StrUtils.isEmpty(origin) || StrUtils.isEmpty(aim)) {
+            return false;
+        }
         String originCopy = origin.intern();
         String aimCopy = aim.intern();
-        if (ignores != null && ignores.length > 0)
+        if (ignores != null && ignores.length > 0) {
             for (String ignore : ignores) {
                 originCopy = originCopy.replaceAll(ignore, "");
                 aimCopy = aimCopy.replaceAll(ignore, "");
             }
+        }
         return originCopy.equalsIgnoreCase(aimCopy);
     }
 
@@ -166,7 +177,9 @@ public final class StrUtils {
      * @return isNumber
      */
     public static boolean isNumber(final String s) {
-        if (isBlank(s)) return false;
+        if (isBlank(s)) {
+            return false;
+        }
         char c;
         boolean pointExist = false;
         int start = s.startsWith(PLUS) || s.startsWith(MINUS) ? 1 : 0;
@@ -176,8 +189,9 @@ public final class StrUtils {
         for (int i = start; i < len; i++) {
             c = s.charAt(i);
             if (c == POINT) {
-                if (i == start || i == lenMinusOne || pointExist) return false;
-                else {
+                if (i == start || i == lenMinusOne || pointExist) {
+                    return false;
+                } else {
                     pointExist = true;
                     continue;
                 }
@@ -191,8 +205,11 @@ public final class StrUtils {
      * Convert String form UTF-8 into Hex.
      */
     public static String str2Hex(String s) {
-        if (StrUtils.isEmpty(s)) return s;
-        char[] hexRawArr = String.format("%x", new BigInteger(1, s.getBytes(StandardCharsets.UTF_8))).toCharArray();
+        if (StrUtils.isEmpty(s)) {
+            return s;
+        }
+        BigInteger bi = new BigInteger(1, s.getBytes(StandardCharsets.UTF_8));
+        char[] hexRawArr = String.format("%x", bi).toCharArray();
         StringBuilder hexFmtStr = new StringBuilder();
         for (int i = 0; i < hexRawArr.length; i++) {
             hexFmtStr.append(HEX).append(hexRawArr[i]).append(hexRawArr[++i]);  // lgtm [java/index-out-of-bounds]
@@ -204,7 +221,9 @@ public final class StrUtils {
      * Convert String form Hex into UTF-8.
      */
     public static String hex2Str(String s) {
-        if (StrUtils.isEmpty(s)) return s;
+        if (StrUtils.isEmpty(s)) {
+            return s;
+        }
         String[] strArr = s.split(DOUBLE_TRANSFER);
         byte[] byteArr = new byte[strArr.length - 1];
         for (int i = 1; i < strArr.length; i++) {
@@ -217,7 +236,12 @@ public final class StrUtils {
      * Compression String.
      */
     public static String compression(String s) {
-        if (isEmpty(s)) return null;
-        return s.replaceAll(" ", "").replaceAll("\\r\\n", "").replaceAll("\\r", "").replaceAll("\\n", "");
+        if (isEmpty(s)) {
+            return null;
+        }
+        return s.replaceAll(" ", "")
+            .replaceAll("\\r\\n", "")
+            .replaceAll("\\r", "")
+            .replaceAll("\\n", "");
     }
 }
