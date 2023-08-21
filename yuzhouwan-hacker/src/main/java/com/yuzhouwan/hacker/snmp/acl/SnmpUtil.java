@@ -4,7 +4,6 @@ import org.apache.log4j.BasicConfigurator;
 import org.snmp4j.*;
 import org.snmp4j.asn1.BER;
 import org.snmp4j.event.ResponseEvent;
-import org.snmp4j.log.Log4jLogFactory;
 import org.snmp4j.log.LogFactory;
 import org.snmp4j.mp.*;
 import org.snmp4j.security.*;
@@ -259,7 +258,7 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
             checkTrapVariables(vbs);
         }
         address = new UdpAddress(host + "/" + _port);
-        LogFactory.setLogFactory(new Log4jLogFactory());
+        LogFactory.setLogFactory(new LogFactory());
         BER.setCheckSequenceLength(false);
     }
 
@@ -543,14 +542,19 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
     private void checkTrapVariables(Vector vbs) {
         if ((pduType == PDU.INFORM) || (pduType == PDU.TRAP)) {
             if ((vbs.size() == 0)
-                    || ((vbs.size() > 1)
-                    && (!((VariableBinding) vbs.get(0)).getOid().equals(SnmpConstants.sysUpTime)))) {
+                || ((vbs.size() > 1)
+                && (!((VariableBinding) vbs.get(0)).getOid().equals(SnmpConstants.sysUpTime)))) {
                 vbs.add(0, new VariableBinding(SnmpConstants.sysUpTime, _sysUpTime));
             }
             if ((vbs.size() == 1) || ((vbs.size() > 2)
-                    && (!((VariableBinding) vbs.get(1)).getOid().equals(SnmpConstants.snmpTrapOID)))) {
+                && (!((VariableBinding) vbs.get(1)).getOid().equals(SnmpConstants.snmpTrapOID)))) {
                 vbs.add(1, new VariableBinding(SnmpConstants.snmpTrapOID, _trapOID));
             }
         }
+    }
+
+    @Override
+    public PDU createPDU(MessageProcessingModel messageProcessingModel) {
+        return null;
     }
 }
