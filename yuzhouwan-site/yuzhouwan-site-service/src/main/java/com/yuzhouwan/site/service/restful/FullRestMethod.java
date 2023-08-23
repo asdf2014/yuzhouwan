@@ -20,7 +20,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @RequestMapping("/full")
 public class FullRestMethod {
 
-    private ConcurrentHashMap<String, String> chm = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, String> chm = new ConcurrentHashMap<>();
 
     /**
      * GET用来获取资源.

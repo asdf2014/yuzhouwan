@@ -55,7 +55,7 @@ public class RPC {
         // The key is the service, the value is the concrete implementation
         Map<String, Object> serviceEntry = new HashMap<>();
         boolean isRunning = false;
-        private int port = 20222;
+        private final int port = 20222;
 
         @Override
         public void start() {

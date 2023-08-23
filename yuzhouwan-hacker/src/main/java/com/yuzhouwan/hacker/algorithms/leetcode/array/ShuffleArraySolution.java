@@ -12,8 +12,8 @@ import java.util.Random;
  */
 class ShuffleArraySolution {
 
-    private int[] nums;
-    private Random r;
+    private final int[] nums;
+    private final Random r;
 
     /**
      * https://leetcode.com/problems/shuffle-an-array

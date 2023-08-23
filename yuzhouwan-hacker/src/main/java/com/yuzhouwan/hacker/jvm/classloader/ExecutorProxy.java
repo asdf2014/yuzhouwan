@@ -12,8 +12,8 @@ import java.lang.reflect.Method;
  */
 public class ExecutorProxy implements Executor {
 
-    private String version;
-    private StandardExecutorClassLoader classLoader;
+    private final String version;
+    private final StandardExecutorClassLoader classLoader;
 
     ExecutorProxy(String version) {
         this.version = version;

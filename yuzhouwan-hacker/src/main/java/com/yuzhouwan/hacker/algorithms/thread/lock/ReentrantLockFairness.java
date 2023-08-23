@@ -21,7 +21,7 @@ class ReentrantLockFairness {
      * Fairness.
      */
     static class Fairness implements Runnable {
-        private Lock lock;
+        private final Lock lock;
 
         Fairness(Lock lock) {
             this.lock = lock;

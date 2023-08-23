@@ -10,9 +10,9 @@ package com.yuzhouwan.hacker.snmp.v3;
  */
 public class H3CInfos {
 
-    private String userName4USM;
-    private H3CSnmpV3User h3CSnmpV3User;
-    private H3CUserTarget h3CUserTarget;
+    private final String userName4USM;
+    private final H3CSnmpV3User h3CSnmpV3User;
+    private final H3CUserTarget h3CUserTarget;
 
     public H3CInfos(H3CSnmpV3User h3CSnmpV3User, String userName4USM, H3CUserTarget h3CUserTarget) {
         this.h3CSnmpV3User = h3CSnmpV3User;

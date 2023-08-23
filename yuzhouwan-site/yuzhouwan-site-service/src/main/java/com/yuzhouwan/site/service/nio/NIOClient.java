@@ -33,8 +33,8 @@ class NIOClient implements Runnable {
 
     // 空闲计数器, 如果空闲超过10次, 将检测server是否中断连接
     private static int idleCounter;
-    private Selector selector;
-    private SocketChannel socketChannel;
+    private final Selector selector;
+    private final SocketChannel socketChannel;
 
     NIOClient() throws IOException {
         // 同样的, 注册选择器

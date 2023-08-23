@@ -31,7 +31,7 @@ import java.util.Set;
 @SuppressWarnings("deprecation")
 public final class TwoLevelIndexBuilder {
 
-    private Configuration conf;
+    private final Configuration conf;
 
     private TwoLevelIndexBuilder(String rootDir, String zkServer, String port) throws IOException {
         conf = HBaseConfiguration.create();
@@ -91,7 +91,7 @@ public final class TwoLevelIndexBuilder {
     private static class TowLevelIndexMapper extends TableMapper<ImmutableBytesWritable, Put> {
 
         //记录了要进行索引的列
-        private Map<byte[], ImmutableBytesWritable> indexes = new HashMap<>();
+        private final Map<byte[], ImmutableBytesWritable> indexes = new HashMap<>();
         private String familyName;
 
         //真正运行Map之前执行一些处理。

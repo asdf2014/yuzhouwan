@@ -698,7 +698,7 @@ public class NativeIO {
             public static final int S_IXUSR = 100;  /* execute/search permission, owner */
             private int ownerId, groupId;
             private String owner, group;
-            private int mode;
+            private final int mode;
 
             Stat(int ownerId, int groupId, int mode) {
                 this.ownerId = ownerId;

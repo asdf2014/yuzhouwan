@@ -15,7 +15,7 @@ import java.util.concurrent.ConcurrentMap;
 public class GuardedByExample {
 
     @GuardedBy("obj")
-    private ConcurrentMap<String, String> map = new ConcurrentHashMap<>();
+    private final ConcurrentMap<String, String> map = new ConcurrentHashMap<>();
     private final Object obj = new Object();
 
     public void put(String k, String v) {

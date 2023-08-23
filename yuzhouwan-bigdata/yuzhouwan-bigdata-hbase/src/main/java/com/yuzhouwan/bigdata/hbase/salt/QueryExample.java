@@ -16,7 +16,7 @@ import java.util.Map;
 public class QueryExample {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(QueryExample.class);
-    private static Configuration conf;
+    private static final Configuration conf;
 
     static {
         conf = HBaseConfiguration.create();

@@ -33,12 +33,12 @@ public class PatentMapper extends Mapper<LongWritable, Text, Text, Text> {
     private static final String FIELD_SPLIT_TOKEN = "','";
 
     //Ansj中文分词组件
-    private static KeyWordComputer<?> kwc = new KeyWordComputer<>(1);
+    private static final KeyWordComputer<?> kwc = new KeyWordComputer<>(1);
 
     //输出的 Text的 Key
-    private Text writeKey = new Text();
+    private final Text writeKey = new Text();
     //输出的 Text的 Value
-    private Text writeValue = new Text();
+    private final Text writeValue = new Text();
 
     /**
      * Mapper 的核心方法，用来处理 海量的输入数据.

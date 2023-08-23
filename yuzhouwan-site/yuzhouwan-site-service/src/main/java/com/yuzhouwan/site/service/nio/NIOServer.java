@@ -63,8 +63,8 @@ class NIOServer {
      */
     private class SelectorLoop implements Runnable {
 
-        private Selector selector;
-        private ByteBuffer temp = ByteBuffer.allocate(1024);
+        private final Selector selector;
+        private final ByteBuffer temp = ByteBuffer.allocate(1024);
 
         SelectorLoop() throws IOException {
             this.selector = Selector.open();

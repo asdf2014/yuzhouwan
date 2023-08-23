@@ -25,7 +25,7 @@ public class DruidRestUtils {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DruidRestUtils.class);
     private static final TimeUnit DEFEAT_UNIT = TimeUnit.MILLISECONDS;
-    private static long DEFEAT_TIMEOUT;
+    private static final long DEFEAT_TIMEOUT;
 
     static {
         String timeOut = PropUtils.getInstance().getProperty("http.timeout.default.second");

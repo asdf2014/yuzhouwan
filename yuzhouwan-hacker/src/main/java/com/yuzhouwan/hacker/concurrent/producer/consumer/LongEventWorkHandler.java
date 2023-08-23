@@ -12,7 +12,7 @@ import com.lmax.disruptor.WorkHandler;
  */
 public class LongEventWorkHandler implements WorkHandler<LongEvent> {
 
-    private String workerName;
+    private final String workerName;
 
     public LongEventWorkHandler(String workerName) {
         this.workerName = workerName;

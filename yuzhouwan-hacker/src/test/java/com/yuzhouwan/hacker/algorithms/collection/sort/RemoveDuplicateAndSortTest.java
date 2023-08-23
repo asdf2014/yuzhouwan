@@ -12,7 +12,7 @@ import org.junit.Test;
  */
 public class RemoveDuplicateAndSortTest {
 
-    private RemoveDuplicateAndSort r = new RemoveDuplicateAndSort();
+    private final RemoveDuplicateAndSort r = new RemoveDuplicateAndSort();
 
     @Test
     public void test() {

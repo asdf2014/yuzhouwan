@@ -20,9 +20,9 @@ public class InverseIndexByKeywordCombiner extends Reducer<Text, Text, Text, Tex
     private static final Logger LOGGER = LoggerFactory.getLogger(InverseIndexByKeywordCombiner.class);
 
     //输出的 Text的 Key
-    private Text writeKey = new Text();
+    private final Text writeKey = new Text();
     //输出的 Text的 Value
-    private Text writeValue = new Text();
+    private final Text writeValue = new Text();
 
     /**
      * Combiner 的核心方法，用来处理 海量的 Mapper端输入数据.

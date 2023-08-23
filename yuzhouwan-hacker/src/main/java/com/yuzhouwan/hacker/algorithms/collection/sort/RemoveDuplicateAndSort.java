@@ -17,18 +17,18 @@ public class RemoveDuplicateAndSort {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RemoveDuplicateAndSort.class);
 
-    private static Random r0 = new Random(17);
-    private static Random r1 = new Random(34);
-    private static Random r2 = new Random(91);
+    private static final Random r0 = new Random(17);
+    private static final Random r1 = new Random(34);
+    private static final Random r2 = new Random(91);
 
-    private static Comparator<Company> comparator = (c0, c1) -> {
+    private static final Comparator<Company> comparator = (c0, c1) -> {
 
         double of = c0.getFoundation();
         double tf = c1.getFoundation();
         return Double.compare(tf, of);
     };
 
-    private static Comparator<Company> comparator4Equal = (c1, c2) -> {
+    private static final Comparator<Company> comparator4Equal = (c1, c2) -> {
 
         String city1 = c1.getCity();
         String city2 = c2.getCity();

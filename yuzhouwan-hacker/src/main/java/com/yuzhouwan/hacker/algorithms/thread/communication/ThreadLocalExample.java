@@ -12,8 +12,8 @@ import java.util.Random;
  */
 public class ThreadLocalExample {
 
-    private static ThreadLocal<Integer> x = new ThreadLocal<>();
-    private static ThreadLocal<ThreadScopeThreadLocal> threadScopeThreadLocal = new ThreadLocal<>();
+    private static final ThreadLocal<Integer> x = new ThreadLocal<>();
+    private static final ThreadLocal<ThreadScopeThreadLocal> threadScopeThreadLocal = new ThreadLocal<>();
 
     public static void main(String[] args) {
 
@@ -74,7 +74,7 @@ public class ThreadLocalExample {
  * ThreadScopeThreadLocal.
  */
 final class ThreadScopeThreadLocal {
-    private static ThreadLocal<ThreadScopeThreadLocal> map = new ThreadLocal<>();
+    private static final ThreadLocal<ThreadScopeThreadLocal> map = new ThreadLocal<>();
     private String name;
     private int age;
 

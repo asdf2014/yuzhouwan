@@ -69,7 +69,7 @@ public final class RBPainter implements ActionListener, MouseListener, MouseMoti
     private static Graphics2D offScreen, onscreen;
 
     // singleton for callbacks: avoids generation of extra .class files
-    private static RBPainter std = new RBPainter();
+    private static final RBPainter std = new RBPainter();
 
     // the frame for drawing to the screen
     private static JFrame frame;

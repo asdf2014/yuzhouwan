@@ -38,7 +38,7 @@ public class SnmpH3C {
     private UserTarget userTarget;
     private ScopedPDU pdu;
 
-    private H3CInfos h3CInfos;
+    private final H3CInfos h3CInfos;
 
     public SnmpH3C(H3CInfos h3CInfos) {
         this.h3CInfos = h3CInfos;

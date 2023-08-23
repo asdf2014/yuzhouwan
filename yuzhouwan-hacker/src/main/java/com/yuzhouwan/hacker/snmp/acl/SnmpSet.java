@@ -10,7 +10,7 @@ package com.yuzhouwan.hacker.snmp.acl;
  */
 public class SnmpSet {
 
-    private SnmpUtil _util;
+    private final SnmpUtil _util;
 
     public SnmpSet(String host, String varbind) {
         _util = new SnmpUtil(host, varbind, false, 0);

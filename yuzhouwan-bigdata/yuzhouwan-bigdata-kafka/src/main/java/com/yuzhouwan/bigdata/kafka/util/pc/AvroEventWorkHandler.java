@@ -14,9 +14,9 @@ import kafka.producer.KeyedMessage;
  */
 public class AvroEventWorkHandler implements WorkHandler<AvroEvent> {
 
-    private Producer<String, byte[]> producer;
-    private String topic;
-    private String partition;
+    private final Producer<String, byte[]> producer;
+    private final String topic;
+    private final String partition;
 
     public AvroEventWorkHandler(Producer<String, byte[]> producer, String topic, int partition) {
         this.producer = producer;

@@ -13,7 +13,7 @@ public final class FalseSharing implements Runnable {
 
     public static final int NUM_THREADS = 4; // change
     public static final long ITERATIONS = 500L * 1000L * 1000L;
-    private static VolatileLong[] longs = new VolatileLong[NUM_THREADS];
+    private static final VolatileLong[] longs = new VolatileLong[NUM_THREADS];
 
     static {
         for (int i = 0; i < longs.length; i++) {

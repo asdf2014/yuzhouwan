@@ -18,9 +18,9 @@ public class WatchRunnable implements Runnable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WatchRunnable.class);
 
-    private IDirUtils dealProcessor;
-    private Long waitTime;
-    private WatchService watchService;
+    private final IDirUtils dealProcessor;
+    private final Long waitTime;
+    private final WatchService watchService;
 
     /**
      * Controller for thread stops safely.

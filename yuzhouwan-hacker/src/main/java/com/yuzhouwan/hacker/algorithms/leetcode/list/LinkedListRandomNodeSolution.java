@@ -24,8 +24,8 @@ class LinkedListRandomNodeSolution {
      * What if the linked list is extremely large and its length is unknown to you?
      * Could you solve this efficiently without using extra space?
      */
-    private ListNode head;
-    private Random random;
+    private final ListNode head;
+    private final Random random;
 
     /**
      * @param head The linked list's head.

@@ -10,8 +10,9 @@ package com.yuzhouwan.hacker.algorithms.array;
  */
 public class CircularBufferSimple {
 
-    private int len, index;
-    private int[] buffer;
+    private final int len;
+  private int index;
+    private final int[] buffer;
 
     public CircularBufferSimple(int len) {
         this.len = len;

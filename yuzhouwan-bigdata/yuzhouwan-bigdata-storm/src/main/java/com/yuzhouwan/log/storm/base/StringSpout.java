@@ -25,7 +25,7 @@ public class StringSpout extends BaseRichSpout {
 
     private SpoutOutputCollector collector;
 
-    private String[] words;
+    private final String[] words;
 
     public StringSpout(String... words) {
         this.words = words;

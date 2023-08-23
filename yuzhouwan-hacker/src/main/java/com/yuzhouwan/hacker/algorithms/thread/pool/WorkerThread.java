@@ -10,7 +10,7 @@ package com.yuzhouwan.hacker.algorithms.thread.pool;
  */
 class WorkerThread implements Runnable {
 
-    private String command;
+    private final String command;
 
     WorkerThread(String s) {
         this.command = s;

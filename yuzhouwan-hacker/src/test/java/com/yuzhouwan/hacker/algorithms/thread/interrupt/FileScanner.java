@@ -46,7 +46,7 @@ public class FileScanner {
             }
         });
         final Thread interrupter = new Thread("Interrupter") {
-            private LongAdder longAdder = new LongAdder();
+            private final LongAdder longAdder = new LongAdder();
 
             public void run() {
                 while (true) {

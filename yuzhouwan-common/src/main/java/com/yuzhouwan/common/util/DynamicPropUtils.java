@@ -42,7 +42,7 @@ public final class DynamicPropUtils implements Serializable, Cloneable, Closeabl
     private static volatile DynamicPropUtils instance;
     private static CuratorFramework curatorFramework;
     // tick for sync
-    private static LongAdder TICK = new LongAdder();
+    private static final LongAdder TICK = new LongAdder();
     private static volatile boolean KEEP_SYNCING = true;
     private static final Runnable TIMING_SYNC = () -> {
         while (KEEP_SYNCING) {

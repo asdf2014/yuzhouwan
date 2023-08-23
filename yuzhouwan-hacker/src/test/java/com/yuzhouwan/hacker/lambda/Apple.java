@@ -12,9 +12,9 @@ import com.alibaba.fastjson.JSON;
  */
 public class Apple {
 
-    private String name;
-    private String color;
-    private Double weight;
+    private final String name;
+    private final String color;
+    private final Double weight;
 
     Apple(String name, String color, Double weight) {
         this.name = name;

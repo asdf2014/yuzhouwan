@@ -16,7 +16,7 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 @ChannelHandler.Sharable // 注解 @Sharable 可以让它在 channels 间共享
 public class EchoServerHandler extends ChannelInboundHandlerAdapter {
 
-    private static byte[] HELLO_WORLD_BYTES = "Hello World".getBytes();
+    private static final byte[] HELLO_WORLD_BYTES = "Hello World".getBytes();
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {

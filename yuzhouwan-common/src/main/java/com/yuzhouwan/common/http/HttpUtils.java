@@ -57,11 +57,11 @@ public final class HttpUtils {
     private static volatile HttpUtils helper;
     private static String userAgent;
 
-    private static int TIMEOUT_CONNECTION;
-    private static int TIMEOUT_SOCKET;
-    private static int MAX_TOTAL;
-    private static int MAX_RETRY;
-    private static int MAX_ROUTE_TOTAL;
+    private static final int TIMEOUT_CONNECTION;
+    private static final int TIMEOUT_SOCKET;
+    private static final int MAX_TOTAL;
+    private static final int MAX_RETRY;
+    private static final int MAX_ROUTE_TOTAL;
 
     static {
         String timeOutConn = PropUtils.getInstance().getProperty("TIMEOUT_CONNECTION");
@@ -78,7 +78,7 @@ public final class HttpUtils {
 
     private CloseableHttpClient httpClient;
     private HttpClientContext httpClientContext;
-    private TrustManager[] trustManagers = new TrustManager[1];
+    private final TrustManager[] trustManagers = new TrustManager[1];
 
     private HttpUtils() {
     }

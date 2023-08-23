@@ -35,7 +35,7 @@ public class ZKBenchmarkWatch {
     private static ZKBenchmarkWatch bench;
     private CuratorFramework curatorFramework;
     private String znodePath10KB;
-    private LinkedList<String> znodeWatchNodes = new LinkedList<>();
+    private final LinkedList<String> znodeWatchNodes = new LinkedList<>();
     private byte[] jute10KB;
 
     /*

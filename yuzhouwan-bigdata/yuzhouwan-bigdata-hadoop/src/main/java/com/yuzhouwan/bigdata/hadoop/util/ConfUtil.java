@@ -21,7 +21,7 @@ import java.util.Properties;
 public final class ConfUtil {
 
     //最大分区，即 结果文件的数量
-    private static int max;
+    private static final int max;
 
     static {
         //实例化

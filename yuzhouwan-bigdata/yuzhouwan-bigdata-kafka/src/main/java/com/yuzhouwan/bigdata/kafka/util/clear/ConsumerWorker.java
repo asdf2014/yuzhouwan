@@ -20,8 +20,8 @@ public class ConsumerWorker implements Runnable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ConsumerWorker.class);
 
-    private KafkaStream<byte[], byte[]> kafkaStream;
-    private int threadNum;
+    private final KafkaStream<byte[], byte[]> kafkaStream;
+    private final int threadNum;
 
     public ConsumerWorker(KafkaStream<byte[], byte[]> kafkaStream, int threadNum) {
         this.threadNum = threadNum;
