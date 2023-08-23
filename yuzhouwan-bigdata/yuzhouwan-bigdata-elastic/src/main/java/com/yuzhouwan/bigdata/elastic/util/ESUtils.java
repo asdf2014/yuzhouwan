@@ -83,21 +83,25 @@ public final class ESUtils {
     }
 
     public static String buildTimestampQuery(Long timestampStart, Long timestampEnd) {
-        String timestampPrefix = "        {\n"
-                + "          \"range\": {\n"
-                + "            \"time\": {\n";
-        String timestampPostfix = "            }\n"
-                + "          }\n"
-                + "        },\n";
+        String timestampPrefix = """
+                  {
+                    "range": {
+                      "time": {
+          """;
+        String timestampPostfix = """
+                      }
+                    }
+                  },
+          """;
         if (timestampStart != null && timestampEnd != null)
             return timestampPrefix
-                    + "              \"gte\": \"" + timestampStart + "\",\n"
-                    + "              \"lt\": \"" + timestampEnd + "\"\n"
-                    + timestampPostfix;
+              + "              \"gte\": \"" + timestampStart + "\",\n"
+              + "              \"lt\": \"" + timestampEnd + "\"\n"
+              + timestampPostfix;
         else if (timestampStart == null && timestampEnd != null)
             return timestampPrefix
-                    + "              \"lt\": \"" + timestampEnd + "\"\n"
-                    + timestampPostfix;
+              + "              \"lt\": \"" + timestampEnd + "\"\n"
+              + timestampPostfix;
         else if (timestampStart != null)
             return timestampPrefix
                     + "              \"gte\": \"" + timestampStart + "\"\n"

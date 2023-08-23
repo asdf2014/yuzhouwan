@@ -4056,22 +4056,31 @@ public final class DataProtos {
         descriptor;
     static {
         java.lang.String[] descriptorData = {
-            "\n\020DataProtos.proto\022\tgenerated\"\177\n\020DataQue" +
-                "ryRequest\022\021\n\ttableName\030\001 \001(\t\022\020\n\010startRow" +
-                "\030\002 \001(\t\022\016\n\006endRow\030\003 \001(\t\022\016\n\006rowKey\030\004 \001(\t\022\023" +
-                "\n\013includedEnd\030\005 \001(\010\022\021\n\tisSalting\030\006 \001(\010\"\331" +
-                "\001\n\021DataQueryResponse\0221\n\007rowList\030\001 \003(\0132 ." +
-                "generated.DataQueryResponse.Row\032E\n\004Cell\022" +
-                "\r\n\005value\030\001 \002(\014\022\016\n\006family\030\002 \002(\014\022\021\n\tqualif" +
-                "ier\030\003 \002(\014\022\013\n\003row\030\004 \002(\014\032J\n\003Row\022\016\n\006rowKey\030" +
-                "\001 \001(\014\0223\n\010cellList\030\002 \003(\0132!.generated.Data" +
-                "QueryResponse.Cell2\265\001\n\020QueryDataService\022" +
-                "U\n\030queryByStartRowAndEndRow\022\033.generated." +
-                "DataQueryRequest\032\034.generated.DataQueryRe" +
-                "sponse\022J\n\rqueryByRowKey\022\033.generated.Data" +
-                "QueryRequest\032\034.generated.DataQueryRespon" +
-                "seB;\n%com.yuzhouwan.bigdata.hbase.util.s" +
-                "altB\nDataProtosH\001\210\001\001\240\001\001"
+          """
+
+\020DataProtos.proto\022\tgenerated"\177
+\020DataQueryRequest\022\021
+\ttableName\030\001 \001(\t\022\020
+\010startRow\030\002 \001(\t\022\016
+\006endRow\030\003 \001(\t\022\016
+\006rowKey\030\004 \001(\t\022\023
+\013includedEnd\030\005 \001(\010\022\021
+\tisSalting\030\006 \001(\010"\331\001
+\021DataQueryResponse\0221
+\007rowList\030\001 \003(\0132 .generated.DataQueryResponse.Row\032E
+\004Cell\022\r
+\005value\030\001 \002(\014\022\016
+\006family\030\002 \002(\014\022\021
+\tqualifier\030\003 \002(\014\022\013
+\003row\030\004 \002(\014\032J
+\003Row\022\016
+\006rowKey\030\001 \001(\014\0223
+\010cellList\030\002 \003(\0132!.generated.DataQueryResponse.Cell2\265\001
+\020QueryDataService\022U
+\030queryByStartRowAndEndRow\022\033.generated.DataQueryRequest\032\034.generated.DataQueryResponse\022J
+\rqueryByRowKey\022\033.generated.DataQueryRequest\032\034.generated.DataQueryResponseB;
+%com.yuzhouwan.bigdata.hbase.util.saltB
+DataProtosH\001\210\001\001\240\001\001"""
         };
         descriptor = com.google.protobuf.Descriptors.FileDescriptor
             .internalBuildGeneratedFileFrom(descriptorData,
