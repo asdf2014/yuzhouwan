@@ -16,6 +16,7 @@ class Prop {
     private long modify;
 
     // Necessary: default constructor for FastJson
+    @SuppressWarnings("unused")
     public Prop() {
     }
 
