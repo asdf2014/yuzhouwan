@@ -28,13 +28,7 @@ public class MultiThreadsLoopWithNotify {
     /**
      * Leader.
      */
-    private static class Leader implements Runnable {
-
-        private final LockHolder lockHolder;
-
-        public Leader(LockHolder lockHolder) {
-            this.lockHolder = lockHolder;
-        }
+    private record Leader(LockHolder lockHolder) implements Runnable {
 
         @Override
         public void run() {
@@ -47,7 +41,7 @@ public class MultiThreadsLoopWithNotify {
                     synchronized (lockHolder) {
                         lockHolder.notify();
                         System.out.println("Thread: [".concat(threadName).concat("] sent the message is ")
-                                .concat(lockHolder.getHolder()).concat("."));
+                          .concat(lockHolder.getHolder()).concat("."));
                     }
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
@@ -59,13 +53,7 @@ public class MultiThreadsLoopWithNotify {
     /**
      * Reporter.
      */
-    private static class Reporter implements Runnable {
-
-        private final LockHolder lockHolder;
-
-        Reporter(LockHolder lockHolder) {
-            this.lockHolder = lockHolder;
-        }
+    private record Reporter(LockHolder lockHolder) implements Runnable {
 
         @Override
         public void run() {
@@ -79,7 +67,7 @@ public class MultiThreadsLoopWithNotify {
                         System.out.println("Thread: [".concat(threadName).concat("] is waiting the message..."));
                         lockHolder.wait();
                         System.out.println("Thread: [".concat(threadName).concat("] got the message is ")
-                                .concat(lockHolder.getHolder()).concat("."));
+                          .concat(lockHolder.getHolder()).concat("."));
                     }
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);

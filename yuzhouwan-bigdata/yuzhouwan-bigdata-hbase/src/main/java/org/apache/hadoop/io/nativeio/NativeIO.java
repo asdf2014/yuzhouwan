@@ -739,14 +739,7 @@ public class NativeIO {
             }
         }
 
-        private static class CachedName {
-            final long timestamp;
-            final String name;
-
-            public CachedName(String name, long timestamp) {
-                this.name = name;
-                this.timestamp = timestamp;
-            }
+        private record CachedName(String name, long timestamp) {
         }
     }
 
