@@ -64,7 +64,7 @@ public class StreamPerformance {
                 len, countLoop, (endTime - startTime));
 
         startTime = System.nanoTime();
-        countStream = list.stream().reduce(countStream, (acc, e) -> acc + e);
+        countStream = list.stream().reduce(countStream, Integer::sum);
         endTime = System.nanoTime();
 
         System.out.printf("Lambda Stream:\r\n\tArrayList: %d elements, Count: %d, Time: %d ns%n",

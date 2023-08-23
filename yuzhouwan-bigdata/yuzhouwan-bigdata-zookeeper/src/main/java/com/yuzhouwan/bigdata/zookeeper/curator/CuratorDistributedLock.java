@@ -52,18 +52,15 @@ public class CuratorDistributedLock {
         int count = 10;
         while (count > 0) {
 
-            new Thread() {
-                @Override
-                public void run() {
-                    try {
-                        countDownLatch.await();
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-                    String now = simpleDateFormat.format(new Date());
-                    LOGGER.info("Now time: ".concat(now));
+            new Thread(() -> {
+                try {
+                    countDownLatch.await();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
                 }
-            }.start();
+                String now = simpleDateFormat.format(new Date());
+                LOGGER.info("Now time: ".concat(now));
+            }).start();
             count--;
         }
         countDownLatch.countDown();
@@ -76,20 +73,17 @@ public class CuratorDistributedLock {
         int count = 10;
         while (count > 0) {
 
-            new Thread() {
-                @Override
-                public void run() {
-                    try {
-                        countDownLatch.await();
-                        interProcessLock.acquire();
-                        String now = simpleDateFormat.format(new Date());
-                        LOGGER.info("Now time: ".concat(now));
-                        interProcessLock.release();
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
+            new Thread(() -> {
+                try {
+                    countDownLatch.await();
+                    interProcessLock.acquire();
+                    String now = simpleDateFormat.format(new Date());
+                    LOGGER.info("Now time: ".concat(now));
+                    interProcessLock.release();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
                 }
-            }.start();
+            }).start();
             count--;
         }
         countDownLatch.countDown();

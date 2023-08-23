@@ -66,9 +66,8 @@ public class DistributedQueue {
 
     private static ZooKeeper connection(String host) throws IOException {
 
-        return new ZooKeeper(host, 60000, event -> {
-            LOGGER.info("Path: {}, State: {}", event.getPath(), event.getState());
-        });
+        return new ZooKeeper(host, 60_000,
+          event -> LOGGER.info("Path: {}, State: {}", event.getPath(), event.getState()));
     }
 
     private static void initQueue(ZooKeeper zk) throws KeeperException, InterruptedException {

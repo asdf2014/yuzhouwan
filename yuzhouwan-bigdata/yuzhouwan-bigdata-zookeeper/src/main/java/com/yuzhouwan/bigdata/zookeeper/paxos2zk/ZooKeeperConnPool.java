@@ -212,20 +212,10 @@ public final class ZooKeeperConnPool {
         LOGGER.info("################ Balance the storage of pool...");
 
         if (used < MAX_CONN_IN_POOL && pool.size() < MIN_CONN_IN_POOL) {
-            Thread addSomeConnThread = new Thread() {
-                @Override
-                public void run() {
-                    initStorage();
-                }
-            };
+            Thread addSomeConnThread = new Thread(ZooKeeperConnPool::initStorage);
             addSomeConnThread.start();
         } else if (used < MAX_CONN_IN_POOL && pool.size() > MIN_CONN_IN_POOL) {
-            Thread removeSomeConnThread = new Thread() {
-                @Override
-                public void run() {
-                    closeOverFullZKFromPool();
-                }
-            };
+            Thread removeSomeConnThread = new Thread(this::closeOverFullZKFromPool);
             removeSomeConnThread.start();
         }
     }

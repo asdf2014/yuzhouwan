@@ -3,8 +3,6 @@ package com.yuzhouwan.bigdata.zookeeper.curator;
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
-import org.apache.curator.framework.api.BackgroundCallback;
-import org.apache.curator.framework.api.CuratorEvent;
 import org.apache.curator.retry.RetryNTimes;
 import org.apache.zookeeper.CreateMode;
 import org.slf4j.Logger;
@@ -62,19 +60,13 @@ public class CuratorInBackground {
 
     public void createEphemeralNodeRecursionInBackground(String path) throws Exception {
         curatorFramework.create()
-                .creatingParentsIfNeeded()
-                .withMode(CreateMode.PERSISTENT)
-                .inBackground(new BackgroundCallback() {
-                    @Override
-                    public void processResult(CuratorFramework client, CuratorEvent event) {
-
-                        LOGGER.info("event's result code: {}, type: {}", event.getResultCode(), event.getType());
-
-                        showCurrentThreadName();
-
-                        countDownLatch.countDown();
-                    }
-                }).forPath(path);
+          .creatingParentsIfNeeded()
+          .withMode(CreateMode.PERSISTENT)
+          .inBackground((client, event) -> {
+              LOGGER.info("event's result code: {}, type: {}", event.getResultCode(), event.getType());
+              showCurrentThreadName();
+              countDownLatch.countDown();
+          }).forPath(path);
     }
 
     private void showCurrentThreadName() {

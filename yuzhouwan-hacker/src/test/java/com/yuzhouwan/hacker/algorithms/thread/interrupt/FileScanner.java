@@ -38,15 +38,13 @@ public class FileScanner {
 
     @Test
     public void test() throws Exception {
-        final Thread fileScanner = new Thread() {
-            public void run() {
-                try {
-                    listFile(new File(DirUtils.PROJECT_BASE_PATH));
-                } catch (InterruptedException e) {
-                    ExceptionUtils.errorInfo(e);
-                }
+        final Thread fileScanner = new Thread(() -> {
+            try {
+                listFile(new File(DirUtils.PROJECT_BASE_PATH));
+            } catch (InterruptedException e) {
+                ExceptionUtils.errorInfo(e);
             }
-        };
+        });
         final Thread interrupter = new Thread("Interrupter") {
             private LongAdder longAdder = new LongAdder();
 

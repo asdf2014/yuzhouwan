@@ -55,28 +55,25 @@ public class CuratorDistributedBarrier {
     public void enterLeaveBarrier(int count) throws Exception {
 
         while (count > 0) {
-            new Thread() {
-                @Override
-                public void run() {
-                    Thread t = Thread.currentThread();
-                    String threadName = t.getName();
-                    System.out.println(threadName + " is ready...");
-                    try {
-                        /**
-                         * Exception in thread "Thread-1" Exception in thread "Thread-3"
-                         * java.lang.RuntimeException: org.apache.zookeeper.KeeperException$NodeExistsException:
-                         *
-                         * KeeperErrorCode = NodeExists for /distBarrier/double/59686981-2dd5-4a74-a990-e99046b08a58
-                         */
-                        distributedDoubleBarrier.enter();
-                        System.out.println(threadName + " is entering...");
-                        distributedDoubleBarrier.leave();
-                        System.out.println(threadName + " is leaving...");
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
+            new Thread(() -> {
+                Thread t = Thread.currentThread();
+                String threadName = t.getName();
+                System.out.println(threadName + " is ready...");
+                try {
+                    /*
+                     * Exception in thread "Thread-1" Exception in thread "Thread-3"
+                     * java.lang.RuntimeException: org.apache.zookeeper.KeeperException$NodeExistsException:
+                     *
+                     * KeeperErrorCode = NodeExists for /distBarrier/double/59686981-2dd5-4a74-a990-e99046b08a58
+                     */
+                    distributedDoubleBarrier.enter();
+                    System.out.println(threadName + " is entering...");
+                    distributedDoubleBarrier.leave();
+                    System.out.println(threadName + " is leaving...");
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
                 }
-            }.start();
+            }).start();
             count--;
         }
         Thread.sleep(2000);
@@ -88,19 +85,16 @@ public class CuratorDistributedBarrier {
         while (count > 0) {
 
             final int finalCount = count;
-            new Thread() {
-                @Override
-                public void run() {
-                    try {
-                        LOGGER.info("set {}...", finalCount);
-                        distributedBarrier.setBarrier();
-                        distributedBarrier.waitOnBarrier();
-                        LOGGER.info("start {}...", finalCount);
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
+            new Thread(() -> {
+                try {
+                    LOGGER.info("set {}...", finalCount);
+                    distributedBarrier.setBarrier();
+                    distributedBarrier.waitOnBarrier();
+                    LOGGER.info("start {}...", finalCount);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
                 }
-            }.start();
+            }).start();
             count--;
         }
         /**
