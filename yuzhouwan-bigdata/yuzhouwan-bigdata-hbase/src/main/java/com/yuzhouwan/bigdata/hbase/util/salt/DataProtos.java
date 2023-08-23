@@ -2384,8 +2384,8 @@ public final class DataProtos {
                 if (((bitField0_ & 0x00000001) != 0)) {
                     output.writeBytes(1, rowKey_);
                 }
-                for (int i = 0; i < cellList_.size(); i++) {
-                    output.writeMessage(2, cellList_.get(i));
+                for (Cell cell : cellList_) {
+                    output.writeMessage(2, cell);
                 }
                 unknownFields.writeTo(output);
             }
@@ -2400,9 +2400,9 @@ public final class DataProtos {
                     size += com.google.protobuf.CodedOutputStream
                         .computeBytesSize(1, rowKey_);
                 }
-                for (int i = 0; i < cellList_.size(); i++) {
+                for (Cell cell : cellList_) {
                     size += com.google.protobuf.CodedOutputStream
-                        .computeMessageSize(2, cellList_.get(i));
+                      .computeMessageSize(2, cell);
                 }
                 size += unknownFields.getSerializedSize();
                 memoizedSize = size;
@@ -3121,8 +3121,8 @@ public final class DataProtos {
         @java.lang.Override
         public void writeTo(com.google.protobuf.CodedOutputStream output)
             throws java.io.IOException {
-            for (int i = 0; i < rowList_.size(); i++) {
-                output.writeMessage(1, rowList_.get(i));
+            for (Row row : rowList_) {
+                output.writeMessage(1, row);
             }
             unknownFields.writeTo(output);
         }
@@ -3133,9 +3133,9 @@ public final class DataProtos {
             if (size != -1) return size;
 
             size = 0;
-            for (int i = 0; i < rowList_.size(); i++) {
+            for (Row row : rowList_) {
                 size += com.google.protobuf.CodedOutputStream
-                    .computeMessageSize(1, rowList_.get(i));
+                  .computeMessageSize(1, row);
             }
             size += unknownFields.getSerializedSize();
             memoizedSize = size;

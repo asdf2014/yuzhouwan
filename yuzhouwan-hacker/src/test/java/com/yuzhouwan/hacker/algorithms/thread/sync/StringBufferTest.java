@@ -10,6 +10,9 @@ import org.junit.Test;
  * @author Benedict Jin
  * @since 2017/9/28
  */
+@SuppressWarnings({"StringBufferMayBeStringBuilder",
+  "MismatchedQueryAndUpdateOfStringBuilder",
+  "SynchronizationOnLocalVariableOrMethodParameter"})
 public class StringBufferTest {
 
     public static void strBufferWithoutSync() {
