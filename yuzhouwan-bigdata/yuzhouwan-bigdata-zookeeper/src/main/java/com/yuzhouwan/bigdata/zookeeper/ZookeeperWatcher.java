@@ -51,16 +51,10 @@ public class ZookeeperWatcher {
             PathChildrenCacheEvent.Type childrenEventType = event.getType();
             if (childrenEventType != null) {
                 switch (childrenEventType) {
-                    case CONNECTION_RECONNECTED:
-                        cached.rebuild();
-                        break;
-                    case CONNECTION_SUSPENDED:
-                    case CONNECTION_LOST:
-                        LOGGER.error("Connection error, waiting...");
-                        break;
-                    default:
-                        LOGGER.info("PathChildrenCache changed : {path:" + event.getData().getPath() + " data:"
-                                + new String(event.getData().getData()) + "}");
+                    case CONNECTION_RECONNECTED -> cached.rebuild();
+                    case CONNECTION_SUSPENDED, CONNECTION_LOST -> LOGGER.error("Connection error, waiting...");
+                    default -> LOGGER.info("PathChildrenCache changed : {path:" + event.getData().getPath() + " data:"
+                      + new String(event.getData().getData()) + "}");
                 }
             }
         });

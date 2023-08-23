@@ -117,29 +117,17 @@ public class CuratorChildrenCache {
                             PathChildrenCacheEvent.Type type = event.getType();
                             LOGGER.info("Event type: {}", type);
                             switch (type) {
-                                case CONNECTION_RECONNECTED:
-                                    LOGGER.info("Reconnected...");
-                                    break;
-                                case CONNECTION_LOST:
+                                case CONNECTION_RECONNECTED -> LOGGER.info("Reconnected...");
+                                case CONNECTION_LOST -> {
                                     LOGGER.info("Connection lost...");
                                     pathChildrenCache.rebuild();
                                     LOGGER.info("Rebuild pathChildrenCache...");
-                                    break;
-                                case CONNECTION_SUSPENDED:
-                                    LOGGER.info("Connection suspended...");
-                                    break;
-                                case CHILD_ADDED:
-                                    LOGGER.info("Add new child: {}", event.getData().getPath());
-                                    break;
-                                case CHILD_UPDATED:
-                                    LOGGER.info("Updated child: {}", event.getData().getPath());
-                                    break;
-                                case CHILD_REMOVED:
-                                    LOGGER.info("Removed child: {}", event.getData().getPath());
-                                    break;
-                                default:
-                                    LOGGER.error(String.format("Something was not excepted: %s", type));
-                                    break;
+                                }
+                                case CONNECTION_SUSPENDED -> LOGGER.info("Connection suspended...");
+                                case CHILD_ADDED -> LOGGER.info("Add new child: {}", event.getData().getPath());
+                                case CHILD_UPDATED -> LOGGER.info("Updated child: {}", event.getData().getPath());
+                                case CHILD_REMOVED -> LOGGER.info("Removed child: {}", event.getData().getPath());
+                                default -> LOGGER.error(String.format("Something was not excepted: %s", type));
                             }
                         }
                 );

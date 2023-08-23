@@ -139,49 +139,40 @@ public final class DataProtos {
                 while (!done) {
                     int tag = input.readTag();
                     switch (tag) {
-                        case 0:
-                            done = true;
-                            break;
-                        case 10: {
+                        case 0 -> done = true;
+                        case 10 -> {
                             com.google.protobuf.ByteString bs = input.readBytes();
                             bitField0_ |= 0x00000001;
                             tableName_ = bs;
-                            break;
                         }
-                        case 18: {
+                        case 18 -> {
                             com.google.protobuf.ByteString bs = input.readBytes();
                             bitField0_ |= 0x00000002;
                             startRow_ = bs;
-                            break;
                         }
-                        case 26: {
+                        case 26 -> {
                             com.google.protobuf.ByteString bs = input.readBytes();
                             bitField0_ |= 0x00000004;
                             endRow_ = bs;
-                            break;
                         }
-                        case 34: {
+                        case 34 -> {
                             com.google.protobuf.ByteString bs = input.readBytes();
                             bitField0_ |= 0x00000008;
                             rowKey_ = bs;
-                            break;
                         }
-                        case 40: {
+                        case 40 -> {
                             bitField0_ |= 0x00000010;
                             includedEnd_ = input.readBool();
-                            break;
                         }
-                        case 48: {
+                        case 48 -> {
                             bitField0_ |= 0x00000020;
                             isSalting_ = input.readBool();
-                            break;
                         }
-                        default: {
+                        default -> {
                             if (!parseUnknownField(
-                                input, unknownFields, extensionRegistry, tag)) {
+                              input, unknownFields, extensionRegistry, tag)) {
                                 done = true;
                             }
-                            break;
                         }
                     }
                 }
@@ -1343,24 +1334,20 @@ public final class DataProtos {
                 while (!done) {
                     int tag = input.readTag();
                     switch (tag) {
-                        case 0:
-                            done = true;
-                            break;
-                        case 10: {
+                        case 0 -> done = true;
+                        case 10 -> {
                             if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                                 rowList_ = new java.util.ArrayList<>();
                                 mutable_bitField0_ |= 0x00000001;
                             }
                             rowList_.add(
-                                input.readMessage(com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Row.PARSER, extensionRegistry));
-                            break;
+                              input.readMessage(Row.PARSER, extensionRegistry));
                         }
-                        default: {
+                        default -> {
                             if (!parseUnknownField(
-                                input, unknownFields, extensionRegistry, tag)) {
+                              input, unknownFields, extensionRegistry, tag)) {
                                 done = true;
                             }
-                            break;
                         }
                     }
                 }
@@ -1477,35 +1464,28 @@ public final class DataProtos {
                     while (!done) {
                         int tag = input.readTag();
                         switch (tag) {
-                            case 0:
-                                done = true;
-                                break;
-                            case 10: {
+                            case 0 -> done = true;
+                            case 10 -> {
                                 bitField0_ |= 0x00000001;
                                 value_ = input.readBytes();
-                                break;
                             }
-                            case 18: {
+                            case 18 -> {
                                 bitField0_ |= 0x00000002;
                                 family_ = input.readBytes();
-                                break;
                             }
-                            case 26: {
+                            case 26 -> {
                                 bitField0_ |= 0x00000004;
                                 qualifier_ = input.readBytes();
-                                break;
                             }
-                            case 34: {
+                            case 34 -> {
                                 bitField0_ |= 0x00000008;
                                 row_ = input.readBytes();
-                                break;
                             }
-                            default: {
+                            default -> {
                                 if (!parseUnknownField(
-                                    input, unknownFields, extensionRegistry, tag)) {
+                                  input, unknownFields, extensionRegistry, tag)) {
                                     done = true;
                                 }
-                                break;
                             }
                         }
                     }
@@ -2283,29 +2263,24 @@ public final class DataProtos {
                     while (!done) {
                         int tag = input.readTag();
                         switch (tag) {
-                            case 0:
-                                done = true;
-                                break;
-                            case 10: {
+                            case 0 -> done = true;
+                            case 10 -> {
                                 bitField0_ |= 0x00000001;
                                 rowKey_ = input.readBytes();
-                                break;
                             }
-                            case 18: {
+                            case 18 -> {
                                 if (!((mutable_bitField0_ & 0x00000002) != 0)) {
                                     cellList_ = new java.util.ArrayList<>();
                                     mutable_bitField0_ |= 0x00000002;
                                 }
                                 cellList_.add(
-                                    input.readMessage(com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.Cell.PARSER, extensionRegistry));
-                                break;
+                                  input.readMessage(Cell.PARSER, extensionRegistry));
                             }
-                            default: {
+                            default -> {
                                 if (!parseUnknownField(
-                                    input, unknownFields, extensionRegistry, tag)) {
+                                  input, unknownFields, extensionRegistry, tag)) {
                                     done = true;
                                 }
-                                break;
                             }
                         }
                     }
@@ -3832,17 +3807,14 @@ public final class DataProtos {
                     throws com.google.protobuf.ServiceException {
                     if (method.getService() != getDescriptor()) {
                         throw new java.lang.IllegalArgumentException(
-                            "Service.callBlockingMethod() given method descriptor for " +
-                                "wrong service type.");
+                          "Service.callBlockingMethod() given method descriptor for " +
+                            "wrong service type.");
                     }
-                    switch(method.getIndex()) {
-                        case 0:
-                            return impl.queryByStartRowAndEndRow(controller, (com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest)request);
-                        case 1:
-                            return impl.queryByRowKey(controller, (com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest)request);
-                        default:
-                            throw new java.lang.AssertionError("Can't get here.");
-                    }
+                    return switch (method.getIndex()) {
+                        case 0 -> impl.queryByStartRowAndEndRow(controller, (DataQueryRequest) request);
+                        case 1 -> impl.queryByRowKey(controller, (DataQueryRequest) request);
+                        default -> throw new AssertionError("Can't get here.");
+                    };
                 }
 
                 public final com.google.protobuf.Message
@@ -3850,17 +3822,14 @@ public final class DataProtos {
                     com.google.protobuf.Descriptors.MethodDescriptor method) {
                     if (method.getService() != getDescriptor()) {
                         throw new java.lang.IllegalArgumentException(
-                            "Service.getRequestPrototype() given method " +
-                                "descriptor for wrong service type.");
+                          "Service.getRequestPrototype() given method " +
+                            "descriptor for wrong service type.");
                     }
-                    switch(method.getIndex()) {
-                        case 0:
-                            return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest.getDefaultInstance();
-                        case 1:
-                            return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest.getDefaultInstance();
-                        default:
-                            throw new java.lang.AssertionError("Can't get here.");
-                    }
+                    return switch (method.getIndex()) {
+                        case 0 -> DataQueryRequest.getDefaultInstance();
+                        case 1 -> DataQueryRequest.getDefaultInstance();
+                        default -> throw new AssertionError("Can't get here.");
+                    };
                 }
 
                 public final com.google.protobuf.Message
@@ -3868,17 +3837,14 @@ public final class DataProtos {
                     com.google.protobuf.Descriptors.MethodDescriptor method) {
                     if (method.getService() != getDescriptor()) {
                         throw new java.lang.IllegalArgumentException(
-                            "Service.getResponsePrototype() given method " +
-                                "descriptor for wrong service type.");
+                          "Service.getResponsePrototype() given method " +
+                            "descriptor for wrong service type.");
                     }
-                    switch(method.getIndex()) {
-                        case 0:
-                            return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.getDefaultInstance();
-                        case 1:
-                            return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.getDefaultInstance();
-                        default:
-                            throw new java.lang.AssertionError("Can't get here.");
-                    }
+                    return switch (method.getIndex()) {
+                        case 0 -> DataQueryResponse.getDefaultInstance();
+                        case 1 -> DataQueryResponse.getDefaultInstance();
+                        default -> throw new AssertionError("Can't get here.");
+                    };
                 }
 
             };
@@ -3918,22 +3884,17 @@ public final class DataProtos {
                 com.google.protobuf.Message> done) {
             if (method.getService() != getDescriptor()) {
                 throw new java.lang.IllegalArgumentException(
-                    "Service.callMethod() given method descriptor for wrong " +
-                        "service type.");
+                  "Service.callMethod() given method descriptor for wrong " +
+                    "service type.");
             }
-            switch(method.getIndex()) {
-                case 0:
-                    this.queryByStartRowAndEndRow(controller, (com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest)request,
-                        com.google.protobuf.RpcUtil.<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse>specializeCallback(
-                            done));
-                    return;
-                case 1:
-                    this.queryByRowKey(controller, (com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest)request,
-                        com.google.protobuf.RpcUtil.<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse>specializeCallback(
-                            done));
-                    return;
-                default:
-                    throw new java.lang.AssertionError("Can't get here.");
+            switch (method.getIndex()) {
+                case 0 -> this.queryByStartRowAndEndRow(controller, (DataQueryRequest) request,
+                  com.google.protobuf.RpcUtil.specializeCallback(
+                    done));
+                case 1 -> this.queryByRowKey(controller, (DataQueryRequest) request,
+                  com.google.protobuf.RpcUtil.specializeCallback(
+                    done));
+                default -> throw new AssertionError("Can't get here.");
             }
         }
 
@@ -3942,17 +3903,14 @@ public final class DataProtos {
             com.google.protobuf.Descriptors.MethodDescriptor method) {
             if (method.getService() != getDescriptor()) {
                 throw new java.lang.IllegalArgumentException(
-                    "Service.getRequestPrototype() given method " +
-                        "descriptor for wrong service type.");
+                  "Service.getRequestPrototype() given method " +
+                    "descriptor for wrong service type.");
             }
-            switch(method.getIndex()) {
-                case 0:
-                    return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest.getDefaultInstance();
-                case 1:
-                    return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest.getDefaultInstance();
-                default:
-                    throw new java.lang.AssertionError("Can't get here.");
-            }
+            return switch (method.getIndex()) {
+                case 0 -> DataQueryRequest.getDefaultInstance();
+                case 1 -> DataQueryRequest.getDefaultInstance();
+                default -> throw new AssertionError("Can't get here.");
+            };
         }
 
         public final com.google.protobuf.Message
@@ -3960,17 +3918,14 @@ public final class DataProtos {
             com.google.protobuf.Descriptors.MethodDescriptor method) {
             if (method.getService() != getDescriptor()) {
                 throw new java.lang.IllegalArgumentException(
-                    "Service.getResponsePrototype() given method " +
-                        "descriptor for wrong service type.");
+                  "Service.getResponsePrototype() given method " +
+                    "descriptor for wrong service type.");
             }
-            switch(method.getIndex()) {
-                case 0:
-                    return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.getDefaultInstance();
-                case 1:
-                    return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.getDefaultInstance();
-                default:
-                    throw new java.lang.AssertionError("Can't get here.");
-            }
+            return switch (method.getIndex()) {
+                case 0 -> DataQueryResponse.getDefaultInstance();
+                case 1 -> DataQueryResponse.getDefaultInstance();
+                default -> throw new AssertionError("Can't get here.");
+            };
         }
 
         public static Stub newStub(

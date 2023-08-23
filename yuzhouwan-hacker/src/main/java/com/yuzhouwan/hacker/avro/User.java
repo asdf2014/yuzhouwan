@@ -99,22 +99,22 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
   public org.apache.avro.Schema getSchema() { return SCHEMA$; }
   // Used by DatumWriter.  Applications should not call.
   public java.lang.Object get(int field$) {
-    switch (field$) {
-    case 0: return name;
-    case 1: return favorite_number;
-    case 2: return favorite_color;
-    default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
-    }
+    return switch (field$) {
+      case 0 -> name;
+      case 1 -> favorite_number;
+      case 2 -> favorite_color;
+      default -> throw new IndexOutOfBoundsException("Invalid index: " + field$);
+    };
   }
 
   // Used by DatumReader.  Applications should not call.
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: name = (java.lang.CharSequence)value$; break;
-    case 1: favorite_number = (java.lang.Integer)value$; break;
-    case 2: favorite_color = (java.lang.CharSequence)value$; break;
-    default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
+      case 0 -> name = (CharSequence) value$;
+      case 1 -> favorite_number = (Integer) value$;
+      case 2 -> favorite_color = (CharSequence) value$;
+      default -> throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
 

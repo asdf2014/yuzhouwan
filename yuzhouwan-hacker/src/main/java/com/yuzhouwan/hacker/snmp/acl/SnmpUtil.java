@@ -381,41 +381,19 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
 
         VariableBinding vb = new VariableBinding(new OID(oid));
         if (value != null) {
-            Variable variable;
-            switch (type) {
-                case 'i':
-                    variable = new Integer32(Integer.parseInt(value));
-                    break;
-                case 'u':
-                    variable = new UnsignedInteger32(Long.parseLong(value));
-                    break;
-                case 's':
-                    variable = new OctetString(value);
-                    break;
-                case 'x':
-                    variable = OctetString.fromString(value, ':', 16);
-                    break;
-                case 'd':
-                    variable = OctetString.fromString(value, '.', 10);
-                    break;
-                case 'b':
-                    variable = OctetString.fromString(value, ' ', 2);
-                    break;
-                case 'n':
-                    variable = new Null();
-                    break;
-                case 'o':
-                    variable = new OID(value);
-                    break;
-                case 't':
-                    variable = new TimeTicks(Long.parseLong(value));
-                    break;
-                case 'a':
-                    variable = new IpAddress(value);
-                    break;
-                default:
-                    throw new IllegalArgumentException("Variable type " + type + " not supported");
-            }
+            Variable variable = switch (type) {
+                case 'i' -> new Integer32(Integer.parseInt(value));
+                case 'u' -> new UnsignedInteger32(Long.parseLong(value));
+                case 's' -> new OctetString(value);
+                case 'x' -> OctetString.fromString(value, ':', 16);
+                case 'd' -> OctetString.fromString(value, '.', 10);
+                case 'b' -> OctetString.fromString(value, ' ', 2);
+                case 'n' -> new Null();
+                case 'o' -> new OID(value);
+                case 't' -> new TimeTicks(Long.parseLong(value));
+                case 'a' -> new IpAddress(value);
+                default -> throw new IllegalArgumentException("Variable type " + type + " not supported");
+            };
             vb.setVariable(variable);
         }
         v.add(vb);
