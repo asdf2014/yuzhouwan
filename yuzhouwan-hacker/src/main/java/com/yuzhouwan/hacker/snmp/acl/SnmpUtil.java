@@ -26,6 +26,7 @@ import java.util.Vector;
  * @author Benedict Jin
  * @since 2015/11/30
  */
+@SuppressWarnings("rawtypes")
 public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
 
     public static final int DEFAULT = 0;

@@ -33,7 +33,7 @@ public class EvolutionAlgorithmTest implements EvolutionAlgorithm {
     }
 
     @Override
-    public Comparable[] generateParent() {
+    public Comparable<?>[] generateParent() {
         return new Comparable[]{
                 100,
                 100,
@@ -53,7 +53,7 @@ public class EvolutionAlgorithmTest implements EvolutionAlgorithm {
     }
 
     @Override
-    public Comparable[] mutate(Comparable[] orig) {
+    public Comparable<?>[] mutate(Comparable[] orig) {
         orig[RandomUtil.getRandom().nextInt(orig.length)] = RandomUtil.getRandom().nextInt(100);
         return orig;
     }

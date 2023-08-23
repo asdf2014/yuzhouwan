@@ -9,7 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Benedict Jin on 2015/9/7.
+ * Copyright @ 2023 yuzhouwan.com
+ * All right reserved.
+ * Function: Jedis List Hash Test
+ *
+ * @author Benedict Jin
+ * @since 2015/9/7
  */
 public class JedisListHashTest {
 
@@ -36,7 +41,7 @@ public class JedisListHashTest {
         si.setPassword("asdf");
         shards.add(si);
 
-        pool = new ShardedJedisPool(new GenericObjectPoolConfig(), shards);
+        pool = new ShardedJedisPool(new GenericObjectPoolConfig<>(), shards);
     }
 
     public void addList(String key, String[] list) {

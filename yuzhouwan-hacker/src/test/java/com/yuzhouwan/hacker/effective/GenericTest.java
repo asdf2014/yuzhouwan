@@ -20,11 +20,11 @@ import java.util.List;
  */
 public class GenericTest {
 
-    private Generic gen;
+    private Generic<?> gen;
 
     @Before
     public void init() {
-        gen = new Generic();
+        gen = new Generic<>();
     }
 
     @Test

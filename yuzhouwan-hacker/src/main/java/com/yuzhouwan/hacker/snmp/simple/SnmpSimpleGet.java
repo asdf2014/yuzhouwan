@@ -37,10 +37,11 @@ public class SnmpSimpleGet {
      * @param community
      * @return CommunityTarget
      */
-    private static CommunityTarget createDefault(String ip, String community) {
+    @SuppressWarnings("rawtypes")
+    private static CommunityTarget<?> createDefault(String ip, String community) {
         Address address = GenericAddress.parse(DEFAULT_PROTOCOL + ":" + ip
-                + "/" + DEFAULT_PORT);
-        CommunityTarget target = new CommunityTarget();
+          + "/" + DEFAULT_PORT);
+        CommunityTarget target = new CommunityTarget<>();
         target.setCommunity(new OctetString(community));
         target.setAddress(address);
         target.setVersion(DEFAULT_VERSION);
@@ -58,7 +59,7 @@ public class SnmpSimpleGet {
      */
     public static void snmpGet(String ip, String community, List<String> oids) {
 
-        CommunityTarget target = createDefault(ip, community);
+        CommunityTarget<?> target = createDefault(ip, community);
         Snmp snmp = null;
         try {
             DefaultUdpTransportMapping transport = new DefaultUdpTransportMapping();
@@ -70,7 +71,7 @@ public class SnmpSimpleGet {
                 pdu.add(new VariableBinding(new OID(oid)));
             System.out.println("------- Send PDU -------");
             pdu.setType(PDU.GET);
-            ResponseEvent respEvent = snmp.send(pdu, target);
+            ResponseEvent<?> respEvent = snmp.send(pdu, target);
             System.out.println("PeerAddress:" + respEvent.getPeerAddress());
             PDU response = respEvent.getResponse();
 
@@ -105,7 +106,7 @@ public class SnmpSimpleGet {
      */
     public static void snmpSyncGetList(String ip, String community,
                                        List<String> oidList) {
-        CommunityTarget target = createDefault(ip, community);
+        CommunityTarget<?> target = createDefault(ip, community);
         Snmp snmp;
         try {
             DefaultUdpTransportMapping transport = new DefaultUdpTransportMapping();

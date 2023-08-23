@@ -18,6 +18,7 @@ import static com.yuzhouwan.common.util.StrUtils.NEXT_LINE;
  * @author Benedict Jin
  * @since 2015/11/24
  */
+@SuppressWarnings("rawtypes")
 public class SnmpSimpleSet {
 
     private static final int DEFAULT_VERSION = SnmpConstants.version2c;
@@ -33,10 +34,11 @@ public class SnmpSimpleSet {
      * @param community
      * @return CommunityTarget
      */
-    private static CommunityTarget createDefault(String ip, String community) {
+    @SuppressWarnings("unchecked")
+    private static CommunityTarget<?> createDefault(String ip, String community) {
 
         Address address = GenericAddress.parse(DEFAULT_PROTOCOL + ":" + ip + "/" + DEFAULT_PORT);
-        CommunityTarget target = new CommunityTarget();
+        CommunityTarget target = new CommunityTarget<>();
         target.setCommunity(new OctetString(community));
         target.setAddress(address);
         target.setVersion(DEFAULT_VERSION);
@@ -54,7 +56,7 @@ public class SnmpSimpleSet {
      */
     public static void snmpSyncSetList(String ip, String community, String oidStr) {
 
-        CommunityTarget target = createDefault(ip, community);
+        CommunityTarget<?> target = createDefault(ip, community);
         Snmp snmp;
         try {
             DefaultUdpTransportMapping transport = new DefaultUdpTransportMapping();
@@ -64,7 +66,7 @@ public class SnmpSimpleSet {
             PDU pdu = new PDU();
             pdu.add(new VariableBinding(new OID(oidStr), new Integer32(123)));
             pdu.setType(PDU.SET);
-            ResponseEvent event = snmp.send(pdu, target, null);
+            ResponseEvent<?> event = snmp.send(pdu, target, null);
             System.out.println("PeerAddress:" + event.getPeerAddress());
             PDU response = event.getResponse();
 

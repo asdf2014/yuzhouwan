@@ -1,5 +1,6 @@
 package com.yuzhouwan.hacker.algorithms.collection;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import java.util.List;
  */
 public class CollectionWithMethodTest {
 
-    private CollectionWithMethod c = new CollectionWithMethod();
+    private final CollectionWithMethod c = new CollectionWithMethod();
 
     @Test
     public void test() {
@@ -23,14 +24,16 @@ public class CollectionWithMethodTest {
     }
 
     @Test
+    @SuppressWarnings({"rawtypes", "unchecked", "ConstantConditions"})
     public void testNull() {
 
         List l = new ArrayList<>();
         l.add(null);
         l.add(1);
         for (Object o : l) {
-            if (o == null)
+            if (o == null) {
                 l.remove(o);
+            }
         }
         for (Object o : l) {
             System.out.println(o);
@@ -38,13 +41,12 @@ public class CollectionWithMethodTest {
     }
 
     @Test
+    @SuppressWarnings("EqualsWithItself")
     public void str() {
-
-        System.out.println("a".compareTo("a"));
+        Assert.assertEquals(0, "a".compareTo("a"));
     }
 
     @Test
     public void strEqual() {
     }
-
 }

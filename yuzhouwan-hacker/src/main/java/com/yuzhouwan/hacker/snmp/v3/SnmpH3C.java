@@ -26,6 +26,7 @@ import java.util.concurrent.TimeUnit;
  * @author Benedict Jin
  * @since 2015/12/29
  */
+@SuppressWarnings("rawtypes")
 public class SnmpH3C {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SnmpH3C.class);
@@ -84,7 +85,7 @@ public class SnmpH3C {
 
         LOGGER.info("Creating SNMP...");
         try {
-            TransportMapping transport = new DefaultUdpTransportMapping();
+            TransportMapping<?> transport = new DefaultUdpTransportMapping();
             transport.listen();
             snmp = new Snmp(transport);
 
@@ -181,7 +182,7 @@ public class SnmpH3C {
      */
     private void createUserTarget(String address, String securityName, int securityLevel, int securityModel,
             /*int maxSizeRequestPDU,*/ int retries, long timeout, int version) {
-        userTarget = new UserTarget();
+        userTarget = new UserTarget<>();
         userTarget.setAddress(GenericAddress.parse("udp:" + address + "/161"));
         userTarget.setSecurityName(new OctetString(securityName));
         userTarget.setSecurityLevel(securityLevel);
@@ -208,7 +209,7 @@ public class SnmpH3C {
      * @throws IOException
      * @throws InterruptedException
      */
-    private void sendGetPDU(Snmp snmp, UserTarget userTarget, ScopedPDU pdu)
+    private void sendGetPDU(Snmp snmp, UserTarget<?> userTarget, ScopedPDU pdu)
             throws IOException, InterruptedException {
 
         final CountDownLatch latch = new CountDownLatch(1);

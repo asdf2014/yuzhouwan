@@ -14,7 +14,7 @@ import java.util.List;
 public class EmptyListWithCollections {
 
     public static void emptyList() {
-        List list = Collections.EMPTY_LIST;
+        List<?> list = Collections.EMPTY_LIST;
     }
 
     public static void main(String[] args) {

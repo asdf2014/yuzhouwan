@@ -11,7 +11,7 @@ import java.util.List;
  * @author Benedict Jin
  * @since 2016/8/31
  */
-public class MultiCache implements ICache {
+public class MultiCache implements ICache<Object> {
 
     /*
     1-level cache.

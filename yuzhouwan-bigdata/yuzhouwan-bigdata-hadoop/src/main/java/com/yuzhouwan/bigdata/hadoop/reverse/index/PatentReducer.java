@@ -39,7 +39,7 @@ public class PatentReducer extends Reducer<Text, Text, Text, Text> {
             //利用 StringBuffer 将 key相同的 [类型，公司，专利总数] 拼装到一起
             StringBuffer strBuffer = new StringBuffer();
             //得到 Value的迭代器
-            Iterator iterator = value.iterator();
+            Iterator<?> iterator = value.iterator();
             //如果迭代器中还有数据，则一直将数据取出处理
             while (iterator.hasNext()) {
                 //将相同的专利 keyword 的 信息[类型，公司，专利总数] 拼装起来
@@ -62,7 +62,7 @@ public class PatentReducer extends Reducer<Text, Text, Text, Text> {
      * @param strBuffer
      * @param iterator
      */
-    private void appendPatent(StringBuffer strBuffer, Iterator iterator) {
+    private void appendPatent(StringBuffer strBuffer, Iterator<?> iterator) {
         strBuffer.append(iterator.next().toString()).append(iterator.hasNext() ? " ;" : "");
     }
 }

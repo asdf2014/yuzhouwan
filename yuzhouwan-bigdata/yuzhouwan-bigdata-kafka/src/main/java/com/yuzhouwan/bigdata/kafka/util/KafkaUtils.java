@@ -48,7 +48,7 @@ public final class KafkaUtils {
     private static final Encoder encoder = EncoderFactory.get().binaryEncoder(os, null);
     private static volatile KafkaUtils instance;
     private static volatile AvroEventProducer avroProducer;
-    private static HashMap<Class, DatumWriter> datumWriterPool = new HashMap<>();
+    private static final HashMap<Class<?>, DatumWriter<?>> datumWriterPool = new HashMap<>();
 
     private KafkaUtils() {
     }
@@ -120,7 +120,7 @@ public final class KafkaUtils {
         for (T obj : objs) sendMessageToKafka(obj, clazz);
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public static synchronized <T> void sendMessageToKafka(T message, Class<T> clazz) {
         try {
             DatumWriter datumWriter;
