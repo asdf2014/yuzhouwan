@@ -506,9 +506,7 @@ public class NativeIO {
             if (nativeLoaded && fadvisePossible) {
                 try {
                     posix_fadvise(fd, offset, len, flags);
-                } catch (UnsupportedOperationException uoe) {
-                    fadvisePossible = false;
-                } catch (UnsatisfiedLinkError ule) {
+                } catch (UnsupportedOperationException | UnsatisfiedLinkError uoe) {
                     fadvisePossible = false;
                 }
             }
@@ -524,9 +522,7 @@ public class NativeIO {
             if (nativeLoaded && syncFileRangePossible) {
                 try {
                     sync_file_range(fd, offset, nbytes, flags);
-                } catch (UnsupportedOperationException uoe) {
-                    syncFileRangePossible = false;
-                } catch (UnsatisfiedLinkError ule) {
+                } catch (UnsupportedOperationException | UnsatisfiedLinkError uoe) {
                     syncFileRangePossible = false;
                 }
             }

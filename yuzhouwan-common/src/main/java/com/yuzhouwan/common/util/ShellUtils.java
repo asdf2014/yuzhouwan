@@ -37,15 +37,13 @@ public class ShellUtils {
     }
 
     private static void shellOutput(InputStream stream) throws IOException {
-        try {
+        try (stream) {
             try (BufferedReader input = new BufferedReader(new InputStreamReader(stream))) {
                 String line;
                 while ((line = input.readLine()) != null) {
                     System.out.println(line);
                 }
             }
-        } finally {
-            stream.close();
         }
     }
 

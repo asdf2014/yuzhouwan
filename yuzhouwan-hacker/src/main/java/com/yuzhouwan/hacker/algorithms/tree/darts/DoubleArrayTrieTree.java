@@ -241,30 +241,22 @@ public class DoubleArrayTrieTree {
         check = new int[size];
         base = new int[size];
 
-        DataInputStream is = null;
-        try {
-            is = new DataInputStream(new BufferedInputStream(new FileInputStream(file), BUF_SIZE));
+        try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file), BUF_SIZE);
+             DataInputStream is = new DataInputStream(bis)) {
             for (int i = 0; i < size; i++) {
                 base[i] = is.readInt();
                 check[i] = is.readInt();
             }
-        } finally {
-            if (is != null) is.close();
         }
     }
 
     public void save(String fileName) throws IOException {
-        DataOutputStream out = null;
-        try {
-            out = new DataOutputStream(new BufferedOutputStream(
-                    new FileOutputStream(fileName)));
+        try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(fileName));
+             DataOutputStream out = new DataOutputStream(bos)) {
             for (int i = 0; i < size; i++) {
                 out.writeInt(base[i]);
                 out.writeInt(check[i]);
             }
-            out.close();
-        } finally {
-            if (out != null) out.close();
         }
     }
 
