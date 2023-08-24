@@ -36,7 +36,7 @@ public class HBaseMiniCluster {
 
     @Test
     public void miniCluster() throws Exception {
-        /**
+        /*
          * https://github.com/apache/hbase/blob/master/hbase-common/src/test/java/org/apache/hadoop/hbase/HBaseCommonTestingUtility.java
          */
         System.setProperty(BASE_TEST_DIRECTORY_KEY, BASE_PATH.concat("data"));
@@ -66,7 +66,7 @@ public class HBaseMiniCluster {
     private HBaseTestingUtility hbaseOperation() throws Exception {
 
         HBaseTestingUtility hbaseTestingUtility = new HBaseTestingUtility();
-        /**
+        /*
          * # fsOwner's name is Benedict Jin, will throw exception: Illegal character in path at index 42
          * hbaseTestingUtility.getTestFileSystem().setOwner(new Path(BASE_PATH.concat("/owner")), "Benedict Jin", "supergroup");
          */

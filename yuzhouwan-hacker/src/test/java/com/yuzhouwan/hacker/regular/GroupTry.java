@@ -24,20 +24,20 @@ import static com.yuzhouwan.common.util.StrUtils.NEXT_LINE;
 public class GroupTry {
 
     /**
-     * Feb 23 11:09:17 2016 GX-NN-SR-1.D.S5820 %%10SSHS/6/SSHLOG: -DevIP=116.1.239.33; User lianghb logged out from 219.143.200.182 port 65164.
+     * Feb 23 11:09:17 2016 GX-NN-SR-1.D.S5820 %%10SSHS/6/SSHLOG: -DevIP=116.1.239.33; User yuzhouwan logged out from 219.143.200.182 port 65164.
      */
     @Test
     public void simple() {
 
-        /**
+        /*
          * Group's Count:	5
          *
          * Time:	Feb 23 11:09:17 2016
          * Device:	GX-NN-SR-1.D.S5820
          * Oper:	%%10SSHS/6/SSHLOG
-         * Body:	-DevIP=116.1.239.33; User lianghb logged out from 219.143.200.182 port 65164.
+         * Body:	-DevIP=116.1.239.33; User yuzhouwan logged out from 219.143.200.182 port 65164.
          */
-        String logGuangxi = "Feb 23 11:09:17 2016 GX-NN-SR-1.D.S5820 %%10SSHS/6/SSHLOG: -DevIP=116.1.239.33; User lianghb logged out from 219.143.200.182 port 65164.";
+        String logGuangxi = "Feb 23 11:09:17 2016 GX-NN-SR-1.D.S5820 %%10SSHS/6/SSHLOG: -DevIP=116.1.239.33; User yuzhouwan logged out from 219.143.200.182 port 65164.";
         parse(logGuangxi);
     }
 
@@ -59,7 +59,7 @@ public class GroupTry {
     @Test
     public void simple2() {
 
-        /**
+        /*
          * Group's Count:	5
          *
          * Time:	%Mar  1 17:07:42:807 2016

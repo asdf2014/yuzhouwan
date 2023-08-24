@@ -34,7 +34,7 @@ public class ZookeeperWatcher {
         CuratorFramework curatorClient;
 //        curatorClient = CuratorFrameworkFactory.newClient(yuzhouwan4, 5000, 3000, retrypolicy);
 
-        /**
+        /*
          * using fluent api
          */
         curatorClient = CuratorFrameworkFactory.builder()

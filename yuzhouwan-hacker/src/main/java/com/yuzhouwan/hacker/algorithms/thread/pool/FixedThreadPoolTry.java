@@ -48,7 +48,7 @@ public class FixedThreadPoolTry {
         }
     }
 
-    /**
+    /*
      * pool-1-thread-1 Start. Command = 0
      * Time: 3332
      * pool-1-thread-2 Start. Command = 1

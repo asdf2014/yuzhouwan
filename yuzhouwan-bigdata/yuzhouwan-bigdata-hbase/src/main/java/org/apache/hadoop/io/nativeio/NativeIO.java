@@ -1,4 +1,4 @@
-/**
+/*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -865,7 +865,7 @@ public class NativeIO {
          * @return true if access is allowed
          */
         public static boolean access() {
-            /**
+            /*
              * java.lang.UnsatisfiedLinkError: org.apache.hadoop.io.nativeio.NativeIO$Windows.access0(Ljava/lang/String;I)Z
              * Windows的唯一方法用于检查当前进程的请求，在给定的路径的访问权限 (先修改为 return true)
              *

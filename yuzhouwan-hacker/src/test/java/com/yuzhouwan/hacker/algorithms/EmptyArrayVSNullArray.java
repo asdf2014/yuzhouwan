@@ -17,7 +17,7 @@ public class EmptyArrayVSNullArray {
     @Test
     public void test() {
         Object[] os = new Object[0];
-        /**
+        /*
          * [Ljava.lang.Object;@75bd9247
          */
         System.out.println(os);

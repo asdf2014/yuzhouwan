@@ -14,29 +14,29 @@ import java.util.LinkedList;
 /**
  * Copyright @ 2023 yuzhouwan.com
  * All right reserved.
- * Function: JsonUtils Tester
+ * Function: FastJson Tester
  *
  * @author Benedict Jin
  * @since 2016/3/17
  */
-public class JsonUtilsTest {
+public class FastJsonTest {
 
-    private JsonUtils jsonUtils;
+    private FastJsonExample fastJsonExample;
 
     @Before
     public void init() {
-        jsonUtils = new JsonUtils();
+        fastJsonExample = new FastJsonExample();
     }
 
     @Test
     public void testSimple() {
-        assertEquals("1", jsonUtils.simpleParse().get(0).getGroupId());
+        assertEquals("1", fastJsonExample.simpleParse().get(0).getGroupId());
     }
 
     @Test
     public void testMapParse() throws Exception {
         {
-            //jackson
+            // jackson
             String json = "{'args':['0:userName', '0:userPassword'], 'rets':['0:email']}".replace("'", "\"");
             LinkedHashMap<String, LinkedList<String>> map = new ObjectMapper().readValue(json,
                 new com.fasterxml.jackson.core.type.TypeReference<>() {
@@ -44,7 +44,7 @@ public class JsonUtilsTest {
             assertEquals("{args=[0:userName, 0:userPassword], rets=[0:email]}", map.toString());
         }
         {
-            //fastjson
+            // fastjson
             String json = "{'args':['0:userName', '0:userPassword'], 'rets':['0:email']}";
             LinkedHashMap<String, LinkedList<String>> map = JSON.parseObject(json,
                 new TypeReference<>() {

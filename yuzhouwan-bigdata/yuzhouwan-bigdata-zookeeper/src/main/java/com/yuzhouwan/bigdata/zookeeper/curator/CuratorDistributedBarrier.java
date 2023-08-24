@@ -97,7 +97,7 @@ public class CuratorDistributedBarrier {
             }).start();
             count--;
         }
-        /**
+        /*
          * keep a while for waiting other barriers
          */
         Thread.sleep(2000);

@@ -36,7 +36,7 @@ public class CircularBuffer<T> {
     public void initKfifo() {
     }
 
-    /**
+    /*
      * DECLARE_KFIFO - macro to declare a fifo object.
      *
      * @fifo: name of the declared fifo

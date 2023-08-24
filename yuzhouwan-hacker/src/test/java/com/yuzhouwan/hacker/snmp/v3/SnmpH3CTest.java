@@ -25,7 +25,7 @@ public class SnmpH3CTest {
     @Before
     public void before() {
 
-        /**
+        /*
          * snmp-agent target-host trap address udp-domain 192.168.112.155 udp-port 5000 params securityname yuzhouwan
          * <p/>
          * snmp-agent usm-user v3 yuzhouwan managev3group simple authentication-mode md5 helloyuzhouwan privacy-mode 3des helloyuzhouwan acl 2222

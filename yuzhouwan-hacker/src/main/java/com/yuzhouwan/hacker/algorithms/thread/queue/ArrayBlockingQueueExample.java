@@ -73,7 +73,8 @@ public class ArrayBlockingQueueExample {
                 LOGGER.error("", e);
             }
         }
-        /**
+
+        /*
          * 队列为空时，blockingQueue会阻塞
          *
          * blockingQueue1 putted  Thread-0

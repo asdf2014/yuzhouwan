@@ -192,7 +192,7 @@ public final class ZooKeeperConnPool {
             ZooKeeper needCloseZK = iterator.next();
             pool.remove(needCloseZK);
             try {
-                /**
+                /*
                  * TODO{Benedict Jin}: timeout
                  */
                 needCloseZK.close();

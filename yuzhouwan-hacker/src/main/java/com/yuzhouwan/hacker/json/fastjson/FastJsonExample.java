@@ -12,7 +12,7 @@ import java.util.List;
  * @author Benedict Jin
  * @since 2016/3/17
  */
-public class JsonUtils {
+public class FastJsonExample {
 
     /**
      * example for JSON.

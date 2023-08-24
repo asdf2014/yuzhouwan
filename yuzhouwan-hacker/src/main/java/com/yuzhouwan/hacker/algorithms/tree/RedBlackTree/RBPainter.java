@@ -161,9 +161,9 @@ public final class RBPainter implements ActionListener, MouseListener, MouseMoti
     }
 
 
-    /*************************************************************************
+    /*
      *  User and screen coordinate systems
-     *************************************************************************/
+     */
 
     /**
      * Set the X scale to be the default.
@@ -304,9 +304,9 @@ public final class RBPainter implements ActionListener, MouseListener, MouseMoti
     }
 
 
-    /*************************************************************************
+    /*
      *  Drawing geometric shapes.
-     *************************************************************************/
+     */
 
     /**
      * Draw a line from (x0, y0) to (x1, y1).
@@ -483,9 +483,9 @@ public final class RBPainter implements ActionListener, MouseListener, MouseMoti
     }
 
 
-    /*************************************************************************
+    /*
      * Drawing images.
-     *************************************************************************/
+     */
 
     /**
      * Get an image from the given filename.
@@ -560,9 +560,9 @@ public final class RBPainter implements ActionListener, MouseListener, MouseMoti
     }
 
 
-    /*************************************************************************
+    /*
      *  Drawing text.
-     *************************************************************************/
+     */
 
     /**
      * Write the given text string in the current font, center on (x, y).
@@ -614,9 +614,9 @@ public final class RBPainter implements ActionListener, MouseListener, MouseMoti
     }
 
 
-    /*************************************************************************
+    /*
      *  Save drawing to a file.
-     *************************************************************************/
+     */
 
     /**
      * Save to file - suffix must be png, jpg, or gif.
@@ -666,9 +666,9 @@ public final class RBPainter implements ActionListener, MouseListener, MouseMoti
     }
 
 
-    /*************************************************************************
+    /*
      *  Mouse interactions.
-     *************************************************************************/
+     */
 
     /**
      * Where is the mouse?

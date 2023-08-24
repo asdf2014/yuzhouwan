@@ -57,10 +57,10 @@ public class SnmpSimpleGetTest {
     @Test
     public void testSnmpSyncGetList() {
 
-        /**
+        /*
          * TODO{Benedict Jin}: make sure snmp.acl is invisible for user
          */
-        /**
+        /*
          * JVM Options:com.
          * -Dcom.sun.management.snmp.trap=162
          * -Dcom.sun.management.snmp.acl=true
