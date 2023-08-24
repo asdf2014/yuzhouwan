@@ -23,4 +23,21 @@ public class FastJsonExample {
         String s = "[{\"rule\":\"is down\", \"groupId\":\"1\",\"mode\":\"WECHAT\", \"level\":\"1\"}]";
         return JSON.parseArray(s, A.class);
     }
+
+    /**
+     * Parse text block via FastJson.
+     */
+    public List<A> parseTextBlock() {
+        String s = """
+          [
+              {
+                  "rule": "is down",
+                  "groupId": "1",
+                  "mode": "WECHAT",
+                  "level": "1"
+              }
+          ]
+          """;
+        return JSON.parseArray(s, A.class);
+    }
 }

@@ -31,6 +31,7 @@ public class FastJsonTest {
     @Test
     public void testSimple() {
         assertEquals("1", fastJsonExample.simpleParse().get(0).getGroupId());
+        assertEquals(1, fastJsonExample.parseTextBlock().get(0).getLevel());
     }
 
     @Test
