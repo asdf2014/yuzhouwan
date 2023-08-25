@@ -79,13 +79,7 @@ public class MultiThreadsLoopWithNotify {
     /**
      * LockHolder.
      */
-    private static class LockHolder {
-        private final String holder;
-
-        public LockHolder(String holder) {
-            this.holder = holder;
-        }
-
+    private record LockHolder(String holder) {
         public String getHolder() {
             return holder;
         }
