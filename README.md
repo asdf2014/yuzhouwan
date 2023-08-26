@@ -10,9 +10,11 @@
 　**Welcome to My Blog（[https://yuzhouwan.com](https://yuzhouwan.com)）!**
 
 
+
 ## 博客介绍
 
 　吾生有涯而学无涯，以有涯而逐无涯（有点断章取义，不过追寻知识的热情是必要的）
+
 
 
 ## 大事件纪实
@@ -41,6 +43,7 @@
 | GPT 加持         | 使用 GPT-4 模型进行网站优化                                  | 2023-03-18 |
 
 
+
 ## Code Library for Blog
 
 - Advance [Maven](https://yuzhouwan.com/posts/2254/) Skill
@@ -56,7 +59,7 @@
   - [Docker](https://github.com/asdf2014/yuzhouwan/tree/master/distribution/docker) **/** [Kubernetes](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-hacker/src/test/java/com/yuzhouwan/hacker/kubernetes)
 - A lot of Commons [Utils](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-common/src/main/java/com/yuzhouwan/common/util)
 
----------------
+
 
 ## Technical Discussion Group
 
@@ -68,7 +71,6 @@
 |       算法       | [![](https://img.shields.io/badge/QQ%E7%BE%A4-5366753-blue.svg)](https://qm.qq.com/cgi-bin/qm/qr?k=i_HFpjyhq2S_c6RPFOidnu450j6rY7sy&jump_from=webapi&authKey=o9AAM2+uGld4uNpm2RVyXLmEvUKMe7RThgZPA2iuLR575/5NbC4qEE+tPcnGd2bF) |
 |      数据库       | [![](https://img.shields.io/badge/QQ%E7%BE%A4-708181-blue.svg)](https://qm.qq.com/cgi-bin/qm/qr?k=6KASfBaSBwgmq1XC1dR0GW0fpsdX4ZPC&jump_from=webapi&authKey=Df9Qbl/dmNT7jPPALbX7MjQe/U7NJ9G12dhN+WjcWh+CZco6PLd9IzdV72pTRHg3) |
 
-
 ### **[BigData 生态圈](https://yuzhouwan.com/categories/大数据/)**
 
 　讨论大数据生态圈的各种领域，包括：
@@ -78,7 +80,6 @@
 * Java / Python / Golang / Scala / Clojure / Ruby 各大流行语言
 * PostgreSQL / HBase / Hive / ElasticSearch / Redis / Druid 数据持久化策略
 * Data Mining / Machine Learning / Deep Learning / AI 数据分析领域 等等
-
 
 ### **[人工智能](https://yuzhouwan.com/posts/42737/)**
 
@@ -90,7 +91,6 @@
 　从 CPU 到 GPU，再到 TPU 和 IPU，人工智能的计算能力正向着无法穷举的极限不断逼近…<br/>
 
 　本群持续沉淀的一篇人工智能的文章：[https://yuzhouwan.com/posts/42737/](https://yuzhouwan.com/posts/42737/)
-
 
 ### **[算法](https://yuzhouwan.com/posts/666/)**
 
@@ -111,4 +111,3 @@
 　Just [Google](https://www.google.com/search?q=宇宙湾) it :D
 
 ![Google yuzhouwan.com](https://yuzhouwan.github.io/picture/blog/google_yuzhouwan.png)
-
