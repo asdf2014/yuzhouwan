@@ -503,8 +503,7 @@ public final class DataProtos {
                 if (getIsSalting()
                     != other.getIsSalting()) return false;
             }
-            if (!unknownFields.equals(other.unknownFields)) return false;
-            return true;
+            return unknownFields.equals(other.unknownFields);
         }
 
         @java.lang.Override
@@ -1674,8 +1673,7 @@ public final class DataProtos {
                     if (!getRow()
                         .equals(other.getRow())) return false;
                 }
-                if (!unknownFields.equals(other.unknownFields)) return false;
-                return true;
+                return unknownFields.equals(other.unknownFields);
             }
 
             @java.lang.Override
@@ -1963,10 +1961,7 @@ public final class DataProtos {
                     if (!hasQualifier()) {
                         return false;
                     }
-                    if (!hasRow()) {
-                        return false;
-                    }
-                    return true;
+                    return hasRow();
                 }
 
                 @java.lang.Override
@@ -2425,8 +2420,7 @@ public final class DataProtos {
                 }
                 if (!getCellListList()
                     .equals(other.getCellListList())) return false;
-                if (!unknownFields.equals(other.unknownFields)) return false;
-                return true;
+                return unknownFields.equals(other.unknownFields);
             }
 
             @java.lang.Override
@@ -3153,8 +3147,7 @@ public final class DataProtos {
 
             if (!getRowListList()
                 .equals(other.getRowListList())) return false;
-            if (!unknownFields.equals(other.unknownFields)) return false;
-            return true;
+            return unknownFields.equals(other.unknownFields);
         }
 
         @java.lang.Override
