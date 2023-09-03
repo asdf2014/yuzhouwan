@@ -186,7 +186,7 @@ public final class DataProtos {
                 makeExtensionsImmutable();
             }
         }
-        public static final com.google.protobuf.Descriptors.Descriptor
+        public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
             return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryRequest_descriptor;
         }
@@ -642,7 +642,7 @@ public final class DataProtos {
             com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
             // @@protoc_insertion_point(builder_implements:generated.DataQueryRequest)
             com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequestOrBuilder {
-            public static final com.google.protobuf.Descriptors.Descriptor
+            public static com.google.protobuf.Descriptors.Descriptor
             getDescriptor() {
                 return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryRequest_descriptor;
             }
@@ -1364,7 +1364,7 @@ public final class DataProtos {
                 makeExtensionsImmutable();
             }
         }
-        public static final com.google.protobuf.Descriptors.Descriptor
+        public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
             return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryResponse_descriptor;
         }
@@ -1499,7 +1499,7 @@ public final class DataProtos {
                     makeExtensionsImmutable();
                 }
             }
-            public static final com.google.protobuf.Descriptors.Descriptor
+            public static com.google.protobuf.Descriptors.Descriptor
             getDescriptor() {
                 return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryResponse_Cell_descriptor;
             }
@@ -1803,7 +1803,7 @@ public final class DataProtos {
                 com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
                 // @@protoc_insertion_point(builder_implements:generated.DataQueryResponse.Cell)
                 com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.CellOrBuilder {
-                public static final com.google.protobuf.Descriptors.Descriptor
+                public static com.google.protobuf.Descriptors.Descriptor
                 getDescriptor() {
                     return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryResponse_Cell_descriptor;
                 }
@@ -2297,7 +2297,7 @@ public final class DataProtos {
                     makeExtensionsImmutable();
                 }
             }
-            public static final com.google.protobuf.Descriptors.Descriptor
+            public static com.google.protobuf.Descriptors.Descriptor
             getDescriptor() {
                 return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryResponse_Row_descriptor;
             }
@@ -2546,7 +2546,7 @@ public final class DataProtos {
                 com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
                 // @@protoc_insertion_point(builder_implements:generated.DataQueryResponse.Row)
                 com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse.RowOrBuilder {
-                public static final com.google.protobuf.Descriptors.Descriptor
+                public static com.google.protobuf.Descriptors.Descriptor
                 getDescriptor() {
                     return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryResponse_Row_descriptor;
                 }
@@ -3270,7 +3270,7 @@ public final class DataProtos {
             com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
             // @@protoc_insertion_point(builder_implements:generated.DataQueryResponse)
             com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponseOrBuilder {
-            public static final com.google.protobuf.Descriptors.Descriptor
+            public static com.google.protobuf.Descriptors.Descriptor
             getDescriptor() {
                 return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.internal_static_generated_DataQueryResponse_descriptor;
             }
@@ -3866,8 +3866,7 @@ public final class DataProtos {
             com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryRequest request,
             com.google.protobuf.RpcCallback<com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse> done);
 
-        public static final
-        com.google.protobuf.Descriptors.ServiceDescriptor
+        public static com.google.protobuf.Descriptors.ServiceDescriptor
         getDescriptor() {
             return com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.getDescriptor().getServices().get(0);
         }
