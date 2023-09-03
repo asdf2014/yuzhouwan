@@ -79,14 +79,8 @@ public class StrassenMatrix {
         int rowSizeB = matrixB.length;
         int colSizeB = matrixB[0].length;
 
-        boolean rowNeedExpand = false;
-        if (rowSize % 2 != 0) {
-            rowNeedExpand = true;
-        }
-        boolean colNeedExpand = false;
-        if (colSize % 2 != 0) {
-            colNeedExpand = true;
-        }
+        boolean rowNeedExpand = rowSize % 2 != 0;
+        boolean colNeedExpand = colSize % 2 != 0;
 
         double a11 = rowLow < 0 || colLow < 0 ? 0 : matrixA[rowLow][colLow];
         double a12 = rowLow < 0 || colHigh > (colSizeA - 1) || colNeedExpand ? 0 : matrixA[rowLow][colHigh];
@@ -158,14 +152,8 @@ public class StrassenMatrix {
     public double[][] minMatrixMultiply(double[][] matrixA, double[][] matrixB, int rowLow,
                                         int rowHigh, int colLow, int colHigh, int rowSize, int colSize) {
 
-        boolean rowNeedExpand = false;
-        if (rowSize % 2 != 0) {
-            rowNeedExpand = true;
-        }
-        boolean colNeedExpand = false;
-        if (colSize % 2 != 0) {
-            colNeedExpand = true;
-        }
+        boolean rowNeedExpand = rowSize % 2 != 0;
+        boolean colNeedExpand = colSize % 2 != 0;
 
         int rowSizeA = matrixA.length;
         int colSizeA = matrixA[0].length;

@@ -12,6 +12,7 @@ import static org.junit.Assert.assertTrue;
  * @author Benedict Jin
  * @since 2017/6/30
  */
+@SuppressWarnings("ALL")
 public class StringStuffTest {
 
     @Test
