@@ -21,8 +21,8 @@ public class DirectRouterExample {
         // 启动route
         camelContext.start();
         // 首先将两个完整有效的路由注册到Camel服务中
-        camelContext.addRoutes(new DirectRouterExample().new DirectRouteA());
-        camelContext.addRoutes(new DirectRouterExample().new DirectRouteB());
+        camelContext.addRoutes(new DirectRouteA());
+        camelContext.addRoutes(new DirectRouteB());
 
         // 通用没有具体业务意义的代码，只是为了保证主线程不退出
         synchronized (DirectRouterExample.class) {
@@ -33,7 +33,7 @@ public class DirectRouterExample {
     /**
      * DirectRouteA 其中使用direct 连接到 DirectRouteB.
      */
-    private class DirectRouteA extends RouteBuilder {
+    private static class DirectRouteA extends RouteBuilder {
 
         /* (non-Javadoc)
          * @see org.apache.camel.builder.RouteBuilder#configure()
@@ -58,7 +58,7 @@ public class DirectRouterExample {
     /**
      * DirectRouteB.
      */
-    private class DirectRouteB extends RouteBuilder {
+    private static class DirectRouteB extends RouteBuilder {
 
         /* (non-Javadoc)
          * @see org.apache.camel.builder.RouteBuilder#configure()

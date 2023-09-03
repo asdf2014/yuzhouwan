@@ -62,7 +62,7 @@ public class ApacheCamelExample extends RouteBuilder {
     /**
      * 这个处理器用来完成输入的json格式的转换.
      */
-    private class HttpProcessor implements Processor {
+    private static class HttpProcessor implements Processor {
 
         /* (non-Javadoc)
          * @see org.apache.camel.Processor#process(org.apache.camel.Exchange)

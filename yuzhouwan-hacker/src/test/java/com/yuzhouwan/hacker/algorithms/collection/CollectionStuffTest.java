@@ -351,7 +351,7 @@ public class CollectionStuffTest {
         assertEquals(1, iter.next().intValue());
     }
 
-    private class ComplexClass {
+    private static class ComplexClass {
         private Integer i;
         private String s;
         private Object o;

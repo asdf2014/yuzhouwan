@@ -24,7 +24,7 @@ public class DruidUtilsTest {
                 DruidUtils.genTranquilityMetricsSpec(B.class));
     }
 
-    private class B {
+    private static class B {
         private String a;
         private long b;
         private double c;

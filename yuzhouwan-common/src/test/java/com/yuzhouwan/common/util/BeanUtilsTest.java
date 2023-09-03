@@ -84,7 +84,7 @@ public class BeanUtilsTest {
         private String e;
     }
 
-    private class BeanA {
+    private static class BeanA {
         public long bB;
         private int aA;
         private Double cC;
