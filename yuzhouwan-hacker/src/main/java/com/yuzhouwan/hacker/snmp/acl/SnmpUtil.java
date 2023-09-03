@@ -95,15 +95,13 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
             _authProtocol = AuthSHA.ID;
         }
 
-        if (privProtocol.equals("DES")) {
-            _privProtocol = PrivDES.ID;
-        } else if ((privProtocol.equals("AES128")) || (privProtocol.equals("AES"))) {
-            _privProtocol = PrivAES128.ID;
-        } else if (privProtocol.equals("AES192")) {
-            _privProtocol = PrivAES192.ID;
-        } else if (privProtocol.equals("AES256")) {
-            _privProtocol = PrivAES256.ID;
+        switch (privProtocol) {
+            case "DES" -> _privProtocol = PrivDES.ID;
+            case "AES128", "AES" -> _privProtocol = PrivAES128.ID;
+            case "AES192" -> _privProtocol = PrivAES192.ID;
+            case "AES256" -> _privProtocol = PrivAES256.ID;
         }
+
         if (type == 2) {
             pduType = PDU.INFORM;
         } else if (type == 1) {
