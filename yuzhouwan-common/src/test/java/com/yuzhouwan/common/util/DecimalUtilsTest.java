@@ -25,7 +25,7 @@ public class DecimalUtilsTest {
     }
 
     @Test
-    @SuppressWarnings({"UnnecessaryBoxing", "ConstantConditions"})
+    @SuppressWarnings({"UnnecessaryBoxing", "ConstantConditions", "removal", "BooleanConstructorCall"})
     public void BooleanTest() {
         Boolean ifCase = null;
         if (ifCase != null && ifCase) {
