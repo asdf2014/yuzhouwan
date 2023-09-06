@@ -139,20 +139,20 @@ public final class HBaseUtils {
     }
 
     public static String removeEndKey(String regionName) {
-        if (!validRegionName(regionName)) return regionName;
+        if (invalidRegionName(regionName)) return regionName;
         return regionName.substring(0, regionName.lastIndexOf(",")).trim();
     }
 
     public static String extractTimestamp4Region(String regionName) {
-        if (!validRegionName(regionName)) return regionName;
+        if (invalidRegionName(regionName)) return regionName;
         String[] infos = regionName.split(",");
         int len = infos.length;
         if (len < 3) return regionName;
         return infos[len - 1].substring(0, infos[len - 1].indexOf("."));
     }
 
-    private static boolean validRegionName(String regionName) {
-        return !(isEmpty(regionName) || !regionName.contains(",") || !regionName.contains("."));
+    private static boolean invalidRegionName(String regionName) {
+        return isEmpty(regionName) || !regionName.contains(",") || !regionName.contains(".");
     }
 
     /**
