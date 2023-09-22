@@ -82,13 +82,13 @@ class NIOClient implements Runnable {
                     idleCounter = 0;
                 }
                 sendMessage();
-            } catch (IOException | InterruptedException e) {
+            } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
     }
 
-    private void sendMessage() throws IOException, InterruptedException {
+    private void sendMessage() throws IOException {
 
         Iterator<SelectionKey> iterator = this.selector.selectedKeys().iterator();
 

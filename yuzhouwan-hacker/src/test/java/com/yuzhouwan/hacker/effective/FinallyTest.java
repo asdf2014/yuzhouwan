@@ -21,7 +21,7 @@ public class FinallyTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(FinallyTest.class);
 
     @Test
-    public void testReturnInside() throws Exception {
+    public void testReturnInside() {
         Exception catchE = null;
         try {
             someExceptionWrong();
@@ -58,7 +58,7 @@ public class FinallyTest {
     }
 
     @Test
-    public void testReturnInside2() throws Exception {
+    public void testReturnInside2() {
         /*
         2017-04-18 16:52:59.234 | ERROR | Some Problem. | com.yuzhouwan.hacker.effective.FinallyTest.someExceptionWrong2 | FinallyTest.java:68
         2017-04-18 16:52:59.253 | ERROR | Some Problem. | com.yuzhouwan.hacker.effective.FinallyTest.someExceptionRight2 | FinallyTest.java:78
@@ -87,7 +87,7 @@ public class FinallyTest {
     }
 
     @Test
-    public void testReturnInside3() throws Exception {
+    public void testReturnInside3() {
 
         Exception catchE = null;
         try {

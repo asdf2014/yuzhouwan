@@ -144,7 +144,7 @@ public class ZxidUtilTest {
         internalShuffleNano(inetSocketAddressesList);
     }
 
-    private void internalShuffleMillis(LinkedList<InetSocketAddress> inetSocketAddressesList) throws Exception {
+    private void internalShuffleMillis(LinkedList<InetSocketAddress> inetSocketAddressesList) {
         int hashCode = new StaticHostProvider(inetSocketAddressesList).hashCode();
         System.out.println(hashCode);
         int count = 10;
@@ -163,7 +163,7 @@ public class ZxidUtilTest {
         }
     }
 
-    private void internalShuffleNano(LinkedList<InetSocketAddress> inetSocketAddressesList) throws Exception {
+    private void internalShuffleNano(LinkedList<InetSocketAddress> inetSocketAddressesList) {
         int hashCode = new StaticHostProvider(inetSocketAddressesList).hashCode();
         System.out.println(hashCode);
         int count = 10;

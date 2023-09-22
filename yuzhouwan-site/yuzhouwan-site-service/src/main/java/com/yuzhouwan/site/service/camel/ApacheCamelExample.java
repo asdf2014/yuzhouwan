@@ -49,7 +49,7 @@ public class ApacheCamelExample extends RouteBuilder {
     }
 
     @Override
-    public void configure() throws Exception {
+    public void configure() {
         // 在本代码段之下随后的说明中，会详细说明这个构造的含义
         // http://127.0.0.1:8282/doHelloWorld
         from("jetty:http://0.0.0.0:8282/doHelloWorld")

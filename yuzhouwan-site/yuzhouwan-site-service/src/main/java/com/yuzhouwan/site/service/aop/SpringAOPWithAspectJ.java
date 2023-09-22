@@ -50,7 +50,7 @@ public class SpringAOPWithAspectJ {
     @AfterThrowing(
             pointcut = "execution(* com.yuzhouwan.site.service.aop.TargetAOP.targetAfterThrowing(..))",
             throwing = "error")
-    public void afterThrowingTarget(JoinPoint joinPoint, Throwable error) throws Throwable {
+    public void afterThrowingTarget(JoinPoint joinPoint, Throwable error) {
 
         Object[] args = joinPoint.getArgs();
         Throwable t = (Throwable) args[0];

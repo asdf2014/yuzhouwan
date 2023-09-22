@@ -38,17 +38,17 @@ public class SpringELTryTest {
     }
 
     @Test
-    public void testHello() throws Exception {
+    public void testHello() {
         assertEquals("Hello, World!", springELTry.hello());
     }
 
     @Test
-    public void testRegular() throws Exception {
+    public void testRegular() {
         assertTrue(springELTry.matchExpression());
     }
 
     @Test
-    public void testRegular2() throws Exception {
+    public void testRegular2() {
         assertTrue(springELTry.matchExpression2());
     }
 

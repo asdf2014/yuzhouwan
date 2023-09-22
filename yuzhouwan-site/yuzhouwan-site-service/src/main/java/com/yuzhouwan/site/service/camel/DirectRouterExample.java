@@ -43,7 +43,7 @@ public class DirectRouterExample {
          * [Body is instance of org.apache.camel.StreamCache]] | DirectRouteB.log | CamelLogger.java:180
          */
         @Override
-        public void configure() throws Exception {
+        public void configure() {
             from("jetty:http://0.0.0.0:8282/directCamel")
                     // 连接路由：DirectRouteB
                     .to("direct:directRouteB")
@@ -64,7 +64,7 @@ public class DirectRouterExample {
          * @see org.apache.camel.builder.RouteBuilder#configure()
          */
         @Override
-        public void configure() throws Exception {
+        public void configure() {
             from("direct:directRouteB")
                     .to("log:DirectRouteB?showExchangeId=true");
         }

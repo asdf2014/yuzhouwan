@@ -29,7 +29,7 @@ public class ProcessorExample implements Processor {
     private ISpringService somethingService;
 
     @Override
-    public void process(Exchange exchange) throws Exception {
+    public void process(Exchange exchange) {
         // 调用somethingService，说明它正常工作
         this.somethingService.doSomething("yuzhouwan");
         // 这里在控制台打印一段日志，证明这个Processor正常工作了，就行

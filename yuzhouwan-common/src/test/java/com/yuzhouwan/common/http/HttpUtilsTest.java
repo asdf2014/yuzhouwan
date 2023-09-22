@@ -23,7 +23,7 @@ public class HttpUtilsTest {
     @Ignore
     @Test
     //need run yuzhouwan-site before test
-    public void getPlainTestLocal() throws Exception {
+    public void getPlainTestLocal() {
         String urlD = "http://localhost:8080/full/delete";
         Map<String, Object> paramsD = new HashMap<>();
         paramsD.put("key", "site");
@@ -65,7 +65,7 @@ public class HttpUtilsTest {
 
     @Ignore
     @Test
-    public void getPlainTestLocalUnNormal() throws Exception {
+    public void getPlainTestLocalUnNormal() {
         String url = "http://localhost:8080/full/nothing";
         try {
             HttpUtils.getInstance().postPlain(url, new HashMap<>(), null);
