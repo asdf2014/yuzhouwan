@@ -8,7 +8,7 @@ import com.carrotsearch.randomizedtesting.annotations.*;
 /**
  * Copyright @ 2023 yuzhouwan.com
  * All right reserved.
- * Function：ElasticSearch Client Base Test Case
+ * Function：Elasticsearch Client Base Test Case
  *
  * @author Benedict Jin
  * @since 2017/12/08
@@ -21,5 +21,5 @@ import com.carrotsearch.randomizedtesting.annotations.*;
 @ThreadLeakZombies(ThreadLeakZombies.Consequence.IGNORE_REMAINING_TESTS)
 @ThreadLeakLingering(linger = 5000) // Time in 5000 millis to "linger" for any left-behind threads
 @TimeoutSuite(millis = 2 * 60 * 60 * 1000)
-public abstract class ElasticSearchClientBaseTestCase extends RandomizedTest {
+public abstract class ElasticsearchClientBaseTestCase extends RandomizedTest {
 }

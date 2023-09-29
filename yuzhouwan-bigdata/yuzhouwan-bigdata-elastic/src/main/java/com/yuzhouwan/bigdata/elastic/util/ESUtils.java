@@ -22,7 +22,7 @@ import static com.yuzhouwan.common.util.StrUtils.isBlank;
 /**
  * Copyright @ 2023 yuzhouwan.com
  * All right reserved.
- * Function：ElasticSearch Utils
+ * Function：Elasticsearch Utils
  *
  * @author Benedict Jin
  * @since 2017/12/08

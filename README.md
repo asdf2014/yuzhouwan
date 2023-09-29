@@ -48,7 +48,7 @@
 
 - Advance [Maven](https://yuzhouwan.com/posts/2254/) Skill
 - [BigData](https://yuzhouwan.com/tags/)
-  - [Hadoop](https://yuzhouwan.com/posts/60504/) **/** [Storm](https://yuzhouwan.com/posts/25015/) **/** [Spark](https://yuzhouwan.com/posts/4735/) **/** [HBase](https://yuzhouwan.com/posts/45888/) **/** [ElasticSearch](https://yuzhouwan.com/posts/22654/) **/** [Druid](https://yuzhouwan.com/posts/5845/) **/** [Kafka](https://yuzhouwan.com/posts/26002/) **/** [Flume](https://yuzhouwan.com/posts/22654/#%e6%95%b4%e5%90%88%e5%bc%80%e5%8f%91) **/** [Redis](https://yuzhouwan.com/posts/2129/) **/** [Zookeeper](https://yuzhouwan.com/posts/31915/)
+  - [Hadoop](https://yuzhouwan.com/posts/60504/) **/** [Storm](https://yuzhouwan.com/posts/25015/) **/** [Spark](https://yuzhouwan.com/posts/4735/) **/** [HBase](https://yuzhouwan.com/posts/45888/) **/** [Elasticsearch](https://yuzhouwan.com/posts/22654/) **/** [Druid](https://yuzhouwan.com/posts/5845/) **/** [Kafka](https://yuzhouwan.com/posts/26002/) **/** [Flume](https://yuzhouwan.com/posts/22654/#%e6%95%b4%e5%90%88%e5%bc%80%e5%8f%91) **/** [Redis](https://yuzhouwan.com/posts/2129/) **/** [Zookeeper](https://yuzhouwan.com/posts/31915/)
 - Hack technology
   - [Algorithm](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-hacker/src/main/java/com/yuzhouwan/hacker/algorithms) **/** [Leetcode](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-hacker/src/main/java/com/yuzhouwan/hacker/algorithms/leetcode) **/** [Code Generate](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-hacker/src/main/java/com/yuzhouwan/hacker/codegen) **/** [Effective Code](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-hacker/src/main/java/com/yuzhouwan/hacker/effective) **/** [Multi Threads](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-hacker/src/main/java/com/yuzhouwan/hacker/algorithms/thread) **/** [Lambda](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-hacker/src/main/java/com/yuzhouwan/hacker/lambda) **/** [SNMP](https://github.com/asdf2014/yuzhouwan/tree/master/yuzhouwan-hacker/src/main/java/com/yuzhouwan/hacker/snmp)
 - Languages
@@ -78,7 +78,7 @@
 * Spark / Storm / Hadoop / Flink / Heron / Cassandra 主流框架
 * Paxos / Raft / Gossip / Consistent Hashing / Chubby / Zookeeper 分布式算法与架构
 * Java / Python / Golang / Scala / Clojure / Ruby 各大流行语言
-* PostgreSQL / HBase / Hive / ElasticSearch / Redis / Druid 数据持久化策略
+* PostgreSQL / HBase / Hive / Elasticsearch / Redis / Druid 数据持久化策略
 * Data Mining / Machine Learning / Deep Learning / AI 数据分析领域 等等
 
 ### **[人工智能](https://yuzhouwan.com/posts/42737/)**

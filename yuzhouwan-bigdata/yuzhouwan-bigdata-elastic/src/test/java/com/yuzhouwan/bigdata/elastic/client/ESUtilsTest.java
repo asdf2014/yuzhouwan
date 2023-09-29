@@ -27,12 +27,12 @@ import static com.yuzhouwan.common.util.StrUtils.isNotBlank;
 /**
  * Copyright @ 2023 yuzhouwan.com
  * All right reserved.
- * Function：ElasticSearch Utils Test
+ * Function：Elasticsearch Utils Test
  *
  * @author Benedict Jin
  * @since 2017/12/08
  */
-public class ESUtilsTest extends ElasticSearchClientBaseTestCase {
+public class ESUtilsTest extends ElasticsearchClientBaseTestCase {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ESUtilsTest.class);
 
