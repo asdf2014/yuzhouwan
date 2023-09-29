@@ -152,7 +152,7 @@
         <itextpdf.version>5.5.13.3</itextpdf.version>
 
         <!-- lmax disruptor -->
-        <lmax.disruptor.version>3.4.4</lmax.disruptor.version>
+        <lmax.disruptor.version>4.0.0</lmax.disruptor.version>
 
         <!-- json -->
         <fastjson.version>1.2.83</fastjson.version>
