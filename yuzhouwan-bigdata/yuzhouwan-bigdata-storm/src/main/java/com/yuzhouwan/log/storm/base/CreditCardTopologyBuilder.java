@@ -1,7 +1,7 @@
 package com.yuzhouwan.log.storm.base;
 
-import backtype.storm.generated.StormTopology;
-import backtype.storm.topology.TopologyBuilder;
+import org.apache.storm.generated.StormTopology;
+import org.apache.storm.topology.TopologyBuilder;
 import org.elasticsearch.storm.EsBolt;
 
 import java.util.HashMap;

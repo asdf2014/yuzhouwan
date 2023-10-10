@@ -1,9 +1,9 @@
 package com.yuzhouwan.log.storm.base;
 
-import backtype.storm.Config;
-import backtype.storm.LocalCluster;
-import backtype.storm.generated.StormTopology;
-import backtype.storm.utils.Utils;
+import org.apache.storm.Config;
+import org.apache.storm.LocalCluster;
+import org.apache.storm.generated.StormTopology;
+import org.apache.storm.utils.Utils;
 
 /**
  * Copyright @ 2023 yuzhouwan.com
@@ -18,7 +18,7 @@ public final class LocalTopologyRunner {
     private LocalTopologyRunner() {
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         StormTopology topology = CreditCardTopologyBuilder.build();
         Config config = new Config();

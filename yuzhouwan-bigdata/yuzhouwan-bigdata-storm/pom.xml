@@ -11,10 +11,6 @@
     </parent>
 
     <artifactId>yuzhouwan-bigdata-storm</artifactId>
-    <properties>
-        <elasticsearch.version>7.17.14</elasticsearch.version>
-        <storm.elasticsearch.version>2.4.5</storm.elasticsearch.version>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -85,6 +81,7 @@
             </exclusions>
         </dependency>
 
+        <!-- TODO: use storm-kafka-client instead -->
         <dependency>
             <groupId>org.apache.storm</groupId>
             <artifactId>storm-kafka</artifactId>

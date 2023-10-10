@@ -1,17 +1,17 @@
 package com.yuzhouwan.log.storm.elastic;
 
-import backtype.storm.Config;
-import backtype.storm.LocalCluster;
-import backtype.storm.StormSubmitter;
-import backtype.storm.spout.SchemeAsMultiScheme;
-import backtype.storm.topology.TopologyBuilder;
+import org.apache.storm.Config;
+import org.apache.storm.LocalCluster;
+import org.apache.storm.StormSubmitter;
+import org.apache.storm.kafka.KafkaSpout;
+import org.apache.storm.kafka.SpoutConfig;
+import org.apache.storm.kafka.StringScheme;
+import org.apache.storm.kafka.ZkHosts;
+import org.apache.storm.spout.SchemeAsMultiScheme;
+import org.apache.storm.topology.TopologyBuilder;
 import org.elasticsearch.storm.EsBolt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import storm.kafka.KafkaSpout;
-import storm.kafka.SpoutConfig;
-import storm.kafka.StringScheme;
-import storm.kafka.ZkHosts;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,7 @@ public final class ZkTopology {
     private ZkTopology() {
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         //这个地方其实就是kafka配置文件里边的zookeeper.connect这个参数，可以去那里拿过来
         String brokerZkStr = "10.100.90.201:2181/kafka_online_sample";
