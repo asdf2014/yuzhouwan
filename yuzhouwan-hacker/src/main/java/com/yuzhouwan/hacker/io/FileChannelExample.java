@@ -7,7 +7,7 @@ import java.io.IOException;
 import static com.yuzhouwan.common.dir.DirUtils.PROJECT_BASE_PATH;
 
 /**
- * Copyright @ 2023 yuzhouwan.com
+ * Copyright @ 2024 yuzhouwan.com
  * All right reserved.
  * Function：File Channel Example
  *

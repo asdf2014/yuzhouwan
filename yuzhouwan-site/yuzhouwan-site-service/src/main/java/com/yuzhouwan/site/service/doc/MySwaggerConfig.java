@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Copyright @ 2023 yuzhouwan.com
+ * Copyright @ 2024 yuzhouwan.com
  * All right reserved.
  * Function：My Swagger Config
  *

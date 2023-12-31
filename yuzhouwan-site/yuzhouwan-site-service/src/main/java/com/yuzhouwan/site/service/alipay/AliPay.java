@@ -16,7 +16,7 @@ import com.yuzhouwan.common.util.PropUtils;
 //import com.alipay.api.response.AlipayUserUserinfoShareResponse;
 
 /**
- * Copyright @ 2023 yuzhouwan.com
+ * Copyright @ 2024 yuzhouwan.com
  * All right reserved.
  * Function: AliPay
  *

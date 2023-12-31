@@ -9,7 +9,7 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Copyright @ 2023 yuzhouwan.com
+ * Copyright @ 2024 yuzhouwan.com
  * All right reserved.
  * Function：Benchmark Simple
  *

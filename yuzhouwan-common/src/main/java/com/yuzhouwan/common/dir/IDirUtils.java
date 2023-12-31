@@ -3,7 +3,7 @@ package com.yuzhouwan.common.dir;
 import java.nio.file.WatchEvent;
 
 /**
- * Copyright @ 2023 yuzhouwan.com
+ * Copyright @ 2024 yuzhouwan.com
  * All right reserved.
  * Function: DirUtils' interface
  *

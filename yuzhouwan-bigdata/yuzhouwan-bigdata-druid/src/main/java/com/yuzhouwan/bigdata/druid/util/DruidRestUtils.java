@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 import static com.yuzhouwan.common.util.StrUtils.isEmpty;
 
 /**
- * Copyright @ 2023 yuzhouwan.com
+ * Copyright @ 2024 yuzhouwan.com
  * All right reserved.
  * Function：Druid Restful Utils
  *

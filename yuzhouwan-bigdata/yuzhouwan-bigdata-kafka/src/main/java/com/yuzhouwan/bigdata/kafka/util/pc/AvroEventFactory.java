@@ -3,7 +3,7 @@ package com.yuzhouwan.bigdata.kafka.util.pc;
 import com.lmax.disruptor.EventFactory;
 
 /**
- * Copyright @ 2023 yuzhouwan.com
+ * Copyright @ 2024 yuzhouwan.com
  * All right reserved.
  * Function：Avro Event Factory
  *

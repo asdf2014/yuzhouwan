@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.util.stream.Stream;
 
 /**
- * Copyright @ 2023 yuzhouwan.com
+ * Copyright @ 2024 yuzhouwan.com
  * All right reserved.
  * Function：Stream Test
  *

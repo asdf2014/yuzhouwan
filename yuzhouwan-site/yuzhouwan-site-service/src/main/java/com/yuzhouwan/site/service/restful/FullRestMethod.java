@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Copyright @ 2023 yuzhouwan.com
+ * Copyright @ 2024 yuzhouwan.com
  * All right reserved.
  * Function: RESTful 标准化
  *

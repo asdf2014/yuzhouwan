@@ -21,7 +21,7 @@ import static java.util.stream.Collectors.mapping;
 import static java.util.stream.Collectors.toMap;
 
 /**
- * Copyright @ 2023 yuzhouwan.com
+ * Copyright @ 2024 yuzhouwan.com
  * All right reserved.
  * Function: Collection Utils
  *

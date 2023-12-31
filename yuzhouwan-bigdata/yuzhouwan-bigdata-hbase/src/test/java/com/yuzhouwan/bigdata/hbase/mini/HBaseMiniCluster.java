@@ -19,7 +19,7 @@ import java.io.IOException;
 import static org.apache.hadoop.hbase.HBaseCommonTestingUtility.BASE_TEST_DIRECTORY_KEY;
 
 /**
- * Copyright @ 2023 yuzhouwan.com
+ * Copyright @ 2024 yuzhouwan.com
  * All right reserved.
  * Function: HBase Mini Cluster
  *

@@ -12,7 +12,7 @@ import java.security.GeneralSecurityException;
 import java.security.SecureRandom;
 
 /**
- * Copyright @ 2023 yuzhouwan.com
+ * Copyright @ 2024 yuzhouwan.com
  * All right reserved.
  * Function: SecurityClassLoader
  *

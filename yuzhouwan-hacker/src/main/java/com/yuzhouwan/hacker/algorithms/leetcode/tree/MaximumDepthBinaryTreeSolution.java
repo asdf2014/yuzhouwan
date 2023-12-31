@@ -4,7 +4,7 @@ import java.util.Queue;
 import java.util.concurrent.LinkedBlockingDeque;
 
 /**
- * Copyright @ 2023 yuzhouwan.com
+ * Copyright @ 2024 yuzhouwan.com
  * All right reserved.
  * Function: Maximum Depth of Binary Tree Solution
  *

@@ -3,7 +3,7 @@ package com.yuzhouwan.hacker.algorithms.array;
 import org.apache.commons.math3.exception.MathArithmeticException;
 
 /**
- * Copyright @ 2023 yuzhouwan.com
+ * Copyright @ 2024 yuzhouwan.com
  * All right reserved.
  * Function：Merge Sort
  *

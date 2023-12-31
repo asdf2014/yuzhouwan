@@ -3,7 +3,7 @@ package com.yuzhouwan.hacker.algorithms.leetcode.array;
 import java.util.Random;
 
 /**
- * Copyright @ 2023 yuzhouwan.com
+ * Copyright @ 2024 yuzhouwan.com
  * All right reserved.
  * Function: Shuffle Array Solution
  *

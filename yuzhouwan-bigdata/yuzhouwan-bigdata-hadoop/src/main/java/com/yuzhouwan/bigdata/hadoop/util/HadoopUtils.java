@@ -4,7 +4,7 @@ import com.yuzhouwan.common.util.PropUtils;
 import com.yuzhouwan.common.util.StrUtils;
 
 /**
- * Copyright @ 2023 yuzhouwan.com
+ * Copyright @ 2024 yuzhouwan.com
  * All right reserved.
  * Function：Hadoop Utils
  *

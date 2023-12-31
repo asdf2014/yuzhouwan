@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Map;
 
 /**
- * Copyright @ 2023 yuzhouwan.com
+ * Copyright @ 2024 yuzhouwan.com
  * All right reserved.
  * Function: StringSpout
  *

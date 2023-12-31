@@ -13,7 +13,7 @@ import static com.yuzhouwan.bigdata.hbase.util.HBaseUtils.extractTimestamp4Regio
 import static com.yuzhouwan.bigdata.hbase.util.HBaseUtils.removeEndKey;
 
 /**
- * Copyright @ 2023 yuzhouwan.com
+ * Copyright @ 2024 yuzhouwan.com
  * All right reserved.
  * Function：HBase Utils Test
  *

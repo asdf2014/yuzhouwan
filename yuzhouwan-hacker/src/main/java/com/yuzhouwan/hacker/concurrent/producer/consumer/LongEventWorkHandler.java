@@ -3,7 +3,7 @@ package com.yuzhouwan.hacker.concurrent.producer.consumer;
 import com.lmax.disruptor.WorkHandler;
 
 /**
- * Copyright @ 2023 yuzhouwan.com
+ * Copyright @ 2024 yuzhouwan.com
  * All right reserved.
  * Function：Long Event Work Handler
  *
