@@ -110,4 +110,4 @@
 
 　Just [Google](https://www.google.com/search?q=宇宙湾) it :D
 
-![Google yuzhouwan.com](https://yuzhouwan.github.io/picture/blog/google_yuzhouwan.png)
+![Google yuzhouwan.com](https://asdf2014.github.io/picture/blog/google_yuzhouwan.png)
