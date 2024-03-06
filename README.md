@@ -39,7 +39,7 @@
 | 暂闭 DaoVoice    | 出于其服务稳定性的考量，暂时关闭                             | 2019-05-11 |
 | 设计 Logo        | 新 Logo 寓意着浩瀚宇宙中的一处安心的港湾                     | 2019-05-11 |
 | 源站迁移         | 全站迁移至阿里云 OSS，代替 Github Page 作为源站              | 2020-01-01 |
-| 镜像网站         | 搭建镜像网站 [yuzhouwan.github.io](https://yuzhouwan.github.io/) | 2020-02-09 |
+| 镜像网站         | 搭建镜像网站 [asdf2014.github.io](https://asdf2014.github.io/) | 2020-02-09 |
 | GPT 加持         | 使用 GPT-4 模型进行网站优化                                  | 2023-03-18 |
 
 
