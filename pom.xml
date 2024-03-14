@@ -203,7 +203,7 @@
         <hadoop.version>3.3.6</hadoop.version>
 
         <!-- apache hbase -->
-        <hbase.version>1.7.2</hbase.version>
+        <hbase.version>2.5.8-hadoop3</hbase.version>
         <hbase.server.version>${hbase.version}</hbase.server.version>
         <protobuf.java.version>3.25.3</protobuf.java.version>
 
