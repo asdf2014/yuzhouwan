@@ -200,7 +200,7 @@
         <nlp.ansj.seg.version>5.1.6</nlp.ansj.seg.version>
 
         <!-- apache hadoop -->
-        <hadoop.version>3.3.6</hadoop.version>
+        <hadoop.version>3.4.0</hadoop.version>
 
         <!-- apache hbase -->
         <hbase.version>1.7.2</hbase.version>
