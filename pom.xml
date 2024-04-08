@@ -130,7 +130,7 @@
 
         <!-- snmp4j -->
         <snmp4j.version>3.7.8</snmp4j.version>
-        <snmp4j.agent.version>3.6.8</snmp4j.agent.version>
+        <snmp4j.agent.version>3.7.1</snmp4j.agent.version>
 
         <!-- log -->
         <slf4j.version>2.0.12</slf4j.version>
