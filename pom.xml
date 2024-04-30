@@ -172,7 +172,7 @@
         <apache.avro.version>1.11.3</apache.avro.version>
 
         <!-- apache common cli -->
-        <apache.common.cli>1.6.0</apache.common.cli>
+        <apache.common.cli>1.7.0</apache.common.cli>
 
         <!-- phantom js -->
         <phantom.js.version>1.4.4</phantom.js.version>
