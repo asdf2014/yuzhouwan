@@ -231,7 +231,7 @@
         <storm.kafka.version>1.2.4</storm.kafka.version>
 
         <!-- storm + elasticsearch -->
-        <storm.elasticsearch.version>7.17.20</storm.elasticsearch.version>
+        <storm.elasticsearch.version>7.17.21</storm.elasticsearch.version>
 
         <!-- hbase + hadoop -->
         <hbase.hadoop.compat.version>${hbase.server.version}</hbase.hadoop.compat.version>
