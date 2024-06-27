@@ -73,7 +73,7 @@
         <randomizedtesting-runner.version>2.8.1</randomizedtesting-runner.version>
         <cobertura.version>2.7</cobertura.version>
         <assertj-core.version>3.26.0</assertj-core.version>
-        <junit-jupiter-engine.version>5.10.2</junit-jupiter-engine.version>
+        <junit-jupiter-engine.version>5.10.3</junit-jupiter-engine.version>
 
         <!-- algorithm -->
         <circuitwall.ml.version>1.2.0</circuitwall.ml.version>
