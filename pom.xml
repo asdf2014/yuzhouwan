@@ -139,7 +139,7 @@
         <apache.commons.logging.version>1.3.3</apache.commons.logging.version>
 
         <!-- wechat -->
-        <commons.codec.version>1.17.0</commons.codec.version>
+        <commons.codec.version>1.17.1</commons.codec.version>
         <bouncycastle.bcprov-jdk15on.version>1.53</bouncycastle.bcprov-jdk15on.version>
         <dom4j.version>1.6.1</dom4j.version>
 
