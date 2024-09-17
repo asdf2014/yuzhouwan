@@ -113,7 +113,7 @@
         <spring.mybatis.version>3.0.4</spring.mybatis.version>
 
         <!-- spring + camel -->
-        <apache.camel.spring.version>4.7.0</apache.camel.spring.version>
+        <apache.camel.spring.version>4.8.0</apache.camel.spring.version>
 
         <!-- common -->
         <commons.io.version>2.16.1</commons.io.version>
