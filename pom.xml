@@ -240,7 +240,7 @@
         <redis.client.version>2.10.2</redis.client.version>
 
         <!-- apache calcite -->
-        <calcite-druid.version>1.37.0</calcite-druid.version>
+        <calcite-druid.version>1.38.0</calcite-druid.version>
 
         <!-- apache iotdb -->
         <iotdb.version>0.12.5</iotdb.version>
