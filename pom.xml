@@ -205,7 +205,7 @@
         <!-- apache hbase -->
         <hbase.version>1.7.2</hbase.version>
         <hbase.server.version>${hbase.version}</hbase.server.version>
-        <protobuf.java.version>3.25.3</protobuf.java.version>
+        <protobuf.java.version>4.28.3</protobuf.java.version>
 
         <!-- apache storm -->
         <apache.storm.version>2.5.0</apache.storm.version>
