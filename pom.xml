@@ -88,7 +88,7 @@
         <apache.curator.version>5.7.1</apache.curator.version>
 
         <!-- quartz -->
-        <quartz.version>2.4.0</quartz.version>
+        <quartz.version>2.5.0</quartz.version>
 
         <!-- spring -->
         <spring.version>6.1.14</spring.version>
