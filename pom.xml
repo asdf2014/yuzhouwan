@@ -104,7 +104,7 @@
         <spring.test.version>4.2.2.RELEASE</spring.test.version>
 
         <!-- mybatis -->
-        <mybatis.version>3.5.16</mybatis.version>
+        <mybatis.version>3.5.17</mybatis.version>
 
         <!-- mysql -->
         <mysql.jdbc.connection.version>8.0.30</mysql.jdbc.connection.version>
