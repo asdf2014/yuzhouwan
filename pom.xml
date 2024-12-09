@@ -70,7 +70,7 @@
         <securemock.version>1.2</securemock.version>
         <hamcrest.version>1.3</hamcrest.version>
         <jmh.version>1.37</jmh.version>
-        <randomizedtesting-runner.version>2.8.1</randomizedtesting-runner.version>
+        <randomizedtesting-runner.version>2.8.2</randomizedtesting-runner.version>
         <cobertura.version>2.7</cobertura.version>
         <assertj-core.version>3.26.0</assertj-core.version>
         <junit-jupiter-engine.version>5.11.3</junit-jupiter-engine.version>
