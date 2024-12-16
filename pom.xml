@@ -91,7 +91,7 @@
         <quartz.version>2.5.0</quartz.version>
 
         <!-- spring -->
-        <spring.version>6.1.14</spring.version>
+        <spring.version>6.2.1</spring.version>
         <swagger.spring.mvc.version>1.0.2</swagger.spring.mvc.version>
         <javax.servlet.api.version>4.0.1</javax.servlet.api.version>
         <aspectj.jrt.version>1.8.7</aspectj.jrt.version>
