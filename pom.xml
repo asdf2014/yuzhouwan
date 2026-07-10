@@ -235,7 +235,7 @@
         <storm.elasticsearch.version>7.17.24</storm.elasticsearch.version>
 
         <!-- hbase + hadoop -->
-        <hbase.hadoop.compat.version>${hbase.server.version}</hbase.hadoop.compat.version>
+        <hbase.hadoop.compat.version>2.6.6</hbase.hadoop.compat.version>
 
         <!-- redis client -->
         <redis.client.version>2.10.2</redis.client.version>
