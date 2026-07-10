@@ -112,6 +112,12 @@
                     <artifactId>zookeeper</artifactId>
                     <groupId>org.apache.zookeeper</groupId>
                 </exclusion>
+                <!-- keep surefire on the JUnit4 provider: a transitive junit-jupiter-api
+                     makes surefire auto-inject a junit-vintage-engine that fails discovery -->
+                <exclusion>
+                    <artifactId>junit-jupiter-api</artifactId>
+                    <groupId>org.junit.jupiter</groupId>
+                </exclusion>
             </exclusions>
         </dependency>
 
