@@ -215,7 +215,7 @@
 
         <!-- lucene -->
         <!-- lucene 10.x requires JDK 21; stay on 9.x while CI builds with JDK 17 -->
-        <lucene.version>9.12.3</lucene.version>
+        <lucene.version>10.5.0</lucene.version>
 
         <!-- elasticsearch -->
         <elasticsearch.version>7.17.26</elasticsearch.version>
