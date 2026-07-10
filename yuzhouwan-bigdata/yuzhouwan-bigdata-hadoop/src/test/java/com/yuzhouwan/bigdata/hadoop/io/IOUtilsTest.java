@@ -49,8 +49,14 @@ public class IOUtilsTest {
         assertTrue(f.delete());
         String msg = "yuzhouwan";
 
-        System.setIn(new ReaderInputStream(new StringReader(msg)));
-        IOUtils.copyBytes(System.in, new FileOutputStream(f), DEFAULT_IO_LENGTH);
+        // restore the real stdin afterwards: surefire uses it to send commands to the forked JVM
+        InputStream stdin = System.in;
+        try {
+            System.setIn(new ReaderInputStream(new StringReader(msg)));
+            IOUtils.copyBytes(System.in, new FileOutputStream(f), DEFAULT_IO_LENGTH);
+        } finally {
+            System.setIn(stdin);
+        }
 
         byte[] buff = new byte[DEFAULT_IO_LENGTH];
         int len = new FileInputStream(f).read(buff, 0, msg.getBytes().length);
@@ -61,8 +67,11 @@ public class IOUtilsTest {
     @Test
     public void readTest() {
         try {
-            System.in.close();
-            System.out.println(System.in.read());
+            // closing the real System.in would corrupt the surefire fork channel,
+            // so demonstrate the "Stream closed" behavior on a private stream
+            InputStream in = new BufferedInputStream(new ByteArrayInputStream(new byte[0]));
+            in.close();
+            System.out.println(in.read());
         } catch (IOException ioe) {
             assertEquals("Stream closed", ioe.getMessage());
         }

@@ -45,7 +45,7 @@ public class LuceneExample {
                 Query query = parser.parse("yuzhouwan.com");
                 ScoreDoc[] hits = searcher.search(query, 1000).scoreDocs;
                 for (ScoreDoc hit : hits) {
-                    Document hitDoc = searcher.doc(hit.doc);
+                    Document hitDoc = searcher.storedFields().document(hit.doc);
                     System.out.println(hitDoc.get("blog"));
                 }
             }
