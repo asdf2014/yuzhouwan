@@ -1,4 +1,4 @@
-FROM maven:3.8.5-openjdk-17 as builder
+FROM maven:3.9-eclipse-temurin-21 as builder
 
 COPY . /src
 WORKDIR /src
