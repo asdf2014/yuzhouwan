@@ -1,6 +1,6 @@
 package com.yuzhouwan.bigdata.kafka.util.pc;
 
-import com.lmax.disruptor.WorkHandler;
+import com.lmax.disruptor.EventHandler;
 import kafka.javaapi.producer.Producer;
 import kafka.producer.KeyedMessage;
 
@@ -12,7 +12,7 @@ import kafka.producer.KeyedMessage;
  * @author Benedict Jin
  * @since 2017/3/17
  */
-public class AvroEventWorkHandler implements WorkHandler<AvroEvent> {
+public class AvroEventWorkHandler implements EventHandler<AvroEvent> {
 
     private final Producer<String, byte[]> producer;
     private final String topic;
@@ -25,7 +25,7 @@ public class AvroEventWorkHandler implements WorkHandler<AvroEvent> {
     }
 
     @Override
-    public void onEvent(AvroEvent event) {
+    public void onEvent(AvroEvent event, long sequence, boolean endOfBatch) {
         producer.send(new KeyedMessage<>(topic, partition, event.getValue()));
     }
 }

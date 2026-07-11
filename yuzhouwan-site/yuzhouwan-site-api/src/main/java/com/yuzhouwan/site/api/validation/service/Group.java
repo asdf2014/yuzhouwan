@@ -1,7 +1,7 @@
 package com.yuzhouwan.site.api.validation.service;
 
-import javax.validation.GroupSequence;
-import javax.validation.groups.Default;
+import jakarta.validation.GroupSequence;
+import jakarta.validation.groups.Default;
 
 /**
  * Copyright @ 2024 yuzhouwan.com

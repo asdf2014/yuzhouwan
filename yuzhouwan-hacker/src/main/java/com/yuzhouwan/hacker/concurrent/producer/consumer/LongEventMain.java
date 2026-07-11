@@ -4,10 +4,9 @@ import com.lmax.disruptor.BlockingWaitStrategy;
 import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
+import com.lmax.disruptor.util.DaemonThreadFactory;
 
 import java.nio.ByteBuffer;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 /**
  * Copyright @ 2024 yuzhouwan.com
@@ -20,15 +19,14 @@ import java.util.concurrent.Executors;
 public class LongEventMain {
 
     public static void main(String[] args) {
-        Executor executor = Executors.newCachedThreadPool();
         LongEventFactory factory = new LongEventFactory();
         int bufferSize = 1024 * 1024 * 16;
         Disruptor<LongEvent> disruptor = new Disruptor<>(factory,
-                bufferSize, executor,
+                bufferSize, DaemonThreadFactory.INSTANCE,
                 ProducerType.MULTI,
                 new BlockingWaitStrategy());
         disruptor.handleEventsWith(new LongEventHandler());
-        disruptor.handleEventsWithWorkerPool(new LongEventWorkHandler("worker-1"),
+        disruptor.handleEventsWith(new LongEventWorkHandler("worker-1"),
                 new LongEventWorkHandler("worker-2"),
                 new LongEventWorkHandler("worker-3"));
 

@@ -1,6 +1,6 @@
 package com.yuzhouwan.hacker.concurrent.producer.consumer;
 
-import com.lmax.disruptor.WorkHandler;
+import com.lmax.disruptor.EventHandler;
 
 /**
  * Copyright @ 2024 yuzhouwan.com
@@ -10,7 +10,7 @@ import com.lmax.disruptor.WorkHandler;
  * @author Benedict Jin
  * @since 2017/3/16
  */
-public class LongEventWorkHandler implements WorkHandler<LongEvent> {
+public class LongEventWorkHandler implements EventHandler<LongEvent> {
 
     private final String workerName;
 
@@ -19,7 +19,7 @@ public class LongEventWorkHandler implements WorkHandler<LongEvent> {
     }
 
     @Override
-    public void onEvent(LongEvent event) {
+    public void onEvent(LongEvent event, long sequence, boolean endOfBatch) {
 //        System.out.println(workerName + " handle event:" + event);
     }
 }

@@ -6,12 +6,11 @@ import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
 import com.yuzhouwan.site.api.validation.service.First;
 import com.yuzhouwan.site.api.validation.service.Second;
-import org.hibernate.validator.constraints.Email;
-
-import javax.validation.constraints.DecimalMax;
-import javax.validation.constraints.Future;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import java.util.Date;
 
 /**
