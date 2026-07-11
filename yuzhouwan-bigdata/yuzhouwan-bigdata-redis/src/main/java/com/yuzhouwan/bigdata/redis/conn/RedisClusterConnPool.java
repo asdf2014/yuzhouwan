@@ -58,7 +58,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
             hostAndPort = clusters.split(":");
             jedisClusterNodes.add(new HostAndPort(hostAndPort[0], Integer.parseInt(hostAndPort[1])));
         }
-        cluster = new JedisCluster(jedisClusterNodes, DefaultJedisClientConfig.builder().build(), buildConf());
+        cluster = new JedisCluster(jedisClusterNodes, DefaultJedisClientConfig.builder().build());
     }
 
     private void initPools(DynamicPropUtils dp) {
