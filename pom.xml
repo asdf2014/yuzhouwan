@@ -24,7 +24,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.version>1.0.3</project.version>
-        <java.version>17</java.version>
+        <java.version>21</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
@@ -215,8 +215,7 @@
         <apache.kafka.version>2.4.1</apache.kafka.version>
 
         <!-- lucene -->
-        <!-- lucene 10.x requires JDK 21; stay on 9.x while CI builds with JDK 17 -->
-        <lucene.version>9.12.3</lucene.version>
+        <lucene.version>10.5.0</lucene.version>
 
         <!-- elasticsearch -->
         <elasticsearch.version>7.17.29</elasticsearch.version>
