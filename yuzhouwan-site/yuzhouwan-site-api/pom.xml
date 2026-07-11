@@ -28,6 +28,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- Jakarta Bean Validation API (hibernate-validator 8 is jakarta-based) -->
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+            <version>${jakarta.validation.api.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
