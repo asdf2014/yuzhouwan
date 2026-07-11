@@ -79,7 +79,7 @@
         <circuitwall.ml.version>1.2.0</circuitwall.ml.version>
 
         <!-- redis -->
-        <jedis.version>2.10.2</jedis.version>
+        <jedis.version>7.5.3</jedis.version>
 
         <!-- zookeeper -->
         <apache.zookeeper.version>3.9.5</apache.zookeeper.version>
@@ -167,7 +167,7 @@
         <apache.tika.version>1.11</apache.tika.version>
 
         <!-- apache pdfbox -->
-        <apache.pdfbox.version>1.8.17</apache.pdfbox.version>
+        <apache.pdfbox.version>3.0.7</apache.pdfbox.version>
 
         <!-- apache avro -->
         <apache.avro.version>1.12.1</apache.avro.version>

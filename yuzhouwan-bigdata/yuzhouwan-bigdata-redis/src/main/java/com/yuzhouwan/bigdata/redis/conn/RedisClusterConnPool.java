@@ -5,10 +5,12 @@ import com.yuzhouwan.common.util.RandomUtils;
 import com.yuzhouwan.common.util.StrUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import redis.clients.jedis.DefaultJedisClientConfig;
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
+import redis.clients.jedis.params.SetParams;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -56,7 +58,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
             hostAndPort = clusters.split(":");
             jedisClusterNodes.add(new HostAndPort(hostAndPort[0], Integer.parseInt(hostAndPort[1])));
         }
-        cluster = new JedisCluster(jedisClusterNodes, buildConf());
+        cluster = new JedisCluster(jedisClusterNodes, DefaultJedisClientConfig.builder().build(), buildConf());
     }
 
     private void initPools(DynamicPropUtils dp) {
@@ -110,7 +112,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
         try {
             // NX|XX, NX -- Only set the key if it does not already exist. XX -- Only set the key if it already exist.
             // EX|PX, expire time units: EX = seconds; PX = milliseconds
-            return cluster.set(key, value, "NX", "PX", millisecond);
+            return cluster.set(key, value, SetParams.setParams().nx().px(millisecond));
         } catch (Exception e) {
             LOGGER.error("", e);
             return null;
