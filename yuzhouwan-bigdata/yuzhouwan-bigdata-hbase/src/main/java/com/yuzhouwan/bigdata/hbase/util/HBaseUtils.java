@@ -10,7 +10,9 @@ import org.apache.hadoop.hbase.HTableDescriptor;
 import org.apache.hadoop.hbase.RegionLoad;
 import org.apache.hadoop.hbase.TableExistsException;
 import org.apache.hadoop.hbase.client.Admin;
-import org.apache.hadoop.hbase.client.HBaseAdmin;
+import org.apache.hadoop.hbase.client.Connection;
+import org.apache.hadoop.hbase.client.ConnectionFactory;
+import org.apache.hadoop.hbase.util.Bytes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -114,7 +116,7 @@ public final class HBaseUtils {
     public static String getTableName(RegionLoad region) {
         if (region == null) return null;
         // return extractTableName(HRegionInfo.encodeRegionName(region.getName()));
-        return extractTableName(region.getNameAsString());
+        return extractTableName(Bytes.toStringBinary(region.getName()));
     }
 
     public static String extractTableName(String regionName) {
@@ -202,8 +204,9 @@ public final class HBaseUtils {
     }
 
     public Date getClusterStartTime() {
-        try {
-            return new Date(new HBaseAdmin(configuration).getClusterStatus().getMaster().getStartcode());
+        try (Connection connection = ConnectionFactory.createConnection(configuration);
+             Admin admin = connection.getAdmin()) {
+            return new Date(admin.getClusterMetrics().getMasterName().getStartCode());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

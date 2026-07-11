@@ -3,8 +3,11 @@ package com.yuzhouwan.bigdata.hbase.salt;
 import com.yuzhouwan.bigdata.hbase.util.salt.DataProtos;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
-import org.apache.hadoop.hbase.client.HTable;
-import org.apache.hadoop.hbase.ipc.BlockingRpcCallback;
+import org.apache.hadoop.hbase.TableName;
+import org.apache.hadoop.hbase.client.Connection;
+import org.apache.hadoop.hbase.client.ConnectionFactory;
+import org.apache.hadoop.hbase.client.Table;
+import org.apache.hadoop.hbase.ipc.CoprocessorRpcUtils;
 import org.apache.hadoop.hbase.ipc.ServerRpcController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,15 +34,16 @@ public class QueryExample {
         requestBuilder.setEndRow(stopRow);
         requestBuilder.setIncludedEnd(isIncludeEnd);
         requestBuilder.setIsSalting(isSalting);
-        try {
-            HTable table = new HTable(HBaseConfiguration.create(conf), tableName);
+        try (Connection connection = ConnectionFactory.createConnection(HBaseConfiguration.create(conf));
+             Table table = connection.getTable(TableName.valueOf(tableName))) {
             Map<byte[], List<DataProtos.DataQueryResponse.Row>> result = table.coprocessorService(
                 DataProtos.QueryDataService.class,
                 null,
                 null,
                 counter -> {
                     ServerRpcController controller = new ServerRpcController();
-                    BlockingRpcCallback<DataProtos.DataQueryResponse> rpcCallback = new BlockingRpcCallback<>();
+                    CoprocessorRpcUtils.BlockingRpcCallback<DataProtos.DataQueryResponse> rpcCallback =
+                        new CoprocessorRpcUtils.BlockingRpcCallback<>();
                     counter.queryByStartRowAndEndRow(controller, requestBuilder.build(), rpcCallback);
                     DataProtos.DataQueryResponse response = rpcCallback.get();
                     if (controller.failedOnException()) {

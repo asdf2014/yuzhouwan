@@ -2,7 +2,8 @@ package com.yuzhouwan.bigdata.hbase.two_level_index;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
-import org.apache.hadoop.hbase.client.HConnectionManager;
+import org.apache.hadoop.hbase.client.Connection;
+import org.apache.hadoop.hbase.client.ConnectionFactory;
 import org.apache.hadoop.hbase.client.Put;
 import org.apache.hadoop.hbase.client.Result;
 import org.apache.hadoop.hbase.client.Scan;
@@ -39,7 +40,9 @@ public final class TwoLevelIndexBuilder {
         conf.set("hbase.zookeeper.quorum", zkServer);
         conf.set("hbase.zookeeper.property.clientPort", port);
 
-        HConnectionManager.createConnection(conf);
+        try (Connection ignored = ConnectionFactory.createConnection(conf)) {
+            // validate that a connection can be established with the given configuration
+        }
     }
 
     public static void main(String[] args) throws Exception {
@@ -137,7 +140,7 @@ public final class TwoLevelIndexBuilder {
                     //索引表
                     Put put = new Put(val); //索引表行键
                     //列族  列   原始表的行键
-                    put.add(Bytes.toBytes("f1"), Bytes.toBytes("id"), key.get());
+                    put.addColumn(Bytes.toBytes("f1"), Bytes.toBytes("id"), key.get());
                     context.write(indexTableName, put);
                 }
             }

@@ -27,6 +27,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-mapreduce</artifactId>
+            <version>${hbase.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java</artifactId>
             <version>${protobuf.java.version}</version>
@@ -51,23 +57,9 @@
         </dependency>
         <dependency>
             <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase-server</artifactId>
-            <version>${hbase.server.version}</version>
-            <type>test-jar</type>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase-hadoop-compat</artifactId>
-            <version>${hbase.hadoop.compat.version}</version>
+            <artifactId>hbase-testing-util</artifactId>
+            <version>${hbase.version}</version>
             <scope>test</scope>
-            <type>test-jar</type>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase-hadoop2-compat</artifactId>
-            <version>${hbase.hadoop.compat.version}</version>
-            <scope>test</scope>
-            <type>test-jar</type>
         </dependency>
         <dependency>
             <groupId>org.apache.hadoop</groupId>
