@@ -10,7 +10,7 @@ import com.yuzhouwan.bigdata.kafka.util.pc.AvroEventFactory;
 import com.yuzhouwan.bigdata.kafka.util.pc.AvroEventProducer;
 import com.yuzhouwan.bigdata.kafka.util.pc.AvroEventWorkHandler;
 import com.yuzhouwan.common.util.DecimalUtils;
-import kafka.javaapi.producer.Producer;
+import org.apache.kafka.clients.producer.Producer;
 
 import java.nio.ByteBuffer;
 

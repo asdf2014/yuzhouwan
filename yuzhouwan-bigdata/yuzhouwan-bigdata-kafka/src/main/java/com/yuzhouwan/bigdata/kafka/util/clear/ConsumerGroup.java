@@ -1,21 +1,17 @@
 package com.yuzhouwan.bigdata.kafka.util.clear;
 
 import com.yuzhouwan.common.util.PropUtils;
-import kafka.consumer.ConsumerConfig;
-import kafka.consumer.KafkaStream;
-import kafka.javaapi.consumer.ConsumerConnector;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.serialization.ByteArrayDeserializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-
-import static kafka.consumer.Consumer.createJavaConsumerConnector;
 
 /**
  * Copyright @ 2024 yuzhouwan.com
@@ -29,12 +25,11 @@ public class ConsumerGroup {
 
     private static final PropUtils p = PropUtils.getInstance();
     private static final Logger LOGGER = LoggerFactory.getLogger(ConsumerGroup.class);
-    private final ConsumerConnector consumer;
     private final String topic;
+    private final List<ConsumerWorker> workers = new ArrayList<>();
     private ExecutorService executor;
 
     public ConsumerGroup() {
-        this.consumer = createJavaConsumerConnector(createConsumerConfig());
         this.topic = p.getProperty("kafka.clear.topic");
     }
 
@@ -47,11 +42,10 @@ public class ConsumerGroup {
     }
 
     private void shutdown() {
-        if (consumer != null) consumer.shutdown();
+        for (ConsumerWorker worker : workers) worker.shutdown();
         if (executor != null) executor.shutdown();
         try {
-            assert executor != null;
-            if (!executor.awaitTermination(5000, TimeUnit.MILLISECONDS)) {
+            if (executor != null && !executor.awaitTermination(5000, TimeUnit.MILLISECONDS)) {
                 LOGGER.info("Timed out waiting for consumer threads to shut down, exiting uncleanly");
             }
         } catch (InterruptedException e) {
@@ -60,32 +54,25 @@ public class ConsumerGroup {
     }
 
     private void run(int threadNum) {
-        Map<String, Integer> topicCountMap = new HashMap<>();
-        topicCountMap.put(topic, threadNum);
-        Map<String, List<KafkaStream<byte[], byte[]>>> consumerMap = consumer.createMessageStreams(topicCountMap);
-        List<KafkaStream<byte[], byte[]>> streams = consumerMap.get(topic);
-
         executor = Executors.newFixedThreadPool(threadNum);
-
-        int threadNumber = 0;
-        LOGGER.info("the streams size is {}", streams.size());
-        for (final KafkaStream<byte[], byte[]> stream : streams) {
-            executor.submit(new ConsumerWorker(stream, threadNumber));
-            consumer.commitOffsets();
-            threadNumber++;
+        for (int threadNumber = 0; threadNumber < threadNum; threadNumber++) {
+            ConsumerWorker worker = new ConsumerWorker(createConsumer(), topic, threadNumber);
+            workers.add(worker);
+            executor.submit(worker);
         }
+        LOGGER.info("the consumer worker size is {}", workers.size());
     }
 
-    private ConsumerConfig createConsumerConfig() {
+    private KafkaConsumer<byte[], byte[]> createConsumer() {
         Properties props = new Properties();
-        props.put("zookeeper.connect", p.getProperty("kafka.clear.zookeeper.connect"));
+        props.put("bootstrap.servers", p.getProperty("kafka.clear.bootstrap.servers"));
         props.put("group.id", p.getProperty("kafka.clear.group.id"));
-        props.put("zookeeper.session.timeout.ms", p.getProperty("kafka.clear.zookeeper.session.timeout.ms"));
-        props.put("zookeeper.sync.time.ms", p.getProperty("kafka.clear.zookeeper.sync.time.ms"));
+        props.put("enable.auto.commit", p.getProperty("kafka.clear.enable.auto.commit"));
         props.put("auto.commit.interval.ms", p.getProperty("kafka.clear.auto.commit.interval.ms"));
         props.put("auto.offset.reset", p.getProperty("kafka.clear.auto.offset.reset"));
-        props.put("rebalance.max.retries", p.getProperty("kafka.clear.rebalance.max.retries"));
-        props.put("rebalance.backoff.ms", p.getProperty("kafka.clear.rebalance.backoff.ms"));
-        return new ConsumerConfig(props);
+        props.put("session.timeout.ms", p.getProperty("kafka.clear.session.timeout.ms"));
+        props.put("key.deserializer", ByteArrayDeserializer.class.getName());
+        props.put("value.deserializer", ByteArrayDeserializer.class.getName());
+        return new KafkaConsumer<>(props);
     }
 }
