@@ -239,7 +239,7 @@
         <hbase.hadoop.compat.version>2.6.6</hbase.hadoop.compat.version>
 
         <!-- redis client -->
-        <redis.client.version>2.10.2</redis.client.version>
+        <redis.client.version>7.5.3</redis.client.version>
 
         <!-- apache calcite -->
         <calcite-druid.version>1.42.0</calcite-druid.version>
