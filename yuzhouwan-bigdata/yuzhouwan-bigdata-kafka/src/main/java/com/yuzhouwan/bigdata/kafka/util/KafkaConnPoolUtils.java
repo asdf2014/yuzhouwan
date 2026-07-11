@@ -2,7 +2,7 @@ package com.yuzhouwan.bigdata.kafka.util;
 
 import com.yuzhouwan.common.util.PropUtils;
 import com.yuzhouwan.common.util.StrUtils;
-import kafka.javaapi.producer.Producer;
+import org.apache.kafka.clients.producer.Producer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

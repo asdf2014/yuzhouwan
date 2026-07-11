@@ -2,10 +2,12 @@ package com.yuzhouwan.bigdata.kafka.util;
 
 import com.yuzhouwan.common.util.ExceptionUtils;
 import com.yuzhouwan.common.util.StrUtils;
-import kafka.producer.Partitioner;
+import org.apache.kafka.clients.producer.Partitioner;
+import org.apache.kafka.common.Cluster;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -48,7 +50,16 @@ public class KafkaPartitioner implements Partitioner {
     }
 
     @Override
-    public int partition(Object key, int numPartitions) {
-        return getPartition(key, numPartitions);
+    public int partition(String topic, Object key, byte[] keyBytes, Object value, byte[] valueBytes, Cluster cluster) {
+        Integer numPartitions = cluster.partitionCountForTopic(topic);
+        return getPartition(key, numPartitions == null ? 0 : numPartitions);
+    }
+
+    @Override
+    public void close() {
+    }
+
+    @Override
+    public void configure(Map<String, ?> configs) {
     }
 }

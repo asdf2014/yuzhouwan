@@ -1,8 +1,8 @@
 package com.yuzhouwan.bigdata.kafka.util;
 
 import com.yuzhouwan.common.util.PropUtils;
-import kafka.javaapi.producer.Producer;
-import kafka.producer.KeyedMessage;
+import org.apache.kafka.clients.producer.Producer;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -28,7 +28,7 @@ public class KafkaConnPoolUtilsTest {
         for (int i = 0, max = 1000000000; i < max; i++) {
             System.out.printf("Sending %s/%s ...%n", i, max);
             Thread.sleep(1000);
-            conn.send(new KeyedMessage<>(topic,
+            conn.send(new ProducerRecord<>(topic,
                     ("{\"appId\":1,\"attemptId\":\"2\",\"callId\":\"" + i + "\",\"description\":\"yuzhouwan\"}")
                             .getBytes()));
         }

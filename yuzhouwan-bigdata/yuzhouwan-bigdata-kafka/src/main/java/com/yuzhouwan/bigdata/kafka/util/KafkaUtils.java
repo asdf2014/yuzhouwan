@@ -10,12 +10,12 @@ import com.yuzhouwan.bigdata.kafka.util.pc.AvroEventFactory;
 import com.yuzhouwan.bigdata.kafka.util.pc.AvroEventProducer;
 import com.yuzhouwan.bigdata.kafka.util.pc.AvroEventWorkHandler;
 import com.yuzhouwan.common.util.PropUtils;
-import kafka.javaapi.producer.Producer;
-import kafka.producer.ProducerConfig;
 import org.apache.avro.io.DatumWriter;
 import org.apache.avro.io.Encoder;
 import org.apache.avro.io.EncoderFactory;
 import org.apache.avro.specific.SpecificDatumWriter;
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.Producer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -93,19 +93,14 @@ public final class KafkaUtils {
     static Producer<String, byte[]> createProducer() {
         Properties props = new Properties();
         try {
-//            props.put("zk.connect", p.getProperty("kafka.zk.connect"));   // not need zk in new version
-            props.put("key.serializer.class", p.getProperty("kafka.key.serializer.class"));
-            props.put("serializer.class", p.getProperty("kafka.serializer.class"));
-            props.put("metadata.broker.list", p.getProperty("kafka.metadata.broker.list"));
-            props.put("request.required.acks", p.getProperty("kafka.request.required.acks"));
-            props.put("producer.type", p.getProperty("kafka.async"));
+            props.put("bootstrap.servers", p.getProperty("kafka.bootstrap.servers"));
+            props.put("key.serializer", p.getProperty("kafka.key.serializer"));
+            props.put("value.serializer", p.getProperty("kafka.value.serializer"));
+            props.put("acks", p.getProperty("kafka.acks"));
             props.put("partitioner.class", PARTITIONER_CLASS_NAME);
-
-            props.put("queue.buffering.max.ms", p.getProperty("kafka.queue.buffering.max.ms"));
-            props.put("queue.buffering.max.messages", p.getProperty("kafka.queue.buffering.max.messages"));
-            props.put("queue.enqueue.timeout.ms", p.getProperty("kafka.queue.enqueue.timeout.ms"));
-            // 41,0000,0000 / 24 / 60 / 60 = 47454 / 24 = 1977
-            props.put("batch.num.messages", p.getProperty("kafka.batch.num.messages"));
+            props.put("batch.size", p.getProperty("kafka.batch.size"));
+            props.put("linger.ms", p.getProperty("kafka.linger.ms"));
+            props.put("buffer.memory", p.getProperty("kafka.buffer.memory"));
             props.put("send.buffer.bytes", p.getProperty("kafka.send.buffer.bytes"));
 //            props.put("compression.type", "lz4");
         } catch (Exception e) {
@@ -113,7 +108,7 @@ public final class KafkaUtils {
             throw new RuntimeException(e);
         }
         LOGGER.info("Connect with kafka successfully!");
-        return new Producer<>(new ProducerConfig(props));
+        return new KafkaProducer<>(props);
     }
 
     public static <T> void save2Kafka(final List<T> objs, Class<T> clazz) {

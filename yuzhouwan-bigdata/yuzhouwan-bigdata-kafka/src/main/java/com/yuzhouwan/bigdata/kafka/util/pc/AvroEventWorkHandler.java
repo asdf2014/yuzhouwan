@@ -1,8 +1,8 @@
 package com.yuzhouwan.bigdata.kafka.util.pc;
 
 import com.lmax.disruptor.EventHandler;
-import kafka.javaapi.producer.Producer;
-import kafka.producer.KeyedMessage;
+import org.apache.kafka.clients.producer.Producer;
+import org.apache.kafka.clients.producer.ProducerRecord;
 
 /**
  * Copyright @ 2024 yuzhouwan.com
@@ -26,6 +26,6 @@ public class AvroEventWorkHandler implements EventHandler<AvroEvent> {
 
     @Override
     public void onEvent(AvroEvent event, long sequence, boolean endOfBatch) {
-        producer.send(new KeyedMessage<>(topic, partition, event.getValue()));
+        producer.send(new ProducerRecord<>(topic, partition, event.getValue()));
     }
 }
