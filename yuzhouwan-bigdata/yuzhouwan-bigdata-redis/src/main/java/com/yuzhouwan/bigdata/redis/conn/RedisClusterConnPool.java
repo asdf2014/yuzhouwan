@@ -12,7 +12,6 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.params.SetParams;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.*;
 
@@ -313,7 +312,7 @@ public class RedisClusterConnPool implements AutoCloseable, Serializable {
     public void close() {
         try {
             if (cluster != null) cluster.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
             LOGGER.error("", e);
         }
     }
