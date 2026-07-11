@@ -5,7 +5,7 @@ import com.yuzhouwan.site.api.validation.service.GroupA;
 import com.yuzhouwan.site.api.validation.service.GroupB;
 import org.hibernate.validator.constraints.Length;
 
-import javax.validation.groups.Default;
+import jakarta.validation.groups.Default;
 
 /**
  * Copyright @ 2024 yuzhouwan.com

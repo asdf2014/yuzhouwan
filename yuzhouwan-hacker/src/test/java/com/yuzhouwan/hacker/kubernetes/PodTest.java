@@ -3,10 +3,10 @@ package com.yuzhouwan.hacker.kubernetes;
 import io.fabric8.kubernetes.api.model.Pod;
 import io.fabric8.kubernetes.api.model.PodBuilder;
 import io.fabric8.kubernetes.api.model.PodListBuilder;
-import io.fabric8.kubernetes.client.server.mock.KubernetesServer;
-import org.junit.Rule;
+import io.fabric8.kubernetes.client.KubernetesClient;
+import io.fabric8.kubernetes.client.server.mock.EnableKubernetesMockClient;
+import io.fabric8.kubernetes.client.server.mock.KubernetesMockServer;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.migrationsupport.rules.EnableRuleMigrationSupport;
 
 import java.net.HttpURLConnection;
 import java.util.List;
@@ -23,51 +23,51 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @author Benedict Jin
  * @since 2023/2/5
  */
-@EnableRuleMigrationSupport
+@EnableKubernetesMockClient
 class PodTest {
 
-  @Rule
-  public KubernetesServer server = new KubernetesServer();
+    static KubernetesMockServer server;
+    static KubernetesClient client;
 
-  @Test
-  public void testGetPodList() {
+    @Test
+    public void testGetPodList() {
 
-    Pod pod = new PodBuilder()
-        .withNewMetadata()
-        .withName("yuzhouwan")
-        .endMetadata()
-        .build();
+        Pod pod = new PodBuilder()
+                .withNewMetadata()
+                .withName("yuzhouwan")
+                .endMetadata()
+                .build();
 
-    server.expect()
-        .get()
-        .withPath("/api/v1/pods")
-        .andReturn(HttpURLConnection.HTTP_OK, new PodListBuilder()
-            .withItems(pod)
-            .build())
-        .once();
+        server.expect()
+                .get()
+                .withPath("/api/v1/pods")
+                .andReturn(HttpURLConnection.HTTP_OK, new PodListBuilder()
+                        .withItems(pod)
+                        .build())
+                .once();
 
-    List<Pod> podList = server.getClient()
-        .pods()
-        .inAnyNamespace()
-        .list()
-        .getItems();
-    assertNotNull(podList);
-    assertEquals(1, podList.size());
+        List<Pod> podList = client
+                .pods()
+                .inAnyNamespace()
+                .list()
+                .getItems();
+        assertNotNull(podList);
+        assertEquals(1, podList.size());
 
-    server.expect()
-        .get()
-        .withPath("/api/v1/namespaces/default/pods")
-        .andReturn(HttpURLConnection.HTTP_OK, new PodListBuilder()
-            .withItems()
-            .build())
-        .once();
+        server.expect()
+                .get()
+                .withPath("/api/v1/namespaces/default/pods")
+                .andReturn(HttpURLConnection.HTTP_OK, new PodListBuilder()
+                        .withItems()
+                        .build())
+                .once();
 
-    podList = server.getClient()
-        .pods()
-        .inNamespace("default")
-        .list()
-        .getItems();
+        podList = client
+                .pods()
+                .inNamespace("default")
+                .list()
+                .getItems();
 
-    assertTrue(podList.isEmpty());
-  }
+        assertTrue(podList.isEmpty());
+    }
 }

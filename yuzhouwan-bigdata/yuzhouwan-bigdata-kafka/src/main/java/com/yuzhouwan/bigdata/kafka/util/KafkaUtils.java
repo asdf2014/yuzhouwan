@@ -4,6 +4,7 @@ import com.lmax.disruptor.BlockingWaitStrategy;
 import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
+import com.lmax.disruptor.util.DaemonThreadFactory;
 import com.yuzhouwan.bigdata.kafka.util.pc.AvroEvent;
 import com.yuzhouwan.bigdata.kafka.util.pc.AvroEventFactory;
 import com.yuzhouwan.bigdata.kafka.util.pc.AvroEventProducer;
@@ -23,7 +24,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
-import java.util.concurrent.Executors;
 
 import static com.yuzhouwan.bigdata.kafka.util.KafkaConnPoolUtils.getPool;
 import static com.yuzhouwan.common.util.ExceptionUtils.errorInfo;
@@ -72,7 +72,7 @@ public final class KafkaUtils {
     private static void disruptor() {
         AvroEventFactory factory = new AvroEventFactory();
         Disruptor<AvroEvent> disruptor = new Disruptor<>(factory, RING_BUFFER_SIZE,
-                Executors.newCachedThreadPool(),
+                DaemonThreadFactory.INSTANCE,
                 ProducerType.MULTI,
                 new BlockingWaitStrategy());
         Collection<Producer<String, byte[]>> pool = getPool();
@@ -83,7 +83,7 @@ public final class KafkaUtils {
             avroEventWorkHandlers[count] = new AvroEventWorkHandler(producer, KAFKA_TOPIC, count);
             count++;
         }
-        disruptor.handleEventsWithWorkerPool(avroEventWorkHandlers);
+        disruptor.handleEventsWith(avroEventWorkHandlers);
         disruptor.start();
 
         RingBuffer<AvroEvent> ringBuffer = disruptor.getRingBuffer();

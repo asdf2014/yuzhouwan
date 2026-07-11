@@ -2,8 +2,8 @@ package com.yuzhouwan.site.api.validation.model;
 
 import com.yuzhouwan.site.api.validation.enums.NotEmpty;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 /**
  * Copyright @ 2024 yuzhouwan.com

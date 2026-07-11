@@ -14,7 +14,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.hibernate</groupId>
+            <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>${hibernate.validator.version}</version>
             <exclusions>
@@ -27,6 +27,12 @@
                   <artifactId>jboss-logging</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <!-- Jakarta Bean Validation API (hibernate-validator 8 is jakarta-based) -->
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+            <version>${jakarta.validation.api.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>

@@ -4,7 +4,6 @@ import org.apache.log4j.BasicConfigurator;
 import org.snmp4j.*;
 import org.snmp4j.asn1.BER;
 import org.snmp4j.event.ResponseEvent;
-import org.snmp4j.log.LogFactory;
 import org.snmp4j.mp.*;
 import org.snmp4j.security.*;
 import org.snmp4j.smi.*;
@@ -257,7 +256,6 @@ public class SnmpUtil extends Thread implements PDUFactory, CommandResponder {
             checkTrapVariables(vbs);
         }
         address = new UdpAddress(host + "/" + _port);
-        LogFactory.setLogFactory(new LogFactory());
         BER.setCheckSequenceLength(false);
     }
 
