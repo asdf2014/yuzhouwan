@@ -30,7 +30,7 @@
 
         <!-- maven -->
         <maven.resource.plugin.version>3.5.0</maven.resource.plugin.version>
-        <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
+        <maven.compiler.plugin.version>3.15.0</maven.compiler.plugin.version>
         <maven.compiler.jdk.version>${java.version}</maven.compiler.jdk.version>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
         <maven.release.plugin.version>3.3.1</maven.release.plugin.version>
@@ -38,7 +38,7 @@
         <maven.eclipse.plugin.version>2.10</maven.eclipse.plugin.version>
         <maven.checkstyle.plugin.version>3.6.0</maven.checkstyle.plugin.version>
         <maven.assembly.plugin.version>3.1.1</maven.assembly.plugin.version>
-        <maven.war.plugin.version>3.3.2</maven.war.plugin.version>
+        <maven.war.plugin.version>3.5.1</maven.war.plugin.version>
         <org.codehaus.mojo.build-helper-maven-plugin>3.6.1</org.codehaus.mojo.build-helper-maven-plugin>
         <scala.maven.plugin.version>3.2.2</scala.maven.plugin.version>
 
@@ -56,7 +56,7 @@
 
         <!-- json -->
         <jackson.version>2.18.3</jackson.version>
-        <json.path.version>2.9.0</json.path.version>
+        <json.path.version>3.0.0</json.path.version>
         <json.path.assert.version>3.0.0</json.path.assert.version>
 
         <!-- thread -->
@@ -72,7 +72,7 @@
         <jmh.version>1.37</jmh.version>
         <randomizedtesting-runner.version>2.9.1</randomizedtesting-runner.version>
         <cobertura.version>2.7</cobertura.version>
-        <assertj-core.version>3.27.0</assertj-core.version>
+        <assertj-core.version>3.27.7</assertj-core.version>
         <junit-jupiter-engine.version>6.1.1</junit-jupiter-engine.version>
 
         <!-- algorithm -->
@@ -134,7 +134,7 @@
 
         <!-- log -->
         <slf4j.version>2.0.18</slf4j.version>
-        <logback.version>1.5.14</logback.version>
+        <logback.version>1.5.38</logback.version>
         <log4j-extras.version>1.2.17</log4j-extras.version>
         <apache.commons.logging.version>1.4.0</apache.commons.logging.version>
 
