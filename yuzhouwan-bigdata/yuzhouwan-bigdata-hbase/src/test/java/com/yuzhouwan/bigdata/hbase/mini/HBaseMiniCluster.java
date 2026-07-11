@@ -7,9 +7,9 @@ import org.apache.hadoop.hbase.HBaseTestingUtility;
 import org.apache.hadoop.hbase.HTableDescriptor;
 import org.apache.hadoop.hbase.MiniHBaseCluster;
 import org.apache.hadoop.hbase.TableName;
+import org.apache.hadoop.hbase.client.Admin;
 import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.client.ConnectionFactory;
-import org.apache.hadoop.hbase.client.HBaseAdmin;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.apache.hadoop.mapred.*;
 import org.junit.Test;
@@ -72,12 +72,12 @@ public class HBaseMiniCluster {
          */
         MiniHBaseCluster hbaseCluster = hbaseTestingUtility.startMiniCluster();
 
-        hbaseTestingUtility.createTable(Bytes.toBytes(TABLE_NAME), Bytes.toBytes("context"));
-        hbaseTestingUtility.deleteTable(Bytes.toBytes(TABLE_NAME));
+        hbaseTestingUtility.createTable(TableName.valueOf(TABLE_NAME), Bytes.toBytes("context"));
+        hbaseTestingUtility.deleteTable(TableName.valueOf(TABLE_NAME));
 
         Configuration config = hbaseCluster.getConf();
         Connection conn = ConnectionFactory.createConnection(config);
-        HBaseAdmin hbaseAdmin = new HBaseAdmin(conn);
+        Admin hbaseAdmin = conn.getAdmin();
 
         HTableDescriptor desc = new HTableDescriptor(TableName.valueOf(TABLE_NAME));
         hbaseAdmin.createTable(desc);

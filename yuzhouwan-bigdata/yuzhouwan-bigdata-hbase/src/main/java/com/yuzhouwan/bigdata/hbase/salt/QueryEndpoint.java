@@ -9,18 +9,17 @@ import com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse;
 import com.yuzhouwan.common.util.ExceptionUtils;
 import com.yuzhouwan.common.util.StrUtils;
 import org.apache.hadoop.hbase.Cell;
-import org.apache.hadoop.hbase.Coprocessor;
+import org.apache.hadoop.hbase.CellUtil;
 import org.apache.hadoop.hbase.CoprocessorEnvironment;
-import org.apache.hadoop.hbase.KeyValue;
 import org.apache.hadoop.hbase.client.Get;
 import org.apache.hadoop.hbase.client.Result;
 import org.apache.hadoop.hbase.client.Scan;
 import org.apache.hadoop.hbase.coprocessor.CoprocessorException;
-import org.apache.hadoop.hbase.coprocessor.CoprocessorService;
+import org.apache.hadoop.hbase.coprocessor.RegionCoprocessor;
 import org.apache.hadoop.hbase.coprocessor.RegionCoprocessorEnvironment;
 import org.apache.hadoop.hbase.filter.Filter;
 import org.apache.hadoop.hbase.filter.InclusiveStopFilter;
-import org.apache.hadoop.hbase.protobuf.ResponseConverter;
+import org.apache.hadoop.hbase.ipc.CoprocessorRpcUtils;
 import org.apache.hadoop.hbase.regionserver.InternalScanner;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.slf4j.Logger;
@@ -28,9 +27,10 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class QueryEndpoint extends DataProtos.QueryDataService implements Coprocessor, CoprocessorService {
+public class QueryEndpoint extends DataProtos.QueryDataService implements RegionCoprocessor {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(QueryEndpoint.class);
     private RegionCoprocessorEnvironment env;
@@ -39,8 +39,8 @@ public class QueryEndpoint extends DataProtos.QueryDataService implements Coproc
     }
 
     @Override
-    public Service getService() {
-        return this;
+    public Iterable<Service> getServices() {
+        return Collections.singleton(this);
     }
 
     @Override
@@ -91,9 +91,9 @@ public class QueryEndpoint extends DataProtos.QueryDataService implements Coproc
                 hasMore = scanner.next(results);
                 DataProtos.DataQueryResponse.Row.Builder rowBuilder = DataProtos.DataQueryResponse.Row.newBuilder();
                 if (results.size() > 0) {
-                    rowBuilder.setRowKey(ByteString.copyFrom(results.get(0).getRow()));
+                    rowBuilder.setRowKey(ByteString.copyFrom(CellUtil.cloneRow(results.get(0))));
                     for (Cell kv : results) {
-                        queryBuilder(rowBuilder, ByteString.copyFrom(kv.getFamily()), ByteString.copyFrom(kv.getQualifier()), ByteString.copyFrom(kv.getRow()), ByteString.copyFrom(kv.getValue()));
+                        queryBuilder(rowBuilder, ByteString.copyFrom(CellUtil.cloneFamily(kv)), ByteString.copyFrom(CellUtil.cloneQualifier(kv)), ByteString.copyFrom(CellUtil.cloneRow(kv)), ByteString.copyFrom(CellUtil.cloneValue(kv)));
                     }
                 }
                 responseBuilder.addRowList(rowBuilder);
@@ -101,7 +101,7 @@ public class QueryEndpoint extends DataProtos.QueryDataService implements Coproc
             } while (hasMore);
             response = responseBuilder.build();
         } catch (IOException ignored) {
-            ResponseConverter.setControllerException(controller, ignored);
+            CoprocessorRpcUtils.setControllerException(controller, ignored);
         } finally {
             if (scanner != null) {
                 try {
@@ -141,18 +141,18 @@ public class QueryEndpoint extends DataProtos.QueryDataService implements Coproc
             DataProtos.DataQueryResponse.Row.Builder rowBuilder = DataProtos.DataQueryResponse.Row.newBuilder();
 
             if (result != null && !result.isEmpty()) {
-                List<KeyValue> list = result.list();
+                List<Cell> list = result.listCells();
                 if (null != list && !list.isEmpty()) {
-                    rowBuilder.setRowKey(ByteString.copyFrom(list.get(0).getRow()));
-                    for (KeyValue kv : list) {
-                        queryBuilder(rowBuilder, ByteString.copyFrom(kv.getFamily()), ByteString.copyFrom(kv.getQualifier()), ByteString.copyFrom(kv.getRow()), ByteString.copyFrom(kv.getValue()));
+                    rowBuilder.setRowKey(ByteString.copyFrom(CellUtil.cloneRow(list.get(0))));
+                    for (Cell kv : list) {
+                        queryBuilder(rowBuilder, ByteString.copyFrom(CellUtil.cloneFamily(kv)), ByteString.copyFrom(CellUtil.cloneQualifier(kv)), ByteString.copyFrom(CellUtil.cloneRow(kv)), ByteString.copyFrom(CellUtil.cloneValue(kv)));
                     }
                 }
             }
             responseBuilder.addRowList(rowBuilder);
             response = responseBuilder.build();
         } catch (IOException ignored) {
-            ResponseConverter.setControllerException(controller, ignored);
+            CoprocessorRpcUtils.setControllerException(controller, ignored);
         }
         done.run(response);
     }
