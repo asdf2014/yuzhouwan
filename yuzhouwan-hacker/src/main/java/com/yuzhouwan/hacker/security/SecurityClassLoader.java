@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
-import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.GCMParameterSpec;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -25,8 +25,9 @@ class SecurityClassLoader extends ClassLoader {
     private static final Logger LOGGER = LoggerFactory.getLogger(SecurityClassLoader.class);
 
     static final String ALGORITHM = "AES";
-    static final String TRANSFORMATION = "AES/CBC/PKCS5Padding";
-    static final int IV_LENGTH = 16;
+    static final String TRANSFORMATION = "AES/GCM/NoPadding";
+    static final int GCM_TAG_BITS = 128;
+    static final int IV_LENGTH = 12;
     private static final String CLASSES_PATH = "F:/如何成为 Java 高手/笔记/Soft Engineering/Git/[code]/"
         + "yuzhouwan/yuzhouwan-hacker/target/classes/com/yuzhouwan/hacker/security/";
 
@@ -50,11 +51,11 @@ class SecurityClassLoader extends ClassLoader {
                 } else classData = FileUtils.readFile(name);
 
                 if (classData != null) {
-                    // the file layout is [16-byte random IV][AES/CBC ciphertext]
+                    // the file layout is [12-byte random nonce][AES-GCM ciphertext]
                     byte[] iv = Arrays.copyOfRange(classData, 0, IV_LENGTH);
                     byte[] cipherText = Arrays.copyOfRange(classData, IV_LENGTH, classData.length);
                     Cipher cipher = Cipher.getInstance(TRANSFORMATION);
-                    cipher.init(Cipher.DECRYPT_MODE, key, new IvParameterSpec(iv));
+                    cipher.init(Cipher.DECRYPT_MODE, key, new GCMParameterSpec(GCM_TAG_BITS, iv));
                     byte[] decryptedClassData = cipher.doFinal(cipherText);
                     clazz = defineClass(name, decryptedClassData, 0, decryptedClassData.length);
                     LOGGER.error("[SecurityClassLoader: decrypting class " + name + "]");
