@@ -20,11 +20,9 @@ class GenerateKey {
      * @param keyFileName key.data
      */
     static void generate(String keyFileName) throws Exception {
-        SecureRandom sr = new SecureRandom();
-        KeyGenerator kg = KeyGenerator.getInstance(SecurityClassLoader.ALGORITHM); // lgtm [java/weak-cryptographic-algorithm]
-        kg.init(sr);
+        KeyGenerator kg = KeyGenerator.getInstance(SecurityClassLoader.ALGORITHM);
+        kg.init(128, new SecureRandom());
         SecretKey key = kg.generateKey();
         FileUtils.writeFile(keyFileName, key.getEncoded());
     }
 }
-

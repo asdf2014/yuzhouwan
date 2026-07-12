@@ -6,11 +6,13 @@ import org.slf4j.LoggerFactory;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.DESKeySpec;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 import java.security.SecureRandom;
 
 import static com.yuzhouwan.hacker.security.SecurityClassLoader.ALGORITHM;
+import static com.yuzhouwan.hacker.security.SecurityClassLoader.IV_LENGTH;
+import static com.yuzhouwan.hacker.security.SecurityClassLoader.TRANSFORMATION;
 
 /**
  * Copyright @ 2024 yuzhouwan.com
@@ -32,21 +34,26 @@ class EncryptClasses {
         SecureRandom sr = new SecureRandom();
         byte[] rawKey = FileUtils.readFile(keyFilename);
         assert rawKey != null;
-        DESKeySpec dks = new DESKeySpec(rawKey);
-        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(ALGORITHM); // lgtm [java/weak-cryptographic-algorithm]
-        SecretKey key = keyFactory.generateSecret(dks);
-
-        Cipher cipher = Cipher.getInstance(ALGORITHM); // lgtm [java/weak-cryptographic-algorithm]
-        cipher.init(Cipher.ENCRYPT_MODE, key, sr);
+        SecretKey key = new SecretKeySpec(rawKey, ALGORITHM);
 
         String filename;
-        byte[] classData, encryptedClassData;
+        byte[] classData;
         for (int i = 1; i < clazz.length; ++i) {
             filename = clazz[i];
 
             classData = FileUtils.readFile(filename);
             assert classData != null;
-            encryptedClassData = cipher.doFinal(classData);
+
+            // a fresh random IV per file; store it as [16-byte IV][ciphertext]
+            byte[] iv = new byte[IV_LENGTH];
+            sr.nextBytes(iv);
+            Cipher cipher = Cipher.getInstance(TRANSFORMATION);
+            cipher.init(Cipher.ENCRYPT_MODE, key, new IvParameterSpec(iv));
+            byte[] cipherText = cipher.doFinal(classData);
+
+            byte[] encryptedClassData = new byte[iv.length + cipherText.length];
+            System.arraycopy(iv, 0, encryptedClassData, 0, iv.length);
+            System.arraycopy(cipherText, 0, encryptedClassData, iv.length, cipherText.length);
             FileUtils.writeFile(filename, encryptedClassData);
 
             LOGGER.debug("Encrypted {}", filename);

@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.io.ObjectInputFilter;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
@@ -22,6 +23,10 @@ import java.net.Socket;
 public class Listener implements Runnable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Listener.class);
+
+    // allow only the RPC model and JDK types, reject everything else (blocks deserialization gadget chains)
+    private static final ObjectInputFilter CALL_FILTER =
+            ObjectInputFilter.Config.createFilter("com.yuzhouwan.**;java.**;!*");
 
     private final Server server;
 
@@ -45,7 +50,8 @@ public class Listener implements Runnable {
                 Socket clientSocket = serversocket.accept();
                 // 获取客户端的请求
                 ois = new ObjectInputStream(clientSocket.getInputStream());
-                Call call = (Call) ois.readObject();  // lgtm [java/unsafe-deserialization]
+                ois.setObjectInputFilter(CALL_FILTER);
+                Call call = (Call) ois.readObject();
                 // 服务器处理
                 server.call(call);
 
