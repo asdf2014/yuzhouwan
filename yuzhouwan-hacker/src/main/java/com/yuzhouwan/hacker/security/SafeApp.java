@@ -5,8 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.DESKeySpec;
+import javax.crypto.spec.SecretKeySpec;
 import java.lang.reflect.Method;
 
 /**
@@ -40,9 +39,7 @@ public class SafeApp {
 
         byte[] rawKey = FileUtils.readFile(KEY_FILENAME);
         assert rawKey != null;
-        DESKeySpec dks = new DESKeySpec(rawKey);
-        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(SecurityClassLoader.ALGORITHM);  // lgtm [java/weak-cryptographic-algorithm]
-        SecretKey key = keyFactory.generateSecret(dks);
+        SecretKey key = new SecretKeySpec(rawKey, SecurityClassLoader.ALGORITHM);
 
         SecurityClassLoader dr = new SecurityClassLoader(key);
 

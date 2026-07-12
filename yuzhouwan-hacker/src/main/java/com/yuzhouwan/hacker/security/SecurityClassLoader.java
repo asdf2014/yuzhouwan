@@ -6,10 +6,11 @@ import org.slf4j.LoggerFactory;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
-import java.security.SecureRandom;
+import java.util.Arrays;
 
 /**
  * Copyright @ 2024 yuzhouwan.com
@@ -23,16 +24,17 @@ class SecurityClassLoader extends ClassLoader {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SecurityClassLoader.class);
 
-    static final String ALGORITHM = "DES";
+    static final String ALGORITHM = "AES";
+    static final String TRANSFORMATION = "AES/CBC/PKCS5Padding";
+    static final int IV_LENGTH = 16;
     private static final String CLASSES_PATH = "F:/如何成为 Java 高手/笔记/Soft Engineering/Git/[code]/"
         + "yuzhouwan/yuzhouwan-hacker/target/classes/com/yuzhouwan/hacker/security/";
 
-    private final Cipher cipher;
+    private final SecretKey key;
 
-    SecurityClassLoader(SecretKey key) throws GeneralSecurityException {
-        LOGGER.error("[SecurityClassLoader: creating cipher]");
-        cipher = Cipher.getInstance(ALGORITHM);  // lgtm [java/weak-cryptographic-algorithm]
-        cipher.init(Cipher.DECRYPT_MODE, key, new SecureRandom());
+    SecurityClassLoader(SecretKey key) {
+        LOGGER.error("[SecurityClassLoader: holding key]");
+        this.key = key;
     }
 
     @Override
@@ -48,7 +50,12 @@ class SecurityClassLoader extends ClassLoader {
                 } else classData = FileUtils.readFile(name);
 
                 if (classData != null) {
-                    byte[] decryptedClassData = cipher.doFinal(classData);
+                    // the file layout is [16-byte random IV][AES/CBC ciphertext]
+                    byte[] iv = Arrays.copyOfRange(classData, 0, IV_LENGTH);
+                    byte[] cipherText = Arrays.copyOfRange(classData, IV_LENGTH, classData.length);
+                    Cipher cipher = Cipher.getInstance(TRANSFORMATION);
+                    cipher.init(Cipher.DECRYPT_MODE, key, new IvParameterSpec(iv));
+                    byte[] decryptedClassData = cipher.doFinal(cipherText);
                     clazz = defineClass(name, decryptedClassData, 0, decryptedClassData.length);
                     LOGGER.error("[SecurityClassLoader: decrypting class " + name + "]");
                 }
@@ -59,9 +66,7 @@ class SecurityClassLoader extends ClassLoader {
             if (resolve && clazz != null) resolveClass(clazz);
             return clazz;
         } catch (IOException | GeneralSecurityException e) {
-            // if java.lang.ClassNotFoundException:
-            // Input length must be multiple of 8 when decrypting with padded cipher,
-            // then mvn clean (DO NOT mvn install!!)
+            // if java.lang.ClassNotFoundException, then mvn clean (DO NOT mvn install!!)
             // & run com.yuzhouwan.hacker.security.GenerateKeyTest.generate to generate key
             // & run com.yuzhouwan.hacker.security.EncryptClassesTest.encrypt() to encrypt unsafe class files
             throw new ClassNotFoundException(e.getMessage());

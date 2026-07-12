@@ -3,6 +3,7 @@ package com.yuzhouwan.site.service.rpc.connection;
 import com.yuzhouwan.site.api.rpc.model.Call;
 
 import java.io.IOException;
+import java.io.ObjectInputFilter;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -16,6 +17,10 @@ import java.net.Socket;
  * @since 2016/9/1
  */
 public class Client {
+
+    // allow only the RPC model and JDK types, reject everything else (blocks deserialization gadget chains)
+    private static final ObjectInputFilter CALL_FILTER =
+            ObjectInputFilter.Config.createFilter("com.yuzhouwan.**;java.**;!*");
 
     private Socket socket;
     private ObjectOutputStream oos;
@@ -39,7 +44,8 @@ public class Client {
         oos.flush();
         //waiting server to send result...
         ois = new ObjectInputStream(socket.getInputStream());
-        Call resultCall = (Call) ois.readObject();  // lgtm [java/unsafe-deserialization]
+        ois.setObjectInputFilter(CALL_FILTER);
+        Call resultCall = (Call) ois.readObject();
         call.setResult(resultCall.getResult());
     }
 
