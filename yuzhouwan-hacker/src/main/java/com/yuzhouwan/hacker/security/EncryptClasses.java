@@ -6,11 +6,12 @@ import org.slf4j.LoggerFactory;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
-import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.SecureRandom;
 
 import static com.yuzhouwan.hacker.security.SecurityClassLoader.ALGORITHM;
+import static com.yuzhouwan.hacker.security.SecurityClassLoader.GCM_TAG_BITS;
 import static com.yuzhouwan.hacker.security.SecurityClassLoader.IV_LENGTH;
 import static com.yuzhouwan.hacker.security.SecurityClassLoader.TRANSFORMATION;
 
@@ -44,11 +45,11 @@ class EncryptClasses {
             classData = FileUtils.readFile(filename);
             assert classData != null;
 
-            // a fresh random IV per file; store it as [16-byte IV][ciphertext]
+            // a fresh random nonce per file; store it as [12-byte nonce][ciphertext]
             byte[] iv = new byte[IV_LENGTH];
             sr.nextBytes(iv);
             Cipher cipher = Cipher.getInstance(TRANSFORMATION);
-            cipher.init(Cipher.ENCRYPT_MODE, key, new IvParameterSpec(iv));
+            cipher.init(Cipher.ENCRYPT_MODE, key, new GCMParameterSpec(GCM_TAG_BITS, iv));
             byte[] cipherText = cipher.doFinal(classData);
 
             byte[] encryptedClassData = new byte[iv.length + cipherText.length];
