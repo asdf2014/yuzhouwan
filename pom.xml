@@ -215,7 +215,7 @@
         <apache.kafka.version>2.4.1</apache.kafka.version>
 
         <!-- lucene -->
-        <lucene.version>10.5.0</lucene.version>
+        <lucene.version>10.5.1</lucene.version>
 
         <!-- elasticsearch -->
         <elasticsearch.version>7.17.29</elasticsearch.version>
