@@ -1,4 +1,4 @@
-FROM maven:3.9-eclipse-temurin-21 as builder
+FROM maven:3.9-eclipse-temurin-25 as builder
 
 COPY . /src
 WORKDIR /src
