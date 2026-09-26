@@ -6,12 +6,12 @@ import com.yuzhouwan.common.util.StrUtils;
 import com.yuzhouwan.common.util.TimeUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
-import org.apache.hadoop.hbase.HTableDescriptor;
-import org.apache.hadoop.hbase.RegionLoad;
+import org.apache.hadoop.hbase.RegionMetrics;
 import org.apache.hadoop.hbase.TableExistsException;
 import org.apache.hadoop.hbase.client.Admin;
 import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.client.ConnectionFactory;
+import org.apache.hadoop.hbase.client.TableDescriptor;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -87,12 +87,12 @@ public final class HBaseUtils {
         configuration.set("metric.zookeeper.znode.parent", znodeParent);
     }
 
-    public static boolean createTable(Admin admin, HTableDescriptor table, byte[][] splits) {
+    public static boolean createTable(Admin admin, TableDescriptor table, byte[][] splits) {
         if (admin == null || table == null || splits == null) return false;
         try {
             admin.createTable(table, splits);
         } catch (TableExistsException e) {
-            LOGGER.error(String.format("Table %s already exists!", table.getNameAsString()));
+            LOGGER.error(String.format("Table %s already exists!", table.getTableName().getNameAsString()));
             return false;
         } catch (Exception e) {
             LOGGER.error(ExceptionUtils.errorInfo(e));
@@ -101,22 +101,21 @@ public final class HBaseUtils {
         return true;
     }
 
-    public static String getNameSpace(RegionLoad region) {
+    public static String getNameSpace(RegionMetrics region) {
         String tableName;
         if (isEmpty(tableName = getTableName(region))) return null;
         return tableName.split(COLON)[0];
     }
 
-    public static String getSingleTableName(RegionLoad region) {
+    public static String getSingleTableName(RegionMetrics region) {
         String tableName;
         if (isEmpty(tableName = getTableName(region))) return null;
         return tableName.split(COLON)[1];
     }
 
-    public static String getTableName(RegionLoad region) {
+    public static String getTableName(RegionMetrics region) {
         if (region == null) return null;
-        // return extractTableName(HRegionInfo.encodeRegionName(region.getName()));
-        return extractTableName(Bytes.toStringBinary(region.getName()));
+        return extractTableName(Bytes.toStringBinary(region.getRegionName()));
     }
 
     public static String extractTableName(String regionName) {

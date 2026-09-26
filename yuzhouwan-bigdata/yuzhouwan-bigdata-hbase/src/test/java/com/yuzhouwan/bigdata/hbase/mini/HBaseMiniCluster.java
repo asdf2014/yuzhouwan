@@ -3,20 +3,22 @@ package com.yuzhouwan.bigdata.hbase.mini;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.hbase.HBaseTestingUtility;
-import org.apache.hadoop.hbase.HTableDescriptor;
-import org.apache.hadoop.hbase.MiniHBaseCluster;
+import org.apache.hadoop.hbase.HBaseTestingUtil;
+import org.apache.hadoop.hbase.SingleProcessHBaseCluster;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.Admin;
 import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.client.ConnectionFactory;
+import org.apache.hadoop.hbase.client.ColumnFamilyDescriptorBuilder;
+import org.apache.hadoop.hbase.client.TableDescriptor;
+import org.apache.hadoop.hbase.client.TableDescriptorBuilder;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.apache.hadoop.mapred.*;
 import org.junit.Test;
 
 import java.io.IOException;
 
-import static org.apache.hadoop.hbase.HBaseCommonTestingUtility.BASE_TEST_DIRECTORY_KEY;
+import static org.apache.hadoop.hbase.HBaseCommonTestingUtil.BASE_TEST_DIRECTORY_KEY;
 
 /**
  * Copyright @ 2024 yuzhouwan.com
@@ -37,16 +39,16 @@ public class HBaseMiniCluster {
     @Test
     public void miniCluster() throws Exception {
         /*
-         * https://github.com/apache/hbase/blob/master/hbase-common/src/test/java/org/apache/hadoop/hbase/HBaseCommonTestingUtility.java
+         * https://github.com/apache/hbase/blob/master/hbase-common/src/test/java/org/apache/hadoop/hbase/HBaseCommonTestingUtil.java
          */
         System.setProperty(BASE_TEST_DIRECTORY_KEY, BASE_PATH.concat("data"));
         System.setProperty("hadoop.home.dir", "D:/apps/hadoop/hadoop-2.7.3/");
 
-        HBaseTestingUtility hbaseTestingUtility = hbaseOperation();
+        HBaseTestingUtil hbaseTestingUtility = hbaseOperation();
         mapReduce(hbaseTestingUtility);
     }
 
-    private void mapReduce(HBaseTestingUtility hbaseTestingUtility) throws IOException {
+    private void mapReduce(HBaseTestingUtil hbaseTestingUtility) throws IOException {
         hbaseTestingUtility.startMiniMapReduceCluster();
         FileSystem fs = FileSystem.get(hbaseTestingUtility.getConfiguration());
 
@@ -63,14 +65,14 @@ public class HBaseMiniCluster {
         JobClient.runJob(conf);
     }
 
-    private HBaseTestingUtility hbaseOperation() throws Exception {
+    private HBaseTestingUtil hbaseOperation() throws Exception {
 
-        HBaseTestingUtility hbaseTestingUtility = new HBaseTestingUtility();
+        HBaseTestingUtil hbaseTestingUtility = new HBaseTestingUtil();
         /*
          * # fsOwner's name is Benedict Jin, will throw exception: Illegal character in path at index 42
          * hbaseTestingUtility.getTestFileSystem().setOwner(new Path(BASE_PATH.concat("/owner")), "Benedict Jin", "supergroup");
          */
-        MiniHBaseCluster hbaseCluster = hbaseTestingUtility.startMiniCluster();
+        SingleProcessHBaseCluster hbaseCluster = hbaseTestingUtility.startMiniCluster();
 
         hbaseTestingUtility.createTable(TableName.valueOf(TABLE_NAME), Bytes.toBytes("context"));
         hbaseTestingUtility.deleteTable(TableName.valueOf(TABLE_NAME));
@@ -79,7 +81,9 @@ public class HBaseMiniCluster {
         Connection conn = ConnectionFactory.createConnection(config);
         Admin hbaseAdmin = conn.getAdmin();
 
-        HTableDescriptor desc = new HTableDescriptor(TableName.valueOf(TABLE_NAME));
+        TableDescriptor desc = TableDescriptorBuilder.newBuilder(TableName.valueOf(TABLE_NAME))
+                .setColumnFamily(ColumnFamilyDescriptorBuilder.of("context"))
+                .build();
         hbaseAdmin.createTable(desc);
         return hbaseTestingUtility;
     }

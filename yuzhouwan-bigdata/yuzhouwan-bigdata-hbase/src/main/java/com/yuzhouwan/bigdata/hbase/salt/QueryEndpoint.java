@@ -1,9 +1,9 @@
 package com.yuzhouwan.bigdata.hbase.salt;
 
-import com.google.protobuf.ByteString;
-import com.google.protobuf.RpcCallback;
-import com.google.protobuf.RpcController;
-import com.google.protobuf.Service;
+import org.apache.hbase.thirdparty.com.google.protobuf.ByteString;
+import org.apache.hbase.thirdparty.com.google.protobuf.RpcCallback;
+import org.apache.hbase.thirdparty.com.google.protobuf.RpcController;
+import org.apache.hbase.thirdparty.com.google.protobuf.Service;
 import com.yuzhouwan.bigdata.hbase.util.salt.DataProtos;
 import com.yuzhouwan.bigdata.hbase.util.salt.DataProtos.DataQueryResponse;
 import com.yuzhouwan.common.util.ExceptionUtils;
@@ -72,14 +72,14 @@ public class QueryEndpoint extends DataProtos.QueryDataService implements Region
             }
             Scan scan = new Scan();
             if (null != startRow) {
-                scan.setStartRow(Bytes.toBytes(startRow));
+                scan.withStartRow(Bytes.toBytes(startRow));
             }
             if (null != endRow) {
                 if (request.getIncludedEnd()) {
                     Filter filter = new InclusiveStopFilter(Bytes.toBytes(endRow));
                     scan.setFilter(filter);
                 } else {
-                    scan.setStopRow(Bytes.toBytes(endRow));
+                    scan.withStopRow(Bytes.toBytes(endRow));
                 }
             }
             scanner = this.env.getRegion().getScanner(scan);
