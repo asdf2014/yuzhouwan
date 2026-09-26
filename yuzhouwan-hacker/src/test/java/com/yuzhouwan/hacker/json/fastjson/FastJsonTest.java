@@ -3,10 +3,10 @@ package com.yuzhouwan.hacker.json.fastjson;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -23,7 +23,7 @@ public class FastJsonTest {
 
     private FastJsonExample fastJsonExample;
 
-    @Before
+    @BeforeEach
     public void init() {
         fastJsonExample = new FastJsonExample();
     }

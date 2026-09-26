@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -30,7 +31,12 @@ public class BeanUtilsTest {
         BeanUtils.swapper(beanA, "c_C", 3d, "_");
         BeanUtils.swapper(beanA, "dD", beanA, "_");
 
-        assertEquals("{\"aA\":1,\"bB\":2,\"cC\":3.0,\"d_D\":{\"$ref\":\"@\"}}", beanA.toString());
+        assertEquals(1, beanA.getaA());
+        assertEquals(2L, beanA.bB);
+        assertEquals(Double.valueOf(3d), beanA.getcC());
+        assertSame(beanA, beanA.getD_D());
+
+        assertEquals("{\"aA\":1,\"bB\":2,\"cC\":3.0,\"d_D\":{\"$ref\":\"..\"}}", beanA.toString());
     }
 
     @Test
