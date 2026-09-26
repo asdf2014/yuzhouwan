@@ -12,6 +12,11 @@
 
     <artifactId>yuzhouwan-bigdata-storm</artifactId>
 
+    <properties>
+        <!-- Storm 3 requires Java 25 for both compilation and execution. -->
+        <java.version>25</java.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.yuzhouwan</groupId>
