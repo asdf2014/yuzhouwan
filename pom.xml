@@ -130,12 +130,12 @@
         <cglib.version>3.3.0</cglib.version>
 
         <!-- snmp4j -->
-        <snmp4j.version>3.12.2</snmp4j.version>
+        <snmp4j.version>3.13.1</snmp4j.version>
         <snmp4j.agent.version>3.10.1</snmp4j.agent.version>
 
         <!-- log -->
-        <slf4j.version>2.0.18</slf4j.version>
-        <logback.version>1.6.1</logback.version>
+        <slf4j.version>2.0.20</slf4j.version>
+        <logback.version>1.6.2</logback.version>
         <log4j-extras.version>1.2.17</log4j-extras.version>
         <apache.commons.logging.version>1.4.0</apache.commons.logging.version>
 
@@ -161,7 +161,7 @@
         <org.codehaus.jackson.jackson-mapper-asl.version>1.9.13</org.codehaus.jackson.jackson-mapper-asl.version>
 
         <!-- ZSTD -->
-        <zstd.version>1.5.7-11</zstd.version>
+        <zstd.version>1.5.7-19</zstd.version>
 
         <!-- apache tika -->
         <apache.tika.version>1.11</apache.tika.version>
@@ -188,7 +188,7 @@
         <async-http-client.version>1.9.40</async-http-client.version>
 
         <!-- netty -->
-        <netty.version>4.2.16.Final</netty.version>
+        <netty.version>4.2.17.Final</netty.version>
 
         <!-- jetty -->
         <eclipse.jetty.webapp.version>9.2.10.v20150310</eclipse.jetty.webapp.version>
