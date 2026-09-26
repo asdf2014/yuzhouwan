@@ -1,13 +1,11 @@
 package com.yuzhouwan.common.util;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;
 
 import java.io.File;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static com.yuzhouwan.common.dir.DirUtils.TEST_RESOURCES_PATH;
 import static com.yuzhouwan.common.util.FileUtils.readFile;
@@ -167,10 +165,8 @@ public class StrUtilsTest {
         String sqliteKeywords = compression(new String(Objects.requireNonNull(readFile(TEST_RESOURCES_PATH.concat("db/sqlite_keywords.json")))));
         assertEquals("[\"ABORT\",\"ADD\",\"AFTER\",\"ALL\",\"ALTER\",\"ANALYZE\",\"AND\",\"AS\",\"ASC\",\"ATTACH\",\"AUTOINCREMENT\",\"BEFORE\",\"BEGIN\",\"BETWEEN\",\"BY\",\"CASCADE\",\"CASE\",\"CAST\",\"CHECK\",\"COLLATE\",\"COMMIT\",\"CONFLICT\",\"CONSTRAINT\",\"CREATE\",\"CROSS\",\"CURRENT_DATE\",\"CURRENT_TIME\",\"CURRENT_TIMESTAMP\",\"DATABASE\",\"DEFAULT\",\"DEFERRABLE\",\"DEFERRED\",\"DELETE\",\"DESC\",\"DETACH\",\"DISTINCT\",\"DROP\",\"EACH\",\"ELSE\",\"END\",\"ESCAPE\",\"EXCEPT\",\"EXCLUSIVE\",\"EXPLAIN\",\"FAIL\",\"FOR\",\"FOREIGN\",\"FROM\",\"FULL\",\"GLOB\",\"GROUP\",\"HAVING\",\"IF\",\"IGNORE\",\"IMMEDIATE\",\"IN\",\"INDEX\",\"INITIALLY\",\"INNER\",\"INSERT\",\"INSTEAD\",\"INTERSECT\",\"INTO\",\"IS\",\"ISNULL\",\"JOIN\",\"KEY\",\"LEFT\",\"LIKE\",\"LIMIT\",\"MATCH\",\"NATURAL\",\"NOT\",\"NOTNULL\",\"NULL\",\"OF\",\"OFFSET\",\"ON\",\"OR\",\"ORDER\",\"OUTER\",\"PLAN\",\"PRAGMA\",\"PRIMARY\",\"QUERY\",\"RAISE\",\"REFERENCES\",\"REINDEX\",\"RENAME\",\"REPLACE\",\"RESTRICT\",\"RIGHT\",\"ROLLBACK\",\"ROW\",\"SELECT\",\"SET\",\"TABLE\",\"TEMP\",\"TEMPORARY\",\"THEN\",\"TO\",\"TRANSACTION\",\"TRIGGER\",\"UNION\",\"UNIQUE\",\"UPDATE\",\"USING\",\"VACUUM\",\"VALUES\",\"VIEW\",\"VIRTUAL\",\"WHEN\",\"WHERE\"]",
                 sqliteKeywords);
-        Collection<Object> mysqlArr = Arrays.asList(Objects.requireNonNull(JSON.parseArray(mysqlKeywords)).toArray());
-        Set<String> mysqlSet = mysqlArr.stream().map(Object::toString).collect(Collectors.toCollection(LinkedHashSet::new));
-        JSONArray sqliteArr = JSON.parseArray(sqliteKeywords);
-        Set<String> sqliteSet = Objects.requireNonNull(sqliteArr).stream().map(Object::toString).collect(Collectors.toCollection(LinkedHashSet::new));
+        Set<String> mysqlSet = new LinkedHashSet<>(JSON.parseArray(mysqlKeywords, String.class));
+        Set<String> sqliteSet = new LinkedHashSet<>(JSON.parseArray(sqliteKeywords, String.class));
         Collection<String> intersection = CollectionUtils.intersection(mysqlSet, sqliteSet);
         mysqlSet.removeAll(intersection);   // in mysql, and not in sqlite
         assertEquals("[\"ACCESSIBLE\",\"ASENSITIVE\",\"BIGINT\",\"BINARY\",\"BLOB\",\"BOTH\",\"CALL\",\"CHANGE\",\"CHAR\",\"CHARACTER\",\"COLUMN\",\"CONDITION\",\"CONTINUE\",\"CONVERT\",\"CURRENT_USER\",\"CURSOR\",\"DATABASES\",\"DAY_HOUR\",\"DAY_MICROSECOND\",\"DAY_MINUTE\",\"DAY_SECOND\",\"DEC\",\"DECIMAL\",\"DECLARE\",\"DELAYED\",\"DESCRIBE\",\"DETERMINISTIC\",\"DISTINCTROW\",\"DIV\",\"DOUBLE\",\"DUAL\",\"ELSEIF\",\"ENCLOSED\",\"ESCAPED\",\"EXISTS\",\"EXIT\",\"FALSE\",\"FETCH\",\"FLOAT\",\"FLOAT4\",\"FLOAT8\",\"FORCE\",\"FULLTEXT\",\"GRANT\",\"HIGH_PRIORITY\",\"HOUR_MICROSECOND\",\"HOUR_MINUTE\",\"HOUR_SECOND\",\"INFILE\",\"INOUT\",\"INSENSITIVE\",\"INT\",\"INT1\",\"INT2\",\"INT3\",\"INT4\",\"INT8\",\"INTEGER\",\"INTERVAL\",\"ITERATE\",\"KEYS\",\"KILL\",\"LEADING\",\"LEAVE\",\"LINEAR\",\"LINES\",\"LOAD\",\"LOCALTIME\",\"LOCALTIMESTAMP\",\"LOCK\",\"LONG\",\"LONGBLOB\",\"LONGTEXT\",\"LOOP\",\"LOW_PRIORITY\",\"MASTER_SSL_VERIFY_SERVER_CERT\",\"MAXVALUE\",\"MEDIUMBLOB\",\"MEDIUMINT\",\"MEDIUMTEXT\",\"MIDDLEINT\",\"MINUTE_MICROSECOND\",\"MINUTE_SECOND\",\"MOD\",\"MODIFIES\",\"NO_WRITE_TO_BINLOG\",\"NUMERIC\",\"OPTIMIZE\",\"OPTION\",\"OPTIONALLY\",\"OUT\",\"OUTFILE\",\"PRECISION\",\"PROCEDURE\",\"PURGE\",\"RANGE\",\"READ\",\"READS\",\"READ_WRITE\",\"REAL\",\"REGEXP\",\"RELEASE\",\"REPEAT\",\"REQUIRE\",\"RESIGNAL\",\"RETURN\",\"REVOKE\",\"RLIKE\",\"SCHEMA\",\"SCHEMAS\",\"SECOND_MICROSECOND\",\"SENSITIVE\",\"SEPARATOR\",\"SHOW\",\"SIGNAL\",\"SMALLINT\",\"SPATIAL\",\"SPECIFIC\",\"SQL\",\"SQLEXCEPTION\",\"SQLSTATE\",\"SQLWARNING\",\"SQL_BIG_RESULT\",\"SQL_CALC_FOUND_ROWS\",\"SQL_SMALL_RESULT\",\"SSL\",\"STARTING\",\"STRAIGHT_JOIN\",\"TERMINATED\",\"TINYBLOB\",\"TINYINT\",\"TINYTEXT\",\"TRAILING\",\"TRUE\",\"UNDO\",\"UNLOCK\",\"UNSIGNED\",\"USAGE\",\"USE\",\"UTC_DATE\",\"UTC_TIME\",\"UTC_TIMESTAMP\",\"VARBINARY\",\"VARCHAR\",\"VARCHARACTER\",\"VARYING\",\"WHILE\",\"WITH\",\"WRITE\",\"XOR\",\"YEAR_MONTH\",\"ZEROFILL\",\"GENERAL\",\"IGNORE_SERVER_IDS\",\"MASTER_HEARTBEAT_PERIOD\",\"SLOW\"]",
