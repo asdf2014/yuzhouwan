@@ -1,9 +1,13 @@
 package com.yuzhouwan.bigdata.hbase.util;
 
 import com.alibaba.fastjson.JSON;
+import org.apache.hadoop.hbase.RegionMetrics;
+import org.apache.hadoop.hbase.RegionMetricsBuilder;
+import org.apache.hadoop.hbase.util.Bytes;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,6 +31,20 @@ public class HBaseUtilsTest {
      alter 'yuzhouwan', {METHOD => 'table_att', SPLIT_POLICY => 'org.apache.hadoop.hbase.regionserver.DisabledRegionSplitPolicy'}
       */
     private static final Logger LOGGER = LoggerFactory.getLogger(HBaseUtilsTest.class);
+
+    @Test
+    public void regionMetricsTableNameTest() {
+        RegionMetrics namespaced = RegionMetricsBuilder.newBuilder(Bytes.toBytes("hbase:meta,,1..")).build();
+        assertEquals("hbase:meta", HBaseUtils.getTableName(namespaced));
+        assertEquals("hbase", HBaseUtils.getNameSpace(namespaced));
+        assertEquals("meta", HBaseUtils.getSingleTableName(namespaced));
+
+        RegionMetrics defaultNamespace = RegionMetricsBuilder.newBuilder(Bytes.toBytes("events,,123..")).build();
+        assertEquals("default:events", HBaseUtils.getTableName(defaultNamespace));
+        assertEquals("default", HBaseUtils.getNameSpace(defaultNamespace));
+        assertEquals("events", HBaseUtils.getSingleTableName(defaultNamespace));
+        assertNull(HBaseUtils.getTableName(null));
+    }
 
     @Test
     public void generateSplitKeysTest() {
