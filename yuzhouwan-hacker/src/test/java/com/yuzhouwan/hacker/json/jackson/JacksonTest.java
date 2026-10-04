@@ -1,8 +1,8 @@
 package com.yuzhouwan.hacker.json.jackson;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Copyright @ 2024 yuzhouwan.com
@@ -20,33 +20,33 @@ public class JacksonTest {
             final JacksonBean bean = new ObjectMapper()
                     .readerFor(JacksonBean.class)
                     .readValue("{}");
-            Assert.assertEquals(0, bean.getId());
-            Assert.assertNull(bean.getName());
-            Assert.assertNull(bean.getBlog());
+            Assertions.assertEquals(0, bean.getId());
+            Assertions.assertNull(bean.getName());
+            Assertions.assertNull(bean.getBlog());
         }
         {
             final JacksonBean bean = new ObjectMapper()
                     .readerFor(JacksonBean.class)
                     .readValue("{\"id\":1}");
-            Assert.assertEquals(1, bean.getId());
-            Assert.assertNull(bean.getName());
-            Assert.assertNull(bean.getBlog());
+            Assertions.assertEquals(1, bean.getId());
+            Assertions.assertNull(bean.getName());
+            Assertions.assertNull(bean.getBlog());
         }
         {
             final JacksonBean bean = new ObjectMapper()
                     .readerFor(JacksonBean.class)
                     .readValue("{\"id\":2,\"name\":\"宇宙湾\",\"blog\":\"yuzhouwan.com\"}");
-            Assert.assertEquals(2, bean.getId());
-            Assert.assertEquals("宇宙湾", bean.getName());
-            Assert.assertEquals("yuzhouwan.com", bean.getBlog());
+            Assertions.assertEquals(2, bean.getId());
+            Assertions.assertEquals("宇宙湾", bean.getName());
+            Assertions.assertEquals("yuzhouwan.com", bean.getBlog());
         }
         {
             final JacksonBean bean = new ObjectMapper()
                     .readerFor(JacksonBean.class)
                     .readValue("{\"id\":3,\"name\":\"asdf2014\",\"theBlog\":\"yuzhouwan.com\"}");
-            Assert.assertEquals(3, bean.getId());
-            Assert.assertEquals("asdf2014", bean.getName());
-            Assert.assertEquals("yuzhouwan.com", bean.getBlog());
+            Assertions.assertEquals(3, bean.getId());
+            Assertions.assertEquals("asdf2014", bean.getName());
+            Assertions.assertEquals("yuzhouwan.com", bean.getBlog());
         }
     }
 }
