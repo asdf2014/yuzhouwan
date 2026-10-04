@@ -286,6 +286,12 @@
             <version>${fabric8.version}</version>
             <scope>test</scope>
         </dependency>
+        <!-- Fabric8's Jackson 3 shares annotations with Jackson 2 and requires the newer version. -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.annotations.version}</version>
+        </dependency>
         <!-- Otherwise, will report com.fasterxml.jackson.databind.ser.std.ToStringSerializerBase not found -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
